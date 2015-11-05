@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openAnvil(View view) {
-        Intent intent = new Intent(this, FurnaceActivity.class);
+        Intent intent = new Intent(this, AnvilActivity.class);
         String message = "This is an anvil";
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);

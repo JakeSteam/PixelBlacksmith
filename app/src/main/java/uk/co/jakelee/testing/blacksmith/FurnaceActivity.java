@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FurnaceActivity extends AppCompatActivity {
 
@@ -25,11 +26,15 @@ public class FurnaceActivity extends AppCompatActivity {
             copperCount--;
             tinCount--;
             bronzeCount++;
-        }
 
-        setIntSetting("copperOreCount", copperCount);
-        setIntSetting("tinOreCount", tinCount);
-        setIntSetting("bronzeBarCount", bronzeCount);
+            setIntSetting("copperOreCount", copperCount);
+            setIntSetting("tinOreCount", tinCount);
+            setIntSetting("bronzeBarCount", bronzeCount);
+
+            Toast.makeText(getApplicationContext(), "Bronze bar created", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+        }
 
         updateInterface();
     }
