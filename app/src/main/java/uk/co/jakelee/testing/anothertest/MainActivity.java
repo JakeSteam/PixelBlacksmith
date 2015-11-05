@@ -13,9 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setIntSetting("copperOreCount", 1);
-        setIntSetting("tinOreCount", 2);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -24,6 +21,22 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tinOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
         tinOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
+    }
+
+    public void addCopperOre(View view) {
+        int count = getIntSetting("copperOreCount", 0);
+        setIntSetting("copperOreCount", ++count);
+
+        TextView copperOreCount = (TextView) findViewById(R.id.copperOreCountLabel);
+        copperOreCount.setText(Integer.toString(getIntSetting("copperOreCount", 0)));
+    }
+
+    public void addTinOre(View view) {
+        int count = getIntSetting("tinOreCount", 0);
+        setIntSetting("tinOreCount", ++count);
+
+        TextView copperOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
+        copperOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
     }
 
     public void openFurnace(View view) {
@@ -51,4 +64,5 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(variableName, value);
         editor.commit();
     }
+
 }

@@ -12,7 +12,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription="A furnace"
+            android:contentDescription="@string/furnace_description"
             android:onClick="openFurnace"
             android:scaleType="fitCenter"
             android:src="@drawable/furnace" />
@@ -22,7 +22,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription="An anvil"
+            android:contentDescription="@string/anvil_description"
+            android:maxHeight="150dp"
             android:onClick="openAnvil"
             android:scaleType="fitCenter"
             android:src="@drawable/anvil" />
@@ -58,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="7"
+            android:onClick="addCopperOre"
             android:text="@string/add_one_ore" />
     </TableRow>
 
@@ -92,6 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="7"
+            android:onClick="addTinOre"
             android:text="@string/add_one_ore" />
     </TableRow>
 
