@@ -75,7 +75,7 @@
             android:layout_column="1"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            android:contentDescription="Tin ore"
+            android:contentDescription="@string/tin_ore"
             android:src="@drawable/tin_ore" />
 
         <TextView

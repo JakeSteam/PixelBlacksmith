@@ -20,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateInterface();
+    }
+
     public void addCopperOre(View view) {
         int count = getIntSetting("copperOreCount", 0);
         setIntSetting("copperOreCount", ++count);
