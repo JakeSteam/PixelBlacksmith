@@ -34,15 +34,15 @@
         android:layout_height="125dp"
         android:layout_marginLeft="10dp">
 
-        <TextView
-            android:id="@+id/copperOreLabel"
+        <ImageView
+            android:id="@+id/copperOreImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="2"
-            android:layout_marginRight="5dp"
-            android:text="@string/copper_ore"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/default_text_size" />
+            android:layout_column="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/copper_ore"
+            android:src="@drawable/copper_ore" />
 
         <TextView
             android:id="@+id/copperOreCountLabel"
@@ -68,16 +68,15 @@
         android:layout_height="125dp"
         android:layout_marginLeft="10dp">
 
-        <TextView
-            android:id="@+id/tinOreLabel"
+        <ImageView
+            android:id="@+id/tinOreImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="2"
-            android:layout_marginRight="5dp"
-            android:singleLine="true"
-            android:text="@string/tin_ore"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/default_text_size" />
+            android:layout_column="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="Tin ore"
+            android:src="@drawable/tin_ore" />
 
         <TextView
             android:id="@+id/tinOreCountLabel"
