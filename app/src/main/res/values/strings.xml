@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Blacksmith</string>
+    <string name="default_item_count">0</string>
 </resources>

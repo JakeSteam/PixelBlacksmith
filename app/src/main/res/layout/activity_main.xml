@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="2">
+    android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/open_furnace"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:onClick="openFurnace"
-        android:src="@drawable/furnace"
-        android:scaleType="fitCenter" />
-    <ImageButton
-        android:id="@+id/open_anvil"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:onClick="openAnvil"
-        android:src="@drawable/anvil"
-        android:scaleType="fitCenter" />
+    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/open_furnace"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="A furnace"
+            android:onClick="openFurnace"
+            android:scaleType="fitCenter"
+            android:src="@drawable/furnace" />
+
+        <ImageButton
+            android:id="@+id/open_anvil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="An anvil"
+            android:onClick="openAnvil"
+            android:scaleType="fitCenter"
+            android:src="@drawable/anvil" />
+    </TableRow>
+
+    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <TextView
+            android:id="@+id/copperOreLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="Copper ore:"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/copperOreCountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:numeric="integer"
+            android:text="@string/default_item_count"
+            android:textSize="@dimen/default_text_size" />
+    </TableRow>
+
+</TableLayout>
