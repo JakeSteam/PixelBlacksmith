@@ -1,4 +1,4 @@
-package uk.co.jakelee.testing.anothertest;
+package uk.co.jakelee.testing.blacksmith;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,27 +16,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView copperOreCount = (TextView) findViewById(R.id.copperOreCountLabel);
-        copperOreCount.setText(Integer.toString(getIntSetting("copperOreCount", 0)));
+        updateInterface();
 
-        TextView tinOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
-        tinOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
     }
 
     public void addCopperOre(View view) {
         int count = getIntSetting("copperOreCount", 0);
         setIntSetting("copperOreCount", ++count);
 
-        TextView copperOreCount = (TextView) findViewById(R.id.copperOreCountLabel);
-        copperOreCount.setText(Integer.toString(getIntSetting("copperOreCount", 0)));
+        updateInterface();
     }
 
     public void addTinOre(View view) {
         int count = getIntSetting("tinOreCount", 0);
         setIntSetting("tinOreCount", ++count);
 
-        TextView copperOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
-        copperOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
+        updateInterface();
+    }
+
+    public void addBronzeBar(View view) {
+        int count = getIntSetting("bronzeBarCount", 0);
+        setIntSetting("bronzeBarCount", ++count);
+
+        updateInterface();
     }
 
     public void openFurnace(View view) {
@@ -49,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
         String message = "This is an anvil";
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+    }
+
+    public void updateInterface() {
+        TextView copperOreCount = (TextView) findViewById(R.id.copperOreCountLabel);
+        copperOreCount.setText(Integer.toString(getIntSetting("copperOreCount", 0)));
+
+        TextView tinOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
+        tinOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
+
+        TextView bronzeBarCount = (TextView) findViewById(R.id.bronzeBarCountLabel);
+        bronzeBarCount.setText(Integer.toString(getIntSetting("bronzeBarCount", 0)));
     }
 
     public int getIntSetting(String variableName, int defaultValue) {

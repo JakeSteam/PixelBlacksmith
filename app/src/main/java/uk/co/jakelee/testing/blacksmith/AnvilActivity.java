@@ -1,8 +1,8 @@
-package uk.co.jakelee.testing.anothertest;
+package uk.co.jakelee.testing.blacksmith;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class AnvilActivity extends AppCompatActivity {

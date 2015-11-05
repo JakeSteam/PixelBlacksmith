@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="uk.co.jakelee.testing.anothertest.FurnaceActivity">
+    tools:context="uk.co.jakelee.testing.blacksmith.FurnaceActivity">
 
     <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

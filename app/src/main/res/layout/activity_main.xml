@@ -10,7 +10,7 @@
         <ImageButton
             android:id="@+id/open_furnace"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="125dp"
             android:layout_weight="1"
             android:contentDescription="@string/furnace_description"
             android:onClick="openFurnace"
@@ -20,7 +20,7 @@
         <ImageButton
             android:id="@+id/open_anvil"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="125dp"
             android:layout_weight="1"
             android:contentDescription="@string/anvil_description"
             android:maxHeight="150dp"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_column="7"
             android:onClick="addCopperOre"
-            android:text="@string/add_one_ore" />
+            android:text="@string/add_one" />
     </TableRow>
 
     <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
@@ -94,7 +94,41 @@
             android:layout_height="wrap_content"
             android:layout_column="7"
             android:onClick="addTinOre"
-            android:text="@string/add_one_ore" />
+            android:text="@string/add_one" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp">
+
+        <ImageView
+            android:id="@+id/bronzeBarImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/bronze_bar"
+            android:src="@drawable/bronze_bar" />
+
+        <TextView
+            android:id="@+id/bronzeBarCountLabel"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_column="5"
+            android:numeric="integer"
+            android:text="@string/default_item_count"
+            android:textSize="@dimen/default_text_size" />
+
+        <Button
+            android:id="@+id/bronzeBarAddButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="7"
+            android:onClick="addBronzeBar"
+            android:text="@string/add_one" />
     </TableRow>
 
 </TableLayout>

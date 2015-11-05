@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.co.jakelee.testing.anothertest" >
+    package="uk.co.jakelee.testing.blacksmith">
 
     <application
         android:allowBackup="true"
@@ -8,16 +8,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity android:name="uk.co.jakelee.testing.blacksmith.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FurnaceActivity" >
+        <activity android:name="uk.co.jakelee.testing.blacksmith.FurnaceActivity">
         </activity>
-        <activity android:name=".AnvilActivity" >
+        <activity android:name="uk.co.jakelee.testing.blacksmith.AnvilActivity">
         </activity>
     </application>
 

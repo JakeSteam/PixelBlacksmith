@@ -1,4 +1,4 @@
-package uk.co.jakelee.testing.anothertest;
+package uk.co.jakelee.testing.blacksmith;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,19 +16,6 @@ public class FurnaceActivity extends AppCompatActivity {
 
         updateInterface();
     }
-
-    public int getIntSetting(String variableName, int defaultValue) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPref.getInt(variableName, defaultValue);
-    }
-
-    public void setIntSetting(String variableName, int value) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(variableName, value);
-        editor.commit();
-    }
-
     public void createBronzeBar(View view) {
         int copperCount = getIntSetting("copperOreCount", 0);
         int tinCount = getIntSetting("tinOreCount", 0);
@@ -56,5 +43,17 @@ public class FurnaceActivity extends AppCompatActivity {
 
         TextView bronzeBarCount = (TextView) findViewById(R.id.bronzeBarCountLabel);
         bronzeBarCount.setText(Integer.toString(getIntSetting("bronzeBarCount", 0)));
+    }
+
+    public int getIntSetting(String variableName, int defaultValue) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        return sharedPref.getInt(variableName, defaultValue);
+    }
+
+    public void setIntSetting(String variableName, int value) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(variableName, value);
+        editor.commit();
     }
 }
