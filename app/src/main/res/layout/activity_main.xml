@@ -4,14 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="1">
+    android:weightSum="2">
 
     <ImageButton
         android:id="@+id/open_furnace"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="@string/button_send"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="125dp"
         android:onClick="openFurnace"
         android:src="@drawable/furnace"
         android:scaleType="fitCenter" />
+    <ImageButton
+        android:id="@+id/open_anvil"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="125dp"
+        android:onClick="openAnvil"
+        android:src="@drawable/anvil"
+        android:scaleType="fitCenter" />
+
 </LinearLayout>

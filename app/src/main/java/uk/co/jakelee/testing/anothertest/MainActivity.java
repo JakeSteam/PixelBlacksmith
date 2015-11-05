@@ -20,4 +20,11 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
+
+    public void openAnvil(View view) {
+        Intent intent = new Intent(this, FurnaceActivity.class);
+        String message = "This is an anvil";
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
 }
