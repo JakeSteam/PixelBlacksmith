@@ -37,17 +37,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="2"
-            android:text="Copper ore:"
+            android:layout_marginRight="5dp"
+            android:text="@string/copper_ore"
+            android:textAlignment="textEnd"
             android:textSize="@dimen/default_text_size" />
 
         <TextView
             android:id="@+id/copperOreCountLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="3"
+            android:layout_column="5"
             android:numeric="integer"
             android:text="@string/default_item_count"
             android:textSize="@dimen/default_text_size" />
+
+        <Button
+            android:id="@+id/copperOreAddButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="7"
+            android:text="@string/add_one_ore" />
+    </TableRow>
+
+    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <TextView
+            android:id="@+id/tinOreLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:text="@string/tin_ore"
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/default_text_size" />
+
+        <TextView
+            android:id="@+id/tinOreCountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="5"
+            android:numeric="integer"
+            android:text="@string/default_item_count"
+            android:textSize="@dimen/default_text_size" />
+
+        <Button
+            android:id="@+id/tinOreAddButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="7"
+            android:text="@string/add_one_ore" />
     </TableRow>
 
 </TableLayout>
