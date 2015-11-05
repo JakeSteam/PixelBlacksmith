@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void openFurnace(View view) {
         Intent intent = new Intent(this, FurnaceActivity.class);
-        String message = "This is a furnace";
-        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
