@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/copperOreCountLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_column="5"
             android:numeric="integer"
@@ -80,7 +80,7 @@
 
         <TextView
             android:id="@+id/tinOreCountLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_column="5"
             android:numeric="integer"
@@ -114,7 +114,7 @@
 
         <TextView
             android:id="@+id/bronzeBarCountLabel"
-            android:layout_width="20dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_column="5"
             android:numeric="integer"
