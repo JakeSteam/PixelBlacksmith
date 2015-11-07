@@ -31,12 +31,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
+        DatabaseHelper.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        this.database = db;
+        database = db;
         try {
             insertFromFile(context, "databaseSetup");
         } catch (IOException e) {
@@ -56,13 +56,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         while (fileReader.ready()) {
             String statement = fileReader.readLine();
-            this.database.execSQL(statement);
+            database.execSQL(statement);
+            Log.i(LOG, statement);
         }
         fileReader.close();
     }
 
     public Item getItemById(int id) {
-        String query = "SELECT * FROM " + TABLE_NAME_ITEM + " WHERE id = " + id;
+        String query = "SELECT * FROM " + TABLE_NAME_ITEM + " WHERE _id = " + id;
         Log.e(LOG, query);
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -71,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null) {
             c.moveToFirst();
 
-            item.setId(c.getInt(c.getColumnIndex("id")));
+            item.setId(c.getInt(c.getColumnIndex("_id")));
             item.setName(c.getString(c.getColumnIndex("name")));
             item.setDescription(c.getString(c.getColumnIndex("description")));
             item.setType(c.getInt(c.getColumnIndex("type")));

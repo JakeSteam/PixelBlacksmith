@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper dbh = new DatabaseHelper(getApplicationContext());
         Item item = dbh.getItemById(2);
         updateInterface();
-
     }
 
     @Override
