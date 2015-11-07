@@ -1,4 +1,4 @@
-package uk.co.jakelee.testing.blacksmith;
+package uk.co.jakelee.blacksmith.main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

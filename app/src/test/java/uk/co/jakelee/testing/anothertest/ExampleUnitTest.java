@@ -1,4 +1,4 @@
-package uk.co.jakelee.testing.blacksmith;
+package uk.co.jakelee.blacksmith.main;
 
 import org.junit.Test;
 
