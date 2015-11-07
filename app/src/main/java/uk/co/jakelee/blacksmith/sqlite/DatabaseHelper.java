@@ -12,42 +12,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String LOG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "blacksmith";
-
-    private static final String TABLE_NAME_CATEGORY = "category";
-    private static final String TABLE_NAME_ITEM = "item";
-    private static final String TABLE_NAME_RECIPE = "recipe";
-    private static final String TABLE_NAME_TIER = "tier";
-    private static final String TABLE_NAME_TYPE = "type";
-
-
-    private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE " + TABLE_NAME_CATEGORY + " ("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "name TEXT NOT NULL,"
-            + "description TEXT DEFAULT '')";
-
-    private static final String CREATE_TABLE_ITEM = "CREATE TABLE " + TABLE_NAME_ITEM + " ("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "name TEXT NOT NULL,"
-            + "description TEXT NOT NULL,"
-            + "type INTEGER NOT NULL,"
-            + "tier INTEGER NOT NULL,"
-            + "value INTEGER NOT NULL DEFAULT 0)";
-
-    private static final String CREATE_TABLE_RECIPE = "CREATE TABLE " + TABLE_NAME_RECIPE + " ("
-            + "item INTEGER NOT NULL,"
-            + "ingredient INTEGER NOT NULL,"
-            + "quantity INTEGER NOT NULL DEFAULT 1,"
-            + "required INTEGER NOT NULL DEFAULT 1)";
-
-    private static final String CREATE_TABLE_TIER = "CREATE TABLE " + TABLE_NAME_TIER + " ("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "name TEXT NOT NULL)";
-
-    private static final String CREATE_TABLE_TYPE = "CREATE TABLE " + TABLE_NAME_TYPE + " ("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "name TEXT NOT NULL,"
-            + "category INTEGER NOT NULL DEFAULT 0)";
+    private static final String DATABASE_NAME = "Blacksmith.db";
+    private static final String DATABASE_PATH = "/data/data/uk.co.jakelee.blacksmith/databases/";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -98,3 +64,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (db != null && db.isOpen())
             db.close();
     }
+}
