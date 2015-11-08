@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             insertFromFile(context, "databaseSetup");
         } catch (IOException e) {
-
+            Log.e(LOG, e.toString());
         }
     }
 
@@ -59,7 +59,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while (fileReader.ready()) {
             String statement = fileReader.readLine();
             database.execSQL(statement);
-            Log.i(LOG, statement);
         }
         fileReader.close();
     }
@@ -85,7 +84,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Inventory getInventoryByItem(int id) {
         String query = "SELECT * FROM inventory WHERE item = " + id;
-        Log.e(LOG, query);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -131,7 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Recipe> getIngredientsForItemById(int id) {
-        List<Recipe> ingredients = new ArrayList<Recipe>();
+        List<Recipe> ingredients = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT _id, item, ingredient, quantity FROM recipe WHERE item = " + id;
