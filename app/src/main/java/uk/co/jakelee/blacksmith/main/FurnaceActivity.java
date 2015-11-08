@@ -83,12 +83,14 @@ public class FurnaceActivity extends AppCompatActivity {
 
         ImageView image = new ImageView(this);
         image.setId(viewId);
+        image.setTag(itemId);
         image.setImageDrawable(imageResource);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (createItem(11)) {
-                    Toast.makeText(getApplicationContext(), "Bronze bar created", Toast.LENGTH_SHORT).show();
+                Item item = dbh.getItemById((int) v.getTag());
+                if (createItem((int) v.getTag())) {
+                    Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
                 }
