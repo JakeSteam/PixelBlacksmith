@@ -50,16 +50,6 @@ public class FurnaceActivity extends AppCompatActivity {
         }
     }
 
-    public void createBronzeBar(View view) {
-        if (createItem(3)) {
-            Toast.makeText(getApplicationContext(), "Bronze bar created", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
-        }
-
-        updateInterface();
-    }
-
     public void createInterface() {
         TableLayout furnaceView = (TableLayout) findViewById(R.id.furnace);
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -94,6 +84,16 @@ public class FurnaceActivity extends AppCompatActivity {
         ImageView image = new ImageView(this);
         image.setId(viewId);
         image.setImageDrawable(imageResource);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (createItem(11)) {
+                    Toast.makeText(getApplicationContext(), "Bronze bar created", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return image;
     }
 
