@@ -42,7 +42,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:contentDescription="@string/copper_ore"
-            android:src="@drawable/copper_ore" />
+            android:src="@drawable/item1" />
 
         <TextView
             android:id="@+id/copperOreCountLabel"
@@ -76,7 +76,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:contentDescription="@string/tin_ore"
-            android:src="@drawable/tin_ore" />
+            android:src="@drawable/item2" />
 
         <TextView
             android:id="@+id/tinOreCountLabel"
@@ -110,7 +110,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:contentDescription="@string/bronze_bar"
-            android:src="@drawable/bronze_bar" />
+            android:src="@drawable/item11" />
 
         <TextView
             android:id="@+id/bronzeBarCountLabel"

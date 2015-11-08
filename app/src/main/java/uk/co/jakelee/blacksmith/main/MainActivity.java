@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addBronzeBar(View view) {
-        dbh.increaseInventoryQuantity(3, 1);
+        dbh.increaseInventoryQuantity(11, 1);
 
         updateInterface();
     }
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         tinOreCount.setText(Integer.toString(dbh.getInventoryByItem(2).getQuantity()));
 
         TextView bronzeBarCount = (TextView) findViewById(R.id.bronzeBarCountLabel);
-        bronzeBarCount.setText(Integer.toString(dbh.getInventoryByItem(3).getQuantity()));
+        bronzeBarCount.setText(Integer.toString(dbh.getInventoryByItem(11).getQuantity()));
     }
 
 

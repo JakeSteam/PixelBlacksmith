@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="img1" type="id" />
+    <item name="img2" type="id" />
+    <item name="img3" type="id" />
+    <item name="img4" type="id" />
+    <item name="img5" type="id" />
+    <item name="img6" type="id" />
+    <item name="img7" type="id" />
+    <item name="img8" type="id" />
+    <item name="img9" type="id" />
+    <item name="img10" type="id" />
+    <item name="img11" type="id" />
+    <item name="img12" type="id" />
+    <item name="img13" type="id" />
+    <item name="img14" type="id" />
+    <item name="img15" type="id" />
+    <item name="img16" type="id" />
+    <item name="img17" type="id" />
+    <item name="img18" type="id" />
+    <item name="img19" type="id" />
+
+    <item name="text1" type="id" />
+    <item name="text2" type="id" />
+    <item name="text3" type="id" />
+    <item name="text4" type="id" />
+    <item name="text5" type="id" />
+    <item name="text6" type="id" />
+    <item name="text7" type="id" />
+    <item name="text8" type="id" />
+    <item name="text9" type="id" />
+    <item name="text10" type="id" />
+    <item name="text11" type="id" />
+    <item name="text12" type="id" />
+    <item name="text13" type="id" />
+    <item name="text14" type="id" />
+    <item name="text15" type="id" />
+    <item name="text16" type="id" />
+    <item name="text17" type="id" />
+    <item name="text18" type="id" />
+    <item name="text19" type="id" />
+</resources>

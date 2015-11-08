@@ -20,7 +20,7 @@
             android:layout_column="1"
             android:layout_marginRight="10dp"
             android:contentDescription="@string/bronze_bar"
-            android:src="@drawable/bronze_bar" />
+            android:src="@drawable/item11" />
 
         <TextView
             android:id="@+id/bronzeBarCountLabel"
