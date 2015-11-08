@@ -8,15 +8,42 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
+import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
+
 public class FurnaceActivity extends AppCompatActivity {
+    public static DatabaseHelper dbh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnace);
 
+        dbh = new DatabaseHelper(getApplicationContext());
         updateInterface();
+        createItem(3);
     }
+
+    public void createItem(int itemId) {
+        if (dbh.canCreateItem(itemId)) {
+            // Remove ingredients
+            List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
+            for (Recipe ingredient : ingredients) {
+                Inventory ownedItems = dbh.getInventoryByItem(ingredient.getId());
+                ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
+                dbh.updateInventory(ownedItems);
+            }
+
+            // Add crafted item
+            Inventory craftedItem = dbh.getInventoryByItem(itemId);
+            craftedItem.setQuantity(craftedItem.getQuantity() + 1);
+            dbh.updateInventory(craftedItem);
+        }
+    }
+
     public void createBronzeBar(View view) {
         int copperCount = getIntSetting("copperOreCount", 0);
         int tinCount = getIntSetting("tinOreCount", 0);

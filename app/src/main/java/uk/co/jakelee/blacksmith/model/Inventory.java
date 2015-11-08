@@ -3,21 +3,11 @@ package uk.co.jakelee.blacksmith.model;
 /**
  * Created by Jake on 07/11/2015.
  */
-public class Recipe {
-    int id;
+public class Inventory {
     int item;
-    int ingredient;
     int quantity;
 
-    public Recipe() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Inventory() {
     }
 
     public int getItem() {
@@ -26,14 +16,6 @@ public class Recipe {
 
     public void setItem(int item) {
         this.item = item;
-    }
-
-    public int getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(int ingredient) {
-        this.ingredient = ingredient;
     }
 
     public int getQuantity() {

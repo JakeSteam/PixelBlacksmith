@@ -8,9 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import uk.co.jakelee.blacksmith.model.Item;
-import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseHelper dbh = new DatabaseHelper(getApplicationContext());
-        Item item = dbh.getItemById(2);
         updateInterface();
     }
 
