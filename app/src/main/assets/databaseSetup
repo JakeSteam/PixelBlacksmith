@@ -67,7 +67,7 @@ INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (29,'Bronze pic
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (30,'Bronze hatchet','A weak axe for cutting down trees.',16,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (31,'Bronze fishing rod','A weak rod for catching fish.',17,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (32,'Bronze hammer','A weak hammer who misses his anvil.',18,1,5);
-CREATE TABLE `inventory` (`item` INTEGER NOT NULL,`quantity` INTEGER PRIMARY KEY NOT NULL DEFAULT 1);
+CREATE TABLE `inventory` (`item` INTEGER PRIMARY KEY,`quantity` INTEGER NOT NULL DEFAULT 1);
 INSERT INTO `inventory` (item,quantity) VALUES (2,2);
 INSERT INTO `inventory` (item,quantity) VALUES (1,1);
 CREATE TABLE `category` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT,`name` TEXT NOT NULL,`description` TEXT DEFAULT "");

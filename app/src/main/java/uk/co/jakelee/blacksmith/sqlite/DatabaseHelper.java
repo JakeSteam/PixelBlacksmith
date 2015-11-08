@@ -91,18 +91,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
         Inventory inventory = new Inventory();
-        if (c != null) {
+        if (c != null && c.getCount() > 0) {
+            // It's an existing item.
             c.moveToFirst();
-
             inventory.setItem(c.getInt(c.getColumnIndex("item")));
             inventory.setQuantity(c.getInt(c.getColumnIndex("quantity")));
+        } else {
+            // It's a new item.
+            inventory.setItem(id);
+            inventory.setQuantity(0);
         }
         return inventory;
     }
 
     public boolean canCreateItem(int itemID) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT item.name, recipe.quantity, inventory.quantity\n" +
+        String query = "SELECT item.name, recipe.quantity AS 'recipe', inventory.quantity AS 'inventory'\n" +
                 "FROM recipe \n" +
                 "INNER JOIN item ON recipe.ingredient = item._id\n" +
                 "INNER JOIN inventory ON item._id = inventory.item\n" +
@@ -111,8 +115,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(query, null);
         if (c.moveToFirst()) {
             do {
-                int inventoryCount = c.getInt(c.getColumnIndex("inventory.quantity"));
-                int recipeCount = c.getInt(c.getColumnIndex("recipe.quantity"));
+                int inventoryCount = c.getInt(c.getColumnIndex("inventory"));
+                int recipeCount = c.getInt(c.getColumnIndex("recipe"));
 
                 if (recipeCount > inventoryCount) {
                     // Recipe requires more than exists in inventory.
