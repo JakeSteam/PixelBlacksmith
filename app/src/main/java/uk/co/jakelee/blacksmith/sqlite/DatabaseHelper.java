@@ -165,6 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("item", inventory.getItem());
         values.put("quantity", inventory.getQuantity());
         db.insertWithOnConflict("inventory", "item", values, SQLiteDatabase.CONFLICT_REPLACE);
+        Log.i(LOG, "Inserted " + inventory.getQuantity() + "x " + inventory.getItem());
     }
 
     public void updateItem(Item item) {

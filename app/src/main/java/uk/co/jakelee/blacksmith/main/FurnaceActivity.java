@@ -1,8 +1,6 @@
 package uk.co.jakelee.blacksmith.main;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -21,13 +19,12 @@ public class FurnaceActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnace);
-
         dbh = new DatabaseHelper(getApplicationContext());
+
         updateInterface();
-        createItem(3);
     }
 
-    public void createItem(int itemId) {
+    public boolean createItem(int itemId) {
         if (dbh.canCreateItem(itemId)) {
             // Remove ingredients
             List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
@@ -41,23 +38,14 @@ public class FurnaceActivity extends AppCompatActivity {
             Inventory craftedItem = dbh.getInventoryByItem(itemId);
             craftedItem.setQuantity(craftedItem.getQuantity() + 1);
             dbh.updateInventory(craftedItem);
+            return true;
+        } else {
+            return false;
         }
     }
 
     public void createBronzeBar(View view) {
-        int copperCount = getIntSetting("copperOreCount", 0);
-        int tinCount = getIntSetting("tinOreCount", 0);
-        int bronzeCount = getIntSetting("bronzeBarCount", 0);
-
-        if (copperCount >= 1 && tinCount >= 1) {
-            copperCount--;
-            tinCount--;
-            bronzeCount++;
-
-            setIntSetting("copperOreCount", copperCount);
-            setIntSetting("tinOreCount", tinCount);
-            setIntSetting("bronzeBarCount", bronzeCount);
-
+        if (createItem(3)) {
             Toast.makeText(getApplicationContext(), "Bronze bar created", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
@@ -68,24 +56,12 @@ public class FurnaceActivity extends AppCompatActivity {
 
     public void updateInterface() {
         TextView copperOreCount = (TextView) findViewById(R.id.copperOreCountLabel);
-        copperOreCount.setText(Integer.toString(getIntSetting("copperOreCount", 0)));
+        copperOreCount.setText(Integer.toString(dbh.getInventoryByItem(1).getQuantity()));
 
         TextView tinOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
-        tinOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
+        tinOreCount.setText(Integer.toString(dbh.getInventoryByItem(2).getQuantity()));
 
         TextView bronzeBarCount = (TextView) findViewById(R.id.bronzeBarCountLabel);
-        bronzeBarCount.setText(Integer.toString(getIntSetting("bronzeBarCount", 0)));
-    }
-
-    public int getIntSetting(String variableName, int defaultValue) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPref.getInt(variableName, defaultValue);
-    }
-
-    public void setIntSetting(String variableName, int value) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(variableName, value);
-        editor.commit();
+        bronzeBarCount.setText(Integer.toString(dbh.getInventoryByItem(3).getQuantity()));
     }
 }
