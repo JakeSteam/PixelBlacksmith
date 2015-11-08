@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -70,11 +72,18 @@ public class FurnaceActivity extends AppCompatActivity {
 
     public ImageView createItemImage(int itemId) {
         ImageView image = new ImageView(this);
-        int viewId = getResources().getIdentifier("img" + Integer.toString(itemId), "id", getPackageName());
-        int imageId = getResources().getIdentifier(Integer.toString(itemId), "drawable", getPackageName());
 
+        // Get the ID of the view we're creating
+        int viewId = getResources().getIdentifier("img" + Integer.toString(itemId), "id", getPackageName());
+
+        // Get the ID of the image we want to use.
+        int drawableId = getResources().getIdentifier("item" + itemId, "drawable", getPackageName());
+
+        // Get actual image using the ID.
+        Drawable imageResource = ResourcesCompat.getDrawable(getResources(), drawableId, null);
+        
         image.setId(viewId);
-        image.setImageResource(imageId);
+        image.setImageDrawable(imageResource);
         return image;
     }
 
@@ -82,7 +91,7 @@ public class FurnaceActivity extends AppCompatActivity {
         TextView text = new TextView(this);
         int viewId = getResources().getIdentifier("text" + Integer.toString(itemId), "id", getPackageName());
 
-        text.setId(itemId);
+        text.setId(viewId);
         text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
         return text;
     }
