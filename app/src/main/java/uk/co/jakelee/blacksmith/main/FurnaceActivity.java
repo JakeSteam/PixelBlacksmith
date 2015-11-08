@@ -93,7 +93,7 @@ public class FurnaceActivity extends AppCompatActivity {
                 Item item = dbh.getItemById(itemId);
                 if (createItem(itemId)) {
                     Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
-                    updateItemCountById(itemId, true);
+                    updateItemViewById(itemId, true);
                 } else {
                     Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
                 }
@@ -102,7 +102,7 @@ public class FurnaceActivity extends AppCompatActivity {
         return image;
     }
 
-    public void updateItemCountById(int itemId, boolean updateIngredients) {
+    public void updateItemViewById(int itemId, boolean updateIngredients) {
         int itemCountId = getResources().getIdentifier("text" + itemId, "id", getPackageName());
         TextView itemCount = (TextView) findViewById(itemCountId);
 
@@ -112,11 +112,11 @@ public class FurnaceActivity extends AppCompatActivity {
         if (updateIngredients) {
             List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
             for (Recipe ingredient : ingredients) {
-                int ingredientCountId = getResources().getIdentifier("text" + ingredient.getItem(), "id", getPackageName());
+                int ingredientCountId = getResources().getIdentifier("text" + ingredient.getIngredient(), "id", getPackageName());
                 TextView ingredientCount = (TextView) findViewById(ingredientCountId);
 
                 // Update the ingredient's count
-                itemCount.setText(Integer.toString(dbh.getInventoryByItem(ingredient.getItem()).getQuantity()));
+                ingredientCount.setText(Integer.toString(dbh.getInventoryByItem(ingredient.getIngredient()).getQuantity()));
             }
         }
     }
