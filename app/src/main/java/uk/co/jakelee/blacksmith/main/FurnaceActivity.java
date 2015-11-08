@@ -3,6 +3,8 @@ package uk.co.jakelee.blacksmith.main;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class FurnaceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_furnace);
         dbh = new DatabaseHelper(getApplicationContext());
 
+        createInterface();
         updateInterface();
     }
 
@@ -52,6 +55,40 @@ public class FurnaceActivity extends AppCompatActivity {
         }
 
         updateInterface();
+    }
+
+    public void createInterface() {
+        LinearLayout furnaceView = (LinearLayout) findViewById(R.id.furnace);
+
+        ImageView copperOreIcon = new ImageView(this);
+        copperOreIcon.setId(R.id.copperOreImage);
+        copperOreIcon.setImageResource(R.drawable.copper_ore);
+        furnaceView.addView(copperOreIcon);
+
+        TextView copperOreCountLabel = new TextView(this);
+        copperOreCountLabel.setId(R.id.copperOreCountLabel);
+        copperOreCountLabel.setText(Integer.toString(dbh.getInventoryByItem(1).getQuantity()));
+        furnaceView.addView(copperOreCountLabel);
+
+        ImageView tinOreIcon = new ImageView(this);
+        tinOreIcon.setId(R.id.tinOreImage);
+        tinOreIcon.setImageResource(R.drawable.tin_ore);
+        furnaceView.addView(tinOreIcon);
+
+        TextView tinOreCountLabel = new TextView(this);
+        tinOreCountLabel.setId(R.id.tinOreCountLabel);
+        tinOreCountLabel.setText(Integer.toString(dbh.getInventoryByItem(2).getQuantity()));
+        furnaceView.addView(tinOreCountLabel);
+
+        ImageView bronzeBarIcon = new ImageView(this);
+        bronzeBarIcon.setId(R.id.bronzeBarImage);
+        bronzeBarIcon.setImageResource(R.drawable.bronze_bar);
+        furnaceView.addView(bronzeBarIcon);
+
+        TextView bronzeBarCountLabel = new TextView(this);
+        bronzeBarCountLabel.setId(R.id.bronzeBarCountLabel);
+        bronzeBarCountLabel.setText(Integer.toString(dbh.getInventoryByItem(3).getQuantity()));
+        furnaceView.addView(bronzeBarCountLabel);
     }
 
     public void updateInterface() {
