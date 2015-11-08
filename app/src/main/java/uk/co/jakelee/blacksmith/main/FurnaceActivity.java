@@ -89,13 +89,11 @@ public class FurnaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int itemId = (int) v.getTag();
-                int itemCountId = getResources().getIdentifier("text" + itemId, "id", getPackageName());
 
-                TextView itemCount = (TextView) findViewById(itemCountId);
                 Item item = dbh.getItemById(itemId);
                 if (createItem(itemId)) {
-                    itemCount.setText(Integer.parseInt(itemCount.getText().toString()) + 1);
                     Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
+                    updateItemCountById(itemId, true);
                 } else {
                     Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
                 }
@@ -103,6 +101,26 @@ public class FurnaceActivity extends AppCompatActivity {
         });
         return image;
     }
+
+    public void updateItemCountById(int itemId, boolean updateIngredients) {
+        int itemCountId = getResources().getIdentifier("text" + itemId, "id", getPackageName());
+        TextView itemCount = (TextView) findViewById(itemCountId);
+
+        // Update the item's count
+        itemCount.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
+
+        if (updateIngredients) {
+            List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
+            for (Recipe ingredient : ingredients) {
+                int ingredientCountId = getResources().getIdentifier("text" + ingredient.getItem(), "id", getPackageName());
+                TextView ingredientCount = (TextView) findViewById(ingredientCountId);
+
+                // Update the ingredient's count
+                itemCount.setText(Integer.toString(dbh.getInventoryByItem(ingredient.getItem()).getQuantity()));
+            }
+        }
+    }
+
 
     public TextView createItemCount(int itemId) {
         int viewId = getResources().getIdentifier("text" + Integer.toString(itemId), "id", getPackageName());
