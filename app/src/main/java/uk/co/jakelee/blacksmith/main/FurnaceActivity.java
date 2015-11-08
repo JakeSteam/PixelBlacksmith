@@ -76,39 +76,26 @@ public class FurnaceActivity extends AppCompatActivity {
     }
 
     public ImageView createItemImage(int itemId) {
-        ImageView image = new ImageView(this);
-
-        // Get the ID of the view we're creating
         int viewId = getResources().getIdentifier("img" + Integer.toString(itemId), "id", getPackageName());
-
-        // Get the ID of the image we want to use.
         int drawableId = getResources().getIdentifier("item" + itemId, "drawable", getPackageName());
-
-        // Get actual image using the ID.
         Drawable imageResource = ResourcesCompat.getDrawable(getResources(), drawableId, null);
 
+        ImageView image = new ImageView(this);
         image.setId(viewId);
         image.setImageDrawable(imageResource);
         return image;
     }
 
     public TextView createItemCount(int itemId) {
-        TextView text = new TextView(this);
         int viewId = getResources().getIdentifier("text" + Integer.toString(itemId), "id", getPackageName());
 
+        TextView text = new TextView(this);
         text.setId(viewId);
         text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
         return text;
     }
 
     public void updateInterface() {
-        TextView copperOreCount = (TextView) findViewById(getResources().getIdentifier("text" + Integer.toString(1), "id", getPackageName()));
-        copperOreCount.setText(Integer.toString(dbh.getInventoryByItem(1).getQuantity()));
 
-        TextView tinOreCount = (TextView) findViewById(getResources().getIdentifier("text" + Integer.toString(2), "id", getPackageName()));
-        tinOreCount.setText(Integer.toString(dbh.getInventoryByItem(2).getQuantity()));
-
-        TextView bronzeBarCount = (TextView) findViewById(getResources().getIdentifier("text" + Integer.toString(11), "id", getPackageName()));
-        bronzeBarCount.setText(Integer.toString(dbh.getInventoryByItem(11).getQuantity()));
     }
 }
