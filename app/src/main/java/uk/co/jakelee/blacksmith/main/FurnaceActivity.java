@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
 
@@ -61,13 +62,17 @@ public class FurnaceActivity extends AppCompatActivity {
     public void createInterface() {
         LinearLayout furnaceView = (LinearLayout) findViewById(R.id.furnace);
 
-        furnaceView.addView(createItemCount(1));
-        furnaceView.addView(createItemCount(2));
-        furnaceView.addView(createItemCount(11));
+        List<Item> ores = dbh.getItemsByType(1);
+        for (Item ore : ores) {
+            furnaceView.addView(createItemImage(ore.getId()));
+            furnaceView.addView(createItemCount(ore.getId()));
+        }
 
-        furnaceView.addView(createItemImage(1));
-        furnaceView.addView(createItemImage(2));
-        furnaceView.addView(createItemImage(11));
+        List<Item> bars = dbh.getItemsByType(2);
+        for (Item bar : bars) {
+            furnaceView.addView(createItemImage(bar.getId()));
+            furnaceView.addView(createItemCount(bar.getId()));
+        }
     }
 
     public ImageView createItemImage(int itemId) {
@@ -81,7 +86,7 @@ public class FurnaceActivity extends AppCompatActivity {
 
         // Get actual image using the ID.
         Drawable imageResource = ResourcesCompat.getDrawable(getResources(), drawableId, null);
-        
+
         image.setId(viewId);
         image.setImageDrawable(imageResource);
         return image;

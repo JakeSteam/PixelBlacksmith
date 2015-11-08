@@ -82,6 +82,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item;
     }
 
+    public List<Item> getItemsByType(int type) {
+        List<Item> items = new ArrayList<>();
+        String query = "SELECT * FROM item WHERE type = " + type;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null && c.moveToFirst()) {
+            do {
+                Item item = new Item();
+                item.setId(c.getInt(c.getColumnIndex("_id")));
+                item.setName(c.getString(c.getColumnIndex("name")));
+                item.setDescription(c.getString(c.getColumnIndex("description")));
+                item.setType(c.getInt(c.getColumnIndex("type")));
+                item.setTier(c.getInt(c.getColumnIndex("tier")));
+                item.setValue(c.getInt(c.getColumnIndex("value")));
+
+                items.add(item);
+            } while (c.moveToNext());
+        }
+        return items;
+    }
+
     public Inventory getInventoryByItem(int id) {
         String query = "SELECT * FROM inventory WHERE item = " + id;
 
@@ -135,7 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT _id, item, ingredient, quantity FROM recipe WHERE item = " + id;
 
         Cursor c = db.rawQuery(query, null);
-        if (c.moveToFirst()) {
+        if (c != null && c.moveToFirst()) {
             do {
                 Recipe recipe = new Recipe();
                 recipe.setId(c.getInt(c.getColumnIndex("_id")));
