@@ -66,7 +66,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Item getItemById(int id) {
         String query = "SELECT * FROM item WHERE _id = " + id;
-        Log.e(LOG, query);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -153,6 +152,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ingredients;
     }
 
+    public void increaseInventoryQuantity(int itemId, int quantity) {
+        Inventory inventory = getInventoryByItem(itemId);
+        inventory.setQuantity(inventory.getQuantity() + quantity);
+        updateInventory(inventory);
+    }
+
     public void updateCategory(Category category) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
@@ -165,7 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("item", inventory.getItem());
         values.put("quantity", inventory.getQuantity());
         db.insertWithOnConflict("inventory", "item", values, SQLiteDatabase.CONFLICT_REPLACE);
-        Log.i(LOG, "Inserted " + inventory.getQuantity() + "x " + inventory.getItem());
+        Log.i(LOG, "Inserted " + inventory.getQuantity() + "x item ID " + inventory.getItem());
     }
 
     public void updateItem(Item item) {

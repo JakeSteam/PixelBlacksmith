@@ -1,19 +1,21 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
+
 public class MainActivity extends AppCompatActivity {
+    public static DatabaseHelper dbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dbh = new DatabaseHelper(getApplicationContext());
 
         updateInterface();
     }
@@ -25,22 +27,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addCopperOre(View view) {
-        int count = getIntSetting("copperOreCount", 0);
-        setIntSetting("copperOreCount", ++count);
+        dbh.increaseInventoryQuantity(1, 1);
 
         updateInterface();
     }
 
     public void addTinOre(View view) {
-        int count = getIntSetting("tinOreCount", 0);
-        setIntSetting("tinOreCount", ++count);
+        dbh.increaseInventoryQuantity(2, 1);
 
         updateInterface();
     }
 
     public void addBronzeBar(View view) {
-        int count = getIntSetting("bronzeBarCount", 0);
-        setIntSetting("bronzeBarCount", ++count);
+        dbh.increaseInventoryQuantity(3, 1);
 
         updateInterface();
     }
@@ -57,25 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateInterface() {
         TextView copperOreCount = (TextView) findViewById(R.id.copperOreCountLabel);
-        copperOreCount.setText(Integer.toString(getIntSetting("copperOreCount", 0)));
+        copperOreCount.setText(Integer.toString(dbh.getInventoryByItem(1).getQuantity()));
 
         TextView tinOreCount = (TextView) findViewById(R.id.tinOreCountLabel);
-        tinOreCount.setText(Integer.toString(getIntSetting("tinOreCount", 0)));
+        tinOreCount.setText(Integer.toString(dbh.getInventoryByItem(2).getQuantity()));
 
         TextView bronzeBarCount = (TextView) findViewById(R.id.bronzeBarCountLabel);
-        bronzeBarCount.setText(Integer.toString(getIntSetting("bronzeBarCount", 0)));
+        bronzeBarCount.setText(Integer.toString(dbh.getInventoryByItem(3).getQuantity()));
     }
 
-    public int getIntSetting(String variableName, int defaultValue) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        return sharedPref.getInt(variableName, defaultValue);
-    }
-
-    public void setIntSetting(String variableName, int value) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(variableName, value);
-        editor.commit();
-    }
 
 }
