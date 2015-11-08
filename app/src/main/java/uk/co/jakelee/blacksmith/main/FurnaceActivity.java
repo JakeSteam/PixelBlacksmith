@@ -35,7 +35,7 @@ public class FurnaceActivity extends AppCompatActivity {
             // Remove ingredients
             List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
             for (Recipe ingredient : ingredients) {
-                Inventory ownedItems = dbh.getInventoryByItem(ingredient.getId());
+                Inventory ownedItems = dbh.getInventoryByItem(ingredient.getIngredient());
                 ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
                 dbh.updateInventory(ownedItems);
             }
