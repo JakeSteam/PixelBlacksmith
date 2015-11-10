@@ -70,8 +70,8 @@ INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (33,'Bronze hat
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (34,'Bronze fishing rod','A weak rod for catching fish.',17,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (35,'Bronze hammer','A weak hammer who misses his anvil.',18,1,5);
 CREATE TABLE `inventory` (`item` INTEGER PRIMARY KEY,`quantity` INTEGER NOT NULL DEFAULT 1);
-INSERT INTO `inventory` (item,quantity) VALUES (2,2);
-INSERT INTO `inventory` (item,quantity) VALUES (1,1);
+INSERT INTO `inventory` (item,quantity) VALUES (1,10);
+INSERT INTO `inventory` (item,quantity) VALUES (2,10);
 CREATE TABLE `category` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT,`name` TEXT NOT NULL,`description` TEXT DEFAULT "");
 INSERT INTO `category` (_id,name,description) VALUES (0,'Unknown','Item type category could not be found.');
 INSERT INTO `category` (_id,name,description) VALUES (1,'Crafting','An item that can be used for crafting.');

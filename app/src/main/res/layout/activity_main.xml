@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/horizontalScrollView1"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="125dp">
+    <LinearLayout
+        android:id="@+id/shapeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <ImageButton
             android:id="@+id/open_furnace"
@@ -27,12 +30,6 @@
             android:onClick="openAnvil"
             android:scaleType="fitCenter"
             android:src="@drawable/anvil" />
-    </TableRow>
-
-    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginLeft="10dp">
 
         <ImageView
             android:id="@+id/copperOreImage"
@@ -61,12 +58,6 @@
             android:layout_column="7"
             android:onClick="addCopperOre"
             android:text="@string/add_one" />
-    </TableRow>
-
-    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginLeft="10dp">
 
         <ImageView
             android:id="@+id/tinOreImage"
@@ -95,12 +86,6 @@
             android:layout_column="7"
             android:onClick="addTinOre"
             android:text="@string/add_one" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp">
 
         <ImageView
             android:id="@+id/bronzeBarImage"
@@ -129,6 +114,5 @@
             android:layout_column="7"
             android:onClick="addBronzeBar"
             android:text="@string/add_one" />
-    </TableRow>
-
-</TableLayout>
+    </LinearLayout>
+</HorizontalScrollView>
