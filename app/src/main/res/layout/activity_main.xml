@@ -7,14 +7,13 @@
     <LinearLayout
         android:id="@+id/shapeLayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/wallpaper">
 
         <ImageButton
             android:id="@+id/open_furnace"
-            android:layout_width="0dp"
+            android:layout_width="125dp"
             android:layout_height="125dp"
-            android:layout_weight="1"
             android:contentDescription="@string/furnace_description"
             android:onClick="openFurnace"
             android:scaleType="fitCenter"
@@ -22,9 +21,8 @@
 
         <ImageButton
             android:id="@+id/open_anvil"
-            android:layout_width="0dp"
+            android:layout_width="125dp"
             android:layout_height="125dp"
-            android:layout_weight="1"
             android:contentDescription="@string/anvil_description"
             android:maxHeight="150dp"
             android:onClick="openAnvil"
