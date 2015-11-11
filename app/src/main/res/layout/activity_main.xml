@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/shapeLayout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -14,6 +14,8 @@
             android:id="@+id/open_furnace"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/furnace_description"
             android:onClick="openFurnace"
             android:scaleType="fitCenter"
@@ -23,94 +25,13 @@
             android:id="@+id/open_anvil"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="30dp"
             android:contentDescription="@string/anvil_description"
             android:maxHeight="150dp"
             android:onClick="openAnvil"
             android:scaleType="fitCenter"
             android:src="@drawable/anvil" />
 
-        <ImageView
-            android:id="@+id/copperOreImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/copper_ore"
-            android:src="@drawable/item1" />
-
-        <TextView
-            android:id="@+id/copperOreCountLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_column="5"
-            android:numeric="integer"
-            android:text="@string/default_item_count"
-            android:textSize="@dimen/default_text_size" />
-
-        <Button
-            android:id="@+id/copperOreAddButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="7"
-            android:onClick="addCopperOre"
-            android:text="@string/add_one" />
-
-        <ImageView
-            android:id="@+id/tinOreImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/tin_ore"
-            android:src="@drawable/item2" />
-
-        <TextView
-            android:id="@+id/tinOreCountLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_column="5"
-            android:numeric="integer"
-            android:text="@string/default_item_count"
-            android:textSize="@dimen/default_text_size" />
-
-        <Button
-            android:id="@+id/tinOreAddButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="7"
-            android:onClick="addTinOre"
-            android:text="@string/add_one" />
-
-        <ImageView
-            android:id="@+id/bronzeBarImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/bronze_bar"
-            android:src="@drawable/item11" />
-
-        <TextView
-            android:id="@+id/bronzeBarCountLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_column="5"
-            android:numeric="integer"
-            android:text="@string/default_item_count"
-            android:textSize="@dimen/default_text_size" />
-
-        <Button
-            android:id="@+id/bronzeBarAddButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="7"
-            android:onClick="addBronzeBar"
-            android:text="@string/add_one" />
-    </LinearLayout>
+    </RelativeLayout>
 </HorizontalScrollView>
