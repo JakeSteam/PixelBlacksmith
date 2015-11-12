@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
+    android:layout_gravity="center"
     tools:context="uk.co.jakelee.blacksmith.main.AnvilActivity">
 
-    <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_marginLeft="10dp">
 
         <ImageView
             android:id="@+id/bronzeBarImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_marginRight="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
             android:contentDescription="@string/bronze_bar"
             android:src="@drawable/item11" />
 
@@ -26,11 +20,7 @@
             android:id="@+id/bronzeBarCountLabel"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_column="5"
-            android:numeric="integer"
             android:text="@string/default_item_count"
             android:textSize="@dimen/default_text_size" />
 
-    </TableRow>
-
-</TableLayout>
+</FrameLayout>
