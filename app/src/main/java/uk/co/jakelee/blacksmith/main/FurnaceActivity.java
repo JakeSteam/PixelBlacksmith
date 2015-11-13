@@ -27,7 +27,7 @@ public class FurnaceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_furnace);
         dbh = new DatabaseHelper(getApplicationContext());
 
-        createInterface();
+        createFurnaceInterface();
     }
 
     public boolean createItem(int itemId) {
@@ -50,7 +50,7 @@ public class FurnaceActivity extends AppCompatActivity {
         }
     }
 
-    public void createInterface() {
+    public void createFurnaceInterface() {
         TableLayout furnaceView = (TableLayout) findViewById(R.id.furnace);
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 
@@ -121,7 +121,6 @@ public class FurnaceActivity extends AppCompatActivity {
         }
     }
 
-
     public TextView createItemCount(int itemId) {
         int viewId = getResources().getIdentifier("text" + Integer.toString(itemId), "id", getPackageName());
 
@@ -129,9 +128,5 @@ public class FurnaceActivity extends AppCompatActivity {
         text.setId(viewId);
         text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
         return text;
-    }
-
-    public void updateInterface() {
-
     }
 }

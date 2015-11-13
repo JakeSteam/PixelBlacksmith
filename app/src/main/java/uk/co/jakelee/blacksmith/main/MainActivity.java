@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 
@@ -16,43 +15,38 @@ import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
-    Button btnClosePopup;
-    ImageButton btnCreatePopup;
-    private PopupWindow pwindo;
-    private View.OnClickListener cancel_button_click_listener = new View.OnClickListener() {
-        public void onClick(View v) {
-            pwindo.dismiss();
 
+    // Furnace UI
+    private PopupWindow furnacePopup;
+    private ImageButton openFurnaceButton;
+    private View.OnClickListener furnaceClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            openFurnace();
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbh = new DatabaseHelper(getApplicationContext());
-        btnCreatePopup = (ImageButton) findViewById(R.id.open_furnace);
-        btnCreatePopup.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                initiatePopupWindow();
-            }
-        });
+        openFurnaceButton = (ImageButton) findViewById(R.id.open_furnace);
+        openFurnaceButton.setOnClickListener(furnaceClickListener);
     }
 
-    private void initiatePopupWindow() {
+    private void openFurnace() {
         try {
-            LayoutInflater inflater = (LayoutInflater) MainActivity.this
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View layout = inflater.inflate(R.layout.activity_furnace,
-                    (ViewGroup) findViewById(R.id.furnace));
-            pwindo = new PopupWindow(layout, 800, 1400, true);
-            pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+            // Setting up popup functionality
+            LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.activity_furnace, (ViewGroup) findViewById(R.id.furnace));
 
-            btnClosePopup = (Button) layout.findViewById(R.id.btn_close_popup);
-            btnClosePopup.setOnClickListener(cancel_button_click_listener);
-
+            // Create and display popup, then call the creator method
+            furnacePopup = new PopupWindow(layout, 800, 1400, true);
+            furnacePopup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+            FurnaceActivity furnace = new FurnaceActivity();
+            furnace.createFurnaceInterface();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-    }
-
-    public void openFurnace(View view) {
-        Intent intent = new Intent(this, FurnaceActivity.class);
-        startActivity(intent);
     }
 
     public void openAnvil(View view) {

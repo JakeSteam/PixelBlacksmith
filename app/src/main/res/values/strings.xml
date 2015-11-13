@@ -8,4 +8,5 @@
     <string name="create_bronze_bar">Create Bronze Bar</string>
     <string name="bronze_bar">Bronze bar</string>
     <string name="tin_ore">Tin ore</string>
+    <string name="furnaceText">Furnace</string>
 </resources>
