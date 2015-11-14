@@ -16,7 +16,6 @@ import android.widget.ViewFlipper;
 
 import java.util.List;
 
-import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
@@ -48,26 +47,6 @@ public class FurnaceActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-    public boolean createItem(int itemId) {
-        if (dbh.canCreateItem(itemId)) {
-            // Remove ingredients
-            List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
-            for (Recipe ingredient : ingredients) {
-                Inventory ownedItems = dbh.getInventoryByItem(ingredient.getIngredient());
-                ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
-                dbh.updateInventory(ownedItems);
-            }
-
-            // Add crafted item
-            Inventory craftedItem = dbh.getInventoryByItem(itemId);
-            craftedItem.setQuantity(craftedItem.getQuantity() + 1);
-            dbh.updateInventory(craftedItem);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public void createFurnaceInterface() {
         ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
@@ -75,18 +54,20 @@ public class FurnaceActivity extends AppCompatActivity {
         List<Item> bars = dbh.getItemsByType(2);
         for (Item bar : bars) {
             RelativeLayout barItem = new RelativeLayout(this);
-            barItem.addView(createItemImage(bar.getId()));
-            barItem.addView(createItemCount(bar.getId()));
+            barItem.setTag(bar.getId());
+            barItem.addView(createItemImage(bar.getId(), 300, 230));
+            barItem.addView(createItemCount(bar.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
             barSelector.addView(barItem);
         }
+        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
     }
 
-    public ImageView createItemImage(int itemId) {
+    public ImageView createItemImage(int itemId, int width, int height) {
         int viewId = getResources().getIdentifier("img" + Integer.toString(itemId), "id", getPackageName());
         int drawableId = getResources().getIdentifier("item" + itemId, "drawable", getPackageName());
 
         Bitmap bMap = BitmapFactory.decodeResource(getResources(), drawableId);
-        bMap = Bitmap.createScaledBitmap(bMap, 300, 230, true);
+        bMap = Bitmap.createScaledBitmap(bMap, width, height, true);
         Drawable imageResource = new BitmapDrawable(getResources(), bMap);
 
         ImageView image = new ImageView(this);
@@ -129,15 +110,23 @@ public class FurnaceActivity extends AppCompatActivity {
         }
     }
 
-    public TextView createItemCount(int itemId) {
+    public TextView createItemCount(int itemId, String prefix, String suffix, int textColour, int backColour) {
         int viewId = getResources().getIdentifier("text" + Integer.toString(itemId), "id", getPackageName());
 
         TextView text = new TextView(this);
         text.setId(viewId);
-        text.setBackgroundColor(Color.BLACK);
-        text.setTextColor(Color.WHITE);
-        text.setText(" Have: " + Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()) + " ");
+        text.setBackgroundColor(backColour);
+        text.setTextColor(textColour);
+        text.setText(prefix + Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()) + suffix);
         return text;
+    }
+
+    private void DisplayItemInfo(int itemId) {
+        Item item = dbh.getItemById(itemId);
+        TextView itemName = (TextView) findViewById(R.id.itemName);
+        TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
+        itemName.setText(item.getName());
+        itemDesc.setText(item.getDescription());
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
@@ -153,6 +142,8 @@ public class FurnaceActivity extends AppCompatActivity {
             if (e1.getX() < e2.getX()) {
                 mViewFlipper.showPrevious();
             }
+
+            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
 
             return super.onFling(e1, e2, velocityX, velocityY);
         }

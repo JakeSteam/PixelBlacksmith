@@ -63,6 +63,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         fileReader.close();
     }
 
+    public boolean createItem(int itemId) {
+        if (canCreateItem(itemId)) {
+            // Remove ingredients
+            List<Recipe> ingredients = getIngredientsForItemById(itemId);
+            for (Recipe ingredient : ingredients) {
+                Inventory ownedItems = getInventoryByItem(ingredient.getIngredient());
+                ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
+                updateInventory(ownedItems);
+            }
+
+            // Add crafted item
+            Inventory craftedItem = getInventoryByItem(itemId);
+            craftedItem.setQuantity(craftedItem.getQuantity() + 1);
+            updateInventory(craftedItem);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public Item getItemById(int id) {
         String query = "SELECT * FROM item WHERE _id = " + id;
 

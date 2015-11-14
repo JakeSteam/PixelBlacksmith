@@ -36,4 +36,20 @@
         android:paddingTop="8dp">
 
     </ViewFlipper>
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:singleLine="true"
+        android:text="Loading..."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/itemDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>
