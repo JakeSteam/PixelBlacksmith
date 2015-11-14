@@ -6,8 +6,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,29 +50,28 @@ public class FurnaceActivity extends AppCompatActivity {
     }
 
     public void createFurnaceInterface() {
-        TableLayout furnaceView = (TableLayout) findViewById(R.id.furnace);
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        LinearLayout furnaceView = (LinearLayout) findViewById(R.id.furnace);
+        LinearLayout barSelector = (LinearLayout) findViewById(R.id.barSelector);
 
         // Add all ores to a row.
         List<Item> ores = dbh.getItemsByType(1);
-        TableRow oreRow = new TableRow(this);
-        oreRow.setLayoutParams(params);
+        LinearLayout oreLayout = new LinearLayout(this);
         for (Item ore : ores) {
-            oreRow.addView(createItemImage(ore.getId()));
-            oreRow.addView(createItemCount(ore.getId()));
+            oreLayout.addView(createItemImage(ore.getId()));
+            oreLayout.addView(createItemCount(ore.getId()));
         }
 
         // Add all bars to a row.
         List<Item> bars = dbh.getItemsByType(2);
-        TableRow barRow = new TableRow(this);
-        barRow.setLayoutParams(params);
+        LinearLayout barLayout = new LinearLayout(this);
         for (Item bar : bars) {
-            barRow.addView(createItemImage(bar.getId()));
-            barRow.addView(createItemCount(bar.getId()));
+            barLayout.addView(createItemImage(bar.getId()));
+            barLayout.addView(createItemCount(bar.getId()));
+            barSelector.addView(createItemImage(bar.getId()));
         }
 
-        furnaceView.addView(oreRow);
-        furnaceView.addView(barRow);
+        furnaceView.addView(oreLayout);
+        furnaceView.addView(barLayout);
     }
 
     public ImageView createItemImage(int itemId) {

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/furnace"
-    android:layout_width="350dp"
-    android:layout_height="900dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/popupbackground"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -25,62 +25,23 @@
         android:textSize="55sp" />
 
     <ScrollView
-        android:id="@+id/scrollView"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginTop="15dp"
         android:background="#B97A57">
 
         <LinearLayout
+            android:id="@+id/barSelector"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item11" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item12" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item13" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item14" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item15" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item16" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item17" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item18" />
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:src="@drawable/item19" />
         </LinearLayout>
     </ScrollView>
 
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ViewFlipper>
 </LinearLayout>
