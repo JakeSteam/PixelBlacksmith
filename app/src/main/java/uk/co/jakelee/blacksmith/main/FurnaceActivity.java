@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -37,7 +38,6 @@ public class FurnaceActivity extends AppCompatActivity {
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
-
 
         createFurnaceInterface();
     }
@@ -74,7 +74,7 @@ public class FurnaceActivity extends AppCompatActivity {
         // Add all bars to the selector
         List<Item> bars = dbh.getItemsByType(2);
         for (Item bar : bars) {
-            LinearLayout barItem = new LinearLayout(this);
+            RelativeLayout barItem = new RelativeLayout(this);
             barItem.addView(createItemImage(bar.getId()));
             barItem.addView(createItemCount(bar.getId()));
             barSelector.addView(barItem);
@@ -134,7 +134,9 @@ public class FurnaceActivity extends AppCompatActivity {
 
         TextView text = new TextView(this);
         text.setId(viewId);
-        text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
+        text.setBackgroundColor(Color.BLACK);
+        text.setTextColor(Color.WHITE);
+        text.setText(" Have: " + Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()) + " ");
         return text;
     }
 
