@@ -24,24 +24,16 @@
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
-    <ScrollView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="15dp"
-        android:background="#B97A57">
-
-        <LinearLayout
-            android:id="@+id/barSelector"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        </LinearLayout>
-    </ScrollView>
-
     <ViewFlipper
         android:id="@+id/viewFlipper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#B97A57"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp">
 
     </ViewFlipper>
 </LinearLayout>

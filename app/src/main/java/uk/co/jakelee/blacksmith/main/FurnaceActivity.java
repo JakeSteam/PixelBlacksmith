@@ -1,14 +1,17 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.util.List;
 
@@ -19,6 +22,8 @@ import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
 
 public class FurnaceActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
+    private ViewFlipper mViewFlipper;
+    private GestureDetector mGestureDetector;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,21 @@ public class FurnaceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_furnace);
         dbh = new DatabaseHelper(getApplicationContext());
 
+        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
+        mViewFlipper.setInAnimation(this, android.R.anim.fade_in);
+        mViewFlipper.setOutAnimation(this, android.R.anim.fade_out);
+
+        CustomGestureDetector customGestureDetector = new CustomGestureDetector();
+        mGestureDetector = new GestureDetector(this, customGestureDetector);
+
+
         createFurnaceInterface();
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
+
+        return super.onTouchEvent(event);
     }
 
     public boolean createItem(int itemId) {
@@ -50,40 +69,31 @@ public class FurnaceActivity extends AppCompatActivity {
     }
 
     public void createFurnaceInterface() {
-        LinearLayout furnaceView = (LinearLayout) findViewById(R.id.furnace);
-        LinearLayout barSelector = (LinearLayout) findViewById(R.id.barSelector);
+        ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        // Add all ores to a row.
-        List<Item> ores = dbh.getItemsByType(1);
-        LinearLayout oreLayout = new LinearLayout(this);
-        for (Item ore : ores) {
-            oreLayout.addView(createItemImage(ore.getId()));
-            oreLayout.addView(createItemCount(ore.getId()));
-        }
-
-        // Add all bars to a row.
+        // Add all bars to the selector
         List<Item> bars = dbh.getItemsByType(2);
-        LinearLayout barLayout = new LinearLayout(this);
         for (Item bar : bars) {
-            barLayout.addView(createItemImage(bar.getId()));
-            barLayout.addView(createItemCount(bar.getId()));
-            barSelector.addView(createItemImage(bar.getId()));
+            LinearLayout barItem = new LinearLayout(this);
+            barItem.addView(createItemImage(bar.getId()));
+            barItem.addView(createItemCount(bar.getId()));
+            barSelector.addView(barItem);
         }
-
-        furnaceView.addView(oreLayout);
-        furnaceView.addView(barLayout);
     }
 
     public ImageView createItemImage(int itemId) {
         int viewId = getResources().getIdentifier("img" + Integer.toString(itemId), "id", getPackageName());
         int drawableId = getResources().getIdentifier("item" + itemId, "drawable", getPackageName());
-        Drawable imageResource = ResourcesCompat.getDrawable(getResources(), drawableId, null);
+
+        Bitmap bMap = BitmapFactory.decodeResource(getResources(), drawableId);
+        bMap = Bitmap.createScaledBitmap(bMap, 300, 230, true);
+        Drawable imageResource = new BitmapDrawable(getResources(), bMap);
 
         ImageView image = new ImageView(this);
         image.setId(viewId);
         image.setTag(itemId);
         image.setImageDrawable(imageResource);
-        image.setOnClickListener(new View.OnClickListener() {
+        /*image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int itemId = (int) v.getTag();
@@ -96,7 +106,7 @@ public class FurnaceActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
         return image;
     }
 
@@ -126,5 +136,23 @@ public class FurnaceActivity extends AppCompatActivity {
         text.setId(viewId);
         text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
         return text;
+    }
+
+    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            // Swipe left (next)
+            if (e1.getX() > e2.getX()) {
+                mViewFlipper.showNext();
+            }
+
+            // Swipe right (previous)
+            if (e1.getX() < e2.getX()) {
+                mViewFlipper.showPrevious();
+            }
+
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
     }
 }
