@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/furnaceTitle"
         android:layout_toRightOf="@id/viewFlipper"

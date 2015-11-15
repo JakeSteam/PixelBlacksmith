@@ -140,28 +140,33 @@ public class FurnaceActivity extends AppCompatActivity {
     private void DisplayItemIngredients(int itemId) {
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
         List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
+        ingredientsTable.removeAllViews();
+
+        TableRow headerRow = new TableRow(this);
+        headerRow.addView(CreateTextView(""));
+        headerRow.addView(CreateTextView(""));
+        headerRow.addView(CreateTextView("Have"));
+        headerRow.addView(CreateTextView("Need"));
+        ingredientsTable.addView(headerRow);
 
         for (Recipe ingredient : ingredients) {
             Item item = dbh.getItemById(ingredient.getIngredient());
             Inventory owned = dbh.getInventoryByItem(ingredient.getId());
             TableRow row = new TableRow(this);
-            TextView pic = new TextView(this);
-            TextView name = new TextView(this);
-            TextView need = new TextView(this);
-            TextView have = new TextView(this);
 
-            pic.setText("@");
-            name.setText(item.getName());
-            need.setText("Test");//need.setText(ingredient.getQuantity());
-            have.setText("Again");//have.setText(owned.getQuantity());
-
-            row.addView(pic);
-            row.addView(name);
-            row.addView(need);
-            row.addView(have);
+            row.addView(CreateTextView("@"));
+            row.addView(CreateTextView(item.getName()));
+            row.addView(CreateTextView(Integer.toString(ingredient.getQuantity())));
+            row.addView(CreateTextView(Integer.toString(owned.getQuantity())));
 
             ingredientsTable.addView(row);
         }
+    }
+
+    private TextView CreateTextView(String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        return textView;
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
