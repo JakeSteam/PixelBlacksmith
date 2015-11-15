@@ -11,11 +11,14 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
@@ -59,7 +62,12 @@ public class FurnaceActivity extends AppCompatActivity {
             barItem.addView(createItemCount(bar.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
             barSelector.addView(barItem);
         }
+
+        // Display item name and description
         DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+
+        // Display item ingredients
+        DisplayItemIngredients((int) mViewFlipper.getCurrentView().getTag());
     }
 
     public ImageView createItemImage(int itemId, int width, int height) {
@@ -129,6 +137,33 @@ public class FurnaceActivity extends AppCompatActivity {
         itemDesc.setText(item.getDescription());
     }
 
+    private void DisplayItemIngredients(int itemId) {
+        TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
+        List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
+
+        for (Recipe ingredient : ingredients) {
+            Item item = dbh.getItemById(ingredient.getIngredient());
+            Inventory owned = dbh.getInventoryByItem(ingredient.getId());
+            TableRow row = new TableRow(this);
+            TextView pic = new TextView(this);
+            TextView name = new TextView(this);
+            TextView need = new TextView(this);
+            TextView have = new TextView(this);
+
+            pic.setText("@");
+            name.setText(item.getName());
+            need.setText("Test");//need.setText(ingredient.getQuantity());
+            have.setText("Again");//have.setText(owned.getQuantity());
+
+            row.addView(pic);
+            row.addView(name);
+            row.addView(need);
+            row.addView(have);
+
+            ingredientsTable.addView(row);
+        }
+    }
+
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -144,6 +179,7 @@ public class FurnaceActivity extends AppCompatActivity {
             }
 
             DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+            DisplayItemIngredients((int) mViewFlipper.getCurrentView().getTag());
 
             return super.onFling(e1, e2, velocityX, velocityY);
         }

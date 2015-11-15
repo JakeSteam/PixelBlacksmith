@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/furnaceTitle"
         android:layout_toRightOf="@id/viewFlipper"
+        android:padding="5dp"
         android:singleLine="true"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -53,6 +54,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/itemName"
         android:layout_toRightOf="@id/viewFlipper"
+        android:padding="5dp"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TableLayout
+        android:id="@+id/ingredientsTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/viewFlipper"
+        android:layout_marginTop="6dp"
+        android:background="#B97A57"
+        android:padding="5dp"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <TextView
+                android:layout_span="2"
+                android:text=" " />
+
+            <TextView android:text="Need" />
+
+            <TextView android:text="Have" />
+        </TableRow>
+    </TableLayout>
 </RelativeLayout>
