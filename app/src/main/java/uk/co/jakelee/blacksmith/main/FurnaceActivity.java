@@ -5,15 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class FurnaceActivity extends AppCompatActivity {
@@ -67,11 +70,29 @@ public class FurnaceActivity extends AppCompatActivity {
     }
 
     public void DisplayItemInfo(int itemId) {
+        View furnace = findViewById(R.id.furnace);
         Item item = dbh.getItemById(itemId);
+        Inventory count = dbh.getInventoryByItem(itemId);
+
         TextView itemName = (TextView) findViewById(R.id.itemName);
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
+        TextView itemCount = (TextView) furnace.findViewWithTag(itemId + "Count");
+
         itemName.setText(item.getName());
         itemDesc.setText(item.getDescription());
+        itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+    }
+
+    public void Smelt1(View v) {
+        int itemId = (int) mViewFlipper.getCurrentView().getTag();
+
+        Item item = dbh.getItemById(itemId);
+        if (dbh.createItem(itemId)) {
+            Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
+            createFurnaceInterface();
+        } else {
+            Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+        }
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {

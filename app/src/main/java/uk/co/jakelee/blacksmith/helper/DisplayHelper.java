@@ -37,6 +37,7 @@ public class DisplayHelper {
 
         TextView text = new TextView(context);
         text.setId(viewId);
+        text.setTag(itemId + "Count");
         text.setBackgroundColor(backColour);
         text.setTextColor(textColour);
         text.setText(prefix + Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()) + suffix);
