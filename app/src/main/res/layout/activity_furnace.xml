@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/furnace"
     android:layout_width="match_parent"
@@ -28,20 +28,21 @@
         android:id="@+id/viewFlipper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/furnaceTitle"
         android:layout_marginTop="8dp"
         android:background="#B97A57"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="8dp">
-
     </ViewFlipper>
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="212dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_below="@id/furnaceTitle"
+        android:layout_toRightOf="@id/viewFlipper"
         android:singleLine="true"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -50,6 +51,8 @@
         android:id="@+id/itemDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/itemName"
+        android:layout_toRightOf="@id/viewFlipper"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
-</LinearLayout>
+</RelativeLayout>
