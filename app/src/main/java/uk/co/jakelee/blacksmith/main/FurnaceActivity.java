@@ -157,7 +157,7 @@ public class FurnaceActivity extends AppCompatActivity {
             Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient());
             TableRow row = new TableRow(this);
 
-            row.addView(CreateTextView("@"));
+            row.addView(createItemImage(ingredient.getIngredient(), 64, 60));
             row.addView(CreateTextView(item.getName()));
             row.addView(CreateTextView(Integer.toString(ingredient.getQuantity())));
             row.addView(CreateTextView(Integer.toString(owned.getQuantity())));
@@ -169,6 +169,7 @@ public class FurnaceActivity extends AppCompatActivity {
     private TextView CreateTextView(String text) {
         TextView textView = new TextView(this);
         textView.setText(text);
+        textView.setTextSize(20);
         return textView;
     }
 
