@@ -70,15 +70,5 @@
         android:padding="5dp"
         android:stretchColumns="*">
 
-        <TableRow>
-
-            <TextView
-                android:layout_span="2"
-                android:text=" " />
-
-            <TextView android:text="Need" />
-
-            <TextView android:text="Have" />
-        </TableRow>
     </TableLayout>
 </RelativeLayout>

@@ -138,20 +138,23 @@ public class FurnaceActivity extends AppCompatActivity {
     }
 
     private void DisplayItemIngredients(int itemId) {
+        // Prepare the ingredients table and retrieve the list of ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
         List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
         ingredientsTable.removeAllViews();
 
+        // Add a header row
         TableRow headerRow = new TableRow(this);
         headerRow.addView(CreateTextView(""));
         headerRow.addView(CreateTextView(""));
-        headerRow.addView(CreateTextView("Have"));
         headerRow.addView(CreateTextView("Need"));
+        headerRow.addView(CreateTextView("Have"));
         ingredientsTable.addView(headerRow);
 
+        // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
             Item item = dbh.getItemById(ingredient.getIngredient());
-            Inventory owned = dbh.getInventoryByItem(ingredient.getId());
+            Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient());
             TableRow row = new TableRow(this);
 
             row.addView(CreateTextView("@"));
