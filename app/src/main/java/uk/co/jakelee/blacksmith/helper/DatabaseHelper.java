@@ -1,4 +1,4 @@
-package uk.co.jakelee.blacksmith.sqlite;
+package uk.co.jakelee.blacksmith.helper;
 
 import android.content.ContentValues;
 import android.content.Context;

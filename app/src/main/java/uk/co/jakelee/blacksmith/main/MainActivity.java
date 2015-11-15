@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import uk.co.jakelee.blacksmith.sqlite.DatabaseHelper;
+import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
