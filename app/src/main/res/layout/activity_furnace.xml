@@ -4,6 +4,10 @@
     android:id="@+id/furnace"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="60dp"
     android:background="@drawable/popupbackground"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -13,14 +17,20 @@
     android:weightSum="2"
     tools:context="uk.co.jakelee.blacksmith.main.FurnaceActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="CloseFurnace"
+        android:src="@drawable/close" />
+
     <TextView
         android:id="@+id/furnaceTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#B97A57"
         android:gravity="center"
         android:text="@string/furnaceText"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#484848"
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
@@ -30,7 +40,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/furnaceTitle"
         android:layout_marginTop="8dp"
-        android:background="#B97A57"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -46,7 +55,9 @@
         android:padding="5dp"
         android:singleLine="true"
         android:text="Loading..."
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#484848"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/itemDesc"
@@ -56,7 +67,9 @@
         android:layout_toRightOf="@id/viewFlipper"
         android:padding="5dp"
         android:text="Loading..."
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#484848"
+        android:textSize="12sp" />
 
     <TableLayout
         android:id="@+id/ingredientsTable"
@@ -66,7 +79,6 @@
         android:layout_alignParentStart="true"
         android:layout_below="@id/viewFlipper"
         android:layout_marginTop="6dp"
-        android:background="#B97A57"
         android:padding="5dp"
         android:stretchColumns="*">
 

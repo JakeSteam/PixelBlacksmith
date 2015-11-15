@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.helper;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
@@ -25,10 +26,11 @@ public class DisplayHelper {
         DisplayHelper.dbh = new DatabaseHelper(context);
     }
 
-    public TextView CreateTextView(String text) {
+    public TextView CreateTextView(String text, int size, int color) {
         TextView textView = new TextView(context);
         textView.setText(text);
-        textView.setTextSize(20);
+        textView.setTextSize(size);
+        textView.setTextColor(color);
         return textView;
     }
 
@@ -80,10 +82,10 @@ public class DisplayHelper {
 
         // Add a header row
         TableRow headerRow = new TableRow(context);
-        headerRow.addView(CreateTextView(""));
-        headerRow.addView(CreateTextView(""));
-        headerRow.addView(CreateTextView("Need"));
-        headerRow.addView(CreateTextView("Have"));
+        headerRow.addView(CreateTextView("", 15, Color.DKGRAY));
+        headerRow.addView(CreateTextView("", 15, Color.DKGRAY));
+        headerRow.addView(CreateTextView("Need", 15, Color.DKGRAY));
+        headerRow.addView(CreateTextView("Have", 15, Color.DKGRAY));
         ingredientsTable.addView(headerRow);
 
         // Add a row for each ingredient
@@ -93,9 +95,9 @@ public class DisplayHelper {
             TableRow row = new TableRow(context);
 
             row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62));
-            row.addView(CreateTextView(item.getName()));
-            row.addView(CreateTextView(Integer.toString(ingredient.getQuantity())));
-            row.addView(CreateTextView(Integer.toString(owned.getQuantity())));
+            row.addView(CreateTextView(item.getName(), 15, Color.DKGRAY));
+            row.addView(CreateTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
+            row.addView(CreateTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }

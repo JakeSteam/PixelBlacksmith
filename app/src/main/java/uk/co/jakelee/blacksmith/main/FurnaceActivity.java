@@ -69,6 +69,10 @@ public class FurnaceActivity extends Activity {
         dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
     }
 
+    public void CloseFurnace(View view) {
+        finish();
+    }
+
     public void DisplayItemInfo(int itemId) {
         View furnace = findViewById(R.id.furnace);
         Item item = dbh.getItemById(itemId);
