@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="uk.co.jakelee.blacksmith.main.FurnaceActivity">
+        <activity
+            android:name="uk.co.jakelee.blacksmith.main.FurnaceActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar">
         </activity>
         <activity android:name="uk.co.jakelee.blacksmith.main.AnvilActivity">
         </activity>

@@ -1,8 +1,8 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +19,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
-public class FurnaceActivity extends AppCompatActivity {
+public class FurnaceActivity extends Activity {
     public static DatabaseHelper dbh;
     public static DisplayHelper dh;
     private ViewFlipper mViewFlipper;
