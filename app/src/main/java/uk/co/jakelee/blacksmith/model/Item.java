@@ -1,8 +1,5 @@
 package uk.co.jakelee.blacksmith.model;
 
-/**
- * Created by Jake on 07/11/2015.
- */
 public class Item {
     int id;
     String name;
@@ -10,6 +7,7 @@ public class Item {
     int type;
     int tier;
     int value;
+    int level;
 
     public Item() {
     }
@@ -62,5 +60,11 @@ public class Item {
         this.value = value;
     }
 
+    public int getLevel() {
+        return level;
+    }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }

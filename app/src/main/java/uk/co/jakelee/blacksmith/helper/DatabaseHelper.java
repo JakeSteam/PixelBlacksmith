@@ -83,6 +83,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public int GetPlayerLevel() {
+        int xp = GetXP();
+        return xp / 100;
+    }
+
+    public int GetXP() {
+        String query = "SELECT int_value FROM player_info WHERE name = 'XP'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        return c.getInt(c.getColumnIndex("int_value"));
+    }
+
+    public void AddXP() {
+
+    }
+
     public Item getItemById(int id) {
         String query = "SELECT * FROM item WHERE _id = " + id;
 
@@ -98,6 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setType(c.getInt(c.getColumnIndex("type")));
             item.setTier(c.getInt(c.getColumnIndex("tier")));
             item.setValue(c.getInt(c.getColumnIndex("value")));
+            item.setLevel(c.getInt(c.getColumnIndex("level")));
         }
         return item;
     }
@@ -118,6 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.setType(c.getInt(c.getColumnIndex("type")));
                 item.setTier(c.getInt(c.getColumnIndex("tier")));
                 item.setValue(c.getInt(c.getColumnIndex("value")));
+                item.setLevel(c.getInt(c.getColumnIndex("level")));
 
                 items.add(item);
             } while (c.moveToNext());
@@ -141,6 +161,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.setType(c.getInt(c.getColumnIndex("type")));
                 item.setTier(c.getInt(c.getColumnIndex("tier")));
                 item.setValue(c.getInt(c.getColumnIndex("value")));
+                item.setLevel(c.getInt(c.getColumnIndex("level")));
 
                 items.add(item);
             } while (c.moveToNext());
@@ -164,6 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.setType(c.getInt(c.getColumnIndex("type")));
                 item.setTier(c.getInt(c.getColumnIndex("tier")));
                 item.setValue(c.getInt(c.getColumnIndex("value")));
+                item.setLevel(c.getInt(c.getColumnIndex("level")));
 
                 items.add(item);
             } while (c.moveToNext());
@@ -192,6 +214,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean canCreateItem(int itemID) {
         SQLiteDatabase db = this.getReadableDatabase();
+
+        // Check we've got a high enough level
+        Item item = getItemById(itemID);
+        if (item.getLevel() > GetPlayerLevel()) {
+            return false;
+        }
+
         String query = "SELECT item.name, recipe.quantity AS 'recipe', inventory.quantity AS 'inventory'\n" +
                 "FROM recipe \n" +
                 "INNER JOIN item ON recipe.ingredient = item._id\n" +

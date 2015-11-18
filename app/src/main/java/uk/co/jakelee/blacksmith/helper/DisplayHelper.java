@@ -75,14 +75,24 @@ public class DisplayHelper {
         headerRow.addView(CreateTextView("Have", 15, Color.DKGRAY));
         ingredientsTable.addView(headerRow);
 
+        // Add the level requirement row
+        TableRow levelRow = new TableRow(context);
+        Item item = dbh.getItemById(itemId);
+        levelRow.addView(CreateTextView("", 15, Color.DKGRAY));
+        levelRow.addView(CreateTextView("Level", 15, Color.DKGRAY));
+        levelRow.addView(CreateTextView(Integer.toString(item.getLevel()), 15, Color.DKGRAY));
+        levelRow.addView(CreateTextView(Integer.toString(dbh.GetPlayerLevel()), 15, Color.DKGRAY));
+        ingredientsTable.addView(levelRow);
+
+
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
-            Item item = dbh.getItemById(ingredient.getIngredient());
+            Item itemIngredient = dbh.getItemById(ingredient.getIngredient());
             Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient());
             TableRow row = new TableRow(context);
 
             row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62));
-            row.addView(CreateTextView(item.getName(), 15, Color.DKGRAY));
+            row.addView(CreateTextView(itemIngredient.getName(), 15, Color.DKGRAY));
             row.addView(CreateTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
             row.addView(CreateTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
 
