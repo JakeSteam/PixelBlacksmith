@@ -67,7 +67,7 @@ INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (19,'Dragon bar
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (20,'Bronze dagger','A blunt bronze dagger.',3,1,5);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (21,'Bronze sword','A fairly blunt bronze sword.',4,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (22,'Bronze longsword','A longer bronze sword.',5,1,10);
-INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (23,'Bronze bow','A bow with bronze elements.',6,1,10);
+INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (23,'Bronze crossbow','A crossbow with bronze elements.',6,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (24,'Bronze platelegs','A set of bronze legs.',7,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (25,'Bronze plateskirt','A set of bronze legs, with added drafts.',8,1,10);
 INSERT INTO `item` (_id,name,description,type,tier,value) VALUES (26,'Bronze chainbody','A light set of bronze body armour.',9,1,10);

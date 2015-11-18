@@ -52,7 +52,7 @@ public class FurnaceActivity extends Activity {
         ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         // Add all bars to the selector
-        List<Item> bars = dbh.getItemsByType(2);
+        List<Item> bars = dbh.getItemsByType(2, 2);
         for (Item bar : bars) {
             RelativeLayout barItem = new RelativeLayout(this);
             barItem.setTag(bar.getId());

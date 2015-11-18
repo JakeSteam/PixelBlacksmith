@@ -58,20 +58,7 @@ public class DisplayHelper {
         image.setId(viewId);
         image.setTag(itemId);
         image.setImageDrawable(imageResource);
-        /*image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemId = (int) v.getTag();
 
-                Item item = dbh.getItemById(itemId);
-                if (createItem(itemId)) {
-                    Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
-                    updateItemViewById(itemId, true);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
         return image;
     }
 

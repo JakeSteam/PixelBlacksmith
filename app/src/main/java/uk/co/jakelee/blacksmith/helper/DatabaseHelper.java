@@ -102,9 +102,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item;
     }
 
-    public List<Item> getItemsByType(int type) {
+    public List<Item> getItemsByType(int typeMin, int typeMax) {
         List<Item> items = new ArrayList<>();
-        String query = "SELECT * FROM item WHERE type = " + type;
+        String query = "SELECT * FROM item WHERE type BETWEEN " + typeMin + " AND " + typeMax;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null && c.moveToFirst()) {
+            do {
+                Item item = new Item();
+                item.setId(c.getInt(c.getColumnIndex("_id")));
+                item.setName(c.getString(c.getColumnIndex("name")));
+                item.setDescription(c.getString(c.getColumnIndex("description")));
+                item.setType(c.getInt(c.getColumnIndex("type")));
+                item.setTier(c.getInt(c.getColumnIndex("tier")));
+                item.setValue(c.getInt(c.getColumnIndex("value")));
+
+                items.add(item);
+            } while (c.moveToNext());
+        }
+        return items;
+    }
+
+    public List<Item> getItemsByTier(int tierMin, int tierMax) {
+        List<Item> items = new ArrayList<>();
+        String query = "SELECT * FROM item WHERE tier BETWEEN " + tierMin + " AND " + tierMax;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null && c.moveToFirst()) {
+            do {
+                Item item = new Item();
+                item.setId(c.getInt(c.getColumnIndex("_id")));
+                item.setName(c.getString(c.getColumnIndex("name")));
+                item.setDescription(c.getString(c.getColumnIndex("description")));
+                item.setType(c.getInt(c.getColumnIndex("type")));
+                item.setTier(c.getInt(c.getColumnIndex("tier")));
+                item.setValue(c.getInt(c.getColumnIndex("value")));
+
+                items.add(item);
+            } while (c.moveToNext());
+        }
+        return items;
+    }
+
+    public List<Item> getItemsByTypeAndTier(int typeMin, int typeMax, int tierMin, int tierMax) {
+        List<Item> items = new ArrayList<>();
+        String query = "SELECT * FROM item WHERE type BETWEEN " + typeMin + " AND " + typeMax + " AND tier BETWEEN " + tierMin + " AND " + tierMax;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);

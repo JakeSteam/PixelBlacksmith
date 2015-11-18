@@ -19,7 +19,9 @@
             android:name="uk.co.jakelee.blacksmith.main.FurnaceActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
-        <activity android:name="uk.co.jakelee.blacksmith.main.AnvilActivity">
+        <activity
+            android:name="uk.co.jakelee.blacksmith.main.AnvilActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">>
         </activity>
     </application>
 

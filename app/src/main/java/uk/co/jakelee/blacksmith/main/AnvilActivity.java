@@ -1,57 +1,124 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import java.util.List;
+
+import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
+import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 
 public class AnvilActivity extends Activity {
+    public static DatabaseHelper dbh;
+    public static DisplayHelper dh;
+    private ViewFlipper mViewFlipper;
+    private GestureDetector mGestureDetector;
 
-    PopupWindow popUp;
-    LinearLayout layout;
-    TextView tv;
-    LayoutParams params;
-    LinearLayout mainLayout;
-    Button but;
-    boolean click = true;
-
-
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        popUp = new PopupWindow(this);
-        layout = new LinearLayout(this);
-        mainLayout = new LinearLayout(this);
-        tv = new TextView(this);
-        but = new Button(this);
-        but.setText("Click Me");
-        but.setOnClickListener(new OnClickListener() {
+        setContentView(R.layout.activity_anvil);
+        dbh = new DatabaseHelper(getApplicationContext());
+        dh = new DisplayHelper(getApplicationContext());
 
-            public void onClick(View v) {
-                if (click) {
-                    popUp.showAtLocation(mainLayout, Gravity.TOP, 150, 150);
-                    popUp.update(10, 10, 600, 1200);
-                    click = false;
-                } else {
-                    popUp.dismiss();
-                    click = true;
-                }
+        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
+        mViewFlipper.setInAnimation(this, android.R.anim.fade_in);
+        mViewFlipper.setOutAnimation(this, android.R.anim.fade_out);
+
+        CustomGestureDetector customGestureDetector = new CustomGestureDetector();
+        mGestureDetector = new GestureDetector(this, customGestureDetector);
+
+        createAnvilInterface();
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
+
+        return super.onTouchEvent(event);
+    }
+
+    public void createAnvilInterface() {
+        ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
+
+        // Get all non-bar items that are also bronze
+        List<Item> items = dbh.getItemsByTypeAndTier(3, 18, 1, 1);
+        for (Item item : items) {
+            RelativeLayout bronzeItem = new RelativeLayout(this);
+            bronzeItem.setTag(item.getId());
+            bronzeItem.addView(dh.CreateItemImage(item.getId(), 300, 230));
+            bronzeItem.addView(dh.CreateItemCount(item.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
+            barSelector.addView(bronzeItem);
+        }
+
+        // Display item name and description
+        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+
+        // Display item ingredients
+        TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
+        dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
+    }
+
+    public void CloseAnvil(View view) {
+        finish();
+    }
+
+    public void DisplayItemInfo(int itemId) {
+        View anvil = findViewById(R.id.anvil);
+        Item item = dbh.getItemById(itemId);
+        Inventory count = dbh.getInventoryByItem(itemId);
+
+        TextView itemName = (TextView) findViewById(R.id.itemName);
+        TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
+        TextView itemCount = (TextView) anvil.findViewWithTag(itemId + "Count");
+
+        itemName.setText(item.getName());
+        itemDesc.setText(item.getDescription());
+        itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+    }
+
+    public void Smelt1(View v) {
+        int itemId = (int) mViewFlipper.getCurrentView().getTag();
+
+        Item item = dbh.getItemById(itemId);
+        if (dbh.createItem(itemId)) {
+            Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
+            createAnvilInterface();
+        } else {
+            Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            // Swipe left (next)
+            if (e1.getX() > e2.getX()) {
+                mViewFlipper.showNext();
             }
 
-        });
-        params = new LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        tv.setText("Hi this is a sample text for popup window");
-        layout.addView(tv, params);
-        popUp.setContentView(layout);
-        // popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-        mainLayout.addView(but, params);
-        setContentView(mainLayout);
+            // Swipe right (previous)
+            if (e1.getX() < e2.getX()) {
+                mViewFlipper.showPrevious();
+            }
+
+            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+
+            TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
+            dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
+
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
     }
 }

@@ -4,9 +4,6 @@
     <string name="add_one">Add 1</string>
     <string name="furnace_description">A furnace</string>
     <string name="anvil_description">An anvil</string>
-    <string name="copper_ore">Copper ore</string>
-    <string name="create_bronze_bar">Create Bronze Bar</string>
-    <string name="bronze_bar">Bronze bar</string>
-    <string name="tin_ore">Tin ore</string>
     <string name="furnaceText">Furnace</string>
+    <string name="anvilText">Anvil</string>
 </resources>
