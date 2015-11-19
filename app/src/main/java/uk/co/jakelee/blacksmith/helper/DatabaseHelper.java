@@ -15,12 +15,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Recipe;
-import uk.co.jakelee.blacksmith.model.Tier;
-import uk.co.jakelee.blacksmith.model.Type;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -77,6 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Inventory craftedItem = getInventoryByItem(itemId);
             craftedItem.setQuantity(craftedItem.getQuantity() + 1);
             updateInventory(craftedItem);
+            AddXP(getItemById(craftedItem.getItem()).getValue());
             return true;
         } else {
             return false;
@@ -94,11 +92,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
+        Log.d(LOG, "Current XP:" + c.getString(c.getColumnIndex("int_value")));
         return c.getInt(c.getColumnIndex("int_value"));
     }
 
-    public void AddXP() {
+    public void AddXP(int xp) {
+        String query = "UPDATE player_info SET int_value = int_value + " + xp + " WHERE name = 'XP'";
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(query);
+        Log.d(LOG, "Added XP: " + xp);
     }
 
     public Item getItemById(int id) {
@@ -124,30 +127,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Item> getItemsByType(int typeMin, int typeMax) {
         List<Item> items = new ArrayList<>();
         String query = "SELECT * FROM item WHERE type BETWEEN " + typeMin + " AND " + typeMax;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(query, null);
-
-        if (c != null && c.moveToFirst()) {
-            do {
-                Item item = new Item();
-                item.setId(c.getInt(c.getColumnIndex("_id")));
-                item.setName(c.getString(c.getColumnIndex("name")));
-                item.setDescription(c.getString(c.getColumnIndex("description")));
-                item.setType(c.getInt(c.getColumnIndex("type")));
-                item.setTier(c.getInt(c.getColumnIndex("tier")));
-                item.setValue(c.getInt(c.getColumnIndex("value")));
-                item.setLevel(c.getInt(c.getColumnIndex("level")));
-
-                items.add(item);
-            } while (c.moveToNext());
-        }
-        return items;
-    }
-
-    public List<Item> getItemsByTier(int tierMin, int tierMax) {
-        List<Item> items = new ArrayList<>();
-        String query = "SELECT * FROM item WHERE tier BETWEEN " + tierMin + " AND " + tierMax;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -268,48 +247,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ingredients;
     }
 
-    public void increaseInventoryQuantity(int itemId, int quantity) {
-        Inventory inventory = getInventoryByItem(itemId);
-        inventory.setQuantity(inventory.getQuantity() + quantity);
-        updateInventory(inventory);
-    }
-
-    public void updateCategory(Category category) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        db.update("category", args, "_id = " + category.getId(), null);
-    }
-
     public void updateInventory(Inventory inventory) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("item", inventory.getItem());
         values.put("quantity", inventory.getQuantity());
         db.insertWithOnConflict("inventory", "item", values, SQLiteDatabase.CONFLICT_REPLACE);
-        Log.i(LOG, "Inserted " + inventory.getQuantity() + "x item ID " + inventory.getItem());
+        Log.d(LOG, "Inserted " + inventory.getQuantity() + "x item ID " + inventory.getItem());
     }
 
     public void updateItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
         db.update("item", args, "_id = " + item.getId(), null);
-    }
-
-    public void updateRecipe(Recipe recipe) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        db.update("recipe", args, "_id = " + recipe.getId(), null);
-    }
-
-    public void updateTier(Tier tier) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        db.update("tier", args, "_id = " + tier.getId(), null);
-    }
-
-    public void updateType(Type type) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        db.update("inventory", args, "_id = " + type.getId(), null);
     }
 }
