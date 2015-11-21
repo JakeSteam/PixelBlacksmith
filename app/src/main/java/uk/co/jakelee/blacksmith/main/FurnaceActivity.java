@@ -57,7 +57,7 @@ public class FurnaceActivity extends Activity {
             RelativeLayout barItem = new RelativeLayout(this);
             barItem.setTag(bar.getId());
             barItem.addView(dh.CreateItemImage(bar.getId(), 300, 230, bar.getCanCraft()));
-            barItem.addView(dh.CreateItemCount(bar.getId(), " ", " ", Color.WHITE, Color.BLACK));
+            barItem.addView(dh.CreateItemCount(bar.getId(), Color.WHITE, Color.BLACK));
             barSelector.addView(barItem);
         }
 

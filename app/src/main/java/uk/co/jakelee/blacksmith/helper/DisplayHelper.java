@@ -36,7 +36,7 @@ public class DisplayHelper {
         return textView;
     }
 
-    public TextView CreateItemCount(int itemId, String prefix, String suffix, int textColour, int backColour) {
+    public TextView CreateItemCount(int itemId, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Integer.toString(itemId), "id", context.getPackageName());
 
         TextView text = new TextView(context);
@@ -44,7 +44,7 @@ public class DisplayHelper {
         text.setTag(itemId + "Count");
         text.setBackgroundColor(backColour);
         text.setTextColor(textColour);
-        text.setText(prefix + Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()) + suffix);
+        text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
         return text;
     }
 
@@ -53,7 +53,6 @@ public class DisplayHelper {
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
         Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        bMap = Bitmap.createScaledBitmap(bMap, width, height, true);
         Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
 
         if (!canCraft.equals("T")) {
@@ -66,6 +65,11 @@ public class DisplayHelper {
         image.setId(viewId);
         image.setTag(itemId);
         image.setImageDrawable(imageResource);
+        image.setMaxWidth(width);
+        image.setMinimumWidth(width);
+        image.setMaxHeight(height);
+        image.setMinimumHeight(height);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
     }
@@ -107,4 +111,6 @@ public class DisplayHelper {
             ingredientsTable.addView(row);
         }
     }
+
+
 }

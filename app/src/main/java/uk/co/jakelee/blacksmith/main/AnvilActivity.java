@@ -49,11 +49,11 @@ public class AnvilActivity extends Activity {
         return super.onTouchEvent(event);
     }
 
-    public void createAnvilInterface(boolean switchingTiers) {
+    public void createAnvilInterface(boolean clearExisting) {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         // If we're switching tiers, we have to clear the selector first
-        if (switchingTiers) {
+        if (clearExisting) {
             itemSelector.removeAllViews();
         }
 
@@ -63,7 +63,7 @@ public class AnvilActivity extends Activity {
             RelativeLayout itemBox = new RelativeLayout(this);
             itemBox.setTag(item.getId());
             itemBox.addView(dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft()));
-            itemBox.addView(dh.CreateItemCount(item.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
+            itemBox.addView(dh.CreateItemCount(item.getId(), Color.WHITE, Color.BLACK));
             itemSelector.addView(itemBox);
         }
 
