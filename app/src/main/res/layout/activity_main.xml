@@ -11,11 +11,22 @@
         android:background="@drawable/wallpaper">
 
         <ImageButton
-            android:id="@+id/open_furnace"
+            android:id="@+id/open_mine"
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="150dp"
+            android:contentDescription="@string/mine_description"
+            android:onClick="openMine"
+            android:scaleType="fitCenter"
+            android:src="@drawable/pickaxe" />
+
+        <ImageButton
+            android:id="@+id/open_furnace"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="150dp"
             android:contentDescription="@string/furnace_description"
             android:onClick="openFurnace"
             android:scaleType="fitCenter"
@@ -25,8 +36,8 @@
             android:id="@+id/open_anvil"
             android:layout_width="125dp"
             android:layout_height="125dp"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="150dp"
             android:contentDescription="@string/anvil_description"
             android:maxHeight="150dp"
             android:onClick="openAnvil"

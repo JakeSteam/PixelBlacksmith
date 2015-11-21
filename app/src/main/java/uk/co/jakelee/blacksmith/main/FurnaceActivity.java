@@ -92,7 +92,7 @@ public class FurnaceActivity extends Activity {
 
         Item item = dbh.getItemById(itemId);
         if (dbh.createItem(itemId)) {
-            Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), item.getName() + " created, +" + item.getValue() + "XP", Toast.LENGTH_SHORT).show();
             createFurnaceInterface();
         } else {
             Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();

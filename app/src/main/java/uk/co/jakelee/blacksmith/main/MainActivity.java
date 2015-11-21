@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    public void openMine(View view) {
+        Intent intent = new Intent(this, MineActivity.class);
+        startActivity(intent);
+    }
+
     public void openFurnace(View view) {
         Intent intent = new Intent(this, FurnaceActivity.class);
         startActivity(intent);

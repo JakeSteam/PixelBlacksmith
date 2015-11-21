@@ -16,13 +16,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="uk.co.jakelee.blacksmith.main.MineActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
             android:name="uk.co.jakelee.blacksmith.main.FurnaceActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="uk.co.jakelee.blacksmith.main.AnvilActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">>
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

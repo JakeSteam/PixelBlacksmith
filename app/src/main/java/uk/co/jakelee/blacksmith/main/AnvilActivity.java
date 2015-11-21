@@ -22,6 +22,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 public class AnvilActivity extends Activity {
     public static DatabaseHelper dbh;
     public static DisplayHelper dh;
+    public int displayedTier = 1;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -50,15 +51,16 @@ public class AnvilActivity extends Activity {
 
     public void createAnvilInterface() {
         ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
+        barSelector.removeAllViews();
 
-        // Get all non-bar items that are also bronze
-        List<Item> items = dbh.getItemsByTypeAndTier(3, 18, 1, 1);
+        // Get all non-bar items that are of the correct tier
+        List<Item> items = dbh.getItemsByTypeAndTier(3, 18, displayedTier, displayedTier);
         for (Item item : items) {
-            RelativeLayout bronzeItem = new RelativeLayout(this);
-            bronzeItem.setTag(item.getId());
-            bronzeItem.addView(dh.CreateItemImage(item.getId(), 300, 230));
-            bronzeItem.addView(dh.CreateItemCount(item.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
-            barSelector.addView(bronzeItem);
+            RelativeLayout itemBox = new RelativeLayout(this);
+            itemBox.setTag(item.getId());
+            itemBox.addView(dh.CreateItemImage(item.getId(), 300, 230));
+            itemBox.addView(dh.CreateItemCount(item.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
+            barSelector.addView(itemBox);
         }
 
         // Display item name and description
@@ -92,10 +94,24 @@ public class AnvilActivity extends Activity {
 
         Item item = dbh.getItemById(itemId);
         if (dbh.createItem(itemId)) {
-            Toast.makeText(getApplicationContext(), item.getName() + " created", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), item.getName() + " created, +" + item.getValue() + "XP", Toast.LENGTH_SHORT).show();
             createAnvilInterface();
         } else {
             Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void goUpTier(View view) {
+        if (displayedTier < 2) {
+            displayedTier++;
+            createAnvilInterface();
+        }
+    }
+
+    public void goDownTier(View view) {
+        if (displayedTier > 1) {
+            displayedTier--;
+            createAnvilInterface();
         }
     }
 
