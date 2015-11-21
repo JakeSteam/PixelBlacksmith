@@ -30,7 +30,7 @@
         android:gravity="center"
         android:text="@string/anvilText"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#484848"
+        android:textColor="#000000"
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
@@ -65,7 +65,7 @@
         android:singleLine="true"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#484848"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <ViewFlipper
@@ -88,7 +88,7 @@
         android:paddingTop="5dp"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#484848"
+        android:textColor="#000000"
         android:textSize="12sp" />
 
     <TableLayout

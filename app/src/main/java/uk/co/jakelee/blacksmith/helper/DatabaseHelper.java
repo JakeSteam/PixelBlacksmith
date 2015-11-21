@@ -175,6 +175,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
+    public List<Inventory> getAllInventoryItems() {
+        List<Inventory> items = new ArrayList<>();
+        String query = "SELECT * FROM inventory";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null && c.moveToFirst()) {
+            do {
+                Inventory inventoryItem = new Inventory();
+                inventoryItem.setItem(c.getInt(c.getColumnIndex("item")));
+                inventoryItem.setQuantity(c.getInt(c.getColumnIndex("quantity")));
+
+                items.add(inventoryItem);
+            } while (c.moveToNext());
+        }
+        return items;
+    }
+
     public Inventory getInventoryByItem(int id) {
         String query = "SELECT * FROM inventory WHERE item = " + id;
 

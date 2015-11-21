@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openInventory(View view) {
+        Intent intent = new Intent(this, InventoryActivity.class);
+        startActivity(intent);
+    }
+
     public void openFurnace(View view) {
         Intent intent = new Intent(this, FurnaceActivity.class);
         startActivity(intent);
