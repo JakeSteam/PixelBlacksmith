@@ -40,7 +40,7 @@ public class AnvilActivity extends Activity {
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
 
-        createAnvilInterface();
+        createAnvilInterface(false);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -49,9 +49,13 @@ public class AnvilActivity extends Activity {
         return super.onTouchEvent(event);
     }
 
-    public void createAnvilInterface() {
-        ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
-        barSelector.removeAllViews();
+    public void createAnvilInterface(boolean switchingTiers) {
+        ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
+
+        // If we're switching tiers, we have to clear the selector first
+        if (switchingTiers) {
+            itemSelector.removeAllViews();
+        }
 
         // Get all non-bar items that are of the correct tier
         List<Item> items = dbh.getItemsByTypeAndTier(3, 18, displayedTier, displayedTier);
@@ -60,7 +64,7 @@ public class AnvilActivity extends Activity {
             itemBox.setTag(item.getId());
             itemBox.addView(dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft()));
             itemBox.addView(dh.CreateItemCount(item.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
-            barSelector.addView(itemBox);
+            itemSelector.addView(itemBox);
         }
 
         // Display item name and description
@@ -87,7 +91,7 @@ public class AnvilActivity extends Activity {
         if (item.getCanCraft().equals("T")) {
             itemName.setText(item.getName());
             itemDesc.setText(item.getDescription());
-            itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+            itemCount.setText(Integer.toString(count.getQuantity()));
         } else {
             itemName.setText("???");
             itemDesc.setText("???");
@@ -102,7 +106,7 @@ public class AnvilActivity extends Activity {
         Item item = dbh.getItemById(itemId);
         if (dbh.createItem(itemId)) {
             Toast.makeText(getApplicationContext(), item.getName() + " created, +" + item.getValue() + "XP", Toast.LENGTH_SHORT).show();
-            createAnvilInterface();
+            createAnvilInterface(false);
         } else {
             Toast.makeText(getApplicationContext(), "You cannot craft this", Toast.LENGTH_SHORT).show();
         }
@@ -111,14 +115,14 @@ public class AnvilActivity extends Activity {
     public void goUpTier(View view) {
         if (displayedTier < 2) {
             displayedTier++;
-            createAnvilInterface();
+            createAnvilInterface(true);
         }
     }
 
     public void goDownTier(View view) {
         if (displayedTier > 1) {
             displayedTier--;
-            createAnvilInterface();
+            createAnvilInterface(true);
         }
     }
 

@@ -57,7 +57,7 @@ public class FurnaceActivity extends Activity {
             RelativeLayout barItem = new RelativeLayout(this);
             barItem.setTag(bar.getId());
             barItem.addView(dh.CreateItemImage(bar.getId(), 300, 230, bar.getCanCraft()));
-            barItem.addView(dh.CreateItemCount(bar.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
+            barItem.addView(dh.CreateItemCount(bar.getId(), " ", " ", Color.WHITE, Color.BLACK));
             barSelector.addView(barItem);
         }
 
@@ -85,7 +85,7 @@ public class FurnaceActivity extends Activity {
         if (item.getCanCraft().equals("T")) {
             itemName.setText(item.getName());
             itemDesc.setText(item.getDescription());
-            itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+            itemCount.setText(Integer.toString(count.getQuantity()));
         } else {
             itemName.setText("???");
             itemDesc.setText("???");
