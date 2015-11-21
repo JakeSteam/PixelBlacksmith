@@ -42,8 +42,9 @@ public class DisplayHelper {
         TextView text = new TextView(context);
         text.setId(viewId);
         text.setTag(itemId + "Count");
-        text.setBackgroundColor(backColour);
         text.setTextColor(textColour);
+        text.setShadowLayer(5, 0, 0, backColour);
+        text.setTextSize(22);
         text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
         return text;
     }
