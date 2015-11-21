@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -57,13 +58,18 @@ public class AnvilActivity extends Activity {
             itemSelector.removeAllViews();
         }
 
-        // Get all non-bar items that are of the correct tier
+        // Get all items that are of the correct tier
         List<Item> items = dbh.getItemsByTypeAndTier(3, 18, displayedTier, displayedTier);
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
+
+            ImageView image = dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft());
+            TextView count = dh.CreateItemCount(item.getId(), Color.WHITE, Color.BLACK);
+            count.setPadding(0, 150, 0, 0);
+
+            itemBox.addView(image);
+            itemBox.addView(count);
             itemBox.setTag(item.getId());
-            itemBox.addView(dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft()));
-            itemBox.addView(dh.CreateItemCount(item.getId(), Color.WHITE, Color.BLACK));
             itemSelector.addView(itemBox);
         }
 

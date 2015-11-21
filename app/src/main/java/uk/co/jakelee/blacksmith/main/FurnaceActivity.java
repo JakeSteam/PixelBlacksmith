@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -49,16 +50,21 @@ public class FurnaceActivity extends Activity {
     }
 
     public void createFurnaceInterface() {
-        ViewFlipper barSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
+        ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         // Add all bars to the selector
-        List<Item> bars = dbh.getItemsByType(2, 2);
-        for (Item bar : bars) {
-            RelativeLayout barItem = new RelativeLayout(this);
-            barItem.setTag(bar.getId());
-            barItem.addView(dh.CreateItemImage(bar.getId(), 300, 230, bar.getCanCraft()));
-            barItem.addView(dh.CreateItemCount(bar.getId(), Color.WHITE, Color.BLACK));
-            barSelector.addView(barItem);
+        List<Item> items = dbh.getItemsByType(2, 2);
+        for (Item item : items) {
+            RelativeLayout itemBox = new RelativeLayout(this);
+
+            ImageView image = dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft());
+            TextView count = dh.CreateItemCount(item.getId(), Color.WHITE, Color.BLACK);
+            count.setPadding(0, 150, 0, 0);
+
+            itemBox.addView(image);
+            itemBox.addView(count);
+            itemBox.setTag(item.getId());
+            itemSelector.addView(itemBox);
         }
 
         // Display item name and description

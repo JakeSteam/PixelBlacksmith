@@ -53,22 +53,13 @@
         android:onClick="goDownTier"
         android:text="v" />
 
-    <ViewFlipper
-        android:id="@+id/viewFlipper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/anvilTitle"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@id/anvilUpButton"
-        android:paddingBottom="8dp">
-    </ViewFlipper>
 
     <TextView
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/anvilTitle"
-        android:layout_toRightOf="@id/viewFlipper"
+        android:layout_toRightOf="@id/anvilUpButton"
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:singleLine="true"
@@ -76,6 +67,16 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#484848"
         android:textSize="18sp" />
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemName"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/anvilUpButton"
+        android:paddingBottom="8dp">
+    </ViewFlipper>
 
     <TextView
         android:id="@+id/itemDesc"
