@@ -56,7 +56,7 @@ public class FurnaceActivity extends Activity {
         for (Item bar : bars) {
             RelativeLayout barItem = new RelativeLayout(this);
             barItem.setTag(bar.getId());
-            barItem.addView(dh.CreateItemImage(bar.getId(), 300, 230));
+            barItem.addView(dh.CreateItemImage(bar.getId(), 300, 230, bar.getCanCraft()));
             barItem.addView(dh.CreateItemCount(bar.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
             barSelector.addView(barItem);
         }
@@ -82,9 +82,15 @@ public class FurnaceActivity extends Activity {
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
         TextView itemCount = (TextView) furnace.findViewWithTag(itemId + "Count");
 
-        itemName.setText(item.getName());
-        itemDesc.setText(item.getDescription());
-        itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+        if (item.getCanCraft().equals("T")) {
+            itemName.setText(item.getName());
+            itemDesc.setText(item.getDescription());
+            itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+        } else {
+            itemName.setText("???");
+            itemDesc.setText("???");
+            itemCount.setText("???");
+        }
     }
 
     public void Smelt1(View v) {
@@ -95,7 +101,7 @@ public class FurnaceActivity extends Activity {
             Toast.makeText(getApplicationContext(), item.getName() + " created, +" + item.getValue() + "XP", Toast.LENGTH_SHORT).show();
             createFurnaceInterface();
         } else {
-            Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "You cannot craft this", Toast.LENGTH_SHORT).show();
         }
     }
 

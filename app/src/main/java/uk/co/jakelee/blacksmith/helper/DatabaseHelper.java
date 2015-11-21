@@ -120,6 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setTier(c.getInt(c.getColumnIndex("tier")));
             item.setValue(c.getInt(c.getColumnIndex("value")));
             item.setLevel(c.getInt(c.getColumnIndex("level")));
+            item.setCanCraft(c.getString(c.getColumnIndex("can_craft")));
         }
         return item;
     }
@@ -141,6 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.setTier(c.getInt(c.getColumnIndex("tier")));
                 item.setValue(c.getInt(c.getColumnIndex("value")));
                 item.setLevel(c.getInt(c.getColumnIndex("level")));
+                item.setCanCraft(c.getString(c.getColumnIndex("can_craft")));
 
                 items.add(item);
             } while (c.moveToNext());
@@ -165,6 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.setTier(c.getInt(c.getColumnIndex("tier")));
                 item.setValue(c.getInt(c.getColumnIndex("value")));
                 item.setLevel(c.getInt(c.getColumnIndex("level")));
+                item.setCanCraft(c.getString(c.getColumnIndex("can_craft")));
 
                 items.add(item);
             } while (c.moveToNext());
@@ -196,7 +199,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Check we've got a high enough level
         Item item = getItemById(itemID);
-        if (item.getLevel() > GetPlayerLevel()) {
+        if (item.getLevel() > GetPlayerLevel() || !item.getCanCraft().equals("T")) {
             return false;
         }
 

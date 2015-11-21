@@ -58,7 +58,7 @@ public class AnvilActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
             itemBox.setTag(item.getId());
-            itemBox.addView(dh.CreateItemImage(item.getId(), 300, 230));
+            itemBox.addView(dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft()));
             itemBox.addView(dh.CreateItemCount(item.getId(), "Have: ", " ", Color.WHITE, Color.BLACK));
             barSelector.addView(itemBox);
         }
@@ -84,9 +84,16 @@ public class AnvilActivity extends Activity {
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
         TextView itemCount = (TextView) anvil.findViewWithTag(itemId + "Count");
 
-        itemName.setText(item.getName());
-        itemDesc.setText(item.getDescription());
-        itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+        if (item.getCanCraft().equals("T")) {
+            itemName.setText(item.getName());
+            itemDesc.setText(item.getDescription());
+            itemCount.setText("Have: " + Integer.toString(count.getQuantity()) + " ");
+        } else {
+            itemName.setText("???");
+            itemDesc.setText("???");
+            itemCount.setText("???");
+        }
+
     }
 
     public void Smelt1(View v) {
@@ -97,7 +104,7 @@ public class AnvilActivity extends Activity {
             Toast.makeText(getApplicationContext(), item.getName() + " created, +" + item.getValue() + "XP", Toast.LENGTH_SHORT).show();
             createAnvilInterface();
         } else {
-            Toast.makeText(getApplicationContext(), "Not enough materials", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "You cannot craft this", Toast.LENGTH_SHORT).show();
         }
     }
 

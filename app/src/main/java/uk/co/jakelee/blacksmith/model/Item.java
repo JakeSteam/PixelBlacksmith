@@ -8,6 +8,7 @@ public class Item {
     int tier;
     int value;
     int level;
+    String can_craft;
 
     public Item() {
     }
@@ -66,5 +67,13 @@ public class Item {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public String getCanCraft() {
+        return can_craft;
+    }
+
+    public void setCanCraft(String can_craft) {
+        this.can_craft = can_craft;
     }
 }
