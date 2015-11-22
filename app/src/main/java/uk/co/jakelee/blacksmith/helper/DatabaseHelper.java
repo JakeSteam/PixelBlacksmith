@@ -177,7 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Inventory> getAllInventoryItems() {
         List<Inventory> items = new ArrayList<>();
-        String query = "SELECT * FROM inventory";
+        String query = "SELECT * FROM inventory WHERE item <> 52 AND quantity > 0";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -282,5 +282,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
         db.update("item", args, "_id = " + item.getId(), null);
+    }
+
+    public boolean canSellItem(int itemId, int quantity) {
+        Inventory inventory = getInventoryByItem(itemId);
+        return inventory.getQuantity() > 0;
+    }
+
+    public void sellItem(int itemId, int quantity, int price) {
+        Inventory inventory = getInventoryByItem(itemId);
+        inventory.setQuantity(inventory.getQuantity() - quantity);
+        updateInventory(inventory);
+
+        Inventory gold = getInventoryByItem(52);
+        gold.setQuantity(inventory.getQuantity() + (quantity * price));
+        updateInventory(gold);
     }
 }

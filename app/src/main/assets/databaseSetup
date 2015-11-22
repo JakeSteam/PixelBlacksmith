@@ -17,6 +17,7 @@ INSERT INTO `type` (_id,name,category) VALUES (15,'Pickaxe',4);
 INSERT INTO `type` (_id,name,category) VALUES (16,'Hatchet',4);
 INSERT INTO `type` (_id,name,category) VALUES (17,'Fishing Rod',4);
 INSERT INTO `type` (_id,name,category) VALUES (18,'Hammer',4);
+INSERT INTO `type` (_id,name,category) VALUES (19,'Internal',0);
 CREATE TABLE `tier` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL);
 INSERT INTO `tier` (_id,name) VALUES (1,'Bronze');
 INSERT INTO `tier` (_id,name) VALUES (2,'Iron');
@@ -128,6 +129,7 @@ INSERT INTO `item` (_id,name,description,type,tier,value,level,can_craft) VALUES
 INSERT INTO `item` (_id,name,description,type,tier,value,level,can_craft) VALUES (49,'Iron hatchet','A standard axe for cutting down trees.',16,2,14,8,'T');
 INSERT INTO `item` (_id,name,description,type,tier,value,level,can_craft) VALUES (50,'Iron fishing rod','A standard rod for catching fish.',17,2,14,8,'T');
 INSERT INTO `item` (_id,name,description,type,tier,value,level,can_craft) VALUES (51,'Iron hammer','A standard hammer who misses his anvil.',18,2,7,8,'T');
+INSERT INTO `item` (_id,name,description,type,tier,value,level,can_craft) VALUES (52,'Coins','Coins! Glorious coins!',19,10,1,1,'T');
 CREATE TABLE `inventory` (`item` INTEGER PRIMARY KEY,`quantity` INTEGER NOT NULL DEFAULT 1);
 INSERT INTO `inventory` (item,quantity) VALUES (1,101);
 INSERT INTO `inventory` (item,quantity) VALUES (2,102);
@@ -139,6 +141,7 @@ INSERT INTO `inventory` (item,quantity) VALUES (7,107);
 INSERT INTO `inventory` (item,quantity) VALUES (8,108);
 INSERT INTO `inventory` (item,quantity) VALUES (9,109);
 INSERT INTO `inventory` (item,quantity) VALUES (10,110);
+INSERT INTO `inventory` (item,quantity) VALUES (52,1234);
 CREATE TABLE `category` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT,`name` TEXT NOT NULL,`description` TEXT DEFAULT "");
 INSERT INTO `category` (_id,name,description) VALUES (0,'Unknown','Item type category could not be found.');
 INSERT INTO `category` (_id,name,description) VALUES (1,'Crafting','An item that can be used for crafting.');
@@ -148,4 +151,3 @@ INSERT INTO `category` (_id,name,description) VALUES (4,'Skill','An item that ca
 CREATE TABLE `player_info` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `text_value` TEXT DEFAULT "", `int_value` INT DEFAULT 0);
 INSERT INTO `player_info` (_id, name, text_value) VALUES (1, 'Name', 'Jake');
 INSERT INTO `player_info` (_id, name, int_value) VALUES (2, 'XP', '600');
-INSERT INTO `player_info` (_id, name, int_value) VALUES (3, 'Gold', '100');

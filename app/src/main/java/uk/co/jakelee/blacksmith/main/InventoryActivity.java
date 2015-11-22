@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -44,12 +48,37 @@ public class InventoryActivity extends Activity {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = dbh.getItemById(inventoryItem.getItem());
 
-            itemRow.addView(dh.CreateItemImage(item.getId(), 10, 10, "T"));
-            itemRow.addView(dh.CreateTextView(item.getName(), 15, Color.BLACK));
+            ImageView image = dh.CreateItemImage(item.getId(), 15, 15, "T");
+            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+            TextView name = dh.CreateTextView(item.getName(), 15, Color.BLACK);
+            name.setSingleLine(false);
+
+            ImageView sell = dh.CreateItemImage(52, 15, 15, "T");
+            sell.setTag(item.getId());
+            sell.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    clickSellButton(v);
+                }
+            });
+
+            itemRow.addView(image);
+            itemRow.addView(name);
             itemRow.addView(dh.CreateTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK));
-            itemRow.addView(dh.CreateTextView(Integer.toString(item.getId()), 15, Color.BLACK));
+            itemRow.addView(sell);
             inventoryTable.addView(itemRow);
         }
+    }
+
+    public void clickSellButton(View view) {
+        Item itemToSell = dbh.getItemById((int) view.getTag());
+        if (dbh.canSellItem(itemToSell.getId(), 1)) {
+            dbh.sellItem(itemToSell.getId(), 1, itemToSell.getValue());
+            Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for %3s", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
+        }
+        updateInventoryTable();
     }
 
 
