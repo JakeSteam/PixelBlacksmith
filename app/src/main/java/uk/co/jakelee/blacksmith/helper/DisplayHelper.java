@@ -27,7 +27,6 @@ public class DisplayHelper {
         DisplayHelper.dbh = new DatabaseHelper(context);
     }
 
-
     public TextView CreateTextView(String text, int size, int color) {
         TextView textView = new TextView(context);
         textView.setText(text);

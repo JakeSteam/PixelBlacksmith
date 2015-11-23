@@ -79,6 +79,7 @@ public class InventoryActivity extends Activity {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }
         updateInventoryTable();
+        dbh.updateCoins(dbh.getCoins());
     }
 
 

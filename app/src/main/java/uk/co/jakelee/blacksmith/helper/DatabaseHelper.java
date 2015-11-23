@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Recipe;
@@ -175,6 +176,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
+    public int getCoins() {
+        Inventory coins = getInventoryByItem(52);
+        return coins.getQuantity();
+    }
+
     public List<Inventory> getAllInventoryItems() {
         List<Inventory> items = new ArrayList<>();
         String query = "SELECT * FROM inventory WHERE item <> 52 AND quantity > 0";
@@ -278,12 +284,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Inserted " + inventory.getQuantity() + "x item ID " + inventory.getItem());
     }
 
-    public void updateItem(Item item) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues args = new ContentValues();
-        db.update("item", args, "_id = " + item.getId(), null);
-    }
-
     public boolean canSellItem(int itemId, int quantity) {
         Inventory inventory = getInventoryByItem(itemId);
         return inventory.getQuantity() > 0;
@@ -292,10 +292,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void sellItem(int itemId, int quantity, int price) {
         Inventory inventory = getInventoryByItem(itemId);
         inventory.setQuantity(inventory.getQuantity() - quantity);
-        updateInventory(inventory);
 
-        Inventory gold = getInventoryByItem(52);
-        gold.setQuantity(inventory.getQuantity() + (quantity * price));
-        updateInventory(gold);
+        updateInventory(inventory);
+        updateCoins(getCoins() + (quantity * price));
+    }
+
+    public void updateCoins(int coins) {
+        String query = "UPDATE inventory SET quantity = " + coins + " WHERE item = 52";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(query);
+
+        String coinCountString = String.format("%,d", coins);
+        MainActivity.coins.setText(coinCountString + " coins");
     }
 }
