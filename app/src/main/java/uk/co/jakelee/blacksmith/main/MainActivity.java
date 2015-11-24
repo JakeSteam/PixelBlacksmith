@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
     public static DisplayHelper dh;
     public static TextView coins;
+    public static TextView level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         dbh = new DatabaseHelper(getApplicationContext());
         dh = new DisplayHelper(getApplicationContext());
+
         coins = (TextView) findViewById(R.id.coinCount);
+        coins.setText(dbh.getCoins() + " coins");
+        level = (TextView) findViewById(R.id.currentLevel);
+        dbh.UpdateLevelText();
     }
 
     @Override

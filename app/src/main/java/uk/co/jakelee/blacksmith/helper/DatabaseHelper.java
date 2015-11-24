@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,11 +76,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Inventory craftedItem = getInventoryByItem(itemId);
             craftedItem.setQuantity(craftedItem.getQuantity() + 1);
             updateInventory(craftedItem);
+
             AddXP(getItemById(craftedItem.getItem()).getValue());
+            UpdateLevelText();
             return true;
         } else {
             return false;
         }
+    }
+
+    public void UpdateLevelText() {
+        TextView levelCount = MainActivity.level;
+        levelCount.setText("Level" + GetPlayerLevel() + " (" + GetXP() + "xp)");
     }
 
     public int GetPlayerLevel() {
