@@ -6,6 +6,8 @@
     <string name="inventory_description">An inventory</string>
     <string name="furnace_description">A furnace</string>
     <string name="anvil_description">An anvil</string>
+
+    <string name="mineText">Mine</string>
     <string name="furnaceText">Furnace</string>
     <string name="anvilText">Anvil</string>
     <string name="inventoryText">Inventory</string>

@@ -43,6 +43,16 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/pickaxe" />
 
+            <TextView
+                android:id="@+id/text_mine"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_mine"
+                android:text="@string/mineText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="22sp" />
+
             <ImageButton
                 android:id="@+id/open_furnace"
                 android:layout_width="125dp"
@@ -53,27 +63,59 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/furnace" />
 
+            <TextView
+                android:id="@+id/text_furnace"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_furnace"
+                android:layout_toRightOf="@id/text_mine"
+                android:text="@string/furnaceText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="22sp" />
+
             <ImageButton
                 android:id="@+id/open_anvil"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:layout_below="@id/open_mine"
+                android:layout_below="@id/text_mine"
                 android:contentDescription="@string/anvil_description"
                 android:maxHeight="150dp"
                 android:onClick="openAnvil"
                 android:scaleType="fitCenter"
                 android:src="@drawable/anvil" />
 
+            <TextView
+                android:id="@+id/text_anvil"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_anvil"
+                android:text="@string/anvilText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="22sp" />
+
             <ImageButton
                 android:id="@+id/open_inventory"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:layout_below="@id/open_furnace"
+                android:layout_below="@id/text_furnace"
                 android:layout_toRightOf="@id/open_anvil"
                 android:contentDescription="@string/inventory_description"
                 android:onClick="openInventory"
                 android:scaleType="fitCenter"
                 android:src="@drawable/inventory" />
+
+            <TextView
+                android:id="@+id/text_inventory"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_inventory"
+                android:layout_toRightOf="@id/text_anvil"
+                android:text="@string/inventoryText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="22sp" />
 
         </RelativeLayout>
     </ScrollView>
