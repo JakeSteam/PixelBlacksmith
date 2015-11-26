@@ -65,14 +65,25 @@
     </HorizontalScrollView>
 
     <TextView
+        android:id="@+id/menuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openMenu"
+        android:shadowColor="#000000"
+        android:text="Menu   "
+        android:textColor="#FFFFFF"
+        android:textSize="24dp" />
+
+    <TextView
         android:id="@+id/coinCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/menuButton"
         android:shadowColor="#000000"
         android:text="0 Coins"
         android:textColor="#FFFFFF"
-        android:textSize="30dp" />
+        android:textSize="24dp" />
 
     <TextView
         android:id="@+id/currentLevel"
@@ -83,5 +94,5 @@
         android:shadowColor="#000000"
         android:text="Level 0"
         android:textColor="#FFFFFF"
-        android:textSize="30dp" />
+        android:textSize="24dp" />
 </RelativeLayout>

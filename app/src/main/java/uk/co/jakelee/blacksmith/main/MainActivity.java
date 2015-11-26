@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         coins = (TextView) findViewById(R.id.coinCount);
         coins.setText(dbh.getCoins() + " coins");
+
         level = (TextView) findViewById(R.id.currentLevel);
         dbh.UpdateLevelText();
     }
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void openMenu(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 
     public void openMine(View view) {

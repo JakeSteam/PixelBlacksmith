@@ -19,6 +19,9 @@
             android:name="uk.co.jakelee.blacksmith.main.InventoryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
+            android:name="uk.co.jakelee.blacksmith.main.MenuActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
             android:name="uk.co.jakelee.blacksmith.main.MineActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity

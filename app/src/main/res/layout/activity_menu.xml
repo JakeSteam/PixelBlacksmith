@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mine"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="60dp"
+    android:background="@drawable/popupbackground"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="2"
+    tools:context="uk.co.jakelee.blacksmith.main.MineActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="35dp">
+
+        <RelativeLayout
+            android:id="@+id/shapeLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/open_mine"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:contentDescription="@string/mine_description"
+                android:onClick="openMine"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pickaxe" />
+
+            <ImageButton
+                android:id="@+id/open_furnace"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_toRightOf="@id/open_mine"
+                android:contentDescription="@string/furnace_description"
+                android:onClick="openFurnace"
+                android:scaleType="fitCenter"
+                android:src="@drawable/furnace" />
+
+            <ImageButton
+                android:id="@+id/open_anvil"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_below="@id/open_mine"
+                android:contentDescription="@string/anvil_description"
+                android:maxHeight="150dp"
+                android:onClick="openAnvil"
+                android:scaleType="fitCenter"
+                android:src="@drawable/anvil" />
+
+            <ImageButton
+                android:id="@+id/open_inventory"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_below="@id/open_furnace"
+                android:layout_toRightOf="@id/open_anvil"
+                android:contentDescription="@string/inventory_description"
+                android:onClick="openInventory"
+                android:scaleType="fitCenter"
+                android:src="@drawable/inventory" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
