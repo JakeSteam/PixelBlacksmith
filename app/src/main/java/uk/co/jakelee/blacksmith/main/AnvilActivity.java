@@ -119,7 +119,7 @@ public class AnvilActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < 2) {
+        if (displayedTier < 3) {
             displayedTier++;
             createAnvilInterface(true);
         }
