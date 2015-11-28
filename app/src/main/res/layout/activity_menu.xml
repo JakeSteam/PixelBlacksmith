@@ -34,12 +34,13 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_mine"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:contentDescription="@string/mine_description"
                 android:onClick="openMine"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/pickaxe" />
 
@@ -53,13 +54,14 @@
                 android:textColor="#000000"
                 android:textSize="22sp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_furnace"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_toRightOf="@id/open_mine"
                 android:contentDescription="@string/furnace_description"
                 android:onClick="openFurnace"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/furnace" />
 
@@ -74,7 +76,7 @@
                 android:textColor="#000000"
                 android:textSize="22sp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_anvil"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
@@ -82,6 +84,7 @@
                 android:contentDescription="@string/anvil_description"
                 android:maxHeight="150dp"
                 android:onClick="openAnvil"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/anvil" />
 
@@ -95,7 +98,7 @@
                 android:textColor="#000000"
                 android:textSize="22sp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_inventory"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
@@ -103,6 +106,7 @@
                 android:layout_toRightOf="@id/open_anvil"
                 android:contentDescription="@string/inventory_description"
                 android:onClick="openInventory"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/inventory" />
 

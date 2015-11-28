@@ -16,7 +16,7 @@
             android:layout_marginTop="-50dp"
             android:background="@drawable/wallpaper">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_mine"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
@@ -27,7 +27,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/pickaxe" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_furnace"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
@@ -38,7 +38,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/furnace" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_anvil"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
@@ -50,7 +50,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/anvil" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/open_inventory"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
@@ -83,16 +83,17 @@
         android:shadowColor="#000000"
         android:text="0 Coins"
         android:textColor="#FFFFFF"
-        android:textSize="24dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/currentLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/coinCount"
         android:shadowColor="#000000"
         android:text="Level 0"
         android:textColor="#FFFFFF"
-        android:textSize="24dp" />
+        android:textSize="18dp" />
 </RelativeLayout>
