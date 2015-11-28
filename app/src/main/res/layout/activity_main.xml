@@ -18,47 +18,50 @@
 
             <ImageView
                 android:id="@+id/open_mine"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="150dp"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="160dp"
+                android:layout_marginTop="0dp"
+                android:alpha=".20"
                 android:contentDescription="@string/mine_description"
                 android:onClick="openMine"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/pickaxe" />
 
             <ImageView
                 android:id="@+id/open_furnace"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginLeft="160dp"
+                android:layout_width="450dp"
+                android:layout_height="450dp"
+                android:layout_marginLeft="790dp"
                 android:layout_marginTop="150dp"
+                android:alpha=".20"
                 android:contentDescription="@string/furnace_description"
                 android:onClick="openFurnace"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/furnace" />
 
             <ImageView
                 android:id="@+id/open_anvil"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginLeft="300dp"
-                android:layout_marginTop="150dp"
+                android:layout_width="230dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="230dp"
+                android:layout_marginTop="380dp"
+                android:alpha=".20"
                 android:contentDescription="@string/anvil_description"
-                android:maxHeight="150dp"
                 android:onClick="openAnvil"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/anvil" />
 
             <ImageView
                 android:id="@+id/open_inventory"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="200dp"
+                android:layout_height="230dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="290dp"
+                android:layout_marginTop="200dp"
+                android:alpha=".20"
                 android:contentDescription="@string/inventory_description"
                 android:onClick="openInventory"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@drawable/inventory" />
 
         </RelativeLayout>
