@@ -8,15 +8,18 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.main.R;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Slots;
 
 public class DisplayHelper {
     private static Context context;
@@ -25,6 +28,30 @@ public class DisplayHelper {
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;
         DisplayHelper.dbh = new DatabaseHelper(context);
+    }
+
+    public void CreateSlotContainer(LinearLayout slotContainer, List<Slots> slots) {
+        slotContainer.removeAllViews();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(180, 180);
+        int playerLevel = dbh.GetPlayerLevel();
+
+        for (Slots slot : slots) {
+            ImageView slotView = new ImageView(context);
+            slotView.setLayoutParams(params);
+
+            if (slot.getLevel() > playerLevel) {
+                slotView.setBackgroundResource(R.drawable.close);
+                slotView.setTag(false);
+            } else if (slot.getPremium() == 1) {
+                slotView.setBackgroundResource(R.drawable.item52);
+                slotView.setTag(false);
+            } else {
+                slotView.setBackgroundResource(R.drawable.slot);
+                slotView.setTag(true);
+            }
+
+            slotContainer.addView(slotView);
+        }
     }
 
     public TextView CreateTextView(String text, int size, int color) {

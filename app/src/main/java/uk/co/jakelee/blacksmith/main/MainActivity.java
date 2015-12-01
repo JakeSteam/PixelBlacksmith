@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
@@ -12,8 +13,13 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
     public static DisplayHelper dh;
+
     public static TextView coins;
     public static TextView level;
+
+    public static LinearLayout sellingSlots;
+    public static LinearLayout furnaceSlots;
+    public static LinearLayout anvilSlots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +30,20 @@ public class MainActivity extends AppCompatActivity {
         dh = new DisplayHelper(getApplicationContext());
 
         coins = (TextView) findViewById(R.id.coinCount);
-        coins.setText(dbh.getCoins() + " coins");
-
         level = (TextView) findViewById(R.id.currentLevel);
+        sellingSlots = (LinearLayout) findViewById(R.id.slots_inventory);
+        furnaceSlots = (LinearLayout) findViewById(R.id.slots_furnace);
+        anvilSlots = (LinearLayout) findViewById(R.id.slots_anvil);
+
+        dbh.updateCoinsGUI();
         dbh.UpdateLevelText();
+        CreateSlots();
+    }
+
+    private void CreateSlots() {
+        dh.CreateSlotContainer(sellingSlots, dbh.getSlots("Selling"));
+        dh.CreateSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
+        dh.CreateSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
     }
 
     @Override
@@ -59,6 +75,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AnvilActivity.class);
         startActivity(intent);
     }
-
-
 }

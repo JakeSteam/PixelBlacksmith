@@ -49,7 +49,6 @@ public class InventoryActivity extends Activity {
             Item item = dbh.getItemById(inventoryItem.getItem());
 
             ImageView image = dh.CreateItemImage(item.getId(), 15, 15, "T");
-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
             TextView name = dh.CreateTextView(item.getName(), 15, Color.BLACK);
             name.setSingleLine(false);

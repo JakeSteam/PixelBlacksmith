@@ -19,7 +19,9 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Slots;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -311,7 +313,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(query);
 
-        String coinCountString = String.format("%,d", coins);
+        updateCoinsGUI();
+    }
+
+    public void updateCoinsGUI() {
+        String coinCountString = String.format("%,d", getCoins());
         MainActivity.coins.setText(coinCountString + " coins");
+    }
+
+    public List<Pending_Inventory> getPendingItemsByLocation(String location) {
+        List<Pending_Inventory> items = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT item, time_created, craft_time, location_id " +
+                "FROM pending_inventory INNER JOIN locations ON pending_inventory.location_id = locations._id " +
+                "WHERE locations._id = " + location;
+
+        Cursor c = db.rawQuery(query, null);
+        if (c != null && c.moveToFirst()) {
+            do {
+                Pending_Inventory item = new Pending_Inventory();
+                item.setItem(c.getInt(c.getColumnIndex("item")));
+                item.setTimeCreated(c.getInt(c.getColumnIndex("time_created")));
+                item.setCraftTime(c.getInt(c.getColumnIndex("craft_time")));
+                item.setLocationID(c.getInt(c.getColumnIndex("location_id")));
+
+                items.add(item);
+            } while (c.moveToNext());
+        }
+
+        return items;
+    }
+
+    public List<Slots> getSlots(String location) {
+        List<Slots> slots = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT slots._id, location_id, level_req, premium " +
+                "FROM slots " +
+                "INNER JOIN locations ON slots.location_id = locations._id " +
+                "WHERE locations.name = '" + location + "'";
+
+        Cursor c = db.rawQuery(query, null);
+        if (c != null && c.moveToFirst()) {
+            do {
+                Slots slot = new Slots();
+                slot.setId(c.getInt(c.getColumnIndex("_id")));
+                slot.setLevel(c.getInt(c.getColumnIndex("level_req")));
+                slot.setLocation(c.getInt(c.getColumnIndex("location_id")));
+                slot.setPremium(c.getInt(c.getColumnIndex("premium")));
+
+                slots.add(slot);
+            } while (c.moveToNext());
+        }
+
+        return slots;
     }
 }
