@@ -2,7 +2,7 @@ package uk.co.jakelee.blacksmith.model;
 
 public class Pending_Inventory {
     int item;
-    int timeCreated;
+    long timeCreated;
     int craftTime;
     int locationID;
 
@@ -18,11 +18,11 @@ public class Pending_Inventory {
         this.item = item;
     }
 
-    public int getTimeCreated() {
+    public long getTimeCreated() {
         return timeCreated;
     }
 
-    public void setTimeCreated(int timeCreated) {
+    public void setTimeCreated(long timeCreated) {
         this.timeCreated = timeCreated;
     }
 

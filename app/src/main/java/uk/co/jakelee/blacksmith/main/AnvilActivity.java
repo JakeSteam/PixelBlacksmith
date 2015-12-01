@@ -111,7 +111,7 @@ public class AnvilActivity extends Activity {
 
         Item item = dbh.getItemById(itemId);
         if (dbh.createItem(itemId)) {
-            Toast.makeText(getApplicationContext(), item.getName() + " created, +" + item.getValue() + "XP", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
         } else {
             Toast.makeText(getApplicationContext(), "You cannot craft this", Toast.LENGTH_SHORT).show();

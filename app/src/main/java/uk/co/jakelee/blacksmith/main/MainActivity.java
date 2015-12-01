@@ -38,12 +38,19 @@ public class MainActivity extends AppCompatActivity {
         dbh.updateCoinsGUI();
         dbh.UpdateLevelText();
         CreateSlots();
+        UpdateSlots();
     }
 
     private void CreateSlots() {
         dh.CreateSlotContainer(sellingSlots, dbh.getSlots("Selling"));
         dh.CreateSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
         dh.CreateSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
+    }
+
+    public void UpdateSlots() {
+        dh.PopulateSlotContainer(sellingSlots, "Selling");
+        dh.PopulateSlotContainer(furnaceSlots, "Furnace");
+        dh.PopulateSlotContainer(anvilSlots, "Anvil");
     }
 
     @Override

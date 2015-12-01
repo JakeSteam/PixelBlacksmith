@@ -66,25 +66,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean createItem(int itemId) {
         if (canCreateItem(itemId)) {
-            // Remove ingredients
-            List<Recipe> ingredients = getIngredientsForItemById(itemId);
-            for (Recipe ingredient : ingredients) {
-                Inventory ownedItems = getInventoryByItem(ingredient.getIngredient());
-                ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
-                updateInventory(ownedItems);
-            }
-
-            // Add crafted item
-            Inventory craftedItem = getInventoryByItem(itemId);
-            craftedItem.setQuantity(craftedItem.getQuantity() + 1);
-            updateInventory(craftedItem);
-
-            AddXP(getItemById(craftedItem.getItem()).getValue());
-            UpdateLevelText();
+            AddPendingItem(itemId);
             return true;
         } else {
             return false;
         }
+    }
+
+    public void AddPendingItem(int itemId) {
+        List<Recipe> ingredients = getIngredientsForItemById(itemId);
+        for (Recipe ingredient : ingredients) {
+            Inventory ownedItems = getInventoryByItem(ingredient.getIngredient());
+            ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
+            updateInventory(ownedItems);
+        }
+
+        // Add to pending inventory
+    }
+
+    public void AddItem(int itemId) {
+        Inventory craftedItem = getInventoryByItem(itemId);
+        craftedItem.setQuantity(craftedItem.getQuantity() + 1);
+        updateInventory(craftedItem);
+
+        AddXP(getItemById(craftedItem.getItem()).getValue());
+        UpdateLevelText();
     }
 
     public void UpdateLevelText() {
@@ -327,7 +333,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT item, time_created, craft_time, location_id " +
                 "FROM pending_inventory INNER JOIN locations ON pending_inventory.location_id = locations._id " +
-                "WHERE locations._id = " + location;
+                "WHERE locations._id = '" + location + "'";
 
         Cursor c = db.rawQuery(query, null);
         if (c != null && c.moveToFirst()) {

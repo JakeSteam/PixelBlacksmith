@@ -12,12 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.main.R;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slots;
 
@@ -51,6 +53,21 @@ public class DisplayHelper {
             }
 
             slotContainer.addView(slotView);
+        }
+    }
+
+    public void PopulateSlotContainer(LinearLayout slotContainer, String location) {
+        List<Pending_Inventory> pendingItems = dbh.getPendingItemsByLocation(location);
+
+        for (Pending_Inventory pendingItem : pendingItems) {
+            long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
+            long currentTime = System.currentTimeMillis();
+
+            if (itemFinishTime <= currentTime) {
+                dbh.AddItem(pendingItem.getItem());
+            } else {
+                Toast.makeText(context, "Time left: " + (itemFinishTime - currentTime), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
