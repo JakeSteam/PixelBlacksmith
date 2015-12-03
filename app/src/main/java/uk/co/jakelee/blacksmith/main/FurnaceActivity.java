@@ -103,7 +103,7 @@ public class FurnaceActivity extends Activity {
         int itemId = (int) mViewFlipper.getCurrentView().getTag();
 
         Item item = dbh.getItemById(itemId);
-        if (dbh.createItem(itemId)) {
+        if (dbh.createItem(itemId, 1)) {
             Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createFurnaceInterface();
         } else {

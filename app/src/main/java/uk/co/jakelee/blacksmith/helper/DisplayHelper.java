@@ -59,15 +59,29 @@ public class DisplayHelper {
     public void PopulateSlotContainer(LinearLayout slotContainer, String location) {
         List<Pending_Inventory> pendingItems = dbh.getPendingItemsByLocation(location);
 
+        int i = 0;
         for (Pending_Inventory pendingItem : pendingItems) {
             long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
             long currentTime = System.currentTimeMillis();
+            int drawableId = context.getResources().getIdentifier("item" + pendingItem.getItem(), "drawable", context.getPackageName());
 
             if (itemFinishTime <= currentTime) {
+                // If the item has finished crafting
                 dbh.AddItem(pendingItem.getItem());
+                dbh.DeletePendingItem(pendingItem);
             } else {
                 Toast.makeText(context, "Time left: " + (itemFinishTime - currentTime), Toast.LENGTH_SHORT).show();
+                ImageView slot = (ImageView) slotContainer.getChildAt(i);
+                slot.setImageResource(drawableId);
+                i++;
             }
+        }
+    }
+
+    public void DepopulateSlotContainer(LinearLayout slotContainer) {
+        for (int i = 0; i < slotContainer.getChildCount(); i++) {
+            ImageView slot = (ImageView) slotContainer.getChildAt(i);
+            slot.setImageResource(R.drawable.slot);
         }
     }
 

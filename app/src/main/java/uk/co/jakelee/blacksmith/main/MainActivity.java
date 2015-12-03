@@ -48,14 +48,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void UpdateSlots() {
-        dh.PopulateSlotContainer(sellingSlots, "Selling");
+        //dh.DepopulateSlotContainer(sellingSlots);
+        dh.DepopulateSlotContainer(furnaceSlots);
+        //dh.DepopulateSlotContainer(anvilSlots);
+
+        //dh.PopulateSlotContainer(sellingSlots, "Selling");
         dh.PopulateSlotContainer(furnaceSlots, "Furnace");
-        dh.PopulateSlotContainer(anvilSlots, "Anvil");
+        //dh.PopulateSlotContainer(anvilSlots, "Anvil");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void updateTick(View view) {
+        UpdateSlots();
     }
 
     public void openMenu(View view) {

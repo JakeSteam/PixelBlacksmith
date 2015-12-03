@@ -64,24 +64,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         fileReader.close();
     }
 
-    public boolean createItem(int itemId) {
+    public void DeletePendingItem(Pending_Inventory pendingItem) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "DELETE FROM pending_inventory WHERE item = " + pendingItem.getItem() + " AND time_created = " + pendingItem.getTimeCreated() + ";";
+        db.execSQL(query);
+
+        Log.d(LOG, "Deleted " + pendingItem.getItem() + " from pending inventory at location " + pendingItem.getLocationID());
+    }
+
+    public boolean createItem(int itemId, int locationId) {
         if (canCreateItem(itemId)) {
-            AddPendingItem(itemId);
+            RemoveItemIngredients(itemId);
+            AddPendingItem(itemId, locationId);
             return true;
         } else {
             return false;
         }
     }
 
-    public void AddPendingItem(int itemId) {
+    public void RemoveItemIngredients(int itemId) {
         List<Recipe> ingredients = getIngredientsForItemById(itemId);
         for (Recipe ingredient : ingredients) {
             Inventory ownedItems = getInventoryByItem(ingredient.getIngredient());
             ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
             updateInventory(ownedItems);
         }
+    }
 
-        // Add to pending inventory
+    public void AddPendingItem(int itemId, int location) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long time = System.currentTimeMillis();
+        int craftTime = 10000;
+
+        String query = "INSERT INTO pending_inventory (item, time_created, craft_time, location_id) VALUES (" + itemId + "," + time + "," + craftTime + "," + location + ")";
+        db.execSQL(query);
+
+        Log.d(LOG, "Added " + itemId + " to pending inventory at location " + location + " at time " + time);
     }
 
     public void AddItem(int itemId) {
@@ -333,14 +352,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT item, time_created, craft_time, location_id " +
                 "FROM pending_inventory INNER JOIN locations ON pending_inventory.location_id = locations._id " +
-                "WHERE locations._id = '" + location + "'";
+                "WHERE locations.name = '" + location + "'";
 
         Cursor c = db.rawQuery(query, null);
         if (c != null && c.moveToFirst()) {
             do {
                 Pending_Inventory item = new Pending_Inventory();
                 item.setItem(c.getInt(c.getColumnIndex("item")));
-                item.setTimeCreated(c.getInt(c.getColumnIndex("time_created")));
+                item.setTimeCreated(c.getLong(c.getColumnIndex("time_created")));
                 item.setCraftTime(c.getInt(c.getColumnIndex("craft_time")));
                 item.setLocationID(c.getInt(c.getColumnIndex("location_id")));
 

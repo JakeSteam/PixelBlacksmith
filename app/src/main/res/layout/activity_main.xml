@@ -91,6 +91,7 @@
         </RelativeLayout>
     </HorizontalScrollView>
 
+
     <TextView
         android:id="@+id/menuButton"
         android:layout_width="wrap_content"
@@ -102,11 +103,20 @@
         android:textSize="24dp" />
 
     <TextView
+        android:id="@+id/updateTick"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/menuButton"
+        android:onClick="updateTick"
+        android:text="TICK"
+        android:textSize="20dp" />
+
+    <TextView
         android:id="@+id/coinCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/menuButton"
+        android:layout_toRightOf="@id/updateTick"
         android:shadowColor="#000000"
         android:text="0 Coins"
         android:textColor="#FFFFFF"
