@@ -70,6 +70,7 @@ public class DisplayHelper {
                 dbh.AddItem(pendingItem.getItem());
                 dbh.DeletePendingItem(pendingItem);
             } else {
+                // If there's time remaining
                 Toast.makeText(context, "Time left: " + (itemFinishTime - currentTime), Toast.LENGTH_SHORT).show();
                 ImageView slot = (ImageView) slotContainer.getChildAt(i);
                 slot.setImageResource(drawableId);

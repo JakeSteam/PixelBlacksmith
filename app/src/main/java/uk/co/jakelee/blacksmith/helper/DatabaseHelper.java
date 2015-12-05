@@ -94,8 +94,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void AddPendingItem(int itemId, int location) {
         SQLiteDatabase db = this.getWritableDatabase();
+        Item item = getItemById(itemId);
         long time = System.currentTimeMillis();
-        int craftTime = 10000;
+        int craftTime = item.getValue() * 1000 * 3;
 
         String query = "INSERT INTO pending_inventory (item, time_created, craft_time, location_id) VALUES (" + itemId + "," + time + "," + craftTime + "," + location + ")";
         db.execSQL(query);
