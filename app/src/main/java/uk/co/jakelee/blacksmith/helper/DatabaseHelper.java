@@ -389,10 +389,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean hasAvailableSlot(String location) {
-        List<Slots> allSlots = getSlots(location);
-        List<Pending_Inventory> pendingItems = getPendingItemsByLocation(location);
+        int availableSlots = 0;
+        int playerLevel = GetPlayerLevel();
 
-        return (allSlots.size() > pendingItems.size());
+        List<Pending_Inventory> pendingItems = getPendingItemsByLocation(location);
+        List<Slots> allSlots = getSlots(location);
+        for (Slots slot : allSlots) {
+            if (slot.getLevel() <= playerLevel && slot.getPremium() != 1) {
+                availableSlots++;
+            }
+        }
+
+        return (availableSlots > pendingItems.size());
     }
 
     public List<Slots> getSlots(String location) {
