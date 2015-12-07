@@ -15,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.blacksmith.main.R;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -48,6 +49,7 @@ public class DisplayHelper {
         for (Slots slot : slots) {
             ImageView slotBackground = new ImageView(context);
             slotBackground.setLayoutParams(slotParams);
+            slotBackground.setAlpha(0.6F);
 
             ImageView slotForeground = new ImageView(context);
             slotForeground.setLayoutParams(slotParams);
@@ -55,7 +57,7 @@ public class DisplayHelper {
 
             TextView slotCountdown = new TextView(context);
             slotCountdown.setText("");
-            slotCountdown.setTextSize(26);
+            slotCountdown.setTextSize(36);
             slotCountdown.setTextColor(Color.WHITE);
             slotCountdown.setShadowLayer(5, 0, 0, Color.BLACK);
             slotCountdown.setLayoutParams(slotParams);
@@ -100,9 +102,9 @@ public class DisplayHelper {
                 dbh.DeletePendingItem(pendingItem);
             } else {
                 // Add 500 so we always round up
-                long timeLeft = (itemFinishTime - currentTime) + 500;
+                long timeLeft = TimeUnit.MILLISECONDS.toSeconds(itemFinishTime - currentTime);
                 slotItem.setImageResource(drawableId);
-                slotCount.setText(Long.toString(timeLeft / 1000).substring(0, 1));
+                slotCount.setText(Long.toString(timeLeft));
                 i++;
             }
         }

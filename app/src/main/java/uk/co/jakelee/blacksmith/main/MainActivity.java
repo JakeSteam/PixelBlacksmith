@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void UpdateSlots() {
-        //dh.DepopulateSlotContainer(sellingSlots);
+        dh.DepopulateSlotContainer(sellingSlots);
         dh.DepopulateSlotContainer(furnaceSlots);
-        //dh.DepopulateSlotContainer(anvilSlots);
+        dh.DepopulateSlotContainer(anvilSlots);
 
-        //dh.PopulateSlotContainer(sellingSlots, "Selling");
+        dh.PopulateSlotContainer(sellingSlots, "Selling");
         dh.PopulateSlotContainer(furnaceSlots, "Furnace");
-        //dh.PopulateSlotContainer(anvilSlots, "Anvil");
+        dh.PopulateSlotContainer(anvilSlots, "Anvil");
     }
 
     @Override

@@ -26,7 +26,7 @@
                 android:contentDescription="@string/mine_description"
                 android:onClick="openMine"
                 android:scaleType="centerCrop"
-                android:src="@drawable/pickaxe" />
+                android:src="@drawable/transparent" />
 
             <ImageView
                 android:id="@+id/open_furnace"
@@ -38,7 +38,7 @@
                 android:contentDescription="@string/furnace_description"
                 android:onClick="openFurnace"
                 android:scaleType="centerCrop"
-                android:src="@drawable/furnace" />
+                android:src="@drawable/transparent" />
 
             <RelativeLayout
                 android:id="@+id/slots_furnace"
@@ -58,7 +58,7 @@
                 android:contentDescription="@string/anvil_description"
                 android:onClick="openAnvil"
                 android:scaleType="centerCrop"
-                android:src="@drawable/anvil" />
+                android:src="@drawable/transparent" />
 
             <RelativeLayout
                 android:id="@+id/slots_anvil"
@@ -78,7 +78,7 @@
                 android:contentDescription="@string/inventory_description"
                 android:onClick="openInventory"
                 android:scaleType="centerCrop"
-                android:src="@drawable/inventory" />
+                android:src="@drawable/transparent" />
 
             <RelativeLayout
                 android:id="@+id/slots_inventory"

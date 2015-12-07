@@ -19,6 +19,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slots;
@@ -74,7 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean createItem(int itemId, int locationId) {
-        if (canCreateItem(itemId)) {
+        Location location = getLocationById(locationId);
+        if (canCreateItem(itemId) && hasAvailableSlot(location.getName())) {
             RemoveItemIngredients(itemId);
             AddPendingItem(itemId, locationId);
             return true;
@@ -160,6 +162,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setCanCraft(c.getString(c.getColumnIndex("can_craft")));
         }
         return item;
+    }
+
+    public Location getLocationById(int id) {
+        String query = "SELECT * FROM locations WHERE _id = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        Location location = new Location();
+        if (c != null) {
+            c.moveToFirst();
+
+            location.setId(c.getInt(c.getColumnIndex("_id")));
+            location.setName(c.getString(c.getColumnIndex("name")));
+        }
+        return location;
     }
 
     public List<Item> getItemsByType(int typeMin, int typeMax) {
@@ -369,6 +386,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return items;
+    }
+
+    public boolean hasAvailableSlot(String location) {
+        List<Slots> allSlots = getSlots(location);
+        List<Pending_Inventory> pendingItems = getPendingItemsByLocation(location);
+
+        return (allSlots.size() > pendingItems.size());
     }
 
     public List<Slots> getSlots(String location) {
