@@ -9,10 +9,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,57 +32,92 @@ public class DisplayHelper {
         DisplayHelper.dbh = new DatabaseHelper(context);
     }
 
-    public void CreateSlotContainer(LinearLayout slotContainer, List<Slots> slots) {
+    public void CreateSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {
+        // Basic setting up
         slotContainer.removeAllViews();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(180, 180);
         int playerLevel = dbh.GetPlayerLevel();
+        LinearLayout.LayoutParams slotParams = new LinearLayout.LayoutParams(180, 180);
 
+        // Creating the 3 layouts
+        LinearLayout backContainer = new LinearLayout(context);
+        LinearLayout frontContainer = new LinearLayout(context);
+        LinearLayout countContainer = new LinearLayout(context);
+
+        // Foreach slot, create the background image and set usable tag
+        // Also set text for now.
         for (Slots slot : slots) {
-            ImageView slotView = new ImageView(context);
-            slotView.setLayoutParams(params);
+            ImageView slotBackground = new ImageView(context);
+            slotBackground.setLayoutParams(slotParams);
+
+            ImageView slotForeground = new ImageView(context);
+            slotForeground.setLayoutParams(slotParams);
+            slotForeground.setImageResource(R.drawable.transparent);
+
+            TextView slotCountdown = new TextView(context);
+            slotCountdown.setText("");
+            slotCountdown.setTextSize(26);
+            slotCountdown.setTextColor(Color.WHITE);
+            slotCountdown.setShadowLayer(5, 0, 0, Color.BLACK);
+            slotCountdown.setLayoutParams(slotParams);
 
             if (slot.getLevel() > playerLevel) {
-                slotView.setBackgroundResource(R.drawable.close);
-                slotView.setTag(false);
+                slotBackground.setBackgroundResource(R.drawable.close);
+                slotBackground.setTag(false);
             } else if (slot.getPremium() == 1) {
-                slotView.setBackgroundResource(R.drawable.item52);
-                slotView.setTag(false);
+                slotBackground.setBackgroundResource(R.drawable.item52);
+                slotBackground.setTag(false);
             } else {
-                slotView.setBackgroundResource(R.drawable.slot);
-                slotView.setTag(true);
+                slotBackground.setBackgroundResource(R.drawable.slot);
+                slotBackground.setTag(true);
             }
 
-            slotContainer.addView(slotView);
+            backContainer.addView(slotBackground);
+            frontContainer.addView(slotForeground);
+            countContainer.addView(slotCountdown);
         }
+
+        slotContainer.addView(backContainer);
+        slotContainer.addView(frontContainer);
+        slotContainer.addView(countContainer);
     }
 
-    public void PopulateSlotContainer(LinearLayout slotContainer, String location) {
+    public void PopulateSlotContainer(RelativeLayout slotContainer, String location) {
         List<Pending_Inventory> pendingItems = dbh.getPendingItemsByLocation(location);
+        LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
+        LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
 
         int i = 0;
         for (Pending_Inventory pendingItem : pendingItems) {
             long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
             long currentTime = System.currentTimeMillis();
             int drawableId = context.getResources().getIdentifier("item" + pendingItem.getItem(), "drawable", context.getPackageName());
+            ImageView slotItem = (ImageView) frontContainer.getChildAt(i);
+            TextView slotCount = (TextView) countContainer.getChildAt(i);
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
                 dbh.AddItem(pendingItem.getItem());
                 dbh.DeletePendingItem(pendingItem);
             } else {
-                // If there's time remaining
-                Toast.makeText(context, "Time left: " + (itemFinishTime - currentTime), Toast.LENGTH_SHORT).show();
-                ImageView slot = (ImageView) slotContainer.getChildAt(i);
-                slot.setImageResource(drawableId);
+                // Add 500 so we always round up
+                long timeLeft = (itemFinishTime - currentTime) + 500;
+                slotItem.setImageResource(drawableId);
+                slotCount.setText(Long.toString(timeLeft / 1000).substring(0, 1));
                 i++;
             }
         }
     }
 
-    public void DepopulateSlotContainer(LinearLayout slotContainer) {
-        for (int i = 0; i < slotContainer.getChildCount(); i++) {
-            ImageView slot = (ImageView) slotContainer.getChildAt(i);
-            slot.setImageResource(R.drawable.slot);
+    public void DepopulateSlotContainer(RelativeLayout slotContainer) {
+        LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
+        LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
+
+        for (int i = 0; i < frontContainer.getChildCount(); i++) {
+            TextView count = (TextView) countContainer.getChildAt(i);
+            count.setText("");
+
+            ImageView slot = (ImageView) frontContainer.getChildAt(i);
+            slot.setImageResource(R.drawable.transparent);
         }
     }
 

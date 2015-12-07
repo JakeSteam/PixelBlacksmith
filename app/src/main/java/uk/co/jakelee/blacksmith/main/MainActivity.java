@@ -2,9 +2,10 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
@@ -13,13 +14,14 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
     public static DisplayHelper dh;
+    public static Handler handler = new Handler();
 
     public static TextView coins;
     public static TextView level;
 
-    public static LinearLayout sellingSlots;
-    public static LinearLayout furnaceSlots;
-    public static LinearLayout anvilSlots;
+    public static RelativeLayout sellingSlots;
+    public static RelativeLayout furnaceSlots;
+    public static RelativeLayout anvilSlots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,23 @@ public class MainActivity extends AppCompatActivity {
 
         coins = (TextView) findViewById(R.id.coinCount);
         level = (TextView) findViewById(R.id.currentLevel);
-        sellingSlots = (LinearLayout) findViewById(R.id.slots_inventory);
-        furnaceSlots = (LinearLayout) findViewById(R.id.slots_furnace);
-        anvilSlots = (LinearLayout) findViewById(R.id.slots_anvil);
+        sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
+        furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
+        anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
 
         dbh.updateCoinsGUI();
         dbh.UpdateLevelText();
         CreateSlots();
-        UpdateSlots();
+
+        final Runnable updateTask = new Runnable() {
+            @Override
+            public void run() {
+                UpdateSlots();
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.postDelayed(updateTask, 1000);
     }
 
     private void CreateSlots() {
@@ -60,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-    }
-
-    public void updateTick(View view) {
-        UpdateSlots();
     }
 
     public void openMenu(View view) {
