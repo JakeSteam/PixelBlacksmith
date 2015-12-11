@@ -98,7 +98,7 @@ public class DisplayHelper {
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
-                dbh.AddItem(pendingItem.getItem());
+                dbh.AddItem(pendingItem.getItem(), pendingItem.getQuantity());
                 dbh.DeletePendingItem(pendingItem);
             } else {
                 // Add 500 so we always round up

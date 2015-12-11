@@ -74,11 +74,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Deleted " + pendingItem.getItem() + " from pending inventory at location " + pendingItem.getLocationID());
     }
 
-    public boolean createItem(int itemId, int locationId) {
+    public boolean createItem(int itemId, int quantity, int locationId) {
         Location location = getLocationById(locationId);
         if (canCreateItem(itemId) && hasAvailableSlot(location.getName())) {
             RemoveItemIngredients(itemId);
-            AddPendingItem(itemId, locationId);
+            AddPendingItem(itemId, quantity, locationId);
             return true;
         } else {
             return false;
@@ -94,21 +94,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void AddPendingItem(int itemId, int location) {
+    public void AddPendingItem(int itemId, int quantity, int location) {
         SQLiteDatabase db = this.getWritableDatabase();
         Item item = getItemById(itemId);
         long time = System.currentTimeMillis();
         int craftTime = item.getValue() * 1000 * 3;
 
-        String query = "INSERT INTO pending_inventory (item, time_created, craft_time, location_id) VALUES (" + itemId + "," + time + "," + craftTime + "," + location + ")";
+        String query = "INSERT INTO pending_inventory (item, time_created, quantity, craft_time, location_id) VALUES (" + itemId + "," + time + "," + quantity + "," + craftTime + "," + location + ")";
         db.execSQL(query);
 
         Log.d(LOG, "Added " + itemId + " to pending inventory at location " + location + " at time " + time);
     }
 
-    public void AddItem(int itemId) {
+    public void AddItem(int itemId, int quantity) {
         Inventory craftedItem = getInventoryByItem(itemId);
-        craftedItem.setQuantity(craftedItem.getQuantity() + 1);
+        craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
         updateInventory(craftedItem);
 
         AddXP(getItemById(craftedItem.getItem()).getValue());
@@ -368,7 +368,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Pending_Inventory> items = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT item, time_created, craft_time, location_id " +
+        String query = "SELECT item, time_created, quantity, craft_time, location_id " +
                 "FROM pending_inventory INNER JOIN locations ON pending_inventory.location_id = locations._id " +
                 "WHERE locations.name = '" + location + "'";
 
@@ -378,6 +378,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Pending_Inventory item = new Pending_Inventory();
                 item.setItem(c.getInt(c.getColumnIndex("item")));
                 item.setTimeCreated(c.getLong(c.getColumnIndex("time_created")));
+                item.setQuantity(c.getInt(c.getColumnIndex("quantity")));
                 item.setCraftTime(c.getInt(c.getColumnIndex("craft_time")));
                 item.setLocationID(c.getInt(c.getColumnIndex("location_id")));
 

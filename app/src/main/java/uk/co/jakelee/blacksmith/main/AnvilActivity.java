@@ -110,7 +110,7 @@ public class AnvilActivity extends Activity {
         int itemId = (int) mViewFlipper.getCurrentView().getTag();
 
         Item item = dbh.getItemById(itemId);
-        if (dbh.createItem(itemId, 0)) {
+        if (dbh.createItem(itemId, 1, 0)) {
             Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
         } else {
