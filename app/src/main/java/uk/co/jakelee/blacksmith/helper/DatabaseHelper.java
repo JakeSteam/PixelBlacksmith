@@ -94,6 +94,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void RemoveItem(int itemId, int quantity) {
+        Inventory itemStock = getInventoryByItem(itemId);
+        itemStock.setQuantity(itemStock.getQuantity() - quantity);
+        updateInventory(itemStock);
+    }
+
     public void AddPendingItem(int itemId, int quantity, int location) {
         SQLiteDatabase db = this.getWritableDatabase();
         Item item = getItemById(itemId);
@@ -342,12 +348,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return inventory.getQuantity() > 0;
     }
 
-    public void sellItem(int itemId, int quantity, int price) {
-        Inventory inventory = getInventoryByItem(itemId);
-        inventory.setQuantity(inventory.getQuantity() - quantity);
+    public boolean sellItem(int itemId, int quantity, int price) {
+        int locationId = 2;
+        int coinId = 52;
+        String locationName = "Selling";
 
-        updateInventory(inventory);
-        updateCoins(getCoins() + (quantity * price));
+        if (canSellItem(itemId, quantity) && hasAvailableSlot(locationName)) {
+            RemoveItem(itemId, quantity);
+            AddPendingItem(coinId, price, locationId);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void updateCoins(int coins) {
