@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout sellingSlots;
     public static RelativeLayout furnaceSlots;
     public static RelativeLayout anvilSlots;
+    public static RelativeLayout mineSlots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
         furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
+        mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
 
         dbh.updateCoinsGUI();
         dbh.UpdateLevelText();
@@ -57,16 +59,19 @@ public class MainActivity extends AppCompatActivity {
         dh.CreateSlotContainer(sellingSlots, dbh.getSlots("Selling"));
         dh.CreateSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
         dh.CreateSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
+        dh.CreateSlotContainer(mineSlots, dbh.getSlots("Mine"));
     }
 
     public void UpdateSlots() {
         dh.DepopulateSlotContainer(sellingSlots);
         dh.DepopulateSlotContainer(furnaceSlots);
         dh.DepopulateSlotContainer(anvilSlots);
+        dh.DepopulateSlotContainer(mineSlots);
 
         dh.PopulateSlotContainer(sellingSlots, "Selling");
         dh.PopulateSlotContainer(furnaceSlots, "Furnace");
         dh.PopulateSlotContainer(anvilSlots, "Anvil");
+        dh.PopulateSlotContainer(mineSlots, "Mine");
     }
 
     @Override

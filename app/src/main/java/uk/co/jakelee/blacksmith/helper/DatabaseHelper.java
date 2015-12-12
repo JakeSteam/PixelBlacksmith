@@ -134,12 +134,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int GetXP() {
         String query = "SELECT int_value FROM player_info WHERE name = 'XP'";
+        int xp;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
         Log.d(LOG, "Current XP:" + c.getString(c.getColumnIndex("int_value")));
-        return c.getInt(c.getColumnIndex("int_value"));
+        xp = c.getInt(c.getColumnIndex("int_value"));
+        c.close();
+
+        return xp;
     }
 
     public void AddXP(int xp) {
@@ -167,7 +171,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setValue(c.getInt(c.getColumnIndex("value")));
             item.setLevel(c.getInt(c.getColumnIndex("level")));
             item.setCanCraft(c.getInt(c.getColumnIndex("can_craft")));
+            c.close();
         }
+
         return item;
     }
 
@@ -182,6 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             location.setId(c.getInt(c.getColumnIndex("_id")));
             location.setName(c.getString(c.getColumnIndex("name")));
+            c.close();
         }
         return location;
     }
@@ -207,6 +214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(item);
             } while (c.moveToNext());
+            c.close();
         }
         return items;
     }
@@ -232,6 +240,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(item);
             } while (c.moveToNext());
+            c.close();
         }
         return items;
     }
@@ -256,6 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(inventoryItem);
             } while (c.moveToNext());
+            c.close();
         }
         return items;
     }
@@ -265,16 +275,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
+
         Inventory inventory = new Inventory();
+        inventory.setItem(id);
+        inventory.setQuantity(0);
         if (c != null && c.getCount() > 0) {
             // It's an existing item.
             c.moveToFirst();
             inventory.setItem(c.getInt(c.getColumnIndex("item")));
             inventory.setQuantity(c.getInt(c.getColumnIndex("quantity")));
-        } else {
-            // It's a new item.
-            inventory.setItem(id);
-            inventory.setQuantity(0);
+            c.close();
         }
         return inventory;
     }
@@ -306,9 +316,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             } while (c.moveToNext());
             // No problems when looking at all ingredients, we're good to go.
+            c.close();
             return true;
         } else {
             // No recipe found, or another error occurred.
+            c.close();
             return false;
         }
     }
@@ -330,8 +342,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 ingredients.add(recipe);
             } while (c.moveToNext());
+            c.close();
         }
-
         return ingredients;
     }
 
@@ -384,8 +396,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 shops.add(shop);
             } while (c.moveToNext());
+            c.close();
         }
-
         return shops;
     }
 
@@ -423,8 +435,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(item);
             } while (c.moveToNext());
+            c.close();
         }
-
         return items;
     }
 
@@ -463,8 +475,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 slots.add(slot);
             } while (c.moveToNext());
+            c.close();
         }
-
         return slots;
     }
 }
