@@ -194,7 +194,7 @@ CREATE TABLE `character` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT N
 INSERT INTO `character` (_id,name,description,intro,sold) VALUES (0,'S. Keeper','He looks a little bit shifty...','Greetings! See anything you like?','Remember, no refunds!');
 CREATE TABLE `shop` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `shopkeeper` INTEGER NOT NULL, `location` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `level` INTEGER NOT NULL, `discovered` INTEGER NOT NULL DEFAULT 0);
 INSERT INTO `shop` (_id,shopkeeper,location,name,description,level,discovered) VALUES (0,0,3,'Poor Ore','Full of low quality ore.',1,1);
-INSERT INTO `shop` (_id,shopkeeper,location,name,description,level,discovered) VALUES (1,0,3,'Less Poor Ore','The ore here isn't so poor.',5,1);
+INSERT INTO `shop` (_id,shopkeeper,location,name,description,level,discovered) VALUES (1,0,3,'Less Poor Ore','The ore here is not so poor.',5,1);
 INSERT INTO `shop` (_id,shopkeeper,location,name,description,level,discovered) VALUES (2,0,3,'Rare Ore','This shop is too rare to be found.',5,0);
 INSERT INTO `shop` (_id,shopkeeper,location,name,description,level,discovered) VALUES (3,0,3,'Average Ore','The ore in store is not too poor.',10,1);
 INSERT INTO `shop` (_id,shopkeeper,location,name,description,level,discovered) VALUES (4,0,3,'Silver Miner','Cor, ore!',20,1);

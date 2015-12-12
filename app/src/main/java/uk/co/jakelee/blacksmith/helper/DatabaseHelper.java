@@ -22,6 +22,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Slots;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -360,6 +361,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    public List<Shop> getAllDiscoveredShops(int locationID) {
+        List<Shop> shops = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT _id, shopkeeper, location, name, description, level, discovered FROM shop " +
+                "WHERE discovered = 1 AND location = " + locationID;
+
+        Cursor c = db.rawQuery(query, null);
+        if (c != null && c.moveToFirst()) {
+            do {
+                Shop shop = new Shop();
+                shop.setId(c.getInt(c.getColumnIndex("_id")));
+                shop.setName(c.getString(c.getColumnIndex("name")));
+                shop.setDescription(c.getString(c.getColumnIndex("description")));
+                shop.setDiscovered(c.getInt(c.getColumnIndex("discovered")));
+                shop.setLevel(c.getInt(c.getColumnIndex("level")));
+                shop.setLocation(c.getInt(c.getColumnIndex("location")));
+                shop.setShopkeeper(c.getInt(c.getColumnIndex("shopkeeper")));
+
+                shops.add(shop);
+            } while (c.moveToNext());
+        }
+
+        return shops;
     }
 
     public void updateCoins(int coins) {

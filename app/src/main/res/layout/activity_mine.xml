@@ -24,71 +24,26 @@
         android:src="@drawable/close" />
 
     <TextView
-        android:id="@+id/anvilTitle"
+        android:id="@+id/mineTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/anvilText"
+        android:text="@string/mineText"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#484848"
+        android:textColor="#000000"
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
-    <ViewFlipper
-        android:id="@+id/viewFlipper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/anvilTitle"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp" />
-
-    <TextView
-        android:id="@+id/itemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/anvilTitle"
-        android:layout_toRightOf="@id/viewFlipper"
-        android:padding="5dp"
-        android:singleLine="true"
-        android:text="Loading..."
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#484848"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/itemDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/itemName"
-        android:layout_toRightOf="@id/viewFlipper"
-        android:padding="5dp"
-        android:text="Loading..."
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#484848"
-        android:textSize="12sp" />
-
-    <TableLayout
-        android:id="@+id/ingredientsTable"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mineScroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/viewFlipper"
-        android:layout_marginTop="6dp"
-        android:padding="5dp"
-        android:stretchColumns="*">
+        android:layout_below="@id/mineTitle">
 
-    </TableLayout>
-
-    <Button
-        android:id="@+id/smelt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ingredientsTable"
-        android:text="Smelt x1" />
+        <LinearLayout
+            android:id="@+id/mineList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </ScrollView>
 </RelativeLayout>
