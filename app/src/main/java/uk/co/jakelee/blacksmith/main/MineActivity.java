@@ -22,8 +22,8 @@ public class MineActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine);
-        dbh = new DatabaseHelper(getApplicationContext());
-        dh = new DisplayHelper(getApplicationContext());
+        dbh = DatabaseHelper.getInstance(getApplicationContext());
+        dh = DisplayHelper.getInstance(getApplicationContext());
 
         createShopLists();
     }

@@ -30,8 +30,8 @@ public class FurnaceActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnace);
-        dbh = new DatabaseHelper(getApplicationContext());
-        dh = new DisplayHelper(getApplicationContext());
+        dbh = DatabaseHelper.getInstance(getApplicationContext());
+        dh = DisplayHelper.getInstance(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
         mViewFlipper.setInAnimation(this, android.R.anim.fade_in);

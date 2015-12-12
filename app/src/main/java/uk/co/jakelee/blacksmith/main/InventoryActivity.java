@@ -26,8 +26,8 @@ public class InventoryActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        dbh = new DatabaseHelper(getApplicationContext());
-        dh = new DisplayHelper(getApplicationContext());
+        dbh = DatabaseHelper.getInstance(getApplicationContext());
+        dh = DisplayHelper.getInstance(getApplicationContext());
 
         updateInventoryTable();
     }

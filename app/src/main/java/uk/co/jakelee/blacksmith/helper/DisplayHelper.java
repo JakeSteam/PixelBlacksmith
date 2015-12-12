@@ -25,12 +25,20 @@ import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slots;
 
 public class DisplayHelper {
+    private static DisplayHelper dhInstance = null;
     private static Context context;
     private static DatabaseHelper dbh;
 
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;
-        DisplayHelper.dbh = new DatabaseHelper(context);
+        DisplayHelper.dbh = DatabaseHelper.getInstance(context);
+    }
+
+    public static DisplayHelper getInstance(Context ctx) {
+        if (dhInstance == null) {
+            dhInstance = new DisplayHelper(ctx.getApplicationContext());
+        }
+        return dhInstance;
     }
 
     public void CreateSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {

@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dbh = new DatabaseHelper(getApplicationContext());
-        dh = new DisplayHelper(getApplicationContext());
+        dbh = DatabaseHelper.getInstance(getApplicationContext());
+        dh = DisplayHelper.getInstance(getApplicationContext());
 
         coins = (TextView) findViewById(R.id.coinCount);
         level = (TextView) findViewById(R.id.currentLevel);

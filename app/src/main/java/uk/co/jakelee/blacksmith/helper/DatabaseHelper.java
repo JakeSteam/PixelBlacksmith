@@ -26,11 +26,10 @@ import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Slots;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
     private static final String LOG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "blacksmith";
-
+    private static DatabaseHelper dbhInstance = null;
     private static Context context;
     private static SQLiteDatabase database;
 
@@ -38,6 +37,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         DatabaseHelper.context = context;
     }
+
+    public static DatabaseHelper getInstance(Context ctx) {
+        if (dbhInstance == null) {
+            dbhInstance = new DatabaseHelper(ctx.getApplicationContext());
+        }
+        return dbhInstance;
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
