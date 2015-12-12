@@ -144,14 +144,14 @@ public class DisplayHelper {
         return text;
     }
 
-    public ImageView CreateItemImage(int itemId, int width, int height, String canCraft) {
+    public ImageView CreateItemImage(int itemId, int width, int height, int canCraft) {
         int viewId = context.getResources().getIdentifier("img" + Integer.toString(itemId), "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
         Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
         Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
 
-        if (!canCraft.equals("T")) {
+        if (canCraft != 1) {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.clearColorFilter();
@@ -199,7 +199,7 @@ public class DisplayHelper {
             Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient());
             TableRow row = new TableRow(context);
 
-            row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62, "T"));
+            row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62, 1));
             row.addView(CreateTextView(itemIngredient.getName(), 15, Color.DKGRAY));
             row.addView(CreateTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
             row.addView(CreateTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));

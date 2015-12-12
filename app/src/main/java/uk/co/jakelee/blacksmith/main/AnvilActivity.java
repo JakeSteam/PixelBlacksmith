@@ -94,7 +94,7 @@ public class AnvilActivity extends Activity {
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
         TextView itemCount = (TextView) anvil.findViewWithTag(itemId + "Count");
 
-        if (item.getCanCraft().equals("T")) {
+        if (item.getCanCraft() == 1) {
             itemName.setText(item.getName());
             itemDesc.setText(item.getDescription());
             itemCount.setText(Integer.toString(count.getQuantity()));

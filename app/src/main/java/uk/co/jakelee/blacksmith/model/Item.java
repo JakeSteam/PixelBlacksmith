@@ -8,7 +8,7 @@ public class Item {
     int tier;
     int value;
     int level;
-    String can_craft;
+    int can_craft;
 
     public Item() {
     }
@@ -69,11 +69,11 @@ public class Item {
         this.level = level;
     }
 
-    public String getCanCraft() {
+    public int getCanCraft() {
         return can_craft;
     }
 
-    public void setCanCraft(String can_craft) {
+    public void setCanCraft(int can_craft) {
         this.can_craft = can_craft;
     }
 }

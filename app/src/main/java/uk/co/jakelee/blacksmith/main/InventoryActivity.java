@@ -48,12 +48,12 @@ public class InventoryActivity extends Activity {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = dbh.getItemById(inventoryItem.getItem());
 
-            ImageView image = dh.CreateItemImage(item.getId(), 15, 15, "T");
+            ImageView image = dh.CreateItemImage(item.getId(), 15, 15, 1);
 
             TextView name = dh.CreateTextView(item.getName(), 15, Color.BLACK);
             name.setSingleLine(false);
 
-            ImageView sell = dh.CreateItemImage(52, 15, 15, "T");
+            ImageView sell = dh.CreateItemImage(52, 15, 15, 1);
             sell.setTag(item.getId());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
