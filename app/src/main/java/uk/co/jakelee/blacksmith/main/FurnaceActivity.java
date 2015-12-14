@@ -15,6 +15,7 @@ import android.widget.ViewFlipper;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;

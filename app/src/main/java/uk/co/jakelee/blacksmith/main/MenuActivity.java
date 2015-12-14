@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import uk.co.jakelee.blacksmith.R;
+
 public class MenuActivity extends Activity {
 
     @Override

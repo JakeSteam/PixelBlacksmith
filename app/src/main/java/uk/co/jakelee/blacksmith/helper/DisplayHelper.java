@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import uk.co.jakelee.blacksmith.main.R;
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;

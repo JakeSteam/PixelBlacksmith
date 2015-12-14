@@ -71,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             database.execSQL(statement);
         }
         fileReader.close();
+        fileContents.close();
     }
 
     public void DeletePendingItem(Pending_Inventory pendingItem) {
@@ -179,6 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setLevel(c.getInt(c.getColumnIndex("level")));
             item.setCanCraft(c.getInt(c.getColumnIndex("can_craft")));
             c.close();
+            
         }
 
         return item;
@@ -196,6 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             location.setId(c.getInt(c.getColumnIndex("_id")));
             location.setName(c.getString(c.getColumnIndex("name")));
             c.close();
+            
         }
         return location;
     }
@@ -222,6 +225,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 items.add(item);
             } while (c.moveToNext());
             c.close();
+            
         }
         return items;
     }
@@ -248,6 +252,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 items.add(item);
             } while (c.moveToNext());
             c.close();
+            
         }
         return items;
     }
@@ -273,6 +278,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 items.add(inventoryItem);
             } while (c.moveToNext());
             c.close();
+            
         }
         return items;
     }
@@ -292,6 +298,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             inventory.setItem(c.getInt(c.getColumnIndex("item")));
             inventory.setQuantity(c.getInt(c.getColumnIndex("quantity")));
             c.close();
+            
         }
         return inventory;
     }
@@ -319,15 +326,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 if (recipeCount > inventoryCount) {
                     // Recipe requires more than exists in inventory.
+                    c.close();
                     return false;
                 }
             } while (c.moveToNext());
             // No problems when looking at all ingredients, we're good to go.
             c.close();
+            
             return true;
         } else {
             // No recipe found, or another error occurred.
             c.close();
+            
             return false;
         }
     }
@@ -350,6 +360,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ingredients.add(recipe);
             } while (c.moveToNext());
             c.close();
+            
         }
         return ingredients;
     }
@@ -404,6 +415,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 shops.add(shop);
             } while (c.moveToNext());
             c.close();
+            
         }
         return shops;
     }
@@ -443,6 +455,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 items.add(item);
             } while (c.moveToNext());
             c.close();
+            
         }
         return items;
     }
@@ -483,6 +496,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 slots.add(slot);
             } while (c.moveToNext());
             c.close();
+            
         }
         return slots;
     }
