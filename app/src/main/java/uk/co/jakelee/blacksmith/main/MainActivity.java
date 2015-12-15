@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 UpdateSlots();
                 dbh.updateCoinsGUI();
-                handler.postDelayed(this, 1000);
             }
         };
 

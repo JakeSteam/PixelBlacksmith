@@ -110,7 +110,7 @@ public class DisplayHelper {
                 dbh.DeletePendingItem(pendingItem);
             } else {
                 // Add 500 so we always round up
-                long timeLeft = TimeUnit.MILLISECONDS.toSeconds(itemFinishTime - currentTime);
+                long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
                 slotItem.setImageResource(drawableId);
                 slotCount.setText(Long.toString(timeLeft));
                 i++;
