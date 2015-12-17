@@ -179,10 +179,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setValue(c.getInt(c.getColumnIndex("value")));
             item.setLevel(c.getInt(c.getColumnIndex("level")));
             item.setCanCraft(c.getInt(c.getColumnIndex("can_craft")));
-            c.close();
-            
-        }
 
+
+        }
+        c.close();
         return item;
     }
 
@@ -197,9 +197,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             location.setId(c.getInt(c.getColumnIndex("_id")));
             location.setName(c.getString(c.getColumnIndex("name")));
-            c.close();
-            
+
+
         }
+        c.close();
         return location;
     }
 
@@ -224,9 +225,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(item);
             } while (c.moveToNext());
-            c.close();
-            
+
+
         }
+        c.close();
         return items;
     }
 
@@ -251,9 +253,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(item);
             } while (c.moveToNext());
-            c.close();
-            
+
+
         }
+        c.close();
         return items;
     }
 
@@ -277,9 +280,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(inventoryItem);
             } while (c.moveToNext());
-            c.close();
-            
+
+
         }
+        c.close();
         return items;
     }
 
@@ -297,9 +301,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
             inventory.setItem(c.getInt(c.getColumnIndex("item")));
             inventory.setQuantity(c.getInt(c.getColumnIndex("quantity")));
-            c.close();
-            
+
+
         }
+        c.close();
         return inventory;
     }
 
@@ -332,12 +337,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
             // No problems when looking at all ingredients, we're good to go.
             c.close();
-            
+
             return true;
         } else {
             // No recipe found, or another error occurred.
             c.close();
-            
+
             return false;
         }
     }
@@ -359,9 +364,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 ingredients.add(recipe);
             } while (c.moveToNext());
-            c.close();
-            
+
+
         }
+        c.close();
         return ingredients;
     }
 
@@ -414,9 +420,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 shops.add(shop);
             } while (c.moveToNext());
-            c.close();
-            
+
+
         }
+        c.close();
         return shops;
     }
 
@@ -436,6 +443,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Pending_Inventory> getPendingItemsByLocation(String location) {
         List<Pending_Inventory> items = new ArrayList<>();
+        long time = System.currentTimeMillis();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT item, time_created, quantity, craft_time, location_id " +
@@ -454,8 +462,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 items.add(item);
             } while (c.moveToNext());
-            c.close();
         }
+        c.close();
         return items;
     }
 
@@ -494,9 +502,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 slots.add(slot);
             } while (c.moveToNext());
-            c.close();
-            
         }
+        c.close();
         return slots;
     }
 }
