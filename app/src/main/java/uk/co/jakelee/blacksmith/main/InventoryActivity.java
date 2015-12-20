@@ -51,6 +51,10 @@ public class InventoryActivity extends Activity {
             ImageView image = dh.CreateItemImage(item.getId(), 15, 15, 1);
 
             String itemName = item.getName();
+            if (inventoryItem.getState() == 2) {
+                itemName = "(unf) " + itemName;
+            }
+
             TextView name = dh.CreateTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 

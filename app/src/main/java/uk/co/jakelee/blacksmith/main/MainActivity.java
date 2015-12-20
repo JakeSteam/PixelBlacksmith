@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout furnaceSlots;
     public static RelativeLayout anvilSlots;
     public static RelativeLayout mineSlots;
+    public static RelativeLayout tableSlots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
+        tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
 
         dbh.updateCoinsGUI();
         dbh.UpdateLevelText();
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         dh.CreateSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
         dh.CreateSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
         dh.CreateSlotContainer(mineSlots, dbh.getSlots("Mine"));
+        dh.CreateSlotContainer(tableSlots, dbh.getSlots("Table"));
     }
 
     public void UpdateSlots() {
@@ -68,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
         dh.DepopulateSlotContainer(furnaceSlots);
         dh.DepopulateSlotContainer(anvilSlots);
         dh.DepopulateSlotContainer(mineSlots);
+        dh.DepopulateSlotContainer(tableSlots);
 
         dh.PopulateSlotContainer(sellingSlots, "Selling");
         dh.PopulateSlotContainer(furnaceSlots, "Furnace");
         dh.PopulateSlotContainer(anvilSlots, "Anvil");
         dh.PopulateSlotContainer(mineSlots, "Mine");
+        dh.PopulateSlotContainer(tableSlots, "Table");
     }
 
     @Override
@@ -102,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openAnvil(View view) {
         Intent intent = new Intent(this, AnvilActivity.class);
+        startActivity(intent);
+    }
+
+    public void openTable(View view) {
+        Intent intent = new Intent(this, TableActivity.class);
         startActivity(intent);
     }
 }

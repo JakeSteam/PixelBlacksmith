@@ -207,8 +207,13 @@ public class DisplayHelper {
             Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
+            String itemName = itemIngredient.getName();
+            if (ingredient.getIngredientState() == 2) {
+                itemName = "(unf) " + itemName;
+            }
+
             row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62, 1));
-            row.addView(CreateTextView(itemIngredient.getName(), 15, Color.DKGRAY));
+            row.addView(CreateTextView(itemName, 15, Color.DKGRAY));
             row.addView(CreateTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
             row.addView(CreateTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
 

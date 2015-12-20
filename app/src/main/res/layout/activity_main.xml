@@ -96,6 +96,26 @@
                 android:layout_below="@id/open_inventory"
                 android:orientation="horizontal" />
 
+            <ImageView
+                android:id="@+id/open_table"
+                android:layout_width="380dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="500dp"
+                android:layout_marginTop="400dp"
+                android:alpha=".20"
+                android:contentDescription="@string/table_description"
+                android:onClick="openTable"
+                android:scaleType="centerCrop"
+                android:src="@drawable/transparent" />
+
+            <RelativeLayout
+                android:id="@+id/slots_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_table"
+                android:layout_below="@id/open_table"
+                android:orientation="horizontal" />
+
         </RelativeLayout>
     </HorizontalScrollView>
 

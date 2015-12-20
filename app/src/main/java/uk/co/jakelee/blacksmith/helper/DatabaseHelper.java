@@ -273,6 +273,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Inventory inventoryItem = new Inventory();
                 inventoryItem.setItem(c.getInt(c.getColumnIndex("item")));
+                inventoryItem.setState(c.getInt(c.getColumnIndex("state")));
                 inventoryItem.setQuantity(c.getInt(c.getColumnIndex("quantity")));
 
                 items.add(inventoryItem);
