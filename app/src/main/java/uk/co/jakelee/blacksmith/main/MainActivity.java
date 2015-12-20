@@ -45,17 +45,27 @@ public class MainActivity extends AppCompatActivity {
         dbh.updateCoinsGUI();
         dbh.UpdateLevelText();
         CreateSlots();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         final Runnable updateTask = new Runnable() {
             @Override
             public void run() {
                 UpdateSlots();
                 dbh.updateCoinsGUI();
-                handler.postDelayed(this, 100);
+                handler.postDelayed(this, 1000);
             }
         };
 
-        handler.postDelayed(updateTask, 100);
+        handler.postDelayed(updateTask, 1000);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        handler.removeCallbacksAndMessages(null);
     }
 
     private void CreateSlots() {
