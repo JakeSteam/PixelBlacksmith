@@ -64,8 +64,8 @@ public class TableActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft());
-            TextView count = dh.CreateItemCount(item.getId(), 2, Color.WHITE, Color.BLACK);
+            ImageView image = dh.createItemImage(item.getId(), 300, 230, item.getCanCraft());
+            TextView count = dh.createItemCount(item.getId(), 2, Color.WHITE, Color.BLACK);
             count.setPadding(0, 150, 0, 0);
 
             itemBox.addView(image);
@@ -75,21 +75,21 @@ public class TableActivity extends Activity {
         }
 
         // Display item name and description
-        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
+        displayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
+        dh.createItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
     }
 
-    public void CloseTable(View view) {
+    public void closeTable(View view) {
         finish();
     }
 
-    public void DisplayItemInfo(int itemId, int state) {
+    public void displayItemInfo(int itemId, int state) {
         View table = findViewById(R.id.table);
-        Item item = dbh.getItemById(itemId);
-        Inventory count = dbh.getInventoryByItem(itemId, state);
+        Item item = dbh.getItem(itemId);
+        Inventory count = dbh.getInventory(itemId, state);
 
         TextView itemName = (TextView) findViewById(R.id.itemName);
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
@@ -107,10 +107,10 @@ public class TableActivity extends Activity {
 
     }
 
-    public void Craft1(View v) {
+    public void craft1(View v) {
         int itemId = (int) mViewFlipper.getCurrentView().getTag();
 
-        Item item = dbh.getItemById(itemId);
+        Item item = dbh.getItem(itemId);
         if (dbh.createItem(itemId, 1, 1, 4)) {
             Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createTableInterface(false);
@@ -147,10 +147,10 @@ public class TableActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
+            displayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
+            dh.createItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
 
             return super.onFling(e1, e2, velocityX, velocityY);
         }

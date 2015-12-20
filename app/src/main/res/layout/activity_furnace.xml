@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="CloseFurnace"
+        android:onClick="closeFurnace"
         android:src="@drawable/close" />
 
     <TextView
@@ -90,6 +90,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ingredientsTable"
-        android:onClick="Smelt1"
+        android:onClick="smelt1"
         android:text="Smelt x1" />
 </RelativeLayout>

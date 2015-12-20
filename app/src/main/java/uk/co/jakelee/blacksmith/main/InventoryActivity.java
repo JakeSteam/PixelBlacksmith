@@ -39,26 +39,26 @@ public class InventoryActivity extends Activity {
         inventoryTable.removeAllViews();
 
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.CreateTextView("", 18, Color.BLACK));
-        headerRow.addView(dh.CreateTextView("Name", 18, Color.BLACK));
-        headerRow.addView(dh.CreateTextView("Have", 18, Color.BLACK));
-        headerRow.addView(dh.CreateTextView("Sell", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Name", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Have", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Sell", 18, Color.BLACK));
         inventoryTable.addView(headerRow);
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
-            Item item = dbh.getItemById(inventoryItem.getItem());
-            ImageView image = dh.CreateItemImage(item.getId(), 15, 15, 1);
+            Item item = dbh.getItem(inventoryItem.getItem());
+            ImageView image = dh.createItemImage(item.getId(), 15, 15, 1);
 
             String itemName = item.getName();
             if (inventoryItem.getState() == 2) {
                 itemName = "(unf) " + itemName;
             }
 
-            TextView name = dh.CreateTextView(itemName, 15, Color.BLACK);
+            TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
-            ImageView sell = dh.CreateItemImage(52, 15, 15, 1);
+            ImageView sell = dh.createItemImage(52, 15, 15, 1);
             sell.setTag(item.getId());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -68,14 +68,14 @@ public class InventoryActivity extends Activity {
 
             itemRow.addView(image);
             itemRow.addView(name);
-            itemRow.addView(dh.CreateTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK));
+            itemRow.addView(dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK));
             itemRow.addView(sell);
             inventoryTable.addView(itemRow);
         }
     }
 
     public void clickSellButton(View view) {
-        Item itemToSell = dbh.getItemById((int) view.getTag());
+        Item itemToSell = dbh.getItem((int) view.getTag());
         if (dbh.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coins", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {
@@ -86,7 +86,7 @@ public class InventoryActivity extends Activity {
     }
 
 
-    public void CloseInventory(View view) {
+    public void closeInventory(View view) {
         finish();
     }
 }

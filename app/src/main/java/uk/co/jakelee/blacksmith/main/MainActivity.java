@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
 
         dbh.updateCoinsGUI();
-        dbh.UpdateLevelText();
-        CreateSlots();
+        dbh.updateLevelText();
+        createSlots();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         final Runnable updateTask = new Runnable() {
             @Override
             public void run() {
-                UpdateSlots();
+                updateSlots();
                 dbh.updateCoinsGUI();
                 handler.postDelayed(this, 1000);
             }
@@ -63,36 +63,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void CreateSlots() {
-        dh.CreateSlotContainer(sellingSlots, dbh.getSlots("Selling"));
-        dh.CreateSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
-        dh.CreateSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
-        dh.CreateSlotContainer(mineSlots, dbh.getSlots("Mine"));
-        dh.CreateSlotContainer(tableSlots, dbh.getSlots("Table"));
+    private void createSlots() {
+        dh.createSlotContainer(sellingSlots, dbh.getSlots("Selling"));
+        dh.createSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
+        dh.createSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
+        dh.createSlotContainer(mineSlots, dbh.getSlots("Mine"));
+        dh.createSlotContainer(tableSlots, dbh.getSlots("Table"));
     }
 
-    public void UpdateSlots() {
-        dh.DepopulateSlotContainer(sellingSlots);
-        dh.DepopulateSlotContainer(furnaceSlots);
-        dh.DepopulateSlotContainer(anvilSlots);
-        dh.DepopulateSlotContainer(mineSlots);
-        dh.DepopulateSlotContainer(tableSlots);
+    public void updateSlots() {
+        dh.depopulateSlotContainer(sellingSlots);
+        dh.depopulateSlotContainer(furnaceSlots);
+        dh.depopulateSlotContainer(anvilSlots);
+        dh.depopulateSlotContainer(mineSlots);
+        dh.depopulateSlotContainer(tableSlots);
 
-        dh.PopulateSlotContainer(sellingSlots, "Selling");
-        dh.PopulateSlotContainer(furnaceSlots, "Furnace");
-        dh.PopulateSlotContainer(anvilSlots, "Anvil");
-        dh.PopulateSlotContainer(mineSlots, "Mine");
-        dh.PopulateSlotContainer(tableSlots, "Table");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        dh.populateSlotContainer(sellingSlots, "Selling");
+        dh.populateSlotContainer(furnaceSlots, "Furnace");
+        dh.populateSlotContainer(anvilSlots, "Anvil");
+        dh.populateSlotContainer(mineSlots, "Mine");
+        dh.populateSlotContainer(tableSlots, "Table");
     }
 
     public void openMenu(View view) {

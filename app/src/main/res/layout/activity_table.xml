@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="CloseTable"
+        android:onClick="closeTable"
         android:src="@drawable/close" />
 
     <TextView
@@ -43,7 +43,7 @@
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="8dp"></ViewFlipper>
+        android:paddingTop="8dp" />
 
     <TextView
         android:id="@+id/itemName"
@@ -89,6 +89,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ingredientsTable"
-        android:onClick="Craft1"
+        android:onClick="craft1"
         android:text="Craft x1" />
 </RelativeLayout>

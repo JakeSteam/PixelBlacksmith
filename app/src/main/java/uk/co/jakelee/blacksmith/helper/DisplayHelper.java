@@ -41,10 +41,10 @@ public class DisplayHelper {
         return dhInstance;
     }
 
-    public void CreateSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {
+    public void createSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {
         // Basic setting up
         slotContainer.removeAllViews();
-        int playerLevel = dbh.GetPlayerLevel();
+        int playerLevel = dbh.getPlayerLevel();
         LinearLayout.LayoutParams slotParams = new LinearLayout.LayoutParams(180, 180);
 
         // Creating the 3 layouts
@@ -91,8 +91,8 @@ public class DisplayHelper {
         slotContainer.addView(countContainer);
     }
 
-    public void PopulateSlotContainer(RelativeLayout slotContainer, String location) {
-        List<Pending_Inventory> pendingItems = dbh.getPendingItemsByLocation(location);
+    public void populateSlotContainer(RelativeLayout slotContainer, String location) {
+        List<Pending_Inventory> pendingItems = dbh.getPendingItems(location);
         LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
         LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
 
@@ -106,8 +106,8 @@ public class DisplayHelper {
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
-                dbh.AddItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
-                dbh.DeletePendingItem(pendingItem);
+                dbh.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
+                dbh.deletePendingItem(pendingItem);
             } else {
                 // Add 500 so we always round up
                 long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
@@ -118,7 +118,7 @@ public class DisplayHelper {
         }
     }
 
-    public void DepopulateSlotContainer(RelativeLayout slotContainer) {
+    public void depopulateSlotContainer(RelativeLayout slotContainer) {
         LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
         LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
 
@@ -131,7 +131,7 @@ public class DisplayHelper {
         }
     }
 
-    public TextView CreateTextView(String text, int size, int color) {
+    public TextView createTextView(String text, int size, int color) {
         TextView textView = new TextView(context);
         textView.setText(text);
         textView.setTextSize(size);
@@ -139,7 +139,7 @@ public class DisplayHelper {
         return textView;
     }
 
-    public TextView CreateItemCount(int itemId, int state, int textColour, int backColour) {
+    public TextView createItemCount(int itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Integer.toString(itemId), "id", context.getPackageName());
 
         TextView text = new TextView(context);
@@ -148,11 +148,11 @@ public class DisplayHelper {
         text.setTextColor(textColour);
         text.setShadowLayer(5, 0, 0, backColour);
         text.setTextSize(22);
-        text.setText(Integer.toString(dbh.getInventoryByItem(itemId, state).getQuantity()));
+        text.setText(Integer.toString(dbh.getInventory(itemId, state).getQuantity()));
         return text;
     }
 
-    public ImageView CreateItemImage(int itemId, int width, int height, int canCraft) {
+    public ImageView createItemImage(int itemId, int width, int height, int canCraft) {
         int viewId = context.getResources().getIdentifier("img" + Integer.toString(itemId), "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
@@ -178,33 +178,33 @@ public class DisplayHelper {
         return image;
     }
 
-    public void CreateItemIngredientsTable(int itemId, int state, TableLayout ingredientsTable) {
+    public void createItemIngredientsTable(int itemId, int state, TableLayout ingredientsTable) {
         // Prepare the ingredients table and retrieve the list of ingredients
-        List<Recipe> ingredients = dbh.getIngredientsForItem(itemId, state);
+        List<Recipe> ingredients = dbh.getIngredients(itemId, state);
         ingredientsTable.removeAllViews();
 
         // Add a header row
         TableRow headerRow = new TableRow(context);
-        headerRow.addView(CreateTextView("", 15, Color.DKGRAY));
-        headerRow.addView(CreateTextView("", 15, Color.DKGRAY));
-        headerRow.addView(CreateTextView("Need", 15, Color.DKGRAY));
-        headerRow.addView(CreateTextView("Have", 15, Color.DKGRAY));
+        headerRow.addView(createTextView("", 15, Color.DKGRAY));
+        headerRow.addView(createTextView("", 15, Color.DKGRAY));
+        headerRow.addView(createTextView("Need", 15, Color.DKGRAY));
+        headerRow.addView(createTextView("Have", 15, Color.DKGRAY));
         ingredientsTable.addView(headerRow);
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
-        Item item = dbh.getItemById(itemId);
-        levelRow.addView(CreateTextView("", 15, Color.DKGRAY));
-        levelRow.addView(CreateTextView("Level", 15, Color.DKGRAY));
-        levelRow.addView(CreateTextView(Integer.toString(item.getLevel()), 15, Color.DKGRAY));
-        levelRow.addView(CreateTextView(Integer.toString(dbh.GetPlayerLevel()), 15, Color.DKGRAY));
+        Item item = dbh.getItem(itemId);
+        levelRow.addView(createTextView("", 15, Color.DKGRAY));
+        levelRow.addView(createTextView("Level", 15, Color.DKGRAY));
+        levelRow.addView(createTextView(Integer.toString(item.getLevel()), 15, Color.DKGRAY));
+        levelRow.addView(createTextView(Integer.toString(dbh.getPlayerLevel()), 15, Color.DKGRAY));
         ingredientsTable.addView(levelRow);
 
 
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
-            Item itemIngredient = dbh.getItemById(ingredient.getIngredient());
-            Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient(), ingredient.getIngredientState());
+            Item itemIngredient = dbh.getItem(ingredient.getIngredient());
+            Inventory owned = dbh.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
             String itemName = itemIngredient.getName();
@@ -212,10 +212,10 @@ public class DisplayHelper {
                 itemName = "(unf) " + itemName;
             }
 
-            row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62, 1));
-            row.addView(CreateTextView(itemName, 15, Color.DKGRAY));
-            row.addView(CreateTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
-            row.addView(CreateTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
+            row.addView(createItemImage(ingredient.getIngredient(), 66, 62, 1));
+            row.addView(createTextView(itemName, 15, Color.DKGRAY));
+            row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
+            row.addView(createTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }

@@ -121,6 +121,27 @@
                 android:textColor="#000000"
                 android:textSize="22sp" />
 
+            <ImageView
+                android:id="@+id/open_table"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_below="@id/text_anvil"
+                android:contentDescription="@string/table_description"
+                android:onClick="openTable"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/table" />
+
+            <TextView
+                android:id="@+id/text_table"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_table"
+                android:text="@string/inventoryText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="22sp" />
+
         </RelativeLayout>
     </ScrollView>
 

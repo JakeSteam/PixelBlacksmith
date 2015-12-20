@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         fileContents.close();
     }
 
-    public void DeletePendingItem(Pending_Inventory pendingItem) {
+    public void deletePendingItem(Pending_Inventory pendingItem) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "DELETE FROM pending_inventory WHERE item = " + pendingItem.getItem() + " AND time_created = " + pendingItem.getTimeCreated() + ";";
@@ -83,36 +83,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean createItem(int itemId, int state, int quantity, int locationId) {
-        Location location = getLocationById(locationId);
+        Location location = getLocation(locationId);
         if (canCreateItem(itemId, state) && hasAvailableSlot(location.getName())) {
-            RemoveItemIngredients(itemId, state);
-            AddPendingItem(itemId, state, quantity, locationId);
+            removeItemIngredients(itemId, state);
+            addPendingItem(itemId, state, quantity, locationId);
             return true;
         } else {
             return false;
         }
     }
 
-    public void RemoveItemIngredients(int itemId, int state) {
-        List<Recipe> ingredients = getIngredientsForItem(itemId, state);
+    public void removeItemIngredients(int itemId, int state) {
+        List<Recipe> ingredients = getIngredients(itemId, state);
         for (Recipe ingredient : ingredients) {
-            Inventory ownedItems = getInventoryByItem(ingredient.getIngredient(), ingredient.getIngredientState());
+            Inventory ownedItems = getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
             updateInventory(ownedItems);
         }
     }
 
-    public void RemoveItem(int itemId, int state, int quantity) {
-        Inventory itemStock = getInventoryByItem(itemId, state);
+    public void removeItem(int itemId, int state, int quantity) {
+        Inventory itemStock = getInventory(itemId, state);
         itemStock.setQuantity(itemStock.getQuantity() - quantity);
         updateInventory(itemStock);
     }
 
-    public void AddPendingItem(int itemId, int state, int quantity, int location) {
+    public void addPendingItem(int itemId, int state, int quantity, int location) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Item item = getItemById(itemId);
+        Item item = getItem(itemId);
         long time = System.currentTimeMillis();
-        int craftTime = item.getValue() * 1000 * 3;
+        int craftTimeMultiplier = 3000;
+        int craftTime = item.getValue() * craftTimeMultiplier;
 
         String query = "INSERT INTO pending_inventory (item, state, time_created, quantity, craft_time, location_id) VALUES (" + itemId + "," + state + "," + time + "," + quantity + "," + craftTime + "," + location + ")";
         db.execSQL(query);
@@ -120,26 +121,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Added " + itemId + " to pending inventory at location " + location + " at time " + time + " with state " + state);
     }
 
-    public void AddItem(int itemId, int state, int quantity) {
-        Inventory craftedItem = getInventoryByItem(itemId, state);
+    public void addItem(int itemId, int state, int quantity) {
+        Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
         updateInventory(craftedItem);
 
-        AddXP(getItemById(craftedItem.getItem()).getValue());
-        UpdateLevelText();
+        addXp(getItem(craftedItem.getItem()).getValue());
+        updateLevelText();
     }
 
-    public void UpdateLevelText() {
+    public void updateLevelText() {
         TextView levelCount = MainActivity.level;
-        levelCount.setText("Level" + GetPlayerLevel() + " (" + GetXP() + "xp)");
+        levelCount.setText("Level" + getPlayerLevel() + " (" + getXp() + "xp)");
     }
 
-    public int GetPlayerLevel() {
-        int xp = GetXP();
+    public int getPlayerLevel() {
+        int xp = getXp();
+        return convertXpToLevel(xp);
+    }
+
+    public int convertXpToLevel(int xp) {
         return xp / 100;
     }
 
-    public int GetXP() {
+    public int getXp() {
         String query = "SELECT int_value FROM player_info WHERE name = 'XP'";
         int xp;
 
@@ -153,7 +158,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return xp;
     }
 
-    public void AddXP(int xp) {
+    public void addXp(int xp) {
         String query = "UPDATE player_info SET int_value = int_value + " + xp + " WHERE name = 'XP'";
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -161,7 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Added XP: " + xp);
     }
 
-    public Item getItemById(int id) {
+    public Item getItem(int id) {
         String query = "SELECT * FROM item WHERE _id = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -183,7 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item;
     }
 
-    public Location getLocationById(int id) {
+    public Location getLocation(int id) {
         String query = "SELECT * FROM locations WHERE _id = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -258,7 +263,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCoins() {
-        Inventory coins = getInventoryByItem(52, 1);
+        Inventory coins = getInventory(52, 1);
         return coins.getQuantity();
     }
 
@@ -285,7 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
-    public Inventory getInventoryByItem(int id, int state) {
+    public Inventory getInventory(int id, int state) {
         String query = "SELECT * FROM inventory WHERE item = " + id + " AND state = " + state;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -310,8 +315,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Check we've got a high enough level
-        Item item = getItemById(itemID);
-        if (item.getLevel() > GetPlayerLevel() || item.getCanCraft() != 1) {
+        Item item = getItem(itemID);
+        if (item.getLevel() > getPlayerLevel() || item.getCanCraft() != 1) {
             return false;
         }
 
@@ -346,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Recipe> getIngredientsForItem(int id, int state) {
+    public List<Recipe> getIngredients(int id, int state) {
         List<Recipe> ingredients = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -391,7 +396,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean canSellItem(int itemId, int state, int quantity) {
-        Inventory inventory = getInventoryByItem(itemId, state);
+        Inventory inventory = getInventory(itemId, state);
         return (inventory.getQuantity() - quantity) >= 0;
     }
 
@@ -401,8 +406,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String locationName = "Selling";
 
         if (canSellItem(itemId, state, quantity) && hasAvailableSlot(locationName)) {
-            RemoveItem(itemId, state, quantity);
-            AddPendingItem(coinId, 1, price, locationId);
+            removeItem(itemId, state, quantity);
+            addPendingItem(coinId, 1, price, locationId);
             return true;
         } else {
             return false;
@@ -451,7 +456,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         MainActivity.coins.setText(coinCountString + " coins");
     }
 
-    public List<Pending_Inventory> getPendingItemsByLocation(String location) {
+    public List<Pending_Inventory> getPendingItems(String location) {
         List<Pending_Inventory> items = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -479,9 +484,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean hasAvailableSlot(String location) {
         int availableSlots = 0;
-        int playerLevel = GetPlayerLevel();
+        int playerLevel = getPlayerLevel();
 
-        List<Pending_Inventory> pendingItems = getPendingItemsByLocation(location);
+        List<Pending_Inventory> pendingItems = getPendingItems(location);
         List<Slots> allSlots = getSlots(location);
         for (Slots slot : allSlots) {
             if (slot.getLevel() <= playerLevel && slot.getPremium() != 1) {

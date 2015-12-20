@@ -39,6 +39,12 @@ public class MenuActivity extends Activity {
         startActivity(intent);
     }
 
+    public void openTable(View view) {
+        finish();
+        Intent intent = new Intent(this, TableActivity.class);
+        startActivity(intent);
+    }
+
     public void closePopup(View view) {
         finish();
     }

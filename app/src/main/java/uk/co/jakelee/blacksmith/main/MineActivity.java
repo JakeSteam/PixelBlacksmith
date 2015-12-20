@@ -36,7 +36,7 @@ public class MineActivity extends Activity {
         mineList.removeAllViews();
 
         for (Shop shop : discoveredShops) {
-            TextView shopName = dh.CreateTextView(shop.getName() + " (" + shop.getDescription() + ")", 16, Color.BLACK);
+            TextView shopName = dh.createTextView(shop.getName() + " (" + shop.getDescription() + ")", 16, Color.BLACK);
             mineList.addView(shopName);
         }
 
