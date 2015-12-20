@@ -1,11 +1,9 @@
 package uk.co.jakelee.blacksmith.model;
 
-/**
- * Created by Jake on 07/11/2015.
- */
 public class Inventory {
     int item;
     int quantity;
+    int state;
 
     public Inventory() {
     }
@@ -24,5 +22,13 @@ public class Inventory {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

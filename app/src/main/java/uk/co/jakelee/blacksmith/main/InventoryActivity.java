@@ -48,10 +48,10 @@ public class InventoryActivity extends Activity {
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = dbh.getItemById(inventoryItem.getItem());
-
             ImageView image = dh.CreateItemImage(item.getId(), 15, 15, 1);
 
-            TextView name = dh.CreateTextView(item.getName(), 15, Color.BLACK);
+            String itemName = item.getName();
+            TextView name = dh.CreateTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
             ImageView sell = dh.CreateItemImage(52, 15, 15, 1);
@@ -72,7 +72,7 @@ public class InventoryActivity extends Activity {
 
     public void clickSellButton(View view) {
         Item itemToSell = dbh.getItemById((int) view.getTag());
-        if (dbh.sellItem(itemToSell.getId(), 1, itemToSell.getValue())) {
+        if (dbh.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coins", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();

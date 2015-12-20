@@ -1,6 +1,5 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -83,46 +82,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Deleted " + pendingItem.getItem() + " from pending inventory at location " + pendingItem.getLocationID());
     }
 
-    public boolean createItem(int itemId, int quantity, int locationId) {
+    public boolean createItem(int itemId, int state, int quantity, int locationId) {
         Location location = getLocationById(locationId);
-        if (canCreateItem(itemId) && hasAvailableSlot(location.getName())) {
-            RemoveItemIngredients(itemId);
-            AddPendingItem(itemId, quantity, locationId);
+        if (canCreateItem(itemId, state) && hasAvailableSlot(location.getName())) {
+            RemoveItemIngredients(itemId, state);
+            AddPendingItem(itemId, state, quantity, locationId);
             return true;
         } else {
             return false;
         }
     }
 
-    public void RemoveItemIngredients(int itemId) {
-        List<Recipe> ingredients = getIngredientsForItemById(itemId);
+    public void RemoveItemIngredients(int itemId, int state) {
+        List<Recipe> ingredients = getIngredientsForItem(itemId, state);
         for (Recipe ingredient : ingredients) {
-            Inventory ownedItems = getInventoryByItem(ingredient.getIngredient());
+            Inventory ownedItems = getInventoryByItem(ingredient.getIngredient(), ingredient.getIngredientState());
             ownedItems.setQuantity(ownedItems.getQuantity() - ingredient.getQuantity());
             updateInventory(ownedItems);
         }
     }
 
-    public void RemoveItem(int itemId, int quantity) {
-        Inventory itemStock = getInventoryByItem(itemId);
+    public void RemoveItem(int itemId, int state, int quantity) {
+        Inventory itemStock = getInventoryByItem(itemId, state);
         itemStock.setQuantity(itemStock.getQuantity() - quantity);
         updateInventory(itemStock);
     }
 
-    public void AddPendingItem(int itemId, int quantity, int location) {
+    public void AddPendingItem(int itemId, int state, int quantity, int location) {
         SQLiteDatabase db = this.getWritableDatabase();
         Item item = getItemById(itemId);
         long time = System.currentTimeMillis();
         int craftTime = item.getValue() * 1000 * 3;
 
-        String query = "INSERT INTO pending_inventory (item, time_created, quantity, craft_time, location_id) VALUES (" + itemId + "," + time + "," + quantity + "," + craftTime + "," + location + ")";
+        String query = "INSERT INTO pending_inventory (item, state, time_created, quantity, craft_time, location_id) VALUES (" + itemId + "," + state + "," + time + "," + quantity + "," + craftTime + "," + location + ")";
         db.execSQL(query);
 
-        Log.d(LOG, "Added " + itemId + " to pending inventory at location " + location + " at time " + time);
+        Log.d(LOG, "Added " + itemId + " to pending inventory at location " + location + " at time " + time + " with state " + state);
     }
 
-    public void AddItem(int itemId, int quantity) {
-        Inventory craftedItem = getInventoryByItem(itemId);
+    public void AddItem(int itemId, int state, int quantity) {
+        Inventory craftedItem = getInventoryByItem(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
         updateInventory(craftedItem);
 
@@ -179,8 +178,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.setValue(c.getInt(c.getColumnIndex("value")));
             item.setLevel(c.getInt(c.getColumnIndex("level")));
             item.setCanCraft(c.getInt(c.getColumnIndex("can_craft")));
-
-
         }
         c.close();
         return item;
@@ -232,9 +229,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
-    public List<Item> getItemsByTypeAndTier(int typeMin, int typeMax, int tierMin, int tierMax) {
+    public List<Item> getSmithableItems(int typeMin, int typeMax, int tierMin, int tierMax) {
         List<Item> items = new ArrayList<>();
-        String query = "SELECT * FROM item WHERE type BETWEEN " + typeMin + " AND " + typeMax + " AND tier BETWEEN " + tierMin + " AND " + tierMax;
+        String query = "SELECT * FROM item WHERE type BETWEEN " + typeMin + " AND " + typeMax + " AND tier BETWEEN " + tierMin + " AND " + tierMax + " ORDER BY level ASC";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -261,7 +258,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCoins() {
-        Inventory coins = getInventoryByItem(52);
+        Inventory coins = getInventoryByItem(52, 1);
         return coins.getQuantity();
     }
 
@@ -287,28 +284,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
-    public Inventory getInventoryByItem(int id) {
-        String query = "SELECT * FROM inventory WHERE item = " + id;
+    public Inventory getInventoryByItem(int id, int state) {
+        String query = "SELECT * FROM inventory WHERE item = " + id + " AND state = " + state;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
 
         Inventory inventory = new Inventory();
         inventory.setItem(id);
+        inventory.setState(state);
         inventory.setQuantity(0);
         if (c != null && c.getCount() > 0) {
             // It's an existing item.
             c.moveToFirst();
             inventory.setItem(c.getInt(c.getColumnIndex("item")));
+            inventory.setState(c.getInt(c.getColumnIndex("state")));
             inventory.setQuantity(c.getInt(c.getColumnIndex("quantity")));
-
-
         }
         c.close();
         return inventory;
     }
 
-    public boolean canCreateItem(int itemID) {
+    public boolean canCreateItem(int itemID, int state) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Check we've got a high enough level
@@ -321,7 +318,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FROM recipe \n" +
                 "INNER JOIN item ON recipe.ingredient = item._id\n" +
                 "INNER JOIN inventory ON item._id = inventory.item\n" +
-                "WHERE recipe.item = " + itemID;
+                "WHERE recipe.item = " + itemID + "\n" +
+                "AND recipe.item_state = " + state;
 
         Cursor c = db.rawQuery(query, null);
         if (c.moveToFirst()) {
@@ -347,11 +345,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Recipe> getIngredientsForItemById(int id) {
+    public List<Recipe> getIngredientsForItem(int id, int state) {
         List<Recipe> ingredients = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT _id, item, ingredient, quantity FROM recipe WHERE item = " + id;
+        String query = "SELECT _id, item, item_state, ingredient, ingredient_state, quantity FROM recipe WHERE item = " + id + " AND item_state = " + state;
 
         Cursor c = db.rawQuery(query, null);
         if (c != null && c.moveToFirst()) {
@@ -359,7 +357,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Recipe recipe = new Recipe();
                 recipe.setId(c.getInt(c.getColumnIndex("_id")));
                 recipe.setItem(c.getInt(c.getColumnIndex("item")));
+                recipe.setItemState(c.getInt(c.getColumnIndex("item_state")));
                 recipe.setIngredient(c.getInt(c.getColumnIndex("ingredient")));
+                recipe.setIngredientState(c.getInt(c.getColumnIndex("ingredient_state")));
                 recipe.setQuantity(c.getInt(c.getColumnIndex("quantity")));
 
                 ingredients.add(recipe);
@@ -373,26 +373,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateInventory(Inventory inventory) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("item", inventory.getItem());
-        values.put("quantity", inventory.getQuantity());
-        db.insertWithOnConflict("inventory", "item", values, SQLiteDatabase.CONFLICT_REPLACE);
+        String query = "SELECT COUNT(*) AS 'exists' FROM inventory WHERE item = " + inventory.getItem() + " AND state = " + inventory.getState();
+        String insertQuery = "INSERT INTO inventory (item, state, quantity) VALUES (" + inventory.getItem() + "," + inventory.getState() + "," + inventory.getQuantity() + ")";
+
+        // Check if the item already exists in invent, so needs updating instead of inserting
+        Cursor c = db.rawQuery(query, null);
+        if (c.moveToFirst()) {
+            if (c.getInt(c.getColumnIndex("exists")) > 0) {
+                insertQuery = "UPDATE inventory SET quantity = " + inventory.getQuantity() + " WHERE item = " + inventory.getItem() + " AND state = " + inventory.getState();
+            }
+        }
+        c.close();
+
+        db.execSQL(insertQuery);
         Log.d(LOG, "Inserted " + inventory.getQuantity() + "x item ID " + inventory.getItem());
     }
 
-    public boolean canSellItem(int itemId, int quantity) {
-        Inventory inventory = getInventoryByItem(itemId);
-        return inventory.getQuantity() > 0;
+    public boolean canSellItem(int itemId, int state, int quantity) {
+        Inventory inventory = getInventoryByItem(itemId, state);
+        return (inventory.getQuantity() - quantity) >= 0;
     }
 
-    public boolean sellItem(int itemId, int quantity, int price) {
+    public boolean sellItem(int itemId, int state, int quantity, int price) {
         int locationId = 2;
         int coinId = 52;
         String locationName = "Selling";
 
-        if (canSellItem(itemId, quantity) && hasAvailableSlot(locationName)) {
-            RemoveItem(itemId, quantity);
-            AddPendingItem(coinId, price, locationId);
+        if (canSellItem(itemId, state, quantity) && hasAvailableSlot(locationName)) {
+            RemoveItem(itemId, state, quantity);
+            AddPendingItem(coinId, 1, price, locationId);
             return true;
         } else {
             return false;
@@ -443,10 +452,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Pending_Inventory> getPendingItemsByLocation(String location) {
         List<Pending_Inventory> items = new ArrayList<>();
-        long time = System.currentTimeMillis();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT item, time_created, quantity, craft_time, location_id " +
+        String query = "SELECT item, state, time_created, quantity, craft_time, location_id " +
                 "FROM pending_inventory INNER JOIN locations ON pending_inventory.location_id = locations._id " +
                 "WHERE locations.name = '" + location + "'";
 
@@ -455,6 +463,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Pending_Inventory item = new Pending_Inventory();
                 item.setItem(c.getInt(c.getColumnIndex("item")));
+                item.setState(c.getInt(c.getColumnIndex("state")));
                 item.setTimeCreated(c.getLong(c.getColumnIndex("time_created")));
                 item.setQuantity(c.getInt(c.getColumnIndex("quantity")));
                 item.setCraftTime(c.getInt(c.getColumnIndex("craft_time")));

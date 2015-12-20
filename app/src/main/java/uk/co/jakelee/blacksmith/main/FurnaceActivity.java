@@ -59,7 +59,7 @@ public class FurnaceActivity extends Activity {
             RelativeLayout itemBox = new RelativeLayout(this);
 
             ImageView image = dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft());
-            TextView count = dh.CreateItemCount(item.getId(), Color.WHITE, Color.BLACK);
+            TextView count = dh.CreateItemCount(item.getId(), 1, Color.WHITE, Color.BLACK);
             count.setPadding(0, 150, 0, 0);
 
             itemBox.addView(image);
@@ -69,21 +69,21 @@ public class FurnaceActivity extends Activity {
         }
 
         // Display item name and description
-        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 1);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
+        dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
     }
 
     public void CloseFurnace(View view) {
         finish();
     }
 
-    public void DisplayItemInfo(int itemId) {
+    public void DisplayItemInfo(int itemId, int state) {
         View furnace = findViewById(R.id.furnace);
         Item item = dbh.getItemById(itemId);
-        Inventory count = dbh.getInventoryByItem(itemId);
+        Inventory count = dbh.getInventoryByItem(itemId, state);
 
         TextView itemName = (TextView) findViewById(R.id.itemName);
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
@@ -104,7 +104,7 @@ public class FurnaceActivity extends Activity {
         int itemId = (int) mViewFlipper.getCurrentView().getTag();
 
         Item item = dbh.getItemById(itemId);
-        if (dbh.createItem(itemId, 1, 1)) {
+        if (dbh.createItem(itemId, 1, 1, 1)) {
             Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createFurnaceInterface();
         } else {
@@ -126,10 +126,10 @@ public class FurnaceActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 1);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
+            dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
 
             return super.onFling(e1, e2, velocityX, velocityY);
         }

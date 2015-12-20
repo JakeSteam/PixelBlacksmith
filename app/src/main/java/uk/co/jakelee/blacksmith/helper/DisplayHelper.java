@@ -106,7 +106,7 @@ public class DisplayHelper {
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
-                dbh.AddItem(pendingItem.getItem(), pendingItem.getQuantity());
+                dbh.AddItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
                 dbh.DeletePendingItem(pendingItem);
             } else {
                 // Add 500 so we always round up
@@ -139,7 +139,7 @@ public class DisplayHelper {
         return textView;
     }
 
-    public TextView CreateItemCount(int itemId, int textColour, int backColour) {
+    public TextView CreateItemCount(int itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Integer.toString(itemId), "id", context.getPackageName());
 
         TextView text = new TextView(context);
@@ -148,7 +148,7 @@ public class DisplayHelper {
         text.setTextColor(textColour);
         text.setShadowLayer(5, 0, 0, backColour);
         text.setTextSize(22);
-        text.setText(Integer.toString(dbh.getInventoryByItem(itemId).getQuantity()));
+        text.setText(Integer.toString(dbh.getInventoryByItem(itemId, state).getQuantity()));
         return text;
     }
 
@@ -178,9 +178,9 @@ public class DisplayHelper {
         return image;
     }
 
-    public void CreateItemIngredientsTable(int itemId, TableLayout ingredientsTable) {
+    public void CreateItemIngredientsTable(int itemId, int state, TableLayout ingredientsTable) {
         // Prepare the ingredients table and retrieve the list of ingredients
-        List<Recipe> ingredients = dbh.getIngredientsForItemById(itemId);
+        List<Recipe> ingredients = dbh.getIngredientsForItem(itemId, state);
         ingredientsTable.removeAllViews();
 
         // Add a header row
@@ -204,7 +204,7 @@ public class DisplayHelper {
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
             Item itemIngredient = dbh.getItemById(ingredient.getIngredient());
-            Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient());
+            Inventory owned = dbh.getInventoryByItem(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
             row.addView(CreateItemImage(ingredient.getIngredient(), 66, 62, 1));

@@ -60,12 +60,12 @@ public class AnvilActivity extends Activity {
         }
 
         // Get all items that are of the correct tier
-        List<Item> items = dbh.getItemsByTypeAndTier(3, 18, displayedTier, displayedTier);
+        List<Item> items = dbh.getSmithableItems(3, 18, displayedTier, displayedTier);
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
             ImageView image = dh.CreateItemImage(item.getId(), 300, 230, item.getCanCraft());
-            TextView count = dh.CreateItemCount(item.getId(), Color.WHITE, Color.BLACK);
+            TextView count = dh.CreateItemCount(item.getId(), 2, Color.WHITE, Color.BLACK);
             count.setPadding(0, 150, 0, 0);
 
             itemBox.addView(image);
@@ -75,21 +75,21 @@ public class AnvilActivity extends Activity {
         }
 
         // Display item name and description
-        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+        DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
+        dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 2, ingredientsTable);
     }
 
     public void CloseAnvil(View view) {
         finish();
     }
 
-    public void DisplayItemInfo(int itemId) {
+    public void DisplayItemInfo(int itemId, int state) {
         View anvil = findViewById(R.id.anvil);
         Item item = dbh.getItemById(itemId);
-        Inventory count = dbh.getInventoryByItem(itemId);
+        Inventory count = dbh.getInventoryByItem(itemId, state);
 
         TextView itemName = (TextView) findViewById(R.id.itemName);
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
@@ -111,7 +111,7 @@ public class AnvilActivity extends Activity {
         int itemId = (int) mViewFlipper.getCurrentView().getTag();
 
         Item item = dbh.getItemById(itemId);
-        if (dbh.createItem(itemId, 1, 0)) {
+        if (dbh.createItem(itemId, 2, 1, 0)) {
             Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
         } else {
@@ -147,10 +147,10 @@ public class AnvilActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag());
+            DisplayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), ingredientsTable);
+            dh.CreateItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 2, ingredientsTable);
 
             return super.onFling(e1, e2, velocityX, velocityY);
         }
