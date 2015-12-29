@@ -11,6 +11,19 @@ public class Shop extends SugarRecord {
     int level;
     int discovered;
 
+    public Shop() {
+    }
+
+    public Shop(Long id, int shopkeeper, int location, String name, String description, int level, int discovered) {
+        this.id = id;
+        this.shopkeeper = shopkeeper;
+        this.location = location;
+        this.name = name;
+        this.description = description;
+        this.level = level;
+        this.discovered = discovered;
+    }
+
     public Long getId() {
         return id;
     }

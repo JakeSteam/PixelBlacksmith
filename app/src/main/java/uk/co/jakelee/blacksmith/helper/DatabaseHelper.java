@@ -415,7 +415,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Shop> getAllDiscoveredShops(int locationID) {
-        List<Shop> shops = new ArrayList<>();
+
+        List<Shop> shops = Shop.listAll(Shop.class);
+        /*List<Shop> shops = new ArrayList<>(); Shop.listAll(Shop.class);
 
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT _id, shopkeeper, location, name, description, level, discovered FROM shop " +
@@ -438,7 +440,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         }
-        c.close();
+        c.close();*/
         return shops;
     }
 
