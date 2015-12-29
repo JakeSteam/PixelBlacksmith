@@ -46,12 +46,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*database = db;
+        //database = db;
         try {
             insertFromFile(context, "1.sql");
         } catch (IOException e) {
             Log.e(LOG, e.toString());
-        }*/
+        }
     }
 
     @Override
@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getXp() {
-        List<Player_Info> xpInfos = Player_Info.findWithQuery(Player_Info.class, "SELECT * FROM Player_Info WHERE name = ?", "XP");
+        List<Player_Info> xpInfos = Player_Info.findWithQuery(Player_Info.class, "SELECT * FROM player_info WHERE name = ?", "XP");
         Player_Info xpInfo = xpInfos.get(0);
         return xpInfo.getIntValue();
 
@@ -278,7 +278,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCoins() {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE state = 1 AND item = 52");
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = ? AND item = ?", "1", Integer.toString(52));
         Inventory inventory = inventories.get(0);
         return inventory.getQuantity();
     }

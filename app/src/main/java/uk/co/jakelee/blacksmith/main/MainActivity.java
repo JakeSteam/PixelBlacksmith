@@ -11,7 +11,6 @@ import android.widget.TextView;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
-import uk.co.jakelee.blacksmith.model.Inventory;
 
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
@@ -43,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
 
+        /*Inventory coinCount = new Inventory();
+        coinCount.setId(null);
+        coinCount.setItem(52L);
+        coinCount.setState(1);
+        coinCount.setQuantity(500);
+        coinCount.save();*/
+
         dbh.updateCoinsGUI();
         dbh.updateLevelText();
         createSlots();
@@ -58,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         shop3.save();
         shop4.save();
         shop5.save();*/
-
-        Inventory inventory = new Inventory(52L, 1500, 1);
-        inventory.save();
     }
 
     @Override
