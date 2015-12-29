@@ -11,7 +11,7 @@ import android.widget.TextView;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
-import uk.co.jakelee.blacksmith.model.Shop;
+import uk.co.jakelee.blacksmith.model.Inventory;
 
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHelper dbh;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         dbh.updateLevelText();
         createSlots();
 
-        Shop shop = new Shop(0L, 0, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
+        /*Shop shop = new Shop(0L, 0, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
         Shop shop2 = new Shop(1L, 0, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
         Shop shop3 = new Shop(2L, 0, 3, "Rare Ore", "This shop is too rare to be found.", 5, 0);
         Shop shop4 = new Shop(3L, 0, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
         shop2.save();
         shop3.save();
         shop4.save();
-        shop5.save();
+        shop5.save();*/
+
+        Inventory inventory = new Inventory(52L, 1500, 1);
+        inventory.save();
     }
 
     @Override

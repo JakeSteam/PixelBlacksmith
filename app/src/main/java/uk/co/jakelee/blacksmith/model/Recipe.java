@@ -13,6 +13,15 @@ public class Recipe extends SugarRecord {
     public Recipe() {
     }
 
+    public Recipe(Long id, Long item, int itemState, Long ingredient, int ingredientState, int quantity) {
+        this.id = id;
+        this.item = item;
+        this.itemState = itemState;
+        this.ingredient = ingredient;
+        this.ingredientState = ingredientState;
+        this.quantity = quantity;
+    }
+
     public Long getId() {
         return id;
     }

@@ -10,6 +10,12 @@ public class Type extends SugarRecord {
     public Type() {
     }
 
+    public Type(Long id, String name, int category) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }

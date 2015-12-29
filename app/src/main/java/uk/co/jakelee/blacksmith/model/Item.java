@@ -15,6 +15,17 @@ public class Item extends SugarRecord {
     public Item() {
     }
 
+    public Item(Long id, String name, String description, int type, int tier, int value, int level, int can_craft) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.tier = tier;
+        this.value = value;
+        this.level = level;
+        this.can_craft = can_craft;
+    }
+
     public Long getId() {
         return id;
     }

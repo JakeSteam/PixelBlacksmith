@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="DATABASE"
-            android:value="blacksmith_orm.db" />
+            android:value="blacksmith.db" />
         <meta-data
             android:name="VERSION"
             android:value="1" />

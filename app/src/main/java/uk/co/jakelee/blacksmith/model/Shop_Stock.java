@@ -9,6 +9,18 @@ public class Shop_Stock extends SugarRecord {
     int discovered;
     int stock;
 
+    public Shop_Stock() {
+
+    }
+
+    public Shop_Stock(Long shopID, Long itemID, int price, int discovered, int stock) {
+        this.shopID = shopID;
+        this.itemID = itemID;
+        this.price = price;
+        this.discovered = discovered;
+        this.stock = stock;
+    }
+
     public Long getItemID() {
         return itemID;
     }

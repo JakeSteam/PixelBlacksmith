@@ -8,9 +8,18 @@ public class Pending_Inventory extends SugarRecord {
     long timeCreated;
     int quantity;
     int craftTime;
-    int locationID;
+    Long locationID;
 
     public Pending_Inventory() {
+    }
+
+    public Pending_Inventory(Long item, int state, long timeCreated, int quantity, int craftTime, Long locationID) {
+        this.item = item;
+        this.state = state;
+        this.timeCreated = timeCreated;
+        this.quantity = quantity;
+        this.craftTime = craftTime;
+        this.locationID = locationID;
     }
 
     public Long getItem() {
@@ -54,11 +63,11 @@ public class Pending_Inventory extends SugarRecord {
         this.craftTime = craftTime;
     }
 
-    public int getLocationID() {
+    public Long getLocationID() {
         return locationID;
     }
 
-    public void setLocationID(int locationID) {
+    public void setLocationID(Long locationID) {
         this.locationID = locationID;
     }
 }

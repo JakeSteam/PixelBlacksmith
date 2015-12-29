@@ -8,6 +8,17 @@ public class Player_Info extends SugarRecord {
     String textValue;
     int intValue;
 
+    public Player_Info() {
+
+    }
+
+    public Player_Info(Long id, String name, String textValue, int intValue) {
+        this.id = id;
+        this.name = name;
+        this.textValue = textValue;
+        this.intValue = intValue;
+    }
+
     public Long getId() {
         return id;
     }

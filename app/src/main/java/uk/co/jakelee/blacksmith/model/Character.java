@@ -9,6 +9,18 @@ public class Character extends SugarRecord {
     int intro;
     int sold;
 
+    public Character() {
+
+    }
+
+    public Character(Long id, int name, int description, int intro, int sold) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.intro = intro;
+        this.sold = sold;
+    }
+
     public Long getId() {
         return id;
     }

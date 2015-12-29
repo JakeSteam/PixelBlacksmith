@@ -12,6 +12,17 @@ public class Slots extends SugarRecord {
     int level;
     int premium;
 
+    public Slots() {
+
+    }
+
+    public Slots(Long id, int location, int level, int premium) {
+        this.id = id;
+        this.location = location;
+        this.level = level;
+        this.premium = premium;
+    }
+
     public Long getId() {
         return id;
     }
