@@ -20,6 +20,7 @@ public class Pending_Inventory extends SugarRecord {
         this.quantity = quantity;
         this.craftTime = craftTime;
         this.locationID = locationID;
+        this.save();
     }
 
     public Long getItem() {

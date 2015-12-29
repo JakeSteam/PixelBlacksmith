@@ -14,6 +14,7 @@ public class Category extends SugarRecord {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.save();
     }
     
     public Long getId() {

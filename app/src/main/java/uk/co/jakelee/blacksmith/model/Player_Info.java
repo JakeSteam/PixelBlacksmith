@@ -17,6 +17,7 @@ public class Player_Info extends SugarRecord {
         this.name = name;
         this.textValue = textValue;
         this.intValue = intValue;
+        this.save();
     }
 
     public Long getId() {

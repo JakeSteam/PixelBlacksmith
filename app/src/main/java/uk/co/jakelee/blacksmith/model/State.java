@@ -12,6 +12,7 @@ public class State extends SugarRecord {
     public State(Long id, String name) {
         this.id = id;
         this.name = name;
+        this.save();
     }
 
     public Long getId() {

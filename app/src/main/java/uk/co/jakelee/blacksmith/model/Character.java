@@ -4,21 +4,21 @@ import com.orm.SugarRecord;
 
 public class Character extends SugarRecord {
     Long id;
-    int name;
-    int description;
-    int intro;
-    int sold;
+    String name;
+    String description;
+    String intro;
+    String sold;
 
     public Character() {
-
     }
 
-    public Character(Long id, int name, int description, int intro, int sold) {
+    public Character(Long id, String name, String description, String intro, String sold) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.intro = intro;
         this.sold = sold;
+        this.save();
     }
 
     public Long getId() {
@@ -29,35 +29,35 @@ public class Character extends SugarRecord {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getIntro() {
+    public String getIntro() {
         return intro;
     }
 
-    public void setIntro(int intro) {
+    public void setIntro(String intro) {
         this.intro = intro;
     }
 
-    public int getSold() {
+    public String getSold() {
         return sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(String sold) {
         this.sold = sold;
     }
 }

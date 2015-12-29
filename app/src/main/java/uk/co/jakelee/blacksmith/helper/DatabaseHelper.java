@@ -47,11 +47,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //database = db;
-        try {
-            insertFromFile(context, "1.sql");
-        } catch (IOException e) {
-            Log.e(LOG, e.toString());
-        }
+        //try {
+        //    insertFromFile(context, "1.sql");
+        //} catch (IOException e) {
+        //    Log.e(LOG, e.toString());
+        //}
     }
 
     @Override
@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getXp() {
-        List<Player_Info> xpInfos = Player_Info.findWithQuery(Player_Info.class, "SELECT * FROM player_info WHERE name = ?", "XP");
+        List<Player_Info> xpInfos = Player_Info.find(Player_Info.class, "name = ?", "XP");
         Player_Info xpInfo = xpInfos.get(0);
         return xpInfo.getIntValue();
 
@@ -165,7 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void addXp(int xp) {
-        List<Player_Info> xpInfos = Player_Info.findWithQuery(Player_Info.class, "SELECT * FROM Player_Info WHERE name = ?", "XP");
+        List<Player_Info> xpInfos = Player_Info.findWithQuery(Player_Info.class, "SELECT * FROM PLAYER_INFO WHERE name = ?", "XP");
         Player_Info xpInfo = xpInfos.get(0);
         xpInfo.setIntValue(xp);
         xpInfo.save();
@@ -278,13 +278,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCoins() {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = ? AND item = ?", "1", Integer.toString(52));
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = 1 AND item = 52");
         Inventory inventory = inventories.get(0);
         return inventory.getQuantity();
     }
 
     public List<Inventory> getAllInventoryItems() {
-        return Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE quantity > 0 AND item <> ?" + 52);
+        return Inventory.find(Inventory.class, "quantity > 0 AND item <> ?", "0", "52");
         /*List<Inventory> items = new ArrayList<>();
         String query = "SELECT * FROM inventory WHERE item <> 52 AND quantity > 0";
 
@@ -307,7 +307,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Inventory getInventory(Long id, int state) {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE state = " + state + " AND id = " + id);
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + id);
         return inventories.get(0);
 
         /*String query = "SELECT * FROM inventory WHERE item = " + id + " AND state = " + state;
@@ -504,7 +504,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Pending_Inventory> getPendingItems(String location) {
-        return Pending_Inventory.findWithQuery(Pending_Inventory.class, "SELECT item, state, time_created, quantity, craft_time, location_id FROM pending_inventory INNER JOIN locations ON pending_inventory.location_id = locations._id WHERE locations.name = ?", location);
+        return Pending_Inventory.findWithQuery(Pending_Inventory.class, "SELECT item, state, time_created, quantity, craft_time, location_id FROM pendinginventory INNER JOIN location ON pendinginventory.location_id = location.id WHERE location.name = ?", location);
 
         /*List<Pending_Inventory> items = new ArrayList<>();
 
@@ -546,7 +546,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Slots> getSlots(String location) {
-        return Slots.findWithQuery(Slots.class, "SELECT slots._id, location_id, level_req, premium FROM slots INNER JOIN locations ON slots.location_id = locations._id WHERE locations.name = ?", location);
+        return Slots.findWithQuery(Slots.class, "SELECT SLOTS.id, SLOTS.location, SLOTS.level, SLOTS.premium FROM SLOTS INNER JOIN LOCATION ON SLOTS.location = LOCATION.id WHERE LOCATION.name = ?", location);
         /*List<Slots> slots = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();

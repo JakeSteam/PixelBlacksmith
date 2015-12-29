@@ -24,6 +24,7 @@ public class Item extends SugarRecord {
         this.value = value;
         this.level = level;
         this.can_craft = can_craft;
+        this.save();
     }
 
     public Long getId() {

@@ -21,6 +21,7 @@ public class Slots extends SugarRecord {
         this.location = location;
         this.level = level;
         this.premium = premium;
+        this.save();
     }
 
     public Long getId() {
