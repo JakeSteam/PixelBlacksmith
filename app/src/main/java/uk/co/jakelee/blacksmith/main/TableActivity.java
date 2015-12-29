@@ -75,18 +75,18 @@ public class TableActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
+        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 2);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.createItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
+        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
     }
 
     public void closeTable(View view) {
         finish();
     }
 
-    public void displayItemInfo(int itemId, int state) {
+    public void displayItemInfo(Long itemId, int state) {
         View table = findViewById(R.id.table);
         Item item = dbh.getItem(itemId);
         Inventory count = dbh.getInventory(itemId, state);
@@ -108,7 +108,7 @@ public class TableActivity extends Activity {
     }
 
     public void craft1(View v) {
-        int itemId = (int) mViewFlipper.getCurrentView().getTag();
+        Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
         Item item = dbh.getItem(itemId);
         if (dbh.createItem(itemId, 1, 1, 4)) {
@@ -147,10 +147,10 @@ public class TableActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            displayItemInfo((int) mViewFlipper.getCurrentView().getTag(), 2);
+            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 2);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.createItemIngredientsTable((int) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
+            dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
 
             return super.onFling(e1, e2, velocityX, velocityY);
         }

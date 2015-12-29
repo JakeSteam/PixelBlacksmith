@@ -1,29 +1,31 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Recipe {
-    int id;
-    int item;
+import com.orm.SugarRecord;
+
+public class Recipe extends SugarRecord {
+    Long id;
+    Long item;
     int itemState;
-    int ingredient;
+    Long ingredient;
     int ingredientState;
     int quantity;
 
     public Recipe() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getItem() {
+    public Long getItem() {
         return item;
     }
 
-    public void setItem(int item) {
+    public void setItem(Long item) {
         this.item = item;
     }
 
@@ -35,11 +37,11 @@ public class Recipe {
         this.itemState = itemState;
     }
 
-    public int getIngredient() {
+    public Long getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(int ingredient) {
+    public void setIngredient(Long ingredient) {
         this.ingredient = ingredient;
     }
 

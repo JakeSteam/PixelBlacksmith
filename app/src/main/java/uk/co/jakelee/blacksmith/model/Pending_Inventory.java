@@ -1,7 +1,9 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Pending_Inventory {
-    int item;
+import com.orm.SugarRecord;
+
+public class Pending_Inventory extends SugarRecord {
+    Long item;
     int state;
     long timeCreated;
     int quantity;
@@ -9,14 +11,13 @@ public class Pending_Inventory {
     int locationID;
 
     public Pending_Inventory() {
-
     }
 
-    public int getItem() {
+    public Long getItem() {
         return item;
     }
 
-    public void setItem(int item) {
+    public void setItem(Long item) {
         this.item = item;
     }
 

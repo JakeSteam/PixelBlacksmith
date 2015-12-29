@@ -1,7 +1,9 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Item {
-    int id;
+import com.orm.SugarRecord;
+
+public class Item extends SugarRecord {
+    Long id;
     String name;
     String description;
     int type;
@@ -13,11 +15,11 @@ public class Item {
     public Item() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

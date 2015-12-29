@@ -1,14 +1,16 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Location {
-    int id;
+import com.orm.SugarRecord;
+
+public class Location extends SugarRecord {
+    Long id;
     String name;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

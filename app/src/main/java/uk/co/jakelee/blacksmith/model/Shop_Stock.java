@@ -1,25 +1,27 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Shop_Stock {
-    int shopID;
-    int itemID;
+import com.orm.SugarRecord;
+
+public class Shop_Stock extends SugarRecord {
+    Long shopID;
+    Long itemID;
     int price;
     int discovered;
     int stock;
 
-    public int getItemID() {
+    public Long getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID) {
+    public void setItemID(Long itemID) {
         this.itemID = itemID;
     }
 
-    public int getShopID() {
+    public Long getShopID() {
         return shopID;
     }
 
-    public void setShopID(int shopID) {
+    public void setShopID(Long shopID) {
         this.shopID = shopID;
     }
 

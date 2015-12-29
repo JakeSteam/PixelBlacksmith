@@ -1,18 +1,20 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Inventory {
-    int item;
+import com.orm.SugarRecord;
+
+public class Inventory extends SugarRecord {
+    Long item;
     int quantity;
     int state;
 
     public Inventory() {
     }
 
-    public int getItem() {
+    public Long getItem() {
         return item;
     }
 
-    public void setItem(int item) {
+    public void setItem(Long item) {
         this.item = item;
     }
 

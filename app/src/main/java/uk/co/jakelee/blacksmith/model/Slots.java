@@ -1,20 +1,22 @@
 package uk.co.jakelee.blacksmith.model;
 
+import com.orm.SugarRecord;
+
 /**
  * `_id` INTEGER PRIMARY KEY AUTOINCREMENT, `location_id` INTEGER NOT NULL, `level_req` INTEGER NOT NULL, `premium` INTEGER NOT NULL);
  * Created by Jake on 01/12/2015.
  */
-public class Slots {
-    int id;
+public class Slots extends SugarRecord {
+    Long id;
     int location;
     int level;
     int premium;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

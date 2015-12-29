@@ -1,18 +1,20 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Category {
-    int id;
+import com.orm.SugarRecord;
+
+public class Category extends SugarRecord {
+    Long id;
     String name;
     String description;
 
     public Category() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

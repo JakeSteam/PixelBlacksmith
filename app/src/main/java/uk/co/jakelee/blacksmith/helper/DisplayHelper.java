@@ -139,8 +139,8 @@ public class DisplayHelper {
         return textView;
     }
 
-    public TextView createItemCount(int itemId, int state, int textColour, int backColour) {
-        int viewId = context.getResources().getIdentifier("text" + Integer.toString(itemId), "id", context.getPackageName());
+    public TextView createItemCount(Long itemId, int state, int textColour, int backColour) {
+        int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
 
         TextView text = new TextView(context);
         text.setId(viewId);
@@ -152,8 +152,8 @@ public class DisplayHelper {
         return text;
     }
 
-    public ImageView createItemImage(int itemId, int width, int height, int canCraft) {
-        int viewId = context.getResources().getIdentifier("img" + Integer.toString(itemId), "id", context.getPackageName());
+    public ImageView createItemImage(Long itemId, int width, int height, int canCraft) {
+        int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
         Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
@@ -178,7 +178,7 @@ public class DisplayHelper {
         return image;
     }
 
-    public void createItemIngredientsTable(int itemId, int state, TableLayout ingredientsTable) {
+    public void createItemIngredientsTable(Long itemId, int state, TableLayout ingredientsTable) {
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = dbh.getIngredients(itemId, state);
         ingredientsTable.removeAllViews();

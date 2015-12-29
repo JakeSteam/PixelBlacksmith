@@ -58,7 +58,7 @@ public class InventoryActivity extends Activity {
             TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
-            ImageView sell = dh.createItemImage(52, 15, 15, 1);
+            ImageView sell = dh.createItemImage(52L, 15, 15, 1);
             sell.setTag(item.getId());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -75,7 +75,7 @@ public class InventoryActivity extends Activity {
     }
 
     public void clickSellButton(View view) {
-        Item itemToSell = dbh.getItem((int) view.getTag());
+        Item itemToSell = dbh.getItem((Long) view.getTag());
         if (dbh.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coins", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {

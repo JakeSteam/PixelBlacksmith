@@ -82,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Deleted " + pendingItem.getItem() + " from pending inventory at location " + pendingItem.getLocationID());
     }
 
-    public boolean createItem(int itemId, int state, int quantity, int locationId) {
+    public boolean createItem(Long itemId, int state, int quantity, int locationId) {
         Location location = getLocation(locationId);
         if (canCreateItem(itemId, state) && hasAvailableSlot(location.getName())) {
             removeItemIngredients(itemId, state);
@@ -93,7 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void removeItemIngredients(int itemId, int state) {
+    public void removeItemIngredients(Long itemId, int state) {
         List<Recipe> ingredients = getIngredients(itemId, state);
         for (Recipe ingredient : ingredients) {
             Inventory ownedItems = getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
@@ -102,13 +102,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void removeItem(int itemId, int state, int quantity) {
+    public void removeItem(Long itemId, int state, int quantity) {
         Inventory itemStock = getInventory(itemId, state);
         itemStock.setQuantity(itemStock.getQuantity() - quantity);
         updateInventory(itemStock);
     }
 
-    public void addPendingItem(int itemId, int state, int quantity, int location) {
+    public void addPendingItem(Long itemId, int state, int quantity, int location) {
         SQLiteDatabase db = this.getWritableDatabase();
         Item item = getItem(itemId);
         long time = System.currentTimeMillis();
@@ -121,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Added " + itemId + " to pending inventory at location " + location + " at time " + time + " with state " + state);
     }
 
-    public void addItem(int itemId, int state, int quantity) {
+    public void addItem(Long itemId, int state, int quantity) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
         updateInventory(craftedItem);
@@ -166,7 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Added XP: " + xp);
     }
 
-    public Item getItem(int id) {
+    public Item getItem(Long id) {
         String query = "SELECT * FROM item WHERE _id = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -175,7 +175,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null) {
             c.moveToFirst();
 
-            item.setId(c.getInt(c.getColumnIndex("_id")));
+            item.setId(c.getLong(c.getColumnIndex("_id")));
             item.setName(c.getString(c.getColumnIndex("name")));
             item.setDescription(c.getString(c.getColumnIndex("description")));
             item.setType(c.getInt(c.getColumnIndex("type")));
@@ -197,7 +197,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null) {
             c.moveToFirst();
 
-            location.setId(c.getInt(c.getColumnIndex("_id")));
+            location.setId(c.getLong(c.getColumnIndex("_id")));
             location.setName(c.getString(c.getColumnIndex("name")));
 
 
@@ -216,7 +216,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Item item = new Item();
-                item.setId(c.getInt(c.getColumnIndex("_id")));
+                item.setId(c.getLong(c.getColumnIndex("_id")));
                 item.setName(c.getString(c.getColumnIndex("name")));
                 item.setDescription(c.getString(c.getColumnIndex("description")));
                 item.setType(c.getInt(c.getColumnIndex("type")));
@@ -244,7 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Item item = new Item();
-                item.setId(c.getInt(c.getColumnIndex("_id")));
+                item.setId(c.getLong(c.getColumnIndex("_id")));
                 item.setName(c.getString(c.getColumnIndex("name")));
                 item.setDescription(c.getString(c.getColumnIndex("description")));
                 item.setType(c.getInt(c.getColumnIndex("type")));
@@ -263,7 +263,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCoins() {
-        Inventory coins = getInventory(52, 1);
+        Inventory coins = getInventory(52L, 1);
         return coins.getQuantity();
     }
 
@@ -277,7 +277,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Inventory inventoryItem = new Inventory();
-                inventoryItem.setItem(c.getInt(c.getColumnIndex("item")));
+                inventoryItem.setItem(c.getLong(c.getColumnIndex("item")));
                 inventoryItem.setState(c.getInt(c.getColumnIndex("state")));
                 inventoryItem.setQuantity(c.getInt(c.getColumnIndex("quantity")));
 
@@ -290,7 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
-    public Inventory getInventory(int id, int state) {
+    public Inventory getInventory(Long id, int state) {
         String query = "SELECT * FROM inventory WHERE item = " + id + " AND state = " + state;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -303,7 +303,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.getCount() > 0) {
             // It's an existing item.
             c.moveToFirst();
-            inventory.setItem(c.getInt(c.getColumnIndex("item")));
+            inventory.setItem(c.getLong(c.getColumnIndex("item")));
             inventory.setState(c.getInt(c.getColumnIndex("state")));
             inventory.setQuantity(c.getInt(c.getColumnIndex("quantity")));
         }
@@ -311,7 +311,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return inventory;
     }
 
-    public boolean canCreateItem(int itemID, int state) {
+    public boolean canCreateItem(Long itemID, int state) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Check we've got a high enough level
@@ -351,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Recipe> getIngredients(int id, int state) {
+    public List<Recipe> getIngredients(Long id, int state) {
         List<Recipe> ingredients = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -361,10 +361,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Recipe recipe = new Recipe();
-                recipe.setId(c.getInt(c.getColumnIndex("_id")));
-                recipe.setItem(c.getInt(c.getColumnIndex("item")));
+                recipe.setId(c.getLong(c.getColumnIndex("_id")));
+                recipe.setItem(c.getLong(c.getColumnIndex("item")));
                 recipe.setItemState(c.getInt(c.getColumnIndex("item_state")));
-                recipe.setIngredient(c.getInt(c.getColumnIndex("ingredient")));
+                recipe.setIngredient(c.getLong(c.getColumnIndex("ingredient")));
                 recipe.setIngredientState(c.getInt(c.getColumnIndex("ingredient_state")));
                 recipe.setQuantity(c.getInt(c.getColumnIndex("quantity")));
 
@@ -395,14 +395,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(LOG, "Inserted " + inventory.getQuantity() + "x item ID " + inventory.getItem());
     }
 
-    public boolean canSellItem(int itemId, int state, int quantity) {
+    public boolean canSellItem(Long itemId, int state, int quantity) {
         Inventory inventory = getInventory(itemId, state);
         return (inventory.getQuantity() - quantity) >= 0;
     }
 
-    public boolean sellItem(int itemId, int state, int quantity, int price) {
+    public boolean sellItem(Long itemId, int state, int quantity, int price) {
         int locationId = 2;
-        int coinId = 52;
+        Long coinId = 52L;
         String locationName = "Selling";
 
         if (canSellItem(itemId, state, quantity) && hasAvailableSlot(locationName)) {
@@ -425,7 +425,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Shop shop = new Shop();
-                shop.setId(c.getInt(c.getColumnIndex("_id")));
+                shop.setId(c.getLong(c.getColumnIndex("_id")));
                 shop.setName(c.getString(c.getColumnIndex("name")));
                 shop.setDescription(c.getString(c.getColumnIndex("description")));
                 shop.setDiscovered(c.getInt(c.getColumnIndex("discovered")));
@@ -468,7 +468,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Pending_Inventory item = new Pending_Inventory();
-                item.setItem(c.getInt(c.getColumnIndex("item")));
+                item.setItem(c.getLong(c.getColumnIndex("item")));
                 item.setState(c.getInt(c.getColumnIndex("state")));
                 item.setTimeCreated(c.getLong(c.getColumnIndex("time_created")));
                 item.setQuantity(c.getInt(c.getColumnIndex("quantity")));
@@ -510,7 +510,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Slots slot = new Slots();
-                slot.setId(c.getInt(c.getColumnIndex("_id")));
+                slot.setId(c.getLong(c.getColumnIndex("_id")));
                 slot.setLevel(c.getInt(c.getColumnIndex("level_req")));
                 slot.setLocation(c.getInt(c.getColumnIndex("location_id")));
                 slot.setPremium(c.getInt(c.getColumnIndex("premium")));

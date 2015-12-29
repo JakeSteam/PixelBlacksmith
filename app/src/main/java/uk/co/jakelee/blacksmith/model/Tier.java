@@ -1,20 +1,19 @@
 package uk.co.jakelee.blacksmith.model;
 
-/**
- * Created by Jake on 07/11/2015.
- */
-public class Tier {
-    int id;
+import com.orm.SugarRecord;
+
+public class Tier extends SugarRecord {
+    Long id;
     String name;
 
     public Tier() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

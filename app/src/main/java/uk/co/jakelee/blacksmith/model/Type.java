@@ -1,21 +1,20 @@
 package uk.co.jakelee.blacksmith.model;
 
-/**
- * Created by Jake on 07/11/2015.
- */
-public class Type {
-    int id;
+import com.orm.SugarRecord;
+
+public class Type extends SugarRecord {
+    Long id;
     String name;
     int category;
 
     public Type() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
