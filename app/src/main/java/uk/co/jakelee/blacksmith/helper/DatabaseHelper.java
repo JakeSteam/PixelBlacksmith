@@ -286,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Inventory> getAllInventoryItems() {
-        return Inventory.find(Inventory.class, "quantity > 0 AND item <> ?", "0", "52");
+        return Inventory.find(Inventory.class, "quantity > 0 AND item <> ?", "52");
         /*List<Inventory> items = new ArrayList<>();
         String query = "SELECT * FROM inventory WHERE item <> 52 AND quantity > 0";
 
@@ -309,7 +309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Inventory getInventory(Long id, int state) {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + id);
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND item = " + id);
 
         // If nothing is returned, return a default count of 0.
         if (inventories.size() > 0) {

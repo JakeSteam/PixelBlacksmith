@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
 
-        //execSQL();
+        if (Item.listAll(Item.class).size() == 0) {
+            execSQL();
+        }
 
         dbh.updateCoinsGUI();
         dbh.updateLevelText();
@@ -239,6 +241,16 @@ public class MainActivity extends AppCompatActivity {
         item58.save();
         item59.save();
         item60.save();
+        item61.save();
+        item62.save();
+        item63.save();
+        item64.save();
+        item65.save();
+        item66.save();
+        item67.save();
+        item68.save();
+        item69.save();
+        item70.save();
 
         Location location = new Location(1L, "Anvil");
         Location location1 = new Location(2L, "Furnace");

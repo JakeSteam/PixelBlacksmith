@@ -34,7 +34,7 @@ public class InventoryActivity extends Activity {
     }
 
     public void updateInventoryTable() {
-        List<Inventory> allInventoryItems = dbh.getAllInventoryItems();
+        List<Inventory> allInventoryItems = Inventory.listAll(Inventory.class); //dbh.getAllInventoryItems();
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 
@@ -47,7 +47,8 @@ public class InventoryActivity extends Activity {
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
-            Item item = dbh.getItem(inventoryItem.getItem());
+            List<Item> items = Item.find(Item.class, "id = " + inventoryItem.getItem());
+            Item item = items.get(0);
             ImageView image = dh.createItemImage(item.getId(), 15, 15, 1);
 
             String itemName = item.getName();

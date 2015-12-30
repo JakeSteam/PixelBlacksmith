@@ -142,13 +142,21 @@ public class DisplayHelper {
     public TextView createItemCount(Long itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
 
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
+        Inventory item;
+        if (inventories.size() > 0) {
+            item = inventories.get(0);
+        } else {
+            item = new Inventory(itemId, state, 0);
+        }
+
         TextView text = new TextView(context);
         text.setId(viewId);
         text.setTag(itemId + "Count");
         text.setTextColor(textColour);
         text.setShadowLayer(5, 0, 0, backColour);
         text.setTextSize(22);
-        text.setText(Integer.toString(dbh.getInventory(itemId, state).getQuantity()));
+        text.setText(Integer.toString(item.getQuantity()));
         return text;
     }
 
