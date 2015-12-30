@@ -77,7 +77,7 @@ public class InventoryActivity extends Activity {
 
     public void clickSellButton(View view) {
         Item itemToSell = Item.findById(Item.class, (Long) view.getTag());
-        if (dbh.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
+        if (Inventory.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coins", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();

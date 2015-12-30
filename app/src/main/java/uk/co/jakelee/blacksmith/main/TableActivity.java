@@ -122,7 +122,7 @@ public class TableActivity extends Activity {
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
         Item item = Item.findById(Item.class, itemId);
-        if (dbh.createItem(itemId, 1, 1, 5L)) {
+        if (Inventory.createItem(itemId, 1, 1, 5L)) {
             Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
             createTableInterface(false);
         } else {
