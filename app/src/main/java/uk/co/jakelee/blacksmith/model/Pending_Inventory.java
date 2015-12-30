@@ -28,6 +28,22 @@ public class Pending_Inventory extends SugarRecord {
         return Pending_Inventory.find(Pending_Inventory.class, "location_id = ?", Long.toString(locationID));
     }
 
+    public static void addItem(Long itemId, int state, int quantity, Long location) {
+        Item item = Item.findById(Item.class, itemId);
+        long time = System.currentTimeMillis();
+        int craftTimeMultiplier = 3000;
+        int craftTime = item.getValue() * craftTimeMultiplier;
+
+        Pending_Inventory newItem = new Pending_Inventory(itemId, state, time, quantity, craftTime, location);
+        newItem.save();
+    }
+
+    public static List<Pending_Inventory> getPendingItems(String location) {
+        List<Location> locations = Location.find(Location.class, "name = ?", location);
+        Location itemLocation = locations.get(0);
+        return Pending_Inventory.getPendingItems(itemLocation.getId());
+    }
+
     public Long getItem() {
         return item;
     }

@@ -18,9 +18,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slots;
 
@@ -44,7 +46,7 @@ public class DisplayHelper {
     public void createSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {
         // Basic setting up
         slotContainer.removeAllViews();
-        int playerLevel = dbh.getPlayerLevel();
+        int playerLevel = Player_Info.getPlayerLevel();
         LinearLayout.LayoutParams slotParams = new LinearLayout.LayoutParams(180, 180);
 
         // Creating the 3 layouts
@@ -92,7 +94,7 @@ public class DisplayHelper {
     }
 
     public void populateSlotContainer(RelativeLayout slotContainer, String location) {
-        List<Pending_Inventory> pendingItems = dbh.getPendingItems(location);
+        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(location);
         LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
         LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
 
@@ -106,8 +108,9 @@ public class DisplayHelper {
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
-                dbh.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
-                dbh.deletePendingItem(pendingItem);
+                Inventory.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
+                //dbh.deletePendingItem(pendingItem);
+                Pending_Inventory.delete(pendingItem);
             } else {
                 // Add 500 so we always round up
                 long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
@@ -186,9 +189,34 @@ public class DisplayHelper {
         return image;
     }
 
+    public int getCoins() {
+        List<Inventory> inventories = Inventory.find(Inventory.class, "STATE = 1 AND ITEM = 52");
+        Inventory inventory = inventories.get(0);
+        return inventory.getQuantity();
+    }
+
+    public void updateCoins(int coins) {
+        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE item = 52");
+        Inventory foundInventory = inventories.get(0);
+        foundInventory.setQuantity(coins);
+        foundInventory.save();
+
+        updateCoinsGUI();
+    }
+
+    public void updateCoinsGUI() {
+        String coinCountString = String.format("%,d", getCoins());
+        MainActivity.coins.setText(coinCountString + " coins");
+    }
+
+    public void updateLevelText() {
+        TextView levelCount = MainActivity.level;
+        levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
+    }
+
     public void createItemIngredientsTable(Long itemId, int state, TableLayout ingredientsTable) {
         // Prepare the ingredients table and retrieve the list of ingredients
-        List<Recipe> ingredients = dbh.getIngredients(itemId, state);
+        List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
         ingredientsTable.removeAllViews();
 
         // Add a header row
@@ -201,18 +229,18 @@ public class DisplayHelper {
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
-        Item item = dbh.getItem(itemId);
+        Item item = Item.findById(Item.class, itemId);
         levelRow.addView(createTextView("", 15, Color.DKGRAY));
         levelRow.addView(createTextView("Level", 15, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(item.getLevel()), 15, Color.DKGRAY));
-        levelRow.addView(createTextView(Integer.toString(dbh.getPlayerLevel()), 15, Color.DKGRAY));
+        levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 15, Color.DKGRAY));
         ingredientsTable.addView(levelRow);
 
 
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
-            Item itemIngredient = dbh.getItem(ingredient.getIngredient());
-            Inventory owned = dbh.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
+            Item itemIngredient = Item.findById(Item.class, ingredient.getIngredient());
+            Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
             String itemName = itemIngredient.getName();

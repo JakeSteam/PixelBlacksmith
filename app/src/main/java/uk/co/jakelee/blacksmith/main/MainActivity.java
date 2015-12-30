@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
             execSQL();
         }
 
-        dbh.updateCoinsGUI();
-        dbh.updateLevelText();
+        dh.updateCoinsGUI();
+        dh.updateLevelText();
         createSlots();
     }
 
@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 updateSlots();
-                dbh.updateCoinsGUI();
+                dh.updateCoinsGUI();
                 handler.postDelayed(this, 1000);
             }
         };

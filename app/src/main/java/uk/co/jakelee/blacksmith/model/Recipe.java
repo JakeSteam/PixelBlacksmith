@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 public class Recipe extends SugarRecord {
     Long id;
     Long item;
@@ -20,6 +22,10 @@ public class Recipe extends SugarRecord {
         this.ingredient = ingredient;
         this.ingredientState = ingredientState;
         this.quantity = quantity;
+    }
+
+    public static List<Recipe> getIngredients(Long id, int state) {
+        return Recipe.findWithQuery(Recipe.class, "SELECT * FROM recipe WHERE item = " + id + " AND item_state = " + state);
     }
 
     public Long getId() {

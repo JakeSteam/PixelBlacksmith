@@ -1,6 +1,12 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.widget.TextView;
+
 import com.orm.SugarRecord;
+
+import java.util.List;
+
+import uk.co.jakelee.blacksmith.main.MainActivity;
 
 public class Player_Info extends SugarRecord {
     Long id;
@@ -17,6 +23,34 @@ public class Player_Info extends SugarRecord {
         this.name = name;
         this.textValue = textValue;
         this.intValue = intValue;
+    }
+
+    public static int getPlayerLevel() {
+        int xp = getXp();
+        return convertXpToLevel(xp);
+    }
+
+    public static int convertXpToLevel(int xp) {
+        return xp / 100;
+    }
+
+    public static int getXp() {
+        List<Player_Info> xpInfos = Player_Info.find(Player_Info.class, "name = ?", "XP");
+        Player_Info xpInfo = xpInfos.get(0);
+
+        return xpInfo.getIntValue();
+    }
+
+    public static void addXp(int xp) {
+        List<Player_Info> xpInfos = Player_Info.find(Player_Info.class, "name = ?", "XP");
+        Player_Info xpInfo = xpInfos.get(0);
+        xpInfo.setIntValue(xpInfo.getIntValue() + xp);
+        xpInfo.save();
+    }
+
+    public static void updateLevelText() {
+        TextView levelCount = MainActivity.level;
+        levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
     }
 
     public Long getId() {
