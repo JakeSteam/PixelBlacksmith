@@ -75,7 +75,7 @@ public class TableActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 2);
+        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 1);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
@@ -88,8 +88,19 @@ public class TableActivity extends Activity {
 
     public void displayItemInfo(Long itemId, int state) {
         View table = findViewById(R.id.table);
-        Item item = dbh.getItem(itemId);
-        Inventory count = dbh.getInventory(itemId, state);
+        List<Item> items = Item.find(Item.class, "id = " + itemId);
+        Item item = items.get(0);
+
+        List<Inventory> invent2 = Inventory.listAll(Inventory.class);
+        List<Inventory> inventories = Inventory.find(Inventory.class, "item = " + itemId + " AND state = " + state);
+        Inventory count = new Inventory();
+        if (inventories.size() > 0) {
+            count = inventories.get(0);
+        } else {
+            count.setItem(itemId);
+            count.setState(state);
+            count.setQuantity(0);
+        }
 
         TextView itemName = (TextView) findViewById(R.id.itemName);
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
@@ -147,7 +158,7 @@ public class TableActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 2);
+            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 1);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
             dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);

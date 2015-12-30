@@ -88,8 +88,18 @@ public class AnvilActivity extends Activity {
 
     public void displayItemInfo(Long itemId, int state) {
         View anvil = findViewById(R.id.anvil);
-        Item item = dbh.getItem(itemId);
-        Inventory count = dbh.getInventory(itemId, state);
+        List<Item> items = Item.find(Item.class, "id = " + itemId);
+        Item item = items.get(0);
+
+        List<Inventory> inventories = Inventory.find(Inventory.class, "item = " + itemId + " AND state = " + state);
+        Inventory count = new Inventory();
+        if (inventories.size() > 0) {
+            count = inventories.get(0);
+        } else {
+            count.setItem(itemId);
+            count.setState(state);
+            count.setQuantity(0);
+        }
 
         TextView itemName = (TextView) findViewById(R.id.itemName);
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
