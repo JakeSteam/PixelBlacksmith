@@ -20,7 +20,6 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
-import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Slots;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -258,9 +257,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<Shop> getAllDiscoveredShops(int locationID) {
-        return Shop.listAll(Shop.class);
-    }
+    //public List<Shop> getAllDiscoveredShops(int locationID) {
+    //return Shop.listAll(Shop.class);
+    //}
 
     public void updateCoins(int coins) {
         List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE item = 52");
@@ -287,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int playerLevel = getPlayerLevel();
 
         List<Pending_Inventory> pendingItems = getPendingItems(location);
-        List<Slots> allSlots = getSlots(location);
+        List<Slots> allSlots = Location.getSlots(location);
         for (Slots slot : allSlots) {
             if (slot.getLevel() <= playerLevel && slot.getPremium() != 1) {
                 availableSlots++;
@@ -297,7 +296,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return (availableSlots > pendingItems.size());
     }
 
-    public List<Slots> getSlots(String location) {
-        return Slots.findWithQuery(Slots.class, "SELECT SLOTS.id, SLOTS.location, SLOTS.level, SLOTS.premium FROM SLOTS INNER JOIN LOCATION ON SLOTS.location = LOCATION.id WHERE LOCATION.name = ?", location);
-    }
+    //public List<Slots> getSlots(String location) {
+    //    return Slots.findWithQuery(Slots.class, "SELECT SLOTS.id, SLOTS.location, SLOTS.level, SLOTS.premium FROM SLOTS INNER JOIN LOCATION ON SLOTS.location = LOCATION.id WHERE LOCATION.name = ?", location);
+    //}
 }

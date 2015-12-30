@@ -558,11 +558,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createSlots() {
-        dh.createSlotContainer(sellingSlots, dbh.getSlots("Selling"));
-        dh.createSlotContainer(furnaceSlots, dbh.getSlots("Furnace"));
-        dh.createSlotContainer(anvilSlots, dbh.getSlots("Anvil"));
-        dh.createSlotContainer(mineSlots, dbh.getSlots("Mine"));
-        dh.createSlotContainer(tableSlots, dbh.getSlots("Table"));
+        dh.createSlotContainer(sellingSlots, Location.getSlots("Selling"));
+        dh.createSlotContainer(furnaceSlots, Location.getSlots("Furnace"));
+        dh.createSlotContainer(anvilSlots, Location.getSlots("Anvil"));
+        dh.createSlotContainer(mineSlots, Location.getSlots("Mine"));
+        dh.createSlotContainer(tableSlots, Location.getSlots("Table"));
     }
 
     public void updateSlots() {

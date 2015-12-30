@@ -30,7 +30,7 @@ public class MineActivity extends Activity {
     }
 
     public void createShopLists() {
-        List<Shop> discoveredShops = dbh.getAllDiscoveredShops(mineLocationID);
+        List<Shop> discoveredShops = Shop.listAll(Shop.class);//dbh.getAllDiscoveredShops(mineLocationID);
 
         LinearLayout mineList = (LinearLayout) findViewById(R.id.mineList);
         mineList.removeAllViews();
