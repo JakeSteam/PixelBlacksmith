@@ -14,20 +14,17 @@ import android.widget.Toast;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class InventoryActivity extends Activity {
-    public static DatabaseHelper dbh;
     public static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        dbh = DatabaseHelper.getInstance(getApplicationContext());
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         updateInventoryTable();

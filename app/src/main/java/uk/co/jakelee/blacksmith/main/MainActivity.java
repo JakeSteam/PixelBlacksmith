@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -26,7 +25,6 @@ import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
 
 public class MainActivity extends AppCompatActivity {
-    public static DatabaseHelper dbh;
     public static DisplayHelper dh;
     public static Handler handler = new Handler();
 
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dbh = DatabaseHelper.getInstance(getApplicationContext());
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         coins = (TextView) findViewById(R.id.coinCount);

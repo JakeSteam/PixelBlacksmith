@@ -10,12 +10,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Shop;
 
 public class MineActivity extends Activity {
-    public static DatabaseHelper dbh;
     public static DisplayHelper dh;
     private static int mineLocationID = 3;
 
@@ -23,7 +21,6 @@ public class MineActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine);
-        dbh = DatabaseHelper.getInstance(getApplicationContext());
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         createShopLists();

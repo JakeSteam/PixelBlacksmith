@@ -16,13 +16,11 @@ import android.widget.ViewFlipper;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class TableActivity extends Activity {
-    public static DatabaseHelper dbh;
     public static DisplayHelper dh;
     public int displayedTier = 1;
     private ViewFlipper mViewFlipper;
@@ -32,7 +30,6 @@ public class TableActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
-        dbh = DatabaseHelper.getInstance(getApplicationContext());
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);

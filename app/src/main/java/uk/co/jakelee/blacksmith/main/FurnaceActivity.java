@@ -16,13 +16,11 @@ import android.widget.ViewFlipper;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class FurnaceActivity extends Activity {
-    public static DatabaseHelper dbh;
     public static DisplayHelper dh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
@@ -31,7 +29,6 @@ public class FurnaceActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnace);
-        dbh = DatabaseHelper.getInstance(getApplicationContext());
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);

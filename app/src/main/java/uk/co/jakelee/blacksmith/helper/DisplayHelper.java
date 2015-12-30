@@ -29,11 +29,9 @@ import uk.co.jakelee.blacksmith.model.Slots;
 public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private static Context context;
-    private static DatabaseHelper dbh;
 
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;
-        DisplayHelper.dbh = DatabaseHelper.getInstance(context);
     }
 
     public static DisplayHelper getInstance(Context ctx) {
