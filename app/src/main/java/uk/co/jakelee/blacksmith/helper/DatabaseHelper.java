@@ -245,7 +245,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean sellItem(Long itemId, int state, int quantity, int price) {
-        Long locationId = 2L;
+        Long locationId = 3L;
         Long coinId = 52L;
         String locationName = "Selling";
 

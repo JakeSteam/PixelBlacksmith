@@ -34,7 +34,7 @@ public class InventoryActivity extends Activity {
     }
 
     public void updateInventoryTable() {
-        List<Inventory> allInventoryItems = Inventory.listAll(Inventory.class); //dbh.getAllInventoryItems();
+        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE item <> 52");
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 
