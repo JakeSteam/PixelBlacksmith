@@ -19,7 +19,6 @@ public class Shop_Stock extends SugarRecord {
         this.price = price;
         this.discovered = discovered;
         this.stock = stock;
-        this.save();
     }
 
     public Long getItemID() {

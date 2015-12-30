@@ -12,7 +12,6 @@ public class Tier extends SugarRecord {
     public Tier(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.save();
     }
 
     public Long getId() {

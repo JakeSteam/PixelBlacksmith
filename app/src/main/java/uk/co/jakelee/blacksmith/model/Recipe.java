@@ -20,7 +20,6 @@ public class Recipe extends SugarRecord {
         this.ingredient = ingredient;
         this.ingredientState = ingredientState;
         this.quantity = quantity;
-        this.save();
     }
 
     public Long getId() {

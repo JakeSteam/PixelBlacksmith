@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 public class Pending_Inventory extends SugarRecord {
     Long item;
     int state;
@@ -20,7 +22,10 @@ public class Pending_Inventory extends SugarRecord {
         this.quantity = quantity;
         this.craftTime = craftTime;
         this.locationID = locationID;
-        this.save();
+    }
+
+    public static List<Pending_Inventory> getPendingItems(Long locationID) {
+        return Pending_Inventory.find(Pending_Inventory.class, "location_id = ?", Long.toString(locationID));
     }
 
     public Long getItem() {
@@ -46,7 +51,6 @@ public class Pending_Inventory extends SugarRecord {
     public void setTimeCreated(long timeCreated) {
         this.timeCreated = timeCreated;
     }
-
 
     public int getQuantity() {
         return quantity;

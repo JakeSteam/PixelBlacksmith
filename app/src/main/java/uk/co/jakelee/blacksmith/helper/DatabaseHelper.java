@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deletePendingItem(Pending_Inventory pendingItem) {
-        Pending_Inventory.deleteAll(Pending_Inventory.class, "SELECT * FROM pending_inventory WHERE item = " + pendingItem.getItem() + " AND time_created = " + pendingItem.getTimeCreated());
+        Pending_Inventory.deleteAll(Pending_Inventory.class, "item = " + pendingItem.getItem() + " AND time_created = " + pendingItem.getTimeCreated());
         /*SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "DELETE FROM pending_inventory WHERE item = " + pendingItem.getItem() + " AND time_created = " + pendingItem.getTimeCreated() + ";";
@@ -114,6 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int craftTimeMultiplier = 3000;
         int craftTime = item.getValue() * craftTimeMultiplier;
         Pending_Inventory newItem = new Pending_Inventory(itemId, state, time, quantity, craftTime, location);
+        newItem.save();
 
         /*SQLiteDatabase db = this.getWritableDatabase();
 
@@ -126,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addItem(Long itemId, int state, int quantity) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
-        updateInventory(craftedItem);
+        craftedItem.save();
 
         addXp(getItem(craftedItem.getItem()).getValue());
         updateLevelText();
@@ -165,9 +166,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void addXp(int xp) {
-        List<Player_Info> xpInfos = Player_Info.findWithQuery(Player_Info.class, "SELECT * FROM PLAYER_INFO WHERE name = ?", "XP");
+        List<Player_Info> xpInfos = Player_Info.find(Player_Info.class, "name = ?", "XP");
         Player_Info xpInfo = xpInfos.get(0);
-        xpInfo.setIntValue(xp);
+        xpInfo.setIntValue(xpInfo.getIntValue() + xp);
         xpInfo.save();
 
         /*String query = "UPDATE player_info SET int_value = int_value + " + xp + " WHERE name = 'XP'";
@@ -202,7 +203,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Location getLocation(Long id) {
-        return Location.findById(Location.class, id);
+        List<Location> locations = Location.find(Location.class, "id = " + id);
+        return locations.get(0);
         /*String query = "SELECT * FROM locations WHERE _id = " + id;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -278,7 +280,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCoins() {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = 1 AND item = 52");
+        List<Inventory> inventories = Inventory.find(Inventory.class, "STATE = 1 AND ITEM = 52");
         Inventory inventory = inventories.get(0);
         return inventory.getQuantity();
     }
@@ -308,7 +310,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Inventory getInventory(Long id, int state) {
         List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + id);
-        return inventories.get(0);
+
+        // If nothing is returned, return a default count of 0.
+        if (inventories.size() > 0) {
+            return inventories.get(0);
+        } else {
+            return new Inventory(id, state, 0);
+        }
 
         /*String query = "SELECT * FROM inventory WHERE item = " + id + " AND state = " + state;
 
@@ -337,9 +345,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         // 2: Check we've got enough of all ingredients
-        List<Recipe> ingredients = Recipe.findWithQuery(Recipe.class, "SELECT * FROM recipe WHERE state = " + state + " + item = " + itemID);
+        List<Recipe> ingredients = Recipe.find(Recipe.class, "item_state = " + state + " AND item = " + itemID);
         for (Recipe recipe : ingredients) {
-            List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE state = " + recipe.getIngredientState() + " AND id = " + recipe.getIngredient());
+            List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + recipe.getIngredientState() + " AND id = " + recipe.getIngredient());
             Inventory inventory = inventories.get(0);
             if (recipe.getQuantity() > inventory.getQuantity()) {
                 return false;
@@ -409,7 +417,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateInventory(Inventory inventory) {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE state = " + inventory.getState() + " AND id = " + inventory.getItem());
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + inventory.getState() + " AND id = " + inventory.getItem());
         Inventory foundInventory = inventories.get(0);
         foundInventory.setQuantity(inventory.getQuantity());
         foundInventory.save();
@@ -504,7 +512,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Pending_Inventory> getPendingItems(String location) {
-        return Pending_Inventory.findWithQuery(Pending_Inventory.class, "SELECT item, state, time_created, quantity, craft_time, location_id FROM pendinginventory INNER JOIN location ON pendinginventory.location_id = location.id WHERE location.name = ?", location);
+        List<Location> locations = Location.find(Location.class, "name = ?", location);
+        Location itemLocation = locations.get(0);
+        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(itemLocation.getId());
+
+        //List<Pending_Inventory> pendingItems = Pending_Inventory.listAll(Pending_Inventory.class);
+        if (pendingItems.size() > 0) {
+            Log.d("TEST TEST TEST", "THERE'S AN ITEM IN HERE!");
+        }
+
+        return pendingItems;
+        //return Pending_Inventory.findWithQuery(Pending_Inventory.class, "SELECT pendinginventory.item, pendinginventory.state, pendinginventory.time_created, pendinginventory.quantity, pendinginventory.craft_time, pendinginventory.location_id FROM pendinginventory INNER JOIN location ON pendinginventory.location_id = location.id WHERE location.name = ?", location);
 
         /*List<Pending_Inventory> items = new ArrayList<>();
 
