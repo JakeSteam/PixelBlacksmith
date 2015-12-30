@@ -54,7 +54,7 @@ public class FurnaceActivity extends Activity {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         // Add all bars to the selector
-        List<Item> items = dbh.getItemsByType(2, 2);
+        List<Item> items = Item.find(Item.class, "type BETWEEN " + 2 + " AND " + 2);
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 

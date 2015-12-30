@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.List;
-
-import uk.co.jakelee.blacksmith.model.Item;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
@@ -35,13 +31,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    }
-
-    public List<Item> getItemsByType(int typeMin, int typeMax) {
-        return Item.findWithQuery(Item.class, "SELECT * FROM Item WHERE type BETWEEN " + typeMin + " AND " + typeMax);
-    }
-
-    public List<Item> getSmithableItems(int typeMin, int typeMax, int tierMin, int tierMax) {
-        return Item.findWithQuery(Item.class, "SELECT * FROM item WHERE type BETWEEN " + typeMin + " AND " + typeMax + " AND tier BETWEEN " + tierMin + " AND " + tierMax + " ORDER BY level ASC");
     }
 }

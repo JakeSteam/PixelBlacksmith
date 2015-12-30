@@ -60,7 +60,7 @@ public class TableActivity extends Activity {
         }
 
         // Get all items that are of the correct tier
-        List<Item> items = dbh.getSmithableItems(3, 18, displayedTier, displayedTier);
+        List<Item> items = Item.find(Item.class, "type BETWEEN " + 3 + " AND " + 18 + " AND tier = " + displayedTier + " ORDER BY level ASC");
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
