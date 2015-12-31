@@ -34,28 +34,47 @@
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
-    <ViewFlipper
-        android:id="@+id/viewFlipper"
+    <Button
+        android:id="@+id/tableUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/itemName"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp" />
+        android:layout_below="@+id/tableTitle"
+        android:layout_marginTop="5dp"
+        android:onClick="goUpTier"
+        android:text="^" />
+
+    <Button
+        android:id="@+id/tableDownButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tableUpButton"
+        android:layout_alignRight="@+id/tableUpButton"
+        android:layout_below="@+id/tableUpButton"
+        android:onClick="goDownTier"
+        android:text="v" />
 
     <TextView
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tableTitle"
-        android:padding="5dp"
+        android:layout_toRightOf="@id/tableUpButton"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:singleLine="true"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000"
         android:textSize="18sp" />
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemName"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/tableUpButton"
+        android:paddingBottom="8dp"/>
 
     <TextView
         android:id="@+id/itemDesc"
@@ -63,7 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/itemName"
         android:layout_toRightOf="@id/viewFlipper"
-        android:padding="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000"

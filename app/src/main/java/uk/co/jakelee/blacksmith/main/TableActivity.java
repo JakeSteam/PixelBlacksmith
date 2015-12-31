@@ -88,7 +88,6 @@ public class TableActivity extends Activity {
         List<Item> items = Item.find(Item.class, "id = " + itemId);
         Item item = items.get(0);
 
-        List<Inventory> invent2 = Inventory.listAll(Inventory.class);
         List<Inventory> inventories = Inventory.find(Inventory.class, "item = " + itemId + " AND state = " + state);
         Inventory count = new Inventory();
         if (inventories.size() > 0) {
