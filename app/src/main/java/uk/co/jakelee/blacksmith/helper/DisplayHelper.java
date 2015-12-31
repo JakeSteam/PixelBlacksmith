@@ -166,7 +166,6 @@ public class DisplayHelper {
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
         Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        //bMap = Bitmap.createScaledBitmap(bMap, width, height, true);
         Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
 
         if (canCraft != 1) {
@@ -176,6 +175,7 @@ public class DisplayHelper {
         }
 
         ImageView image = new ImageView(context);
+        //image.setAdjustViewBounds(true);
         image.setId(viewId);
         image.setTag(itemId);
         image.setImageDrawable(imageResource);
