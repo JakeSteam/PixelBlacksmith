@@ -46,7 +46,7 @@ public class InventoryActivity extends Activity {
             TableRow itemRow = new TableRow(getApplicationContext());
             List<Item> items = Item.find(Item.class, "id = " + inventoryItem.getItem());
             Item item = items.get(0);
-            ImageView image = dh.createItemImage(item.getId(), 15, 15, 1);
+            ImageView image = dh.createItemImage(item.getId(), 100, 100, 1);
 
             String itemName = item.getName();
             if (inventoryItem.getState() == 2) {
@@ -56,7 +56,7 @@ public class InventoryActivity extends Activity {
             TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
-            ImageView sell = dh.createItemImage(52L, 15, 15, 1);
+            ImageView sell = dh.createItemImage(52L, 100, 100, 1);
             sell.setTag(item.getId());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
