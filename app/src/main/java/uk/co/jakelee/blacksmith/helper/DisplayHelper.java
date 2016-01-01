@@ -219,6 +219,7 @@ public class DisplayHelper {
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
         ingredientsTable.removeAllViews();
+        ingredientsTable.setColumnStretchable(1, true);
 
         // Add a header row
         TableRow headerRow = new TableRow(context);
@@ -248,9 +249,11 @@ public class DisplayHelper {
             if (ingredient.getIngredientState() == 2) {
                 itemName = "(unf) " + itemName;
             }
+            TextView itemNameView = createTextView(itemName, 15, Color.DKGRAY);
+            itemNameView.setSingleLine(false);
 
             row.addView(createItemImage(ingredient.getIngredient(), 66, 62, 1));
-            row.addView(createTextView(itemName, 15, Color.DKGRAY));
+            row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
 
