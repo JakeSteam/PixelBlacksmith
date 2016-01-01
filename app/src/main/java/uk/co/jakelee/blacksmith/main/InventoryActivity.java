@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,7 +39,7 @@ public class InventoryActivity extends Activity {
         TableRow headerRow = new TableRow(getApplicationContext());
         headerRow.addView(dh.createTextView("", 18, Color.BLACK));
         headerRow.addView(dh.createTextView("Name", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Have", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Qty", 18, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 18, Color.BLACK));
         inventoryTable.addView(headerRow);
 
@@ -55,8 +56,14 @@ public class InventoryActivity extends Activity {
 
             TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
+            name.setWidth(275);
 
-            ImageView sell = dh.createItemImage(52L, 100, 100, 1);
+            TextView count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
+
+            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 15, Color.WHITE);
+            sell.setWidth(30);
+            sell.setGravity(Gravity.CENTER);
+            sell.setBackgroundResource(R.drawable.item52);
             sell.setTag(item.getId());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -66,7 +73,7 @@ public class InventoryActivity extends Activity {
 
             itemRow.addView(image);
             itemRow.addView(name);
-            itemRow.addView(dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK));
+            itemRow.addView(count);
             itemRow.addView(sell);
             inventoryTable.addView(itemRow);
         }

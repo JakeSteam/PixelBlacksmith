@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -101,19 +102,20 @@ public class DisplayHelper {
             long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
             long currentTime = System.currentTimeMillis();
             int drawableId = context.getResources().getIdentifier("item" + pendingItem.getItem(), "drawable", context.getPackageName());
+
             ImageView slotItem = (ImageView) frontContainer.getChildAt(i);
             TextView slotCount = (TextView) countContainer.getChildAt(i);
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
                 Inventory.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
-                //dbh.deletePendingItem(pendingItem);
                 Pending_Inventory.delete(pendingItem);
             } else {
                 // Add 500 so we always round up
                 long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
                 slotItem.setImageResource(drawableId);
                 slotCount.setText(Long.toString(timeLeft));
+                slotCount.setGravity(Gravity.CENTER);
                 i++;
             }
         }
