@@ -34,12 +34,22 @@
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:background="#000000"
+        android:alpha="0.2"
+        android:layout_below="@id/furnaceTitle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"/>
+
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/itemName"
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
