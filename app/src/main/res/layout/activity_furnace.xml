@@ -62,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/furnaceTitle"
         android:padding="5dp"
+        android:layout_marginLeft="10dp"
         android:singleLine="true"
         android:text="Loading..."
         android:textAppearance="?android:attr/textAppearanceMedium"
