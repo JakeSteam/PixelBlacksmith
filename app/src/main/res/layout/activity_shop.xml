@@ -33,4 +33,10 @@
         android:textIsSelectable="false"
         android:textSize="55sp" />
 
+    <RelativeLayout
+        android:id="@+id/shopkeeperInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopTitle"/>
+
 </RelativeLayout>

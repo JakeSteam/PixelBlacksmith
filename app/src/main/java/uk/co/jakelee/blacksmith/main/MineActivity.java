@@ -48,12 +48,12 @@ public class MineActivity extends Activity {
             TextView shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
             LinearLayout shopItems = createShopOfferings(shop);
 
+            // Creating open shop button
             ImageView shopBtn = new ImageView(getApplicationContext());
             shopBtn.setTag(shop.getId());
             shopBtn.setBackgroundResource(R.drawable.open_shop);
             shopBtn.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    //finish();
                     Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
                     intent.putExtra(SHOP_TO_LOAD, v.getTag().toString());
                     startActivity(intent);

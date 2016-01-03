@@ -28,7 +28,7 @@ public class UpgradeHelper {
         category4.save();
         category5.save();
 
-        Character character = new Character(0L, "S. Keeper", "He looks a little bit shifty...", "Greetings! See anything you like?", "Remember, no refunds!");
+        Character character = new Character(1L, "S. Keeper", "He looks a little bit shifty...", "Greetings! See anything you like?", "Remember, no refunds!");
         character.save();
 
         Inventory inventory = new Inventory(1L, 1, 101);
@@ -545,11 +545,11 @@ public class UpgradeHelper {
         recipe158.save();
         recipe159.save();
 
-        Shop shop = new Shop(0L, 0, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
-        Shop shop1 = new Shop(1L, 0, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
-        Shop shop2 = new Shop(2L, 0, 3, "Rare Ore", "This shop is too rare to be found.", 5, 0);
-        Shop shop3 = new Shop(3L, 0, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
-        Shop shop4 = new Shop(4L, 0, 3, "Silver Miner", "Cor, ore!", 20, 1);
+        Shop shop = new Shop(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
+        Shop shop1 = new Shop(1L, 1, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
+        Shop shop2 = new Shop(2L, 1, 3, "Rare Ore", "This shop is too rare to be found.", 5, 0);
+        Shop shop3 = new Shop(3L, 1, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
+        Shop shop4 = new Shop(4L, 1, 3, "Silver Miner", "Cor, ore!", 20, 1);
         shop.save();
         shop1.save();
         shop2.save();

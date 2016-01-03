@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="shopkeeperPic" type="id" />
+    <item name="shopkeeperName" type="id" />
+    <item name="shopkeeperIntro" type="id" />
 </resources>
