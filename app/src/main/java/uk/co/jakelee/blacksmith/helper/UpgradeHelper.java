@@ -28,8 +28,10 @@ public class UpgradeHelper {
         category4.save();
         category5.save();
 
-        Character character = new Character(1L, "S. Keeper", "He looks a little bit shifty...", "Greetings! See anything you like?", "Remember, no refunds!");
-        character.save();
+        Character character1 = new Character(1L, "Sean Keeper", "He looks a little bit shifty...", "Greetings! See anything you like?", "Remember, no refunds!");
+        Character character2 = new Character(2L, "Mr Hellfire", "Hot stuff.", "Hey! Do you like my armour?", "No refunds, comrade.");
+        character1.save();
+        character2.save();
 
         Inventory inventory = new Inventory(1L, 1, 101);
         Inventory inventory1 = new Inventory(2L, 1, 102);
@@ -546,24 +548,24 @@ public class UpgradeHelper {
         recipe159.save();
 
         Shop shop = new Shop(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
-        Shop shop1 = new Shop(1L, 1, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
-        Shop shop2 = new Shop(2L, 1, 3, "Rare Ore", "This shop is too rare to be found.", 5, 0);
+        Shop shop1 = new Shop(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
+        Shop shop2 = new Shop(2L, 1, 3, "Rare Ore", "This shop is too rare to be found.", 5, 1);
         Shop shop3 = new Shop(3L, 1, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
-        Shop shop4 = new Shop(4L, 1, 3, "Silver Miner", "Cor, ore!", 20, 1);
+        Shop shop4 = new Shop(4L, 2, 3, "Silver Miner", "Cor, ore!", 10, 1);
         shop.save();
         shop1.save();
         shop2.save();
         shop3.save();
         shop4.save();
 
-        Shop_Stock shopStock = new Shop_Stock(1L, 1L, 4, 1, 5);
-        Shop_Stock shopStock1 = new Shop_Stock(1L, 2L, 4, 1, 5);
-        Shop_Stock shopStock2 = new Shop_Stock(2L, 1L, 3, 1, 10);
-        Shop_Stock shopStock3 = new Shop_Stock(2L, 2L, 3, 1, 10);
-        Shop_Stock shopStock4 = new Shop_Stock(3L, 3L, 8, 1, 10);
-        Shop_Stock shopStock5 = new Shop_Stock(4L, 2L, 3, 1, 10);
-        Shop_Stock shopStock6 = new Shop_Stock(5L, 9L, 8, 1, 1);
-        Shop_Stock shopStock7 = new Shop_Stock(5L, 8L, 8, 1, 1);
+        Shop_Stock shopStock = new Shop_Stock(1L, 1L, 1, 1, 5);
+        Shop_Stock shopStock1 = new Shop_Stock(1L, 2L, 1, 1, 5);
+        Shop_Stock shopStock2 = new Shop_Stock(2L, 1L, 1, 1, 10);
+        Shop_Stock shopStock3 = new Shop_Stock(2L, 2L, 1, 1, 10);
+        Shop_Stock shopStock4 = new Shop_Stock(3L, 3L, 1, 1, 10);
+        Shop_Stock shopStock5 = new Shop_Stock(4L, 2L, 1, 1, 10);
+        Shop_Stock shopStock6 = new Shop_Stock(5L, 9L, 1, 1, 1);
+        Shop_Stock shopStock7 = new Shop_Stock(5L, 8L, 1, 1, 1);
         shopStock.save();
         shopStock1.save();
         shopStock2.save();

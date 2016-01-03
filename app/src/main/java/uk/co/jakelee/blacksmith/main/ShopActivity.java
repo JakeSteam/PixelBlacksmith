@@ -4,15 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Shop;
+import uk.co.jakelee.blacksmith.model.Shop_Stock;
 
 public class ShopActivity extends Activity {
     public static DisplayHelper dh;
@@ -26,9 +36,11 @@ public class ShopActivity extends Activity {
 
         Intent intent = getIntent();
         int shopId = Integer.parseInt(intent.getStringExtra(MineActivity.SHOP_TO_LOAD));
-        shop = Shop.findById(Shop.class, shopId);
 
-        createShopInterface();
+        if (shopId > 0) {
+            shop = Shop.findById(Shop.class, shopId);
+            createShopInterface();
+        }
     }
 
     public void createShopInterface() {
@@ -66,7 +78,45 @@ public class ShopActivity extends Activity {
     }
 
     public void createItemList() {
+        TableLayout shopItemsInfo = (TableLayout) findViewById(R.id.shopItemsInfo);
+        shopItemsInfo.removeAllViews();
+        List<Shop_Stock> itemsForSale = Shop_Stock.find(Shop_Stock.class, "discovered = 1 AND shop_id = ?", Long.toString(shop.getId()));
 
+        for (Shop_Stock itemForSale : itemsForSale) {
+            TableRow itemRow = new TableRow(getApplicationContext());
+            Item item = Item.findById(Item.class, itemForSale.getItemID());
+
+            ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 30, 30, 1);
+            TextView itemStock = dh.createTextView(itemForSale.getStock() + "x " + item.getName(), 16, Color.BLACK);
+            TextView itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
+            itemBuy.setWidth(30);
+            itemBuy.setShadowLayer(10, 0, 0, Color.WHITE);
+            itemBuy.setGravity(Gravity.CENTER);
+            itemBuy.setBackgroundResource(R.drawable.buy);
+            itemBuy.setTag(item.getId());
+            itemBuy.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    clickBuyButton(v);
+                }
+            });
+
+            itemRow.addView(itemImage);
+            itemRow.addView(itemStock);
+            itemRow.addView(itemBuy);
+
+            shopItemsInfo.addView(itemRow);
+        }
+    }
+
+    public void clickBuyButton(View v) {
+        Item itemToBuy = Item.findById(Item.class, (Long) v.getTag());
+
+        if (Inventory.buyItem(itemToBuy.getId(), 1, shop.getId(), itemToBuy.getValue())) {
+            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending buying for %3s coin(s)", 1, itemToBuy.getName(), itemToBuy.getValue()), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), String.format("Couldn't buy %1s", itemToBuy.getName()), Toast.LENGTH_SHORT).show();
+        }
+        createItemList();
     }
 
     public void closeShop(View view) {

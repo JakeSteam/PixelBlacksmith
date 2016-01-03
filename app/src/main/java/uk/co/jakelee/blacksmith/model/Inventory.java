@@ -111,12 +111,55 @@ public class Inventory extends SugarRecord {
             itemStock.setQuantity(itemStock.getQuantity() - quantity);
             itemStock.save();
 
+            // Add coins
             Pending_Inventory.addItem(coinId, 1, price, locationId);
+
             return true;
         } else {
             return false;
         }
     }
+
+    public static boolean canBuyItem(Long itemId, int state, Long shopId, int price) {
+        Long coinId = 52L;
+
+        // Can it be afforded?
+        List<Inventory> coinsList = Inventory.find(Inventory.class, "item = ?", Long.toString(coinId));
+        Inventory coins = coinsList.get(0);
+
+        // Is there stock?
+        List<Shop_Stock> itemStocks = Shop_Stock.find(Shop_Stock.class, "shop_id = " + shopId + " AND item_id = " + itemId + " AND state = " + state);
+        Shop_Stock itemStock = itemStocks.get(0);
+
+        return ((coins.getQuantity() - price) >= 0) && (itemStock.getStock() > 0);
+    }
+
+    public static boolean buyItem(Long itemId, int state, Long shopId, int price) {
+        Long locationId = 4L;
+        Long coinId = 52L;
+        String locationName = "Mine";
+
+        if (canBuyItem(itemId, state, shopId, price) && Slots.hasAvailableSlot(locationName)) {
+            // Remove coins
+            Inventory coinStock = Inventory.getInventory(coinId, state);
+            coinStock.setQuantity(coinStock.getQuantity() - price);
+            coinStock.save();
+
+            // Remove stock
+            List<Shop_Stock> itemStocks = Shop_Stock.find(Shop_Stock.class, "shop_id = " + shopId + " AND item_id = " + itemId + " AND state = " + state);
+            Shop_Stock itemStock = itemStocks.get(0);
+            itemStock.setStock(itemStock.getStock() - 1);
+            itemStock.save();
+
+            // Add item
+            Pending_Inventory.addItem(itemId, 1, 1, locationId);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public Long getItem() {
         return item;

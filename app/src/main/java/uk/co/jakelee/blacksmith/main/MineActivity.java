@@ -17,6 +17,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Shop_Stock;
 
@@ -35,7 +36,7 @@ public class MineActivity extends Activity {
     }
 
     public void createShopLists() {
-        List<Shop> discoveredShops = Shop.listAll(Shop.class);
+        List<Shop> discoveredShops = Shop.find(Shop.class, "discovered = 1 AND location = 3 AND level <= ?", Integer.toString(Player_Info.getPlayerLevel()));
 
         TableLayout mineList = (TableLayout) findViewById(R.id.mineList);
         mineList.setColumnStretchable(0, true);

@@ -5,7 +5,7 @@ import com.orm.SugarRecord;
 public class Shop_Stock extends SugarRecord {
     Long shopID;
     Long itemID;
-    int price;
+    int state;
     int discovered;
     int stock;
 
@@ -13,10 +13,10 @@ public class Shop_Stock extends SugarRecord {
 
     }
 
-    public Shop_Stock(Long shopID, Long itemID, int price, int discovered, int stock) {
+    public Shop_Stock(Long shopID, Long itemID, int state, int discovered, int stock) {
         this.shopID = shopID;
         this.itemID = itemID;
-        this.price = price;
+        this.state = state;
         this.discovered = discovered;
         this.stock = stock;
     }
@@ -37,20 +37,20 @@ public class Shop_Stock extends SugarRecord {
         this.shopID = shopID;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getDiscovered() {
         return discovered;
     }
 
     public void setDiscovered(int discovered) {
         this.discovered = discovered;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 
     public int getStock() {
