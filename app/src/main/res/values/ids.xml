@@ -3,4 +3,6 @@
     <item name="shopkeeperPic" type="id" />
     <item name="shopkeeperName" type="id" />
     <item name="shopkeeperIntro" type="id" />
+    <item name="shopName" type="id" />
+    <item name="shopDesc" type="id" />
 </resources>

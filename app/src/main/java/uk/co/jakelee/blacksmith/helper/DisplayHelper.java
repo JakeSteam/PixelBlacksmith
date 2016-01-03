@@ -190,6 +190,27 @@ public class DisplayHelper {
         return image;
     }
 
+    public ImageView createCharacterImage(Long charId, int width, int height) {
+        int viewId = context.getResources().getIdentifier("img" + Long.toString(charId), "id", context.getPackageName());
+        int drawableId = context.getResources().getIdentifier("character" + charId, "drawable", context.getPackageName());
+
+        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
+
+        ImageView image = new ImageView(context);
+        //image.setAdjustViewBounds(true);
+        image.setId(viewId);
+        image.setTag(charId);
+        image.setImageDrawable(imageResource);
+        image.setMaxWidth(width);
+        image.setMinimumWidth(width);
+        image.setMaxHeight(height);
+        image.setMinimumHeight(height);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        return image;
+    }
+
     public int getCoins() {
         List<Inventory> inventories = Inventory.find(Inventory.class, "STATE = 1 AND ITEM = 52");
         Inventory inventory = inventories.get(0);

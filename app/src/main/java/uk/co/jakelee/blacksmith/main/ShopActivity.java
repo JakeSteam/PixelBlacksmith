@@ -40,8 +40,7 @@ public class ShopActivity extends Activity {
         Character shopkeeper = Character.findById(Character.class, shop.getShopkeeper());
 
         // Creating items
-        ImageView shopkeeperPic = new ImageView(getApplicationContext());
-        shopkeeperPic.setImageResource(R.drawable.open_shop);
+        ImageView shopkeeperPic = dh.createCharacterImage(shopkeeper.getId(), 200, 200);
         shopkeeperPic.setId(R.id.shopkeeperPic);
 
         TextView shopkeeperName = dh.createTextView(shopkeeper.getName(), 20, Color.BLACK);
@@ -67,7 +66,7 @@ public class ShopActivity extends Activity {
     }
 
     public void createItemList() {
-        
+
     }
 
     public void closeShop(View view) {

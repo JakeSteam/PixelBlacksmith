@@ -45,7 +45,10 @@ public class MineActivity extends Activity {
         for (Shop shop : discoveredShops) {
             // Creating elements
             TextView shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
+            shopName.setId(R.id.shopName);
+
             TextView shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
+            shopDesc.setId(R.id.shopDesc);
             LinearLayout shopItems = createShopOfferings(shop);
 
             // Creating open shop button
@@ -63,12 +66,10 @@ public class MineActivity extends Activity {
             // Description modifiers
             RelativeLayout.LayoutParams lpDesc = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             lpDesc.addRule(RelativeLayout.BELOW, shopName.getId());
-            lpDesc.setMargins(0, 70, 0, 0);
 
             // Stock image modifiers
             RelativeLayout.LayoutParams lpImages = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             lpImages.addRule(RelativeLayout.BELOW, shopDesc.getId());
-            lpImages.setMargins(0, 120, 0, 0);
 
             // Make left cell
             RelativeLayout leftLayout = new RelativeLayout(getApplicationContext());
