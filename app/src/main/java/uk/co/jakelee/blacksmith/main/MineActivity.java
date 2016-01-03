@@ -1,9 +1,11 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,6 +23,7 @@ import uk.co.jakelee.blacksmith.model.Shop_Stock;
 public class MineActivity extends Activity {
     public static DisplayHelper dh;
     private static int mineLocationID = 3;
+    public final static String SHOP_TO_LOAD = "uk.co.jakelee.blacksmith.shoptoload";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,9 +46,19 @@ public class MineActivity extends Activity {
             // Creating elements
             TextView shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
             TextView shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
-            ImageView shopBtn = new ImageView(getApplicationContext());
-            shopBtn.setBackgroundResource(R.drawable.open_shop);
             LinearLayout shopItems = createShopOfferings(shop);
+
+            ImageView shopBtn = new ImageView(getApplicationContext());
+            shopBtn.setTag(shop.getId());
+            shopBtn.setBackgroundResource(R.drawable.open_shop);
+            shopBtn.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    //finish();
+                    Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+                    intent.putExtra(SHOP_TO_LOAD, v.getTag().toString());
+                    startActivity(intent);
+                }
+            });
 
             // Description modifiers
             RelativeLayout.LayoutParams lpDesc = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);

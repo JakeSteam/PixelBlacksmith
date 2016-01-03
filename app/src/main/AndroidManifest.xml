@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.jakelee.blacksmith">
+
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="DATABASE"
             android:value="blacksmith.db" />
@@ -20,7 +21,8 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="uk.co.jakelee.blacksmith.model" />
-        <activity android:name="uk.co.jakelee.blacksmith.main.MainActivity">
+
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,22 +30,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uk.co.jakelee.blacksmith.main.InventoryActivity"
+            android:name=".main.InventoryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="uk.co.jakelee.blacksmith.main.MenuActivity"
+            android:name=".main.MenuActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="uk.co.jakelee.blacksmith.main.MineActivity"
+            android:name=".main.MineActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="uk.co.jakelee.blacksmith.main.FurnaceActivity"
+            android:name=".main.FurnaceActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="uk.co.jakelee.blacksmith.main.AnvilActivity"
+            android:name=".main.AnvilActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="uk.co.jakelee.blacksmith.main.TableActivity"
+            android:name=".main.TableActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".main.ShopActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
