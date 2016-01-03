@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.List;
@@ -31,15 +33,18 @@ public class MineActivity extends Activity {
 
     public void createShopLists() {
         List<Shop> discoveredShops = Shop.listAll(Shop.class);
-        LinearLayout mineList = (LinearLayout) findViewById(R.id.mineList);
+
+        TableLayout mineList = (TableLayout) findViewById(R.id.mineList);
+        mineList.setColumnStretchable(0, true);
+        mineList.setColumnStretchable(1, false);
         mineList.removeAllViews();
 
         for (Shop shop : discoveredShops) {
-            RelativeLayout shopLayout = new RelativeLayout(getApplicationContext());
-
             // Creating elements
             TextView shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
             TextView shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
+            ImageView shopBtn = new ImageView(getApplicationContext());
+            shopBtn.setBackgroundResource(R.drawable.open_shop);
             LinearLayout shopItems = createShopOfferings(shop);
 
             // Description modifiers
@@ -52,10 +57,20 @@ public class MineActivity extends Activity {
             lpImages.addRule(RelativeLayout.BELOW, shopDesc.getId());
             lpImages.setMargins(0, 120, 0, 0);
 
-            shopLayout.addView(shopName);
-            shopLayout.addView(shopDesc, lpDesc);
-            shopLayout.addView(shopItems, lpImages);
+            // Make left cell
+            RelativeLayout leftLayout = new RelativeLayout(getApplicationContext());
+            leftLayout.addView(shopName);
+            leftLayout.addView(shopDesc, lpDesc);
+            leftLayout.addView(shopItems, lpImages);
 
+            // Make right cell
+            LinearLayout rightLayout = new LinearLayout(getApplicationContext());
+            rightLayout.addView(shopBtn);
+
+            // Make shop row
+            TableRow shopLayout = new TableRow(getApplicationContext());
+            shopLayout.addView(leftLayout);
+            shopLayout.addView(rightLayout);
             mineList.addView(shopLayout);
         }
 

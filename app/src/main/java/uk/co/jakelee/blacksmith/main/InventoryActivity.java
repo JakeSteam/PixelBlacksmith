@@ -60,10 +60,11 @@ public class InventoryActivity extends Activity {
 
             TextView count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
 
-            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 15, Color.WHITE);
+            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             sell.setWidth(30);
+            sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
-            sell.setBackgroundResource(R.drawable.item52);
+            sell.setBackgroundResource(R.drawable.sell);
             sell.setTag(item.getId());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -74,7 +75,7 @@ public class InventoryActivity extends Activity {
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(count);
-            itemRow.addView(sell);
+            itemRow.addView(sell, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             inventoryTable.addView(itemRow);
         }
     }
@@ -83,7 +84,7 @@ public class InventoryActivity extends Activity {
         Item itemToSell = Item.findById(Item.class, (Long) view.getTag());
 
         if (Inventory.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
-            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coins", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }

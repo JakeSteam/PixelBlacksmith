@@ -40,10 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/mineTitle">
 
-        <LinearLayout
+        <TableLayout
             android:id="@+id/mineList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:layout_height="match_parent" />
     </ScrollView>
 </RelativeLayout>
