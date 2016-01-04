@@ -25,7 +25,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
-import uk.co.jakelee.blacksmith.model.Slots;
+import uk.co.jakelee.blacksmith.model.Slot;
 
 public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
@@ -42,7 +42,7 @@ public class DisplayHelper {
         return dhInstance;
     }
 
-    public void createSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {
+    public void createSlotContainer(RelativeLayout slotContainer, List<Slot> slots) {
         // Basic setting up
         slotContainer.removeAllViews();
         int playerLevel = Player_Info.getPlayerLevel();
@@ -55,7 +55,7 @@ public class DisplayHelper {
 
         // Foreach slot, create the background image and set usable tag
         // Also set text for now.
-        for (Slots slot : slots) {
+        for (Slot slot : slots) {
             ImageView slotBackground = new ImageView(context);
             slotBackground.setLayoutParams(slotParams);
             slotBackground.setAlpha(0.6F);

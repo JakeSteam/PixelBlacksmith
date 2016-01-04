@@ -67,7 +67,7 @@ public class Inventory extends SugarRecord {
         List<Location> locations = Location.find(Location.class, "id = " + locationId);
         Location location = locations.get(0);
 
-        if (canCreateItem(itemId, state) && Slots.hasAvailableSlot(location.getName())) {
+        if (canCreateItem(itemId, state) && Slot.hasAvailableSlot(location.getName())) {
             removeItemIngredients(itemId, state);
             Pending_Inventory.addItem(itemId, state, quantity, locationId);
             return true;
@@ -105,7 +105,7 @@ public class Inventory extends SugarRecord {
         Long coinId = 52L;
         String locationName = "Selling";
 
-        if (canSellItem(itemId, state, quantity) && Slots.hasAvailableSlot(locationName)) {
+        if (canSellItem(itemId, state, quantity) && Slot.hasAvailableSlot(locationName)) {
             // Remove item
             Inventory itemStock = Inventory.getInventory(itemId, state);
             itemStock.setQuantity(itemStock.getQuantity() - quantity);
@@ -139,7 +139,7 @@ public class Inventory extends SugarRecord {
         Long coinId = 52L;
         String locationName = "Mine";
 
-        if (canBuyItem(itemId, state, shopId, price) && Slots.hasAvailableSlot(locationName)) {
+        if (canBuyItem(itemId, state, shopId, price) && Slot.hasAvailableSlot(locationName)) {
             // Remove coins
             Inventory coinStock = Inventory.getInventory(coinId, state);
             coinStock.setQuantity(coinStock.getQuantity() - price);

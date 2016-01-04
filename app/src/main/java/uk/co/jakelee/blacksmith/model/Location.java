@@ -17,8 +17,8 @@ public class Location extends SugarRecord {
         this.name = name;
     }
 
-    public static List<Slots> getSlots(String location) {
-        return Slots.findWithQuery(Slots.class, "SELECT SLOTS.id, SLOTS.location, SLOTS.level, SLOTS.premium FROM SLOTS INNER JOIN LOCATION ON SLOTS.location = LOCATION.id WHERE LOCATION.name = ?", location);
+    public static List<Slot> getSlots(String location) {
+        return Slot.findWithQuery(Slot.class, "SELECT SLOTS.id, SLOTS.location, SLOTS.level, SLOTS.premium FROM SLOTS INNER JOIN LOCATION ON SLOTS.location = LOCATION.id WHERE LOCATION.name = ?", location);
     }
 
     public Long getId() {
