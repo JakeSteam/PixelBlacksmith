@@ -116,14 +116,14 @@
                 android:layout_below="@id/open_table"
                 android:orientation="horizontal" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/visitors_container"
+                android:orientation="horizontal"
+                android:gravity="bottom"
                 android:layout_width="385dp"
                 android:layout_height="125dp"
                 android:layout_marginTop="180dp"
-                android:layout_marginLeft="485dp"
-                android:background="#FFFFFF"
-                android:alpha=".10"/>
+                android:layout_marginLeft="485dp"/>
 
         </RelativeLayout>
     </HorizontalScrollView>

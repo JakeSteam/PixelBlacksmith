@@ -9,6 +9,7 @@
     <string name="anvil_description">An anvil</string>
     <string name="table_description">A table</string>
     <string name="shop_description">A shop</string>
+    <string name="visitor_description">A visitor</string>
 
     <string name="mineText">Mine</string>
     <string name="furnaceText">Furnace</string>
@@ -16,4 +17,5 @@
     <string name="inventoryText">Inventory</string>
     <string name="tableText">Table</string>
     <string name="shopText">Shop</string>
+    <string name="visitorText">Visitor</string>
 </resources>

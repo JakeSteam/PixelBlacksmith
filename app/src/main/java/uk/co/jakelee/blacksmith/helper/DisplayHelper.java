@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -8,6 +9,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,16 +23,19 @@ import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private static Context context;
+    public final static String VISITOR_TO_LOAD = "uk.co.jakelee.blacksmith.visitortoload";
 
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;
@@ -134,6 +140,24 @@ public class DisplayHelper {
         }
     }
 
+    public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer) {
+        List<Visitor> visitors = Visitor.listAll(Visitor.class);
+
+        for (Visitor visitor : visitors) {
+            ImageView visitorImage = createVisitorImage(visitor, 100, 100);
+            visitorImage.setPadding(20, 20, 20, 20);
+            visitorImage.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, VisitorActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(VISITOR_TO_LOAD, v.getTag().toString());
+                    context.startActivity(intent);
+                }
+            });
+            visitorsContainer.addView(visitorImage);
+        }
+    }
+
     public TextView createTextView(String text, int size, int color) {
         TextView textView = new TextView(context);
         textView.setText(text);
@@ -201,6 +225,27 @@ public class DisplayHelper {
         //image.setAdjustViewBounds(true);
         image.setId(viewId);
         image.setTag(charId);
+        image.setImageDrawable(imageResource);
+        image.setMaxWidth(width);
+        image.setMinimumWidth(width);
+        image.setMaxHeight(height);
+        image.setMinimumHeight(height);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        return image;
+    }
+
+    public ImageView createVisitorImage(Visitor visitor, int width, int height) {
+        int viewId = context.getResources().getIdentifier("img" + visitor.getType(), "id", context.getPackageName());
+        int drawableId = context.getResources().getIdentifier("visitor" + visitor.getType(), "drawable", context.getPackageName());
+
+        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
+
+        ImageView image = new ImageView(context);
+        //image.setAdjustViewBounds(true);
+        image.setId(viewId);
+        image.setTag(visitor.getId());
         image.setImageDrawable(imageResource);
         image.setMaxWidth(width);
         image.setMinimumWidth(width);

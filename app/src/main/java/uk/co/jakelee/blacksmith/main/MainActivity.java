@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout anvilSlots;
     public static RelativeLayout mineSlots;
     public static RelativeLayout tableSlots;
+    public static LinearLayout visitorContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
+        visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
 
 
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         dh.updateCoinsGUI();
         dh.updateLevelText();
         createSlots();
+        updateVisitors();
     }
 
     @Override
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 updateSlots();
+                updateVisitors();
                 dh.updateCoinsGUI();
                 handler.postDelayed(this, 1000);
             }
@@ -98,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
         dh.populateSlotContainer(anvilSlots, "Anvil");
         dh.populateSlotContainer(mineSlots, "Mine");
         dh.populateSlotContainer(tableSlots, "Table");
+    }
+
+    public void updateVisitors() {
+        visitorContainer.removeAllViews();
+        dh.populateVisitorsContainer(getApplicationContext(), visitorContainer);
     }
 
     public void openMenu(View view) {
