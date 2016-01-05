@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.helper;
 
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -13,6 +14,9 @@ import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
+import uk.co.jakelee.blacksmith.model.Visitor;
+import uk.co.jakelee.blacksmith.model.Visitor_Demand;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class UpgradeHelper {
 
@@ -32,6 +36,13 @@ public class UpgradeHelper {
         Character character2 = new Character(2L, "Mr Hellfire", "Hot stuff.", "Hey! Do you like my armour?", "No refunds, comrade.");
         character1.save();
         character2.save();
+
+        Criteria criteria1 = new Criteria(1L, "State");
+        Criteria criteria2 = new Criteria(2L, "Tier");
+        Criteria criteria3 = new Criteria(3L, "Type");
+        criteria1.save();
+        criteria2.save();
+        criteria3.save();
 
         Inventory inventory = new Inventory(1L, 1, 101);
         Inventory inventory1 = new Inventory(2L, 1, 102);
@@ -678,6 +689,27 @@ public class UpgradeHelper {
         type18.save();
         type19.save();
         type20.save();
+
+        Visitor visitor1 = new Visitor(1L, 1452022352000L, 1L);
+        Visitor visitor2 = new Visitor(2L, 1452025352000L, 2L);
+        visitor1.save();
+        visitor2.save();
+
+        Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 5, true);
+        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 2L, 3L, 5, true);
+        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 2L, 4L, 1, false);
+        Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 2, true);
+        Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 2, false);
+        vDemand1.save();
+        vDemand2.save();
+        vDemand3.save();
+        vDemand4.save();
+        vDemand5.save();
+
+        Visitor_Type vType1 = new Visitor_Type(1L, "Visitor 1", "This is a visitor type", 1L, 1L, 1L, 1.5, 1.5, 1.5);
+        Visitor_Type vType2 = new Visitor_Type(2L, "Visitor 2", "This is another visitor type", 2L, 2L, 2L, 1.5, 1.5, 1.5);
+        vType1.save();
+        vType2.save();
     }
 
 }

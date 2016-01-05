@@ -3,21 +3,21 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Visitor_Type extends SugarRecord{
-    Long visitorId;
+    Long visitorID;
     String name;
     String desc;
     Long preferredTier;
     Long preferredType;
     Long preferredState;
-    int tierMultiplier;
-    int typeMultiplier;
-    int stateMultiplier;
+    double tierMultiplier;
+    double typeMultiplier;
+    double stateMultiplier;
 
     public Visitor_Type() {
     }
 
-    public Visitor_Type(Long visitorId, String name, String desc, Long preferredTier, Long preferredType, Long preferredState, int tierMultiplier, int typeMultiplier, int stateMultiplier) {
-        this.visitorId = visitorId;
+    public Visitor_Type(Long visitorID, String name, String desc, Long preferredTier, Long preferredType, Long preferredState, double tierMultiplier, double typeMultiplier, double stateMultiplier) {
+        this.visitorID = visitorID;
         this.name = name;
         this.desc = desc;
         this.preferredTier = preferredTier;
@@ -28,12 +28,12 @@ public class Visitor_Type extends SugarRecord{
         this.stateMultiplier = stateMultiplier;
     }
 
-    public Long getVisitorId() {
-        return visitorId;
+    public Long getVisitorID() {
+        return visitorID;
     }
 
-    public void setVisitorId(Long visitorId) {
-        this.visitorId = visitorId;
+    public void setVisitorID(Long visitorID) {
+        this.visitorID = visitorID;
     }
 
     public String getName() {
@@ -76,27 +76,27 @@ public class Visitor_Type extends SugarRecord{
         this.preferredState = preferredState;
     }
 
-    public int getTierMultiplier() {
+    public double getTierMultiplier() {
         return tierMultiplier;
     }
 
-    public void setTierMultiplier(int tierMultiplier) {
+    public void setTierMultiplier(double tierMultiplier) {
         this.tierMultiplier = tierMultiplier;
     }
 
-    public int getTypeMultiplier() {
+    public double getTypeMultiplier() {
         return typeMultiplier;
     }
 
-    public void setTypeMultiplier(int typeMultiplier) {
+    public void setTypeMultiplier(double typeMultiplier) {
         this.typeMultiplier = typeMultiplier;
     }
 
-    public int getStateMultiplier() {
+    public double getStateMultiplier() {
         return stateMultiplier;
     }
 
-    public void setStateMultiplier(int stateMultiplier) {
+    public void setStateMultiplier(double stateMultiplier) {
         this.stateMultiplier = stateMultiplier;
     }
 }

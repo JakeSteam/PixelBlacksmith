@@ -3,35 +3,45 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Visitor_Demand extends SugarRecord{
-    Long item;
-    int state;
+    Long visitorID;
+    Long criteriaType;
+    Long criteriaValue;
     int quantity;
     boolean required;
 
     public Visitor_Demand() {
     }
 
-    public Visitor_Demand(Long item, int state, int quantity, boolean required) {
-        this.item = item;
-        this.state = state;
+    public Visitor_Demand(Long visitorID, Long criteriaType, Long criteriaValue, int quantity, boolean required) {
+        this.visitorID = visitorID;
+        this.criteriaType = criteriaType;
+        this.criteriaValue = criteriaValue;
         this.quantity = quantity;
         this.required = required;
     }
 
-    public Long getItem() {
-        return item;
+    public Long getVisitorID() {
+        return visitorID;
     }
 
-    public void setItem(Long item) {
-        this.item = item;
+    public void setVisitorID(Long visitorID) {
+        this.visitorID = visitorID;
     }
 
-    public int getState() {
-        return state;
+    public Long getCriteriaType() {
+        return criteriaType;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setCriteriaType(Long criteriaType) {
+        this.criteriaType = criteriaType;
+    }
+
+    public Long getCriteriaValue() {
+        return criteriaValue;
+    }
+
+    public void setCriteriaValue(Long criteriaValue) {
+        this.criteriaValue = criteriaValue;
     }
 
     public int getQuantity() {
