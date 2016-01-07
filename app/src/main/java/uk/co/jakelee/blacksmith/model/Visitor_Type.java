@@ -6,26 +6,32 @@ public class Visitor_Type extends SugarRecord{
     Long visitorID;
     String name;
     String desc;
-    Long preferredTier;
-    Long preferredType;
-    Long preferredState;
+    Long tierPreferred;
+    Long typePreferred;
+    Long statePreferred;
     double tierMultiplier;
     double typeMultiplier;
     double stateMultiplier;
+    boolean tierDiscovered;
+    boolean typeDiscovered;
+    boolean stateDiscovered;
 
     public Visitor_Type() {
     }
 
-    public Visitor_Type(Long visitorID, String name, String desc, Long preferredTier, Long preferredType, Long preferredState, double tierMultiplier, double typeMultiplier, double stateMultiplier) {
+    public Visitor_Type(Long visitorID, String name, String desc, Long tierPreferred, Long typePreferred, Long statePreferred, double tierMultiplier, double typeMultiplier, double stateMultiplier, boolean tierDiscovered, boolean typeDiscovered, boolean stateDiscovered) {
         this.visitorID = visitorID;
         this.name = name;
         this.desc = desc;
-        this.preferredTier = preferredTier;
-        this.preferredType = preferredType;
-        this.preferredState = preferredState;
+        this.tierPreferred = tierPreferred;
+        this.typePreferred = typePreferred;
+        this.statePreferred = statePreferred;
         this.tierMultiplier = tierMultiplier;
         this.typeMultiplier = typeMultiplier;
         this.stateMultiplier = stateMultiplier;
+        this.tierDiscovered = tierDiscovered;
+        this.typeDiscovered = typeDiscovered;
+        this.stateDiscovered = stateDiscovered;
     }
 
     public Long getVisitorID() {
@@ -52,28 +58,28 @@ public class Visitor_Type extends SugarRecord{
         this.desc = desc;
     }
 
-    public Long getPreferredTier() {
-        return preferredTier;
+    public Long getTierPreferred() {
+        return tierPreferred;
     }
 
-    public void setPreferredTier(Long preferredTier) {
-        this.preferredTier = preferredTier;
+    public void setTierPreferred(Long tierPreferred) {
+        this.tierPreferred = tierPreferred;
     }
 
-    public Long getPreferredType() {
-        return preferredType;
+    public Long getTypePreferred() {
+        return typePreferred;
     }
 
-    public void setPreferredType(Long preferredType) {
-        this.preferredType = preferredType;
+    public void setTypePreferred(Long typePreferred) {
+        this.typePreferred = typePreferred;
     }
 
-    public Long getPreferredState() {
-        return preferredState;
+    public Long getStatePreferred() {
+        return statePreferred;
     }
 
-    public void setPreferredState(Long preferredState) {
-        this.preferredState = preferredState;
+    public void setStatePreferred(Long statePreferred) {
+        this.statePreferred = statePreferred;
     }
 
     public double getTierMultiplier() {
@@ -98,5 +104,29 @@ public class Visitor_Type extends SugarRecord{
 
     public void setStateMultiplier(double stateMultiplier) {
         this.stateMultiplier = stateMultiplier;
+    }
+
+    public boolean isTierDiscovered() {
+        return tierDiscovered;
+    }
+
+    public void setTierDiscovered(boolean tierDiscovered) {
+        this.tierDiscovered = tierDiscovered;
+    }
+
+    public boolean isTypeDiscovered() {
+        return typeDiscovered;
+    }
+
+    public void setTypeDiscovered(boolean typeDiscovered) {
+        this.typeDiscovered = typeDiscovered;
+    }
+
+    public boolean isStateDiscovered() {
+        return stateDiscovered;
+    }
+
+    public void setStateDiscovered(boolean stateDiscovered) {
+        this.stateDiscovered = stateDiscovered;
     }
 }

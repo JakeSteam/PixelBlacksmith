@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -30,7 +29,8 @@ public class VisitorActivity extends Activity {
     }
 
     public void createVisitorInterface() {
-        Toast.makeText(getApplicationContext(), String.format("Selected visitor with type " + visitor.getType()), Toast.LENGTH_SHORT).show();
+        // Display visitor info
+        // Display visitor demands
     }
 
     public void closeVisitor(View view) {
