@@ -63,30 +63,36 @@ public class VisitorActivity extends Activity {
 
     public void displayVisitorStats() {
         TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
-        visitorVisits.setText(Integer.toString(visitorStats.getVisits()));
+        visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
     }
 
     public void displayVisitorDemands() {
         TableLayout demandsTable = (TableLayout) findViewById(R.id.demandsTable);
+
+        // Create header row
+        TableRow headerRow = new TableRow(getApplicationContext());
+        headerRow.addView(dh.createTextView("Status", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Criteria", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Trade", 18, Color.BLACK));
+        demandsTable.addView(headerRow);
 
         List<Visitor_Demand> visitorDemands = Visitor_Demand.find(Visitor_Demand.class, "visitor_id = ?", Long.toString(visitorType.getVisitorID()));
         for(Visitor_Demand demand : visitorDemands) {
             TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
-            TextView criteriaType = dh.createTextView(demandCriteria.getName(), 12, Color.BLACK);
-            criteriaType.setPadding(15, 5, 15, 5);
+            TextView criteriaStatus = dh.createTextView("X", 15, Color.BLACK);
 
-            TextView criteriaValue = dh.createTextView(Long.toString(demand.getCriteriaValue()), 12, Color.BLACK);
-            criteriaValue.setPadding(15, 5, 15, 5);
+            String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
+            TextView criteriaValue = dh.createTextView(criteriaText, 15, Color.BLACK);
+            //criteriaValue.setPadding(15, 5, 15, 5);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             tradeBtn.setBackgroundResource(R.drawable.open_shop);
 
-            demandRow.addView(criteriaType);
+            demandRow.addView(criteriaStatus);
             demandRow.addView(criteriaValue);
             demandRow.addView(tradeBtn);
-
             demandsTable.addView(demandRow);
         }
     }
