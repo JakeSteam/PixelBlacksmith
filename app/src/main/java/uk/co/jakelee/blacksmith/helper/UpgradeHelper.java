@@ -697,8 +697,8 @@ public class UpgradeHelper {
         visitor2.save();
 
         Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 5, true);
-        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 2L, 3L, 5, true);
-        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 2L, 4L, 1, false);
+        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 1L, 3L, 5, true);
+        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 3L, 4L, 1, false);
         Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 2, true);
         Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 2, false);
         vDemand1.save();
