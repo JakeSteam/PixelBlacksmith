@@ -85,8 +85,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
-        android:layout_alignLeft="@id/visitorPicture"
-        android:background="@drawable/slot" />
+        android:layout_alignLeft="@id/visitorPicture"/>
 
     <TextView
         android:id="@+id/typeMultiplier"
@@ -107,8 +106,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
-        android:layout_toRightOf="@id/typeImage"
-        android:background="@drawable/slot" />
+        android:layout_toRightOf="@id/typeImage"/>
 
     <TextView
         android:id="@+id/tierMultiplier"
@@ -129,8 +127,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
-        android:layout_toRightOf="@id/tierImage"
-        android:background="@drawable/slot" />
+        android:layout_toRightOf="@id/tierImage" />
 
     <TextView
         android:id="@+id/stateMultiplier"
@@ -151,8 +148,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
-        android:layout_toRightOf="@id/stateImage"
-        android:background="@drawable/slot" />
+        android:layout_toRightOf="@id/stateImage"/>
 
     <TextView
         android:id="@+id/typeText"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -59,12 +60,12 @@ public class VisitorActivity extends Activity {
 
         TextView visitorDesc = (TextView) findViewById(R.id.visitorDesc);
         visitorDesc.setText(visitorType.getDesc());
+
+        TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
+        visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
     }
 
     public void displayVisitorStats() {
-        TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
-        visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
-
         if (visitorType.isTypeDiscovered()) {
             ImageView typePic = (ImageView) findViewById(R.id.typeImage);
             TextView typeMultiplier = (TextView) findViewById(R.id.typeMultiplier);
@@ -119,9 +120,16 @@ public class VisitorActivity extends Activity {
             TextView criteriaValue = dh.createTextView(criteriaText, 15, Color.BLACK);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
-            tradeBtn.setBackgroundResource(R.drawable.open_shop);
             if (!demand.isDemandFulfilled()) {
-                // Open the trade window!
+                tradeBtn.setBackgroundResource(R.drawable.open_shop);
+                tradeBtn.setTag(demand.getId());
+                tradeBtn.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
+                        intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
+                        startActivity(intent);
+                    }
+                });
             }
 
             demandRow.addView(criteriaStatus);

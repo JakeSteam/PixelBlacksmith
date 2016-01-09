@@ -18,6 +18,30 @@ public class Inventory extends SugarRecord {
         this.quantity = quantity;
     }
 
+    public Long getItem() {
+        return item;
+    }
+
+    public void setItem(Long item) {
+        this.item = item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public static void addItem(Long itemId, int state, int quantity) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
@@ -158,30 +182,5 @@ public class Inventory extends SugarRecord {
         } else {
             return false;
         }
-    }
-
-
-    public Long getItem() {
-        return item;
-    }
-
-    public void setItem(Long item) {
-        this.item = item;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 }

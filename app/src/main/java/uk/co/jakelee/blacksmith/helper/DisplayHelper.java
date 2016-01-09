@@ -36,6 +36,7 @@ public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private static Context context;
     public final static String VISITOR_TO_LOAD = "uk.co.jakelee.blacksmith.visitortoload";
+    public final static String DEMAND_TO_LOAD = "uk.co.jakelee.blacksmith.tradetoload";
 
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;

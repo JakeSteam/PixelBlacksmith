@@ -18,6 +18,7 @@
     <string name="tableText">Table</string>
     <string name="shopText">Shop</string>
     <string name="visitorText">Visitor</string>
+    <string name="tradeText">Trade</string>
 
     <string name="unknownMultiplier">\???</string>
 

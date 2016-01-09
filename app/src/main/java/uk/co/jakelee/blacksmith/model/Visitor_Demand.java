@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 public class Visitor_Demand extends SugarRecord{
     Long visitorID;
     Long criteriaType;
@@ -87,5 +89,19 @@ public class Visitor_Demand extends SugarRecord{
 
     public boolean isDemandFulfilled() {
         return this.getQuantityProvided() >= this.getQuantity();
+    }
+
+    public List<Inventory> getMatchingInventory() {
+        String searchText = "SELECT * FROM Inventory INNER JOIN Item ON Inventory.item = Item.id WHERE quantity > 0 ";
+
+        if (this.getCriteriaType() == 1L) {
+            searchText += "AND state = " + this.getCriteriaValue();
+        } else if (this.getCriteriaType() == 2L) {
+            searchText += "AND tier = " + this.getCriteriaValue();
+        } else if (this.getCriteriaType() == 3L) {
+            searchText += "AND type = " + this.getCriteriaValue();
+        }
+
+        return Inventory.findWithQuery(Inventory.class, searchText);
     }
 }
