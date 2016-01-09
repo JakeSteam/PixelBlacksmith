@@ -68,6 +68,10 @@ public class VisitorActivity extends Activity {
         ImageView typePic = (ImageView) findViewById(R.id.typeImage);
         ImageView tierPic = (ImageView) findViewById(R.id.tierImage);
         ImageView statePic = (ImageView) findViewById(R.id.stateImage);
+
+        ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
+        int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
+        bestItem.setImageResource(bestItemDrawableId);
     }
 
     public void displayVisitorDemands() {
