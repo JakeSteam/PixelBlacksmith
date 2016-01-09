@@ -35,25 +35,25 @@
 
     <ImageView
         android:id="@+id/visitorPicture"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_below="@id/visitorTitle"
         android:src="@drawable/visitor1"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/visitorVisits"
-        android:layout_width="100dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/visitorPicture"
+        android:layout_alignBottom="@id/visitorPicture"
         android:layout_alignLeft="@id/visitorPicture"
-        android:paddingTop="80dp"
-        android:paddingLeft="10dp"
         android:textAlignment="center"
         android:text="Visits: 0"
         android:textColor="#FFFFFF"
-        android:shadowRadius="5"/>
+        android:background="#000000"
+        android:alpha="0.6"/>
 
     <TextView
         android:id="@+id/visitorName"
@@ -82,12 +82,24 @@
 
     <ImageView
         android:id="@+id/typeImage"
-        android:layout_marginLeft="10dp"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
         android:layout_alignLeft="@id/visitorPicture"
         android:background="@drawable/slot" />
+
+    <TextView
+        android:id="@+id/typeMultiplier"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/typeImage"
+        android:layout_alignLeft="@id/typeImage"
+        android:text="@string/unknownMultiplier"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
 
     <ImageView
         android:id="@+id/tierImage"
@@ -98,6 +110,19 @@
         android:layout_toRightOf="@id/typeImage"
         android:background="@drawable/slot" />
 
+    <TextView
+        android:id="@+id/tierMultiplier"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tierImage"
+        android:layout_alignLeft="@id/tierImage"
+        android:text="@string/unknownMultiplier"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
     <ImageView
         android:id="@+id/stateImage"
         android:layout_marginLeft="10dp"
@@ -106,6 +131,19 @@
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/tierImage"
         android:background="@drawable/slot" />
+
+    <TextView
+        android:id="@+id/stateMultiplier"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/stateImage"
+        android:layout_alignLeft="@id/stateImage"
+        android:text="@string/unknownMultiplier"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
 
     <ImageView
         android:id="@+id/bestItemImage"

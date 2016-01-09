@@ -65,9 +65,32 @@ public class VisitorActivity extends Activity {
         TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
         visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
 
-        ImageView typePic = (ImageView) findViewById(R.id.typeImage);
-        ImageView tierPic = (ImageView) findViewById(R.id.tierImage);
-        ImageView statePic = (ImageView) findViewById(R.id.stateImage);
+        if (visitorType.isTypeDiscovered()) {
+            ImageView typePic = (ImageView) findViewById(R.id.typeImage);
+            TextView typeMultiplier = (TextView) findViewById(R.id.typeMultiplier);
+
+            int typeDrawableId = getApplicationContext().getResources().getIdentifier("type" + visitorType.getTypePreferred(), "drawable", getApplicationContext().getPackageName());
+            typePic.setImageResource(typeDrawableId);
+            typeMultiplier.setText(Double.toString(visitorType.getTypeMultiplier()) + "x");
+        }
+
+        if (visitorType.isTierDiscovered()) {
+            ImageView tierPic = (ImageView) findViewById(R.id.tierImage);
+            TextView tierMultiplier = (TextView) findViewById(R.id.tierMultiplier);
+
+            int typeDrawableId = getApplicationContext().getResources().getIdentifier("tier" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
+            tierPic.setImageResource(typeDrawableId);
+            tierMultiplier.setText(Double.toString(visitorType.getTierMultiplier()) + "x");
+        }
+
+        if (visitorType.isStateDiscovered()) {
+            ImageView statePic = (ImageView) findViewById(R.id.stateImage);
+            TextView stateMultiplier = (TextView) findViewById(R.id.stateMultiplier);
+
+            int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
+            statePic.setImageResource(typeDrawableId);
+            stateMultiplier.setText(Double.toString(visitorType.getStateMultiplier()) + "x");
+        }
 
         ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
         int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
