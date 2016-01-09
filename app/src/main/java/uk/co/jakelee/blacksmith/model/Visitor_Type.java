@@ -129,4 +129,40 @@ public class Visitor_Type extends SugarRecord{
     public void setStateDiscovered(boolean stateDiscovered) {
         this.stateDiscovered = stateDiscovered;
     }
+
+    public double getDisplayedBonus(Inventory invent) {
+        Item item = Item.findById(Item.class, invent.getItem());
+        int bonus = 100;
+
+        if (invent.getState() == getStatePreferred() && isStateDiscovered()) {
+            bonus *= getStateMultiplier();
+        }
+        if (item.getTier() == getTierPreferred() && isTierDiscovered()) {
+            bonus *= getTierMultiplier();
+        }
+        if (item.getType() == getTypePreferred() && isTypeDiscovered()) {
+            bonus *= getTypeMultiplier();
+        }
+
+        return bonus / 100;
+    }
+
+    public double getBonus(Inventory invent) {
+        Item item = Item.findById(Item.class, invent.getItem());
+        int bonus = 100;
+
+        if (invent.getState() == getStatePreferred()) {
+            bonus *= getStateMultiplier();
+        }
+        if (item.getTier() == getTierPreferred()) {
+            bonus *= getTierMultiplier();
+        }
+        if (item.getType() == getTypePreferred()) {
+            bonus *= getTypeMultiplier();
+        }
+
+        return bonus / 100;
+    }
 }
+
+

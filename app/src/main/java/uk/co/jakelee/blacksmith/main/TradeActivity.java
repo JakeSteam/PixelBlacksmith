@@ -94,6 +94,7 @@ public class TradeActivity extends Activity {
             TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
+            // Create a sell button for that item
             TextView sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
@@ -106,12 +107,18 @@ public class TradeActivity extends Activity {
                 }
             });
 
-            TextView bonus = dh.createTextView("???", 15, Color.BLACK);
+            // Work out the multiplier that the player can see
+            TextView bonusText = dh.createTextView("???", 15, Color.BLACK);
+            double bonus = visitorType.getDisplayedBonus(inventory);
+            if (bonus > 1) {
+                bonusText.setText(Double.toString(bonus) + "x");
+                bonusText.setTextColor(Color.GREEN);
+            }
 
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(sell);
-            itemRow.addView(bonus);
+            itemRow.addView(bonusText);
             itemsTable.addView(itemRow);
         }
     }
