@@ -49,6 +49,7 @@
         android:layout_alignTop="@id/visitorPicture"
         android:layout_alignLeft="@id/visitorPicture"
         android:paddingTop="80dp"
+        android:paddingLeft="10dp"
         android:textAlignment="center"
         android:text="Visits: 0"
         android:textColor="#FFFFFF"
@@ -62,7 +63,7 @@
         android:layout_toRightOf="@id/visitorPicture"
         android:text="Visitor Name"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"/>
 
@@ -74,7 +75,7 @@
         android:layout_below="@id/visitorName"
         android:text="Visitor Desc goes here here here here"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:singleLine="false"/>
@@ -86,7 +87,7 @@
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
         android:layout_alignLeft="@id/visitorPicture"
-        android:src="@drawable/anvil" />
+        android:background="@drawable/slot" />
 
     <ImageView
         android:id="@+id/tierImage"
@@ -95,7 +96,7 @@
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/typeImage"
-        android:src="@drawable/anvil" />
+        android:background="@drawable/slot" />
 
     <ImageView
         android:id="@+id/stateImage"
@@ -104,7 +105,7 @@
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/tierImage"
-        android:src="@drawable/anvil" />
+        android:background="@drawable/slot" />
 
     <ImageView
         android:id="@+id/bestItemImage"
@@ -113,7 +114,7 @@
         android:layout_height="55dp"
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/stateImage"
-        android:src="@drawable/anvil" />
+        android:background="@drawable/slot" />
 
     <TextView
         android:id="@+id/typeText"
@@ -122,7 +123,7 @@
         android:layout_below="@id/typeImage"
         android:layout_alignLeft="@id/typeImage"
         android:text="Type"
-        android:textSize="20dp"
+        android:textSize="14dp"
         android:textColor="#000000"
         android:textAlignment="center"/>
 
@@ -133,7 +134,7 @@
         android:layout_below="@id/tierImage"
         android:layout_alignLeft="@id/tierImage"
         android:text="Tier"
-        android:textSize="20dp"
+        android:textSize="14dp"
         android:textColor="#000000"
         android:textAlignment="center"/>
 
@@ -144,7 +145,7 @@
         android:layout_below="@id/stateImage"
         android:layout_alignLeft="@id/stateImage"
         android:text="State"
-        android:textSize="20dp"
+        android:textSize="14dp"
         android:textColor="#000000"
         android:textAlignment="center"/>
 
@@ -155,7 +156,7 @@
         android:layout_below="@id/bestItemImage"
         android:layout_alignLeft="@id/bestItemImage"
         android:text="Best"
-        android:textSize="20dp"
+        android:textSize="14dp"
         android:textColor="#000000"
         android:textAlignment="center"/>
 
@@ -163,22 +164,26 @@
         android:id="@+id/demandsScroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/typeText">
+        android:layout_below="@id/typeText"
+        android:paddingTop="20dp">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
             <TableLayout
                 android:id="@+id/demandsTable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*"/>
+                android:stretchColumns="0,1"/>
 
             <Button
                 android:id="@+id/completeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/demandsScroller"
+                android:layout_below="@id/demandsTable"
                 android:layout_margin="20dp"
                 android:text="Complete"/>
         </LinearLayout>

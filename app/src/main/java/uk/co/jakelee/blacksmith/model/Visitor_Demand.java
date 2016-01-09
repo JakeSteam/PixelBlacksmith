@@ -6,16 +6,18 @@ public class Visitor_Demand extends SugarRecord{
     Long visitorID;
     Long criteriaType;
     Long criteriaValue;
+    int quantityProvided;
     int quantity;
     boolean required;
 
     public Visitor_Demand() {
     }
 
-    public Visitor_Demand(Long visitorID, Long criteriaType, Long criteriaValue, int quantity, boolean required) {
+    public Visitor_Demand(Long visitorID, Long criteriaType, Long criteriaValue, int quantityProvided, int quantity, boolean required) {
         this.visitorID = visitorID;
         this.criteriaType = criteriaType;
         this.criteriaValue = criteriaValue;
+        this.quantityProvided = quantityProvided;
         this.quantity = quantity;
         this.required = required;
     }
@@ -42,6 +44,14 @@ public class Visitor_Demand extends SugarRecord{
 
     public void setCriteriaValue(Long criteriaValue) {
         this.criteriaValue = criteriaValue;
+    }
+
+    public int getQuantityProvided() {
+        return quantityProvided;
+    }
+
+    public void setQuantityProvided(int quantityProvided) {
+        this.quantityProvided = quantityProvided;
     }
 
     public int getQuantity() {
@@ -73,5 +83,9 @@ public class Visitor_Demand extends SugarRecord{
             demandText = demandType.getName();
         }
         return demandText;
+    }
+
+    public boolean isDemandFulfilled() {
+        return this.getQuantityProvided() >= this.getQuantity();
     }
 }

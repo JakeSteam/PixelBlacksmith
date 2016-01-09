@@ -696,11 +696,11 @@ public class UpgradeHelper {
         visitor1.save();
         visitor2.save();
 
-        Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 5, true);
-        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 1L, 3L, 5, true);
-        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 3L, 4L, 1, false);
-        Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 2, true);
-        Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 2, false);
+        Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 3, 5, true);
+        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 1L, 3L, 1, 5, true);
+        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 3L, 4L, 1, 1, false);
+        Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 0, 2, true);
+        Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 0, 2, false);
         vDemand1.save();
         vDemand2.save();
         vDemand3.save();
@@ -712,7 +712,7 @@ public class UpgradeHelper {
         vStats1.save();
         vStats2.save();
 
-        Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false);
+        Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, true, false, true);
         Visitor_Type vType2 = new Visitor_Type(2L, "Ragnar Lothbrok", "Raaarrgghh! Give items!", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false);
         vType1.save();
         vType2.save();

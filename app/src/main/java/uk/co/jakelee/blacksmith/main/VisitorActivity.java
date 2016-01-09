@@ -64,6 +64,10 @@ public class VisitorActivity extends Activity {
     public void displayVisitorStats() {
         TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
         visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
+
+        ImageView typePic = (ImageView) findViewById(R.id.typeImage);
+        ImageView tierPic = (ImageView) findViewById(R.id.tierImage);
+        ImageView statePic = (ImageView) findViewById(R.id.stateImage);
     }
 
     public void displayVisitorDemands() {
@@ -81,14 +85,17 @@ public class VisitorActivity extends Activity {
             TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
-            TextView criteriaStatus = dh.createTextView("X", 15, Color.BLACK);
+            String status = (demand.isDemandFulfilled() ? "Done" : "X");
+            TextView criteriaStatus = dh.createTextView(status, 15, Color.BLACK);
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
             TextView criteriaValue = dh.createTextView(criteriaText, 15, Color.BLACK);
-            //criteriaValue.setPadding(15, 5, 15, 5);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             tradeBtn.setBackgroundResource(R.drawable.open_shop);
+            if (!demand.isDemandFulfilled()) {
+                // Open the trade window!
+            }
 
             demandRow.addView(criteriaStatus);
             demandRow.addView(criteriaValue);
