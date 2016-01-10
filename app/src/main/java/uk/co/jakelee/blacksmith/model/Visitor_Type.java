@@ -144,7 +144,7 @@ public class Visitor_Type extends SugarRecord{
             bonus *= getTypeMultiplier();
         }
 
-        return bonus / 100;
+        return (double)bonus / (double)100;
     }
 
     public double getBonus(Inventory invent) {
@@ -161,7 +161,7 @@ public class Visitor_Type extends SugarRecord{
             bonus *= getTypeMultiplier();
         }
 
-        return bonus / 100;
+        return (double)bonus / (double)100;
     }
 }
 

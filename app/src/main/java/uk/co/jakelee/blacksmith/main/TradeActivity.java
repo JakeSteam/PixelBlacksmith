@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -70,6 +71,7 @@ public class TradeActivity extends Activity {
 
     public void displayItemsTable() {
         TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
+        itemsTable.removeAllViews();
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
@@ -100,7 +102,8 @@ public class TradeActivity extends Activity {
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell);
-            sell.setTag(item.getId());
+            sell.setTag(R.id.itemID, item.getId());
+            sell.setTag(R.id.itemState, inventory.getState());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     clickSellButton(v);
@@ -124,7 +127,21 @@ public class TradeActivity extends Activity {
     }
 
     public void clickSellButton(View v) {
+        Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
+        List<Inventory> invents = Inventory.find(Inventory.class, "item = " + itemToSell.getId() + " AND state = " + v.getTag(R.id.itemState));
 
+        // Calculate the item sell value, rounded up
+        double bonus = visitorType.getBonus(invents.get(0));
+        int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
+
+
+        if (Inventory.tradeItem(itemToSell.getId(), (int)v.getTag(R.id.itemState), 1, value)) {
+            Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for %3s coin(s)", 1, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
+        }
+        displayItemsTable();
+        dh.updateCoins(dh.getCoins());
     }
 
     public void closeTrade(View view) {

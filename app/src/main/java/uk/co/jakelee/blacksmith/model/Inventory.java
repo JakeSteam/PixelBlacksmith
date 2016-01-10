@@ -112,7 +112,7 @@ public class Inventory extends SugarRecord {
     }
 
     public static boolean canSellItem(Long itemId, int state, int quantity) {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE state = " + state + " AND id = " + itemId);
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
 
         Inventory foundInventory;
         if (inventories.size() > 0) {
@@ -142,6 +142,17 @@ public class Inventory extends SugarRecord {
         } else {
             return false;
         }
+    }
+
+    public static boolean tradeItem(Long itemId, int state, int quantity, int price) {
+        Long coinId = 52L;
+
+        Inventory itemStock = Inventory.getInventory(itemId, state);
+        itemStock.setQuantity(itemStock.getQuantity() - quantity);
+        itemStock.save();
+        Inventory.addItem(coinId, 1, price);
+
+        return true;
     }
 
     public static boolean canBuyItem(Long itemId, int state, Long shopId, int price) {

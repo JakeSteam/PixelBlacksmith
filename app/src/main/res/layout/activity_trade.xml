@@ -84,8 +84,7 @@
         android:id="@+id/itemsScroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/visitorPicture"
-        android:paddingTop="20dp">
+        android:layout_below="@id/visitorPicture">
 
         <LinearLayout
             android:orientation="vertical"

@@ -5,4 +5,6 @@
     <item name="shopkeeperIntro" type="id" />
     <item name="shopName" type="id" />
     <item name="shopDesc" type="id" />
+    <item name="itemID" type="id" />
+    <item name="itemState" type="id" />
 </resources>

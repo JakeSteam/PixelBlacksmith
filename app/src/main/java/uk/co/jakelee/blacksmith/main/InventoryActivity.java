@@ -32,7 +32,7 @@ public class InventoryActivity extends Activity {
     }
 
     public void updateInventoryTable() {
-        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE item <> 52");
+        List<Inventory> allInventoryItems = Inventory.find(Inventory.class, "item <> 52 AND quantity > 0");
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 
@@ -65,7 +65,8 @@ public class InventoryActivity extends Activity {
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell);
-            sell.setTag(item.getId());
+            sell.setTag(R.id.itemID, item.getId());
+            sell.setTag(R.id.itemState, inventoryItem.getState());
             sell.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     clickSellButton(v);
@@ -81,9 +82,11 @@ public class InventoryActivity extends Activity {
     }
 
     public void clickSellButton(View view) {
-        Item itemToSell = Item.findById(Item.class, (Long) view.getTag());
+        Long itemID = (Long)view.getTag(R.id.itemID);
+        int itemState = (int)view.getTag(R.id.itemState);
+        Item itemToSell = Item.findById(Item.class, itemID);
 
-        if (Inventory.sellItem(itemToSell.getId(), 1, 1, itemToSell.getValue())) {
+        if (Inventory.sellItem(itemID, itemState, 1, itemToSell.getValue())) {
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
