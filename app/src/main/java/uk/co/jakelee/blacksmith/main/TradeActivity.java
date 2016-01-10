@@ -136,7 +136,7 @@ public class TradeActivity extends Activity {
 
 
         if (Inventory.tradeItem(itemToSell.getId(), (int)v.getTag(R.id.itemState), 1, value)) {
-            Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for %3s coin(s)", 1, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", 1, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }

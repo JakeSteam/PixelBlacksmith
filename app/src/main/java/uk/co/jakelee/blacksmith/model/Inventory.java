@@ -112,7 +112,7 @@ public class Inventory extends SugarRecord {
     }
 
     public static boolean canSellItem(Long itemId, int state, int quantity) {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND item = " + itemId);
 
         Inventory foundInventory;
         if (inventories.size() > 0) {
