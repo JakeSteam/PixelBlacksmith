@@ -108,7 +108,7 @@ public class VisitorActivity extends Activity {
         headerRow.addView(dh.createTextView("Trade", 18, Color.BLACK));
         demandsTable.addView(headerRow);
 
-        List<Visitor_Demand> visitorDemands = Visitor_Demand.find(Visitor_Demand.class, "visitor_id = ?", Long.toString(visitorType.getVisitorID()));
+        List<Visitor_Demand> visitorDemands = Visitor_Demand.find(Visitor_Demand.class, "visitor_id = ?", Long.toString(visitor.getId()));
         for(Visitor_Demand demand : visitorDemands) {
             TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());

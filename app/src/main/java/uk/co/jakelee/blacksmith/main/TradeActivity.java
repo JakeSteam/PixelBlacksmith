@@ -17,6 +17,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -51,6 +52,7 @@ public class TradeActivity extends Activity {
 
     public void createTradeInterface() {
         displayVisitorInfo();
+        displayProgressTicket();
         displayItemsTable();
     }
 
@@ -67,6 +69,17 @@ public class TradeActivity extends Activity {
 
         TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
         visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
+    }
+
+    public void displayProgressTicket() {
+        Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+        TextView progressTextView = (TextView) findViewById(R.id.progressTicker);
+        int itemsTraded = demand.getQuantityProvided();
+        int itemsNeeded = demand.getQuantity();
+        String itemsCriteria = "(" + demandCriteria.getName() + ") " + Visitor_Demand.getCriteriaName(demand);
+
+        String progressText = itemsCriteria + ": " + itemsTraded + "/" + itemsNeeded;
+        progressTextView.setText(progressText);
     }
 
     public void displayItemsTable() {
@@ -135,13 +148,25 @@ public class TradeActivity extends Activity {
         int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
 
 
-        if (Inventory.tradeItem(itemToSell.getId(), (int)v.getTag(R.id.itemState), 1, value)) {
+        if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), 1, value)) {
             Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", 1, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
+            demand.setQuantityProvided(demand.getQuantityProvided() + 1);
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }
-        displayItemsTable();
         dh.updateCoins(dh.getCoins());
+        displayProgressTicket();
+
+        if (demand.isDemandFulfilled()) {
+            hideItemsTable();
+        } else {
+            displayItemsTable();
+        }
+    }
+
+    public void hideItemsTable() {
+        TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
+        itemsTable.setVisibility(View.GONE);
     }
 
     public void closeTrade(View view) {

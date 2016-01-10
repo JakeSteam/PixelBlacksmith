@@ -80,11 +80,21 @@
         android:paddingTop="5dp"
         android:singleLine="false"/>
 
+    <TextView
+        android:id="@+id/progressTicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/visitorPicture"
+        android:layout_alignLeft="@id/visitorPicture"
+        android:textSize="22sp"
+        android:text="Loading progress..."
+        android:textColor="#000000"/>
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/itemsScroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/visitorPicture">
+        android:layout_below="@id/progressTicker">
 
         <LinearLayout
             android:orientation="vertical"

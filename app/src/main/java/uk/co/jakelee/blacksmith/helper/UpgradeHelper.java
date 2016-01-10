@@ -693,19 +693,23 @@ public class UpgradeHelper {
 
         Visitor visitor1 = new Visitor(1L, 1452022352000L, 1L);
         Visitor visitor2 = new Visitor(2L, 1452025352000L, 2L);
+        Visitor visitor3 = new Visitor(3L, 1452025352000L, 2L);
         visitor1.save();
         visitor2.save();
+        visitor3.save();
 
         Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 3, 5, true);
         Visitor_Demand vDemand2 = new Visitor_Demand(1L, 1L, 3L, 1, 5, true);
         Visitor_Demand vDemand3 = new Visitor_Demand(1L, 3L, 4L, 1, 1, false);
         Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 0, 2, true);
         Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 0, 2, false);
+        Visitor_Demand vDemand6 = new Visitor_Demand(3L, 3L, 1L, 0, 2, true);
         vDemand1.save();
         vDemand2.save();
         vDemand3.save();
         vDemand4.save();
         vDemand5.save();
+        vDemand6.save();
 
         Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 18L, 1L, 1452022352000L);
         Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 10L, 1L, 1452022352000L);
