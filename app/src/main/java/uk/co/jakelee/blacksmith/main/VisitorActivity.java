@@ -44,6 +44,12 @@ public class VisitorActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayVisitorDemands();
+    }
+
     public void createVisitorInterface() {
         displayVisitorInfo();
         displayVisitorStats();
@@ -100,6 +106,7 @@ public class VisitorActivity extends Activity {
 
     public void displayVisitorDemands() {
         TableLayout demandsTable = (TableLayout) findViewById(R.id.demandsTable);
+        demandsTable.removeAllViews();
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
@@ -114,10 +121,10 @@ public class VisitorActivity extends Activity {
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
             String status = (demand.isDemandFulfilled() ? "Done" : "X");
-            TextView criteriaStatus = dh.createTextView(status, 15, Color.BLACK);
+            TextView criteriaStatus = dh.createTextView(status, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
-            TextView criteriaValue = dh.createTextView(criteriaText, 15, Color.BLACK);
+            TextView criteriaValue = dh.createTextView(criteriaText, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {

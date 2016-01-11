@@ -147,10 +147,10 @@ public class TradeActivity extends Activity {
         double bonus = visitorType.getBonus(invents.get(0));
         int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
 
-
         if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), 1, value)) {
             Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", 1, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
             demand.setQuantityProvided(demand.getQuantityProvided() + 1);
+            demand.save();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }
@@ -158,15 +158,14 @@ public class TradeActivity extends Activity {
         displayProgressTicket();
 
         if (demand.isDemandFulfilled()) {
-            hideItemsTable();
+            TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
+            itemsTable.setVisibility(View.GONE);
+
+            Button finishButton = (Button) findViewById(R.id.finishTrade);
+            finishButton.setVisibility(View.VISIBLE);
         } else {
             displayItemsTable();
         }
-    }
-
-    public void hideItemsTable() {
-        TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
-        itemsTable.setVisibility(View.GONE);
     }
 
     public void closeTrade(View view) {

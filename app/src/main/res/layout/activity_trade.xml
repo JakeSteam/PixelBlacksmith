@@ -90,6 +90,15 @@
         android:text="Loading progress..."
         android:textColor="#000000"/>
 
+    <Button
+        android:id="@+id/finishTrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish trading"
+        android:layout_below="@id/progressTicker"
+        android:onClick="closeTrade"
+        android:visibility="invisible"/>
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/itemsScroller"
         android:layout_width="match_parent"
