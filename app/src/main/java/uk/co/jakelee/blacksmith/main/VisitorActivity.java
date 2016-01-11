@@ -146,6 +146,14 @@ public class VisitorActivity extends Activity {
         }
     }
 
+    public void completeVisitor(View view) {
+        if (visitor.isVisitorComplete()) {
+            Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
+            Visitor.delete(visitor);
+            closeVisitor(view);
+        }
+    }
+
     public void closeVisitor(View view) {
         finish();
     }
