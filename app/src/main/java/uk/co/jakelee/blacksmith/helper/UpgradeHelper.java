@@ -711,12 +711,12 @@ public class UpgradeHelper {
         vDemand5.save();
         vDemand6.save();
 
-        Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 18L, 1L, 1452022352000L);
-        Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 10L, 1L, 1452022352000L);
+        Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 18L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 10L, 1L, 1, 1452022352000L);
         vStats1.save();
         vStats2.save();
 
-        Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, true, true, true);
+        Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false);
         Visitor_Type vType2 = new Visitor_Type(2L, "Ragnar Lothbrok", "Raaarrgghh! Give items!", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false);
         vType1.save();
         vType2.save();

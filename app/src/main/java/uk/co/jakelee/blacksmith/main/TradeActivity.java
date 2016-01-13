@@ -52,7 +52,7 @@ public class TradeActivity extends Activity {
 
     public void createTradeInterface() {
         displayVisitorInfo();
-        displayProgressTicket();
+        displayProgressTicker();
         displayItemsTable();
     }
 
@@ -71,7 +71,7 @@ public class TradeActivity extends Activity {
         visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
     }
 
-    public void displayProgressTicket() {
+    public void displayProgressTicker() {
         Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
         TextView progressTextView = (TextView) findViewById(R.id.progressTicker);
         int itemsTraded = demand.getQuantityProvided();
@@ -155,7 +155,9 @@ public class TradeActivity extends Activity {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }
         dh.updateCoins(dh.getCoins());
-        displayProgressTicket();
+        displayProgressTicker();
+        visitorType.updateUnlockedPreferences(itemToSell, (int) v.getTag(R.id.itemState));
+        visitorType.updateBestItem(itemToSell, (int) v.getTag(R.id.itemState), value);
 
         if (demand.isDemandFulfilled()) {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);

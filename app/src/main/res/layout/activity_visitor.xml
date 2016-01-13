@@ -151,6 +151,19 @@
         android:layout_toRightOf="@id/stateImage"/>
 
     <TextView
+        android:id="@+id/bestItemValue"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/bestItemImage"
+        android:layout_alignLeft="@id/bestItemImage"
+        android:text="@string/unknownMultiplier"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
+    <TextView
         android:id="@+id/typeText"
         android:layout_width="55dp"
         android:layout_height="wrap_content"

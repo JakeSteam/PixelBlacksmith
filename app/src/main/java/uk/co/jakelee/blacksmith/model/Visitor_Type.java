@@ -163,6 +163,30 @@ public class Visitor_Type extends SugarRecord{
 
         return (double)bonus / (double)100;
     }
+
+
+    public void updateUnlockedPreferences(Item item, int state) {
+        if (state == getStatePreferred()) {
+            setStateDiscovered(true);
+        }
+        if (item.getType() == getTypePreferred()) {
+            setTypeDiscovered(true);
+        }
+        if (item.getTier() == getTierPreferred()) {
+            setTierDiscovered(true);
+        }
+        save();
+    }
+
+    public void updateBestItem(Item item, int state, int value) {
+        Visitor_Stats vStats = Visitor_Stats.findById(Visitor_Stats.class, this.getVisitorID());
+        if (value > vStats.getBestItemValue()) {
+            vStats.setBestItem(item.getId());
+            vStats.setBestItemState(Long.valueOf(state));
+            vStats.setBestItemValue(value);
+            vStats.save();
+        }
+    }
 }
 
 

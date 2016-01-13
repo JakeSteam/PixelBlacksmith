@@ -7,16 +7,18 @@ public class Visitor_Stats extends SugarRecord {
     int visits;
     Long bestItem;
     Long bestItemState;
+    int bestItemValue;
     Long firstSeen;
 
     public Visitor_Stats() {
     }
 
-    public Visitor_Stats(Long visitorType, int visits, Long bestItem, Long bestItemState, Long firstSeen) {
+    public Visitor_Stats(Long visitorType, int visits, Long bestItem, Long bestItemState, int bestItemValue, Long firstSeen) {
         this.visitorType = visitorType;
         this.visits = visits;
         this.bestItem = bestItem;
         this.bestItemState = bestItemState;
+        this.bestItemValue = bestItemValue;
         this.firstSeen = firstSeen;
     }
 
@@ -50,6 +52,14 @@ public class Visitor_Stats extends SugarRecord {
 
     public void setBestItemState(Long bestItemState) {
         this.bestItemState = bestItemState;
+    }
+
+    public int getBestItemValue() {
+        return bestItemValue;
+    }
+
+    public void setBestItemValue(int bestItemValue) {
+        this.bestItemValue = bestItemValue;
     }
 
     public Long getFirstSeen() {

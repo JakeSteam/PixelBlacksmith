@@ -47,6 +47,7 @@ public class VisitorActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        displayVisitorStats();
         displayVisitorDemands();
     }
 
@@ -102,6 +103,9 @@ public class VisitorActivity extends Activity {
         ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
         int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
         bestItem.setImageResource(bestItemDrawableId);
+
+        TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
+        bestItemValue.setText(Integer.toString(visitorStats.getBestItemValue()));
     }
 
     public void displayVisitorDemands() {
