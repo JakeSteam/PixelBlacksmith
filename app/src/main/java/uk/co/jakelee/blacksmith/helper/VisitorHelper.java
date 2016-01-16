@@ -24,8 +24,6 @@ public class VisitorHelper {
     public final static int MINIMUM_TIER = 1;
     public final static int MAXIMUM_TIER = 10;
 
-
-
     public final static int DEMAND_REQUIRED_PERCENTAGE = 70;
 
     public static void createNewVisitor() {
@@ -56,26 +54,25 @@ public class VisitorHelper {
     }
 
     public static void generateDemand(int i, Long visitorID) {
-        // TODO: Make these values be generated instead of hardcoded
         Long criteriaType = Long.valueOf(getRandomNumber(MINIMUM_CRITERIA, MAXIMUM_CRITERIA));
         Criteria criteria = Criteria.findById(Criteria.class, criteriaType);
 
         int minimumCriteria = 1;
         int maximumCriteria = 1;
-        if (criteria.getName() == "State") {
+        if (criteria.getName().equals("State")) {
             minimumCriteria = MINIMUM_STATE;
             maximumCriteria = MAXIMUM_STATE;
-        } else if (criteria.getName() == "Tier") {
+        } else if (criteria.getName().equals("Tier")) {
             minimumCriteria = MINIMUM_TIER;
             maximumCriteria = MAXIMUM_TIER;
-        } else if (criteria.getName() == "Type") {
+        } else if (criteria.getName().equals("Type")) {
             minimumCriteria = MINIMUM_TYPE;
             maximumCriteria = MAXIMUM_TYPE;
         }
         Long criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
 
         int quantity = getRandomNumber(MINIMUM_QUANTITY, MAXIMUM_QUANTITY);
-        
+
         boolean required = getRequired(i);
 
         Visitor_Demand demand = new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);

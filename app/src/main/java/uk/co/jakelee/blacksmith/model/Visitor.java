@@ -23,13 +23,11 @@ public class Visitor extends SugarRecord{
         this.type = type;
     }
 
-    @Override
-    public Long getId() {
+    public Long getVisitorId() {
         return visitorID;
     }
 
-    @Override
-    public void setId(Long visitorID) {
+    public void setVisitorId(Long visitorID) {
         this.visitorID = visitorID;
     }
 

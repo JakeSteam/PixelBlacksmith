@@ -144,14 +144,15 @@ public class DisplayHelper {
     public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer) {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
 
-        for (Visitor visitor : visitors) {
+        for (final Visitor visitor : visitors) {
             ImageView visitorImage = createVisitorImage(visitor, 100, 100);
             visitorImage.setPadding(20, 20, 20, 20);
+            visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(context, VisitorActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(VISITOR_TO_LOAD, v.getTag().toString());
+                    intent.putExtra(VISITOR_TO_LOAD, (String)v.getTag());
                     context.startActivity(intent);
                 }
             });

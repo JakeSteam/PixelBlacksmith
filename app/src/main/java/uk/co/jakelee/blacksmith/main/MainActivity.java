@@ -9,15 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
-import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class MainActivity extends AppCompatActivity {
     public static DisplayHelper dh;
@@ -49,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
         visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
 
-
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
             UpgradeHelper.initialSQL();
         }
@@ -73,10 +69,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        List<Visitor_Type> testingGeneration = new ArrayList<Visitor_Type>();
-        for (int i = 0; i < 10; i++) {
-            //testingGeneration.add(VisitorHelper.selectVisitor());
-        }
+        // TODO: Remove after visitor testing
+        VisitorHelper.createNewVisitor();
 
         handler.postDelayed(updateTask, 1000);
     }

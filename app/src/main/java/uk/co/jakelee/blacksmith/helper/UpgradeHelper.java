@@ -14,8 +14,6 @@ import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
-import uk.co.jakelee.blacksmith.model.Visitor;
-import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
@@ -691,7 +689,7 @@ public class UpgradeHelper {
         type19.save();
         type20.save();
 
-        Visitor visitor1 = new Visitor(1L, 1452022352000L, 1L);
+        /*Visitor visitor1 = new Visitor(1L, 1452022352000L, 1L);
         Visitor visitor2 = new Visitor(2L, 1452025352000L, 2L);
         Visitor visitor3 = new Visitor(3L, 1452025352000L, 2L);
         visitor1.save();
@@ -709,7 +707,7 @@ public class UpgradeHelper {
         vDemand3.save();
         vDemand4.save();
         vDemand5.save();
-        vDemand6.save();
+        vDemand6.save();*/
 
         Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 52L, 1L, 1, 1452022352000L);
         Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 52L, 1L, 1, 1452022352000L);

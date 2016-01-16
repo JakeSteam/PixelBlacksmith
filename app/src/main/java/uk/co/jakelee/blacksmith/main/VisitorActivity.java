@@ -34,7 +34,7 @@ public class VisitorActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
-        int visitorId = Integer.parseInt(intent.getStringExtra(DisplayHelper.VISITOR_TO_LOAD));
+        Long visitorId = Long.parseLong(intent.getStringExtra(DisplayHelper.VISITOR_TO_LOAD));
 
         if (visitorId > 0) {
             visitor = Visitor.findById(Visitor.class, visitorId);
