@@ -11,6 +11,8 @@ public class Constants {
 
     public static final Long LOCATION_ANVIL = 1L;
     public static final Long LOCATION_FURNACE = 2L;
+    public static final Long LOCATION_SELLING = 3L;
+    public static final Long LOCATION_MINE = 4L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
