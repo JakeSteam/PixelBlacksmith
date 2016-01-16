@@ -711,15 +711,23 @@ public class UpgradeHelper {
         vDemand5.save();
         vDemand6.save();
 
-        Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 18L, 1L, 1, 1452022352000L);
-        Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 10L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats3 = new Visitor_Stats(3L, 1, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats4 = new Visitor_Stats(4L, 35, 52L, 1L, 1, 1452022352000L);
         vStats1.save();
         vStats2.save();
+        vStats3.save();
+        vStats4.save();
 
-        Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false);
-        Visitor_Type vType2 = new Visitor_Type(2L, "Ragnar Lothbrok", "Raaarrgghh! Give items!", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false);
+        Visitor_Type vType1 = new Visitor_Type(1L, "Señor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
+        Visitor_Type vType2 = new Visitor_Type(2L, "Ragnar Lothbrok", "Raaarrgghh! Give items!", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
+        Visitor_Type vType3 = new Visitor_Type(3L, "Lord of the Junk", "It's not rubbish, it's treasure!", 1L, 3L, 2L, 1.05, 1.05, 1.05, false, false, false, 10);
+        Visitor_Type vType4 = new Visitor_Type(4L, "Monsieur Fancypants", "Only the best for me, old chap.", 7L, 10L, 4L, 1.6, 1.55, 1.5, false, false, false, 1);
         vType1.save();
         vType2.save();
+        vType3.save();
+        vType4.save();
     }
 
 }

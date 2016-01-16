@@ -92,7 +92,7 @@ public class Visitor_Demand extends SugarRecord{
     }
 
     public List<Inventory> getMatchingInventory() {
-        String searchText = "SELECT * FROM Inventory INNER JOIN Item ON Inventory.item = Item.id WHERE quantity > 0 ";
+        String searchText = "SELECT * FROM Inventory INNER JOIN Item ON Inventory.item = Item.id WHERE quantity > 0 AND Item.id <> 52 ";
 
         if (this.getCriteriaType() == 1L) {
             searchText += "AND state = " + this.getCriteriaValue();

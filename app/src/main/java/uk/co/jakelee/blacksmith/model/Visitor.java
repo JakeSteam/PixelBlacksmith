@@ -18,6 +18,11 @@ public class Visitor extends SugarRecord{
         this.type = type;
     }
 
+    public Visitor(Long arrivalTime, Long type) {
+        this.arrivalTime = arrivalTime;
+        this.type = type;
+    }
+
     @Override
     public Long getId() {
         return visitorID;

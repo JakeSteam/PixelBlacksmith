@@ -9,11 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class MainActivity extends AppCompatActivity {
     public static DisplayHelper dh;
@@ -68,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(this, 1000);
             }
         };
+
+        List<Visitor_Type> testingGeneration = new ArrayList<Visitor_Type>();
+        for (int i = 0; i < 10; i++) {
+            //testingGeneration.add(VisitorHelper.selectVisitor());
+        }
 
         handler.postDelayed(updateTask, 1000);
     }

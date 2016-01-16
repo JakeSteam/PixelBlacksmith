@@ -15,11 +15,12 @@ public class Visitor_Type extends SugarRecord{
     boolean tierDiscovered;
     boolean typeDiscovered;
     boolean stateDiscovered;
+    int weighting;
 
     public Visitor_Type() {
     }
 
-    public Visitor_Type(Long visitorID, String name, String desc, Long tierPreferred, Long typePreferred, Long statePreferred, double tierMultiplier, double typeMultiplier, double stateMultiplier, boolean tierDiscovered, boolean typeDiscovered, boolean stateDiscovered) {
+    public Visitor_Type(Long visitorID, String name, String desc, Long tierPreferred, Long typePreferred, Long statePreferred, double tierMultiplier, double typeMultiplier, double stateMultiplier, boolean tierDiscovered, boolean typeDiscovered, boolean stateDiscovered, int weighting) {
         this.visitorID = visitorID;
         this.name = name;
         this.desc = desc;
@@ -32,6 +33,7 @@ public class Visitor_Type extends SugarRecord{
         this.tierDiscovered = tierDiscovered;
         this.typeDiscovered = typeDiscovered;
         this.stateDiscovered = stateDiscovered;
+        this.weighting = weighting;
     }
 
     public Long getVisitorID() {
@@ -128,6 +130,14 @@ public class Visitor_Type extends SugarRecord{
 
     public void setStateDiscovered(boolean stateDiscovered) {
         this.stateDiscovered = stateDiscovered;
+    }
+
+    public int getWeighting() {
+        return weighting;
+    }
+
+    public void setWeighting(int weighting) {
+        this.weighting = weighting;
     }
 
     public double getDisplayedBonus(Inventory invent) {
