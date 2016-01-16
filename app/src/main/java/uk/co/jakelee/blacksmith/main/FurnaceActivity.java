@@ -55,12 +55,13 @@ public class FurnaceActivity extends Activity {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         // Add all bars to the selector
-        List<Item> items = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_BAR)).list();
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_BAR)).list();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
             ImageView image = dh.createItemImage(item.getId(), 300, 230, item.getCanCraft());
-            TextView count = dh.createItemCount(item.getId(), 1, Color.WHITE, Color.BLACK);
+            TextView count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
             count.setPadding(0, 150, 0, 0);
 
             itemBox.addView(image);
@@ -70,11 +71,11 @@ public class FurnaceActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 1);
+        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
+        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
     }
 
     public void closeFurnace(View view) {
@@ -102,49 +103,50 @@ public class FurnaceActivity extends Activity {
         TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
         TextView itemCount = (TextView) furnace.findViewWithTag(itemId + "Count");
 
-        if (item.getCanCraft() == 1) {
+        if (item.getCanCraft() == Constants.TRUE) {
             itemName.setText(item.getName());
             itemDesc.setText(item.getDescription());
             itemCount.setText(Integer.toString(count.getQuantity()));
         } else {
-            itemName.setText("???");
-            itemDesc.setText("???");
-            itemCount.setText("???");
+            itemName.setText(R.string.unknownText);
+            itemDesc.setText(R.string.unknownText);
+            itemCount.setText(R.string.unknownText);
         }
     }
 
     public void smelt1(View v) {
+        int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
         Item item = Item.findById(Item.class, itemId);
-        if (Inventory.createItem(itemId, 1, 1, 2L)) {
-            Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
+        if (Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_FURNACE)) {
+            Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createFurnaceInterface();
         } else {
-            Toast.makeText(getApplicationContext(), "You cannot craft this", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.craftFailure, Toast.LENGTH_SHORT).show();
         }
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {
 
             // Swipe left (next)
-            if (e1.getX() > e2.getX()) {
+            if (startXY.getX() > finishXY.getX()) {
                 mViewFlipper.showNext();
             }
 
             // Swipe right (previous)
-            if (e1.getX() < e2.getX()) {
+            if (startXY.getX() < finishXY.getX()) {
                 mViewFlipper.showPrevious();
             }
 
-            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 1);
+            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 1, ingredientsTable);
+            dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
 
-            return super.onFling(e1, e2, velocityX, velocityY);
+            return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
     }
 }

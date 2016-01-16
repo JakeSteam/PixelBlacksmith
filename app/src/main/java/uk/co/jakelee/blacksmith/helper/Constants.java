@@ -4,6 +4,7 @@ public class Constants {
     public static final int TRUE = 1;
 
     public static final Long LOCATION_ANVIL = 1L;
+    public static final Long LOCATION_FURNACE = 2L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
