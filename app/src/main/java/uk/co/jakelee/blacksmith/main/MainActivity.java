@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
@@ -65,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 updateSlots();
                 updateVisitors();
                 dh.updateCoinsGUI();
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_REFRESHES);
             }
         };
 
         // TODO: Remove after visitor testing
         VisitorHelper.createNewVisitor();
 
-        handler.postDelayed(updateTask, 1000);
+        handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
     }
 
     @Override

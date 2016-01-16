@@ -12,9 +12,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -32,7 +36,9 @@ public class InventoryActivity extends Activity {
     }
 
     public void updateInventoryTable() {
-        List<Inventory> allInventoryItems = Inventory.find(Inventory.class, "item <> 52 AND quantity > 0");
+        List<Inventory> allInventoryItems = Select.from(Inventory.class).where(
+                Condition.prop("quantity").gt(0),
+                Condition.prop("item").notEq(Constants.ITEM_COINS)).list();
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 
@@ -45,12 +51,11 @@ public class InventoryActivity extends Activity {
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
-            List<Item> items = Item.find(Item.class, "id = " + inventoryItem.getItem());
-            Item item = items.get(0);
-            ImageView image = dh.createItemImage(item.getId(), 100, 100, 1);
+            Item item = Item.findById(Item.class, inventoryItem.getItem());
+            ImageView image = dh.createItemImage(item.getId(), 100, 100, Constants.TRUE);
 
             String itemName = item.getName();
-            if (inventoryItem.getState() == 2) {
+            if (inventoryItem.getState() == Constants.STATE_NORMAL) {
                 itemName = "(unf) " + itemName;
             }
 
@@ -82,12 +87,13 @@ public class InventoryActivity extends Activity {
     }
 
     public void clickSellButton(View view) {
+        int quantity = 1;
         Long itemID = (Long)view.getTag(R.id.itemID);
         int itemState = (int)view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
 
-        if (Inventory.sellItem(itemID, itemState, 1, itemToSell.getValue())) {
-            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", 1, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
+        if (Inventory.sellItem(itemID, itemState, quantity, itemToSell.getValue())) {
+            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }

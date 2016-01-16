@@ -3,6 +3,12 @@ package uk.co.jakelee.blacksmith.helper;
 public class Constants {
     public static final int TRUE = 1;
 
+    public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
+
+    public static final String STR_EMPTY = "";
+
+    public static final Long ITEM_COINS = 52L;
+
     public static final Long LOCATION_ANVIL = 1L;
     public static final Long LOCATION_FURNACE = 2L;
 
