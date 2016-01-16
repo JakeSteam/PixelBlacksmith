@@ -13,9 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -24,6 +28,7 @@ public class FurnaceActivity extends Activity {
     public static DisplayHelper dh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,6 @@ public class FurnaceActivity extends Activity {
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
-
         return super.onTouchEvent(event);
     }
 
@@ -51,7 +55,7 @@ public class FurnaceActivity extends Activity {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         // Add all bars to the selector
-        List<Item> items = Item.find(Item.class, "type BETWEEN " + 2 + " AND " + 2);
+        List<Item> items = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_BAR)).list();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
@@ -79,11 +83,13 @@ public class FurnaceActivity extends Activity {
 
     public void displayItemInfo(Long itemId, int state) {
         View furnace = findViewById(R.id.furnace);
-        List<Item> items = Item.find(Item.class, "id = " + itemId);
-        Item item = items.get(0);
-
-        List<Inventory> inventories = Inventory.find(Inventory.class, "item = " + itemId + " AND state = " + state);
+        Item item = Select.from(Item.class).where(
+                Condition.prop("id").eq(itemId)).first();
+        List<Inventory> inventories = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(itemId),
+                Condition.prop("state").eq(state)).list();
         Inventory count = new Inventory();
+
         if (inventories.size() > 0) {
             count = inventories.get(0);
         } else {

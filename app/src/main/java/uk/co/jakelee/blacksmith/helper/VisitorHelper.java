@@ -73,24 +73,16 @@ public class VisitorHelper {
 
         int quantity = getRandomNumber(MINIMUM_QUANTITY, MAXIMUM_QUANTITY);
 
-        boolean required = getRequired(i);
+        boolean required = getRandomBoolean(DEMAND_REQUIRED_PERCENTAGE);
 
         Visitor_Demand demand = new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);
         demand.save();
     }
 
-    public static boolean getRequired(int demandNumber) {
-        if (demandNumber == 1) {
-            // First demand is guaranteed to be required
-            return true;
-        }
-        return getRandomBoolean(DEMAND_REQUIRED_PERCENTAGE);
-    }
-
     public static int getRandomNumber(int minimum, int maximum) {
         Random random = new Random();
-        int numDemands = random.nextInt(maximum) + minimum;
-        return numDemands;
+        int number = random.nextInt((maximum - minimum) + 1) + minimum;
+        return number;
     }
 
     public static boolean getRandomBoolean(int truePercentage) {

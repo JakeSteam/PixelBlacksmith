@@ -20,7 +20,10 @@
     <string name="visitorText">Visitor</string>
     <string name="tradeText">Trade</string>
 
-    <string name="unknownMultiplier">\???</string>
+    <string name="unknownText">\???</string>
+
+    <string name="craftFailure">You cannot craft this.</string>
+    <string name="craftAdd">Item added to craft queue.</string>
 
 
 </resources>
