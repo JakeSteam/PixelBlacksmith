@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -100,10 +101,10 @@ public class TradeActivity extends Activity {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = Item.findById(Item.class, inventory.getItem());
 
-            ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, 1);
+            ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, Constants.TRUE);
 
             String itemName = item.getName();
-            if (inventory.getState() == 2) {
+            if (inventory.getState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
             TextView name = dh.createTextView(itemName, 15, Color.BLACK);
@@ -126,7 +127,7 @@ public class TradeActivity extends Activity {
             // Work out the multiplier that the player can see
             TextView bonusText = dh.createTextView("???", 15, Color.BLACK);
             double bonus = visitorType.getDisplayedBonus(inventory);
-            if (bonus > 1) {
+            if (bonus > Constants.DEFAULT_BONUS) {
                 bonusText.setText(Double.toString(bonus) + "x");
                 bonusText.setTextColor(Color.GREEN);
             }
@@ -142,14 +143,15 @@ public class TradeActivity extends Activity {
     public void clickSellButton(View v) {
         Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
         List<Inventory> invents = Inventory.find(Inventory.class, "item = " + itemToSell.getId() + " AND state = " + v.getTag(R.id.itemState));
+        int quantity = 1;
 
         // Calculate the item sell value, rounded up
         double bonus = visitorType.getBonus(invents.get(0));
         int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
 
-        if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), 1, value)) {
-            Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", 1, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
-            demand.setQuantityProvided(demand.getQuantityProvided() + 1);
+        if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value)) {
+            Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
+            demand.setQuantityProvided(demand.getQuantityProvided() + quantity);
             demand.save();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();

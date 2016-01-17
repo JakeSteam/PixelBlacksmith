@@ -99,9 +99,9 @@ public class UpgradeHelper {
         Item item20 = new Item(20L, "Bronze dagger", "A blunt bronze dagger.", 3, 1, 5, 1, 1);
         Item item21 = new Item(21L, "Bronze sword", "A fairly blunt bronze sword.", 4, 1, 10, 1, 0);
         Item item22 = new Item(22L, "Bronze longsword", "A longer bronze sword.", 5, 1, 10, 1, 0);
-        Item item23 = new Item(23L, "Bronze crossbow", "A crossbow with bronze elements.", 6, 1, 10, 1, 1);
-        Item item24 = new Item(24L, "Bronze platelegs", "A set of bronze legs.", 7, 1, 10, 2, 1);
-        Item item25 = new Item(25L, "Bronze plateskirt", "A set of bronze legs, with added drafts.", 8, 1, 10, 2, 1);
+        Item item23 = new Item(23L, "Bronze bow", "A bow with bronze elements.", 6, 1, 10, 1, 1);
+        Item item24 = new Item(24L, "Bronze half shield", "A fairly weak bronze shield.", 7, 1, 10, 2, 1);
+        Item item25 = new Item(25L, "Bronze full shield", "A slightly stronger bronze shield.", 8, 1, 10, 2, 1);
         Item item26 = new Item(26L, "Bronze chainbody", "A light set of bronze body armour.", 9, 1, 10, 2, 1);
         Item item27 = new Item(27L, "Bronze platebody", "A heavy set of bronze body armour.", 10, 1, 15, 3, 1);
         Item item28 = new Item(28L, "Bronze half helmet", "A no-frills approach to protection.", 11, 1, 10, 3, 1);
@@ -115,9 +115,9 @@ public class UpgradeHelper {
         Item item36 = new Item(36L, "Iron dagger", "A blunt iron dagger.", 3, 2, 7, 5, 1);
         Item item37 = new Item(37L, "Iron sword", "A bluntish iron sword.", 4, 2, 14, 5, 1);
         Item item38 = new Item(38L, "Iron longsword", "A longer iron sword.", 5, 2, 14, 5, 1);
-        Item item39 = new Item(39L, "Iron crossbow", "A crossbow with iron elements.", 6, 2, 14, 5, 1);
-        Item item40 = new Item(40L, "Iron platelegs", "A set of iron legs.", 7, 2, 14, 6, 1);
-        Item item41 = new Item(41L, "Iron plateskirt", "A set of iron legs, offering some protection.", 8, 2, 14, 6, 1);
+        Item item39 = new Item(39L, "Iron bow", "A bow with iron elements.", 6, 2, 14, 5, 1);
+        Item item40 = new Item(40L, "Iron half shield", "An iron half shield.", 7, 2, 14, 6, 1);
+        Item item41 = new Item(41L, "Iron full shield", "An improved iron shield.", 8, 2, 14, 6, 1);
         Item item42 = new Item(42L, "Iron chainbody", "A light set of iron body armour.", 9, 2, 14, 6, 1);
         Item item43 = new Item(43L, "Iron platebody", "A heavy set of iron body armour.", 10, 2, 21, 7, 1);
         Item item44 = new Item(44L, "Iron half helmet", "A tiny bit of frills approach to protection.", 11, 2, 14, 7, 1);
@@ -132,9 +132,9 @@ public class UpgradeHelper {
         Item item53 = new Item(53L, "Steel dagger", "An average steel dagger.", 3, 3, 14, 10, 1);
         Item item54 = new Item(54L, "Steel sword", "A slightly blunt steel sword.", 4, 3, 28, 10, 1);
         Item item55 = new Item(55L, "Steel longsword", "An even longer steel sword.", 5, 3, 28, 10, 1);
-        Item item56 = new Item(56L, "Steel crossbow", "A crossbow with steel elements.", 6, 3, 28, 10, 0);
-        Item item57 = new Item(57L, "Steel platelegs", "A set of steel legs.", 7, 3, 28, 12, 0);
-        Item item58 = new Item(58L, "Steel plateskirt", "A set of steel legs, offering more protection.", 8, 3, 28, 12, 1);
+        Item item56 = new Item(56L, "Steel bow", "A bow with steel elements.", 6, 3, 28, 10, 0);
+        Item item57 = new Item(57L, "Steel half shield", "Steel shield, but only half.", 7, 3, 28, 12, 0);
+        Item item58 = new Item(58L, "Steel full shield", "Steel shield, the fullest.", 8, 3, 28, 12, 1);
         Item item59 = new Item(59L, "Steel chainbody", "A light set of steel body armour.", 9, 3, 28, 12, 1);
         Item item60 = new Item(60L, "Steel platebody", "A heavy set of steel body armour.", 10, 3, 42, 14, 1);
         Item item61 = new Item(61L, "Steel half helmet", "A little bit frilly approach to protection.", 11, 3, 28, 14, 1);
@@ -145,7 +145,7 @@ public class UpgradeHelper {
         Item item66 = new Item(66L, "Steel hatchet", "A sharper axe for cutting down trees.", 16, 3, 28, 18, 1);
         Item item67 = new Item(67L, "Steel fishing rod", "A sharper rod for catching fish.", 17, 3, 28, 18, 1);
         Item item68 = new Item(68L, "Steel hammer", "A heavier hammer that tends to hit the anvil. Just.", 18, 3, 4, 18, 1);
-        Item item69 = new Item(69L, "Flax", "A strand of flax.", 20, 10, 1, 1, 1);
+        Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 20, 10, 1, 1, 1);
         Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 20, 10, 1, 1, 1);
         Item item71 = new Item(71L, "Logs", "Some basic logs.",20, 10, 1, 1, 1);
         item1.save();
@@ -622,10 +622,16 @@ public class UpgradeHelper {
         State state2 = new State(2L, "Unfinished");
         State state3 = new State(3L, "Red Enchant");
         State state4 = new State(4L, "Blue Enchant");
+        State state5 = new State(5L, "Green Enchant");
+        State state6 = new State(6L, "White Enchant");
+        State state7 = new State(7L, "Black Enchant");
         state1.save();
         state2.save();
         state3.save();
         state4.save();
+        state5.save();
+        state6.save();
+        state7.save();
 
         Tier tier1 = new Tier(1L, "Bronze");
         Tier tier2 = new Tier(2L, "Iron");

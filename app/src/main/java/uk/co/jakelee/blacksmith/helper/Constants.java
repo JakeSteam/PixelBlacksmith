@@ -3,6 +3,8 @@ package uk.co.jakelee.blacksmith.helper;
 public class Constants {
     public static final int TRUE = 1;
 
+    public static final Double DEFAULT_BONUS = 1.00;
+
     public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
 
     public static final String STR_EMPTY = "";
@@ -13,6 +15,7 @@ public class Constants {
     public static final Long LOCATION_FURNACE = 2L;
     public static final Long LOCATION_SELLING = 3L;
     public static final Long LOCATION_MINE = 4L;
+    public static final Long LOCATION_TABLE = 5L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

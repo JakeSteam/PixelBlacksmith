@@ -126,7 +126,6 @@ public class AnvilActivity extends Activity {
         int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        Item item = Item.findById(Item.class, itemId);
         if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL)) {
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
