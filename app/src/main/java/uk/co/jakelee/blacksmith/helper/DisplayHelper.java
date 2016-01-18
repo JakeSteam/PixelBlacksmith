@@ -18,6 +18,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -81,7 +84,7 @@ public class DisplayHelper {
             if (slot.getLevel() > playerLevel) {
                 slotBackground.setBackgroundResource(R.drawable.close);
                 slotBackground.setTag(false);
-            } else if (slot.getPremium() == 1) {
+            } else if (slot.getPremium() == Constants.TRUE) {
                 slotBackground.setBackgroundResource(R.drawable.item52);
                 slotBackground.setTag(false);
             } else {
@@ -193,10 +196,11 @@ public class DisplayHelper {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
-        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
+        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
+        Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
 
-        if (canCraft != 1) {
+        if (canCraft != Constants.TRUE) {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.clearColorFilter();
@@ -259,16 +263,18 @@ public class DisplayHelper {
     }
 
     public int getCoins() {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "STATE = 1 AND ITEM = 52");
-        Inventory inventory = inventories.get(0);
-        return inventory.getQuantity();
+        Inventory coins = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(Constants.STATE_NORMAL),
+                Condition.prop("item").eq(Constants.ITEM_COINS)).first();
+        return coins.getQuantity();
     }
 
     public void updateCoins(int coins) {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE item = 52");
-        Inventory foundInventory = inventories.get(0);
-        foundInventory.setQuantity(coins);
-        foundInventory.save();
+        Inventory ownedCoins = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(Constants.STATE_NORMAL),
+                Condition.prop("item").eq(Constants.ITEM_COINS)).first();
+        ownedCoins.setQuantity(coins);
+        ownedCoins.save();
 
         updateCoinsGUI();
     }
@@ -314,13 +320,13 @@ public class DisplayHelper {
             TableRow row = new TableRow(context);
 
             String itemName = itemIngredient.getName();
-            if (ingredient.getIngredientState() == 2) {
+            if (ingredient.getIngredientState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
             TextView itemNameView = createTextView(itemName, 15, Color.DKGRAY);
             itemNameView.setSingleLine(false);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 66, 62, 1));
+            row.addView(createItemImage(ingredient.getIngredient(), 66, 62, Constants.TRUE));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));

@@ -92,7 +92,7 @@ public class ShopActivity extends Activity {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = Item.findById(Item.class, itemForSale.getItemID());
 
-            ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 30, 30, Constants.TRUE);
+            ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, Constants.TRUE);
             TextView itemStock = dh.createTextView(itemForSale.getStock() + "x " + item.getName(), 16, Color.BLACK);
             TextView itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             itemBuy.setWidth(30);

@@ -660,8 +660,8 @@ public class UpgradeHelper {
         Type type4 = new Type(4L, "Sword", 2);
         Type type5 = new Type(5L, "Longsword", 2);
         Type type6 = new Type(6L, "Bow", 2);
-        Type type7 = new Type(7L, "Platelegs", 3);
-        Type type8 = new Type(8L, "Plateskirt", 3);
+        Type type7 = new Type(7L, "Half Shield", 3);
+        Type type8 = new Type(8L, "Full Shield", 3);
         Type type9 = new Type(9L, "Chainbody", 3);
         Type type10 = new Type(10L, "Platebody", 3);
         Type type11 = new Type(11L, "Half Helmet", 3);

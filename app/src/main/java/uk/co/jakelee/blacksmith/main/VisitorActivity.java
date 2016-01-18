@@ -98,7 +98,7 @@ public class VisitorActivity extends Activity {
             ImageView statePic = (ImageView) findViewById(R.id.stateImage);
             TextView stateMultiplier = (TextView) findViewById(R.id.stateMultiplier);
 
-            int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
+            int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getStatePreferred(), "drawable", getApplicationContext().getPackageName());
             statePic.setImageResource(typeDrawableId);
             stateMultiplier.setText(Double.toString(visitorType.getStateMultiplier()) + "x");
         }

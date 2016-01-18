@@ -104,7 +104,7 @@ public class MineActivity extends Activity {
                 Condition.prop("shop_ID").eq(shop.getId())).list();
 
         for (Shop_Stock stock : shopOfferings) {
-            ImageView itemImage = dh.createItemImage(stock.getItemID(), 50, 50, stock.getDiscovered());
+            ImageView itemImage = dh.createItemImage(stock.getItemID(), 100, 100, stock.getDiscovered());
             offeringsLayout.addView(itemImage);
         }
         return offeringsLayout;
