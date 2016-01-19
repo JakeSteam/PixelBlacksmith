@@ -289,6 +289,40 @@ public class DisplayHelper {
         levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
     }
 
+    public void displayItemInfo(Long itemId, int state, View itemArea) {
+        Item item = Item.findById(Item.class, itemId);
+        List<Inventory> inventories = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(itemId),
+                Condition.prop("state").eq(state)).list();
+        Inventory count = new Inventory();
+
+        if (inventories.size() > 0) {
+            count = inventories.get(0);
+        } else {
+            count.setItem(itemId);
+            count.setState(state);
+            count.setQuantity(0);
+        }
+
+        TextView itemName = (TextView) itemArea.findViewById(R.id.itemName);
+        TextView itemDesc = (TextView) itemArea.findViewById(R.id.itemDesc);
+        TextView itemCount = (TextView) itemArea.findViewWithTag(itemId + "Count");
+
+        if (item.getCanCraft() == Constants.TRUE) {
+            if (state == Constants.STATE_NORMAL) {
+                itemName.setText(item.getName());
+            } else if (state == Constants.STATE_UNFINISHED) {
+                itemName.setText("(unf) " + item.getName());
+            }
+            itemDesc.setText(item.getDescription());
+            itemCount.setText(Integer.toString(count.getQuantity()));
+        } else {
+            itemName.setText(R.string.unknownText);
+            itemDesc.setText(R.string.unknownText);
+            itemCount.setText(R.string.unknownText);
+        }
+    }
+
     public void createItemIngredientsTable(Long itemId, int state, TableLayout ingredientsTable) {
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemId, state);

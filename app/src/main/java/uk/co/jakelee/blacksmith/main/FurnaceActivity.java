@@ -71,7 +71,8 @@ public class FurnaceActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL);
+        View furnace = findViewById(R.id.furnace);
+        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, furnace);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
@@ -80,38 +81,6 @@ public class FurnaceActivity extends Activity {
 
     public void closeFurnace(View view) {
         finish();
-    }
-
-    public void displayItemInfo(Long itemId, int state) {
-        View furnace = findViewById(R.id.furnace);
-        Item item = Select.from(Item.class).where(
-                Condition.prop("id").eq(itemId)).first();
-        List<Inventory> inventories = Select.from(Inventory.class).where(
-                Condition.prop("item").eq(itemId),
-                Condition.prop("state").eq(state)).list();
-        Inventory count = new Inventory();
-
-        if (inventories.size() > 0) {
-            count = inventories.get(0);
-        } else {
-            count.setItem(itemId);
-            count.setState(state);
-            count.setQuantity(0);
-        }
-
-        TextView itemName = (TextView) findViewById(R.id.itemName);
-        TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
-        TextView itemCount = (TextView) furnace.findViewWithTag(itemId + "Count");
-
-        if (item.getCanCraft() == Constants.TRUE) {
-            itemName.setText(item.getName());
-            itemDesc.setText(item.getDescription());
-            itemCount.setText(Integer.toString(count.getQuantity()));
-        } else {
-            itemName.setText(R.string.unknownText);
-            itemDesc.setText(R.string.unknownText);
-            itemCount.setText(R.string.unknownText);
-        }
     }
 
     public void smelt1(View v) {
@@ -141,7 +110,8 @@ public class FurnaceActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL);
+            View furnace = findViewById(R.id.furnace);
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, furnace);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
             dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);

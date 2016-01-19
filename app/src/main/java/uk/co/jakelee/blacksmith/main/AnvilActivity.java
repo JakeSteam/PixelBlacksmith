@@ -79,7 +79,8 @@ public class AnvilActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED);
+        View anvil = findViewById(R.id.anvil);
+        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, anvil);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
@@ -88,38 +89,6 @@ public class AnvilActivity extends Activity {
 
     public void closeAnvil(View view) {
         finish();
-    }
-
-    public void displayItemInfo(Long itemId, int state) {
-        View anvil = findViewById(R.id.anvil);
-        Item item = Item.findById(Item.class, itemId);
-        List<Inventory> inventories = Select.from(Inventory.class).where(
-                Condition.prop("item").eq(itemId),
-                Condition.prop("state").eq(state)).list();
-
-        Inventory count = new Inventory();
-        if (inventories.size() > 0) {
-            count = inventories.get(0);
-        } else {
-            count.setItem(itemId);
-            count.setState(state);
-            count.setQuantity(0);
-        }
-
-        TextView itemName = (TextView) findViewById(R.id.itemName);
-        TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
-        TextView itemCount = (TextView) anvil.findViewWithTag(itemId + "Count");
-
-        if (item.getCanCraft() == Constants.TRUE) {
-            itemName.setText("(unf) " + item.getName());
-            itemDesc.setText(item.getDescription());
-            itemCount.setText(Integer.toString(count.getQuantity()));
-        } else {
-            itemName.setText(R.string.unknownText);
-            itemDesc.setText(R.string.unknownText);
-            itemCount.setText(R.string.unknownText);
-        }
-
     }
 
     public void smelt1(View v) {
@@ -162,7 +131,9 @@ public class AnvilActivity extends Activity {
                 mViewFlipper.showPrevious();
             }
 
-            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED);
+            View anvil = findViewById(R.id.anvil);
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, anvil);
+
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
             dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, ingredientsTable);
