@@ -80,7 +80,8 @@ public class TableActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL);
+        View table = findViewById(R.id.table);
+        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, table);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
@@ -89,38 +90,6 @@ public class TableActivity extends Activity {
 
     public void closeTable(View view) {
         finish();
-    }
-
-    public void displayItemInfo(Long itemId, int state) {
-        View table = findViewById(R.id.table);
-        Item item = Item.findById(Item.class, itemId);
-        List<Inventory> inventories = Select.from(Inventory.class).where(
-                Condition.prop("item").eq(itemId),
-                Condition.prop("state").eq(state)).list();
-
-        Inventory count = new Inventory();
-        if (inventories.size() > 0) {
-            count = inventories.get(0);
-        } else {
-            count.setItem(itemId);
-            count.setState(state);
-            count.setQuantity(0);
-        }
-
-        TextView itemName = (TextView) findViewById(R.id.itemName);
-        TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
-        TextView itemCount = (TextView) table.findViewWithTag(itemId + "Count");
-
-        if (item.getCanCraft() == Constants.TRUE) {
-            itemName.setText(item.getName());
-            itemDesc.setText(item.getDescription());
-            itemCount.setText(Integer.toString(count.getQuantity()));
-        } else {
-            itemName.setText(R.string.unknownText);
-            itemDesc.setText(R.string.unknownText);
-            itemCount.setText(R.string.unknownText);
-        }
-
     }
 
     public void craft1(View v) {
@@ -162,8 +131,9 @@ public class TableActivity extends Activity {
             if (startXY.getX() < finishXY.getX()) {
                 mViewFlipper.showPrevious();
             }
-
-            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL);
+            
+            View table = findViewById(R.id.table);
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, table);
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
             dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
