@@ -131,7 +131,7 @@ public class TableActivity extends Activity {
             if (startXY.getX() < finishXY.getX()) {
                 mViewFlipper.showPrevious();
             }
-            
+
             View table = findViewById(R.id.table);
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, table);
 
