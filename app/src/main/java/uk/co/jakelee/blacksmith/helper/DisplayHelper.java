@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
@@ -163,11 +164,13 @@ public class DisplayHelper {
         }
     }
 
-    public TextView createTextView(String text, int size, int color) {
+    public TextView createTextView(Context context, String text, int size, int color) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
         TextView textView = new TextView(context);
         textView.setText(text);
         textView.setTextSize(size);
         textView.setTextColor(color);
+        textView.setTypeface(font);
         return textView;
     }
 
@@ -324,6 +327,7 @@ public class DisplayHelper {
     }
 
     public void createItemIngredientsTable(Long itemId, int state, TableLayout ingredientsTable) {
+        Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
         ingredientsTable.removeAllViews();
@@ -331,19 +335,19 @@ public class DisplayHelper {
 
         // Add a header row
         TableRow headerRow = new TableRow(context);
-        headerRow.addView(createTextView("", 15, Color.DKGRAY));
-        headerRow.addView(createTextView("", 15, Color.DKGRAY));
-        headerRow.addView(createTextView("Need", 15, Color.DKGRAY));
-        headerRow.addView(createTextView("Have", 15, Color.DKGRAY));
+        headerRow.addView(createTextView(context, "", 22, Color.DKGRAY));
+        headerRow.addView(createTextView(context, "", 22, Color.DKGRAY));
+        headerRow.addView(createTextView(context, "Need", 22, Color.DKGRAY));
+        headerRow.addView(createTextView(context, "Have", 22, Color.DKGRAY));
         ingredientsTable.addView(headerRow);
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
         Item item = Item.findById(Item.class, itemId);
-        levelRow.addView(createTextView("", 15, Color.DKGRAY));
-        levelRow.addView(createTextView("Level", 15, Color.DKGRAY));
-        levelRow.addView(createTextView(Integer.toString(item.getLevel()), 15, Color.DKGRAY));
-        levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 15, Color.DKGRAY));
+        levelRow.addView(createTextView(context, "", 22, Color.DKGRAY));
+        levelRow.addView(createTextView(context, "Level", 22, Color.DKGRAY));
+        levelRow.addView(createTextView(context, Integer.toString(item.getLevel()), 22, Color.DKGRAY));
+        levelRow.addView(createTextView(context, Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
         ingredientsTable.addView(levelRow);
 
 
@@ -357,13 +361,13 @@ public class DisplayHelper {
             if (ingredient.getIngredientState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextView itemNameView = createTextView(itemName, 15, Color.DKGRAY);
+            TextView itemNameView = createTextView(context, itemName, 22, Color.DKGRAY);
             itemNameView.setSingleLine(false);
 
             row.addView(createItemImage(ingredient.getIngredient(), 66, 62, Constants.TRUE));
             row.addView(itemNameView);
-            row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
-            row.addView(createTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
+            row.addView(createTextView(context, Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
+            row.addView(createTextView(context, Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }

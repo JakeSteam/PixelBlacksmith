@@ -117,9 +117,9 @@ public class VisitorActivity extends Activity {
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView("Status", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Criteria", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Trade", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView(getApplicationContext(), "Status", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView(getApplicationContext(), "Criteria", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView(getApplicationContext(), "Trade", 18, Color.BLACK));
         demandsTable.addView(headerRow);
 
         List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
@@ -130,10 +130,10 @@ public class VisitorActivity extends Activity {
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
             String status = (demand.isDemandFulfilled() ? "Done" : "X");
-            TextView criteriaStatus = dh.createTextView(status, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextView criteriaStatus = dh.createTextView(getApplicationContext(), status, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
-            TextView criteriaValue = dh.createTextView(criteriaText, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextView criteriaValue = dh.createTextView(getApplicationContext(), criteriaText, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {

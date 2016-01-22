@@ -17,8 +17,8 @@
     tools:context="uk.co.jakelee.blacksmith.main.ShopActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:onClick="closeShop"
         android:src="@drawable/close" />
 
