@@ -43,10 +43,10 @@ public class InventoryActivity extends Activity {
         inventoryTable.removeAllViews();
 
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView(getApplicationContext(), "", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView(getApplicationContext(), "Name", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView(getApplicationContext(), "Qty", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView(getApplicationContext(), "Sell", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Name", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Qty", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Sell", 18, Color.BLACK));
         inventoryTable.addView(headerRow);
 
         for (Inventory inventoryItem : allInventoryItems) {
@@ -59,13 +59,13 @@ public class InventoryActivity extends Activity {
                 itemName = "(unf) " + itemName;
             }
 
-            TextView name = dh.createTextView(getApplicationContext(), itemName, 15, Color.BLACK);
+            TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
             name.setWidth(275);
 
-            TextView count = dh.createTextView(getApplicationContext(), Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
+            TextView count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
 
-            TextView sell = dh.createTextView(getApplicationContext(), Integer.toString(item.getValue()), 18, Color.BLACK);
+            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);

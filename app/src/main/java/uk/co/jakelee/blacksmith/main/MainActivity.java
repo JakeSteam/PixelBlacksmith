@@ -13,7 +13,6 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
-import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         // TODO: Remove after visitor testing
-        VisitorHelper.createNewVisitor();
+        //VisitorHelper.createNewVisitor();
 
         handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
     }

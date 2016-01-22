@@ -7,4 +7,5 @@
     <item name="shopDesc" type="id" />
     <item name="itemID" type="id" />
     <item name="itemState" type="id" />
+    <item name="itemImage" type="id" />
 </resources>

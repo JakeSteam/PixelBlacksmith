@@ -89,10 +89,10 @@ public class TradeActivity extends Activity {
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView(getApplicationContext(), "", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView(getApplicationContext(), "Item", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView(getApplicationContext(), "Sell", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView(getApplicationContext(), "", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Item", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("Sell", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
         itemsTable.addView(headerRow);
 
         List<Inventory> matchingItems = demand.getMatchingInventory();
@@ -107,11 +107,11 @@ public class TradeActivity extends Activity {
             if (inventory.getState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextView name = dh.createTextView(getApplicationContext(), itemName, 15, Color.BLACK);
+            TextView name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
             // Create a sell button for that item
-            TextView sell = dh.createTextView(getApplicationContext(), Integer.toString(item.getValue()), 18, Color.BLACK);
+            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
@@ -125,7 +125,7 @@ public class TradeActivity extends Activity {
             });
 
             // Work out the multiplier that the player can see
-            TextView bonusText = dh.createTextView(getApplicationContext(), "???", 15, Color.BLACK);
+            TextView bonusText = dh.createTextView("???", 15, Color.BLACK);
             double bonus = visitorType.getDisplayedBonus(inventory);
             if (bonus > Constants.DEFAULT_BONUS) {
                 bonusText.setText(Double.toString(bonus) + "x");

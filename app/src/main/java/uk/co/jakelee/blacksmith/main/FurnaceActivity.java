@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -43,12 +44,21 @@ public class FurnaceActivity extends Activity {
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
 
+        setCustomFont();
         createFurnaceInterface();
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
+    }
+
+    public void setCustomFont() {
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/BetterPixels.ttf");
+
+        ((TextView) findViewById(R.id.furnaceTitle)).setTypeface(typeface);
+        ((TextView) findViewById(R.id.itemName)).setTypeface(typeface);
+        ((TextView) findViewById(R.id.itemDesc)).setTypeface(typeface);
     }
 
     public void createFurnaceInterface() {
@@ -60,7 +70,7 @@ public class FurnaceActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 160, 160, item.getCanCraft());
+            ImageView image = dh.createItemImage(item.getId(), 200, 200, item.getCanCraft());
             TextView count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
             count.setPadding(0, 150, 0, 0);
 

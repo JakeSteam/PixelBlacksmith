@@ -52,10 +52,10 @@ public class MineActivity extends Activity {
 
         for (Shop shop : discoveredShops) {
             // Creating elements
-            TextView shopName = dh.createTextView(getApplicationContext(), shop.getName(), 20, Color.BLACK);
+            TextView shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
             shopName.setId(R.id.shopName);
 
-            TextView shopDesc = dh.createTextView(getApplicationContext(), shop.getDescription(), 14, Color.BLACK);
+            TextView shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
             shopDesc.setId(R.id.shopDesc);
             LinearLayout shopItems = createShopOfferings(shop);
 
