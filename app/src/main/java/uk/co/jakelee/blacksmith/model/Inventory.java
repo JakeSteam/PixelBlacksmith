@@ -18,6 +18,30 @@ public class Inventory extends SugarRecord {
         this.quantity = quantity;
     }
 
+    public Long getItem() {
+        return item;
+    }
+
+    public void setItem(Long item) {
+        this.item = item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public static void addItem(Long itemId, int state, int quantity) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
@@ -67,7 +91,7 @@ public class Inventory extends SugarRecord {
         List<Location> locations = Location.find(Location.class, "id = " + locationId);
         Location location = locations.get(0);
 
-        if (canCreateItem(itemId, state) && Slots.hasAvailableSlot(location.getName())) {
+        if (canCreateItem(itemId, state) && Slot.hasAvailableSlot(location.getName())) {
             removeItemIngredients(itemId, state);
             Pending_Inventory.addItem(itemId, state, quantity, locationId);
             return true;
@@ -88,7 +112,7 @@ public class Inventory extends SugarRecord {
     }
 
     public static boolean canSellItem(Long itemId, int state, int quantity) {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE state = " + state + " AND id = " + itemId);
+        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND item = " + itemId);
 
         Inventory foundInventory;
         if (inventories.size() > 0) {
@@ -105,7 +129,7 @@ public class Inventory extends SugarRecord {
         Long coinId = 52L;
         String locationName = "Selling";
 
-        if (canSellItem(itemId, state, quantity) && Slots.hasAvailableSlot(locationName)) {
+        if (canSellItem(itemId, state, quantity) && Slot.hasAvailableSlot(locationName)) {
             // Remove item
             Inventory itemStock = Inventory.getInventory(itemId, state);
             itemStock.setQuantity(itemStock.getQuantity() - quantity);
@@ -118,6 +142,17 @@ public class Inventory extends SugarRecord {
         } else {
             return false;
         }
+    }
+
+    public static boolean tradeItem(Long itemId, int state, int quantity, int price) {
+        Long coinId = 52L;
+
+        Inventory itemStock = Inventory.getInventory(itemId, state);
+        itemStock.setQuantity(itemStock.getQuantity() - quantity);
+        itemStock.save();
+        Inventory.addItem(coinId, 1, price);
+
+        return true;
     }
 
     public static boolean canBuyItem(Long itemId, int state, Long shopId, int price) {
@@ -139,7 +174,7 @@ public class Inventory extends SugarRecord {
         Long coinId = 52L;
         String locationName = "Mine";
 
-        if (canBuyItem(itemId, state, shopId, price) && Slots.hasAvailableSlot(locationName)) {
+        if (canBuyItem(itemId, state, shopId, price) && Slot.hasAvailableSlot(locationName)) {
             // Remove coins
             Inventory coinStock = Inventory.getInventory(coinId, state);
             coinStock.setQuantity(coinStock.getQuantity() - price);
@@ -158,30 +193,5 @@ public class Inventory extends SugarRecord {
         } else {
             return false;
         }
-    }
-
-
-    public Long getItem() {
-        return item;
-    }
-
-    public void setItem(Long item) {
-        this.item = item;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 }

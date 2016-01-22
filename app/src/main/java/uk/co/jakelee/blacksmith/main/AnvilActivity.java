@@ -13,16 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class AnvilActivity extends Activity {
     public static DisplayHelper dh;
-    public int displayedTier = 1;
+    public int displayedTier = Constants.TIER_MIN;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -57,12 +61,15 @@ public class AnvilActivity extends Activity {
         }
 
         // Get all items that are of the correct tier
-        List<Item> items = Item.find(Item.class, "type BETWEEN " + 3 + " AND " + 18 + " AND tier = " + displayedTier + " ORDER BY level ASC");
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
+                Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
+                Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 300, 230, item.getCanCraft());
-            TextView count = dh.createItemCount(item.getId(), 2, Color.WHITE, Color.BLACK);
+            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getCanCraft());
+            TextView count = dh.createItemCount(item.getId(), Constants.STATE_UNFINISHED, Color.WHITE, Color.BLACK);
             count.setPadding(0, 150, 0, 0);
 
             itemBox.addView(image);
@@ -72,69 +79,39 @@ public class AnvilActivity extends Activity {
         }
 
         // Display item name and description
-        displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 2);
+        View anvil = findViewById(R.id.anvil);
+        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, anvil);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 2, ingredientsTable);
+        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, ingredientsTable);
     }
 
     public void closeAnvil(View view) {
         finish();
     }
 
-    public void displayItemInfo(Long itemId, int state) {
-        View anvil = findViewById(R.id.anvil);
-        List<Item> items = Item.find(Item.class, "id = " + itemId);
-        Item item = items.get(0);
-
-        List<Inventory> inventories = Inventory.find(Inventory.class, "item = " + itemId + " AND state = " + state);
-        Inventory count = new Inventory();
-        if (inventories.size() > 0) {
-            count = inventories.get(0);
-        } else {
-            count.setItem(itemId);
-            count.setState(state);
-            count.setQuantity(0);
-        }
-
-        TextView itemName = (TextView) findViewById(R.id.itemName);
-        TextView itemDesc = (TextView) findViewById(R.id.itemDesc);
-        TextView itemCount = (TextView) anvil.findViewWithTag(itemId + "Count");
-
-        if (item.getCanCraft() == 1) {
-            itemName.setText("(unf) " + item.getName());
-            itemDesc.setText(item.getDescription());
-            itemCount.setText(Integer.toString(count.getQuantity()));
-        } else {
-            itemName.setText("???");
-            itemDesc.setText("???");
-            itemCount.setText("???");
-        }
-
-    }
-
     public void smelt1(View v) {
+        int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        Item item = Item.findById(Item.class, itemId);
-        if (Inventory.createItem(itemId, 2, 1, 1L)) {
-            Toast.makeText(getApplicationContext(), item.getName() + " added to pending invent", Toast.LENGTH_SHORT).show();
+        if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL)) {
+            Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
         } else {
-            Toast.makeText(getApplicationContext(), "You cannot craft this", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.craftFailure, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < 3) {
+        if (displayedTier < Constants.TIER_MAX) {
             displayedTier++;
             createAnvilInterface(true);
         }
     }
 
     public void goDownTier(View view) {
-        if (displayedTier > 1) {
+        if (displayedTier > Constants.TIER_MIN) {
             displayedTier--;
             createAnvilInterface(true);
         }
@@ -142,24 +119,26 @@ public class AnvilActivity extends Activity {
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {
 
             // Swipe left (next)
-            if (e1.getX() > e2.getX()) {
+            if (startXY.getX() > finishXY.getX()) {
                 mViewFlipper.showNext();
             }
 
             // Swipe right (previous)
-            if (e1.getX() < e2.getX()) {
+            if (startXY.getX() < finishXY.getX()) {
                 mViewFlipper.showPrevious();
             }
 
-            displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), 2);
+            View anvil = findViewById(R.id.anvil);
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, anvil);
+
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), 2, ingredientsTable);
+            dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, ingredientsTable);
 
-            return super.onFling(e1, e2, velocityX, velocityY);
+            return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
     }
 }

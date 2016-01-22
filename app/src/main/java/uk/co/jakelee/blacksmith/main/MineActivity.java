@@ -13,9 +13,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Shop;
@@ -23,7 +27,6 @@ import uk.co.jakelee.blacksmith.model.Shop_Stock;
 
 public class MineActivity extends Activity {
     public static DisplayHelper dh;
-    private static int mineLocationID = 3;
     public final static String SHOP_TO_LOAD = "uk.co.jakelee.blacksmith.shoptoload";
 
     @Override
@@ -36,7 +39,11 @@ public class MineActivity extends Activity {
     }
 
     public void createShopLists() {
-        List<Shop> discoveredShops = Shop.find(Shop.class, "discovered = 1 AND location = 3 AND level <= ?", Integer.toString(Player_Info.getPlayerLevel()));
+        int playerLevel = Player_Info.getPlayerLevel();
+        List<Shop> discoveredShops = Select.from(Shop.class).where(
+                Condition.prop("discovered").eq(Constants.TRUE),
+                Condition.prop("location").eq(Constants.LOCATION_SELLING),
+                Condition.prop("level").lt(playerLevel + 1)).list();
 
         TableLayout mineList = (TableLayout) findViewById(R.id.mineList);
         mineList.setColumnStretchable(0, true);
@@ -93,10 +100,11 @@ public class MineActivity extends Activity {
 
     public LinearLayout createShopOfferings(Shop shop) {
         LinearLayout offeringsLayout = new LinearLayout(getApplicationContext());
-        List<Shop_Stock> shopOfferings = Shop_Stock.find(Shop_Stock.class, "shop_ID = ?", Long.toString(shop.getId()));
+        List<Shop_Stock> shopOfferings = Select.from(Shop_Stock.class).where(
+                Condition.prop("shop_ID").eq(shop.getId())).list();
 
         for (Shop_Stock stock : shopOfferings) {
-            ImageView itemImage = dh.createItemImage(stock.getItemID(), 50, 50, stock.getDiscovered());
+            ImageView itemImage = dh.createItemImage(stock.getItemID(), 100, 100, stock.getDiscovered());
             offeringsLayout.addView(itemImage);
         }
         return offeringsLayout;

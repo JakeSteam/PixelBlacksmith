@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.helper;
 
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -9,10 +10,12 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Shop_Stock;
-import uk.co.jakelee.blacksmith.model.Slots;
+import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
+import uk.co.jakelee.blacksmith.model.Visitor_Stats;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class UpgradeHelper {
 
@@ -32,6 +35,13 @@ public class UpgradeHelper {
         Character character2 = new Character(2L, "Mr Hellfire", "Hot stuff.", "Hey! Do you like my armour?", "No refunds, comrade.");
         character1.save();
         character2.save();
+
+        Criteria criteria1 = new Criteria(1L, "State");
+        Criteria criteria2 = new Criteria(2L, "Tier");
+        Criteria criteria3 = new Criteria(3L, "Type");
+        criteria1.save();
+        criteria2.save();
+        criteria3.save();
 
         Inventory inventory = new Inventory(1L, 1, 101);
         Inventory inventory1 = new Inventory(2L, 1, 102);
@@ -89,9 +99,9 @@ public class UpgradeHelper {
         Item item20 = new Item(20L, "Bronze dagger", "A blunt bronze dagger.", 3, 1, 5, 1, 1);
         Item item21 = new Item(21L, "Bronze sword", "A fairly blunt bronze sword.", 4, 1, 10, 1, 0);
         Item item22 = new Item(22L, "Bronze longsword", "A longer bronze sword.", 5, 1, 10, 1, 0);
-        Item item23 = new Item(23L, "Bronze crossbow", "A crossbow with bronze elements.", 6, 1, 10, 1, 1);
-        Item item24 = new Item(24L, "Bronze platelegs", "A set of bronze legs.", 7, 1, 10, 2, 1);
-        Item item25 = new Item(25L, "Bronze plateskirt", "A set of bronze legs, with added drafts.", 8, 1, 10, 2, 1);
+        Item item23 = new Item(23L, "Bronze bow", "A bow with bronze elements.", 6, 1, 10, 1, 1);
+        Item item24 = new Item(24L, "Bronze half shield", "A fairly weak bronze shield.", 7, 1, 10, 2, 1);
+        Item item25 = new Item(25L, "Bronze full shield", "A slightly stronger bronze shield.", 8, 1, 10, 2, 1);
         Item item26 = new Item(26L, "Bronze chainbody", "A light set of bronze body armour.", 9, 1, 10, 2, 1);
         Item item27 = new Item(27L, "Bronze platebody", "A heavy set of bronze body armour.", 10, 1, 15, 3, 1);
         Item item28 = new Item(28L, "Bronze half helmet", "A no-frills approach to protection.", 11, 1, 10, 3, 1);
@@ -105,9 +115,9 @@ public class UpgradeHelper {
         Item item36 = new Item(36L, "Iron dagger", "A blunt iron dagger.", 3, 2, 7, 5, 1);
         Item item37 = new Item(37L, "Iron sword", "A bluntish iron sword.", 4, 2, 14, 5, 1);
         Item item38 = new Item(38L, "Iron longsword", "A longer iron sword.", 5, 2, 14, 5, 1);
-        Item item39 = new Item(39L, "Iron crossbow", "A crossbow with iron elements.", 6, 2, 14, 5, 1);
-        Item item40 = new Item(40L, "Iron platelegs", "A set of iron legs.", 7, 2, 14, 6, 1);
-        Item item41 = new Item(41L, "Iron plateskirt", "A set of iron legs, offering some protection.", 8, 2, 14, 6, 1);
+        Item item39 = new Item(39L, "Iron bow", "A bow with iron elements.", 6, 2, 14, 5, 1);
+        Item item40 = new Item(40L, "Iron half shield", "An iron half shield.", 7, 2, 14, 6, 1);
+        Item item41 = new Item(41L, "Iron full shield", "An improved iron shield.", 8, 2, 14, 6, 1);
         Item item42 = new Item(42L, "Iron chainbody", "A light set of iron body armour.", 9, 2, 14, 6, 1);
         Item item43 = new Item(43L, "Iron platebody", "A heavy set of iron body armour.", 10, 2, 21, 7, 1);
         Item item44 = new Item(44L, "Iron half helmet", "A tiny bit of frills approach to protection.", 11, 2, 14, 7, 1);
@@ -122,9 +132,9 @@ public class UpgradeHelper {
         Item item53 = new Item(53L, "Steel dagger", "An average steel dagger.", 3, 3, 14, 10, 1);
         Item item54 = new Item(54L, "Steel sword", "A slightly blunt steel sword.", 4, 3, 28, 10, 1);
         Item item55 = new Item(55L, "Steel longsword", "An even longer steel sword.", 5, 3, 28, 10, 1);
-        Item item56 = new Item(56L, "Steel crossbow", "A crossbow with steel elements.", 6, 3, 28, 10, 0);
-        Item item57 = new Item(57L, "Steel platelegs", "A set of steel legs.", 7, 3, 28, 12, 0);
-        Item item58 = new Item(58L, "Steel plateskirt", "A set of steel legs, offering more protection.", 8, 3, 28, 12, 1);
+        Item item56 = new Item(56L, "Steel bow", "A bow with steel elements.", 6, 3, 28, 10, 0);
+        Item item57 = new Item(57L, "Steel half shield", "Steel shield, but only half.", 7, 3, 28, 12, 0);
+        Item item58 = new Item(58L, "Steel full shield", "Steel shield, the fullest.", 8, 3, 28, 12, 1);
         Item item59 = new Item(59L, "Steel chainbody", "A light set of steel body armour.", 9, 3, 28, 12, 1);
         Item item60 = new Item(60L, "Steel platebody", "A heavy set of steel body armour.", 10, 3, 42, 14, 1);
         Item item61 = new Item(61L, "Steel half helmet", "A little bit frilly approach to protection.", 11, 3, 28, 14, 1);
@@ -135,7 +145,7 @@ public class UpgradeHelper {
         Item item66 = new Item(66L, "Steel hatchet", "A sharper axe for cutting down trees.", 16, 3, 28, 18, 1);
         Item item67 = new Item(67L, "Steel fishing rod", "A sharper rod for catching fish.", 17, 3, 28, 18, 1);
         Item item68 = new Item(68L, "Steel hammer", "A heavier hammer that tends to hit the anvil. Just.", 18, 3, 4, 18, 1);
-        Item item69 = new Item(69L, "Flax", "A strand of flax.", 20, 10, 1, 1, 1);
+        Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 20, 10, 1, 1, 1);
         Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 20, 10, 1, 1, 1);
         Item item71 = new Item(71L, "Logs", "Some basic logs.",20, 10, 1, 1, 1);
         item1.save();
@@ -575,22 +585,22 @@ public class UpgradeHelper {
         shopStock6.save();
         shopStock7.save();
 
-        Slots slots = new Slots(0L, 1, 0, 0);
-        Slots slots1 = new Slots(1L, 1, 10, 0);
-        Slots slots2 = new Slots(2L, 1, 20, 0);
-        Slots slots3 = new Slots(3L, 2, 0, 0);
-        Slots slots4 = new Slots(4L, 2, 5, 0);
-        Slots slots5 = new Slots(5L, 2, 5, 0);
-        Slots slots6 = new Slots(6L, 3, 0, 0);
-        Slots slots7 = new Slots(7L, 3, 10, 0);
-        Slots slots8 = new Slots(8L, 3, 20, 0);
-        Slots slots9 = new Slots(9L, 4, 0, 0);
-        Slots slots10 = new Slots(10L, 4, 5, 0);
-        Slots slots11 = new Slots(11L, 4, 10, 0);
-        Slots slots12 = new Slots(12L, 5, 1, 0);
-        Slots slots13 = new Slots(13L, 5, 1, 0);
-        Slots slots14 = new Slots(14L, 5, 1, 0);
-        Slots slots15 = new Slots(15L, 5, 1, 0);
+        Slot slots = new Slot(0L, 1, 0, 0);
+        Slot slots1 = new Slot(1L, 1, 10, 0);
+        Slot slots2 = new Slot(2L, 1, 20, 0);
+        Slot slots3 = new Slot(3L, 2, 0, 0);
+        Slot slots4 = new Slot(4L, 2, 5, 0);
+        Slot slots5 = new Slot(5L, 2, 5, 0);
+        Slot slots6 = new Slot(6L, 3, 0, 0);
+        Slot slots7 = new Slot(7L, 3, 10, 0);
+        Slot slots8 = new Slot(8L, 3, 20, 0);
+        Slot slots9 = new Slot(9L, 4, 0, 0);
+        Slot slots10 = new Slot(10L, 4, 5, 0);
+        Slot slots11 = new Slot(11L, 4, 10, 0);
+        Slot slots12 = new Slot(12L, 5, 1, 0);
+        Slot slots13 = new Slot(13L, 5, 1, 0);
+        Slot slots14 = new Slot(14L, 5, 1, 0);
+        Slot slots15 = new Slot(15L, 5, 1, 0);
         slots.save();
         slots1.save();
         slots2.save();
@@ -612,10 +622,16 @@ public class UpgradeHelper {
         State state2 = new State(2L, "Unfinished");
         State state3 = new State(3L, "Red Enchant");
         State state4 = new State(4L, "Blue Enchant");
+        State state5 = new State(5L, "Green Enchant");
+        State state6 = new State(6L, "White Enchant");
+        State state7 = new State(7L, "Black Enchant");
         state1.save();
         state2.save();
         state3.save();
         state4.save();
+        state5.save();
+        state6.save();
+        state7.save();
 
         Tier tier1 = new Tier(1L, "Bronze");
         Tier tier2 = new Tier(2L, "Iron");
@@ -644,8 +660,8 @@ public class UpgradeHelper {
         Type type4 = new Type(4L, "Sword", 2);
         Type type5 = new Type(5L, "Longsword", 2);
         Type type6 = new Type(6L, "Bow", 2);
-        Type type7 = new Type(7L, "Platelegs", 3);
-        Type type8 = new Type(8L, "Plateskirt", 3);
+        Type type7 = new Type(7L, "Half Shield", 3);
+        Type type8 = new Type(8L, "Full Shield", 3);
         Type type9 = new Type(9L, "Chainbody", 3);
         Type type10 = new Type(10L, "Platebody", 3);
         Type type11 = new Type(11L, "Half Helmet", 3);
@@ -678,6 +694,44 @@ public class UpgradeHelper {
         type18.save();
         type19.save();
         type20.save();
+
+        /*Visitor visitor1 = new Visitor(1L, 1452022352000L, 1L);
+        Visitor visitor2 = new Visitor(2L, 1452025352000L, 2L);
+        Visitor visitor3 = new Visitor(3L, 1452025352000L, 2L);
+        visitor1.save();
+        visitor2.save();
+        visitor3.save();
+
+        Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 3, 5, true);
+        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 1L, 3L, 1, 5, true);
+        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 3L, 4L, 1, 1, false);
+        Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 0, 2, true);
+        Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 0, 2, false);
+        Visitor_Demand vDemand6 = new Visitor_Demand(3L, 3L, 1L, 0, 2, true);
+        vDemand1.save();
+        vDemand2.save();
+        vDemand3.save();
+        vDemand4.save();
+        vDemand5.save();
+        vDemand6.save();*/
+
+        Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats3 = new Visitor_Stats(3L, 1, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats4 = new Visitor_Stats(4L, 35, 52L, 1L, 1, 1452022352000L);
+        vStats1.save();
+        vStats2.save();
+        vStats3.save();
+        vStats4.save();
+
+        Visitor_Type vType1 = new Visitor_Type(1L, "Señor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
+        Visitor_Type vType2 = new Visitor_Type(2L, "Ragnar Lothbrok", "Raaarrgghh! Give items!", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
+        Visitor_Type vType3 = new Visitor_Type(3L, "Lord of the Junk", "It's not rubbish, it's treasure!", 1L, 3L, 2L, 1.05, 1.05, 1.05, false, false, false, 10);
+        Visitor_Type vType4 = new Visitor_Type(4L, "Monsieur Fancypants", "Only the best for me, old chap.", 7L, 10L, 4L, 1.6, 1.55, 1.5, false, false, false, 1);
+        vType1.save();
+        vType2.save();
+        vType3.save();
+        vType4.save();
     }
 
 }

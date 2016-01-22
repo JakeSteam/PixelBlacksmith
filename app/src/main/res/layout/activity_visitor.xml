@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/visitor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="60dp"
+    android:background="@drawable/popupbackground"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="uk.co.jakelee.blacksmith.main.VisitorActivity">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:onClick="closeVisitor"
+        android:src="@drawable/close" />
+
+    <TextView
+        android:id="@+id/visitorTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/visitorText"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000"
+        android:textIsSelectable="false"
+        android:textSize="55sp" />
+
+    <ImageView
+        android:id="@+id/visitorPicture"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@id/visitorTitle"
+        android:src="@drawable/visitor1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/visitorVisits"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/visitorPicture"
+        android:layout_alignLeft="@id/visitorPicture"
+        android:textAlignment="center"
+        android:text="Visits: 0"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
+    <TextView
+        android:id="@+id/visitorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/visitorPicture"
+        android:layout_toRightOf="@id/visitorPicture"
+        android:text="Visitor Name"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"/>
+
+    <TextView
+        android:id="@+id/visitorDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/visitorName"
+        android:layout_below="@id/visitorName"
+        android:text="Visitor Desc goes here here here here"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:singleLine="false"/>
+
+    <ImageView
+        android:id="@+id/typeImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/visitorPicture"
+        android:layout_alignLeft="@id/visitorPicture"/>
+
+    <TextView
+        android:id="@+id/typeMultiplier"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/typeImage"
+        android:layout_alignLeft="@id/typeImage"
+        android:text="@string/unknownText"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
+    <ImageView
+        android:id="@+id/tierImage"
+        android:layout_marginLeft="10dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/visitorPicture"
+        android:layout_toRightOf="@id/typeImage"/>
+
+    <TextView
+        android:id="@+id/tierMultiplier"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tierImage"
+        android:layout_alignLeft="@id/tierImage"
+        android:text="@string/unknownText"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
+    <ImageView
+        android:id="@+id/stateImage"
+        android:layout_marginLeft="10dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/visitorPicture"
+        android:layout_toRightOf="@id/tierImage" />
+
+    <TextView
+        android:id="@+id/stateMultiplier"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/stateImage"
+        android:layout_alignLeft="@id/stateImage"
+        android:text="@string/unknownText"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
+    <ImageView
+        android:id="@+id/bestItemImage"
+        android:layout_marginLeft="10dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/visitorPicture"
+        android:layout_toRightOf="@id/stateImage"/>
+
+    <TextView
+        android:id="@+id/bestItemValue"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/bestItemImage"
+        android:layout_alignLeft="@id/bestItemImage"
+        android:text="@string/unknownText"
+        android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:background="#000000"
+        android:alpha="0.6"/>
+
+    <TextView
+        android:id="@+id/typeText"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/typeImage"
+        android:layout_alignLeft="@id/typeImage"
+        android:text="Type"
+        android:textSize="14dp"
+        android:textColor="#000000"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/tierText"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tierImage"
+        android:layout_alignLeft="@id/tierImage"
+        android:text="Tier"
+        android:textSize="14dp"
+        android:textColor="#000000"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/stateText"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stateImage"
+        android:layout_alignLeft="@id/stateImage"
+        android:text="State"
+        android:textSize="14dp"
+        android:textColor="#000000"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/bestItemText"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bestItemImage"
+        android:layout_alignLeft="@id/bestItemImage"
+        android:text="Best"
+        android:textSize="14dp"
+        android:textColor="#000000"
+        android:textAlignment="center"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/demandsScroller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/typeText"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <TableLayout
+                android:id="@+id/demandsTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1"/>
+
+            <Button
+                android:id="@+id/completeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Complete"
+                android:onClick="completeVisitor"/>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

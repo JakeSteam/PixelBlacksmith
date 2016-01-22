@@ -8,17 +8,17 @@ import java.util.List;
  * `_id` INTEGER PRIMARY KEY AUTOINCREMENT, `location_id` INTEGER NOT NULL, `level_req` INTEGER NOT NULL, `premium` INTEGER NOT NULL);
  * Created by Jake on 01/12/2015.
  */
-public class Slots extends SugarRecord {
+public class Slot extends SugarRecord {
     Long id;
     int location;
     int level;
     int premium;
 
-    public Slots() {
+    public Slot() {
 
     }
 
-    public Slots(Long id, int location, int level, int premium) {
+    public Slot(Long id, int location, int level, int premium) {
         this.id = id;
         this.location = location;
         this.level = level;
@@ -30,8 +30,8 @@ public class Slots extends SugarRecord {
         int playerLevel = Player_Info.getPlayerLevel();
 
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(location);
-        List<Slots> allSlots = Location.getSlots(location);
-        for (Slots slot : allSlots) {
+        List<Slot> allSlots = Location.getSlots(location);
+        for (Slot slot : allSlots) {
             if (slot.getLevel() <= playerLevel && slot.getPremium() != 1) {
                 availableSlots++;
             }

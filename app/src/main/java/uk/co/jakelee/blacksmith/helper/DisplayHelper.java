@@ -1,13 +1,17 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,21 +19,28 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
-import uk.co.jakelee.blacksmith.model.Slots;
+import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private static Context context;
+    public final static String VISITOR_TO_LOAD = "uk.co.jakelee.blacksmith.visitortoload";
+    public final static String DEMAND_TO_LOAD = "uk.co.jakelee.blacksmith.tradetoload";
 
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;
@@ -42,7 +53,7 @@ public class DisplayHelper {
         return dhInstance;
     }
 
-    public void createSlotContainer(RelativeLayout slotContainer, List<Slots> slots) {
+    public void createSlotContainer(RelativeLayout slotContainer, List<Slot> slots) {
         // Basic setting up
         slotContainer.removeAllViews();
         int playerLevel = Player_Info.getPlayerLevel();
@@ -55,7 +66,7 @@ public class DisplayHelper {
 
         // Foreach slot, create the background image and set usable tag
         // Also set text for now.
-        for (Slots slot : slots) {
+        for (Slot slot : slots) {
             ImageView slotBackground = new ImageView(context);
             slotBackground.setLayoutParams(slotParams);
             slotBackground.setAlpha(0.6F);
@@ -74,7 +85,7 @@ public class DisplayHelper {
             if (slot.getLevel() > playerLevel) {
                 slotBackground.setBackgroundResource(R.drawable.close);
                 slotBackground.setTag(false);
-            } else if (slot.getPremium() == 1) {
+            } else if (slot.getPremium() == Constants.TRUE) {
                 slotBackground.setBackgroundResource(R.drawable.item52);
                 slotBackground.setTag(false);
             } else {
@@ -134,16 +145,38 @@ public class DisplayHelper {
         }
     }
 
+    public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer) {
+        List<Visitor> visitors = Visitor.listAll(Visitor.class);
+
+        for (final Visitor visitor : visitors) {
+            ImageView visitorImage = createVisitorImage(visitor, 100, 100);
+            visitorImage.setPadding(20, 20, 20, 20);
+            visitorImage.setTag(visitor.getId().toString());
+            visitorImage.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, VisitorActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(VISITOR_TO_LOAD, (String)v.getTag());
+                    context.startActivity(intent);
+                }
+            });
+            visitorsContainer.addView(visitorImage);
+        }
+    }
+
     public TextView createTextView(String text, int size, int color) {
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
         TextView textView = new TextView(context);
         textView.setText(text);
         textView.setTextSize(size);
         textView.setTextColor(color);
+        textView.setTypeface(font);
         return textView;
     }
 
     public TextView createItemCount(Long itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
 
         List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
         Inventory item;
@@ -154,11 +187,12 @@ public class DisplayHelper {
         }
 
         TextView text = new TextView(context);
+        text.setTypeface(font);
         text.setId(viewId);
         text.setTag(itemId + "Count");
         text.setTextColor(textColour);
         text.setShadowLayer(5, 0, 0, backColour);
-        text.setTextSize(22);
+        text.setTextSize(35);
         text.setText(Integer.toString(item.getQuantity()));
         return text;
     }
@@ -167,10 +201,11 @@ public class DisplayHelper {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
-        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
+        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
+        Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
 
-        if (canCraft != 1) {
+        if (canCraft != Constants.TRUE) {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.clearColorFilter();
@@ -211,17 +246,40 @@ public class DisplayHelper {
         return image;
     }
 
+    public ImageView createVisitorImage(Visitor visitor, int width, int height) {
+        int viewId = context.getResources().getIdentifier("img" + visitor.getType(), "id", context.getPackageName());
+        int drawableId = context.getResources().getIdentifier("visitor" + visitor.getType(), "drawable", context.getPackageName());
+
+        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
+
+        ImageView image = new ImageView(context);
+        //image.setAdjustViewBounds(true);
+        image.setId(viewId);
+        image.setTag(visitor.getId());
+        image.setImageDrawable(imageResource);
+        image.setMaxWidth(width);
+        image.setMinimumWidth(width);
+        image.setMaxHeight(height);
+        image.setMinimumHeight(height);
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        return image;
+    }
+
     public int getCoins() {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "STATE = 1 AND ITEM = 52");
-        Inventory inventory = inventories.get(0);
-        return inventory.getQuantity();
+        Inventory coins = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(Constants.STATE_NORMAL),
+                Condition.prop("item").eq(Constants.ITEM_COINS)).first();
+        return coins.getQuantity();
     }
 
     public void updateCoins(int coins) {
-        List<Inventory> inventories = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory WHERE item = 52");
-        Inventory foundInventory = inventories.get(0);
-        foundInventory.setQuantity(coins);
-        foundInventory.save();
+        Inventory ownedCoins = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(Constants.STATE_NORMAL),
+                Condition.prop("item").eq(Constants.ITEM_COINS)).first();
+        ownedCoins.setQuantity(coins);
+        ownedCoins.save();
 
         updateCoinsGUI();
     }
@@ -236,7 +294,42 @@ public class DisplayHelper {
         levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
     }
 
+    public void displayItemInfo(Long itemId, int state, View itemArea) {
+        Item item = Item.findById(Item.class, itemId);
+        List<Inventory> inventories = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(itemId),
+                Condition.prop("state").eq(state)).list();
+        Inventory count = new Inventory();
+
+        if (inventories.size() > 0) {
+            count = inventories.get(0);
+        } else {
+            count.setItem(itemId);
+            count.setState(state);
+            count.setQuantity(0);
+        }
+
+        TextView itemName = (TextView) itemArea.findViewById(R.id.itemName);
+        TextView itemDesc = (TextView) itemArea.findViewById(R.id.itemDesc);
+        TextView itemCount = (TextView) itemArea.findViewWithTag(itemId + "Count");
+
+        if (item.getCanCraft() == Constants.TRUE) {
+            if (state == Constants.STATE_NORMAL) {
+                itemName.setText(item.getName());
+            } else if (state == Constants.STATE_UNFINISHED) {
+                itemName.setText("(unf) " + item.getName());
+            }
+            itemDesc.setText(item.getDescription());
+            itemCount.setText(Integer.toString(count.getQuantity()));
+        } else {
+            itemName.setText(R.string.unknownText);
+            itemDesc.setText(R.string.unknownText);
+            itemCount.setText(R.string.unknownText);
+        }
+    }
+
     public void createItemIngredientsTable(Long itemId, int state, TableLayout ingredientsTable) {
+        Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
         ingredientsTable.removeAllViews();
@@ -244,19 +337,19 @@ public class DisplayHelper {
 
         // Add a header row
         TableRow headerRow = new TableRow(context);
-        headerRow.addView(createTextView("", 15, Color.DKGRAY));
-        headerRow.addView(createTextView("", 15, Color.DKGRAY));
-        headerRow.addView(createTextView("Need", 15, Color.DKGRAY));
-        headerRow.addView(createTextView("Have", 15, Color.DKGRAY));
+        headerRow.addView(createTextView("", 22, Color.DKGRAY));
+        headerRow.addView(createTextView("", 22, Color.DKGRAY));
+        headerRow.addView(createTextView("Need", 22, Color.DKGRAY));
+        headerRow.addView(createTextView("Have", 22, Color.DKGRAY));
         ingredientsTable.addView(headerRow);
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
         Item item = Item.findById(Item.class, itemId);
-        levelRow.addView(createTextView("", 15, Color.DKGRAY));
-        levelRow.addView(createTextView("Level", 15, Color.DKGRAY));
-        levelRow.addView(createTextView(Integer.toString(item.getLevel()), 15, Color.DKGRAY));
-        levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 15, Color.DKGRAY));
+        levelRow.addView(createTextView("", 22, Color.DKGRAY));
+        levelRow.addView(createTextView("Level", 22, Color.DKGRAY));
+        levelRow.addView(createTextView(Integer.toString(item.getLevel()), 22, Color.DKGRAY));
+        levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
         ingredientsTable.addView(levelRow);
 
 
@@ -267,20 +360,19 @@ public class DisplayHelper {
             TableRow row = new TableRow(context);
 
             String itemName = itemIngredient.getName();
-            if (ingredient.getIngredientState() == 2) {
+            if (ingredient.getIngredientState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextView itemNameView = createTextView(itemName, 15, Color.DKGRAY);
+            TextView itemNameView = createTextView(itemName, 22, Color.DKGRAY);
             itemNameView.setSingleLine(false);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 66, 62, 1));
+            row.addView(createItemImage(ingredient.getIngredient(), 66, 62, Constants.TRUE));
             row.addView(itemNameView);
-            row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 15, Color.DKGRAY));
-            row.addView(createTextView(Integer.toString(owned.getQuantity()), 15, Color.DKGRAY));
+            row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
+            row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }
     }
-
 
 }
