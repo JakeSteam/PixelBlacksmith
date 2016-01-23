@@ -56,7 +56,7 @@ public class ShopActivity extends Activity {
         Character shopkeeper = Character.findById(Character.class, shop.getShopkeeper());
 
         // Creating items
-        ImageView shopkeeperPic = dh.createCharacterImage(shopkeeper.getId(), 200, 200);
+        ImageView shopkeeperPic = dh.createImageView("character", shopkeeper.getId().toString(), 200, 200);
         shopkeeperPic.setId(R.id.shopkeeperPic);
 
         TextView shopkeeperName = dh.createTextView(shopkeeper.getName(), 20, Color.BLACK);

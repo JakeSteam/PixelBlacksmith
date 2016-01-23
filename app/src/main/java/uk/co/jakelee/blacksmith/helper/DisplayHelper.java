@@ -149,18 +149,20 @@ public class DisplayHelper {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
 
         for (final Visitor visitor : visitors) {
-            ImageView visitorImage = createVisitorImage(visitor, 100, 100);
-            visitorImage.setPadding(20, 20, 20, 20);
-            visitorImage.setTag(visitor.getId().toString());
-            visitorImage.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, VisitorActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(VISITOR_TO_LOAD, (String)v.getTag());
-                    context.startActivity(intent);
-                }
-            });
-            visitorsContainer.addView(visitorImage);
+            if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS) {
+                ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 200, 200);
+                visitorImage.setPadding(15, 15, 15, 15);
+                visitorImage.setTag(visitor.getId().toString());
+                visitorImage.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, VisitorActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(VISITOR_TO_LOAD, (String) v.getTag());
+                        context.startActivity(intent);
+                    }
+                });
+                visitorsContainer.addView(visitorImage);
+            }
         }
     }
 
@@ -212,56 +214,26 @@ public class DisplayHelper {
         }
 
         ImageView image = new ImageView(context);
-        //image.setAdjustViewBounds(true);
         image.setId(viewId);
         image.setTag(itemId);
         image.setImageDrawable(imageResource);
-        image.setMaxWidth(width);
-        image.setMinimumWidth(width);
-        image.setMaxHeight(height);
-        image.setMinimumHeight(height);
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
     }
 
-    public ImageView createCharacterImage(Long charId, int width, int height) {
-        int viewId = context.getResources().getIdentifier("img" + Long.toString(charId), "id", context.getPackageName());
-        int drawableId = context.getResources().getIdentifier("character" + charId, "drawable", context.getPackageName());
+    public ImageView createImageView (String type, String value, int width, int height) {
+        int viewId = context.getResources().getIdentifier("img" + value, "id", context.getPackageName());
+        int drawableId = context.getResources().getIdentifier(type + value, "drawable", context.getPackageName());
 
-        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
-
-        ImageView image = new ImageView(context);
-        //image.setAdjustViewBounds(true);
-        image.setId(viewId);
-        image.setTag(charId);
-        image.setImageDrawable(imageResource);
-        image.setMaxWidth(width);
-        image.setMinimumWidth(width);
-        image.setMaxHeight(height);
-        image.setMinimumHeight(height);
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        return image;
-    }
-
-    public ImageView createVisitorImage(Visitor visitor, int width, int height) {
-        int viewId = context.getResources().getIdentifier("img" + visitor.getType(), "id", context.getPackageName());
-        int drawableId = context.getResources().getIdentifier("visitor" + visitor.getType(), "drawable", context.getPackageName());
-
-        Bitmap bMap = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Drawable imageResource = new BitmapDrawable(context.getResources(), bMap);
+        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
+        Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
 
         ImageView image = new ImageView(context);
-        //image.setAdjustViewBounds(true);
         image.setId(viewId);
-        image.setTag(visitor.getId());
+        image.setTag(type + value);
         image.setImageDrawable(imageResource);
-        image.setMaxWidth(width);
-        image.setMinimumWidth(width);
-        image.setMaxHeight(height);
-        image.setMinimumHeight(height);
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
@@ -346,7 +318,7 @@ public class DisplayHelper {
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
         Item item = Item.findById(Item.class, itemId);
-        levelRow.addView(createTextView("", 22, Color.DKGRAY));
+        levelRow.addView(createImageView("levels", "", 66, 66));
         levelRow.addView(createTextView("Level", 22, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(item.getLevel()), 22, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
@@ -366,7 +338,7 @@ public class DisplayHelper {
             TextView itemNameView = createTextView(itemName, 22, Color.DKGRAY);
             itemNameView.setSingleLine(false);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 66, 62, Constants.TRUE));
+            row.addView(createItemImage(ingredient.getIngredient(), 66, 66, Constants.TRUE));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));

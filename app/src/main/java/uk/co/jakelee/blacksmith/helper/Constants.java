@@ -3,12 +3,12 @@ package uk.co.jakelee.blacksmith.helper;
 public class Constants {
     public static final int TRUE = 1;
 
+    // Information about game mechanics
     public static final Double DEFAULT_BONUS = 1.00;
-
     public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
+    public static final int MAXIMUM_VISITORS = 5;
 
-    public static final String STR_EMPTY = "";
-
+    // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
 
     public static final Long LOCATION_ANVIL = 1L;
