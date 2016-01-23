@@ -166,7 +166,15 @@ public class DisplayHelper {
         }
     }
 
+    public TextView createTextView(String text, int size) {
+        return createTextView(text, size, Color.BLACK, Gravity.LEFT);
+    }
+
     public TextView createTextView(String text, int size, int color) {
+        return createTextView(text, size, color, Gravity.LEFT);
+    }
+
+    public TextView createTextView(String text, int size, int color, int gravity) {
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
         TextView textView = new TextView(context);
         textView.setText(text);
@@ -309,17 +317,17 @@ public class DisplayHelper {
 
         // Add a header row
         TableRow headerRow = new TableRow(context);
-        headerRow.addView(createTextView("", 22, Color.DKGRAY));
-        headerRow.addView(createTextView("", 22, Color.DKGRAY));
-        headerRow.addView(createTextView("Need", 22, Color.DKGRAY));
-        headerRow.addView(createTextView("Have", 22, Color.DKGRAY));
+        headerRow.addView(createTextView("", 22, Color.BLACK));
+        headerRow.addView(createTextView("", 22, Color.BLACK));
+        headerRow.addView(createTextView("Need ", 22, Color.BLACK));
+        headerRow.addView(createTextView("Have", 22, Color.BLACK));
         ingredientsTable.addView(headerRow);
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
         Item item = Item.findById(Item.class, itemId);
-        levelRow.addView(createImageView("levels", "", 66, 66));
-        levelRow.addView(createTextView("Level", 22, Color.DKGRAY));
+        levelRow.addView(createImageView("levels", "", 54, 54));
+        levelRow.addView(createTextView("Level", 22, Color.BLACK));
         levelRow.addView(createTextView(Integer.toString(item.getLevel()), 22, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
         ingredientsTable.addView(levelRow);
@@ -335,7 +343,7 @@ public class DisplayHelper {
             if (ingredient.getIngredientState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextView itemNameView = createTextView(itemName, 22, Color.DKGRAY);
+            TextView itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
 
             row.addView(createItemImage(ingredient.getIngredient(), 66, 66, Constants.TRUE));

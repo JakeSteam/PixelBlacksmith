@@ -59,6 +59,7 @@ public class FurnaceActivity extends Activity {
         ((TextView) findViewById(R.id.furnaceTitle)).setTypeface(typeface);
         ((TextView) findViewById(R.id.itemName)).setTypeface(typeface);
         ((TextView) findViewById(R.id.itemDesc)).setTypeface(typeface);
+        ((TextView) findViewById(R.id.smelt1)).setTypeface(typeface);
     }
 
     public void createFurnaceInterface() {
