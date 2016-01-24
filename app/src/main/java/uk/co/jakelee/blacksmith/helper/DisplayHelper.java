@@ -345,6 +345,7 @@ public class DisplayHelper {
             }
             TextView itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
+            itemNameView.setPadding(0, 10, 0, 0);
 
             row.addView(createItemImage(ingredient.getIngredient(), 66, 66, Constants.TRUE));
             row.addView(itemNameView);
