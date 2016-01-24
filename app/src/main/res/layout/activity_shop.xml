@@ -22,7 +22,7 @@
         android:onClick="closeShop"
         android:src="@drawable/close" />
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/shopTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

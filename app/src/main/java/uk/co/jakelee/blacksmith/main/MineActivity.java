@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -19,6 +18,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -52,10 +52,10 @@ public class MineActivity extends Activity {
 
         for (Shop shop : discoveredShops) {
             // Creating elements
-            TextView shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
+            TextViewPixel shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
             shopName.setId(R.id.shopName);
 
-            TextView shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
+            TextViewPixel shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
             shopDesc.setId(R.id.shopDesc);
             LinearLayout shopItems = createShopOfferings(shop);
 

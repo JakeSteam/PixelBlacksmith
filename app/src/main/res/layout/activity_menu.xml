@@ -44,7 +44,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/pickaxe" />
 
-            <TextView
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/text_mine"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/furnace" />
 
-            <TextView
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/text_furnace"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/anvil" />
 
-            <TextView
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/text_anvil"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/inventory" />
 
-            <TextView
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/text_inventory"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/table" />
 
-            <TextView
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/text_table"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"

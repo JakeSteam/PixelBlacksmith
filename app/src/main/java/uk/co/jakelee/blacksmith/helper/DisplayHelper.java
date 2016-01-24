@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -75,7 +76,7 @@ public class DisplayHelper {
             slotForeground.setLayoutParams(slotParams);
             slotForeground.setImageResource(R.drawable.transparent);
 
-            TextView slotCountdown = new TextView(context);
+            TextViewPixel slotCountdown = new TextViewPixel(context);
             slotCountdown.setText("");
             slotCountdown.setTextSize(36);
             slotCountdown.setTextColor(Color.WHITE);
@@ -115,7 +116,7 @@ public class DisplayHelper {
             int drawableId = context.getResources().getIdentifier("item" + pendingItem.getItem(), "drawable", context.getPackageName());
 
             ImageView slotItem = (ImageView) frontContainer.getChildAt(i);
-            TextView slotCount = (TextView) countContainer.getChildAt(i);
+            TextViewPixel slotCount = (TextViewPixel) countContainer.getChildAt(i);
 
             if (itemFinishTime <= currentTime) {
                 // If the item has finished crafting
@@ -137,7 +138,7 @@ public class DisplayHelper {
         LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
 
         for (int i = 0; i < frontContainer.getChildCount(); i++) {
-            TextView count = (TextView) countContainer.getChildAt(i);
+            TextViewPixel count = (TextViewPixel) countContainer.getChildAt(i);
             count.setText("");
 
             ImageView slot = (ImageView) frontContainer.getChildAt(i);
@@ -166,17 +167,17 @@ public class DisplayHelper {
         }
     }
 
-    public TextView createTextView(String text, int size) {
+    public TextViewPixel createTextView(String text, int size) {
         return createTextView(text, size, Color.BLACK, Gravity.LEFT);
     }
 
-    public TextView createTextView(String text, int size, int color) {
+    public TextViewPixel createTextView(String text, int size, int color) {
         return createTextView(text, size, color, Gravity.LEFT);
     }
 
-    public TextView createTextView(String text, int size, int color, int gravity) {
+    public TextViewPixel createTextView(String text, int size, int color, int gravity) {
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
-        TextView textView = new TextView(context);
+        TextViewPixel textView = new TextViewPixel(context);
         textView.setText(text);
         textView.setTextSize(size);
         textView.setTextColor(color);
@@ -184,7 +185,7 @@ public class DisplayHelper {
         return textView;
     }
 
-    public TextView createItemCount(Long itemId, int state, int textColour, int backColour) {
+    public TextViewPixel createItemCount(Long itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
 
@@ -196,7 +197,7 @@ public class DisplayHelper {
             item = new Inventory(itemId, state, 0);
         }
 
-        TextView text = new TextView(context);
+        TextViewPixel text = new TextViewPixel(context);
         text.setTypeface(font);
         text.setId(viewId);
         text.setTag(itemId + "Count");
@@ -270,7 +271,7 @@ public class DisplayHelper {
     }
 
     public void updateLevelText() {
-        TextView levelCount = MainActivity.level;
+        TextViewPixel levelCount = MainActivity.level;
         levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
     }
 
@@ -289,9 +290,9 @@ public class DisplayHelper {
             count.setQuantity(0);
         }
 
-        TextView itemName = (TextView) itemArea.findViewById(R.id.itemName);
-        TextView itemDesc = (TextView) itemArea.findViewById(R.id.itemDesc);
-        TextView itemCount = (TextView) itemArea.findViewWithTag(itemId + "Count");
+        TextViewPixel itemName = (TextViewPixel) itemArea.findViewById(R.id.itemName);
+        TextViewPixel itemDesc = (TextViewPixel) itemArea.findViewById(R.id.itemDesc);
+        TextViewPixel itemCount = (TextViewPixel) itemArea.findViewWithTag(itemId + "Count");
 
         if (item.getCanCraft() == Constants.TRUE) {
             if (state == Constants.STATE_NORMAL) {
@@ -343,7 +344,7 @@ public class DisplayHelper {
             if (ingredient.getIngredientState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextView itemNameView = createTextView(itemName, 22, Color.BLACK);
+            TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
 

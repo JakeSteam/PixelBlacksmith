@@ -20,6 +20,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -93,8 +94,8 @@ public class ShopActivity extends Activity {
             Item item = Item.findById(Item.class, itemForSale.getItemID());
 
             ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, Constants.TRUE);
-            TextView itemStock = dh.createTextView(itemForSale.getStock() + "x " + item.getName(), 16, Color.BLACK);
-            TextView itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
+            TextViewPixel itemStock = dh.createTextView(itemForSale.getStock() + "x " + item.getName(), 16, Color.BLACK);
+            TextViewPixel itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             itemBuy.setWidth(30);
             itemBuy.setShadowLayer(10, 0, 0, Color.WHITE);
             itemBuy.setGravity(Gravity.CENTER);

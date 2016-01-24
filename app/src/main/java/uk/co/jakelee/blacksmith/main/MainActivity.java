@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     public static DisplayHelper dh;
     public static Handler handler = new Handler();
 
-    public static TextView coins;
-    public static TextView level;
+    public static TextViewPixel coins;
+    public static TextViewPixel level;
 
     public static RelativeLayout sellingSlots;
     public static RelativeLayout furnaceSlots;
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         dh = DisplayHelper.getInstance(getApplicationContext());
 
-        coins = (TextView) findViewById(R.id.coinCount);
-        level = (TextView) findViewById(R.id.currentLevel);
+        coins = (TextViewPixel) findViewById(R.id.coinCount);
+        level = (TextViewPixel) findViewById(R.id.currentLevel);
         sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
         furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);

@@ -17,6 +17,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -65,20 +66,20 @@ public class VisitorActivity extends Activity {
         ImageView visitorPicture = (ImageView) findViewById(R.id.visitorPicture);
         visitorPicture.setImageResource(drawableId);
 
-        TextView visitorName = (TextView) findViewById(R.id.visitorName);
+        TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
         visitorName.setText(visitorType.getName());
 
-        TextView visitorDesc = (TextView) findViewById(R.id.visitorDesc);
+        TextViewPixel visitorDesc = (TextViewPixel) findViewById(R.id.visitorDesc);
         visitorDesc.setText(visitorType.getDesc());
 
-        TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
+        TextViewPixel visitorVisits = (TextViewPixel) findViewById(R.id.visitorVisits);
         visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
     }
 
     public void displayVisitorStats() {
         if (visitorType.isTypeDiscovered()) {
             ImageView typePic = (ImageView) findViewById(R.id.typeImage);
-            TextView typeMultiplier = (TextView) findViewById(R.id.typeMultiplier);
+            TextViewPixel typeMultiplier = (TextViewPixel) findViewById(R.id.typeMultiplier);
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("type" + visitorType.getTypePreferred(), "drawable", getApplicationContext().getPackageName());
             typePic.setImageResource(typeDrawableId);
@@ -87,7 +88,7 @@ public class VisitorActivity extends Activity {
 
         if (visitorType.isTierDiscovered()) {
             ImageView tierPic = (ImageView) findViewById(R.id.tierImage);
-            TextView tierMultiplier = (TextView) findViewById(R.id.tierMultiplier);
+            TextViewPixel tierMultiplier = (TextViewPixel) findViewById(R.id.tierMultiplier);
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("tier" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
             tierPic.setImageResource(typeDrawableId);
@@ -96,7 +97,7 @@ public class VisitorActivity extends Activity {
 
         if (visitorType.isStateDiscovered()) {
             ImageView statePic = (ImageView) findViewById(R.id.stateImage);
-            TextView stateMultiplier = (TextView) findViewById(R.id.stateMultiplier);
+            TextViewPixel stateMultiplier = (TextViewPixel) findViewById(R.id.stateMultiplier);
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getStatePreferred(), "drawable", getApplicationContext().getPackageName());
             statePic.setImageResource(typeDrawableId);
@@ -130,10 +131,10 @@ public class VisitorActivity extends Activity {
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
             String status = (demand.isDemandFulfilled() ? "Done" : "X");
-            TextView criteriaStatus = dh.createTextView(status, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextViewPixel criteriaStatus = dh.createTextView(status, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
-            TextView criteriaValue = dh.createTextView(criteriaText, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextViewPixel criteriaValue = dh.createTextView(criteriaText, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {

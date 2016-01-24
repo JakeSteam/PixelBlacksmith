@@ -22,7 +22,7 @@
         android:weightSum="2"
         tools:context="uk.co.jakelee.blacksmith.main.FurnaceActivity">
 
-        <TextView
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/furnaceTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:textIsSelectable="false"
             android:textSize="60sp" />
 
-        <TextView
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:paddingRight="8dp"
             android:paddingLeft="8dp"/>
 
-        <TextView
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             android:layout_marginTop="20dp"
             android:padding="5dp" />
 
-        <Button
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/smelt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

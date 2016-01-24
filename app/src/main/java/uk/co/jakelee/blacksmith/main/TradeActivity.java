@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
@@ -62,19 +62,19 @@ public class TradeActivity extends Activity {
         ImageView visitorPicture = (ImageView) findViewById(R.id.visitorPicture);
         visitorPicture.setImageResource(drawableId);
 
-        TextView visitorName = (TextView) findViewById(R.id.visitorName);
+        TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
         visitorName.setText(visitorType.getName());
 
-        TextView visitorDesc = (TextView) findViewById(R.id.visitorDesc);
+        TextViewPixel visitorDesc = (TextViewPixel) findViewById(R.id.visitorDesc);
         visitorDesc.setText(visitorType.getDesc());
 
-        TextView visitorVisits = (TextView) findViewById(R.id.visitorVisits);
+        TextViewPixel visitorVisits = (TextViewPixel) findViewById(R.id.visitorVisits);
         visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
     }
 
     public void displayProgressTicker() {
         Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
-        TextView progressTextView = (TextView) findViewById(R.id.progressTicker);
+        TextViewPixel progressTextView = (TextViewPixel) findViewById(R.id.progressTicker);
         int itemsTraded = demand.getQuantityProvided();
         int itemsNeeded = demand.getQuantity();
         String itemsCriteria = "(" + demandCriteria.getName() + ") " + Visitor_Demand.getCriteriaName(demand);
@@ -107,11 +107,11 @@ public class TradeActivity extends Activity {
             if (inventory.getState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextView name = dh.createTextView(itemName, 15, Color.BLACK);
+            TextViewPixel name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
 
             // Create a sell button for that item
-            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
@@ -125,7 +125,7 @@ public class TradeActivity extends Activity {
             });
 
             // Work out the multiplier that the player can see
-            TextView bonusText = dh.createTextView("???", 15, Color.BLACK);
+            TextViewPixel bonusText = dh.createTextView("???", 15, Color.BLACK);
             double bonus = visitorType.getDisplayedBonus(inventory);
             if (bonus > Constants.DEFAULT_BONUS) {
                 bonusText.setText(Double.toString(bonus) + "x");

@@ -22,7 +22,7 @@
         android:onClick="closeVisitor"
         android:src="@drawable/close" />
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/visitorTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/visitorVisits"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         android:background="#000000"
         android:alpha="0.6"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/visitorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         android:paddingLeft="5dp"
         android:paddingTop="5dp"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/visitorDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
         android:layout_below="@id/visitorPicture"
         android:layout_alignLeft="@id/visitorPicture"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/typeMultiplier"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/typeImage"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/tierMultiplier"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/tierImage" />
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/stateMultiplier"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
         android:layout_below="@id/visitorPicture"
         android:layout_toRightOf="@id/stateImage"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/bestItemValue"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
         android:background="#000000"
         android:alpha="0.6"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/typeText"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
         android:textColor="#000000"
         android:textAlignment="center"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/tierText"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
         android:textColor="#000000"
         android:textAlignment="center"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/stateText"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
         android:textColor="#000000"
         android:textAlignment="center"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/bestItemText"
         android:layout_width="55dp"
         android:layout_height="wrap_content"

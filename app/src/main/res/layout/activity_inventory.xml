@@ -22,7 +22,7 @@
         android:onClick="closeInventory"
         android:src="@drawable/close" />
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/inventoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

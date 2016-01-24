@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orm.query.Condition;
@@ -18,6 +17,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -59,13 +59,13 @@ public class InventoryActivity extends Activity {
                 itemName = "(unf) " + itemName;
             }
 
-            TextView name = dh.createTextView(itemName, 15, Color.BLACK);
+            TextViewPixel name = dh.createTextView(itemName, 15, Color.BLACK);
             name.setSingleLine(false);
             name.setWidth(275);
 
-            TextView count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
+            TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
 
-            TextView sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);

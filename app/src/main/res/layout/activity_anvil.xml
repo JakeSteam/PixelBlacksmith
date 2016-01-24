@@ -23,7 +23,7 @@
         android:onClick="closeAnvil"
         android:src="@drawable/close" />
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/anvilTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:onClick="goDownTier"
         android:text="v" />
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
         android:layout_toRightOf="@id/anvilUpButton"
         android:paddingBottom="8dp"/>
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/itemDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
