@@ -74,6 +74,9 @@ public class VisitorHelper {
         int quantity = getRandomNumber(MINIMUM_QUANTITY, MAXIMUM_QUANTITY);
 
         boolean required = getRandomBoolean(DEMAND_REQUIRED_PERCENTAGE);
+        if (i == 1) {
+            required = true;
+        }
 
         Visitor_Demand demand = new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);
         demand.save();
