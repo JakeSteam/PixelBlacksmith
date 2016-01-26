@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/visitorName"
         android:layout_below="@id/visitorName"
-        android:text="Visitor Desc goes here here here here"
+        android:text="@string/unknownText"
         android:textColor="#000000"
         android:textSize="14sp"
         android:paddingLeft="5dp"

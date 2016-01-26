@@ -55,6 +55,9 @@ public class TableActivity extends Activity {
     public void createTableInterface(boolean clearExisting) {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        countParams.setMargins(0, 180, 0, 0);
+
         // If we're switching tiers, we have to clear the selector first
         if (clearExisting) {
             itemSelector.removeAllViews();
@@ -71,10 +74,10 @@ public class TableActivity extends Activity {
 
             ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getCanCraft());
             TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_UNFINISHED, Color.WHITE, Color.BLACK);
-            count.setPadding(0, 150, 0, 0);
+            count.setWidth(230);
 
             itemBox.addView(image);
-            itemBox.addView(count);
+            itemBox.addView(count, countParams);
             itemBox.setTag(item.getId());
             itemSelector.addView(itemBox);
         }

@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -202,8 +201,10 @@ public class DisplayHelper {
         text.setId(viewId);
         text.setTag(itemId + "Count");
         text.setTextColor(textColour);
-        text.setShadowLayer(5, 0, 0, backColour);
-        text.setTextSize(35);
+        text.setBackgroundColor(backColour);
+        text.setAlpha(0.8F);
+        text.setGravity(Gravity.CENTER);
+        text.setTextSize(25);
         text.setText(Integer.toString(item.getQuantity()));
         return text;
     }

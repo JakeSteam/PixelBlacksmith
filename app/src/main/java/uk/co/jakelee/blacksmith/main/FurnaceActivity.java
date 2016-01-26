@@ -54,18 +54,21 @@ public class FurnaceActivity extends Activity {
     public void createFurnaceInterface() {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        countParams.setMargins(0, 180, 0, 0);
+
         // Add all bars to the selector
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 200, 200, item.getCanCraft());
+            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getCanCraft());
             TextView count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
-            count.setPadding(0, 150, 0, 0);
+            count.setWidth(230);
 
             itemBox.addView(image);
-            itemBox.addView(count);
+            itemBox.addView(count, countParams);
             itemBox.setTag(item.getId());
             itemSelector.addView(itemBox);
         }
