@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -126,6 +128,14 @@ public class VisitorActivity extends Activity {
 
         List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
                 Condition.prop("visitor_id").eq(visitor.getId())).list();
+
+        // Backporting Boolean.Compare from API 19
+        Collections.sort(visitorDemands, new Comparator<Visitor_Demand>() {
+            @Override
+            public int compare(Visitor_Demand demand1, Visitor_Demand demand2) {
+                return demand2.isRequired() == demand1.isRequired() ? 0 : demand2.isRequired() ? 1 : -1;
+            }
+        });
 
         for(Visitor_Demand demand : visitorDemands) {
             TableRow demandRow = new TableRow(getApplicationContext());
