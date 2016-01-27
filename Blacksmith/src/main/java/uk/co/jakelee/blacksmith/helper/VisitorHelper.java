@@ -89,11 +89,7 @@ public class VisitorHelper {
     }
 
     public static boolean getRandomBoolean(int truePercentage) {
-        if (getRandomNumber(0, 100) > truePercentage) {
-            return true;
-        } else {
-            return false;
-        }
+        return getRandomNumber(0, 100) > truePercentage;
     }
 
     public static Visitor_Type selectVisitorType () {

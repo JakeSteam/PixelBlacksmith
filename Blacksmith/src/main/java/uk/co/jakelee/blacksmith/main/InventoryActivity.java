@@ -43,10 +43,10 @@ public class InventoryActivity extends Activity {
         inventoryTable.removeAllViews();
 
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Name", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Qty", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Sell", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Name", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Qty ", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
         inventoryTable.addView(headerRow);
 
         for (Inventory inventoryItem : allInventoryItems) {
@@ -59,14 +59,13 @@ public class InventoryActivity extends Activity {
                 itemName = "(unf) " + itemName;
             }
 
-            TextViewPixel name = dh.createTextView(itemName, 15, Color.BLACK);
+            TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
-            name.setWidth(275);
+            name.setPadding(0, 10, 0, 0);
 
-            TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 15, Color.BLACK);
+            TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
-            sell.setWidth(30);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getValue()), 20, Color.BLACK);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell);
@@ -81,7 +80,7 @@ public class InventoryActivity extends Activity {
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(count);
-            itemRow.addView(sell, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            itemRow.addView(sell); //, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             inventoryTable.addView(itemRow);
         }
     }

@@ -202,7 +202,7 @@ public class DisplayHelper {
         text.setTag(itemId + "Count");
         text.setTextColor(textColour);
         text.setBackgroundColor(backColour);
-        text.setAlpha(0.8F);
+        text.setAlpha(0.6F);
         text.setGravity(Gravity.CENTER);
         text.setTextSize(25);
         text.setText(Integer.toString(item.getQuantity()));
