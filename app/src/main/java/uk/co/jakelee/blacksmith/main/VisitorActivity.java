@@ -164,7 +164,7 @@ public class VisitorActivity extends Activity {
             Visitor.delete(visitor);
             closeVisitor(view);
         } else {
-            Toast.makeText(getApplicationContext(), "You can't get rid of an unsatisfied customer!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.visitorCompleteFailure, Toast.LENGTH_SHORT).show();
         }
     }
 

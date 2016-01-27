@@ -19,6 +19,7 @@
 
     <string name="craftFailure">You cannot craft this.</string>
     <string name="craftAdd">Item added to craft queue.</string>
+    <string name="visitorCompleteFailure">You can't get rid of an unsatisfied customer!</string>
 
 
 </resources>
