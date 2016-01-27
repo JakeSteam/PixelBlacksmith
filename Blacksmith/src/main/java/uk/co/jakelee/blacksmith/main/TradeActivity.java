@@ -58,18 +58,8 @@ public class TradeActivity extends Activity {
     }
 
     public void displayVisitorInfo() {
-        int drawableId = getApplicationContext().getResources().getIdentifier("visitor" + visitorType.getVisitorID(), "drawable", getApplicationContext().getPackageName());
-        ImageView visitorPicture = (ImageView) findViewById(R.id.visitorPicture);
-        visitorPicture.setImageResource(drawableId);
-
         TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
         visitorName.setText(visitorType.getName());
-
-        TextViewPixel visitorDesc = (TextViewPixel) findViewById(R.id.visitorDesc);
-        visitorDesc.setText(visitorType.getDesc());
-
-        TextViewPixel visitorVisits = (TextViewPixel) findViewById(R.id.visitorVisits);
-        visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
     }
 
     public void displayProgressTicker() {
@@ -77,7 +67,7 @@ public class TradeActivity extends Activity {
         TextViewPixel progressTextView = (TextViewPixel) findViewById(R.id.progressTicker);
         int itemsTraded = demand.getQuantityProvided();
         int itemsNeeded = demand.getQuantity();
-        String itemsCriteria = "(" + demandCriteria.getName() + ") " + Visitor_Demand.getCriteriaName(demand);
+        String itemsCriteria = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
 
         String progressText = itemsCriteria + ": " + itemsTraded + "/" + itemsNeeded;
         progressTextView.setText(progressText);
@@ -89,10 +79,10 @@ public class TradeActivity extends Activity {
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Item", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Sell", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Item", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("", 22, Color.BLACK));
         itemsTable.addView(headerRow);
 
         List<Inventory> matchingItems = demand.getMatchingInventory();
@@ -107,7 +97,7 @@ public class TradeActivity extends Activity {
             if (inventory.getState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
-            TextViewPixel name = dh.createTextView(itemName, 15, Color.BLACK);
+            TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
 
             // Create a sell button for that item
@@ -125,7 +115,7 @@ public class TradeActivity extends Activity {
             });
 
             // Work out the multiplier that the player can see
-            TextViewPixel bonusText = dh.createTextView("???", 15, Color.BLACK);
+            TextViewPixel bonusText = dh.createTextView("???", 18, Color.BLACK);
             double bonus = visitorType.getDisplayedBonus(inventory);
             if (bonus > Constants.DEFAULT_BONUS) {
                 bonusText.setText(Double.toString(bonus) + "x");
@@ -164,9 +154,6 @@ public class TradeActivity extends Activity {
         if (demand.isDemandFulfilled()) {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
             itemsTable.setVisibility(View.GONE);
-
-            Button finishButton = (Button) findViewById(R.id.finishTrade);
-            finishButton.setVisibility(View.VISIBLE);
         } else {
             displayItemsTable();
         }
