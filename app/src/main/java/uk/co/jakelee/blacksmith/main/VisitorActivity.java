@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -118,9 +119,9 @@ public class VisitorActivity extends Activity {
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView("Status", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Criteria", 18, Color.BLACK));
-        headerRow.addView(dh.createTextView("Trade", 18, Color.BLACK));
+        headerRow.addView(dh.createTextView(" ", 20, Color.BLACK));
+        headerRow.addView(dh.createTextView("Criteria", 20, Color.BLACK));
+        headerRow.addView(dh.createTextView("Trade", 20, Color.BLACK));
         demandsTable.addView(headerRow);
 
         List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
@@ -130,11 +131,12 @@ public class VisitorActivity extends Activity {
             TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
-            String status = (demand.isDemandFulfilled() ? "Done" : "X");
-            TextViewPixel criteriaStatus = dh.createTextView(status, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            String status = (demand.isDemandFulfilled() ? "✓" : "✘");
+            TextViewPixel criteriaStatus = dh.createTextView(status, 18, (demand.isRequired() ? Color.BLACK : Color.GRAY));
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
-            TextViewPixel criteriaValue = dh.createTextView(criteriaText, 15, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextViewPixel criteriaValue = dh.createTextView(criteriaText, 18, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            criteriaValue.setSingleLine(false);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {
@@ -161,6 +163,8 @@ public class VisitorActivity extends Activity {
             Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
             Visitor.delete(visitor);
             closeVisitor(view);
+        } else {
+            Toast.makeText(getApplicationContext(), "You can't get rid of an unsatisfied customer!", Toast.LENGTH_SHORT).show();
         }
     }
 

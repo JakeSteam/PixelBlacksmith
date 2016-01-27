@@ -23,7 +23,6 @@
                 android:layout_marginLeft="565dp"
                 android:layout_marginTop="510dp"
                 android:alpha=".10"
-                android:contentDescription="@string/mine_description"
                 android:onClick="openMine"
                 android:scaleType="centerCrop"
                 android:src="#FFFFFF" />
@@ -43,7 +42,6 @@
                 android:layout_marginLeft="110dp"
                 android:layout_marginTop="100dp"
                 android:alpha=".10"
-                android:contentDescription="@string/furnace_description"
                 android:onClick="openFurnace"
                 android:scaleType="centerCrop"
                 android:src="#FFFFFF" />
@@ -63,7 +61,6 @@
                 android:layout_marginLeft="160dp"
                 android:layout_marginTop="305dp"
                 android:alpha=".10"
-                android:contentDescription="@string/anvil_description"
                 android:onClick="openAnvil"
                 android:scaleType="centerCrop"
                 android:src="#FFFFFF" />
@@ -83,7 +80,6 @@
                 android:layout_marginLeft="960dp"
                 android:layout_marginTop="170dp"
                 android:alpha=".10"
-                android:contentDescription="@string/inventory_description"
                 android:onClick="openInventory"
                 android:scaleType="centerCrop"
                 android:src="#FFFFFF" />
@@ -103,7 +99,6 @@
                 android:layout_marginLeft="500dp"
                 android:layout_marginTop="400dp"
                 android:alpha=".10"
-                android:contentDescription="@string/table_description"
                 android:onClick="openTable"
                 android:scaleType="centerCrop"
                 android:src="#FFFFFF" />

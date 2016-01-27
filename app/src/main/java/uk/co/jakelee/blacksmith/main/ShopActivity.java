@@ -57,15 +57,17 @@ public class ShopActivity extends Activity {
         Character shopkeeper = Character.findById(Character.class, shop.getShopkeeper());
 
         // Creating items
-        ImageView shopkeeperPic = dh.createImageView("character", shopkeeper.getId().toString(), 200, 200);
+        ImageView shopkeeperPic = dh.createImageView("character", shopkeeper.getId().toString(), 230, 230);
         shopkeeperPic.setId(R.id.shopkeeperPic);
 
-        TextView shopkeeperName = dh.createTextView(shopkeeper.getName(), 20, Color.BLACK);
+        TextView shopkeeperName = dh.createTextView(shopkeeper.getName(), 25, Color.BLACK);
         shopkeeperName.setId(R.id.shopkeeperName);
+        shopkeeperName.setPadding(15, 5, 5, 5);
 
-        TextView shopkeeperIntro = dh.createTextView(shopkeeper.getIntro(), 16, Color.BLACK);
+        TextView shopkeeperIntro = dh.createTextView(shopkeeper.getIntro(), 20, Color.BLACK);
         shopkeeperIntro.setId(R.id.shopkeeperIntro);
         shopkeeperIntro.setSingleLine(false);
+        shopkeeperIntro.setPadding(15, 5, 5, 5);
 
         // Creating layouts
         RelativeLayout.LayoutParams lpName = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
