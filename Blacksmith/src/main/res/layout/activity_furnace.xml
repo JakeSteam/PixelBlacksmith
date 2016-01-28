@@ -101,6 +101,6 @@
         android:layout_height="64dp"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="15dp"
-        android:onClick="closeFurnace"
+        android:onClick="closePopup"
         android:src="@drawable/close" />
 </RelativeLayout>

@@ -20,7 +20,7 @@ public class VisitorHelper {
     public final static int MINIMUM_STATE = 1;
     public final static int MAXIMUM_STATE = 4;
     public final static int MINIMUM_TYPE = 1;
-    public final static int MAXIMUM_TYPE = 20;
+    public final static int MAXIMUM_TYPE = 19;
     public final static int MINIMUM_TIER = 1;
     public final static int MAXIMUM_TIER = 10;
 

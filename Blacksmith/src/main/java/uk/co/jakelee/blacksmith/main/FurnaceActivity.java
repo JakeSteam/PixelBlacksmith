@@ -39,8 +39,6 @@ public class FurnaceActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
-        mViewFlipper.setInAnimation(this, android.R.anim.fade_in);
-        mViewFlipper.setOutAnimation(this, android.R.anim.fade_out);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -84,7 +82,7 @@ public class FurnaceActivity extends Activity {
         dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
     }
 
-    public void closeFurnace(View view) {
+    public void closePopup(View view) {
         finish();
     }
 

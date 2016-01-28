@@ -128,7 +128,7 @@ public class UpgradeHelper {
         Item item49 = new Item(49L, "Iron hatchet", "A standard axe for cutting down trees.", 16, 2, 14, 9, 1);
         Item item50 = new Item(50L, "Iron fishing rod", "A standard rod for catching fish.", 17, 2, 14, 9, 1);
         Item item51 = new Item(51L, "Iron hammer", "A standard hammer who misses his anvil.", 18, 2, 7, 9, 1);
-        Item item52 = new Item(52L, "Coins", "Coins! Glorious coins!", 19, 10, 1, 1, 1);
+        Item item52 = new Item(52L, "Coins", "Coins! Glorious coins!", 100, 10, 1, 1, 1);
         Item item53 = new Item(53L, "Steel dagger", "An average steel dagger.", 3, 3, 14, 10, 1);
         Item item54 = new Item(54L, "Steel sword", "A slightly blunt steel sword.", 4, 3, 28, 10, 1);
         Item item55 = new Item(55L, "Steel longsword", "An even longer steel sword.", 5, 3, 28, 10, 1);
@@ -145,9 +145,9 @@ public class UpgradeHelper {
         Item item66 = new Item(66L, "Steel hatchet", "A sharper axe for cutting down trees.", 16, 3, 28, 18, 1);
         Item item67 = new Item(67L, "Steel fishing rod", "A sharper rod for catching fish.", 17, 3, 28, 18, 1);
         Item item68 = new Item(68L, "Steel hammer", "A heavier hammer that tends to hit the anvil. Just.", 18, 3, 4, 18, 1);
-        Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 20, 10, 1, 1, 1);
-        Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 20, 10, 1, 1, 1);
-        Item item71 = new Item(71L, "Logs", "Some basic logs.",20, 10, 1, 1, 1);
+        Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 10, 1, 1, 1);
+        Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 19, 10, 1, 1, 1);
+        Item item71 = new Item(71L, "Logs", "Some basic logs.",19, 10, 1, 1, 1);
         item1.save();
         item2.save();
         item3.save();
@@ -672,8 +672,8 @@ public class UpgradeHelper {
         Type type16 = new Type(16L, "Hatchet", 4);
         Type type17 = new Type(17L, "Fishing Rod", 4);
         Type type18 = new Type(18L, "Hammer", 4);
-        Type type19 = new Type(19L, "Internal", 0);
-        Type type20 = new Type(20L, "Secondary", 1);
+        Type type19 = new Type(19L, "Secondary", 1);
+        Type type20 = new Type(100L, "Internal", 0);
         type1.save();
         type2.save();
         type3.save();
