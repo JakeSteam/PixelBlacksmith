@@ -54,18 +54,17 @@ public class DisplayHelper {
     }
 
     public void createSlotContainer(RelativeLayout slotContainer, List<Slot> slots) {
-        // Basic setting up
         slotContainer.removeAllViews();
         int playerLevel = Player_Info.getPlayerLevel();
-        LinearLayout.LayoutParams slotParams = new LinearLayout.LayoutParams(180, 180);
 
-        // Creating the 3 layouts
+        LinearLayout.LayoutParams slotParams = new LinearLayout.LayoutParams(180, 180);
+        LinearLayout.LayoutParams countParams = new LinearLayout.LayoutParams(180, LinearLayout.LayoutParams.WRAP_CONTENT);
+        countParams.setMargins(0, 110, 0, 0);
+
         LinearLayout backContainer = new LinearLayout(context);
         LinearLayout frontContainer = new LinearLayout(context);
         LinearLayout countContainer = new LinearLayout(context);
 
-        // Foreach slot, create the background image and set usable tag
-        // Also set text for now.
         for (Slot slot : slots) {
             ImageView slotBackground = new ImageView(context);
             slotBackground.setLayoutParams(slotParams);
@@ -76,11 +75,12 @@ public class DisplayHelper {
             slotForeground.setImageResource(R.drawable.transparent);
 
             TextViewPixel slotCountdown = new TextViewPixel(context);
-            slotCountdown.setText("");
-            slotCountdown.setTextSize(36);
+            slotCountdown.setTextSize(30);
             slotCountdown.setTextColor(Color.WHITE);
-            slotCountdown.setShadowLayer(5, 0, 0, Color.BLACK);
-            slotCountdown.setLayoutParams(slotParams);
+            slotCountdown.setBackgroundColor(Color.BLACK);
+            slotCountdown.setAlpha(0.6F);
+            slotCountdown.setGravity(Gravity.CENTER);
+            slotCountdown.setVisibility(View.INVISIBLE);
 
             if (slot.getLevel() > playerLevel) {
                 slotBackground.setBackgroundResource(R.drawable.close);
@@ -95,7 +95,7 @@ public class DisplayHelper {
 
             backContainer.addView(slotBackground);
             frontContainer.addView(slotForeground);
-            countContainer.addView(slotCountdown);
+            countContainer.addView(slotCountdown, countParams);
         }
 
         slotContainer.addView(backContainer);
@@ -121,12 +121,13 @@ public class DisplayHelper {
                 // If the item has finished crafting
                 Inventory.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
                 Pending_Inventory.delete(pendingItem);
+                slotCount.setVisibility(View.INVISIBLE);
             } else {
                 // Add 500 so we always round up
                 long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
                 slotItem.setImageResource(drawableId);
                 slotCount.setText(Long.toString(timeLeft));
-                slotCount.setGravity(Gravity.CENTER);
+                slotCount.setVisibility(View.VISIBLE);
                 i++;
             }
         }
@@ -186,7 +187,7 @@ public class DisplayHelper {
 
     public TextViewPixel createItemCount(Long itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
-        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
+        //Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
 
         List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
         Inventory item;
@@ -197,7 +198,7 @@ public class DisplayHelper {
         }
 
         TextViewPixel text = new TextViewPixel(context);
-        text.setTypeface(font);
+        //text.setTypeface(font);
         text.setId(viewId);
         text.setTag(itemId + "Count");
         text.setTextColor(textColour);
