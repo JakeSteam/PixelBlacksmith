@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -89,9 +90,14 @@ public class TableActivity extends Activity {
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
         dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
+
+        // Sort out the tier arrows
+        Button upArrow = (Button) findViewById(R.id.upButton);
+        Button downArrow = (Button) findViewById(R.id.downButton);
+        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, downArrow, upArrow);
     }
 
-    public void closeTable(View view) {
+    public void closePopup(View view) {
         finish();
     }
 

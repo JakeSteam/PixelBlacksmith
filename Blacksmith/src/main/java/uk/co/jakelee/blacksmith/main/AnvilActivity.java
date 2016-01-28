@@ -91,8 +91,8 @@ public class AnvilActivity extends Activity {
         dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, ingredientsTable);
 
         // Sort out the tier arrows
-        Button upArrow = (Button) findViewById(R.id.anvilUpButton);
-        Button downArrow = (Button) findViewById(R.id.anvilDownButton);
+        Button upArrow = (Button) findViewById(R.id.upButton);
+        Button downArrow = (Button) findViewById(R.id.downButton);
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, downArrow, upArrow);
     }
 
