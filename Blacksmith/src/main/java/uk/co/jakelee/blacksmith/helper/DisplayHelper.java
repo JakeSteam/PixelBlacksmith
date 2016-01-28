@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
@@ -80,7 +79,6 @@ public class DisplayHelper {
             slotCountdown.setBackgroundColor(Color.BLACK);
             slotCountdown.setAlpha(0.6F);
             slotCountdown.setGravity(Gravity.CENTER);
-            slotCountdown.setVisibility(View.INVISIBLE);
 
             if (slot.getLevel() > playerLevel) {
                 slotBackground.setBackgroundResource(R.drawable.close);
@@ -121,13 +119,11 @@ public class DisplayHelper {
                 // If the item has finished crafting
                 Inventory.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
                 Pending_Inventory.delete(pendingItem);
-                slotCount.setVisibility(View.INVISIBLE);
             } else {
                 // Add 500 so we always round up
                 long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
                 slotItem.setImageResource(drawableId);
                 slotCount.setText(Long.toString(timeLeft));
-                slotCount.setVisibility(View.VISIBLE);
                 i++;
             }
         }
@@ -176,12 +172,12 @@ public class DisplayHelper {
     }
 
     public TextViewPixel createTextView(String text, int size, int color, int gravity) {
-        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
+        //Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
         TextViewPixel textView = new TextViewPixel(context);
         textView.setText(text);
         textView.setTextSize(size);
         textView.setTextColor(color);
-        textView.setTypeface(font);
+        //textView.setTypeface(font);
         return textView;
     }
 
@@ -198,7 +194,6 @@ public class DisplayHelper {
         }
 
         TextViewPixel text = new TextViewPixel(context);
-        //text.setTypeface(font);
         text.setId(viewId);
         text.setTag(itemId + "Count");
         text.setTextColor(textColour);

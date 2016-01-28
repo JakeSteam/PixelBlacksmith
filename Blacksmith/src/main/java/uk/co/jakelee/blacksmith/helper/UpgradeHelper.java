@@ -695,43 +695,31 @@ public class UpgradeHelper {
         type19.save();
         type20.save();
 
-        /*Visitor visitor1 = new Visitor(1L, 1452022352000L, 1L);
-        Visitor visitor2 = new Visitor(2L, 1452025352000L, 2L);
-        Visitor visitor3 = new Visitor(3L, 1452025352000L, 2L);
-        visitor1.save();
-        visitor2.save();
-        visitor3.save();
-
-        Visitor_Demand vDemand1 = new Visitor_Demand(1L, 2L, 2L, 3, 5, true);
-        Visitor_Demand vDemand2 = new Visitor_Demand(1L, 1L, 3L, 1, 5, true);
-        Visitor_Demand vDemand3 = new Visitor_Demand(1L, 3L, 4L, 1, 1, false);
-        Visitor_Demand vDemand4 = new Visitor_Demand(2L, 1L, 1L, 0, 2, true);
-        Visitor_Demand vDemand5 = new Visitor_Demand(2L, 1L, 2L, 0, 2, false);
-        Visitor_Demand vDemand6 = new Visitor_Demand(3L, 3L, 1L, 0, 2, true);
-        vDemand1.save();
-        vDemand2.save();
-        vDemand3.save();
-        vDemand4.save();
-        vDemand5.save();
-        vDemand6.save();*/
-
-        Visitor_Stats vStats1 = new Visitor_Stats(1L, 5, 52L, 1L, 1, 1452022352000L);
-        Visitor_Stats vStats2 = new Visitor_Stats(2L, 20, 52L, 1L, 1, 1452022352000L);
-        Visitor_Stats vStats3 = new Visitor_Stats(3L, 1, 52L, 1L, 1, 1452022352000L);
-        Visitor_Stats vStats4 = new Visitor_Stats(4L, 35, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats1 = new Visitor_Stats(1L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats2 = new Visitor_Stats(2L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats3 = new Visitor_Stats(3L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats4 = new Visitor_Stats(4L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats5 = new Visitor_Stats(5L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats6 = new Visitor_Stats(6L, 0, 52L, 1L, 1, 1452022352000L);
         vStats1.save();
         vStats2.save();
         vStats3.save();
         vStats4.save();
+        vStats5.save();
+        vStats6.save();
 
         Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
-        Visitor_Type vType2 = new Visitor_Type(2L, "Ragnar Lothbrok", "Raaarrgghh! Give items!", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
+        Visitor_Type vType2 = new Visitor_Type(2L, "Mister Hatchet", "If only I was a woodcutter...", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
         Visitor_Type vType3 = new Visitor_Type(3L, "Lord of the Junk", "It's not rubbish, it's treasure!", 1L, 3L, 2L, 1.05, 1.05, 1.05, false, false, false, 10);
         Visitor_Type vType4 = new Visitor_Type(4L, "Monsieur Fancypants", "Only the best for me, old chap.", 7L, 10L, 4L, 1.6, 1.55, 1.5, false, false, false, 1);
+        Visitor_Type vType5 = new Visitor_Type(5L, "Grumbling Rock", "Me hungry. Tummy rumbling.", 10L, 1L, 1L, 1.05, 1.4, 1.05, false, false, false, 5);
+        Visitor_Type vType6 = new Visitor_Type(6L, "Large Grumbling Rock", "Me very hungry. Tummy rumbling loud.", 10L, 1L, 1L, 1.6, 1.8, 1.05, false, false, false, 1);
         vType1.save();
         vType2.save();
         vType3.save();
         vType4.save();
+        vType5.save();
+        vType6.save();
     }
 
 }
