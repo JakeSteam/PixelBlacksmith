@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_REFRESHES);
             }
         };
-
-        // TODO: Remove after visitor testing
+        
         //VisitorHelper.createNewVisitor();
 
         handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);

@@ -10,21 +10,6 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorHelper {
-    public final static int MINIMUM_DEMANDS = 2;
-    public final static int MAXIMUM_DEMANDS = 7;
-    public final static int MINIMUM_QUANTITY = 3;
-    public final static int MAXIMUM_QUANTITY = 20;
-    public final static int MINIMUM_CRITERIA = 1;
-    public final static int MAXIMUM_CRITERIA = 3;
-
-    public final static int MINIMUM_STATE = 1;
-    public final static int MAXIMUM_STATE = 4;
-    public final static int MINIMUM_TYPE = 1;
-    public final static int MAXIMUM_TYPE = 19;
-    public final static int MINIMUM_TIER = 1;
-    public final static int MAXIMUM_TIER = 10;
-
-    public final static int DEMAND_REQUIRED_PERCENTAGE = 70;
 
     public static void createNewVisitor() {
         Long currentMillis = System.currentTimeMillis();
@@ -45,7 +30,7 @@ public class VisitorHelper {
         visitor.save();
 
         // Work out how many demands need to be generated
-        int numDemands = getRandomNumber(MINIMUM_DEMANDS, MAXIMUM_DEMANDS);
+        int numDemands = getRandomNumber(Constants.MINIMUM_DEMANDS, Constants.MAXIMUM_DEMANDS);
 
         // Generate the demands
         for (int i = 1; i <= numDemands; i++) {
@@ -54,26 +39,26 @@ public class VisitorHelper {
     }
 
     public static void generateDemand(int i, Long visitorID) {
-        Long criteriaType = Long.valueOf(getRandomNumber(MINIMUM_CRITERIA, MAXIMUM_CRITERIA));
+        Long criteriaType = Long.valueOf(getRandomNumber(Constants.MINIMUM_CRITERIA, Constants.MAXIMUM_CRITERIA));
         Criteria criteria = Criteria.findById(Criteria.class, criteriaType);
 
         int minimumCriteria = 1;
         int maximumCriteria = 1;
         if (criteria.getName().equals("State")) {
-            minimumCriteria = MINIMUM_STATE;
-            maximumCriteria = MAXIMUM_STATE;
+            minimumCriteria = Constants.STATE_MIN;
+            maximumCriteria = Constants.STATE_MAX;
         } else if (criteria.getName().equals("Tier")) {
-            minimumCriteria = MINIMUM_TIER;
-            maximumCriteria = MAXIMUM_TIER;
+            minimumCriteria = Constants.TIER_MIN;
+            maximumCriteria = Constants.TIER_MAX;
         } else if (criteria.getName().equals("Type")) {
-            minimumCriteria = MINIMUM_TYPE;
-            maximumCriteria = MAXIMUM_TYPE;
+            minimumCriteria = Constants.TYPE_MIN;;
+            maximumCriteria = Constants.TYPE_MAX;
         }
         Long criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
 
-        int quantity = getRandomNumber(MINIMUM_QUANTITY, MAXIMUM_QUANTITY);
+        int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, Constants.MAXIMUM_QUANTITY);
 
-        boolean required = getRandomBoolean(DEMAND_REQUIRED_PERCENTAGE);
+        boolean required = getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE);
         if (i == 1) {
             required = true;
         }

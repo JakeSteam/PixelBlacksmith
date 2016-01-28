@@ -17,16 +17,27 @@ public class Constants {
     public static final Long LOCATION_MINE = 4L;
     public static final Long LOCATION_TABLE = 5L;
 
+    public final static int STATE_MIN = 1;
+    public final static int STATE_MAX = 4;
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
 
     public static final int TIER_MIN = 1;
     public static final int TIER_MAX = 3;
 
+    public final static int TYPE_MIN = 1;
+    public final static int TYPE_MAX = 19;
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
     public static final int TYPE_BAR = 2;
-    public static final int TYPE_DAGGER = 3;
-    public static final int TYPE_HAMMER = 18;
+
+    // Demands
+    public final static int MINIMUM_DEMANDS = 2;
+    public final static int MAXIMUM_DEMANDS = 7;
+    public final static int MINIMUM_QUANTITY = 3;
+    public final static int MAXIMUM_QUANTITY = 20;
+    public final static int MINIMUM_CRITERIA = 1;
+    public final static int MAXIMUM_CRITERIA = 3;
+    public final static int DEMAND_REQUIRED_PERCENTAGE = 70;
 
 }
