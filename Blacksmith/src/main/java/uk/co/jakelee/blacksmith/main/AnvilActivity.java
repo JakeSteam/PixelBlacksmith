@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -38,8 +40,8 @@ public class AnvilActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
-        mViewFlipper.setInAnimation(this, android.R.anim.fade_in);
-        mViewFlipper.setOutAnimation(this, android.R.anim.fade_out);
+        mViewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
+        mViewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -127,16 +129,24 @@ public class AnvilActivity extends Activity {
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        Animation slide_in_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_left);
+        Animation slide_out_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
+        Animation slide_in_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
+        Animation slide_out_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_left);
+
         @Override
         public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {
-
             // Swipe left (next)
             if (startXY.getX() > finishXY.getX()) {
+                mViewFlipper.setInAnimation(slide_in_right);
+                mViewFlipper.setOutAnimation(slide_out_left);
                 mViewFlipper.showNext();
             }
 
             // Swipe right (previous)
             if (startXY.getX() < finishXY.getX()) {
+                mViewFlipper.setInAnimation(slide_in_left);
+                mViewFlipper.setOutAnimation(slide_out_right);
                 mViewFlipper.showPrevious();
             }
 
