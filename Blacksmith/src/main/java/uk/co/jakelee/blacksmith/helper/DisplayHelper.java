@@ -359,4 +359,18 @@ public class DisplayHelper {
         }
     }
 
+    public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {
+        if (current == max) {
+            upArrow.setVisibility(View.INVISIBLE);
+        } else {
+            upArrow.setVisibility(View.VISIBLE);
+        }
+
+        if (current == min) {
+            downArrow.setVisibility(View.INVISIBLE);
+        } else {
+            downArrow.setVisibility(View.VISIBLE);
+        }
+    }
+
 }
