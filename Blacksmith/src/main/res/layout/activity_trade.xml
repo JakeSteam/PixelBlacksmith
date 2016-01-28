@@ -41,11 +41,11 @@
             android:layout_alignLeft="@id/tradeTitle"
             android:layout_below="@id/tradeTitle"
             android:layout_marginTop="35dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/progressTicker"
+            android:id="@+id/demandInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/visitorName"
@@ -53,6 +53,19 @@
             android:text="@string/unknownText"
             android:textColor="#000000"
             android:textSize="22sp" />
+
+        <ProgressBar
+            android:id="@+id/demandProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/demandInfo"
+            android:layout_marginTop="5dp"
+            android:indeterminate="false"
+            android:maxHeight="10dip"
+            android:minHeight="10dip"
+            android:progress="75"
+            android:progressDrawable="@drawable/xml_progress_bar" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/finishTrade"
@@ -64,14 +77,14 @@
             android:background="@drawable/button_wide"
             android:gravity="center"
             android:onClick="closeTrade"
-            android:text="Finish"
+            android:text="@string/finishText"
             android:textSize="35sp" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/itemsScroller"
             android:layout_width="match_parent"
-            android:layout_height="265dp"
-            android:layout_below="@id/progressTicker"
+            android:layout_height="255dp"
+            android:layout_below="@id/demandProgress"
             android:paddingTop="10dp">
 
             <LinearLayout

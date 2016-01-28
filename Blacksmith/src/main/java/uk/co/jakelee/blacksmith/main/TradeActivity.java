@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -53,7 +54,7 @@ public class TradeActivity extends Activity {
 
     public void createTradeInterface() {
         displayVisitorInfo();
-        displayProgressTicker();
+        displayDemandInfo();
         displayItemsTable();
     }
 
@@ -62,15 +63,15 @@ public class TradeActivity extends Activity {
         visitorName.setText(visitorType.getName());
     }
 
-    public void displayProgressTicker() {
+    public void displayDemandInfo() {
         Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
-        TextViewPixel progressTextView = (TextViewPixel) findViewById(R.id.progressTicker);
-        int itemsTraded = demand.getQuantityProvided();
-        int itemsNeeded = demand.getQuantity();
-        String itemsCriteria = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
 
-        String progressText = itemsCriteria + ": " + itemsTraded + "/" + itemsNeeded;
-        progressTextView.setText(progressText);
+        TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
+        demandTextView.setText(demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand) + " (" + demand.getQuantityProvided() + "/" + demand.getQuantity() + ")");
+
+        ProgressBar demandProgress = (ProgressBar) findViewById(R.id.demandProgress);
+        demandProgress.setMax(demand.getQuantity());
+        demandProgress.setProgress(demand.getQuantityProvided());
     }
 
     public void displayItemsTable() {
@@ -147,7 +148,7 @@ public class TradeActivity extends Activity {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }
         dh.updateCoins(dh.getCoins());
-        displayProgressTicker();
+        displayDemandInfo();
         visitorType.updateUnlockedPreferences(itemToSell, (int) v.getTag(R.id.itemState));
         visitorType.updateBestItem(itemToSell, (int) v.getTag(R.id.itemState), value);
 

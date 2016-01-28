@@ -14,6 +14,7 @@
     <string name="tierText">Tier</string>
     <string name="stateText">State</string>
     <string name="bestText">Best</string>
+    <string name="finishText">Finish</string>
 
     <string name="unknownText">\???</string>
 
