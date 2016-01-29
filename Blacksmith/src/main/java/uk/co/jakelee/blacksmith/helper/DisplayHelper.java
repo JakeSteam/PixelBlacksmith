@@ -142,24 +142,32 @@ public class DisplayHelper {
         }
     }
 
-    public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer) {
+    public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
+        int displayedVisitors = 0;
 
         for (final Visitor visitor : visitors) {
-            if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS) {
-                ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 200, 200);
-                visitorImage.setPadding(15, 15, 15, 15);
-                visitorImage.setTag(visitor.getId().toString());
-                visitorImage.setOnClickListener(new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, VisitorActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra(VISITOR_TO_LOAD, (String) v.getTag());
-                        context.startActivity(intent);
-                    }
-                });
+
+            // Creating visitor image
+            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 200, 200);
+            visitorImage.setPadding(15, 15, 15, 15);
+            visitorImage.setTag(visitor.getId().toString());
+            visitorImage.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, VisitorActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(VISITOR_TO_LOAD, (String) v.getTag());
+                    context.startActivity(intent);
+                }
+            });
+
+            // Adding to appropriate container
+            if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
                 visitorsContainer.addView(visitorImage);
+            } else if (displayedVisitors <= Constants.MAXIMUM_VISITORS) {
+                visitorsContainerOverflow.addView(visitorImage);
             }
+            displayedVisitors++;
         }
     }
 
@@ -172,19 +180,18 @@ public class DisplayHelper {
     }
 
     public TextViewPixel createTextView(String text, int size, int color, int gravity) {
-        //Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
         TextViewPixel textView = new TextViewPixel(context);
         textView.setText(text);
         textView.setTextSize(size);
         textView.setTextColor(color);
-        //textView.setTypeface(font);
+        textView.setGravity(gravity);
         return textView;
     }
 
     public TextViewPixel createItemCount(Long itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
-        //Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf");
 
+        // Use explicit query so that zero counts are handled correctly
         List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
         Inventory item;
         if (inventories.size() > 0) {
@@ -228,7 +235,7 @@ public class DisplayHelper {
         return image;
     }
 
-    public ImageView createImageView (String type, String value, int width, int height) {
+    public ImageView createImageView(String type, String value, int width, int height) {
         int viewId = context.getResources().getIdentifier("img" + value, "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier(type + value, "drawable", context.getPackageName());
 

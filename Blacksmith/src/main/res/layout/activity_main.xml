@@ -114,10 +114,17 @@
             <LinearLayout
                 android:id="@+id/visitors_container"
                 android:orientation="horizontal"
-                android:gravity="bottom"
-                android:layout_width="385dp"
-                android:layout_height="125dp"
-                android:layout_marginTop="180dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="235dp"
+                android:layout_marginLeft="485dp"/>
+
+            <LinearLayout
+                android:id="@+id/visitors_container_overflow"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
                 android:layout_marginLeft="485dp"/>
 
         </RelativeLayout>
@@ -132,7 +139,7 @@
         android:shadowColor="#000000"
         android:text="Menu   "
         android:textColor="#FFFFFF"
-        android:textSize="24dp" />
+        android:textSize="24sp" />
 
     <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/coinCount"
@@ -141,9 +148,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/menuButton"
         android:shadowColor="#000000"
-        android:text="0 Coins"
         android:textColor="#FFFFFF"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/currentLevel"
@@ -153,7 +159,6 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/coinCount"
         android:shadowColor="#000000"
-        android:text="Level 0"
         android:textColor="#FFFFFF"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 </RelativeLayout>

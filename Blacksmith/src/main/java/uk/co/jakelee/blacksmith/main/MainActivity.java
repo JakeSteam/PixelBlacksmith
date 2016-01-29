@@ -16,6 +16,7 @@ import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class MainActivity extends AppCompatActivity {
     public static DisplayHelper dh;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout mineSlots;
     public static RelativeLayout tableSlots;
     public static LinearLayout visitorContainer;
+    public static LinearLayout visitorContainerOverflow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
         visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
+        visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
 
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
             UpgradeHelper.initialSQL();
@@ -70,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        VisitorHelper.createNewVisitor();
+        if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
+            VisitorHelper.createNewVisitor();
+        }
 
         handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
     }
@@ -110,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateVisitors() {
         visitorContainer.removeAllViews();
-        dh.populateVisitorsContainer(getApplicationContext(), visitorContainer);
+        visitorContainerOverflow.removeAllViews();
+        dh.populateVisitorsContainer(getApplicationContext(), visitorContainer, visitorContainerOverflow);
     }
 
     public void openMenu(View view) {
