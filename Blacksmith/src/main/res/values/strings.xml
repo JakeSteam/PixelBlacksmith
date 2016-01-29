@@ -2,6 +2,7 @@
     <string name="app_name">Blacksmith</string>
 
     <string name="mineText">Mine</string>
+    <string name="menuText">Menu</string>
     <string name="furnaceText">Furnace</string>
     <string name="anvilText">Anvil</string>
     <string name="inventoryText">Inventory</string>
