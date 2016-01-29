@@ -5,6 +5,8 @@ import java.util.Random;
 
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Tier;
+import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -43,21 +45,13 @@ public class VisitorHelper {
         Long criteriaType = Long.valueOf(getRandomNumber(Constants.MINIMUM_CRITERIA, Constants.MAXIMUM_CRITERIA));
         Criteria criteria = Criteria.findById(Criteria.class, criteriaType);
 
-        int minimumCriteria = 1;
-        int maximumCriteria = 1;
         Long criteriaValue = 1L;
         if (criteria.getName().equals("State")) {
-            minimumCriteria = Constants.STATE_MIN;
-            maximumCriteria = Constants.STATE_MAX;
-            criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
+            criteriaValue = selectDemandState().getId();
         } else if (criteria.getName().equals("Tier")) {
-            minimumCriteria = Constants.TIER_MIN;
-            maximumCriteria = Constants.TIER_MAX;
-            criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
+            criteriaValue = selectDemandTier().getId();
         } else if (criteria.getName().equals("Type")) {
-            minimumCriteria = Constants.TYPE_MIN;;
-            maximumCriteria = Constants.TYPE_MAX;
-            criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
+            criteriaValue = selectDemandType().getId();
         }
 
         int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, Constants.MAXIMUM_QUANTITY);
@@ -129,5 +123,55 @@ public class VisitorHelper {
             }
         }
         return selectedState;
+    }
+
+    public static Type selectDemandType () {
+        Type selectedType = new Type();
+
+        // Work out the total probability for the visitors.
+        List<Type> types = Type.listAll(Type.class);
+        double totalWeighting = 0.0;
+        for (Type type : types) {
+            totalWeighting += type.getWeighting();
+        }
+
+        // Generate a number between 0 and total probability.
+        double randomNumber = Math.random() * totalWeighting;
+
+        // Use the random number to select a visitor type.
+        double probabilityIterator = 0.0;
+        for (Type type : types) {
+            probabilityIterator += type.getWeighting();
+            if (probabilityIterator >= randomNumber) {
+                selectedType = type;
+                break;
+            }
+        }
+        return selectedType;
+    }
+
+    public static Tier selectDemandTier () {
+        Tier selectedTier = new Tier();
+
+        // Work out the total probability for the visitors.
+        List<Tier> tiers = Tier.listAll(Tier.class);
+        double totalWeighting = 0.0;
+        for (Tier tier : tiers) {
+            totalWeighting += tier.getWeighting();
+        }
+
+        // Generate a number between 0 and total probability.
+        double randomNumber = Math.random() * totalWeighting;
+
+        // Use the random number to select a visitor type.
+        double probabilityIterator = 0.0;
+        for (Tier tier : tiers) {
+            probabilityIterator += tier.getWeighting();
+            if (probabilityIterator >= randomNumber) {
+                selectedTier = tier;
+                break;
+            }
+        }
+        return selectedTier;
     }
 }
