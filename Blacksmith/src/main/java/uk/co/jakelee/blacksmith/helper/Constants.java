@@ -6,7 +6,7 @@ public class Constants {
     // Information about game mechanics
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
-    public static final int MAXIMUM_VISITORS = 5;
+    public static final int MAXIMUM_VISITORS = 8;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;

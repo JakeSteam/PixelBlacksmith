@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -142,12 +143,12 @@ public class DisplayHelper {
         }
     }
 
-    public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer) {
+    public void populateVisitorsContainer(final Context context, GridLayout visitorsContainer) {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
 
         for (final Visitor visitor : visitors) {
             if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS) {
-                ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 200, 200);
+                ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 150, 150);
                 visitorImage.setPadding(15, 15, 15, 15);
                 visitorImage.setTag(visitor.getId().toString());
                 visitorImage.setOnClickListener(new Button.OnClickListener() {

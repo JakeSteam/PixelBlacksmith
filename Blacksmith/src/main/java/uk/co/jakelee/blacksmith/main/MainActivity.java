@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.GridLayout;
 import android.widget.RelativeLayout;
 
 import uk.co.jakelee.blacksmith.R;
@@ -13,7 +13,6 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
-import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout anvilSlots;
     public static RelativeLayout mineSlots;
     public static RelativeLayout tableSlots;
-    public static LinearLayout visitorContainer;
+    public static GridLayout visitorContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
-        visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
+        visitorContainer = (GridLayout) findViewById(R.id.visitors_container);
 
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
             UpgradeHelper.initialSQL();
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        VisitorHelper.createNewVisitor();
+        //VisitorHelper.createNewVisitor();
 
         handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
     }
