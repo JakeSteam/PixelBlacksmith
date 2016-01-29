@@ -55,7 +55,7 @@ public class InventoryActivity extends Activity {
             ImageView image = dh.createItemImage(item.getId(), 100, 100, Constants.TRUE);
 
             String itemName = item.getName();
-            if (inventoryItem.getState() == Constants.STATE_NORMAL) {
+            if (inventoryItem.getState() == Constants.STATE_UNFINISHED) {
                 itemName = "(unf) " + itemName;
             }
 

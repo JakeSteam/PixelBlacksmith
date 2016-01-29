@@ -86,7 +86,8 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignLeft="@id/visitorPicture"
-            android:layout_below="@id/visitorPicture" />
+            android:layout_below="@id/visitorPicture"
+            android:background="@drawable/slot"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeMultiplier"
@@ -107,7 +108,8 @@
             android:layout_height="55dp"
             android:layout_below="@id/visitorPicture"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/typeImage" />
+            android:layout_toRightOf="@id/typeImage"
+            android:background="@drawable/slot" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tierMultiplier"
@@ -128,7 +130,8 @@
             android:layout_height="55dp"
             android:layout_below="@id/visitorPicture"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/tierImage" />
+            android:layout_toRightOf="@id/tierImage"
+            android:background="@drawable/slot" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/stateMultiplier"

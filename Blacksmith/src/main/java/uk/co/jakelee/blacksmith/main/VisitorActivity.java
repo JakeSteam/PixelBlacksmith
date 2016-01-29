@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -119,13 +120,6 @@ public class VisitorActivity extends Activity {
         TableLayout demandsTable = (TableLayout) findViewById(R.id.demandsTable);
         demandsTable.removeAllViews();
 
-        // Create header row
-        TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView(" ", 20, Color.BLACK));
-        headerRow.addView(dh.createTextView("Criteria", 20, Color.BLACK));
-        headerRow.addView(dh.createTextView("Trade", 20, Color.BLACK));
-        demandsTable.addView(headerRow);
-
         List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
                 Condition.prop("visitor_id").eq(visitor.getId())).list();
 
@@ -142,10 +136,10 @@ public class VisitorActivity extends Activity {
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
             String status = (demand.isDemandFulfilled() ? "✓" : "✘");
-            TextViewPixel criteriaStatus = dh.createTextView(status, 18, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextViewPixel criteriaStatus = dh.createTextView(status, 32, (demand.isRequired() ? Color.BLACK : Color.GRAY), Gravity.CENTER);
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
-            TextViewPixel criteriaValue = dh.createTextView(criteriaText, 18, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
             criteriaValue.setSingleLine(false);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
