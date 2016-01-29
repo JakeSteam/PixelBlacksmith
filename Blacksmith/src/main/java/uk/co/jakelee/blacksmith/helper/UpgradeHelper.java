@@ -618,13 +618,13 @@ public class UpgradeHelper {
         slots14.save();
         slots15.save();
 
-        State state1 = new State(1L, "Normal");
-        State state2 = new State(2L, "Unfinished");
-        State state3 = new State(3L, "Red Enchant");
-        State state4 = new State(4L, "Blue Enchant");
-        State state5 = new State(5L, "Green Enchant");
-        State state6 = new State(6L, "White Enchant");
-        State state7 = new State(7L, "Black Enchant");
+        State state1 = new State(1L, "Normal", 15);
+        State state2 = new State(2L, "Unfinished", 15);
+        State state3 = new State(3L, "Red Enchant", 2);
+        State state4 = new State(4L, "Blue Enchant", 2);
+        State state5 = new State(5L, "Green Enchant", 1);
+        State state6 = new State(6L, "White Enchant", 1);
+        State state7 = new State(7L, "Black Enchant", 1);
         state1.save();
         state2.save();
         state3.save();

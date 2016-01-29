@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -44,17 +45,20 @@ public class VisitorHelper {
 
         int minimumCriteria = 1;
         int maximumCriteria = 1;
+        Long criteriaValue = 1L;
         if (criteria.getName().equals("State")) {
             minimumCriteria = Constants.STATE_MIN;
             maximumCriteria = Constants.STATE_MAX;
+            criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
         } else if (criteria.getName().equals("Tier")) {
             minimumCriteria = Constants.TIER_MIN;
             maximumCriteria = Constants.TIER_MAX;
+            criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
         } else if (criteria.getName().equals("Type")) {
             minimumCriteria = Constants.TYPE_MIN;;
             maximumCriteria = Constants.TYPE_MAX;
+            criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
         }
-        Long criteriaValue = Long.valueOf(getRandomNumber(minimumCriteria, maximumCriteria));
 
         int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, Constants.MAXIMUM_QUANTITY);
 
@@ -100,5 +104,30 @@ public class VisitorHelper {
             }
         }
         return visitor;
+    }
+
+    public static State selectDemandState () {
+        State selectedState = new State();
+
+        // Work out the total probability for the visitors.
+        List<State> states = State.listAll(State.class);
+        double totalWeighting = 0.0;
+        for (State state : states) {
+            totalWeighting += state.getWeighting();
+        }
+
+        // Generate a number between 0 and total probability.
+        double randomNumber = Math.random() * totalWeighting;
+
+        // Use the random number to select a visitor type.
+        double probabilityIterator = 0.0;
+        for (State state : states) {
+            probabilityIterator += state.getWeighting();
+            if (probabilityIterator >= randomNumber) {
+                selectedState = state;
+                break;
+            }
+        }
+        return selectedState;
     }
 }

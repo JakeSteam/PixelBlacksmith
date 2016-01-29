@@ -5,13 +5,15 @@ import com.orm.SugarRecord;
 public class State extends SugarRecord {
     Long id;
     String name;
+    int weighting;
 
     public State() {
     }
 
-    public State(Long id, String name) {
+    public State(Long id, String name, int weighting) {
         this.id = id;
         this.name = name;
+        this.weighting = weighting;
     }
 
     public Long getId() {
@@ -28,5 +30,13 @@ public class State extends SugarRecord {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getWeighting() {
+        return weighting;
+    }
+
+    public void setWeighting(int weighting) {
+        this.weighting = weighting;
     }
 }
