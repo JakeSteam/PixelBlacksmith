@@ -61,7 +61,7 @@ public class InventoryActivity extends Activity {
 
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
-            name.setPadding(0, 10, 0, 0);
+            name.setPadding(0, 12, 0, 0);
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
