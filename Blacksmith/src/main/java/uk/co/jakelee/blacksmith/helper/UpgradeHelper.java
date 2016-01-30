@@ -59,6 +59,7 @@ public class UpgradeHelper {
         Inventory inventory13 = new Inventory(72L, 1, 25);
         Inventory inventory14 = new Inventory(73L, 1, 18);
         Inventory inventory15 = new Inventory(74L, 1, 6);
+        Inventory inventory16 = new Inventory(20L, 1, 50);
         inventory.save();
         inventory1.save();
         inventory2.save();
@@ -75,6 +76,7 @@ public class UpgradeHelper {
         inventory13.save();
         inventory14.save();
         inventory15.save();
+        inventory16.save();
 
         Player_Info info1 = new Player_Info(1L, "Name", "Jake", 0);
         Player_Info info2 = new Player_Info(2L, "XP", "", 1200);
@@ -158,7 +160,7 @@ public class UpgradeHelper {
         Item item73 = new Item(73L, "Sapphire", "A blue gem", 20, 10, 150, 12, 1);
         Item item74 = new Item(74L, "Emerald", "A green gem", 20, 10, 150, 12, 1);
         Item item75 = new Item(75L, "Diamond", "A white gem", 20, 10, 250, 15, 1);
-        Item item76 = new Item(76L, "Onyx", "A black gem", 19, 10, 250, 15, 1);
+        Item item76 = new Item(76L, "Onyx", "A black gem", 20, 10, 250, 15, 1);
         item1.save();
         item2.save();
         item3.save();

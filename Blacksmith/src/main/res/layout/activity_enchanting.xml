@@ -26,9 +26,9 @@
             android:id="@+id/enchantingTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/enchantingText"
-            android:layout_marginTop="10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
             android:textIsSelectable="false"
@@ -39,8 +39,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_below="@+id/itemName"
-            android:onClick="goUpTier"
-            android:background="@drawable/uparrow"/>
+            android:background="@drawable/uparrow"
+            android:onClick="goUpTier" />
 
         <Button
             android:id="@+id/downButton"
@@ -49,8 +49,8 @@
             android:layout_alignEnd="@id/upButton"
             android:layout_alignRight="@id/upButton"
             android:layout_below="@id/upButton"
-            android:onClick="goDownTier"
-            android:background="@drawable/downarrow" />
+            android:background="@drawable/downarrow"
+            android:onClick="goDownTier" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemName"
@@ -72,8 +72,8 @@
             android:layout_below="@id/itemName"
             android:layout_toRightOf="@id/upButton"
             android:paddingBottom="8dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp" />
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemDesc"
@@ -81,23 +81,29 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/itemName"
             android:layout_toRightOf="@id/viewFlipper"
-            android:paddingTop="5dp"
             android:paddingLeft="5dp"
+            android:paddingTop="5dp"
             android:text="@string/unknownText"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000"
             android:textSize="20sp" />
 
-        <LinearLayout
-            android:id="@+id/gemsTable"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/viewFlipper"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/viewFlipper"
             android:layout_marginTop="20dp"
-            android:padding="5dp"
-            android:orientation="vertical" />
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/gemsTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp" />
+        </ScrollView>
     </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

@@ -174,7 +174,7 @@ public class EnchantingActivity extends Activity {
 
             gemButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    // TODO: Rethink this method
+                    // TODO: Rethink this method's layout, and add success / failure messages
                     Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
                     Long gemId = gem.getId();
                     Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
