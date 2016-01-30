@@ -148,6 +148,11 @@ public class UpgradeHelper {
         Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 10, 1, 1, 1);
         Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 19, 10, 1, 1, 1);
         Item item71 = new Item(71L, "Logs", "Some basic logs.",19, 10, 1, 1, 1);
+        Item item72 = new Item(72L, "Red gem", "A red gem", 20, 10, 150, 12, 1);
+        Item item73 = new Item(73L, "Blue gem", "A blue gem", 20, 10, 150, 12, 1);
+        Item item74 = new Item(74L, "Green gem", "A green gem", 20, 10, 150, 12, 1);
+        Item item75 = new Item(75L, "White gem", "A white gem", 20, 10, 250, 15, 1);
+        Item item76 = new Item(76L, "Black gem", "A black gem", 19, 10, 250, 15, 1);
         item1.save();
         item2.save();
         item3.save();
@@ -219,17 +224,24 @@ public class UpgradeHelper {
         item69.save();
         item70.save();
         item71.save();
+        item72.save();
+        item73.save();
+        item74.save();
+        item75.save();
+        item76.save();
 
-        Location location = new Location(1L, "Anvil");
-        Location location1 = new Location(2L, "Furnace");
-        Location location2 = new Location(3L, "Selling");
-        Location location3 = new Location(4L, "Mine");
-        Location location4 = new Location(5L, "Table");
-        location.save();
+        Location location1 = new Location(1L, "Anvil");
+        Location location2 = new Location(2L, "Furnace");
+        Location location3 = new Location(3L, "Selling");
+        Location location4 = new Location(4L, "Mine");
+        Location location5 = new Location(5L, "Table");
+        Location location6 = new Location(6L, "Enchanting");
         location1.save();
         location2.save();
         location3.save();
         location4.save();
+        location5.save();
+        location6.save();
 
         // Unfinished items
         Recipe recipe1 = new Recipe(1L, 11L, 1, 1L, 1, 1);
@@ -673,7 +685,8 @@ public class UpgradeHelper {
         Type type17 = new Type(17L, "Fishing Rod", 4, 10);
         Type type18 = new Type(18L, "Hammer", 4, 10);
         Type type19 = new Type(19L, "Secondary", 1, 30);
-        Type type20 = new Type(100L, "Internal", 0, 0);
+        Type type20 = new Type(20L, "Gem", 1, 5);
+        Type type21 = new Type(100L, "Internal", 0, 0);
         type1.save();
         type2.save();
         type3.save();
@@ -694,6 +707,7 @@ public class UpgradeHelper {
         type18.save();
         type19.save();
         type20.save();
+        type21.save();
 
         Visitor_Stats vStats1 = new Visitor_Stats(1L, 0, 52L, 1L, 1, 1452022352000L);
         Visitor_Stats vStats2 = new Visitor_Stats(2L, 0, 52L, 1L, 1, 1452022352000L);
