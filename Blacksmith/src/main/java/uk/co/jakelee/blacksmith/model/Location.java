@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 
@@ -17,8 +19,9 @@ public class Location extends SugarRecord {
         this.name = name;
     }
 
-    public static List<Slot> getSlots(String location) {
-        return Slot.findWithQuery(Slot.class, "SELECT SLOT.id, SLOT.location, SLOT.level, SLOT.premium FROM SLOT INNER JOIN LOCATION ON SLOT.location = LOCATION.id WHERE LOCATION.name = ?", location);
+    public static List<Slot> getSlots(Long locationID) {
+        return Select.from(Slot.class).where(
+                Condition.prop("location").eq(locationID)).list();
     }
 
     public Long getId() {

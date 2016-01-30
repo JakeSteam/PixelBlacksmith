@@ -95,12 +95,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createSlots() {
-        dh.createSlotContainer(sellingSlots, Location.getSlots("Selling"));
-        dh.createSlotContainer(furnaceSlots, Location.getSlots("Furnace"));
-        dh.createSlotContainer(anvilSlots, Location.getSlots("Anvil"));
-        dh.createSlotContainer(mineSlots, Location.getSlots("Mine"));
-        dh.createSlotContainer(tableSlots, Location.getSlots("Table"));
-        dh.createSlotContainer(enchantingSlots, Location.getSlots("Enchanting"));
+        dh.createSlotContainer(sellingSlots, Location.getSlots(Constants.LOCATION_SELLING));
+        dh.createSlotContainer(furnaceSlots, Location.getSlots(Constants.LOCATION_FURNACE));
+        dh.createSlotContainer(anvilSlots, Location.getSlots(Constants.LOCATION_ANVIL));
+        dh.createSlotContainer(mineSlots, Location.getSlots(Constants.LOCATION_MINE));
+        dh.createSlotContainer(tableSlots, Location.getSlots(Constants.LOCATION_TABLE));
+        dh.createSlotContainer(enchantingSlots, Location.getSlots(Constants.LOCATION_ENCHANTING));
     }
 
     public void updateSlots() {
@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
         dh.depopulateSlotContainer(tableSlots);
         dh.depopulateSlotContainer(enchantingSlots);
 
-        dh.populateSlotContainer(sellingSlots, "Selling");
-        dh.populateSlotContainer(furnaceSlots, "Furnace");
-        dh.populateSlotContainer(anvilSlots, "Anvil");
-        dh.populateSlotContainer(mineSlots, "Mine");
-        dh.populateSlotContainer(tableSlots, "Table");
-        dh.populateSlotContainer(enchantingSlots, "Enchanting");
+        dh.populateSlotContainer(sellingSlots, Constants.LOCATION_SELLING);
+        dh.populateSlotContainer(furnaceSlots, Constants.LOCATION_FURNACE);
+        dh.populateSlotContainer(anvilSlots, Constants.LOCATION_ANVIL);
+        dh.populateSlotContainer(mineSlots, Constants.LOCATION_MINE);
+        dh.populateSlotContainer(tableSlots, Constants.LOCATION_TABLE);
+        dh.populateSlotContainer(enchantingSlots, Constants.LOCATION_ENCHANTING);
     }
 
     public void updateVisitors() {

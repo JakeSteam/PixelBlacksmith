@@ -91,28 +91,23 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static boolean createItem(Long itemId, int state, int quantity, Long locationId) {
-        List<Location> locations = Location.find(Location.class, "id = " + locationId);
-        Location location = locations.get(0);
-
-        if (canCreateItem(itemId, state) && Slot.hasAvailableSlot(location.getName())) {
+    public static boolean createItem(Long itemId, int state, int quantity, Long locationID) {
+        if (canCreateItem(itemId, state) && Slot.hasAvailableSlot(locationID)) {
             removeItemIngredients(itemId, state);
-            Pending_Inventory.addItem(itemId, state, quantity, locationId);
+            Pending_Inventory.addItem(itemId, state, quantity, locationID);
             return true;
         } else {
             return false;
         }
     }
 
-    public static boolean enchantItem(Long itemId, Long gemId, Long locationId) {
+    public static boolean enchantItem(Long itemId, Long gemId, Long locationID) {
         int quantity = 1;
-        List<Location> locations = Location.find(Location.class, "id = " + locationId);
-        Location location = locations.get(0);
 
         Inventory itemInventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         Inventory gemInventory = Inventory.getInventory(gemId, Constants.STATE_NORMAL);
 
-        if (Slot.hasAvailableSlot(location.getName()) && itemInventory.getQuantity() > 0 && gemInventory.getQuantity() > 0) {
+        if (Slot.hasAvailableSlot(locationID) && itemInventory.getQuantity() > 0 && gemInventory.getQuantity() > 0) {
             itemInventory.setQuantity(itemInventory.getQuantity() - 1);
             itemInventory.save();
 
@@ -122,7 +117,7 @@ public class Inventory extends SugarRecord {
             State enchantedItemState = Select.from(State.class).where(
                     Condition.prop("initiating_item").eq(gemId)).first();
 
-            Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), quantity, locationId);
+            Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), quantity, locationID);
             return true;
         } else {
             return false;
@@ -154,18 +149,14 @@ public class Inventory extends SugarRecord {
     }
 
     public static boolean sellItem(Long itemId, int state, int quantity, int price) {
-        Long locationId = 3L;
-        Long coinId = 52L;
-        String locationName = "Selling";
-
-        if (canSellItem(itemId, state, quantity) && Slot.hasAvailableSlot(locationName)) {
+        if (canSellItem(itemId, state, quantity) && Slot.hasAvailableSlot(Constants.LOCATION_SELLING)) {
             // Remove item
             Inventory itemStock = Inventory.getInventory(itemId, state);
             itemStock.setQuantity(itemStock.getQuantity() - quantity);
             itemStock.save();
 
             // Add coins
-            Pending_Inventory.addItem(coinId, 1, price, locationId);
+            Pending_Inventory.addItem(Constants.ITEM_COINS, 1, price, Constants.LOCATION_SELLING);
 
             return true;
         } else {
@@ -201,9 +192,8 @@ public class Inventory extends SugarRecord {
     public static boolean buyItem(Long itemId, int state, Long shopId, int price) {
         Long locationId = 4L;
         Long coinId = 52L;
-        String locationName = "Mine";
 
-        if (canBuyItem(itemId, state, shopId, price) && Slot.hasAvailableSlot(locationName)) {
+        if (canBuyItem(itemId, state, shopId, price) && Slot.hasAvailableSlot(Constants.LOCATION_MINE)) {
             // Remove coins
             Inventory coinStock = Inventory.getInventory(coinId, state);
             coinStock.setQuantity(coinStock.getQuantity() - price);

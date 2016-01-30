@@ -101,8 +101,8 @@ public class DisplayHelper {
         slotContainer.addView(countContainer);
     }
 
-    public void populateSlotContainer(RelativeLayout slotContainer, String location) {
-        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(location);
+    public void populateSlotContainer(RelativeLayout slotContainer, Long locationID) {
+        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
         LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
         LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
 

@@ -25,12 +25,12 @@ public class Slot extends SugarRecord {
         this.premium = premium;
     }
 
-    public static boolean hasAvailableSlot(String location) {
+    public static boolean hasAvailableSlot(Long locationID) {
         int availableSlots = 0;
         int playerLevel = Player_Info.getPlayerLevel();
 
-        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(location);
-        List<Slot> allSlots = Location.getSlots(location);
+        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
+        List<Slot> allSlots = Location.getSlots(locationID);
         for (Slot slot : allSlots) {
             if (slot.getLevel() <= playerLevel && slot.getPremium() != 1) {
                 availableSlots++;
