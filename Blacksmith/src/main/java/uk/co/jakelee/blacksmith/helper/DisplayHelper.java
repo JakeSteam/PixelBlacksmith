@@ -299,11 +299,7 @@ public class DisplayHelper {
         TextViewPixel itemCount = (TextViewPixel) itemArea.findViewWithTag(itemId + "Count");
 
         if (item.getCanCraft() == Constants.TRUE) {
-            if (state == Constants.STATE_NORMAL) {
-                itemName.setText(item.getName());
-            } else if (state == Constants.STATE_UNFINISHED) {
-                itemName.setText("(unf) " + item.getName());
-            }
+            itemName.setText(item.getPrefix(state) + item.getName());
             itemDesc.setText(item.getDescription());
             itemCount.setText(Integer.toString(count.getQuantity()));
         } else {
@@ -344,10 +340,7 @@ public class DisplayHelper {
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
-            String itemName = itemIngredient.getName();
-            if (ingredient.getIngredientState() == Constants.STATE_UNFINISHED) {
-                itemName = "(unf) " + itemName;
-            }
+            String itemName = itemIngredient.getPrefix(state) + itemIngredient.getName();
             TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);

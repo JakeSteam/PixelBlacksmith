@@ -89,4 +89,13 @@ public class Item extends SugarRecord {
     public void setCanCraft(int can_craft) {
         this.can_craft = can_craft;
     }
+
+    public String getPrefix(int id) {
+        return getPrefix(Long.valueOf(id));
+    }
+
+    public String getPrefix(Long id) {
+        State state = State.findById(State.class, id);
+        return state.prefix;
+    }
 }

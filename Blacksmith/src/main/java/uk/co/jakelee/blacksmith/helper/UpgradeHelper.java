@@ -60,6 +60,7 @@ public class UpgradeHelper {
         Inventory inventory14 = new Inventory(73L, 1, 18);
         Inventory inventory15 = new Inventory(74L, 1, 6);
         Inventory inventory16 = new Inventory(20L, 1, 50);
+        Inventory inventory17 = new Inventory(30L, 5, 10);
         inventory.save();
         inventory1.save();
         inventory2.save();
@@ -77,6 +78,7 @@ public class UpgradeHelper {
         inventory14.save();
         inventory15.save();
         inventory16.save();
+        inventory17.save();
 
         Player_Info info1 = new Player_Info(1L, "Name", "Jake", 0);
         Player_Info info2 = new Player_Info(2L, "XP", "", 1200);
@@ -648,13 +650,13 @@ public class UpgradeHelper {
         slots19.save();
         slots20.save();
 
-        State state1 = new State(1L, "Normal", 0L, 15);
-        State state2 = new State(2L, "Unfinished", 0L, 15);
-        State state3 = new State(3L, "Red Enchant", 72L, 2);
-        State state4 = new State(4L, "Blue Enchant", 73L, 2);
-        State state5 = new State(5L, "Green Enchant", 74L, 1);
-        State state6 = new State(6L, "White Enchant", 75L, 1);
-        State state7 = new State(7L, "Black Enchant", 76L, 1);
+        State state1 = new State(1L, "Normal", "", 0L, 15);
+        State state2 = new State(2L, "Unfinished", "(unf) ", 0L, 15);
+        State state3 = new State(3L, "Red Enchant", "(red) ", 72L, 2);
+        State state4 = new State(4L, "Blue Enchant", "(blue) ", 73L, 2);
+        State state5 = new State(5L, "Green Enchant", "(green) ", 74L, 1);
+        State state6 = new State(6L, "White Enchant", "(white) ", 75L, 1);
+        State state7 = new State(7L, "Black Enchant", "(black) ", 76L, 1);
         state1.save();
         state2.save();
         state3.save();

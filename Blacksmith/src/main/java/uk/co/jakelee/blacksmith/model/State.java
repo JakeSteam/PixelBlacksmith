@@ -5,15 +5,17 @@ import com.orm.SugarRecord;
 public class State extends SugarRecord {
     Long id;
     String name;
+    String prefix;
     Long initiatingItem;
     int weighting;
 
     public State() {
     }
 
-    public State(Long id, String name, Long initiatingItem, int weighting) {
+    public State(Long id, String name, String prefix, Long initiatingItem, int weighting) {
         this.id = id;
         this.name = name;
+        this.prefix = prefix;
         this.initiatingItem = initiatingItem;
         this.weighting = weighting;
     }
@@ -32,6 +34,14 @@ public class State extends SugarRecord {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     public Long getInitiatingItem() {

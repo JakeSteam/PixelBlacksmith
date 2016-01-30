@@ -54,11 +54,7 @@ public class InventoryActivity extends Activity {
             Item item = Item.findById(Item.class, inventoryItem.getItem());
             ImageView image = dh.createItemImage(item.getId(), 100, 100, Constants.TRUE);
 
-            String itemName = item.getName();
-            if (inventoryItem.getState() == Constants.STATE_UNFINISHED) {
-                itemName = "(unf) " + itemName;
-            }
-
+            String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
             name.setPadding(0, 12, 0, 0);
@@ -80,7 +76,7 @@ public class InventoryActivity extends Activity {
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(count);
-            itemRow.addView(sell); //, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            itemRow.addView(sell);
             inventoryTable.addView(itemRow);
         }
     }
