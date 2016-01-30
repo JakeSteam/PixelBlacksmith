@@ -17,7 +17,7 @@ public class Constants {
     public static final Long LOCATION_SELLING = 3L;
     public static final Long LOCATION_MINE = 4L;
     public static final Long LOCATION_TABLE = 5L;
-    public static final Long LOCATION_ENCHANTING = 5L;
+    public static final Long LOCATION_ENCHANTING = 6L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

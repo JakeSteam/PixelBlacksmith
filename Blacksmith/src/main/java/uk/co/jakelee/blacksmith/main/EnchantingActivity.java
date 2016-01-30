@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -153,7 +152,7 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    public void createGemsTable(LinearLayout gemsTable) {
+    public void createGemsTable(final LinearLayout gemsTable) {
         gemsTable.removeAllViews();
         List<Item> allGems = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_GEMS)).list();
@@ -175,17 +174,18 @@ public class EnchantingActivity extends Activity {
 
             gemButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
+                    // TODO: Rethink this method
                     Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
                     Long gemId = gem.getId();
-                    tryEnchant(itemId, gemId);
+                    Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
+
+                    View enchanting = findViewById(R.id.enchanting);
+                    dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
+                    createGemsTable(gemsTable);
                 }
             });
 
             gemsTable.addView(gemButton);
         }
-    }
-    
-    public void tryEnchant(Long itemId, Long gemId) {
-        Toast.makeText(EnchantingActivity.this, "", Toast.LENGTH_SHORT).show();
     }
 }

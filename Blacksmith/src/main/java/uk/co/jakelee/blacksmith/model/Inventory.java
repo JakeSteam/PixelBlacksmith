@@ -1,8 +1,12 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
+
+import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Inventory extends SugarRecord {
     Long item;
@@ -94,6 +98,31 @@ public class Inventory extends SugarRecord {
         if (canCreateItem(itemId, state) && Slot.hasAvailableSlot(location.getName())) {
             removeItemIngredients(itemId, state);
             Pending_Inventory.addItem(itemId, state, quantity, locationId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean enchantItem(Long itemId, Long gemId, Long locationId) {
+        int quantity = 1;
+        List<Location> locations = Location.find(Location.class, "id = " + locationId);
+        Location location = locations.get(0);
+
+        Inventory itemInventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
+        Inventory gemInventory = Inventory.getInventory(gemId, Constants.STATE_NORMAL);
+
+        if (Slot.hasAvailableSlot(location.getName()) && itemInventory.getQuantity() > 0 && gemInventory.getQuantity() > 0) {
+            itemInventory.setQuantity(itemInventory.getQuantity() - 1);
+            itemInventory.save();
+
+            gemInventory.setQuantity(gemInventory.getQuantity() - 1);
+            gemInventory.save();
+
+            State enchantedItemState = Select.from(State.class).where(
+                    Condition.prop("initiating_item").eq(gemId)).first();
+
+            Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), quantity, locationId);
             return true;
         } else {
             return false;
