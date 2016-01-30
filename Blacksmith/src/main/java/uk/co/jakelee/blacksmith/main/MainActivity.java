@@ -24,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static TextViewPixel coins;
     public static TextViewPixel level;
+    public static LinearLayout visitorContainer;
+    public static LinearLayout visitorContainerOverflow;
 
     public static RelativeLayout sellingSlots;
     public static RelativeLayout furnaceSlots;
     public static RelativeLayout anvilSlots;
     public static RelativeLayout mineSlots;
     public static RelativeLayout tableSlots;
-    public static LinearLayout visitorContainer;
-    public static LinearLayout visitorContainerOverflow;
+    public static RelativeLayout enchantingSlots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         coins = (TextViewPixel) findViewById(R.id.coinCount);
         level = (TextViewPixel) findViewById(R.id.currentLevel);
+        visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
+        visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
+
         sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
         furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
         mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
-        visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
-        visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
+        enchantingSlots = (RelativeLayout) findViewById(R.id.slots_enchanting);
 
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
             UpgradeHelper.initialSQL();
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         dh.createSlotContainer(anvilSlots, Location.getSlots("Anvil"));
         dh.createSlotContainer(mineSlots, Location.getSlots("Mine"));
         dh.createSlotContainer(tableSlots, Location.getSlots("Table"));
+        dh.createSlotContainer(enchantingSlots, Location.getSlots("Enchanting"));
     }
 
     public void updateSlots() {
@@ -105,12 +109,14 @@ public class MainActivity extends AppCompatActivity {
         dh.depopulateSlotContainer(anvilSlots);
         dh.depopulateSlotContainer(mineSlots);
         dh.depopulateSlotContainer(tableSlots);
+        dh.depopulateSlotContainer(enchantingSlots);
 
         dh.populateSlotContainer(sellingSlots, "Selling");
         dh.populateSlotContainer(furnaceSlots, "Furnace");
         dh.populateSlotContainer(anvilSlots, "Anvil");
         dh.populateSlotContainer(mineSlots, "Mine");
         dh.populateSlotContainer(tableSlots, "Table");
+        dh.populateSlotContainer(enchantingSlots, "Enchanting");
     }
 
     public void updateVisitors() {
@@ -146,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openTable(View view) {
         Intent intent = new Intent(this, TableActivity.class);
+        startActivity(intent);
+    }
+
+    public void openEnchanting(View view) {
+        Intent intent = new Intent(this, EnchantingActivity.class);
         startActivity(intent);
     }
 }

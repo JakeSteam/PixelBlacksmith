@@ -148,11 +148,11 @@ public class UpgradeHelper {
         Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 10, 1, 1, 1);
         Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 19, 10, 1, 1, 1);
         Item item71 = new Item(71L, "Logs", "Some basic logs.",19, 10, 1, 1, 1);
-        Item item72 = new Item(72L, "Red gem", "A red gem", 20, 10, 150, 12, 1);
-        Item item73 = new Item(73L, "Blue gem", "A blue gem", 20, 10, 150, 12, 1);
-        Item item74 = new Item(74L, "Green gem", "A green gem", 20, 10, 150, 12, 1);
-        Item item75 = new Item(75L, "White gem", "A white gem", 20, 10, 250, 15, 1);
-        Item item76 = new Item(76L, "Black gem", "A black gem", 19, 10, 250, 15, 1);
+        Item item72 = new Item(72L, "Ruby", "A red gem", 20, 10, 150, 12, 1);
+        Item item73 = new Item(73L, "Sapphire", "A blue gem", 20, 10, 150, 12, 1);
+        Item item74 = new Item(74L, "Emerald", "A green gem", 20, 10, 150, 12, 1);
+        Item item75 = new Item(75L, "Diamond", "A white gem", 20, 10, 250, 15, 1);
+        Item item76 = new Item(76L, "Onyx", "A black gem", 19, 10, 250, 15, 1);
         item1.save();
         item2.save();
         item3.save();
@@ -613,6 +613,11 @@ public class UpgradeHelper {
         Slot slots13 = new Slot(13L, 5, 5, 0);
         Slot slots14 = new Slot(14L, 5, 5, 0);
         Slot slots15 = new Slot(15L, 5, 10, 0);
+        Slot slots16 = new Slot(16L, 6, 10, 0);
+        Slot slots17 = new Slot(17L, 6, 10, 0);
+        Slot slots18 = new Slot(18L, 6, 10, 0);
+        Slot slots19 = new Slot(19L, 6, 10, 0);
+        Slot slots20 = new Slot(20L, 6, 10, 0);
         slots.save();
         slots1.save();
         slots2.save();
@@ -629,6 +634,11 @@ public class UpgradeHelper {
         slots13.save();
         slots14.save();
         slots15.save();
+        slots16.save();
+        slots17.save();
+        slots18.save();
+        slots19.save();
+        slots20.save();
 
         State state1 = new State(1L, "Normal", 15);
         State state2 = new State(2L, "Unfinished", 15);

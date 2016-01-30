@@ -10,12 +10,14 @@
     <string name="shopText">Shop</string>
     <string name="visitorText">Visitor</string>
     <string name="tradeText">Trade</string>
+    <string name="enchantingText">Enchant</string>
 
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
     <string name="stateText">State</string>
     <string name="bestText">Best</string>
     <string name="finishText">Finish</string>
+    <string name="smelt">Smelt</string>
 
     <string name="unknownText">\???</string>
 
