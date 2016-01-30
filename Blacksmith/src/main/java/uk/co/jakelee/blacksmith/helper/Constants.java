@@ -28,6 +28,7 @@ public class Constants {
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
     public static final int TYPE_BAR = 2;
+    public static final int TYPE_GEMS = 20;
 
     // Demands
     public final static int MINIMUM_DEMANDS = 2;

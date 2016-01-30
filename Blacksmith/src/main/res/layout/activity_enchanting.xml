@@ -88,7 +88,7 @@
             android:textColor="#000000"
             android:textSize="20sp" />
 
-        <TableLayout
+        <LinearLayout
             android:id="@+id/gemsTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,21 +97,7 @@
             android:layout_below="@id/viewFlipper"
             android:layout_marginTop="20dp"
             android:padding="5dp"
-            android:stretchColumns="1"
-            android:shrinkColumns="1"/>
-
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/smelt1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:onClick="smelt1"
-            android:text="@string/smelt"
-            android:textSize="35sp"
-            android:background="@drawable/button"/>
+            android:orientation="vertical" />
     </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

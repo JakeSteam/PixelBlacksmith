@@ -375,8 +375,4 @@ public class DisplayHelper {
         }
     }
 
-    public void createGemsTable(TableLayout gemsTable) {
-
-    }
-
 }

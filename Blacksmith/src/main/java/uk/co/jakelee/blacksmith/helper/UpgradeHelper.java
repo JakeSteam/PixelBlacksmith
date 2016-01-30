@@ -56,6 +56,9 @@ public class UpgradeHelper {
         Inventory inventory10 = new Inventory(52L, 1, 1234);
         Inventory inventory11 = new Inventory(69L, 1, 10);
         Inventory inventory12 = new Inventory(70L, 1, 10);
+        Inventory inventory13 = new Inventory(72L, 1, 25);
+        Inventory inventory14 = new Inventory(73L, 1, 18);
+        Inventory inventory15 = new Inventory(74L, 1, 6);
         inventory.save();
         inventory1.save();
         inventory2.save();
@@ -69,6 +72,9 @@ public class UpgradeHelper {
         inventory10.save();
         inventory11.save();
         inventory12.save();
+        inventory13.save();
+        inventory14.save();
+        inventory15.save();
 
         Player_Info info1 = new Player_Info(1L, "Name", "Jake", 0);
         Player_Info info2 = new Player_Info(2L, "XP", "", 1200);

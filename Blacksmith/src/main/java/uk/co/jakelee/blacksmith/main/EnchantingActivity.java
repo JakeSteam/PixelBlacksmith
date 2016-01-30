@@ -4,14 +4,16 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -75,7 +77,7 @@ public class EnchantingActivity extends Activity {
             RelativeLayout itemBox = new RelativeLayout(this);
 
             ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getCanCraft());
-            TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_UNFINISHED, Color.WHITE, Color.BLACK);
+            TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
             count.setWidth(230);
 
             itemBox.addView(image);
@@ -86,11 +88,11 @@ public class EnchantingActivity extends Activity {
 
         // Display item name and description
         View enchanting = findViewById(R.id.enchanting);
-        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, enchanting);
+        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
 
         // Display gem buttons
-        TableLayout gemsTable = (TableLayout) findViewById(R.id.gemsTable);
-        dh.createGemsTable(gemsTable);
+        LinearLayout gemsTable = (LinearLayout) findViewById(R.id.gemsTable);
+        createGemsTable(gemsTable);
 
         // Sort out the tier arrows
         Button upArrow = (Button) findViewById(R.id.upButton);
@@ -102,16 +104,10 @@ public class EnchantingActivity extends Activity {
         finish();
     }
 
-    public void smelt1(View v) {
-        int quantity = 1;
-        Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL)) {
-            Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
-            createEnchantingInterface(false);
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.craftFailure, Toast.LENGTH_SHORT).show();
-        }
+    public void enchantItem(View v) {
+        int itemId = 10;
+        int state = 5;
     }
 
     public void goUpTier(View view) {
@@ -151,9 +147,45 @@ public class EnchantingActivity extends Activity {
             }
 
             View enchanting = findViewById(R.id.enchanting);
-            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_UNFINISHED, enchanting);
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
+    }
+
+    public void createGemsTable(LinearLayout gemsTable) {
+        gemsTable.removeAllViews();
+        List<Item> allGems = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_GEMS)).list();
+
+        for (final Item gem : allGems) {
+            Inventory gemInventory = Inventory.getInventory(gem.getId(), Constants.STATE_NORMAL);
+
+            LinearLayout gemButton = new LinearLayout(getApplicationContext());
+            gemButton.setBackgroundResource(R.drawable.button_extra_wide);
+            gemButton.setGravity(Gravity.CENTER);
+
+            ImageView gemImage = dh.createItemImage(gem.getId(), 90, 90, 1);
+            gemImage.setPadding(0, 0, 10, 0);
+            gemButton.addView(gemImage);
+
+            String buttonText = gem.getName() + " (x" + gemInventory.getQuantity() + ")";
+            TextView buttonTextView = dh.createTextView(buttonText, 30);
+            gemButton.addView(buttonTextView);
+
+            gemButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
+                    Long gemId = gem.getId();
+                    tryEnchant(itemId, gemId);
+                }
+            });
+
+            gemsTable.addView(gemButton);
+        }
+    }
+    
+    public void tryEnchant(Long itemId, Long gemId) {
+        Toast.makeText(EnchantingActivity.this, "", Toast.LENGTH_SHORT).show();
     }
 }
