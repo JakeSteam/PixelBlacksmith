@@ -17,10 +17,12 @@ public class Constants {
     public static final Long LOCATION_SELLING = 3L;
     public static final Long LOCATION_MINE = 4L;
     public static final Long LOCATION_TABLE = 5L;
-    public static final Long LOCATION_ENCHANTING = 5L;
+    public static final Long LOCATION_ENCHANTING = 6L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
+    public static final int STATE_ENCHANTED_MIN = 3;
+    public static final int STATE_ENCHANTED_MAX = 7;
 
     public static final int TIER_MIN = 1;
     public static final int TIER_MAX = 3;
@@ -28,6 +30,11 @@ public class Constants {
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
     public static final int TYPE_BAR = 2;
+    public static final int TYPE_GEMS = 20;
+
+    // State modifiers
+    public static final double STATE_UNFINISHED_MODIFIER = 0.5;
+    public static final int STATE_ENCHANTED_ADDER = 100;
 
     // Demands
     public final static int MINIMUM_DEMANDS = 2;

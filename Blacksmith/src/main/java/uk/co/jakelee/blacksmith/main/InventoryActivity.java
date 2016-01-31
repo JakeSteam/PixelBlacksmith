@@ -54,18 +54,14 @@ public class InventoryActivity extends Activity {
             Item item = Item.findById(Item.class, inventoryItem.getItem());
             ImageView image = dh.createItemImage(item.getId(), 100, 100, Constants.TRUE);
 
-            String itemName = item.getName();
-            if (inventoryItem.getState() == Constants.STATE_UNFINISHED) {
-                itemName = "(unf) " + itemName;
-            }
-
+            String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
             name.setPadding(0, 12, 0, 0);
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getValue()), 20, Color.BLACK);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell);
@@ -80,7 +76,7 @@ public class InventoryActivity extends Activity {
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(count);
-            itemRow.addView(sell); //, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            itemRow.addView(sell);
             inventoryTable.addView(itemRow);
         }
     }
@@ -91,8 +87,8 @@ public class InventoryActivity extends Activity {
         int itemState = (int)view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
 
-        if (Inventory.sellItem(itemID, itemState, quantity, itemToSell.getValue())) {
-            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getValue()), Toast.LENGTH_SHORT).show();
+        if (Inventory.sellItem(itemID, itemState, quantity, itemToSell.getModifiedValue(itemState))) {
+            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getModifiedValue(itemState)), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
         }

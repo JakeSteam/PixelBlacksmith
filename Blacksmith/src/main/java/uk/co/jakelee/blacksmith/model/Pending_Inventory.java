@@ -38,12 +38,6 @@ public class Pending_Inventory extends SugarRecord {
         newItem.save();
     }
 
-    public static List<Pending_Inventory> getPendingItems(String location) {
-        List<Location> locations = Location.find(Location.class, "name = ?", location);
-        Location itemLocation = locations.get(0);
-        return Pending_Inventory.getPendingItems(itemLocation.getId());
-    }
-
     public Long getItem() {
         return item;
     }
