@@ -94,15 +94,12 @@ public class TradeActivity extends Activity {
 
             ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, Constants.TRUE);
 
-            String itemName = item.getName();
-            if (inventory.getState() == Constants.STATE_UNFINISHED) {
-                itemName = "(unf) " + itemName;
-            }
+            String itemName = item.getPrefix(inventory.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
 
             // Create a sell button for that item
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);

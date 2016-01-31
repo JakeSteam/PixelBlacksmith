@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import uk.co.jakelee.blacksmith.helper.Constants;
+
 public class Item extends SugarRecord {
     Long id;
     String name;
@@ -97,5 +99,18 @@ public class Item extends SugarRecord {
     public String getPrefix(Long id) {
         State state = State.findById(State.class, id);
         return state.prefix;
+    }
+
+    public int getModifiedValue(int state) {
+        return getModifiedValue(Long.valueOf(state));
+    }
+
+    public int getModifiedValue(Long state) {
+        if (state == Constants.STATE_UNFINISHED) {
+            return (int) (value * Constants.STATE_UNFINISHED_MODIFIER);
+        } else if (state >= Constants.STATE_ENCHANTED_MIN && state <= Constants.STATE_ENCHANTED_MAX) {
+            return value + Constants.STATE_ENCHANTED_ADDER;
+        }
+        return value;
     }
 }
