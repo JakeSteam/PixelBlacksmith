@@ -125,11 +125,6 @@ public class MainActivity extends AppCompatActivity {
         dh.populateVisitorsContainer(getApplicationContext(), visitorContainer, visitorContainerOverflow);
     }
 
-    public void openMenu(View view) {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
-    }
-
     public void openMine(View view) {
         Intent intent = new Intent(this, MineActivity.class);
         startActivity(intent);

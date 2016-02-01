@@ -33,9 +33,6 @@
             android:name=".main.InventoryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".main.MenuActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
             android:name=".main.MineActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
