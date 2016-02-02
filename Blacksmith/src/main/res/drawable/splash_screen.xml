@@ -7,7 +7,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/item68"/>
+            android:src="@drawable/loading_screen"/>
     </item>
 
 </layer-list>
