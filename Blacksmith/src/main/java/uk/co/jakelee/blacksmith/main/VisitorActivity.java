@@ -3,6 +3,8 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -135,17 +137,21 @@ public class VisitorActivity extends Activity {
             TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
-            String status = (demand.isDemandFulfilled() ? "✓" : "✘");
-            TextViewPixel criteriaStatus = dh.createTextView(status, 32, (demand.isRequired() ? Color.BLACK : Color.GRAY), Gravity.CENTER);
+            int statusDrawableID = (demand.isDemandFulfilled() ? R.drawable.tick : R.drawable.cross);
+            Drawable statusDrawable = dh.createDrawable(statusDrawableID, 100, 100);
+            ImageView criteriaStatus = new ImageView(getApplicationContext());
+            criteriaStatus.setImageDrawable(statusDrawable);
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
             TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+            criteriaValue.setHeight(100);
+            criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
             criteriaValue.setSingleLine(false);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {
                 tradeBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 100, 100));
-                tradeBtn.setPadding(5,5,5,5);
+                tradeBtn.setPadding(5, 5, 5, 5);
                 tradeBtn.setTag(demand.getId());
                 tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -154,6 +160,8 @@ public class VisitorActivity extends Activity {
                         startActivity(intent);
                     }
                 });
+            } else {
+                criteriaValue.setPaintFlags(criteriaValue.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
 
             demandRow.addView(criteriaStatus);

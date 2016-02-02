@@ -103,7 +103,7 @@ public class TradeActivity extends Activity {
             sell.setWidth(30);
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
-            sell.setBackgroundResource(R.drawable.sell);
+            sell.setBackgroundResource(R.drawable.sell_small);
             sell.setTag(R.id.itemID, item.getId());
             sell.setTag(R.id.itemState, inventory.getState());
             sell.setOnClickListener(new Button.OnClickListener() {
