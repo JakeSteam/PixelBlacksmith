@@ -62,9 +62,9 @@ public class InventoryActivity extends Activity {
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
             TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
-            sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
-            sell.setBackgroundResource(R.drawable.sell);
+            sell.setBackgroundResource(R.drawable.sell_small);
+
             sell.setTag(R.id.itemID, item.getId());
             sell.setTag(R.id.itemState, inventoryItem.getState());
             sell.setOnClickListener(new Button.OnClickListener() {

@@ -101,7 +101,7 @@ public class ShopActivity extends Activity {
             itemBuy.setWidth(30);
             itemBuy.setShadowLayer(10, 0, 0, Color.WHITE);
             itemBuy.setGravity(Gravity.CENTER);
-            itemBuy.setBackgroundResource(R.drawable.buy);
+            itemBuy.setBackgroundResource(R.drawable.sell_small);
             itemBuy.setTag(item.getId());
             itemBuy.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

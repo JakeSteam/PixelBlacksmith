@@ -214,11 +214,9 @@ public class DisplayHelper {
 
     public ImageView createItemImage(Long itemId, int width, int height, int canCraft) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
-        int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
 
-        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
-        Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
+        int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
+        Drawable imageResource = createDrawable(drawableId, width, height);
 
         if (canCraft != Constants.TRUE) {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
@@ -233,6 +231,14 @@ public class DisplayHelper {
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
+    }
+
+    public Drawable createDrawable(int drawableId, int width, int height) {
+        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
+        Drawable drawableImage = new BitmapDrawable(context.getResources(), resizedImage);
+
+        return drawableImage;
     }
 
     public ImageView createImageView(String type, String value, int width, int height) {

@@ -62,7 +62,7 @@ public class MineActivity extends Activity {
             // Creating open shop button
             ImageView shopBtn = new ImageView(getApplicationContext());
             shopBtn.setTag(shop.getId());
-            shopBtn.setBackgroundResource(R.drawable.open_shop);
+            shopBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 100, 100));
             shopBtn.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), ShopActivity.class);

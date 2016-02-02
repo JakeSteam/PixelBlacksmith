@@ -144,7 +144,8 @@ public class VisitorActivity extends Activity {
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {
-                tradeBtn.setBackgroundResource(R.drawable.open_shop);
+                tradeBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 100, 100));
+                tradeBtn.setPadding(5,5,5,5);
                 tradeBtn.setTag(demand.getId());
                 tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
