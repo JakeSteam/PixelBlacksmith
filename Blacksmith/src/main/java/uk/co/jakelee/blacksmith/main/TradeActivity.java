@@ -19,6 +19,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -138,6 +139,7 @@ public class TradeActivity extends Activity {
         int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
 
         if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value)) {
+            SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);
             demand.save();

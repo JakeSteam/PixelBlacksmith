@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
@@ -107,6 +108,7 @@ public class AnvilActivity extends Activity {
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
         if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL)) {
+            SoundHelper.playSound(this, SoundHelper.smithingSounds);
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
         } else {

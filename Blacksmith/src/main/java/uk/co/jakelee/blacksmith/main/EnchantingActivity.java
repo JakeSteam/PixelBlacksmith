@@ -182,10 +182,16 @@ public class EnchantingActivity extends Activity {
                     View enchanting = findViewById(R.id.enchanting);
                     dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
                     createGemsTable(gemsTable);
+
+                    //SoundHelper.playSound(this, SoundHelper.enchantingSounds);
                 }
             });
 
             gemsTable.addView(gemButton);
         }
+    }
+
+    public void enchant1 (View v) {
+
     }
 }
