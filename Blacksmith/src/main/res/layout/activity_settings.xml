@@ -35,6 +35,60 @@
             android:textIsSelectable="false"
             android:textSize="55sp" />
 
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/settingsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settingsTitle">
+
+            <TableLayout
+                android:id="@+id/settingsTable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:shrinkColumns="0"
+                android:stretchColumns="0">
+
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/soundToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:text="@string/soundSettingText"/>
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/soundToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting"/>
+                </TableRow>
+
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/musicToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:text="@string/musicSettingText"/>
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/musicToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting"/>
+                </TableRow>
+            </TableLayout>
+
+        </ScrollView>
+
     </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

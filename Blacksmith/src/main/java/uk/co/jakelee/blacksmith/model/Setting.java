@@ -57,4 +57,5 @@ public class Setting extends SugarRecord {
     public void setStrValue(String strValue) {
         this.strValue = strValue;
     }
+
 }

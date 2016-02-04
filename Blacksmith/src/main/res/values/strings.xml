@@ -18,7 +18,10 @@
     <string name="stateText">State</string>
     <string name="bestText">Best</string>
     <string name="finishText">Finish</string>
-    <string name="smelt">Smelt</string>
+    <string name="smeltText">Smelt</string>
+
+    <string name="soundSettingText">Enable sounds?</string>
+    <string name="musicSettingText">Enable music?</string>
 
     <string name="unknownText">\???</string>
 
