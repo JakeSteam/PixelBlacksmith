@@ -8,6 +8,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Shop_Stock;
 import uk.co.jakelee.blacksmith.model.Slot;
@@ -86,6 +87,9 @@ public class UpgradeHelper {
         info1.save();
         info2.save();
         info3.save();
+
+        Setting setting1 = new Setting(1L, false);
+        setting1.save();
 
         Item item1 = new Item(1L, "Copper ore", "A piece of copper ore.", 1, 10, 1, 0, 1);
         Item item2 = new Item(2L, "Tin ore", "A piece of tin ore.", 1, 10, 1, 0, 1);

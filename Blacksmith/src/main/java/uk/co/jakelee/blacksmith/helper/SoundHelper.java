@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import java.util.Random;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SoundHelper {
     public static int[] enchantingSounds = {R.raw.enchant1};
@@ -19,7 +20,10 @@ public class SoundHelper {
     }
 
     public static void playSound(Context context, int soundID) {
-        MediaPlayer mp = MediaPlayer.create(context, soundID);
-        mp.start();
+        // Only play if the user has sounds enabled.
+        if (Setting.findById(Setting.class, Constants.SETTING_SOUNDS).getBoolValue()) {
+            MediaPlayer mp = MediaPlayer.create(context, soundID);
+            mp.start();
+        }
     }
 }

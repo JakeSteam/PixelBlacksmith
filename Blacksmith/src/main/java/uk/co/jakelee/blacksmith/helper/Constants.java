@@ -19,6 +19,8 @@ public class Constants {
     public static final Long LOCATION_TABLE = 5L;
     public static final Long LOCATION_ENCHANTING = 6L;
 
+    public static final Long SETTING_SOUNDS = 1L;
+
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
     public static final int STATE_ENCHANTED_MIN = 3;
