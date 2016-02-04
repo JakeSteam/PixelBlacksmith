@@ -11,6 +11,7 @@
     <string name="visitorText">Visitor</string>
     <string name="tradeText">Trade</string>
     <string name="enchantingText">Enchant</string>
+    <string name="settingsText">Settings</string>
 
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
@@ -24,6 +25,7 @@
     <string name="craftFailure">You cannot craft this.</string>
     <string name="craftAdd">Item added to craft queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 
 </resources>

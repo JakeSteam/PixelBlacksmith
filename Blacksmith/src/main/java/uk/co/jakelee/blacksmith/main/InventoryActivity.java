@@ -99,7 +99,7 @@ public class InventoryActivity extends Activity {
     }
 
 
-    public void closeInventory(View view) {
+    public void closePopup(View view) {
         finish();
     }
 }

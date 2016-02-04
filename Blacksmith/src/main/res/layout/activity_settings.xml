@@ -23,33 +23,18 @@
         tools:context="uk.co.jakelee.blacksmith.main.InventoryActivity">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/inventoryTitle"
+            android:id="@+id/settingsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="35dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@string/inventoryText"
+            android:text="@string/settingsText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
             android:textIsSelectable="false"
             android:textSize="55sp" />
 
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/inventoryScroller"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/inventoryTitle">
-
-            <TableLayout
-                android:id="@+id/inventoryTable"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:shrinkColumns="1"
-                android:stretchColumns="1"/>
-
-        </ScrollView>
     </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

@@ -154,4 +154,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EnchantingActivity.class);
         startActivity(intent);
     }
+
+    public void openSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }
