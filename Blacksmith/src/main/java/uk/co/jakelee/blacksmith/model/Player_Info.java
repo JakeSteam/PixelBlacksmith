@@ -3,8 +3,8 @@ package uk.co.jakelee.blacksmith.model;
 import android.widget.TextView;
 
 import com.orm.SugarRecord;
-
-import java.util.List;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.main.MainActivity;
 
@@ -18,39 +18,23 @@ public class Player_Info extends SugarRecord {
 
     }
 
+    public Player_Info(Long id, String name, String textValue) {
+        this.id = id;
+        this.name = name;
+        this.textValue = textValue;
+    }
+
+    public Player_Info(Long id, String name, int intValue) {
+        this.id = id;
+        this.name = name;
+        this.intValue = intValue;
+    }
+
     public Player_Info(Long id, String name, String textValue, int intValue) {
         this.id = id;
         this.name = name;
         this.textValue = textValue;
         this.intValue = intValue;
-    }
-
-    public static int getPlayerLevel() {
-        int xp = getXp();
-        return convertXpToLevel(xp);
-    }
-
-    public static int convertXpToLevel(int xp) {
-        return xp / 100;
-    }
-
-    public static int getXp() {
-        List<Player_Info> xpInfos = Player_Info.find(Player_Info.class, "name = ?", "XP");
-        Player_Info xpInfo = xpInfos.get(0);
-
-        return xpInfo.getIntValue();
-    }
-
-    public static void addXp(int xp) {
-        List<Player_Info> xpInfos = Player_Info.find(Player_Info.class, "name = ?", "XP");
-        Player_Info xpInfo = xpInfos.get(0);
-        xpInfo.setIntValue(xpInfo.getIntValue() + xp);
-        xpInfo.save();
-    }
-
-    public static void updateLevelText() {
-        TextView levelCount = MainActivity.level;
-        levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
     }
 
     public Long getId() {
@@ -85,4 +69,32 @@ public class Player_Info extends SugarRecord {
         this.intValue = intValue;
     }
 
+    public static int getPlayerLevel() {
+        int xp = getXp();
+        return convertXpToLevel(xp);
+    }
+
+    public static int convertXpToLevel(int xp) {
+        return xp / 100;
+    }
+
+    public static int getXp() {
+        Player_Info xpInfo = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("XP")).first();
+
+        return xpInfo.getIntValue();
+    }
+
+    public static void addXp(int xp) {
+        Player_Info xpInfo = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("XP")).first();
+
+        xpInfo.setIntValue(xpInfo.getIntValue() + xp);
+        xpInfo.save();
+    }
+
+    public static void updateLevelText() {
+        TextView levelCount = MainActivity.level;
+        levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
+    }
 }
