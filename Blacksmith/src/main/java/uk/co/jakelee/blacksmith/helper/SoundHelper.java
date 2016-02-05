@@ -9,6 +9,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SoundHelper {
+    public static MediaPlayer mediaPlayer = new MediaPlayer();
     public static int[] enchantingSounds = {R.raw.enchant1};
     public static int[] sellingSounds = {R.raw.sell1};
     public static int[] smithingSounds = {R.raw.smith1, R.raw.smith2, R.raw.smith3};
@@ -22,8 +23,8 @@ public class SoundHelper {
     public static void playSound(Context context, int soundID) {
         // Only play if the user has sounds enabled.
         if (Setting.findById(Setting.class, Constants.SETTING_SOUNDS).getBoolValue()) {
-            MediaPlayer mp = MediaPlayer.create(context, soundID);
-            mp.start();
+            mediaPlayer = MediaPlayer.create(context, soundID);
+            mediaPlayer.start();
         }
     }
 }
