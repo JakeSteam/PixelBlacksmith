@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text="@string/visitorText"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="60sp" />
 
@@ -52,9 +52,9 @@
             android:layout_alignBottom="@id/visitorPicture"
             android:layout_alignLeft="@id/visitorPicture"
             android:alpha="0.6"
-            android:background="#000000"
+            android:background="@color/black"
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -65,7 +65,7 @@
             android:layout_toRightOf="@id/visitorPicture"
             android:paddingLeft="5dp"
             android:paddingTop="5dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="22sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -78,7 +78,7 @@
             android:paddingTop="5dp"
             android:singleLine="false"
             android:text="@string/unknownText"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <ImageView
@@ -96,10 +96,10 @@
             android:layout_alignBottom="@id/typeImage"
             android:layout_alignLeft="@id/typeImage"
             android:alpha="0.6"
-            android:background="#000000"
+            android:background="@color/black"
             android:text="@string/unknownText"
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <ImageView
@@ -118,10 +118,10 @@
             android:layout_alignBottom="@id/tierImage"
             android:layout_alignLeft="@id/tierImage"
             android:alpha="0.6"
-            android:background="#000000"
+            android:background="@color/black"
             android:text="@string/unknownText"
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <ImageView
@@ -140,10 +140,10 @@
             android:layout_alignBottom="@id/stateImage"
             android:layout_alignLeft="@id/stateImage"
             android:alpha="0.6"
-            android:background="#000000"
+            android:background="@color/black"
             android:gravity="center"
             android:text="@string/unknownText"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <ImageView
@@ -161,10 +161,10 @@
             android:layout_alignBottom="@id/bestItemImage"
             android:layout_alignLeft="@id/bestItemImage"
             android:alpha="0.6"
-            android:background="#000000"
+            android:background="@color/black"
             android:text="@string/unknownText"
             android:gravity="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -175,7 +175,7 @@
             android:layout_below="@id/typeImage"
             android:text="@string/typeText"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -186,7 +186,7 @@
             android:layout_below="@id/tierImage"
             android:text="@string/tierText"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -197,7 +197,7 @@
             android:layout_below="@id/stateImage"
             android:text="@string/stateText"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -208,7 +208,7 @@
             android:layout_below="@id/bestItemImage"
             android:text="@string/bestText"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"

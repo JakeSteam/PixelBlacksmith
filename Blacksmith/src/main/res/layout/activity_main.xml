@@ -25,7 +25,7 @@
                 android:alpha=".10"
                 android:onClick="openMine"
                 android:scaleType="centerCrop"
-                android:src="#FFFFFF" />
+                android:src="@color/white" />
 
             <RelativeLayout
                 android:id="@+id/slots_mine"
@@ -44,7 +44,7 @@
                 android:alpha=".10"
                 android:onClick="openFurnace"
                 android:scaleType="centerCrop"
-                android:src="#FFFFFF" />
+                android:src="@color/white" />
 
             <RelativeLayout
                 android:id="@+id/slots_furnace"
@@ -63,7 +63,7 @@
                 android:alpha=".10"
                 android:onClick="openAnvil"
                 android:scaleType="centerCrop"
-                android:src="#FFFFFF" />
+                android:src="@color/white" />
 
             <RelativeLayout
                 android:id="@+id/slots_anvil"
@@ -82,7 +82,7 @@
                 android:alpha=".10"
                 android:onClick="openInventory"
                 android:scaleType="centerCrop"
-                android:src="#FFFFFF" />
+                android:src="@color/white" />
 
             <RelativeLayout
                 android:id="@+id/slots_inventory"
@@ -101,7 +101,7 @@
                 android:alpha=".10"
                 android:onClick="openTable"
                 android:scaleType="centerCrop"
-                android:src="#FFFFFF" />
+                android:src="@color/white" />
 
             <RelativeLayout
                 android:id="@+id/slots_table"
@@ -120,7 +120,7 @@
                 android:alpha=".10"
                 android:onClick="openEnchanting"
                 android:scaleType="centerCrop"
-                android:src="#FFFFFF" />
+                android:src="@color/white" />
 
             <RelativeLayout
                 android:id="@+id/slots_enchanting"
@@ -164,8 +164,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:shadowColor="#000000"
-        android:textColor="#FFFFFF"
+        android:shadowColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -175,7 +175,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/coinCount"
-        android:shadowColor="#000000"
-        android:textColor="#FFFFFF"
+        android:shadowColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 </RelativeLayout>
