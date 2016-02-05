@@ -89,7 +89,7 @@ public class UpgradeHelper {
         info3.save();
 
         Setting setting1 = new Setting(1L, true);
-        Setting setting2 = new Setting(2L, false);
+        Setting setting2 = new Setting(2L, true);
         setting1.save();
         setting2.save();
 

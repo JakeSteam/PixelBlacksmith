@@ -16,11 +16,16 @@ import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Visitor;
+import uk.co.jakelee.blacksmith.service.MusicService;
 
 public class MainActivity extends AppCompatActivity {
     public static DisplayHelper dh;
     public static Handler handler = new Handler();
+
+    public Intent musicService;
+    public boolean musicServiceIsStarted = false;
 
     public static TextViewPixel coins;
     public static TextViewPixel level;
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dh = DisplayHelper.getInstance(getApplicationContext());
+        musicService = new Intent(this, MusicService.class);
 
         coins = (TextViewPixel) findViewById(R.id.coinCount);
         level = (TextViewPixel) findViewById(R.id.currentLevel);
@@ -81,17 +87,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
+
+        if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
+            startService(musicService);
+            musicServiceIsStarted = true;
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+       if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
+            startService(musicService);
+            musicServiceIsStarted = true;
+        } else if (!Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && musicServiceIsStarted) {
+            stopService(musicService);
+            musicServiceIsStarted = false;
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
         handler.removeCallbacksAndMessages(null);
+
+        if (musicServiceIsStarted) {
+            stopService(musicService);
+            musicServiceIsStarted = false;
+        }
     }
 
     private void createSlots() {
