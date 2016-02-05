@@ -13,6 +13,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -24,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -132,12 +136,16 @@ public class TradeActivity extends Activity {
 
     public void clickSellButton(View v) {
         Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
-        List<Inventory> invents = Inventory.find(Inventory.class, "item = " + itemToSell.getId() + " AND state = " + v.getTag(R.id.itemState));
+        State itemState = State.findById(State.class, (int) v.getTag(R.id.itemState));
+        Inventory itemInventory = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(itemToSell.getId()),
+                Condition.prop("state").eq(itemState.getId())).first();
+
         int quantity = 1;
 
         // Calculate the item sell value, rounded up
-        double bonus = visitorType.getBonus(invents.get(0));
-        int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
+        double bonus = visitorType.getBonus(itemInventory);
+        int value = (int) ((itemToSell.getModifiedValue(itemState.getId()) * bonus) + 0.5);
 
         int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value);
         if (tradeResponse == Constants.SUCCESS) {
@@ -148,7 +156,7 @@ public class TradeActivity extends Activity {
         } else {
             Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(tradeResponse), Toast.LENGTH_SHORT).show();
         }
-        
+
         dh.updateCoins(dh.getCoins());
         displayDemandInfo();
         visitorType.updateUnlockedPreferences(itemToSell, (int) v.getTag(R.id.itemState));
