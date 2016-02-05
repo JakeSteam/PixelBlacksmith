@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/credits"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_2part"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.CreditsActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/creditsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/creditsText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
+            android:textIsSelectable="false"
+            android:textSize="55sp" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/creditsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/creditsTitle">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:text="@string/creditsMusic" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:text="@string/creditsMusicDetails"
+                    android:singleLine="false" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:text="@string/creditsCCBY"
+                    android:singleLine="false"
+                    android:paddingBottom="20dp"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+</RelativeLayout>

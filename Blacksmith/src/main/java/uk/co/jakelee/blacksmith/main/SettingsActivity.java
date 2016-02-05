@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +55,11 @@ public class SettingsActivity extends Activity {
 
             displaySettingsList();
         }
+    }
+
+    public void openCredits (View view) {
+        Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
+        startActivity(intent);
     }
 
     public void closePopup(View view) {

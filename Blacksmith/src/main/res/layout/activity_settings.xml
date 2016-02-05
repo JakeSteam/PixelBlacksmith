@@ -85,6 +85,19 @@
                         android:layout_height="64dp"
                         android:onClick="toggleSetting"/>
                 </TableRow>
+
+                <TableRow android:gravity="center">
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="openCredits"
+                        android:text="@string/creditsText"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_extra_wide"
+                        android:textSize="35sp"/>
+                </TableRow>
             </TableLayout>
 
         </ScrollView>

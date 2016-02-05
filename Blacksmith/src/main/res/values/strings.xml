@@ -12,6 +12,7 @@
     <string name="tradeText">Trade</string>
     <string name="enchantingText">Enchant</string>
     <string name="settingsText">Settings</string>
+    <string name="creditsText">Credits</string>
 
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
@@ -29,6 +30,10 @@
     <string name="craftAdd">Item added to craft queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
     <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="creditsMusic">Music</string>
+    <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>
+    <string name="creditsCCBY">Licensed under Creative Commons: By Attribution 3.0. For info, see:\nhttp://creativecommons.org/licenses/by/3.0/</string>
 
 
 </resources>
