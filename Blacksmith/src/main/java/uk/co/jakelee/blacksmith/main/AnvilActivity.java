@@ -107,7 +107,7 @@ public class AnvilActivity extends Activity {
         int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL)) {
+        if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL) == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);

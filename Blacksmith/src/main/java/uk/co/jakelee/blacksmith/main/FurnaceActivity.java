@@ -91,7 +91,7 @@ public class FurnaceActivity extends Activity {
         int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        if (Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_FURNACE)) {
+        if (Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_FURNACE) == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createFurnaceInterface();

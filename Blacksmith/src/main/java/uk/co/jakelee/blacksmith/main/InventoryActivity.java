@@ -88,7 +88,7 @@ public class InventoryActivity extends Activity {
         int itemState = (int)view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
 
-        if (Inventory.sellItem(itemID, itemState, quantity, itemToSell.getModifiedValue(itemState))) {
+        if (Inventory.sellItem(itemID, itemState, quantity, itemToSell.getModifiedValue(itemState)) == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getModifiedValue(itemState)), Toast.LENGTH_SHORT).show();
         } else {

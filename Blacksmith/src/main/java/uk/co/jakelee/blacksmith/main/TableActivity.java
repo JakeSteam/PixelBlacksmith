@@ -108,7 +108,7 @@ public class TableActivity extends Activity {
         int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        if (Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_TABLE)) {
+        if (Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_TABLE) == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createTableInterface(false);

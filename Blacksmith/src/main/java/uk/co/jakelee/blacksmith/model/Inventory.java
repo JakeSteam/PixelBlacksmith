@@ -55,11 +55,13 @@ public class Inventory extends SugarRecord {
         Player_Info.updateLevelText();
     }
 
-    public static boolean canCreateItem(Long itemID, int state) {
+    public static int canCreateItem(Long itemID, int state) {
         // 1: Check we've got a high enough level
         Item item = Item.findById(Item.class, itemID);
-        if (item.getLevel() > Player_Info.getPlayerLevel() || item.getCanCraft() != 1) {
-            return false;
+        if (item.getLevel() > Player_Info.getPlayerLevel()) {
+            return Constants.ERROR_PLAYER_LEVEL;
+        } else if (item.getCanCraft() != 1) {
+            return Constants.ERROR_CANNOT_CRAFT;
         }
 
         // 2: Check we've got enough of all ingredients
@@ -75,11 +77,11 @@ public class Inventory extends SugarRecord {
             }
 
             if (recipe.getQuantity() > inventory.getQuantity()) {
-                return false;
+                return Constants.ERROR_NOT_ENOUGH_INGREDIENTS;
             }
         }
 
-        return true;
+        return Constants.SUCCESS;
     }
 
     public static void removeItemIngredients(Long itemId, int state) {
@@ -91,23 +93,34 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static boolean createItem(Long itemId, int state, int quantity, Long locationID) {
-        if (canCreateItem(itemId, state) && Slot.hasAvailableSlot(locationID)) {
-            removeItemIngredients(itemId, state);
-            Pending_Inventory.addItem(itemId, state, quantity, locationID);
-            return true;
-        } else {
-            return false;
+    public static int createItem(Long itemId, int state, int quantity, Long locationID) {
+        if (!Slot.hasAvailableSlot(locationID)) {
+            return Constants.ERROR_NO_SPARE_SLOTS;
         }
+
+        int canCreate = canCreateItem(itemId, state);
+        if (canCreate != Constants.SUCCESS) {
+            return canCreate;
+        }
+
+        removeItemIngredients(itemId, state);
+        Pending_Inventory.addItem(itemId, state, quantity, locationID);
+        return Constants.SUCCESS;
     }
 
-    public static boolean enchantItem(Long itemId, Long gemId, Long locationID) {
+    public static int enchantItem(Long itemId, Long gemId, Long locationID) {
         int quantity = 1;
 
         Inventory itemInventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         Inventory gemInventory = Inventory.getInventory(gemId, Constants.STATE_NORMAL);
 
-        if (Slot.hasAvailableSlot(locationID) && itemInventory.getQuantity() > 0 && gemInventory.getQuantity() > 0) {
+        if (!Slot.hasAvailableSlot(locationID)) {
+            return Constants.ERROR_NO_SPARE_SLOTS;
+        } else if (itemInventory.getQuantity() <= 0) {
+            return Constants.ERROR_NO_ITEMS;
+        } else if (gemInventory.getQuantity() <= 0) {
+            return Constants.ERROR_NO_GEMS;
+        } else {
             itemInventory.setQuantity(itemInventory.getQuantity() - 1);
             itemInventory.save();
 
@@ -118,14 +131,14 @@ public class Inventory extends SugarRecord {
                     Condition.prop("initiating_item").eq(gemId)).first();
 
             Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), quantity, locationID);
-            return true;
-        } else {
-            return false;
+            return Constants.SUCCESS;
         }
     }
 
     public static Inventory getInventory(Long id, int state) {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND item = " + id);
+        List<Inventory> inventories = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(state),
+                Condition.prop("item").eq(id)).list();
 
         // If nothing is returned, return a default count of 0.
         if (inventories.size() > 0) {
@@ -136,66 +149,65 @@ public class Inventory extends SugarRecord {
     }
 
     public static boolean canSellItem(Long itemId, int state, int quantity) {
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND item = " + itemId);
-
-        Inventory foundInventory;
-        if (inventories.size() > 0) {
-            foundInventory = inventories.get(0);
-        } else {
-            foundInventory = new Inventory(itemId, state, 0);
-        }
+        Inventory foundInventory = getInventory(itemId, state);
 
         return (foundInventory.getQuantity() - quantity) >= 0;
     }
 
-    public static boolean sellItem(Long itemId, int state, int quantity, int price) {
-        if (canSellItem(itemId, state, quantity) && Slot.hasAvailableSlot(Constants.LOCATION_SELLING)) {
+    public static int sellItem(Long itemId, int state, int quantity, int price) {
+        if (!canSellItem(itemId, state, quantity)) {
+            return Constants.ERROR_NOT_ENOUGH_ITEMS;
+        } else if (!Slot.hasAvailableSlot(Constants.LOCATION_SELLING)) {
+            return Constants.ERROR_NO_SPARE_SLOTS;
+        } else {
             // Remove item
             Inventory itemStock = Inventory.getInventory(itemId, state);
             itemStock.setQuantity(itemStock.getQuantity() - quantity);
             itemStock.save();
 
             // Add coins
-            Pending_Inventory.addItem(Constants.ITEM_COINS, 1, price, Constants.LOCATION_SELLING);
+            Pending_Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price, Constants.LOCATION_SELLING);
 
-            return true;
-        } else {
-            return false;
+            return Constants.SUCCESS;
         }
     }
 
-    public static boolean tradeItem(Long itemId, int state, int quantity, int price) {
-        Long coinId = 52L;
-
+    public static int tradeItem(Long itemId, int state, int quantity, int price) {
         Inventory itemStock = Inventory.getInventory(itemId, state);
         itemStock.setQuantity(itemStock.getQuantity() - quantity);
         itemStock.save();
-        Inventory.addItem(coinId, 1, price);
+        Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price);
 
-        return true;
+        return Constants.SUCCESS;
     }
 
-    public static boolean canBuyItem(Long itemId, int state, Long shopId, int price) {
-        Long coinId = 52L;
+    public static int canBuyItem(Long itemId, int state, Long shopId, int price) {
+        Inventory coins = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(Constants.ITEM_COINS)).first();
 
-        // Can it be afforded?
-        List<Inventory> coinsList = Inventory.find(Inventory.class, "item = ?", Long.toString(coinId));
-        Inventory coins = coinsList.get(0);
+        Shop_Stock itemStock = Select.from(Shop_Stock.class).where(
+                Condition.prop("shop_id").eq(shopId),
+                Condition.prop("item_id").eq(itemId),
+                Condition.prop("state").eq(state)).first();
 
-        // Is there stock?
-        List<Shop_Stock> itemStocks = Shop_Stock.find(Shop_Stock.class, "shop_id = " + shopId + " AND item_id = " + itemId + " AND state = " + state);
-        Shop_Stock itemStock = itemStocks.get(0);
-
-        return ((coins.getQuantity() - price) >= 0) && (itemStock.getStock() > 0);
+        if ((coins.getQuantity() - price) <= 0) {
+            return Constants.ERROR_NOT_ENOUGH_COINS;
+        } else if (itemStock.getStock() <= 0) {
+            return Constants.ERROR_SHOP_RUN_OUT;
+        } else {
+            return Constants.SUCCESS;
+        }
     }
 
-    public static boolean buyItem(Long itemId, int state, Long shopId, int price) {
-        Long locationId = 4L;
-        Long coinId = 52L;
-
-        if (canBuyItem(itemId, state, shopId, price) && Slot.hasAvailableSlot(Constants.LOCATION_MINE)) {
+    public static int buyItem(Long itemId, int state, Long shopId, int price) {
+        int canBuyResponse = canBuyItem(itemId, state, shopId, price);
+        if (canBuyResponse != Constants.SUCCESS) {
+            return canBuyResponse;
+        } else if (Slot.hasAvailableSlot(Constants.LOCATION_MINE)) {
+            return Constants.ERROR_NO_SPARE_SLOTS;
+        } else {
             // Remove coins
-            Inventory coinStock = Inventory.getInventory(coinId, state);
+            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, state);
             coinStock.setQuantity(coinStock.getQuantity() - price);
             coinStock.save();
 
@@ -206,11 +218,9 @@ public class Inventory extends SugarRecord {
             itemStock.save();
 
             // Add item
-            Pending_Inventory.addItem(itemId, 1, 1, locationId);
+            Pending_Inventory.addItem(itemId, 1, 1, Constants.LOCATION_MINE);
 
-            return true;
-        } else {
-            return false;
+            return Constants.SUCCESS;
         }
     }
 }

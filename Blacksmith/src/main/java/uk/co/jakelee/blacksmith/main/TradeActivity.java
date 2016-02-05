@@ -138,7 +138,7 @@ public class TradeActivity extends Activity {
         double bonus = visitorType.getBonus(invents.get(0));
         int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
 
-        if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value)) {
+        if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value) != Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);

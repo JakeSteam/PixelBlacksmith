@@ -9,6 +9,18 @@ public class Constants {
     public static final int MAXIMUM_VISITORS = 10;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
 
+    // Error codes
+    public static final int SUCCESS = 1;
+    public static final int ERROR_PLAYER_LEVEL = 2;
+    public static final int ERROR_CANNOT_CRAFT = 3;
+    public static final int ERROR_NOT_ENOUGH_INGREDIENTS = 4;
+    public static final int ERROR_NO_SPARE_SLOTS = 5;
+    public static final int ERROR_NO_ITEMS = 6;
+    public static final int ERROR_NO_GEMS = 7;
+    public static final int ERROR_NOT_ENOUGH_ITEMS = 8;
+    public static final int ERROR_NOT_ENOUGH_COINS = 9;
+    public static final int ERROR_SHOP_RUN_OUT = 10;
+
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
 
