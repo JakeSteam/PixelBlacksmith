@@ -33,7 +33,7 @@
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>
-    <string name="creditsCCBY">Licensed under Creative Commons: By Attribution 3.0. For info, see:\nhttp://creativecommons.org/licenses/by/3.0/</string>
+    <string name="creditsCCBY">Modified: Reduced bitrate. Licensed under Creative Commons: By Attribution 3.0.\nhttp://creativecommons.org/licenses/by/3.0/</string>
 
 
 </resources>
