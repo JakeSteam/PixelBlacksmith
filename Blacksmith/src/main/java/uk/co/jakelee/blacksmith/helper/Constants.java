@@ -12,7 +12,7 @@ public class Constants {
     // Error codes
     public static final int SUCCESS = 1;
     public static final int ERROR_PLAYER_LEVEL = 2;
-    public static final int ERROR_CANNOT_CRAFT = 3;
+    public static final int ERROR_UNDISCOVERED = 3;
     public static final int ERROR_NOT_ENOUGH_INGREDIENTS = 4;
     public static final int ERROR_NO_SPARE_SLOTS = 5;
     public static final int ERROR_NO_ITEMS = 6;

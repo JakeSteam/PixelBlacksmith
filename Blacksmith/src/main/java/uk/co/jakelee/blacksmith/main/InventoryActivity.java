@@ -20,6 +20,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -88,11 +89,12 @@ public class InventoryActivity extends Activity {
         int itemState = (int)view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
 
-        if (Inventory.sellItem(itemID, itemState, quantity, itemToSell.getModifiedValue(itemState)) == Constants.SUCCESS) {
+        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, itemToSell.getModifiedValue(itemState));
+        if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getModifiedValue(itemState)), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(sellResponse), Toast.LENGTH_SHORT).show();
         }
         updateInventoryTable();
         dh.updateCoins(dh.getCoins());

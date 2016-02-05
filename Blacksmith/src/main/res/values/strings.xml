@@ -29,7 +29,6 @@
     <string name="craftFailure">You cannot craft this.</string>
     <string name="craftAdd">Item added to craft queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
-    <string name="title_activity_settings">SettingsActivity</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>

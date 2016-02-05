@@ -56,27 +56,23 @@ public class Inventory extends SugarRecord {
     }
 
     public static int canCreateItem(Long itemID, int state) {
-        // 1: Check we've got a high enough level
         Item item = Item.findById(Item.class, itemID);
         if (item.getLevel() > Player_Info.getPlayerLevel()) {
             return Constants.ERROR_PLAYER_LEVEL;
         } else if (item.getCanCraft() != 1) {
-            return Constants.ERROR_CANNOT_CRAFT;
+            return Constants.ERROR_UNDISCOVERED;
         }
 
-        // 2: Check we've got enough of all ingredients
-        List<Recipe> ingredients = Recipe.find(Recipe.class, "item_state = " + state + " AND item = " + itemID);
+        List<Recipe> ingredients = Select.from(Recipe.class).where(
+                Condition.prop("item_state").eq(state),
+                Condition.prop("item").eq(item)).list();
+
         for (Recipe recipe : ingredients) {
-            List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + recipe.getIngredientState() + " AND item = " + recipe.getIngredient());
+            List<Inventory> inventories = Select.from(Inventory.class).where(
+                    Condition.prop("item").eq(recipe.getIngredient()),
+                    Condition.prop("state").eq(recipe.getIngredientState())).list();
 
-            Inventory inventory;
-            if (inventories.size() > 0) {
-                inventory = inventories.get(0);
-            } else {
-                inventory = new Inventory(recipe.getIngredient(), state, 0);
-            }
-
-            if (recipe.getQuantity() > inventory.getQuantity()) {
+            if (inventories.size() == 0 || recipe.getQuantity() > inventories.get(0).getQuantity()) {
                 return Constants.ERROR_NOT_ENOUGH_INGREDIENTS;
             }
         }

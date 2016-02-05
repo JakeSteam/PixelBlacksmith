@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -107,12 +108,13 @@ public class AnvilActivity extends Activity {
         int quantity = 1;
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
 
-        if (Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL) == Constants.SUCCESS) {
+        int smeltResponse = Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL);
+        if (smeltResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
             createAnvilInterface(false);
         } else {
-            Toast.makeText(getApplicationContext(), R.string.craftFailure, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(smeltResponse), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -143,6 +145,7 @@ public class AnvilActivity extends Activity {
                 mViewFlipper.setInAnimation(slide_in_right);
                 mViewFlipper.setOutAnimation(slide_out_left);
                 mViewFlipper.showNext();
+                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
             }
 
             // Swipe right (previous)
@@ -150,6 +153,7 @@ public class AnvilActivity extends Activity {
                 mViewFlipper.setInAnimation(slide_in_left);
                 mViewFlipper.setOutAnimation(slide_out_right);
                 mViewFlipper.showPrevious();
+                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
             }
 
             View anvil = findViewById(R.id.anvil);

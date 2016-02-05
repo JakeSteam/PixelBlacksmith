@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
@@ -136,6 +137,7 @@ public class EnchantingActivity extends Activity {
                 mViewFlipper.setInAnimation(slide_in_right);
                 mViewFlipper.setOutAnimation(slide_out_left);
                 mViewFlipper.showNext();
+                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
             }
 
             // Swipe right (previous)
@@ -143,6 +145,7 @@ public class EnchantingActivity extends Activity {
                 mViewFlipper.setInAnimation(slide_in_left);
                 mViewFlipper.setOutAnimation(slide_out_right);
                 mViewFlipper.showPrevious();
+                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
             }
 
             View enchanting = findViewById(R.id.enchanting);

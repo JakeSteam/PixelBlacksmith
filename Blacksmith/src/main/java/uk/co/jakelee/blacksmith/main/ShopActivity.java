@@ -23,6 +23,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -121,10 +122,11 @@ public class ShopActivity extends Activity {
         int quantity = 1;
         Item itemToBuy = Item.findById(Item.class, (Long) v.getTag());
 
-        if (Inventory.buyItem(itemToBuy.getId(), quantity, shop.getId(), itemToBuy.getValue()) == Constants.SUCCESS) {
+        int buyResponse = Inventory.buyItem(itemToBuy.getId(), quantity, shop.getId(), itemToBuy.getValue());
+        if (buyResponse == Constants.SUCCESS) {
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending buying for %3s coin(s)", 1, itemToBuy.getName(), itemToBuy.getValue()), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), String.format("Couldn't buy %1s", itemToBuy.getName()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(buyResponse), Toast.LENGTH_SHORT).show();
         }
         createItemList();
     }

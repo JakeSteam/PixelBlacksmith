@@ -19,6 +19,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -138,14 +139,16 @@ public class TradeActivity extends Activity {
         double bonus = visitorType.getBonus(invents.get(0));
         int value = (int) ((itemToSell.getValue() * bonus) + 0.5);
 
-        if (Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value) != Constants.SUCCESS) {
+        int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value);
+        if (tradeResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);
             demand.save();
         } else {
-            Toast.makeText(getApplicationContext(), String.format("Couldn't sell %1s", itemToSell.getName()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(tradeResponse), Toast.LENGTH_SHORT).show();
         }
+        
         dh.updateCoins(dh.getCoins());
         displayDemandInfo();
         visitorType.updateUnlockedPreferences(itemToSell, (int) v.getTag(R.id.itemState));
