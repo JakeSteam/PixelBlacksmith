@@ -25,6 +25,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -175,6 +176,8 @@ public class VisitorActivity extends Activity {
         if (visitor.isVisitorComplete()) {
             Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
             Visitor.delete(visitor);
+
+            SoundHelper.playSound(this, SoundHelper.walkingSounds);
             closeVisitor(view);
         } else {
             Toast.makeText(getApplicationContext(), R.string.visitorCompleteFailure, Toast.LENGTH_SHORT).show();

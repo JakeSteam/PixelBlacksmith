@@ -13,6 +13,7 @@ public class SoundHelper {
     public static int[] enchantingSounds = {R.raw.enchant1};
     public static int[] sellingSounds = {R.raw.sell1};
     public static int[] smithingSounds = {R.raw.smith1, R.raw.smith2, R.raw.smith3};
+    public static int[] walkingSounds = {R.raw.footsteps1};
 
     // If an array is passed, pick one at random to play.
     public static void playSound(Context context, int[] sounds) {

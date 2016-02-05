@@ -160,12 +160,10 @@ public class Inventory extends SugarRecord {
         } else if (!Slot.hasAvailableSlot(Constants.LOCATION_SELLING)) {
             return Constants.ERROR_NO_SPARE_SLOTS;
         } else {
-            // Remove item
             Inventory itemStock = Inventory.getInventory(itemId, state);
             itemStock.setQuantity(itemStock.getQuantity() - quantity);
             itemStock.save();
 
-            // Add coins
             Pending_Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price, Constants.LOCATION_SELLING);
 
             return Constants.SUCCESS;
