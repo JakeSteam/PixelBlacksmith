@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -25,6 +26,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -104,12 +106,6 @@ public class EnchantingActivity extends Activity {
         finish();
     }
 
-
-    public void enchantItem(View v) {
-        int itemId = 10;
-        int state = 5;
-    }
-
     public void goUpTier(View view) {
         if (displayedTier < Constants.TIER_MAX) {
             displayedTier++;
@@ -174,19 +170,11 @@ public class EnchantingActivity extends Activity {
             String buttonText = gem.getName() + " (x" + gemInventory.getQuantity() + ")";
             TextView buttonTextView = dh.createTextView(buttonText, 30);
             gemButton.addView(buttonTextView);
+            gemButton.setTag(gem.getId());
 
             gemButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    // TODO: Rethink this method's layout, and add success / failure messages
-                    Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
-                    Long gemId = gem.getId();
-                    Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
-
-                    View enchanting = findViewById(R.id.enchanting);
-                    dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
-                    createGemsTable(gemsTable);
-
-                    //SoundHelper.playSound(this, SoundHelper.enchantingSounds);
+                    clickEnchantButton(v);
                 }
             });
 
@@ -194,7 +182,24 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    public void enchant1 (View v) {
+    public void clickEnchantButton (View v) {
+        LinearLayout gemsTable = (LinearLayout) findViewById(R.id.gemsTable);
+        View enchantingItemInfo = findViewById(R.id.enchanting);
+
+        Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
+        Long gemId = (Long) v.getTag();
+
+        int enchantResponse = Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
+        if (enchantResponse == Constants.SUCCESS) {
+            SoundHelper.playSound(this, SoundHelper.enchantingSounds);
+            Toast.makeText(getApplicationContext(), R.string.enchantAdd, Toast.LENGTH_SHORT).show();
+
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
+            createGemsTable(gemsTable);
+        } else {
+            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(enchantResponse), Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 }

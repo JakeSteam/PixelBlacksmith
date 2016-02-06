@@ -28,6 +28,7 @@
 
     <string name="craftFailure">You cannot craft this.</string>
     <string name="craftAdd">Item added to craft queue.</string>
+    <string name="enchantAdd">Item added to enchanting queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
 
     <string name="creditsMusic">Music</string>
