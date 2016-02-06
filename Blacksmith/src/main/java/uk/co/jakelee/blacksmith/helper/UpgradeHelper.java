@@ -778,6 +778,7 @@ public class UpgradeHelper {
         vStats10.save();
         vStats11.save();
         vStats12.save();
+        vStats13.save();
 
         Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
         Visitor_Type vType2 = new Visitor_Type(2L, "Mister Hatchet", "If only I was a woodcutter...", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);

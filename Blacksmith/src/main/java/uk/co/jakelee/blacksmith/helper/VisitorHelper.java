@@ -17,6 +17,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorHelper {
     public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
+    public static List<Long> existingVisitorTypes = new ArrayList<>();
 
     public static void createNewVisitor() {
         Long currentMillis = System.currentTimeMillis();
@@ -88,11 +89,19 @@ public class VisitorHelper {
 
     public static Visitor_Type selectVisitorType () {
         Visitor_Type visitor = new Visitor_Type();
+        List<Visitor_Type> visitorTypes = new ArrayList<>();
 
-        // Work out the total probability for the visitors.
-        List<Visitor_Type> types = Visitor_Type.listAll(Visitor_Type.class);
+        // Only get visitor types we don't already have.
+        List<Visitor_Type> allVisitorTypes = Visitor_Type.listAll(Visitor_Type.class);
+        for (Visitor_Type type : allVisitorTypes) {
+            if (!existingVisitorTypes.contains(type.getVisitorID())) {
+                visitorTypes.add(type);
+            }
+        }
+
+        // Work out the total weighting.
         double totalWeighting = 0.0;
-        for (Visitor_Type type : types) {
+        for (Visitor_Type type : visitorTypes) {
             totalWeighting += type.getWeighting();
         }
 
@@ -101,13 +110,15 @@ public class VisitorHelper {
 
         // Use the random number to select a visitor type.
         double probabilityIterator = 0.0;
-        for (Visitor_Type type : types) {
+        for (Visitor_Type type : visitorTypes) {
             probabilityIterator += type.getWeighting();
             if (probabilityIterator >= randomNumber) {
                 visitor = type;
                 break;
             }
         }
+
+        existingVisitorTypes.add(visitor.getVisitorID());
         return visitor;
     }
 
