@@ -88,11 +88,6 @@ public class UpgradeHelper {
         info2.save();
         info3.save();
 
-        Setting setting1 = new Setting(1L, true);
-        Setting setting2 = new Setting(2L, true);
-        setting1.save();
-        setting2.save();
-
         Item item1 = new Item(1L, "Copper ore", "A piece of copper ore.", 1, 10, 1, 0, 1);
         Item item2 = new Item(2L, "Tin ore", "A piece of tin ore.", 1, 10, 1, 0, 1);
         Item item3 = new Item(3L, "Coal", "A piece of coal.", 1, 10, 1, 0, 1);
@@ -584,6 +579,11 @@ public class UpgradeHelper {
         recipe157.save();
         recipe158.save();
         recipe159.save();
+
+        Setting setting1 = new Setting(1L, false);
+        Setting setting2 = new Setting(2L, false);
+        setting1.save();
+        setting2.save();
 
         Shop shop = new Shop(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
         Shop shop1 = new Shop(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);

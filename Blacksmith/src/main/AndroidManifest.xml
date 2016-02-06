@@ -31,13 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".main.MainActivity"/>
         <activity
             android:name=".main.InventoryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />

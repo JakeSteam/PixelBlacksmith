@@ -43,6 +43,11 @@ public class VisitorActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visitor);
         dh = DisplayHelper.getInstance(getApplicationContext());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         Intent intent = getIntent();
         Long visitorId = Long.parseLong(intent.getStringExtra(DisplayHelper.VISITOR_TO_LOAD));
@@ -53,13 +58,6 @@ public class VisitorActivity extends Activity {
             visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
             createVisitorInterface();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        displayVisitorStats();
-        displayVisitorDemands();
     }
 
     public void createVisitorInterface() {
