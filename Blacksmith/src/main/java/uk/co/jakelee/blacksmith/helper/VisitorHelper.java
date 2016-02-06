@@ -1,5 +1,8 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.util.Pair;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -13,6 +16,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorHelper {
+    public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
 
     public static void createNewVisitor() {
         Long currentMillis = System.currentTimeMillis();
@@ -61,8 +65,15 @@ public class VisitorHelper {
             required = true;
         }
 
-        Visitor_Demand demand = new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);
-        demand.save();
+        // Check if the current criteria already exists. If it does, try again.
+        Pair currentCriteria = new Pair(criteriaType, criteriaValue);
+        if (existingCriteria.contains(currentCriteria)) {
+            generateDemand(i, visitorID);
+        } else {
+            Visitor_Demand demand = new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);
+            demand.save();
+            existingCriteria.add(currentCriteria);
+        }
     }
 
     public static int getRandomNumber(int minimum, int maximum) {
