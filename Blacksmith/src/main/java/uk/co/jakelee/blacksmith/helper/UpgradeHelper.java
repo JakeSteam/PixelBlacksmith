@@ -62,6 +62,10 @@ public class UpgradeHelper {
         Inventory inventory15 = new Inventory(74L, 1, 6);
         Inventory inventory16 = new Inventory(20L, 1, 50);
         Inventory inventory17 = new Inventory(30L, 5, 10);
+        Inventory inventory18 = new Inventory(77L, 1, 10);
+        Inventory inventory19 = new Inventory(78L, 1, 10);
+        Inventory inventory20 = new Inventory(79L, 1, 10);
+        Inventory inventory21 = new Inventory(80L, 1, 10);
         inventory.save();
         inventory1.save();
         inventory2.save();
@@ -80,6 +84,10 @@ public class UpgradeHelper {
         inventory15.save();
         inventory16.save();
         inventory17.save();
+        inventory18.save();
+        inventory19.save();
+        inventory20.save();
+        inventory21.save();
 
         Player_Info info1 = new Player_Info(1L, "Name", "Jake");
         Player_Info info2 = new Player_Info(2L, "XP", 1200);
@@ -159,11 +167,15 @@ public class UpgradeHelper {
         Item item69 = new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 10, 1, 1, 1);
         Item item70 = new Item(70L, "Silk", "A fine strip of silk.", 19, 10, 1, 1, 1);
         Item item71 = new Item(71L, "Logs", "Some basic logs.",19, 10, 1, 1, 1);
-        Item item72 = new Item(72L, "Ruby", "A red gem", 20, 10, 150, 12, 1);
-        Item item73 = new Item(73L, "Sapphire", "A blue gem", 20, 10, 150, 12, 1);
-        Item item74 = new Item(74L, "Emerald", "A green gem", 20, 10, 150, 12, 1);
-        Item item75 = new Item(75L, "Diamond", "A white gem", 20, 10, 250, 15, 1);
-        Item item76 = new Item(76L, "Onyx", "A black gem", 20, 10, 250, 15, 1);
+        Item item72 = new Item(72L, "Ruby", "A red gem.", 20, 10, 150, 12, 1);
+        Item item73 = new Item(73L, "Sapphire", "A blue gem.", 20, 10, 150, 12, 1);
+        Item item74 = new Item(74L, "Emerald", "A green gem.", 20, 10, 150, 12, 1);
+        Item item75 = new Item(75L, "Diamond", "A white gem.", 20, 10, 250, 15, 1);
+        Item item76 = new Item(76L, "Onyx", "A black gem.", 20, 10, 250, 15, 1);
+        Item item77 = new Item(77L, "Apple", "A nice, shiny apple.", 21, 10, 5, 1, 1);
+        Item item78 = new Item(78L, "Cheese", "Smells a bit cheesy.", 21, 10, 5, 1, 1);
+        Item item79 = new Item(79L, "Bread", "A bit stale, but edible.", 21, 10, 5, 1, 1);
+        Item item80 = new Item(80L, "Raw Meat", "Still dripping. Yuck.", 21, 10, 5, 1, 1);
         item1.save();
         item2.save();
         item3.save();
@@ -240,6 +252,10 @@ public class UpgradeHelper {
         item74.save();
         item75.save();
         item76.save();
+        item77.save();
+        item78.save();
+        item79.save();
+        item80.save();
 
         Location location1 = new Location(1L, "Anvil");
         Location location2 = new Location(2L, "Furnace");
@@ -712,7 +728,8 @@ public class UpgradeHelper {
         Type type18 = new Type(18L, "Hammer", 4, 10);
         Type type19 = new Type(19L, "Secondary", 1, 30);
         Type type20 = new Type(20L, "Gem", 1, 5);
-        Type type21 = new Type(100L, "Internal", 0, 0);
+        Type type21 = new Type(21L, "Food", 2, 30);
+        Type type22 = new Type(100L, "Internal", 0, 0);
         type1.save();
         type2.save();
         type3.save();
@@ -734,6 +751,7 @@ public class UpgradeHelper {
         type19.save();
         type20.save();
         type21.save();
+        type22.save();
 
         Visitor_Stats vStats1 = new Visitor_Stats(1L, 0, 52L, 1L, 1, 1452022352000L);
         Visitor_Stats vStats2 = new Visitor_Stats(2L, 0, 52L, 1L, 1, 1452022352000L);
@@ -741,12 +759,25 @@ public class UpgradeHelper {
         Visitor_Stats vStats4 = new Visitor_Stats(4L, 0, 52L, 1L, 1, 1452022352000L);
         Visitor_Stats vStats5 = new Visitor_Stats(5L, 0, 52L, 1L, 1, 1452022352000L);
         Visitor_Stats vStats6 = new Visitor_Stats(6L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats7 = new Visitor_Stats(7L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats8 = new Visitor_Stats(8L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats9 = new Visitor_Stats(9L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats10 = new Visitor_Stats(10L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats11 = new Visitor_Stats(11L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats12 = new Visitor_Stats(12L, 0, 52L, 1L, 1, 1452022352000L);
+        Visitor_Stats vStats13 = new Visitor_Stats(13L, 0, 52L, 1L, 1, 1452022352000L);
         vStats1.save();
         vStats2.save();
         vStats3.save();
         vStats4.save();
         vStats5.save();
         vStats6.save();
+        vStats7.save();
+        vStats8.save();
+        vStats9.save();
+        vStats10.save();
+        vStats11.save();
+        vStats12.save();
 
         Visitor_Type vType1 = new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
         Visitor_Type vType2 = new Visitor_Type(2L, "Mister Hatchet", "If only I was a woodcutter...", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
@@ -754,12 +785,26 @@ public class UpgradeHelper {
         Visitor_Type vType4 = new Visitor_Type(4L, "Monsieur Fancypants", "Only the best for me, old chap.", 7L, 10L, 4L, 1.6, 1.55, 1.5, false, false, false, 1);
         Visitor_Type vType5 = new Visitor_Type(5L, "Grumbling Rock", "Me hungry. Tummy rumbling.", 10L, 1L, 1L, 1.05, 1.4, 1.05, false, false, false, 5);
         Visitor_Type vType6 = new Visitor_Type(6L, "Large Grumbling Rock", "Me very hungry. Tummy rumbling loud.", 10L, 1L, 1L, 1.6, 1.8, 1.05, false, false, false, 1);
+        Visitor_Type vType7 = new Visitor_Type(7L, "R. De Couleur", "They say I'm the short-tempered one, but I just like the colour.", 7L, 20L, 3L, 1.25, 1.05, 1.66, false, false, false, 2);
+        Visitor_Type vType8 = new Visitor_Type(8L, "G. De Couleur", "They say I'm the jealous one, but I just like the colour.", 5L, 20L, 4L, 1.25, 1.05, 1.66, false, false, false, 2);
+        Visitor_Type vType9 = new Visitor_Type(9L, "B. De Couleur", "They say I'm the unhappy one, but I just like the colour.", 6L, 20L, 5L, 1.25, 1.05, 1.66, false, false, false, 2);
+        Visitor_Type vType10 = new Visitor_Type(10L, "W. De Couleur", "They say I'm the scared one, but I just like the colour.", 8L, 20L, 6L, 1.25, 1.05, 1.66, false, false, false, 1);
+        Visitor_Type vType11 = new Visitor_Type(11L, "B. De Couleur", "They say I'm the professional one, but I just like the colour.", 10L, 20L, 7L, 1.25, 1.05, 1.66, false, false, false, 1);
+        Visitor_Type vType12 = new Visitor_Type(12L, "Gelatinous Egg", "So what if I'm not quite in shape?", 10L, 19L, 2L, 1.05, 1.15, 1.1, false, false, false, 8);
+        Visitor_Type vType13 = new Visitor_Type(13L, "The Great Cheese Menace", "You there! Got any of the yellow stuff?", 10L, 21L, 1L, 1.05, 1.55, 1.05, false, false, false, 6);
         vType1.save();
         vType2.save();
         vType3.save();
         vType4.save();
         vType5.save();
         vType6.save();
+        vType7.save();
+        vType8.save();
+        vType9.save();
+        vType10.save();
+        vType11.save();
+        vType12.save();
+        vType13.save();
     }
 
 }
