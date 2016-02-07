@@ -78,7 +78,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:text="@string/unknownText"/>
+                android:text="Visits: ???"/>
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorName"

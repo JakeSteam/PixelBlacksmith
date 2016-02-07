@@ -74,30 +74,40 @@ public class TrophyActivity extends Activity {
         Visitor_Type visitorType = Visitor_Type.findById(Visitor_Type.class, visitorTypeID);
         Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorTypeID);
 
+        // Differing behaviour depending on trophy / seen / unseen state.
         if (visitorStats.getVisits() >= Constants.VISITS_TROPHY) {
-            int drawableId = this.getResources().getIdentifier("visitor" + visitorTypeID, "drawable", this.getPackageName());
-            ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 90, 90));
-            ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc());
-
-            String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
-            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText("First seen: " + firstSeenText);
-
-            String trophyAchievedText = DateHelper.displayTime(visitorStats.getTrophyAchieved(), DateHelper.date);
-            ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText("100th visit: " + trophyAchievedText);
-
             Item bestItem = Item.findById(Item.class, visitorStats.getBestItem());
             String bestItemText = bestItem.getPrefix(visitorStats.getBestItemState()) + bestItem.getName();
+            String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
+            String trophyAchievedText = DateHelper.displayTime(visitorStats.getTrophyAchieved(), DateHelper.date);
+            int drawableId = this.getResources().getIdentifier("visitor" + visitorTypeID, "drawable", this.getPackageName());
+
+            ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 90, 90));
+            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
+            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: " + visitorStats.getVisits());
+            ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc());
+            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText("First seen: " + firstSeenText);
+            ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText("100th visit: " + trophyAchievedText);
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText("Best item: " + bestItemText);
+        } else if (visitorStats.getVisits() > 0){
+            String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
+
+            ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
+            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
+            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: " + visitorStats.getVisits());
+            ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(R.string.unknownText);
+            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText("First seen: " + firstSeenText);
+            ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText("100th visit: ???");
+            ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText("Best item: ???");
         } else {
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
+            ((TextViewPixel) findViewById(R.id.visitorName)).setText(R.string.unknownText);
+            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: ???");
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(R.string.unknownText);
             ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText("First seen: ???");
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText("100th visit: ???");
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText("Best item: ???");
         }
-
-        ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
-        ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: " + visitorStats.getVisits());
     }
 
     public void closePopup(View view) {
