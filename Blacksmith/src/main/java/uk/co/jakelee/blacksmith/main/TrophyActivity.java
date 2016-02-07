@@ -40,6 +40,8 @@ public class TrophyActivity extends Activity {
 
         for (Visitor_Type visitorType : visitorTypes) {
             Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorType.getVisitorID());
+
+            // Create image for the visitor.
             ImageView visitorImage = dh.createImageView("visitor", visitorType.getVisitorID(), 170, 170);
             visitorImage.setTag(visitorType.getVisitorID());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
@@ -49,11 +51,12 @@ public class TrophyActivity extends Activity {
             });
             visitorImage.setPadding(5, 5, 5, 5);
 
+            // Apply colouring based on number of visits.
             if (visitorStats.getVisits() < Constants.NUMBER_OF_VISITS_FOR_TROPHY && visitorStats.getVisits() > 0) {
                 visitorImage.setColorFilter(Color.DKGRAY);
             } else if (visitorStats.getVisits() <= 0) {
                 visitorImage.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
-            } 
+            }
 
             visitorGrid.addView(visitorImage);
         }
