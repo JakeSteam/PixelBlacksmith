@@ -24,6 +24,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
@@ -109,9 +110,11 @@ public class VisitorActivity extends Activity {
             stateMultiplier.setText(Double.toString(visitorType.getStateMultiplier()) + "x");
         }
 
-        ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
-        int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
-        bestItem.setImageResource(bestItemDrawableId);
+        if (visitorStats.getBestItem() != Constants.ITEM_COINS) {
+            ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
+            int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
+            bestItem.setImageResource(bestItemDrawableId);
+        }
 
         TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
         bestItemValue.setText(Integer.toString(visitorStats.getBestItemValue()));
