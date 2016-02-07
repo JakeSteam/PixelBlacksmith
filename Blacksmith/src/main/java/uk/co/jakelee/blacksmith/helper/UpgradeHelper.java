@@ -755,14 +755,14 @@ public class UpgradeHelper {
 
         Visitor_Stats vStats1 = new Visitor_Stats(1L, 0, 1L, 1L, 1, 1452022352000L, 1454841674000L);
         Visitor_Stats vStats2 = new Visitor_Stats(2L, 0, 2L, 2L, 2, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats3 = new Visitor_Stats(3L, 0, 3L, 3L, 3, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats4 = new Visitor_Stats(4L, 0, 4L, 4L, 4, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats5 = new Visitor_Stats(5L, 0, 5L, 1L, 5, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats6 = new Visitor_Stats(6L, 0, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats7 = new Visitor_Stats(7L, 100, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats8 = new Visitor_Stats(8L, 0, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats9 = new Visitor_Stats(9L, 0, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        Visitor_Stats vStats10 = new Visitor_Stats(10L, 200, 52L, 1L, 1, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats3 = new Visitor_Stats(3L, 1, 3L, 3L, 3, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats4 = new Visitor_Stats(4L, 1, 4L, 4L, 4, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats5 = new Visitor_Stats(5L, 35, 5L, 1L, 5, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats6 = new Visitor_Stats(6L, 35, 52L, 1L, 1, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats7 = new Visitor_Stats(7L, 70, 52L, 1L, 1, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats8 = new Visitor_Stats(8L, 70, 52L, 1L, 1, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats9 = new Visitor_Stats(9L, 100, 52L, 1L, 1, 1452022352000L, 1454841674000L);
+        Visitor_Stats vStats10 = new Visitor_Stats(10L, 100, 52L, 1L, 1, 1452022352000L, 1454841674000L);
         Visitor_Stats vStats11 = new Visitor_Stats(11L, 0, 52L, 1L, 1, 1452022352000L, 1454841674000L);
         Visitor_Stats vStats12 = new Visitor_Stats(12L, 0, 52L, 1L, 1, 1452022352000L, 1454841674000L);
         Visitor_Stats vStats13 = new Visitor_Stats(13L, 0, 52L, 1L, 1, 1452022352000L, 1454841674000L);

@@ -52,10 +52,17 @@ public class TrophyActivity extends Activity {
             visitorImage.setPadding(5, 5, 5, 5);
 
             // Apply colouring based on number of visits.
-            if (visitorStats.getVisits() < Constants.NUMBER_OF_VISITS_FOR_TROPHY && visitorStats.getVisits() > 0) {
-                visitorImage.setColorFilter(Color.DKGRAY);
-            } else if (visitorStats.getVisits() <= 0) {
-                visitorImage.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            int numVisits = visitorStats.getVisits();
+            if (numVisits < Constants.VISITS_TROPHY) {
+                if (numVisits > Constants.VISITS_ALMOST) {
+                    visitorImage.setColorFilter(Color.LTGRAY);
+                } else if (numVisits > Constants.VISITS_STARTED) {
+                    visitorImage.setColorFilter(Color.GRAY);
+                } else if (numVisits > Constants.VISITS_UNSTARTED) {
+                    visitorImage.setColorFilter(Color.DKGRAY);
+                } else {
+                    visitorImage.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+                }
             }
 
             visitorGrid.addView(visitorImage);
@@ -67,11 +74,9 @@ public class TrophyActivity extends Activity {
         Visitor_Type visitorType = Visitor_Type.findById(Visitor_Type.class, visitorTypeID);
         Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorTypeID);
 
-        if (visitorStats.getVisits() >= Constants.NUMBER_OF_VISITS_FOR_TROPHY) {
+        if (visitorStats.getVisits() >= Constants.VISITS_TROPHY) {
             int drawableId = this.getResources().getIdentifier("visitor" + visitorTypeID, "drawable", this.getPackageName());
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 90, 90));
-            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: " + visitorStats.getVisits());
-            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc());
 
             String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
@@ -85,15 +90,14 @@ public class TrophyActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText("Best item: " + bestItemText);
         } else {
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
-            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(R.string.unknownText);
-            ((TextViewPixel) findViewById(R.id.visitorName)).setText(R.string.unknownText);
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(R.string.unknownText);
             ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText("First seen: ???");
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText("100th visit: ???");
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText("Best item: ???");
         }
 
-
+        ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
+        ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: " + visitorStats.getVisits());
     }
 
     public void closePopup(View view) {
