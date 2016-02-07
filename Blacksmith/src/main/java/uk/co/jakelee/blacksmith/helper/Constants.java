@@ -8,6 +8,8 @@ public class Constants {
     public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
     public static final int MAXIMUM_VISITORS = 10;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
+    public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
+    public static final int NUMBER_OF_VISITS_FOR_TROPHY = 100;
 
     // Error codes
     public static final int SUCCESS = 1;

@@ -42,56 +42,13 @@
             android:layout_below="@id/trophyTitle"
             android:layout_marginTop="10dp">
 
-            <LinearLayout
+            <GridLayout
+                android:id="@+id/visitorGrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="35dp"
-                    android:src="@drawable/visitor1"
-                    android:onClick="loadVisitor"
-                    android:tag="1"/>
-
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="35dp"
-                    android:src="@drawable/visitor2"
-                    android:onClick="loadVisitor"
-                    android:tag="2"/>
-
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="35dp"
-                    android:src="@drawable/visitor3"
-                    android:onClick="loadVisitor"
-                    android:tag="3"/>
-
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="35dp"
-                    android:src="@drawable/visitor4"
-                    android:onClick="loadVisitor"
-                    android:tag="4"/>
-            </LinearLayout>
+                android:padding="5dp"
+                android:columnCount="4"/>
         </ScrollView>
 
         <RelativeLayout
