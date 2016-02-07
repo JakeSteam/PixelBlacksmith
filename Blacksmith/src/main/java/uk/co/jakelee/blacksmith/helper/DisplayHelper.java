@@ -241,6 +241,10 @@ public class DisplayHelper {
         return drawableImage;
     }
 
+    public ImageView createImageView(String type, Long value, int width, int height) {
+        return createImageView(type, value.toString(), width, height);
+    }
+
     public ImageView createImageView(String type, String value, int width, int height) {
         int viewId = context.getResources().getIdentifier("img" + value, "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier(type + value, "drawable", context.getPackageName());

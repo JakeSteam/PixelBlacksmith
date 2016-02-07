@@ -65,6 +65,9 @@
         <activity
             android:name=".main.CreditsActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".main.TrophyActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service android:name=".service.MusicService" />
     </application>

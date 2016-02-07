@@ -9,17 +9,19 @@ public class Visitor_Stats extends SugarRecord {
     Long bestItemState;
     int bestItemValue;
     Long firstSeen;
+    Long trophyAchieved;
 
     public Visitor_Stats() {
     }
 
-    public Visitor_Stats(Long visitorType, int visits, Long bestItem, Long bestItemState, int bestItemValue, Long firstSeen) {
+    public Visitor_Stats(Long visitorType, int visits, Long bestItem, Long bestItemState, int bestItemValue, Long firstSeen, Long trophyAchieved) {
         this.visitorType = visitorType;
         this.visits = visits;
         this.bestItem = bestItem;
         this.bestItemState = bestItemState;
         this.bestItemValue = bestItemValue;
         this.firstSeen = firstSeen;
+        this.trophyAchieved = trophyAchieved;
     }
 
     public Long getVisitorType() {
@@ -68,5 +70,13 @@ public class Visitor_Stats extends SugarRecord {
 
     public void setFirstSeen(Long firstSeen) {
         this.firstSeen = firstSeen;
+    }
+
+    public Long getTrophyAchieved() {
+        return trophyAchieved;
+    }
+
+    public void setTrophyAchieved(Long trophyAchieved) {
+        this.trophyAchieved = trophyAchieved;
     }
 }
