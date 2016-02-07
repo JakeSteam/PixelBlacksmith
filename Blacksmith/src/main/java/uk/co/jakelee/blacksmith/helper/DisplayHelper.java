@@ -192,7 +192,9 @@ public class DisplayHelper {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
 
         // Use explicit query so that zero counts are handled correctly
-        List<Inventory> inventories = Inventory.find(Inventory.class, "state = " + state + " AND id = " + itemId);
+        List<Inventory> inventories = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(state),
+                Condition.prop("id").eq(itemId)).list();
         Inventory item;
         if (inventories.size() > 0) {
             item = inventories.get(0);

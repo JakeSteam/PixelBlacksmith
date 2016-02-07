@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -31,6 +34,11 @@ public class TrophyActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         populateVisitorGrid();
+
+        Long allVisitors = Visitor_Stats.count(Visitor_Stats.class);
+        Long seenVisitors = Select.from(Visitor_Stats.class).where(
+                Condition.prop("visits").gt(0)).count();
+        ((TextViewPixel) findViewById(R.id.trophySubtitle)).setText(seenVisitors + " / " + allVisitors);
     }
 
     public void populateVisitorGrid() {

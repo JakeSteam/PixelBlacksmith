@@ -35,6 +35,18 @@
             android:textIsSelectable="false"
             android:textSize="55sp" />
 
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/trophySubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-35dp"
+            android:layout_below="@id/trophyTitle"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="15sp" />
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/visitorScroller"
             android:layout_width="match_parent"
