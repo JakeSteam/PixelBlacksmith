@@ -37,7 +37,7 @@ public class TrophyActivity extends Activity {
 
         Long allVisitors = Visitor_Stats.count(Visitor_Stats.class);
         Long seenVisitors = Select.from(Visitor_Stats.class).where(
-                Condition.prop("visits").gt(0)).count();
+                Condition.prop("visits").gt(Constants.VISITS_TROPHY - 1)).count();
         ((TextViewPixel) findViewById(R.id.trophySubtitle)).setText(seenVisitors + " / " + allVisitors);
     }
 
