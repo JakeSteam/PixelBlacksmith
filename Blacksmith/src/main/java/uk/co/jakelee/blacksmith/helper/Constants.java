@@ -4,12 +4,13 @@ public class Constants {
     public static final int TRUE = 1;
 
     // Information about game mechanics
+    public static final Double LEVEL_MODIFIER = 0.25;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
     public static final int MAXIMUM_VISITORS = 10;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
-    public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
 
+    public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
     public static final int VISITS_ALMOST = 66;
     public static final int VISITS_STARTED = 33;

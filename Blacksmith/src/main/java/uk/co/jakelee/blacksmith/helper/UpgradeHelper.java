@@ -90,7 +90,7 @@ public class UpgradeHelper {
         inventory21.save();
 
         Player_Info info1 = new Player_Info(1L, "Name", "Jake");
-        Player_Info info2 = new Player_Info(2L, "XP", 1200);
+        Player_Info info2 = new Player_Info(2L, "XP", 12000);
         Player_Info info3 = new Player_Info(3L, "DatabaseVersion", 1);
         info1.save();
         info2.save();

@@ -6,6 +6,7 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 
 public class Player_Info extends SugarRecord {
@@ -70,12 +71,17 @@ public class Player_Info extends SugarRecord {
     }
 
     public static int getPlayerLevel() {
-        int xp = getXp();
-        return convertXpToLevel(xp);
+        return convertXpToLevel(getXp());
     }
 
     public static int convertXpToLevel(int xp) {
-        return xp / 100;
+        // Level = 0.25 * sqrt(xp)
+        return (int) (Constants.LEVEL_MODIFIER * Math.sqrt(xp));
+    }
+
+    public static int convertLevelToXp(int level) {
+        // XP = (Level / 0.25) ^ 2
+        return (int) Math.pow(level / Constants.LEVEL_MODIFIER, 2);
     }
 
     public static int getXp() {
