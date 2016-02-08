@@ -178,6 +178,10 @@ public class VisitorActivity extends Activity {
             Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
             Visitor.delete(visitor);
 
+            if (visitorStats.getVisits() == Constants.VISITS_TROPHY) {
+                Toast.makeText(getApplicationContext(), R.string.visitorTrophyEarned, Toast.LENGTH_SHORT).show();
+            }
+
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             closeVisitor(view);
         } else {

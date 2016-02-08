@@ -31,6 +31,7 @@
     <string name="craftAdd">Item added to craft queue.</string>
     <string name="enchantAdd">Item added to enchanting queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
+    <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy!</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>
