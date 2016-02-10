@@ -59,8 +59,6 @@ public class Inventory extends SugarRecord {
         Item item = Item.findById(Item.class, itemID);
         if (item.getLevel() > Player_Info.getPlayerLevel()) {
             return Constants.ERROR_PLAYER_LEVEL;
-        } else if (item.getCanCraft() != 1) {
-            return Constants.ERROR_UNDISCOVERED;
         }
 
         List<Recipe> ingredients = Select.from(Recipe.class).where(
@@ -90,8 +88,15 @@ public class Inventory extends SugarRecord {
     }
 
     public static int createItem(Long itemId, int state, int quantity, Long locationID) {
+        Item item = Item.findById(Item.class, itemId);
+
         if (!Slot.hasAvailableSlot(locationID)) {
             return Constants.ERROR_NO_SPARE_SLOTS;
+        }
+
+        if (item.getCanCraft() != Constants.TRUE) {
+            item.setCanCraft(Constants.TRUE);
+            item.save();
         }
 
         int canCreate = canCreateItem(itemId, state);

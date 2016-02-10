@@ -82,8 +82,13 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        // Run generation in separate thread
         if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
+            new Thread(new Runnable() {
+                public void run() {
             VisitorHelper.createNewVisitor();
+                }
+            }).start();
         }
 
         handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
