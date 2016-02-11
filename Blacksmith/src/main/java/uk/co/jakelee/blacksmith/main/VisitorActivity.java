@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -183,6 +184,7 @@ public class VisitorActivity extends Activity {
             }
 
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
+            Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
             closeVisitor(view);
         } else {
             Toast.makeText(getApplicationContext(), R.string.visitorCompleteFailure, Toast.LENGTH_SHORT).show();

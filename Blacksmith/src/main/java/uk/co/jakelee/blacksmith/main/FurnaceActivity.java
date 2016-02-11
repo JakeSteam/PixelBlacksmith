@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class FurnaceActivity extends Activity {
     public static DisplayHelper dh;
@@ -96,6 +97,7 @@ public class FurnaceActivity extends Activity {
         if (smeltResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
+            Player_Info.increaseByOne(Player_Info.Statistic.ItemsSmelted);
             createFurnaceInterface();
         } else {
             Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(smeltResponse), Toast.LENGTH_SHORT).show();

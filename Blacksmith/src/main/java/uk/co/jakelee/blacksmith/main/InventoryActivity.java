@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class InventoryActivity extends Activity {
     public static DisplayHelper dh;
@@ -93,6 +94,7 @@ public class InventoryActivity extends Activity {
         if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getModifiedValue(itemState)), Toast.LENGTH_SHORT).show();
+            Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
         } else {
             Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(sellResponse), Toast.LENGTH_SHORT).show();
         }

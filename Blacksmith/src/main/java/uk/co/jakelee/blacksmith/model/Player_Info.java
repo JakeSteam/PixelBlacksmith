@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.model;
 import android.widget.TextView;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -14,9 +15,19 @@ public class Player_Info extends SugarRecord {
     String name;
     String textValue;
     int intValue;
+    Long longValue;
+
+    @Ignore
+    public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsSold, VisitorsCompleted}
 
     public Player_Info() {
 
+    }
+
+    public Player_Info(Long id, String name, Long longValue) {
+        this.id = id;
+        this.name = name;
+        this.longValue = longValue;
     }
 
     public Player_Info(Long id, String name, String textValue) {
@@ -70,6 +81,14 @@ public class Player_Info extends SugarRecord {
         this.intValue = intValue;
     }
 
+    public Long getLongValue() {
+        return longValue;
+    }
+
+    public void setLongValue(Long longValue) {
+        this.longValue = longValue;
+    }
+
     public static int getPlayerLevel() {
         return convertXpToLevel(getXp());
     }
@@ -99,6 +118,15 @@ public class Player_Info extends SugarRecord {
         xpInfo.save();
     }
 
+    public static void increaseByOne(Statistic statistic) {
+        Player_Info statToIncrease = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq(statistic)).first();
+
+        statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
+        statToIncrease.save();
+    }
+
+    //TODO: Move to display helper
     public static void updateLevelText() {
         TextView levelCount = MainActivity.level;
         levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
