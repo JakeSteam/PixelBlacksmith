@@ -153,6 +153,7 @@ public class TradeActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             Toast.makeText(getApplicationContext(), String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value), Toast.LENGTH_SHORT).show();
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsTraded);
+            Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value);
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);
             demand.save();
         } else {

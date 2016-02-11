@@ -14,6 +14,7 @@
     <string name="settingsText">Settings</string>
     <string name="creditsText">Credits</string>
     <string name="trophyText">Trophies</string>
+    <string name="statisticsText">Statistics</string>
 
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
@@ -32,6 +33,15 @@
     <string name="enchantAdd">Item added to enchanting queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
     <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy!</string>
+
+    <string name="statisticsSmelted">Items Smelted:</string>
+    <string name="statisticsCrafted">Items Crafted:</string>
+    <string name="statisticsTraded">Items Traded:</string>
+    <string name="statisticsSold">Items Sold:</string>
+    <string name="statisticsVisitors">Visitors Completed:</string>
+    <string name="statisticsCoins">Coins Earned:</string>
+    <string name="statisticsStarted">Date Started:</string>
+    <string name="statisticsRestocked">Last Restocked:</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>

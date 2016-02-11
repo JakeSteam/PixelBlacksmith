@@ -89,12 +89,14 @@ public class InventoryActivity extends Activity {
         Long itemID = (Long)view.getTag(R.id.itemID);
         int itemState = (int)view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
+        int itemValue = itemToSell.getModifiedValue(itemState);
 
-        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, itemToSell.getModifiedValue(itemState));
+        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, itemValue);
         if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemToSell.getModifiedValue(itemState)), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemValue), Toast.LENGTH_SHORT).show();
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
+            Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {
             Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(sellResponse), Toast.LENGTH_SHORT).show();
         }

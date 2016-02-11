@@ -97,7 +97,9 @@ public class UpgradeHelper {
         Player_Info info6 = new Player_Info(6L, "ItemsTraded", 100);
         Player_Info info7 = new Player_Info(7L, "ItemsSold", 100);
         Player_Info info8 = new Player_Info(8L, "VisitorsCompleted", 100);
-        Player_Info info9 = new Player_Info(9L, "LastRestocked", 1455137415000L);
+        Player_Info info9 = new Player_Info(9L, "DateRestocked", 1455137415000L);
+        Player_Info info10 = new Player_Info(10L, "CoinsEarned", 100);
+        Player_Info info11 = new Player_Info(11L, "DateStarted", 1455137415000L);
         info1.save();
         info2.save();
         info3.save();
@@ -107,6 +109,8 @@ public class UpgradeHelper {
         info7.save();
         info8.save();
         info9.save();
+        info10.save();
+        info11.save();
 
         Item item1 = new Item(1L, "Copper ore", "A piece of copper ore.", 1, 10, 1, 0, 1);
         Item item2 = new Item(2L, "Tin ore", "A piece of tin ore.", 1, 10, 1, 0, 1);

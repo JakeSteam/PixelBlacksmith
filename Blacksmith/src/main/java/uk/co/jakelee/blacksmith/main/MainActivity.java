@@ -194,4 +194,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TrophyActivity.class);
         startActivity(intent);
     }
+
+    public void openStatistics(View view) {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
 }
