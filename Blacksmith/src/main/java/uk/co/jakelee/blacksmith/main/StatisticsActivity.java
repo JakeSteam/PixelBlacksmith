@@ -9,6 +9,7 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -45,9 +46,11 @@ public class StatisticsActivity extends Activity {
         int coinsEarned = Select.from(Player_Info.class).where(Condition.prop("name").eq("CoinsEarned")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.coinsEarned)).setText(Integer.toString(coinsEarned));
 
-        Long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
-        String dateRestocked = DateHelper.displayTime(unixRestocked, DateHelper.time);
-        ((TextViewPixel) findViewById(R.id.dateRestocked)).setText(dateRestocked);
+        long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
+        long unixNextRestock = unixRestocked + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
+        long unixDifference = unixNextRestock - System.currentTimeMillis();
+        String nextRestock = DateHelper.displayTime(unixDifference, DateHelper.roundedTime);
+        ((TextViewPixel) findViewById(R.id.nextRestock)).setText(nextRestock);
 
         Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
         String dateRestarted = DateHelper.displayTime(unixRestarted, DateHelper.date);

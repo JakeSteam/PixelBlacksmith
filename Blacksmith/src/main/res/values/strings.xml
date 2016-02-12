@@ -41,7 +41,7 @@
     <string name="statisticsVisitors">Visitors Completed:</string>
     <string name="statisticsCoins">Coins Earned:</string>
     <string name="statisticsStarted">Date Started:</string>
-    <string name="statisticsRestocked">Last Restocked:</string>
+    <string name="statisticsRestock">Next Restock:</string>
     <string name="statisticsBiggestTrade">Biggest Trade:</string>
 
     <string name="creditsMusic">Music</string>

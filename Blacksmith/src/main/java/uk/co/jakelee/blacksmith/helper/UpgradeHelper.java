@@ -97,9 +97,9 @@ public class UpgradeHelper {
         Player_Info info6 = new Player_Info(6L, "ItemsTraded", 100);
         Player_Info info7 = new Player_Info(7L, "ItemsSold", 100);
         Player_Info info8 = new Player_Info(8L, "VisitorsCompleted", 100);
-        Player_Info info9 = new Player_Info(9L, "DateRestocked", 1455137415000L);
+        Player_Info info9 = new Player_Info(9L, "DateRestocked", System.currentTimeMillis());
         Player_Info info10 = new Player_Info(10L, "CoinsEarned", 100);
-        Player_Info info11 = new Player_Info(11L, "DateStarted", 1455137415000L);
+        Player_Info info11 = new Player_Info(11L, "DateStarted", System.currentTimeMillis());
         info1.save();
         info2.save();
         info3.save();

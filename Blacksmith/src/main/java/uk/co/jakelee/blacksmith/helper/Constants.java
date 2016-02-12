@@ -7,6 +7,7 @@ public class Constants {
     public static final Double LEVEL_MODIFIER = 0.25;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MILLISECONDS_BETWEEN_REFRESHES = 1000;
+    public static final long MILLISECONDS_BETWEEN_RESTOCKS = 43200000; // 12 hours
     public static final int MAXIMUM_VISITORS = 10;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int CRAFT_TIME_MULTIPLIER = 3000;
