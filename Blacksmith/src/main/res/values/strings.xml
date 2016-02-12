@@ -42,6 +42,7 @@
     <string name="statisticsCoins">Coins Earned:</string>
     <string name="statisticsStarted">Date Started:</string>
     <string name="statisticsRestocked">Last Restocked:</string>
+    <string name="statisticsBiggestTrade">Biggest Trade:</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>

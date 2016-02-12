@@ -12,6 +12,7 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 
 public class StatisticsActivity extends Activity {
     public static DisplayHelper dh;
@@ -51,6 +52,9 @@ public class StatisticsActivity extends Activity {
         Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
         String dateRestarted = DateHelper.displayTime(unixRestarted, DateHelper.date);
         ((TextViewPixel) findViewById(R.id.dateStarted)).setText(dateRestarted);
+
+        int biggestTrade = Select.from(Visitor_Stats.class).orderBy("best_item_value DESC").first().getBestItemValue();
+        ((TextViewPixel) findViewById(R.id.biggestTrade)).setText(Integer.toString(biggestTrade));
 
     }
 
