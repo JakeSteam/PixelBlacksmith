@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         setupRecurringEvents();
+        setupNotifications();
 
         // Run generation in separate thread
         if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
@@ -89,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
             startService(musicService);
             musicServiceIsStarted = true;
         }
-
-        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
-        NotificationHelper.addNotification(this, restockTime);
     }
 
     @Override
@@ -142,6 +142,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.post(checkRestocks);
+    }
+
+
+    private void setupNotifications() {
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
+
+        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
+        NotificationHelper.addNotification(this, restockTime);
     }
 
     private void createSlots() {
