@@ -11,9 +11,9 @@ import android.widget.RelativeLayout;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
-import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         enchantingSlots = (RelativeLayout) findViewById(R.id.slots_enchanting);
 
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
-            UpgradeHelper.initialSQL();
+            DatabaseHelper.initialSQL();
         }
 
         createSlots();
@@ -108,7 +108,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
         handler.removeCallbacksAndMessages(null);
-        NotificationHelper.addRestockNotification(getApplicationContext());
+
+        if (Setting.findById(Setting.class, Constants.SETTING_NOTIFICATIONS).getBoolValue()) {
+            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+            NotificationHelper.addRestockNotification(getApplicationContext(), notificationSound);
+        }
+
 
         if (musicServiceIsStarted) {
             stopService(musicService);

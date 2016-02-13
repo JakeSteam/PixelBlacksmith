@@ -18,7 +18,7 @@ import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
-public class UpgradeHelper {
+public class DatabaseHelper {
 
     public static void initialSQL() {
         Category category1 = new Category(0L, "Unknown", "Item type category could not be found.");
@@ -614,8 +614,12 @@ public class UpgradeHelper {
 
         Setting setting1 = new Setting(1L, false);
         Setting setting2 = new Setting(2L, false);
+        Setting setting3 = new Setting(3L, true);
+        Setting setting4 = new Setting(4L, true);
         setting1.save();
         setting2.save();
+        setting3.save();
+        setting4.save();
 
         Shop shop = new Shop(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
         Shop shop1 = new Shop(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);

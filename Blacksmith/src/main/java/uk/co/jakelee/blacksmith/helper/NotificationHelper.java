@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -18,6 +20,8 @@ import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class NotificationHelper extends BroadcastReceiver{
+    private static boolean useSounds = false;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent notificationIntent = new Intent(context, MainActivity.class);
@@ -33,13 +37,21 @@ public class NotificationHelper extends BroadcastReceiver{
         Notification notification = builder.setContentTitle("Blacksmith")
                 .setContentText("All shops have been restocked!")
                 .setSmallIcon(R.drawable.item35)
-                .setContentIntent(pendingIntent).build();
+                .setContentIntent(pendingIntent)
+                .build();
+
+        if (useSounds) {
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            notification.sound = alarmSound;
+        }
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
     }
 
-    public static void addRestockNotification(Context context) {
+    public static void addRestockNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
         long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
         NotificationHelper.addNotification(context, restockTime);
     }
