@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="30sp"
+                        android:textSize="20sp"
                         android:text="@string/soundSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -75,12 +75,48 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="30sp"
+                        android:textSize="20sp"
                         android:text="@string/musicSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/musicToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting"/>
+                </TableRow>
+
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/notificationToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:text="@string/notificationSettingText"/>
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/notificationToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting"/>
+                </TableRow>
+
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/notificationSoundToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:text="@string/notificationSoundSettingText"/>
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/notificationSoundToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:onClick="toggleSetting"/>

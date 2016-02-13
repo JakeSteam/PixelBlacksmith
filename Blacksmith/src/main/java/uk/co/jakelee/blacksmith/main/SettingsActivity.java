@@ -35,6 +35,14 @@ public class SettingsActivity extends Activity {
         ImageView musicToggle = (ImageView) findViewById(R.id.musicToggleButton);
         boolean musicToggleValue = Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue();
         musicToggle.setImageDrawable(musicToggleValue ? tick : cross);
+
+        ImageView notificationToggle = (ImageView) findViewById(R.id.notificationToggleButton);
+        boolean notificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATIONS).getBoolValue();
+        notificationToggle.setImageDrawable(notificationToggleValue ? tick : cross);
+
+        ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
+        boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+        notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
     }
 
     public void toggleSetting(View v) {
@@ -45,6 +53,12 @@ public class SettingsActivity extends Activity {
                 break;
             case R.id.musicToggleButton:
                 settingID = Constants.SETTING_MUSIC;
+                break;
+            case R.id.notificationToggleButton:
+                settingID = Constants.SETTING_NOTIFICATIONS;
+                break;
+            case R.id.notificationSoundToggleButton:
+                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
                 break;
         }
 

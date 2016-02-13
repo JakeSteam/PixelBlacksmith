@@ -25,6 +25,8 @@
 
     <string name="soundSettingText">Enable sounds?</string>
     <string name="musicSettingText">Enable music?</string>
+    <string name="notificationSettingText">Enable notifications?</string>
+    <string name="notificationSoundSettingText">Enable notification sounds?</string>
 
     <string name="unknownText">\???</string>
 

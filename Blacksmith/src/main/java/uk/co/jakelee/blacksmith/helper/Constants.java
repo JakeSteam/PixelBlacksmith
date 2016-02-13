@@ -43,6 +43,8 @@ public class Constants {
 
     public static final Long SETTING_SOUNDS = 1L;
     public static final Long SETTING_MUSIC = 2L;
+    public static final Long SETTING_NOTIFICATIONS = 3L;
+    public static final Long SETTING_NOTIFICATION_SOUNDS = 4L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
