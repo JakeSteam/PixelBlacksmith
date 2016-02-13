@@ -97,7 +97,7 @@ public class ShopActivity extends Activity {
             Item item = Item.findById(Item.class, itemForSale.getItemID());
 
             ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, Constants.TRUE);
-            TextViewPixel itemStock = dh.createTextView(itemForSale.getStock() + "x " + item.getName(), 16, Color.BLACK);
+            TextViewPixel itemStock = dh.createTextView(itemForSale.getStock() + " / " + itemForSale.getDefaultStock() + "x " + item.getName(), 16, Color.BLACK);
             TextViewPixel itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             itemBuy.setWidth(30);
             itemBuy.setShadowLayer(10, 0, 0, Color.WHITE);

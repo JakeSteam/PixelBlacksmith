@@ -8,17 +8,19 @@ public class Shop_Stock extends SugarRecord {
     int state;
     int discovered;
     int stock;
+    int defaultStock;
 
     public Shop_Stock() {
 
     }
 
-    public Shop_Stock(Long shopID, Long itemID, int state, int discovered, int stock) {
+    public Shop_Stock(Long shopID, Long itemID, int state, int discovered, int stock, int defaultStock) {
         this.shopID = shopID;
         this.itemID = itemID;
         this.state = state;
         this.discovered = discovered;
         this.stock = stock;
+        this.defaultStock = defaultStock;
     }
 
     public Long getItemID() {
@@ -59,5 +61,13 @@ public class Shop_Stock extends SugarRecord {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public int getDefaultStock() {
+        return defaultStock;
+    }
+
+    public void setDefaultStock(int defaultStock) {
+        this.defaultStock = defaultStock;
     }
 }

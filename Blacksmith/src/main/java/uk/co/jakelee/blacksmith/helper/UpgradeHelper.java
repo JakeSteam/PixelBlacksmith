@@ -628,14 +628,14 @@ public class UpgradeHelper {
         shop3.save();
         shop4.save();
 
-        Shop_Stock shopStock = new Shop_Stock(1L, 1L, 1, 1, 5);
-        Shop_Stock shopStock1 = new Shop_Stock(1L, 2L, 1, 1, 5);
-        Shop_Stock shopStock2 = new Shop_Stock(2L, 1L, 1, 1, 10);
-        Shop_Stock shopStock3 = new Shop_Stock(2L, 2L, 1, 1, 10);
-        Shop_Stock shopStock4 = new Shop_Stock(3L, 3L, 1, 1, 10);
-        Shop_Stock shopStock5 = new Shop_Stock(4L, 2L, 1, 1, 10);
-        Shop_Stock shopStock6 = new Shop_Stock(5L, 9L, 1, 1, 1);
-        Shop_Stock shopStock7 = new Shop_Stock(5L, 8L, 1, 1, 1);
+        Shop_Stock shopStock = new Shop_Stock(1L, 1L, 1, 1, 5, 50);
+        Shop_Stock shopStock1 = new Shop_Stock(1L, 2L, 1, 1, 5, 50);
+        Shop_Stock shopStock2 = new Shop_Stock(2L, 1L, 1, 1, 10, 100);
+        Shop_Stock shopStock3 = new Shop_Stock(2L, 2L, 1, 1, 10, 100);
+        Shop_Stock shopStock4 = new Shop_Stock(3L, 3L, 1, 1, 10, 100);
+        Shop_Stock shopStock5 = new Shop_Stock(4L, 2L, 1, 1, 10, 100);
+        Shop_Stock shopStock6 = new Shop_Stock(5L, 9L, 1, 1, 1, 10);
+        Shop_Stock shopStock7 = new Shop_Stock(5L, 8L, 1, 1, 1, 10);
         shopStock.save();
         shopStock1.save();
         shopStock2.save();

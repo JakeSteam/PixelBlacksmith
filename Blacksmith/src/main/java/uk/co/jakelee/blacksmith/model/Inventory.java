@@ -202,7 +202,7 @@ public class Inventory extends SugarRecord {
         int canBuyResponse = canBuyItem(itemId, state, shopId, price);
         if (canBuyResponse != Constants.SUCCESS) {
             return canBuyResponse;
-        } else if (Slot.hasAvailableSlot(Constants.LOCATION_MINE)) {
+        } else if (!Slot.hasAvailableSlot(Constants.LOCATION_MINE)) {
             return Constants.ERROR_NO_SPARE_SLOTS;
         } else {
             // Remove coins
