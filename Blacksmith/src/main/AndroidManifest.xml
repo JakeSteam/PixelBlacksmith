@@ -72,6 +72,13 @@
             android:name=".main.StatisticsActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <receiver android:name=".helper.NotificationHelper">
+            <intent-filter>
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <service android:name=".service.MusicService" />
     </application>
 

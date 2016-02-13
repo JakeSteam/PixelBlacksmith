@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.UpgradeHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -85,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
             startService(musicService);
             musicServiceIsStarted = true;
         }
+
+        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
+        NotificationHelper.addNotification(this, restockTime);
     }
 
     @Override
