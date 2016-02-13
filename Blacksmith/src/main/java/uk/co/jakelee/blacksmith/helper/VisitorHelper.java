@@ -19,6 +19,16 @@ public class VisitorHelper {
     public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
     public static List<Long> existingVisitorTypes = new ArrayList<>();
 
+    public static void tryCreateVisitor() {
+        if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
+            new Thread(new Runnable() {
+                public void run() {
+                    createNewVisitor();
+                }
+            }).start();
+        }
+    }
+
     public static void createNewVisitor() {
         Long currentMillis = System.currentTimeMillis();
 

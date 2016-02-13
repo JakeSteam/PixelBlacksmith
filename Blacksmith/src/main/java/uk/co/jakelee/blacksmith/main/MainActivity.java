@@ -24,7 +24,6 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Shop_Stock;
-import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.service.MusicService;
 
 public class MainActivity extends AppCompatActivity {
@@ -78,15 +77,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         setupRecurringEvents();
         setupNotifications();
-
-        // Run generation in separate thread
-        if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
-            new Thread(new Runnable() {
-                public void run() {
-            VisitorHelper.createNewVisitor();
-                }
-            }).start();
-        }
+        VisitorHelper.tryCreateVisitor();
 
         if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
             startService(musicService);
@@ -146,11 +137,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupNotifications() {
-        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nMgr.cancelAll();
+        new Thread(new Runnable() {
+            public void run() {
+                NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                nMgr.cancelAll();
 
-        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
-        NotificationHelper.addNotification(this, restockTime);
+                long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
+                NotificationHelper.addNotification(getApplicationContext(), restockTime);
+            }
+        }).start();
     }
 
     private void createSlots() {

@@ -85,16 +85,20 @@ public class Shop_Stock extends SugarRecord {
     }
 
     public static void restockShops() {
-        List<Shop_Stock> allShops = Shop_Stock.listAll(Shop_Stock.class);
+        new Thread(new Runnable() {
+            public void run() {
+                List<Shop_Stock> allShops = Shop_Stock.listAll(Shop_Stock.class);
 
-        for (Shop_Stock shop : allShops) {
-            shop.setStock(shop.getDefaultStock());
-            shop.save();
-        }
+                for (Shop_Stock shop : allShops) {
+                    shop.setStock(shop.getDefaultStock());
+                    shop.save();
+                }
 
-        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("DateRestocked")).first();
-        dateRefreshed.setLongValue(System.currentTimeMillis());
-        dateRefreshed.save();
+                Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                        Condition.prop("name").eq("DateRestocked")).first();
+                dateRefreshed.setLongValue(System.currentTimeMillis());
+                dateRefreshed.save();
+            }
+        }).start();
     }
 }
