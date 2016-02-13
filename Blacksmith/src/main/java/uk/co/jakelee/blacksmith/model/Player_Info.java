@@ -1,14 +1,11 @@
 package uk.co.jakelee.blacksmith.model;
 
-import android.widget.TextView;
-
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
-import uk.co.jakelee.blacksmith.main.MainActivity;
 
 public class Player_Info extends SugarRecord {
     Long id;
@@ -132,11 +129,5 @@ public class Player_Info extends SugarRecord {
 
         statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
         statToIncrease.save();
-    }
-
-    //TODO: Move to display helper
-    public static void updateLevelText() {
-        TextView levelCount = MainActivity.level;
-        levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
     }
 }

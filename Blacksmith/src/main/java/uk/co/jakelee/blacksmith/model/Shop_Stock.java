@@ -6,6 +6,8 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.helper.Constants;
+
 public class Shop_Stock extends SugarRecord {
     Long shopID;
     Long itemID;
@@ -73,6 +75,13 @@ public class Shop_Stock extends SugarRecord {
 
     public void setDefaultStock(int defaultStock) {
         this.defaultStock = defaultStock;
+    }
+
+    public static boolean shouldRestock() {
+        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateRestocked")).first();
+
+        return (dateRefreshed.getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS) < System.currentTimeMillis();
     }
 
     public static void restockShops() {

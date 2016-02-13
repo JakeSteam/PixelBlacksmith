@@ -64,24 +64,13 @@ public class MainActivity extends AppCompatActivity {
             UpgradeHelper.initialSQL();
         }
 
-        dh.updateCoinsGUI();
-        dh.updateLevelText();
         createSlots();
-        updateVisitors();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        final Runnable updateTask = new Runnable() {
-            @Override
-            public void run() {
-                updateSlots();
-                updateVisitors();
-                dh.updateCoinsGUI();
-                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_REFRESHES);
-            }
-        };
+        setupRecurringEvents();
 
         // Run generation in separate thread
         if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
@@ -91,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }).start();
         }
-
-        handler.postDelayed(updateTask, Constants.MILLISECONDS_BETWEEN_REFRESHES);
 
         if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
             startService(musicService);
@@ -123,6 +110,31 @@ public class MainActivity extends AppCompatActivity {
             stopService(musicService);
             musicServiceIsStarted = false;
         }
+    }
+
+    private void setupRecurringEvents() {
+        final Runnable updateMainUI = new Runnable() {
+            @Override
+            public void run() {
+                updateSlots();
+                updateVisitors();
+                dh.updateCoinsGUI();
+                dh.updateLevelText();
+                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_UI_REFRESHES);
+            }
+        };
+        handler.post(updateMainUI);
+
+        final Runnable checkRestocks = new Runnable() {
+            @Override
+            public void run() {
+                if (Shop_Stock.shouldRestock()) {
+                    Shop_Stock.restockShops();
+                }
+                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_RESTOCK_CHECKS);
+            }
+        };
+        handler.post(checkRestocks);
     }
 
     private void createSlots() {

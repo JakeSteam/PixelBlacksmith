@@ -52,7 +52,6 @@ public class Inventory extends SugarRecord {
         craftedItem.save();
 
         Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getValue());
-        Player_Info.updateLevelText();
     }
 
     public static int canCreateItem(Long itemID, int state) {
