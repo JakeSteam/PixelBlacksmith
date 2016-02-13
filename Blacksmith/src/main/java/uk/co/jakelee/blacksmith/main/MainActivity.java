@@ -1,7 +1,5 @@
 package uk.co.jakelee.blacksmith.main;
 
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
-import com.orm.query.Condition;
-import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
@@ -75,27 +70,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        setupRecurringEvents();
-        setupNotifications();
-        VisitorHelper.tryCreateVisitor();
 
-        if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
-            startService(musicService);
-            musicServiceIsStarted = true;
-        }
+        // Run background tasks and organise music
+        new Thread(new Runnable() {
+            public void run() {
+                setupRecurringEvents();
+                NotificationHelper.clearNotifications(getApplicationContext());
+                VisitorHelper.tryCreateVisitor();
+
+                if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
+                    startService(musicService);
+                    musicServiceIsStarted = true;
+                }
+            }
+        }).start();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-       if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
-            startService(musicService);
-            musicServiceIsStarted = true;
-        } else if (!Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && musicServiceIsStarted) {
-            stopService(musicService);
-            musicServiceIsStarted = false;
-        }
+        new Thread(new Runnable() {
+            public void run() {
+                if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
+                    startService(musicService);
+                    musicServiceIsStarted = true;
+                } else if (!Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && musicServiceIsStarted) {
+                    stopService(musicService);
+                    musicServiceIsStarted = false;
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -103,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
         handler.removeCallbacksAndMessages(null);
+        NotificationHelper.addRestockNotification(getApplicationContext());
 
         if (musicServiceIsStarted) {
             stopService(musicService);
@@ -133,19 +139,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.post(checkRestocks);
-    }
-
-
-    private void setupNotifications() {
-        new Thread(new Runnable() {
-            public void run() {
-                NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                nMgr.cancelAll();
-
-                long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
-                NotificationHelper.addNotification(getApplicationContext(), restockTime);
-            }
-        }).start();
     }
 
     private void createSlots() {
