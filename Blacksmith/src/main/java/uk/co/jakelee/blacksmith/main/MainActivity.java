@@ -17,6 +17,7 @@ import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Shop_Stock;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.service.MusicService;
 
@@ -198,5 +199,9 @@ public class MainActivity extends AppCompatActivity {
     public void openStatistics(View view) {
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
+    }
+
+    public void forceRestock(View view) {
+        Shop_Stock.restockShops();
     }
 }

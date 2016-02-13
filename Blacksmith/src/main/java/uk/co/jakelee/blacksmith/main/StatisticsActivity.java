@@ -49,8 +49,7 @@ public class StatisticsActivity extends Activity {
         long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
         long unixNextRestock = unixRestocked + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
         long unixDifference = unixNextRestock - System.currentTimeMillis();
-        String nextRestock = DateHelper.displayTime(unixDifference, DateHelper.roundedTime);
-        ((TextViewPixel) findViewById(R.id.nextRestock)).setText(nextRestock);
+        ((TextViewPixel) findViewById(R.id.nextRestock)).setText(DateHelper.getHoursMinsRemaining(unixDifference));
 
         Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
         String dateRestarted = DateHelper.displayTime(unixRestarted, DateHelper.date);

@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.util.List;
 
 public class Shop_Stock extends SugarRecord {
     Long shopID;
@@ -69,5 +73,19 @@ public class Shop_Stock extends SugarRecord {
 
     public void setDefaultStock(int defaultStock) {
         this.defaultStock = defaultStock;
+    }
+
+    public static void restockShops() {
+        List<Shop_Stock> allShops = Shop_Stock.listAll(Shop_Stock.class);
+
+        for (Shop_Stock shop : allShops) {
+            shop.setStock(shop.getDefaultStock());
+            shop.save();
+        }
+
+        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateRestocked")).first();
+        dateRefreshed.setLongValue(System.currentTimeMillis());
+        dateRefreshed.save();
     }
 }
