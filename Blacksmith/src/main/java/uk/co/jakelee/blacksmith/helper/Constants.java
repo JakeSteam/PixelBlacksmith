@@ -52,7 +52,7 @@ public class Constants {
     public static final int STATE_ENCHANTED_MAX = 7;
 
     public static final int TIER_MIN = 1;
-    public static final int TIER_MAX = 4;
+    public static final int TIER_MAX = 6;
 
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
