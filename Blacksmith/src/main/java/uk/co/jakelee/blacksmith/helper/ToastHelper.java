@@ -28,7 +28,7 @@ public class ToastHelper {
         textView.setText(text);
 
         Toast toast = new Toast(context);
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.BOTTOM, 0, 0);
         toast.setDuration(length);
         toast.setView(toastLayout);
 

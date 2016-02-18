@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
@@ -192,12 +193,12 @@ public class EnchantingActivity extends Activity {
         int enchantResponse = Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            Toast.makeText(getApplicationContext(), R.string.enchantAdd, Toast.LENGTH_SHORT).show();
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.enchantAdd);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable(gemsTable);
         } else {
-            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(enchantResponse), Toast.LENGTH_SHORT).show();
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse));
         }
 
 

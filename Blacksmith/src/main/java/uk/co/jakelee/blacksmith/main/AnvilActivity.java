@@ -26,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -112,11 +113,11 @@ public class AnvilActivity extends Activity {
         int smeltResponse = Inventory.createItem(itemId, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL);
         if (smeltResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.craftAdd);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsCrafted);
             createAnvilInterface(false);
         } else {
-            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(smeltResponse), Toast.LENGTH_SHORT).show();
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse));
         }
     }
 

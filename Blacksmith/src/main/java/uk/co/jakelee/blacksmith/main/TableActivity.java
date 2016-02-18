@@ -26,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
@@ -112,10 +113,10 @@ public class TableActivity extends Activity {
         int craftResponse = Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_TABLE);
         if (craftResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            Toast.makeText(getApplicationContext(), R.string.craftAdd, Toast.LENGTH_SHORT).show();
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.craftAdd);
             createTableInterface(false);
         } else {
-            Toast.makeText(getApplicationContext(), ErrorHelper.errors.get(craftResponse), Toast.LENGTH_SHORT).show();
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse));
         }
     }
 
