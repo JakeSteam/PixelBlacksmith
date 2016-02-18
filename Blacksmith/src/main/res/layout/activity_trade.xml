@@ -65,7 +65,7 @@
             android:maxHeight="10dip"
             android:minHeight="10dip"
             android:progress="75"
-            android:progressDrawable="@drawable/xml_progress_bar" />
+            android:progressDrawable="@drawable/progress_bar" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/finishTrade"
