@@ -39,16 +39,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/shopTitle"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp">
+
+        <ImageView
+            android:id="@+id/shopkeeperImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/shopkeeperName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/shopkeeperImage"
+            android:layout_alignTop="@id/shopkeeperImage"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:singleLine="false"/>
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/shopkeeperGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shopkeeperName"
+            android:layout_alignLeft="@id/shopkeeperName"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:singleLine="false"/>
+        </RelativeLayout>
 
     <TableLayout
         android:id="@+id/shopItemsInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/shopkeeperInfo"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:stretchColumns="1"/>
 
 </RelativeLayout>

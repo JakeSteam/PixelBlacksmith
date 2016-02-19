@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -58,32 +57,15 @@ public class ShopActivity extends Activity {
     public void createShopkeeper() {
         Character shopkeeper = Character.findById(Character.class, shop.getShopkeeper());
 
-        // Creating items
-        ImageView shopkeeperPic = dh.createImageView("character", shopkeeper.getId().toString(), 230, 230);
-        shopkeeperPic.setId(R.id.shopkeeperPic);
+        int drawableID = getApplicationContext().getResources().getIdentifier("character" + shopkeeper.getId(), "drawable", getApplicationContext().getPackageName());
+        ImageView shopkeeperImage = (ImageView) findViewById(R.id.shopkeeperImage);
+        shopkeeperImage.setImageResource(drawableID);
 
-        TextView shopkeeperName = dh.createTextView(shopkeeper.getName(), 25, Color.BLACK);
-        shopkeeperName.setId(R.id.shopkeeperName);
-        shopkeeperName.setPadding(15, 5, 5, 5);
+        TextView shopkeeperName = (TextView) findViewById(R.id.shopkeeperName);
+        shopkeeperName.setText(shopkeeper.getName());
 
-        TextView shopkeeperIntro = dh.createTextView(shopkeeper.getIntro(), 20, Color.BLACK);
-        shopkeeperIntro.setId(R.id.shopkeeperIntro);
-        shopkeeperIntro.setSingleLine(false);
-        shopkeeperIntro.setPadding(15, 5, 5, 5);
-
-        // Creating layouts
-        RelativeLayout.LayoutParams lpName = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lpName.addRule(RelativeLayout.RIGHT_OF, shopkeeperPic.getId());
-
-        RelativeLayout.LayoutParams lpIntro = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lpIntro.addRule(RelativeLayout.BELOW, shopkeeperName.getId());
-        lpIntro.addRule(RelativeLayout.RIGHT_OF, shopkeeperPic.getId());
-
-        // Add items to layout
-        RelativeLayout shopkeeperInfo = (RelativeLayout) findViewById(R.id.shopkeeperInfo);
-        shopkeeperInfo.addView(shopkeeperPic);
-        shopkeeperInfo.addView(shopkeeperName, lpName);
-        shopkeeperInfo.addView(shopkeeperIntro, lpIntro);
+        TextView shopkeeperGreeting = (TextView) findViewById(R.id.shopkeeperGreeting);
+        shopkeeperGreeting.setText(shopkeeper.getIntro());
     }
 
     public void createItemList() {
