@@ -118,12 +118,11 @@ public class TableActivity extends Activity {
     }
 
     public void craft(Long itemID, int maxCrafts) {
-        int quantity = 1;
         boolean successful = true;
         int quantityCrafted = 0;
 
         while (successful && quantityCrafted < maxCrafts) {
-            int craftResponse = Inventory.createItem(itemID, Constants.STATE_NORMAL, quantity, Constants.LOCATION_TABLE);
+            int craftResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_TABLE);
             if (craftResponse != Constants.SUCCESS) {
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse));
                 successful = false;

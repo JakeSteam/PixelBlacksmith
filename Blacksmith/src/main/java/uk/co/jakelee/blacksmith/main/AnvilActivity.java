@@ -116,12 +116,11 @@ public class AnvilActivity extends Activity {
     }
 
     public void craft(Long itemID, int maxCrafts) {
-        int quantity = 1;
         boolean successful = true;
         int quantityCrafted = 0;
 
         while (successful && quantityCrafted < maxCrafts) {
-            int craftResponse = Inventory.createItem(itemID, Constants.STATE_UNFINISHED, quantity, Constants.LOCATION_ANVIL);
+            int craftResponse = Inventory.tryCreateItem(itemID, Constants.STATE_UNFINISHED, Constants.LOCATION_ANVIL);
             if (craftResponse != Constants.SUCCESS) {
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse));
                 successful = false;

@@ -101,12 +101,11 @@ public class FurnaceActivity extends Activity {
     }
 
     public void smelt(Long itemID, int maxCrafts) {
-        int quantity = 1;
         boolean successful = true;
         int quantitySmelted = 0;
 
         while (successful && quantitySmelted < maxCrafts) {
-            int smeltResponse = Inventory.createItem(itemID, Constants.STATE_NORMAL, quantity, Constants.LOCATION_FURNACE);
+            int smeltResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_FURNACE);
             if (smeltResponse != Constants.SUCCESS) {
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse));
                 successful = false;
@@ -118,7 +117,6 @@ public class FurnaceActivity extends Activity {
         if (quantitySmelted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantitySmelted + " item(s) to craft queue." );
-            Player_Info.increaseByOne(Player_Info.Statistic.ItemsSmelted);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             createFurnaceInterface();
         }

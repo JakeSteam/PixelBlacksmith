@@ -86,7 +86,7 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static int createItem(Long itemId, int state, int quantity, Long locationID) {
+    public static int tryCreateItem(Long itemId, int state, Long locationID) {
         Item item = Item.findById(Item.class, itemId);
 
         if (!Slot.hasAvailableSlot(locationID)) {
@@ -104,7 +104,7 @@ public class Inventory extends SugarRecord {
         }
 
         removeItemIngredients(itemId, state);
-        Pending_Inventory.addItem(itemId, state, quantity, locationID);
+        Pending_Inventory.addItem(itemId, state, 1, locationID);
         return Constants.SUCCESS;
     }
 
