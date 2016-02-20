@@ -90,7 +90,7 @@ public class DatabaseHelper {
         inventory21.save();
 
         Player_Info info1 = new Player_Info(1L, "Name", "Jake");
-        Player_Info info2 = new Player_Info(2L, "XP", 12000);
+        Player_Info info2 = new Player_Info(2L, "XP", 1600);
         Player_Info info3 = new Player_Info(3L, "DatabaseVersion", 1);
         Player_Info info4 = new Player_Info(4L, "ItemsSmelted", 100);
         Player_Info info5 = new Player_Info(5L, "ItemsCrafted", 100);
@@ -100,6 +100,7 @@ public class DatabaseHelper {
         Player_Info info9 = new Player_Info(9L, "DateRestocked", System.currentTimeMillis());
         Player_Info info10 = new Player_Info(10L, "CoinsEarned", 100);
         Player_Info info11 = new Player_Info(11L, "DateStarted", System.currentTimeMillis());
+        Player_Info info12 = new Player_Info(12L, "SavedLevel", 10);
         info1.save();
         info2.save();
         info3.save();
@@ -111,6 +112,7 @@ public class DatabaseHelper {
         info9.save();
         info10.save();
         info11.save();
+        info12.save();
 
         Item item1 = new Item(1L, "Copper ore", "A piece of copper ore.", 1, 10, 1, 0, 0);
         Item item2 = new Item(2L, "Tin ore", "A piece of tin ore.", 1, 10, 1, 0, 0);

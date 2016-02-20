@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -32,6 +33,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Shop;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
@@ -286,9 +288,26 @@ public class DisplayHelper {
         MainActivity.coins.setText(coinCountString + " coins");
     }
 
-    public void updateLevelText() {
+    public void updateLevelText(Context context) {
         TextViewPixel levelCount = MainActivity.level;
-        levelCount.setText("Level" + Player_Info.getPlayerLevel() + " (" + Player_Info.getXp() + "xp)");
+        int newLevel = Player_Info.getPlayerLevel();
+        levelCount.setText("Level" + newLevel + " (" + Player_Info.getXp() + "xp)");
+
+        if (newLevel != Player_Info.getPlayerLevelFromDB()) {
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, getLevelUpText(newLevel));
+            Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
+        }
+    }
+
+    public String getLevelUpText(int newLevel) {
+        Long numItems = Select.from(Item.class).where(
+                Condition.prop("level").eq(newLevel)).count();
+        Long numShops = Select.from(Shop.class).where(
+                Condition.prop("level").eq(newLevel)).count();
+        Long numSlots = Select.from(Slot.class).where(
+                Condition.prop("level").eq(newLevel)).count();
+
+        return String.format("Levelled up to %d! Unlocked %d item(s), %d shop(s), and %d slots.", newLevel, numItems, numShops, numSlots);
     }
 
     public void displayItemInfo(Long itemId, int state, View itemArea) {

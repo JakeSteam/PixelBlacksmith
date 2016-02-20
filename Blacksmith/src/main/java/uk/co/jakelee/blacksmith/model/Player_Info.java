@@ -15,7 +15,7 @@ public class Player_Info extends SugarRecord {
     Long longValue;
 
     @Ignore
-    public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsSold, VisitorsCompleted, CoinsEarned}
+    public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel}
 
     public Player_Info() {
 
@@ -88,6 +88,12 @@ public class Player_Info extends SugarRecord {
 
     public static int getPlayerLevel() {
         return convertXpToLevel(getXp());
+    }
+
+    public static int getPlayerLevelFromDB() {
+        int playerLevel = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("SavedLevel")).first().getIntValue();
+        return playerLevel;
     }
 
     public static int convertXpToLevel(int xp) {

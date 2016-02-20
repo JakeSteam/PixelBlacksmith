@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 updateSlots();
                 updateVisitors();
                 dh.updateCoinsGUI();
-                dh.updateLevelText();
+                dh.updateLevelText(getApplicationContext());
                 handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_UI_REFRESHES);
             }
         };
