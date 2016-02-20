@@ -2,15 +2,15 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -18,7 +18,6 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -45,25 +44,25 @@ public class MineActivity extends Activity {
                 Condition.prop("location").eq(Constants.LOCATION_SELLING),
                 Condition.prop("level").lt(playerLevel + 1)).list();
 
-        TableLayout mineList = (TableLayout) findViewById(R.id.mineList);
-        mineList.setColumnStretchable(0, true);
-        mineList.setColumnStretchable(1, false);
-        mineList.removeAllViews();
+        TableLayout mineLayout = (TableLayout) findViewById(R.id.mineList);
 
         for (Shop shop : discoveredShops) {
-            // Creating elements
-            TextViewPixel shopName = dh.createTextView(shop.getName(), 20, Color.BLACK);
-            shopName.setId(R.id.shopName);
+            LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+            View inflatedView = inflater.inflate(R.layout.custom_shop_preview, null);
+            TableRow shopRow = (TableRow) inflatedView.findViewById(R.id.shopRow);
 
-            TextViewPixel shopDesc = dh.createTextView(shop.getDescription(), 14, Color.BLACK);
-            shopDesc.setId(R.id.shopDesc);
-            LinearLayout shopItems = createShopOfferings(shop);
+            TextView shopName = (TextView) shopRow.findViewById(R.id.shopName);
+            shopName.setText(shop.getName());
 
-            // Creating open shop button
-            ImageView shopBtn = new ImageView(getApplicationContext());
-            shopBtn.setTag(shop.getId());
-            shopBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 100, 100));
-            shopBtn.setOnClickListener(new Button.OnClickListener() {
+            TextView shopDescription = (TextView) shopRow.findViewById(R.id.shopDescription);
+            shopDescription.setText(shop.getDescription());
+
+            LinearLayout shopOfferingsContainer = (LinearLayout) shopRow.findViewById(R.id.shopOfferings);
+            populateShopOfferings(shopOfferingsContainer, shop.getId());
+
+            ImageView shopButton = (ImageView) shopRow.findViewById(R.id.shopButton);
+            shopButton.setTag(shop.getId());
+            shopButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
                     intent.putExtra(SHOP_TO_LOAD, v.getTag().toString());
@@ -71,43 +70,19 @@ public class MineActivity extends Activity {
                 }
             });
 
-            // Description modifiers
-            RelativeLayout.LayoutParams lpDesc = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lpDesc.addRule(RelativeLayout.BELOW, shopName.getId());
+            mineLayout.addView(inflatedView);
 
-            // Stock image modifiers
-            RelativeLayout.LayoutParams lpImages = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lpImages.addRule(RelativeLayout.BELOW, shopDesc.getId());
-
-            // Make left cell
-            RelativeLayout leftLayout = new RelativeLayout(getApplicationContext());
-            leftLayout.addView(shopName);
-            leftLayout.addView(shopDesc, lpDesc);
-            leftLayout.addView(shopItems, lpImages);
-
-            // Make right cell
-            LinearLayout rightLayout = new LinearLayout(getApplicationContext());
-            rightLayout.addView(shopBtn);
-
-            // Make shop row
-            TableRow shopLayout = new TableRow(getApplicationContext());
-            shopLayout.addView(leftLayout);
-            shopLayout.addView(rightLayout);
-            mineList.addView(shopLayout);
         }
-
     }
 
-    public LinearLayout createShopOfferings(Shop shop) {
-        LinearLayout offeringsLayout = new LinearLayout(getApplicationContext());
+    public void populateShopOfferings(LinearLayout offeringsContainer, long shopID) {
         List<Shop_Stock> shopOfferings = Select.from(Shop_Stock.class).where(
-                Condition.prop("shop_ID").eq(shop.getId())).list();
+                Condition.prop("shop_ID").eq(shopID)).list();
 
         for (Shop_Stock stock : shopOfferings) {
             ImageView itemImage = dh.createItemImage(stock.getItemID(), 100, 100, stock.getDiscovered());
-            offeringsLayout.addView(itemImage);
+            offeringsContainer.addView(itemImage);
         }
-        return offeringsLayout;
     }
 
     public void closePopup(View view) {

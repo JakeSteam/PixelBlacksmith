@@ -6,7 +6,6 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/furnace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="30dp"
@@ -39,12 +38,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mineTitle"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp">
 
             <TableLayout
                 android:id="@+id/mineList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:stretchColumns="0"
+                android:shrinkColumns="0"/>
         </ScrollView>
     </RelativeLayout>
 
