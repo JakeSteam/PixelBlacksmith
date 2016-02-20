@@ -29,6 +29,7 @@ import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class TableActivity extends Activity {
     public static DisplayHelper dh;
@@ -107,16 +108,36 @@ public class TableActivity extends Activity {
     }
 
     public void craft1(View v) {
-        int quantity = 1;
-        Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        craft(itemID, 1);
+    }
 
-        int craftResponse = Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_TABLE);
-        if (craftResponse == Constants.SUCCESS) {
+    public void craftMax(View v) {
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        craft(itemID, Constants.MAX_CRAFTS);
+    }
+
+    public void craft(Long itemID, int maxCrafts) {
+        int quantity = 1;
+        boolean successful = true;
+        int quantityCrafted = 0;
+
+        while (successful && quantityCrafted < maxCrafts) {
+            int craftResponse = Inventory.createItem(itemID, Constants.STATE_NORMAL, quantity, Constants.LOCATION_TABLE);
+            if (craftResponse != Constants.SUCCESS) {
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse));
+                successful = false;
+            } else {
+                quantityCrafted++;
+            }
+        }
+
+        if (quantityCrafted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.craftAdd);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantityCrafted + " item(s) to craft queue." );
+            Player_Info.increaseByOne(Player_Info.Statistic.ItemsCrafted);
+            Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             createTableInterface(false);
-        } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse));
         }
     }
 
