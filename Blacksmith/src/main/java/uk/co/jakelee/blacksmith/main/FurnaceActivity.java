@@ -91,17 +91,36 @@ public class FurnaceActivity extends Activity {
     }
 
     public void smelt1(View v) {
-        int quantity = 1;
-        Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        smelt(itemID, 1);
+    }
 
-        int smeltResponse = Inventory.createItem(itemId, Constants.STATE_NORMAL, quantity, Constants.LOCATION_FURNACE);
-        if (smeltResponse == Constants.SUCCESS) {
+    public void smeltMax(View v) {
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        smelt(itemID, Constants.MAX_CRAFTS);
+    }
+
+    public void smelt(Long itemID, int maxCrafts) {
+        int quantity = 1;
+        boolean successful = true;
+        int quantitySmelted = 0;
+
+        while (successful && quantitySmelted < maxCrafts) {
+            int smeltResponse = Inventory.createItem(itemID, Constants.STATE_NORMAL, quantity, Constants.LOCATION_FURNACE);
+            if (smeltResponse != Constants.SUCCESS) {
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse));
+                successful = false;
+            } else {
+                quantitySmelted++;
+            }
+        }
+
+        if (quantitySmelted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.craftAdd);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantitySmelted + " item(s) to craft queue." );
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSmelted);
+            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             createFurnaceInterface();
-        } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse));
         }
     }
 

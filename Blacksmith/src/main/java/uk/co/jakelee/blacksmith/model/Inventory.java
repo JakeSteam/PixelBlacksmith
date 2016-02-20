@@ -93,14 +93,14 @@ public class Inventory extends SugarRecord {
             return Constants.ERROR_NO_SPARE_SLOTS;
         }
 
-        if (item.getCanCraft() != Constants.TRUE) {
-            item.setCanCraft(Constants.TRUE);
-            item.save();
-        }
-
         int canCreate = canCreateItem(itemId, state);
         if (canCreate != Constants.SUCCESS) {
             return canCreate;
+        }
+
+        if (item.getCanCraft() != Constants.TRUE) {
+            item.setCanCraft(Constants.TRUE);
+            item.save();
         }
 
         removeItemIngredients(itemId, state);

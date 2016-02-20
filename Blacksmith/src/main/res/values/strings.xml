@@ -21,7 +21,8 @@
     <string name="stateText">State</string>
     <string name="bestText">Best</string>
     <string name="finishText">Finish</string>
-    <string name="smeltText">Smelt</string>
+    <string name="smelt1Text">Smelt 1</string>
+    <string name="smeltMaxText">Smelt Max</string>
 
     <string name="soundSettingText">Enable sounds?</string>
     <string name="musicSettingText">Enable music?</string>
