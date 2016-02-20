@@ -206,4 +206,16 @@ public class VisitorHelper {
         }
         return selectedTier;
     }
+
+    public static String multiplierToPercent(double multiplier) {
+        double difference = multiplier - 1.00;
+        double percent = difference * 100;
+        int roundedPercent = (int) percent;
+
+        if (percent >= 0) {
+            return "+" + String.valueOf(roundedPercent) + "%";
+        } else {
+            return "-" + String.valueOf(roundedPercent) + "%";
+        }
+    }
 }

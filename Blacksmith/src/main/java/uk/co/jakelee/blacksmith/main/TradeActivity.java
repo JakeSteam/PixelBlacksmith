@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -124,7 +125,7 @@ public class TradeActivity extends Activity {
             TextViewPixel bonusText = dh.createTextView("???", 18, Color.BLACK);
             double bonus = visitorType.getDisplayedBonus(inventory);
             if (bonus > Constants.DEFAULT_BONUS) {
-                bonusText.setText(Double.toString(bonus) + "x");
+                bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
                 bonusText.setTextColor(Color.GREEN);
             }
 

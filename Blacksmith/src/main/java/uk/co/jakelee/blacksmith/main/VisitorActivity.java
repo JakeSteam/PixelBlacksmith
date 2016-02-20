@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -91,7 +92,7 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("type" + visitorType.getTypePreferred(), "drawable", getApplicationContext().getPackageName());
             typePic.setImageResource(typeDrawableId);
-            typeMultiplier.setText(Double.toString(visitorType.getTypeMultiplier()) + "x");
+            typeMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
         }
 
         if (visitorType.isTierDiscovered()) {
@@ -100,7 +101,7 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("tier" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
             tierPic.setImageResource(typeDrawableId);
-            tierMultiplier.setText(Double.toString(visitorType.getTierMultiplier()) + "x");
+            tierMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
         }
 
         if (visitorType.isStateDiscovered()) {
@@ -109,10 +110,10 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getStatePreferred(), "drawable", getApplicationContext().getPackageName());
             statePic.setImageResource(typeDrawableId);
-            stateMultiplier.setText(Double.toString(visitorType.getStateMultiplier()) + "x");
+            stateMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
         }
 
-        if (visitorStats.getBestItem() != Constants.ITEM_COINS) {
+        if (!visitorStats.getBestItem().equals(Constants.ITEM_COINS)) {
             ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
             int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
             bestItem.setImageResource(bestItemDrawableId);
