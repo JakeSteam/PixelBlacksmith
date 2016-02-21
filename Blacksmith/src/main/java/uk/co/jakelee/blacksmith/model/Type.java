@@ -16,6 +16,7 @@ public class Type extends SugarRecord {
         this.name = name;
         this.category = category;
         this.weighting = weighting;
+        this.save();
     }
 
     public Long getId() {

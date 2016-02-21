@@ -17,6 +17,7 @@ public class Location extends SugarRecord {
     public Location(Long id, String name) {
         this.id = id;
         this.name = name;
+        this.save();
     }
 
     public static List<Slot> getSlots(Long locationID) {

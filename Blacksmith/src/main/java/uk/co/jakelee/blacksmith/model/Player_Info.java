@@ -21,22 +21,22 @@ public class Player_Info extends SugarRecord {
 
     }
 
-    public Player_Info(Long id, String name, Long longValue) {
-        this.id = id;
+    public Player_Info(String name, Long longValue) {
         this.name = name;
         this.longValue = longValue;
+        this.save();
     }
 
-    public Player_Info(Long id, String name, String textValue) {
-        this.id = id;
+    public Player_Info(String name, String textValue) {
         this.name = name;
         this.textValue = textValue;
+        this.save();
     }
 
-    public Player_Info(Long id, String name, int intValue) {
-        this.id = id;
+    public Player_Info(String name, int intValue) {
         this.name = name;
         this.intValue = intValue;
+        this.save();
     }
 
     public Player_Info(Long id, String name, String textValue, int intValue) {

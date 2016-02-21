@@ -18,6 +18,7 @@ public class State extends SugarRecord {
         this.prefix = prefix;
         this.initiatingItem = initiatingItem;
         this.weighting = weighting;
+        this.save();
     }
 
     public Long getId() {

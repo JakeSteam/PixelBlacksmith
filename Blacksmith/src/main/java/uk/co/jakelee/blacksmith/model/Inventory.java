@@ -20,6 +20,7 @@ public class Inventory extends SugarRecord {
         this.item = item;
         this.state = state;
         this.quantity = quantity;
+        this.save();
     }
 
     public Long getItem() {

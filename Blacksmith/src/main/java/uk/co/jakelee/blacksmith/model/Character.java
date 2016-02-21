@@ -18,6 +18,7 @@ public class Character extends SugarRecord {
         this.description = description;
         this.intro = intro;
         this.sold = sold;
+        this.save();
     }
 
     public Long getId() {

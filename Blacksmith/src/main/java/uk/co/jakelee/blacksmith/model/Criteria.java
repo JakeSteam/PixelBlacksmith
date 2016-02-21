@@ -12,6 +12,7 @@ public class Criteria extends SugarRecord{
     public Criteria(Long criteriaID, String name) {
         this.criteriaID = criteriaID;
         this.name = name;
+        this.save();
     }
 
     public Long getCriteriaID() {

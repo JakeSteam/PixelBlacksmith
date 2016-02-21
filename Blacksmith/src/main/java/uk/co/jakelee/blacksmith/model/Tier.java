@@ -14,6 +14,7 @@ public class Tier extends SugarRecord {
         this.id = id;
         this.name = name;
         this.weighting = weighting;
+        this.save();
     }
 
     public Long getId() {

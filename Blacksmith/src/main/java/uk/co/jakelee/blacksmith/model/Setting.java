@@ -4,6 +4,7 @@ import com.orm.SugarRecord;
 
 public class Setting extends SugarRecord {
     long settingId;
+    String settingName;
     boolean boolValue;
     int intValue;
     String strValue;
@@ -11,19 +12,25 @@ public class Setting extends SugarRecord {
     public Setting() {
     }
 
-    public Setting(long settingId, boolean boolValue) {
+    public Setting(long settingId, String settingName, boolean boolValue) {
         this.settingId = settingId;
+        this.settingName = settingName;
         this.boolValue = boolValue;
+        this.save();
     }
 
-    public Setting(long settingId, int intValue) {
+    public Setting(long settingId, String name, int intValue) {
         this.settingId = settingId;
+        this.settingName = settingName;
         this.intValue = intValue;
+        this.save();
     }
 
-    public Setting(long settingId, String strValue) {
+    public Setting(long settingId, String name, String strValue) {
         this.settingId = settingId;
+        this.settingName = settingName;
         this.strValue = strValue;
+        this.save();
     }
 
     public long getSettingId() {
@@ -32,6 +39,14 @@ public class Setting extends SugarRecord {
 
     public void setSettingId(long settingId) {
         this.settingId = settingId;
+    }
+
+    public String getSettingName() {
+        return settingName;
+    }
+
+    public void setSettingName(String settingName) {
+        this.settingName = settingName;
     }
 
     public boolean getBoolValue() {

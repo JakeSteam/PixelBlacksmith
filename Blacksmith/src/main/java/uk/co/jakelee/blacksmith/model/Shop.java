@@ -22,6 +22,7 @@ public class Shop extends SugarRecord {
         this.description = description;
         this.level = level;
         this.discovered = discovered;
+        this.save();
     }
 
     public Long getId() {

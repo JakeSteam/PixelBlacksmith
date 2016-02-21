@@ -9,7 +9,6 @@ import java.util.List;
  * Created by Jake on 01/12/2015.
  */
 public class Slot extends SugarRecord {
-    Long id;
     int location;
     int level;
     int premium;
@@ -18,11 +17,11 @@ public class Slot extends SugarRecord {
 
     }
 
-    public Slot(Long id, int location, int level, int premium) {
-        this.id = id;
+    public Slot(int location, int level, int premium) {
         this.location = location;
         this.level = level;
         this.premium = premium;
+        this.save();
     }
 
     public static boolean hasAvailableSlot(Long locationID) {
@@ -38,14 +37,6 @@ public class Slot extends SugarRecord {
         }
 
         return (availableSlots > pendingItems.size());
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getLocation() {
