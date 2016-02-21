@@ -38,7 +38,7 @@
     <string name="craftAdd">Item added to craft queue.</string>
     <string name="enchantAdd">Item added to enchanting queue.</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
-    <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy!</string>
+    <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item.</string>
 
     <string name="statisticsSmelted">Items Smelted:</string>
     <string name="statisticsCrafted">Items Crafted:</string>

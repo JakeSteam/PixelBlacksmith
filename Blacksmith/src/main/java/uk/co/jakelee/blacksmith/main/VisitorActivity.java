@@ -30,6 +30,8 @@ import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -181,16 +183,48 @@ public class VisitorActivity extends Activity {
             Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
             Visitor.delete(visitor);
 
-            if (visitorStats.getVisits() == Constants.VISITS_TROPHY) {
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned);
-            }
-
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
+
+            if (visitorStats.getVisits() == Constants.VISITS_TROPHY) {
+                createVisitorTrophyReward(visitor);
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned);
+            } else {
+                int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
+                String itemName = createVisitorReward(visitor, numRewards);
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("As the visitor leaves, you notice %dx %s on the counter.", numRewards, itemName));
+            }
+
             closeVisitor(view);
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure);
         }
+    }
+
+    public String createVisitorReward(Visitor visitor, int numRewards) {
+        return "ABC";
+    }
+
+    public void createVisitorTrophyReward(Visitor visitor) {
+        Visitor_Type visitorType = Select.from(Visitor_Type.class).where(
+                Condition.prop("visitor_id").eq(visitor.getType())).first();
+
+        Item preferredItem;
+        Long preferredState = visitorType.getStatePreferred();
+        Long preferredTier = visitorType.getTierPreferred();
+        Long preferredType = visitorType.getTypePreferred();
+
+        preferredItem = Select.from(Item.class).where(
+                Condition.prop("tier").eq(preferredTier),
+                Condition.prop("type").eq(preferredType)).first();
+
+        if (preferredItem == null) {
+            preferredItem = Select.from(Item.class).where(
+                    Condition.prop("type").eq(preferredType)).first();
+        }
+
+        Inventory.addItem(preferredItem.getId(), preferredState, Constants.TROPHY_ITEM_REWARDS);
+
     }
 
     public void closeVisitor(View view) {
