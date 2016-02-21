@@ -176,7 +176,7 @@ public class Visitor_Type extends SugarRecord{
     }
 
 
-    public void updateUnlockedPreferences(Item item, int state) {
+    public void updateUnlockedPreferences(Item item, long state) {
         if (state == getStatePreferred()) {
             setStateDiscovered(true);
         }
@@ -189,11 +189,11 @@ public class Visitor_Type extends SugarRecord{
         save();
     }
 
-    public void updateBestItem(Item item, int state, int value) {
+    public void updateBestItem(Item item, long state, int value) {
         Visitor_Stats vStats = Visitor_Stats.findById(Visitor_Stats.class, this.getVisitorID());
         if (value >= vStats.getBestItemValue()) {
             vStats.setBestItem(item.getId());
-            vStats.setBestItemState(Long.valueOf(state));
+            vStats.setBestItemState(state);
             vStats.setBestItemValue(value);
             vStats.save();
         }

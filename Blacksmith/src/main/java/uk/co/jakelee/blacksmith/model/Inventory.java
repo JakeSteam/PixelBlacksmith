@@ -11,12 +11,12 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 public class Inventory extends SugarRecord {
     Long item;
     int quantity;
-    int state;
+    long state;
 
     public Inventory() {
     }
 
-    public Inventory(Long item, int state, int quantity) {
+    public Inventory(Long item, long state, int quantity) {
         this.item = item;
         this.state = state;
         this.quantity = quantity;
@@ -39,7 +39,7 @@ public class Inventory extends SugarRecord {
         this.quantity = quantity;
     }
 
-    public int getState() {
+    public long getState() {
         return state;
     }
 
@@ -47,7 +47,7 @@ public class Inventory extends SugarRecord {
         this.state = state;
     }
 
-    public static void addItem(Long itemId, int state, int quantity) {
+    public static void addItem(Long itemId, long state, int quantity) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
         craftedItem.save();
@@ -55,7 +55,7 @@ public class Inventory extends SugarRecord {
         Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getValue());
     }
 
-    public static int canCreateItem(Long itemID, int state) {
+    public static int canCreateItem(Long itemID, long state) {
         Item item = Item.findById(Item.class, itemID);
         if (item.getLevel() > Player_Info.getPlayerLevel()) {
             return Constants.ERROR_PLAYER_LEVEL;
@@ -78,7 +78,7 @@ public class Inventory extends SugarRecord {
         return Constants.SUCCESS;
     }
 
-    public static void removeItemIngredients(Long itemId, int state) {
+    public static void removeItemIngredients(Long itemId, long state) {
         List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
         for (Recipe ingredient : ingredients) {
             Inventory ownedItems = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
@@ -87,7 +87,7 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static int tryCreateItem(Long itemId, int state, Long locationID) {
+    public static int tryCreateItem(Long itemId, long state, Long locationID) {
         Item item = Item.findById(Item.class, itemId);
 
         if (!Slot.hasAvailableSlot(locationID)) {
@@ -136,7 +136,7 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static Inventory getInventory(Long id, int state) {
+    public static Inventory getInventory(Long id, long state) {
         List<Inventory> inventories = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(state),
                 Condition.prop("item").eq(id)).list();
@@ -149,13 +149,13 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static boolean canSellItem(Long itemId, int state, int quantity) {
+    public static boolean canSellItem(Long itemId, long state, int quantity) {
         Inventory foundInventory = getInventory(itemId, state);
 
         return (foundInventory.getQuantity() - quantity) >= 0;
     }
 
-    public static int sellItem(Long itemId, int state, int quantity, int price) {
+    public static int sellItem(Long itemId, long state, int quantity, int price) {
         if (!canSellItem(itemId, state, quantity)) {
             return Constants.ERROR_NOT_ENOUGH_ITEMS;
         } else if (!Slot.hasAvailableSlot(Constants.LOCATION_SELLING)) {
@@ -171,7 +171,7 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static int tradeItem(Long itemId, int state, int quantity, int price) {
+    public static int tradeItem(Long itemId, long state, int quantity, int price) {
         Inventory itemStock = Inventory.getInventory(itemId, state);
         itemStock.setQuantity(itemStock.getQuantity() - quantity);
         itemStock.save();

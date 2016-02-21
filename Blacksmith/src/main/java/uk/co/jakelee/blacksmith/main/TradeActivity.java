@@ -139,7 +139,7 @@ public class TradeActivity extends Activity {
 
     public void clickSellButton(View v) {
         Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
-        State itemState = State.findById(State.class, (int) v.getTag(R.id.itemState));
+        State itemState = State.findById(State.class, (long) v.getTag(R.id.itemState));
         Inventory itemInventory = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(itemToSell.getId()),
                 Condition.prop("state").eq(itemState.getId())).first();
@@ -150,7 +150,7 @@ public class TradeActivity extends Activity {
         double bonus = visitorType.getBonus(itemInventory);
         int value = (int) ((itemToSell.getModifiedValue(itemState.getId()) * bonus) + 0.5);
 
-        int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (int) v.getTag(R.id.itemState), quantity, value);
+        int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (long) v.getTag(R.id.itemState), quantity, value);
         if (tradeResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value));
@@ -164,8 +164,8 @@ public class TradeActivity extends Activity {
 
         dh.updateCoins(dh.getCoins());
         displayDemandInfo();
-        visitorType.updateUnlockedPreferences(itemToSell, (int) v.getTag(R.id.itemState));
-        visitorType.updateBestItem(itemToSell, (int) v.getTag(R.id.itemState), value);
+        visitorType.updateUnlockedPreferences(itemToSell, (long) v.getTag(R.id.itemState));
+        visitorType.updateBestItem(itemToSell, (long) v.getTag(R.id.itemState), value);
 
         if (demand.isDemandFulfilled()) {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);

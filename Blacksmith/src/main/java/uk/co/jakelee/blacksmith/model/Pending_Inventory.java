@@ -10,7 +10,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Pending_Inventory extends SugarRecord {
     Long item;
-    int state;
+    long state;
     long timeCreated;
     int quantity;
     int craftTime;
@@ -19,7 +19,7 @@ public class Pending_Inventory extends SugarRecord {
     public Pending_Inventory() {
     }
 
-    public Pending_Inventory(Long item, int state, long timeCreated, int quantity, int craftTime, Long locationID) {
+    public Pending_Inventory(Long item, long state, long timeCreated, int quantity, int craftTime, Long locationID) {
         this.item = item;
         this.state = state;
         this.timeCreated = timeCreated;
@@ -33,7 +33,7 @@ public class Pending_Inventory extends SugarRecord {
                 Condition.prop("location_id").eq(locationID)).list();
     }
 
-    public static void addItem(Long itemId, int state, int quantity, Long location) {
+    public static void addItem(Long itemId, long state, int quantity, Long location) {
         Item item = Item.findById(Item.class, itemId);
         long time = System.currentTimeMillis();
         int craftTimeMultiplier = Constants.CRAFT_TIME_MULTIPLIER;
@@ -51,11 +51,11 @@ public class Pending_Inventory extends SugarRecord {
         this.item = item;
     }
 
-    public int getState() {
+    public long getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(long state) {
         this.state = state;
     }
 

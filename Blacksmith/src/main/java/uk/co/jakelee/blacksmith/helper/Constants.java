@@ -13,13 +13,15 @@ public class Constants {
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int CRAFT_TIME_MULTIPLIER = 3000;
     public static final int MAX_CRAFTS = 10;
-
+    public static final int MINIMUM_REWARDS = 1;
+    public static final int MAXIMUM_REWARDS = 3;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
     public static final int VISITS_ALMOST = 66;
     public static final int VISITS_STARTED = 33;
     public static final int VISITS_UNSTARTED = 0;
+    public static final int TROPHY_ITEM_REWARDS = 10;
 
     // Error codes
     public static final int SUCCESS = 1;

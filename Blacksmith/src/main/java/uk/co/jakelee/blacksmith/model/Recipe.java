@@ -1,21 +1,22 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 
 public class Recipe extends SugarRecord {
-    Long id;
-    Long item;
-    int itemState;
-    Long ingredient;
-    int ingredientState;
+    long item;
+    long itemState;
+    long ingredient;
+    long ingredientState;
     int quantity;
 
     public Recipe() {
     }
 
-    public Recipe(Long item, int itemState, Long ingredient, int ingredientState, int quantity) {
+    public Recipe(long item, long itemState, long ingredient, long ingredientState, int quantity) {
         this.item = item;
         this.itemState = itemState;
         this.ingredient = ingredient;
@@ -24,47 +25,43 @@ public class Recipe extends SugarRecord {
         this.save();
     }
 
-    public static List<Recipe> getIngredients(Long id, int state) {
-        return Recipe.findWithQuery(Recipe.class, "SELECT * FROM recipe WHERE item = " + id + " AND item_state = " + state);
+    public static List<Recipe> getIngredients(Long id, long state) {
+        List<Recipe> ingredientList = Select.from(Recipe.class).where(
+                Condition.prop("item").eq(id),
+                Condition.prop("item_state").eq(state)).list();
+
+        return ingredientList;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getItem() {
+    public long getItem() {
         return item;
     }
 
-    public void setItem(Long item) {
+    public void setItem(long item) {
         this.item = item;
     }
 
-    public int getItemState() {
+    public long getItemState() {
         return itemState;
     }
 
-    public void setItemState(int itemState) {
+    public void setItemState(long itemState) {
         this.itemState = itemState;
     }
 
-    public Long getIngredient() {
+    public long getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(Long ingredient) {
+    public void setIngredient(long ingredient) {
         this.ingredient = ingredient;
     }
 
-    public int getIngredientState() {
+    public long getIngredientState() {
         return ingredientState;
     }
 
-    public void setIngredientState(int ingredientState) {
+    public void setIngredientState(long ingredientState) {
         this.ingredientState = ingredientState;
     }
 
