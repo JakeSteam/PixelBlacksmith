@@ -60,8 +60,14 @@ public class Constants {
 
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
+
+    public static final int TYPE_ORE = 1;
     public static final int TYPE_BAR = 2;
-    public static final int TYPE_GEMS = 20;
+    public static final int TYPE_SECONDARY = 19;
+    public static final int TYPE_GEM = 20;
+    public static final int TYPE_FOOD = 21;
+    public static final int[] VISITOR_REWARD_TYPES = {TYPE_ORE, TYPE_BAR, TYPE_SECONDARY, TYPE_GEM, TYPE_FOOD};
+
 
     // State modifiers
     public static final double STATE_UNFINISHED_MODIFIER = 0.5;

@@ -202,7 +202,13 @@ public class VisitorActivity extends Activity {
     }
 
     public String createVisitorReward(Visitor visitor, int numRewards) {
-        return "ABC";
+        int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
+        List<Item> matchingItems = Select.from(Item.class).where(
+                Condition.prop("type").eq(typeID)).list();
+        Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
+
+        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
+        return selectedItem.getName();
     }
 
     public void createVisitorTrophyReward(Visitor visitor) {
@@ -216,11 +222,11 @@ public class VisitorActivity extends Activity {
 
         preferredItem = Select.from(Item.class).where(
                 Condition.prop("tier").eq(preferredTier),
-                Condition.prop("type").eq(preferredType)).first();
+                Condition.prop("type").eq(preferredType)).orderBy("value DESC").first();
 
         if (preferredItem == null) {
             preferredItem = Select.from(Item.class).where(
-                    Condition.prop("type").eq(preferredType)).first();
+                    Condition.prop("type").eq(preferredType)).orderBy("value DESC").first();
         }
 
         Inventory.addItem(preferredItem.getId(), preferredState, Constants.TROPHY_ITEM_REWARDS);

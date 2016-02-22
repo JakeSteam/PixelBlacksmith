@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
@@ -91,6 +92,16 @@ public class VisitorHelper {
         Random random = new Random();
         int number = random.nextInt((maximum - minimum) + 1) + minimum;
         return number;
+    }
+
+    public static int pickRandomNumberFromArray(int[] possibleNumbers) {
+        int randomIndex = new Random().nextInt(possibleNumbers.length);
+        return possibleNumbers[randomIndex];
+    }
+
+    public static Item pickRandomItemFromList(List<Item> list) {
+        int randomIndex = new Random().nextInt(list.size());
+        return list.get(randomIndex);
     }
 
     public static boolean getRandomBoolean(int truePercentage) {

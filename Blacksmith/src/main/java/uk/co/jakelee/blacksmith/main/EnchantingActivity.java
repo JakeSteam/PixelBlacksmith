@@ -155,7 +155,7 @@ public class EnchantingActivity extends Activity {
     public void createGemsTable(final LinearLayout gemsTable) {
         gemsTable.removeAllViews();
         List<Item> allGems = Select.from(Item.class).where(
-                Condition.prop("type").eq(Constants.TYPE_GEMS)).list();
+                Condition.prop("type").eq(Constants.TYPE_GEM)).list();
 
         for (final Item gem : allGems) {
             Inventory gemInventory = Inventory.getInventory(gem.getId(), Constants.STATE_NORMAL);
