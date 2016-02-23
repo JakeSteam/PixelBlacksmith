@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         handler.removeCallbacksAndMessages(null);
 
-        if (Setting.findById(Setting.class, Constants.SETTING_NOTIFICATIONS).getBoolValue()) {
+        if (Setting.findById(Setting.class, Constants.SETTING_RESTOCK_NOTIFICATIONS).getBoolValue()) {
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
             NotificationHelper.addRestockNotification(getApplicationContext(), notificationSound);
         }

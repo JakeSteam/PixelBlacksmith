@@ -536,8 +536,9 @@ public class DatabaseHelper {
 
         new Setting(1L, "Sounds", false);
         new Setting(2L, "Music", false);
-        new Setting(3L, "Notifications", true);
+        new Setting(3L, "RestockNotifications", true);
         new Setting(4L, "NotificationSounds", true);
+        new Setting(5L, "VisitorNotifications", true);
 
         new Shop(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
         new Shop(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);

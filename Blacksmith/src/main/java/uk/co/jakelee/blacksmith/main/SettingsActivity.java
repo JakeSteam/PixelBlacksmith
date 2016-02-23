@@ -36,9 +36,13 @@ public class SettingsActivity extends Activity {
         boolean musicToggleValue = Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue();
         musicToggle.setImageDrawable(musicToggleValue ? tick : cross);
 
-        ImageView notificationToggle = (ImageView) findViewById(R.id.notificationToggleButton);
-        boolean notificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATIONS).getBoolValue();
-        notificationToggle.setImageDrawable(notificationToggleValue ? tick : cross);
+        ImageView restockNotificationToggle = (ImageView) findViewById(R.id.restockNotificationToggleButton);
+        boolean restockNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_RESTOCK_NOTIFICATIONS).getBoolValue();
+        restockNotificationToggle.setImageDrawable(restockNotificationToggleValue ? tick : cross);
+
+        ImageView visitorNotificationToggle = (ImageView) findViewById(R.id.visitorNotificationToggleButton);
+        boolean visitorNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue();
+        visitorNotificationToggle.setImageDrawable(visitorNotificationToggleValue ? tick : cross);
 
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
         boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
@@ -54,10 +58,13 @@ public class SettingsActivity extends Activity {
             case R.id.musicToggleButton:
                 settingID = Constants.SETTING_MUSIC;
                 break;
-            case R.id.notificationToggleButton:
-                settingID = Constants.SETTING_NOTIFICATIONS;
+            case R.id.restockNotificationToggleButton:
+                settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
                 break;
             case R.id.notificationSoundToggleButton:
+                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
+                break;
+            case R.id.visitorNotificationToggleButton:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
                 break;
         }

@@ -88,17 +88,35 @@
 
                 <TableRow>
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/notificationToggleText"
+                        android:id="@+id/restockNotificationToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        android:text="@string/notificationSettingText"/>
+                        android:text="@string/restockNotificationSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
-                        android:id="@+id/notificationToggleButton"
+                        android:id="@+id/restockNotificationToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting"/>
+                </TableRow>
+
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/visitorNotificationToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:text="@string/visitorNotificationSettingText"/>
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/visitorNotificationToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:onClick="toggleSetting"/>
