@@ -14,7 +14,6 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
-import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -76,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 setupRecurringEvents();
                 NotificationHelper.clearNotifications(getApplicationContext());
-                VisitorHelper.tryCreateVisitor();
-
                 if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
                     startService(musicService);
                     musicServiceIsStarted = true;

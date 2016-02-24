@@ -44,7 +44,7 @@ public class DatabaseHelper {
         new Inventory(8L, 1, 108);
         new Inventory(9L, 1, 109);
         new Inventory(10L, 1, 110);
-        new Inventory(52L, 1, 1234);
+        new Inventory(52L, 1, 999999);
         new Inventory(69L, 1, 10);
         new Inventory(70L, 1, 10);
         new Inventory(72L, 1, 25);
@@ -193,7 +193,7 @@ public class DatabaseHelper {
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
-        new Player_Info("XP", 1600);
+        new Player_Info("XP", 5600);
         new Player_Info("DatabaseVersion", 1);
         new Player_Info("ItemsSmelted", 100);
         new Player_Info("ItemsCrafted", 100);
@@ -201,6 +201,7 @@ public class DatabaseHelper {
         new Player_Info("ItemsSold", 100);
         new Player_Info("VisitorsCompleted", 100);
         new Player_Info("DateRestocked", System.currentTimeMillis());
+        new Player_Info("DateVisitorChecked", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 100);
         new Player_Info("DateStarted", System.currentTimeMillis());
         new Player_Info("SavedLevel", 10);
