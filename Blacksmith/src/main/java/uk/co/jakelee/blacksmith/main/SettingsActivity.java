@@ -65,7 +65,7 @@ public class SettingsActivity extends Activity {
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
                 break;
             case R.id.visitorNotificationToggleButton:
-                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
+                settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
                 break;
         }
 

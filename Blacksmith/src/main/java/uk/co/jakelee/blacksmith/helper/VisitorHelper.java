@@ -8,6 +8,7 @@ import java.util.Random;
 
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
@@ -228,5 +229,10 @@ public class VisitorHelper {
         } else {
             return "-" + String.valueOf(roundedPercent) + "%";
         }
+    }
+
+    public static int getManualVisitorCost() {
+        int playerLevel = Player_Info.getPlayerLevel();
+        return playerLevel * 100;
     }
 }

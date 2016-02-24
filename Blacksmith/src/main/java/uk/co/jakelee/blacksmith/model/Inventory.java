@@ -211,8 +211,10 @@ public class Inventory extends SugarRecord {
             coinStock.save();
 
             // Remove stock
-            List<Shop_Stock> itemStocks = Shop_Stock.find(Shop_Stock.class, "shop_id = " + shopId + " AND item_id = " + itemId + " AND state = " + state);
-            Shop_Stock itemStock = itemStocks.get(0);
+            Shop_Stock itemStock = Select.from(Shop_Stock.class).where(
+                    Condition.prop("shop_id").eq(shopId),
+                    Condition.prop("item_id").eq(itemId),
+                    Condition.prop("state").eq(state)).first();
             itemStock.setStock(itemStock.getStock() - 1);
             itemStock.save();
 

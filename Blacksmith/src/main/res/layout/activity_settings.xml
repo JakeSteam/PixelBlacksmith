@@ -39,7 +39,8 @@
             android:id="@+id/settingsScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/settingsTitle">
+            android:layout_below="@id/settingsTitle"
+            android:layout_marginBottom="5dp">
 
             <TableLayout
                 android:id="@+id/settingsTable"
@@ -57,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:text="@string/soundSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -75,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:text="@string/musicSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -93,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:text="@string/restockNotificationSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -111,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:text="@string/visitorNotificationSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -129,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:text="@string/notificationSoundSettingText"/>
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

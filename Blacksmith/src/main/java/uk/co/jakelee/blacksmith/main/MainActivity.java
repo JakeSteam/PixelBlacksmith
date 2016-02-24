@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
     public void updateVisitors() {
         visitorContainer.removeAllViews();
         visitorContainerOverflow.removeAllViews();
-        dh.populateVisitorsContainer(getApplicationContext(), visitorContainer, visitorContainerOverflow);
+        dh.populateVisitorsContainer(getApplicationContext(), MainActivity.this, visitorContainer, visitorContainerOverflow);
     }
 
     public void openMine(View view) {

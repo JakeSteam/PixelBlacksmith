@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -144,7 +146,7 @@ public class DisplayHelper {
         }
     }
 
-    public void populateVisitorsContainer(final Context context, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
+    public void populateVisitorsContainer(final Context context, final MainActivity activity, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
         int displayedVisitors = 0;
 
@@ -171,6 +173,52 @@ public class DisplayHelper {
             }
             displayedVisitors++;
         }
+
+        LinearLayout targetContainer = null;
+        if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+            targetContainer = visitorsContainer;
+        } else if (visitorsContainerOverflow.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+            targetContainer = visitorsContainerOverflow;
+        }
+
+        if (targetContainer != null) {
+            ImageView addVisitorButton = createImageView("add", "", 200, 200);
+            addVisitorButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    confirmVisitorAdd(context, activity);
+                }
+            });
+            targetContainer.addView(addVisitorButton);
+        }
+    }
+
+    public void confirmVisitorAdd(final Context context, MainActivity activity) {
+        final int visitorCost = VisitorHelper.getManualVisitorCost();
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        alertDialog.setMessage(String.format("Would you like to bribe a visitor %d coins to come in immediately?", visitorCost));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton(String.format("Bribe", visitorCost), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                if (coinStock.getQuantity() >= visitorCost) {
+                    coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
+                    coinStock.save();
+                    VisitorHelper.createNewVisitor();
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, "Not enough money to bribe a visitor.");
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
     }
 
     public TextViewPixel createTextView(String text, int size) {
