@@ -60,4 +60,6 @@ public class Visitor extends SugarRecord{
         }
         return true;
     }
+
+
 }

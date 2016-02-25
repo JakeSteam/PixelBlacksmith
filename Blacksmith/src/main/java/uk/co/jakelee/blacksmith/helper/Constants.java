@@ -8,8 +8,9 @@ public class Constants {
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MILLISECONDS_BETWEEN_UI_REFRESHES = 1000; // 1 sec
     public static final int MILLISECONDS_BETWEEN_RESTOCK_CHECKS = 60000; // 60 sec
-    public static final long MILLISECONDS_BETWEEN_RESTOCKS = 43200000; // 12 hours
-    public static final int MILLISECONDS_BETWEEN_VISITOR_CHECKS = 900000; // 15 min
+    public static final int MILLISECONDS_BETWEEN_RESTOCKS = 43200000; // 12 hours
+    public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS = 10000; // 10 seconds
+    public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWNS = 60000; //900000; // 15 min
     public static final int MAXIMUM_VISITORS = 10;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int CRAFT_TIME_MULTIPLIER = 3000;

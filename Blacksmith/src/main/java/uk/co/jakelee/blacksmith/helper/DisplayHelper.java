@@ -205,7 +205,9 @@ public class DisplayHelper {
                 if (coinStock.getQuantity() >= visitorCost) {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
                     coinStock.save();
-                    VisitorHelper.createNewVisitor();
+                    if (VisitorHelper.tryCreateVisitor()) {
+                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A visitor walks in, with %d coins. What a coincidence!", visitorCost));
+                    }
                 } else {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, "Not enough money to bribe a visitor.");
                 }

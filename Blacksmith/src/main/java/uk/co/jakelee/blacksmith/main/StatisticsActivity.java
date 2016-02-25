@@ -51,10 +51,10 @@ public class StatisticsActivity extends Activity {
         long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
         ((TextViewPixel) findViewById(R.id.nextRestock)).setText(DateHelper.getHoursMinsRemaining(unixRestockDifference));
 
-        long unixChecked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorChecked")).first().getLongValue();
-        long unixNextCheck = unixChecked + Constants.MILLISECONDS_BETWEEN_VISITOR_CHECKS;
-        long unixVisitorDifference = unixNextCheck - System.currentTimeMillis();
-        ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getHoursMinsRemaining(unixVisitorDifference));
+        long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
+        long unixNextSpawn = unixSpawned + Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+        long unixVisitorDifference = unixNextSpawn - System.currentTimeMillis();
+        ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(unixVisitorDifference));
 
         Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
         String dateRestarted = DateHelper.displayTime(unixRestarted, DateHelper.date);

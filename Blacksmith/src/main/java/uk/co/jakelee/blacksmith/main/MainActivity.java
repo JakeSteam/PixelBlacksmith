@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
@@ -14,6 +16,8 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -86,9 +90,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        final Context context = getApplicationContext();
 
         new Thread(new Runnable() {
             public void run() {
+                int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
+                if (newVisitors > 0) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Whilst you've been gone, %d visitor(s) have arrived.", newVisitors));
+                }
+
                 if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
                     startService(musicService);
                     musicServiceIsStarted = true;
@@ -109,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
         if (Setting.findById(Setting.class, Constants.SETTING_RESTOCK_NOTIFICATIONS).getBoolValue()) {
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
             NotificationHelper.addRestockNotification(getApplicationContext(), notificationSound);
+        }
+
+        if (Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue()) {
+            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+            //NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
 
@@ -141,6 +156,18 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.post(checkRestocks);
+
+        final Runnable checkVisitorSpawns = new Runnable() {
+            @Override
+            public void run() {
+                int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
+                if (newVisitors > 0) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("A visitor wanders into the shop...", newVisitors));
+                }
+                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS);
+            }
+        };
+        handler.post(checkVisitorSpawns);
     }
 
     private void createSlots() {

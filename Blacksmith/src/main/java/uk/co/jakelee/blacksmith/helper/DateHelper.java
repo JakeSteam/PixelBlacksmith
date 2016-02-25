@@ -26,6 +26,19 @@ public class DateHelper {
         return hours + "hr " + minutes + "min";
     }
 
+    public static String getMinsSecsRemaining(Long timestamp) {
+        int hours = timestampPartHours(timestamp);
+        int minutes = timestampPartMinutes(timestamp) - (hours * MINUTES);
+        int seconds = timestampPartSeconds(timestamp) - (minutes * SECONDS);
+
+        return minutes + "min " + seconds + "s";
+    }
+
+    public static int timestampPartSeconds(Long timestamp) {
+        double seconds = timestamp / (MILLISECONDS);
+        return (int) seconds;
+    }
+
     public static int timestampPartMinutes(Long timestamp) {
         double minutes = timestamp / (MILLISECONDS * SECONDS);
         return (int) minutes;

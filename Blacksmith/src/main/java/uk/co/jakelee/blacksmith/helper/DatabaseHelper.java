@@ -201,7 +201,7 @@ public class DatabaseHelper {
         new Player_Info("ItemsSold", 100);
         new Player_Info("VisitorsCompleted", 100);
         new Player_Info("DateRestocked", System.currentTimeMillis());
-        new Player_Info("DateVisitorChecked", System.currentTimeMillis());
+        new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 100);
         new Player_Info("DateStarted", System.currentTimeMillis());
         new Player_Info("SavedLevel", 10);

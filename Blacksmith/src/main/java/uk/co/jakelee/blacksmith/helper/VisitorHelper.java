@@ -2,6 +2,9 @@ package uk.co.jakelee.blacksmith.helper;
 
 import android.util.Pair;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,14 +24,44 @@ public class VisitorHelper {
     public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
     public static List<Long> existingVisitorTypes = new ArrayList<>();
 
-    public static void tryCreateVisitor() {
+    public static boolean tryCreateVisitor() {
         if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
             new Thread(new Runnable() {
                 public void run() {
                     createNewVisitor();
+
+                    Player_Info lastVisitorSpawn = Select.from(Player_Info.class).where(
+                            Condition.prop("name").eq("DateVisitorSpawned")).first();
+                    lastVisitorSpawn.setLongValue(System.currentTimeMillis());
+                    lastVisitorSpawn.save();
                 }
             }).start();
+            return true;
+        } else {
+            return false;
         }
+    }
+
+    public static int tryCreateRequiredVisitors() {
+        int numberOfPossibleVisitors = VisitorHelper.getNumberNewVisitors(System.currentTimeMillis());
+        int numberOfActualVisitors = 0;
+        for (int i = 0; i < numberOfPossibleVisitors; i++) {
+            if (VisitorHelper.tryCreateVisitor()) {
+                numberOfActualVisitors++;
+            }
+        }
+
+        return numberOfActualVisitors;
+    }
+
+    public static int getNumberNewVisitors(long currentTime) {
+        long lastSpawn = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
+
+        long difference = currentTime - lastSpawn;
+        long numberOfVisitors = difference / Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+
+        return (int) numberOfVisitors;
     }
 
     public static void createNewVisitor() {
