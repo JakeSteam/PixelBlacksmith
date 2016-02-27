@@ -199,7 +199,7 @@ public class DisplayHelper {
         alertDialog.setMessage(String.format("Would you like to bribe a visitor %d coins to come in immediately?", visitorCost));
         alertDialog.setIcon(R.drawable.item52);
 
-        alertDialog.setPositiveButton(String.format("Bribe", visitorCost), new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("Bribe", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                 if (coinStock.getQuantity() >= visitorCost) {
@@ -208,6 +208,39 @@ public class DisplayHelper {
                     if (VisitorHelper.tryCreateVisitor()) {
                         ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A visitor walks in, with %d coins. What a coincidence!", visitorCost));
                     }
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, "Not enough money to bribe a visitor.");
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public void confirmVisitorDismiss(final Context context, final Visitor visitor, final VisitorActivity activity) {
+        final int visitorCost = VisitorHelper.getManualVisitorCost();
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format("Would you like to pay a visitor %d coins to leave immediately?", visitorCost));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton("Bribe", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                if (coinStock.getQuantity() >= visitorCost) {
+                    coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
+                    coinStock.save();
+
+                    VisitorHelper.removeVisitor(visitor);
+                    SoundHelper.playSound(context, SoundHelper.walkingSounds);
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The visitor leaves, a little bit grumpily.");
+                    activity.finish();
                 } else {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, "Not enough money to bribe a visitor.");
                 }

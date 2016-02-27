@@ -128,6 +128,13 @@ public class VisitorHelper {
         return number;
     }
 
+    public static void removeVisitor(Visitor visitor) {
+        Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
+        Visitor.delete(visitor);
+
+        VisitorHelper.existingVisitorTypes.remove(visitor.getVisitorId());
+    }
+
     public static int pickRandomNumberFromArray(int[] possibleNumbers) {
         int randomIndex = new Random().nextInt(possibleNumbers.length);
         return possibleNumbers[randomIndex];

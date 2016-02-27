@@ -242,6 +242,19 @@
                     android:text="Complete"
                     android:textSize="35sp"
                     android:background="@drawable/button_wide"/>
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/dismissButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/demandsTable"
+                    android:layout_alignTop="@id/completeButton"
+                    android:layout_toRightOf="@id/completeButton"
+                    android:gravity="center"
+                    android:onClick="dismissVisitor"
+                    android:text=" X "
+                    android:textSize="35sp"
+                    android:background="@drawable/button"/>
             </RelativeLayout>
 
         </ScrollView>

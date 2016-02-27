@@ -180,10 +180,7 @@ public class VisitorActivity extends Activity {
 
     public void completeVisitor(View view) {
         if (visitor.isVisitorComplete()) {
-            Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
-            Visitor.delete(visitor);
-
-            VisitorHelper.existingVisitorTypes.remove(visitor.getVisitorId());
+            VisitorHelper.removeVisitor(visitor);
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
 
@@ -200,6 +197,10 @@ public class VisitorActivity extends Activity {
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure);
         }
+    }
+
+    public void dismissVisitor(View view) {
+        dh.confirmVisitorDismiss(getApplicationContext(), visitor, this);
     }
 
     public String createVisitorReward(Visitor visitor, int numRewards) {
