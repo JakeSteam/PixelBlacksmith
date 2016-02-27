@@ -18,6 +18,9 @@ public class Constants {
     public static final int MINIMUM_REWARDS = 1;
     public static final int MAXIMUM_REWARDS = 3;
 
+    public static final int NOTIFICATION_VISITOR = 1;
+    public static final int NOTIFICATION_RESTOCK = 2;
+
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
     public static final int VISITS_ALMOST = 66;

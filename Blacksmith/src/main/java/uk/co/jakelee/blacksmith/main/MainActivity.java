@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 public class MainActivity extends AppCompatActivity {
     public static DisplayHelper dh;
     public static Handler handler = new Handler();
+    public int newVisitors;
 
     public Intent musicService;
     public boolean musicServiceIsStarted = false;
@@ -90,14 +91,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final Context context = getApplicationContext();
+        final Context context = this;
 
         new Thread(new Runnable() {
             public void run() {
-                int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
-                if (newVisitors > 0) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Whilst you've been gone, %d visitor(s) have arrived.", newVisitors));
-                }
+                newVisitors = VisitorHelper.tryCreateRequiredVisitors();
 
                 if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
                     startService(musicService);
@@ -108,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).start();
+
+        if (newVisitors > 0) {
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Whilst you've been gone, %d visitor(s) have arrived.", newVisitors));
+        }
     }
 
     @Override
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue()) {
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
-            //NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
+            NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
 
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS);
             }
         };
-        handler.post(checkVisitorSpawns);
+        handler.postDelayed(checkVisitorSpawns, Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS);
     }
 
     private void createSlots() {

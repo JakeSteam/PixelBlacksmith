@@ -54,7 +54,11 @@ public class StatisticsActivity extends Activity {
         long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
         long unixNextSpawn = unixSpawned + Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
         long unixVisitorDifference = unixNextSpawn - System.currentTimeMillis();
-        ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(unixVisitorDifference));
+        if (unixVisitorDifference > 0) {
+            ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(unixVisitorDifference));
+        } else {
+            ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(0L));
+        }
 
         Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
         String dateRestarted = DateHelper.displayTime(unixRestarted, DateHelper.date);

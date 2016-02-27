@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class NotificationHelper extends BroadcastReceiver{
     private static boolean useSounds = false;
+    private static String NOTIFICATION_TYPE = "uk.co.jakelee.notification_type";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -32,10 +33,17 @@ public class NotificationHelper extends BroadcastReceiver{
 
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        int notificationType = intent.getExtras().getInt(NOTIFICATION_TYPE);
+        String notificationText = "";
+        if (notificationType == Constants.NOTIFICATION_RESTOCK) {
+            notificationText = "All shops have been restocked!";
+        } else if (notificationType == Constants.NOTIFICATION_VISITOR) {
+            notificationText = "A new visitor has arrived!";
+        }
 
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         Notification notification = builder.setContentTitle("Blacksmith")
-                .setContentText("All shops have been restocked!")
+                .setContentText(notificationText)
                 .setSmallIcon(R.drawable.item35)
                 .setContentIntent(pendingIntent)
                 .build();
@@ -53,14 +61,22 @@ public class NotificationHelper extends BroadcastReceiver{
         useSounds = useSoundsSetting;
 
         long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
-        NotificationHelper.addNotification(context, restockTime);
+        NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_RESTOCK);
     }
 
-    private static void addNotification(Context context, long notificationTime) {
+    public static void addVisitorNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
+        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+        NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_VISITOR);
+    }
+
+    private static void addNotification(Context context, long notificationTime, int notificationType) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
         notificationIntent.addCategory("android.intent.category.DEFAULT");
+        notificationIntent.putExtra(NOTIFICATION_TYPE, notificationType);
 
         PendingIntent broadcast = PendingIntent.getBroadcast(context, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
