@@ -183,6 +183,7 @@ public class VisitorActivity extends Activity {
             Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
             Visitor.delete(visitor);
 
+            VisitorHelper.existingVisitorTypes.remove(visitor.getVisitorId());
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
 

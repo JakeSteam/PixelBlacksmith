@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (newVisitors > 0) {
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Whilst you've been gone, %d visitor(s) have arrived.", newVisitors));
+            newVisitors = 0;
         }
     }
 
