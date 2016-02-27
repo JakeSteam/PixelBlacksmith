@@ -22,6 +22,7 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Shop_Stock;
+import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.service.MusicService;
 
 public class MainActivity extends AppCompatActivity {
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             NotificationHelper.addRestockNotification(getApplicationContext(), notificationSound);
         }
 
-        if (Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue()) {
+        if (Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue() && Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
