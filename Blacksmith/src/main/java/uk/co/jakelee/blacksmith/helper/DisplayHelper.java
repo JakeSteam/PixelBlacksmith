@@ -168,7 +168,7 @@ public class DisplayHelper {
             // Adding to appropriate container
             if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
                 visitorsContainer.addView(visitorImage);
-            } else if (displayedVisitors <= Constants.MAXIMUM_VISITORS) {
+            } else if (displayedVisitors < Constants.MAXIMUM_VISITORS) {
                 visitorsContainerOverflow.addView(visitorImage);
             }
             displayedVisitors++;
