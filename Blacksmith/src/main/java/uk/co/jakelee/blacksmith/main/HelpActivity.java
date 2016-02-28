@@ -27,11 +27,21 @@ public class HelpActivity extends Activity {
     }
 
     public void displayHelp(int helpToLoad) {
-        LinearLayout layout = (LinearLayout)findViewById(R.id.helpLayout);
-        layout.addView(dh.createTextView("This is just some sample text. It won't be here long. Apologies if you see this!", 18));
-        layout.addView(dh.createTextView("This is just some sample text. It won't be here long. Apologies if you see this!", 18));
-        layout.addView(dh.createTextView("This is just some sample text. It won't be here long. Apologies if you see this!", 18));
-        layout.addView(dh.createTextView("Oh, and the one to load was: " + helpToLoad, 18));
+        LinearLayout layout = (LinearLayout) findViewById(R.id.helpLayout);
+
+        if (helpToLoad == HELP) {
+            displayHelpHelp(layout);
+        } else if (helpToLoad == FURNACE) {
+            displayHelpFurnace(layout);
+        }
+    }
+
+    public void displayHelpHelp(LinearLayout layout) {
+        layout.addView(dh.createTextView("Here is some help for the help. Meta, eh?", 18));
+    }
+
+    public void displayHelpFurnace(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the furnace. Not at all meta.", 18));
     }
 
     public void openHelp(View view) {
