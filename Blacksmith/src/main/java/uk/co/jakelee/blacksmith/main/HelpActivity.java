@@ -16,6 +16,18 @@ public class HelpActivity extends Activity {
     public static int HELP = 0;
     public static int MAIN = 1;
     public static int FURNACE = 2;
+    public static int ANVIL = 3;
+    public static int INVENTORY = 4;
+    public static int CREDITS = 5;
+    public static int ENCHANTING = 6;
+    public static int MINE = 7;
+    public static int SETTINGS = 8;
+    public static int SHOP = 9;
+    public static int STATISTICS = 10;
+    public static int TABLE = 11;
+    public static int TRADE = 12;
+    public static int TROPHY = 13;
+    public static int VISITOR = 14;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +48,30 @@ public class HelpActivity extends Activity {
             displayHelpMain(layout);
         } else if (helpToLoad == FURNACE) {
             displayHelpFurnace(layout);
+        } else if (helpToLoad == ANVIL) {
+            displayHelpAnvil(layout);
+        } else if (helpToLoad == INVENTORY) {
+            displayHelpInventory(layout);
+        } else if (helpToLoad == CREDITS) {
+            displayHelpCredits(layout);
+        } else if (helpToLoad == ENCHANTING) {
+            displayHelpEnchanting(layout);
+        } else if (helpToLoad == MINE) {
+            displayHelpMine(layout);
+        } else if (helpToLoad == SETTINGS) {
+            displayHelpSettings(layout);
+        } else if (helpToLoad == SHOP) {
+            displayHelpShop(layout);
+        } else if (helpToLoad == STATISTICS) {
+            displayHelpStatistics(layout);
+        } else if (helpToLoad == TABLE) {
+            displayHelpTable(layout);
+        } else if (helpToLoad == TRADE) {
+            displayHelpTrade(layout);
+        } else if (helpToLoad == TROPHY) {
+            displayHelpTrophy(layout);
+        } else if (helpToLoad == VISITOR) {
+            displayHelpVisitor(layout);
         }
     }
 
@@ -49,6 +85,54 @@ public class HelpActivity extends Activity {
 
     public void displayHelpFurnace(LinearLayout layout) {
         layout.addView(dh.createTextView("And here is a bit of help for the furnace. Not at all meta.", 18));
+    }
+
+    public void displayHelpAnvil(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the anvil. Not at all meta.", 18));
+    }
+
+    public void displayHelpInventory(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the inventory. Not at all meta.", 18));
+    }
+
+    public void displayHelpCredits(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the credits. Not at all meta.", 18));
+    }
+
+    public void displayHelpEnchanting(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the enchanting. Not at all meta.", 18));
+    }
+
+    public void displayHelpMine(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the mine. Not at all meta.", 18));
+    }
+
+    public void displayHelpSettings(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the settings. Not at all meta.", 18));
+    }
+
+    public void displayHelpShop(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the shop. Not at all meta.", 18));
+    }
+
+    public void displayHelpStatistics(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the statistics. Not at all meta.", 18));
+    }
+
+    public void displayHelpTable(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the table. Not at all meta.", 18));
+    }
+
+    public void displayHelpTrade(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the trade. Not at all meta.", 18));
+    }
+
+    public void displayHelpTrophy(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the trophy. Not at all meta.", 18));
+    }
+
+    public void displayHelpVisitor(LinearLayout layout) {
+        layout.addView(dh.createTextView("And here is a bit of help for the visitor. Not at all meta.", 18));
     }
 
     public void openHelp(View view) {

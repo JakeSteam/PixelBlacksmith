@@ -87,16 +87,6 @@ public class FurnaceActivity extends Activity {
         dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
     }
 
-    public void closePopup(View view) {
-        finish();
-    }
-
-    public void openHelp(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.FURNACE);
-        startActivity(intent);
-    }
-
     public void smelt1(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         smelt(itemID, 1);
@@ -161,5 +151,15 @@ public class FurnaceActivity extends Activity {
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.FURNACE);
+        startActivity(intent);
+    }
+
+    public void closePopup(View view) {
+        finish();
     }
 }

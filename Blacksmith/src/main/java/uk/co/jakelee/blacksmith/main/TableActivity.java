@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -103,10 +104,6 @@ public class TableActivity extends Activity {
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, downArrow, upArrow);
     }
 
-    public void closePopup(View view) {
-        finish();
-    }
-
     public void craft1(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         craft(itemID, 1);
@@ -185,5 +182,15 @@ public class TableActivity extends Activity {
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TABLE);
+        startActivity(intent);
+    }
+
+    public void closePopup(View view) {
+        finish();
     }
 }

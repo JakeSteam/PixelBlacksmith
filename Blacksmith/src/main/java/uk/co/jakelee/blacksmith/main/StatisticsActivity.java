@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -67,6 +68,12 @@ public class StatisticsActivity extends Activity {
         int biggestTrade = Select.from(Visitor_Stats.class).orderBy("best_item_value DESC").first().getBestItemValue();
         ((TextViewPixel) findViewById(R.id.biggestTrade)).setText(Integer.toString(biggestTrade));
 
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.STATISTICS);
+        startActivity(intent);
     }
 
     public void closePopup(View view) {

@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -103,10 +104,6 @@ public class EnchantingActivity extends Activity {
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, downArrow, upArrow);
     }
 
-    public void closePopup(View view) {
-        finish();
-    }
-
     public void goUpTier(View view) {
         if (displayedTier < Constants.TIER_MAX) {
             displayedTier++;
@@ -200,7 +197,15 @@ public class EnchantingActivity extends Activity {
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse));
         }
+    }
 
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.ENCHANTING);
+        startActivity(intent);
+    }
 
+    public void closePopup(View view) {
+        finish();
     }
 }

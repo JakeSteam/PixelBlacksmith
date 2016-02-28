@@ -60,4 +60,14 @@
         android:layout_marginTop="35dp"
         android:onClick="closePopup"
         android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
 </RelativeLayout>

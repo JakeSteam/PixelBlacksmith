@@ -114,6 +114,12 @@ public class ShopActivity extends Activity {
         createItemList();
     }
 
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.SHOP);
+        startActivity(intent);
+    }
+
     public void closeShop(View view) {
         finish();
     }

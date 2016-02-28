@@ -83,6 +83,12 @@ public class SettingsActivity extends Activity {
         startActivity(intent);
     }
 
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.SETTINGS);
+        startActivity(intent);
+    }
+
     public void closePopup(View view) {
         finish();
     }

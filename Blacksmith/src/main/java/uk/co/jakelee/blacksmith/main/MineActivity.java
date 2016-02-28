@@ -85,6 +85,12 @@ public class MineActivity extends Activity {
         }
     }
 
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.MINE);
+        startActivity(intent);
+    }
+
     public void closePopup(View view) {
         finish();
     }

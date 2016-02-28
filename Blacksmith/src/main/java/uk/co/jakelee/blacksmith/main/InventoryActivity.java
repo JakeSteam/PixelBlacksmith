@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -105,6 +106,11 @@ public class InventoryActivity extends Activity {
         dh.updateCoins(dh.getCoins());
     }
 
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.INVENTORY);
+        startActivity(intent);
+    }
 
     public void closePopup(View view) {
         finish();
