@@ -14,7 +14,8 @@ public class HelpActivity extends Activity {
 
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
     public static int HELP = 0;
-    public static int FURNACE = 1;
+    public static int MAIN = 1;
+    public static int FURNACE = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class HelpActivity extends Activity {
 
         if (helpToLoad == HELP) {
             displayHelpHelp(layout);
+        } else if (helpToLoad == MAIN) {
+            displayHelpMain(layout);
         } else if (helpToLoad == FURNACE) {
             displayHelpFurnace(layout);
         }
@@ -38,6 +41,10 @@ public class HelpActivity extends Activity {
 
     public void displayHelpHelp(LinearLayout layout) {
         layout.addView(dh.createTextView("Here is some help for the help. Meta, eh?", 18));
+    }
+
+    public void displayHelpMain(LinearLayout layout) {
+        layout.addView(dh.createTextView("Overview of the game, as well as info on the help system.", 18));
     }
 
     public void displayHelpFurnace(LinearLayout layout) {

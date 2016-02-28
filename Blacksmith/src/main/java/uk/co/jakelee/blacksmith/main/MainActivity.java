@@ -249,4 +249,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.MAIN);
+        startActivity(intent);
+    }
 }
