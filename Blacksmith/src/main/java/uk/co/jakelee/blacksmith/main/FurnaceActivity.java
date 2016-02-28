@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -88,6 +89,12 @@ public class FurnaceActivity extends Activity {
 
     public void closePopup(View view) {
         finish();
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.FURNACE);
+        startActivity(intent);
     }
 
     public void smelt1(View v) {
