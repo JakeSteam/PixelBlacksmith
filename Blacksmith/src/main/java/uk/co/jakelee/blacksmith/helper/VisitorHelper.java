@@ -22,7 +22,6 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorHelper {
     public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
-    public static List<Long> existingVisitorTypes = new ArrayList<>();
 
     public static boolean tryCreateVisitor() {
         if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
@@ -131,8 +130,6 @@ public class VisitorHelper {
     public static void removeVisitor(Visitor visitor) {
         Visitor_Demand.deleteAll(Visitor_Demand.class, "visitor_id = " + visitor.getId());
         Visitor.delete(visitor);
-
-        VisitorHelper.existingVisitorTypes.remove(visitor.getVisitorId());
     }
 
     public static int pickRandomNumberFromArray(int[] possibleNumbers) {
@@ -151,15 +148,9 @@ public class VisitorHelper {
 
     public static Visitor_Type selectVisitorType () {
         Visitor_Type visitor = new Visitor_Type();
-        List<Visitor_Type> visitorTypes = new ArrayList<>();
 
-        // Only get visitor types we don't already have.
-        List<Visitor_Type> allVisitorTypes = Visitor_Type.listAll(Visitor_Type.class);
-        for (Visitor_Type type : allVisitorTypes) {
-            if (!existingVisitorTypes.contains(type.getVisitorID())) {
-                visitorTypes.add(type);
-            }
-        }
+        List<Visitor_Type> visitorTypes = Visitor_Type.findWithQuery(Visitor_Type.class,
+                "SELECT * FROM VisitorType WHERE visitor_id NOT IN (SELECT type FROM Visitor)");
 
         // Work out the total weighting.
         double totalWeighting = 0.0;
@@ -179,8 +170,6 @@ public class VisitorHelper {
                 break;
             }
         }
-
-        existingVisitorTypes.add(visitor.getVisitorID());
         return visitor;
     }
 
