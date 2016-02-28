@@ -7,30 +7,15 @@ import com.orm.query.Select;
 import java.util.List;
 
 public class Visitor extends SugarRecord{
-    Long visitorID;
     Long arrivalTime;
     Long type;
 
     public Visitor(){
     }
 
-    public Visitor(Long visitorID, Long arrivalTime, Long type) {
-        this.visitorID = visitorID;
-        this.arrivalTime = arrivalTime;
-        this.type = type;
-    }
-
     public Visitor(Long arrivalTime, Long type) {
         this.arrivalTime = arrivalTime;
         this.type = type;
-    }
-
-    public Long getVisitorId() {
-        return visitorID;
-    }
-
-    public void setVisitorId(Long visitorID) {
-        this.visitorID = visitorID;
     }
 
     public Long getArrivalTime() {
