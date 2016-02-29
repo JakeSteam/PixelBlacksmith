@@ -48,23 +48,24 @@ public class InventoryActivity extends Activity {
         inventoryTable.removeAllViews();
 
         TableRow headerRow = new TableRow(getApplicationContext());
+        headerRow.addView(dh.createTextView("Qty", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Name", 22, Color.BLACK));
-        headerRow.addView(dh.createTextView("Qty ", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
         inventoryTable.addView(headerRow);
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = Item.findById(Item.class, inventoryItem.getItem());
+
+            TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
+
             ImageView image = dh.createItemImage(item.getId(), 100, 100, Constants.TRUE);
 
             String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
             name.setPadding(0, 12, 0, 0);
-
-            TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
             TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
             sell.setGravity(Gravity.CENTER);
@@ -78,9 +79,9 @@ public class InventoryActivity extends Activity {
                 }
             });
 
+            itemRow.addView(count);
             itemRow.addView(image);
             itemRow.addView(name);
-            itemRow.addView(count);
             itemRow.addView(sell);
             inventoryTable.addView(itemRow);
         }
@@ -89,7 +90,7 @@ public class InventoryActivity extends Activity {
     public void clickSellButton(View view) {
         int quantity = 1;
         Long itemID = (Long)view.getTag(R.id.itemID);
-        int itemState = (int)view.getTag(R.id.itemState);
+        Long itemState = (Long)view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
         int itemValue = itemToSell.getModifiedValue(itemState);
 
