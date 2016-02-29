@@ -27,55 +27,55 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
-import uk.co.jakelee.blacksmith.model.Shop;
-import uk.co.jakelee.blacksmith.model.Shop_Stock;
+import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
-public class ShopActivity extends Activity {
+public class TraderActivity extends Activity {
     public static DisplayHelper dh;
-    public static Shop shop;
+    public static Trader trader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop);
+        setContentView(R.layout.activity_trader);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
-        int shopId = Integer.parseInt(intent.getStringExtra(MineActivity.SHOP_TO_LOAD));
+        int traderID = Integer.parseInt(intent.getStringExtra(MarketActivity.TRADER_TO_LOAD));
 
-        if (shopId > 0) {
-            shop = Shop.findById(Shop.class, shopId);
-            createShopInterface();
+        if (traderID > 0) {
+            trader = Trader.findById(Trader.class, traderID);
+            createTraderInterface();
         }
     }
 
-    public void createShopInterface() {
-        createShopkeeper();
+    public void createTraderInterface() {
+        createTrader();
         createItemList();
     }
 
-    public void createShopkeeper() {
-        Character shopkeeper = Character.findById(Character.class, shop.getShopkeeper());
+    public void createTrader() {
+        Character traderCharacter = Character.findById(Character.class, trader.getTrader());
 
-        int drawableID = getApplicationContext().getResources().getIdentifier("character" + shopkeeper.getId(), "drawable", getApplicationContext().getPackageName());
-        ImageView shopkeeperImage = (ImageView) findViewById(R.id.shopkeeperImage);
-        shopkeeperImage.setImageResource(drawableID);
+        int drawableID = getApplicationContext().getResources().getIdentifier("character" + traderCharacter.getId(), "drawable", getApplicationContext().getPackageName());
+        ImageView traderImage = (ImageView) findViewById(R.id.traderImage);
+        traderImage.setImageResource(drawableID);
 
-        TextView shopkeeperName = (TextView) findViewById(R.id.shopkeeperName);
-        shopkeeperName.setText(shopkeeper.getName());
+        TextView traderName = (TextView) findViewById(R.id.traderName);
+        traderName.setText(traderCharacter.getName());
 
-        TextView shopkeeperGreeting = (TextView) findViewById(R.id.shopkeeperGreeting);
-        shopkeeperGreeting.setText(shopkeeper.getIntro());
+        TextView traderGreeting = (TextView) findViewById(R.id.traderGreeting);
+        traderGreeting.setText(traderCharacter.getIntro());
     }
 
     public void createItemList() {
-        TableLayout shopItemsInfo = (TableLayout) findViewById(R.id.shopItemsInfo);
-        shopItemsInfo.removeAllViews();
-        List<Shop_Stock> itemsForSale = Select.from(Shop_Stock.class).where(
+        TableLayout traderItemsInfo = (TableLayout) findViewById(R.id.traderItemsInfo);
+        traderItemsInfo.removeAllViews();
+        List<Trader_Stock> itemsForSale = Select.from(Trader_Stock.class).where(
                 Condition.prop("discovered").eq(Constants.TRUE),
-                Condition.prop("shop_id").eq(shop.getId())).list();
+                Condition.prop("trader_id").eq(trader.getId())).list();
 
-        for (Shop_Stock itemForSale : itemsForSale) {
+        for (Trader_Stock itemForSale : itemsForSale) {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = Item.findById(Item.class, itemForSale.getItemID());
 
@@ -97,7 +97,7 @@ public class ShopActivity extends Activity {
             itemRow.addView(itemStock);
             itemRow.addView(itemBuy);
 
-            shopItemsInfo.addView(itemRow);
+            traderItemsInfo.addView(itemRow);
         }
     }
 
@@ -105,7 +105,7 @@ public class ShopActivity extends Activity {
         int quantity = 1;
         Item itemToBuy = Item.findById(Item.class, (Long) v.getTag());
 
-        int buyResponse = Inventory.buyItem(itemToBuy.getId(), quantity, shop.getId(), itemToBuy.getValue());
+        int buyResponse = Inventory.buyItem(itemToBuy.getId(), quantity, trader.getId(), itemToBuy.getValue());
         if (buyResponse == Constants.SUCCESS) {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", 1, itemToBuy.getName(), itemToBuy.getValue()));
         } else {
@@ -116,11 +116,11 @@ public class ShopActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.SHOP);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TRADER);
         startActivity(intent);
     }
 
-    public void closeShop(View view) {
+    public void closeTrader(View view) {
         finish();
     }
 }

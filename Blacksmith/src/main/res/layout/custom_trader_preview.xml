@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/shopRow"
+    android:id="@+id/traderRow"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,29 +11,29 @@
         android:paddingBottom="5dp">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/shopName"
+            android:id="@+id/traderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/shopDescription"
+            android:id="@+id/traderDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/shopName"
+            android:layout_below="@id/traderName"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:singleLine="false"/>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/shopScroller"
+            android:id="@+id/traderScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/shopDescription">
+            android:layout_below="@id/traderDescription">
 
             <LinearLayout
-                android:id="@+id/shopOfferings"
+                android:id="@+id/traderOfferings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"/>
@@ -42,7 +42,7 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/shopButton"
+        android:id="@+id/traderButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"

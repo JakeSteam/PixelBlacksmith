@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Blacksmith</string>
 
-    <string name="mineText">Mine</string>
+    <string name="marketText">Market</string>
     <string name="menuText">Menu</string>
     <string name="furnaceText">Furnace</string>
     <string name="anvilText">Anvil</string>
     <string name="inventoryText">Inventory</string>
     <string name="tableText">Table</string>
-    <string name="shopText">Shop</string>
+    <string name="traderText">Trader</string>
     <string name="visitorText">Visitor</string>
     <string name="tradeText">Trade</string>
     <string name="enchantingText">Enchant</string>

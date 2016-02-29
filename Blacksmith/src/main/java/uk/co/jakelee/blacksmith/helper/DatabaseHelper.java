@@ -9,8 +9,8 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
-import uk.co.jakelee.blacksmith.model.Shop;
-import uk.co.jakelee.blacksmith.model.Shop_Stock;
+import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
@@ -189,7 +189,7 @@ public class DatabaseHelper {
         new Location(1L, "Anvil");
         new Location(2L, "Furnace");
         new Location(3L, "Selling");
-        new Location(4L, "Mine");
+        new Location(4L, "Market");
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
@@ -537,24 +537,24 @@ public class DatabaseHelper {
 
         new Setting(1L, "Sounds", false);
         new Setting(2L, "Music", false);
-        new Setting(3L, "RestockNotifications", true);
-        new Setting(4L, "NotificationSounds", true);
+        new Setting(3L, "RestockNotifications", false);
+        new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", true);
 
-        new Shop(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
-        new Shop(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
-        new Shop(2L, 1, 3, "Rare Ore", "This shop is too rare to be found.", 5, 1);
-        new Shop(3L, 1, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
-        new Shop(4L, 2, 3, "Silver Miner", "Cor, ore!", 10, 1);
+        new Trader(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
+        new Trader(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
+        new Trader(2L, 1, 3, "Rare Ore", "This trader is too rare to be found.", 5, 1);
+        new Trader(3L, 1, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
+        new Trader(4L, 2, 3, "Silver Miner", "Cor, ore!", 10, 1);
 
-        new Shop_Stock(1L, 1L, 1, 1, 5, 50);
-        new Shop_Stock(1L, 2L, 1, 1, 5, 50);
-        new Shop_Stock(2L, 1L, 1, 1, 10, 100);
-        new Shop_Stock(2L, 2L, 1, 1, 10, 100);
-        new Shop_Stock(3L, 3L, 1, 1, 10, 100);
-        new Shop_Stock(4L, 2L, 1, 1, 10, 100);
-        new Shop_Stock(5L, 9L, 1, 1, 1, 10);
-        new Shop_Stock(5L, 8L, 1, 1, 1, 10);
+        new Trader_Stock(1L, 1L, 1, 1, 5, 50);
+        new Trader_Stock(1L, 2L, 1, 1, 5, 50);
+        new Trader_Stock(2L, 1L, 1, 1, 10, 100);
+        new Trader_Stock(2L, 2L, 1, 1, 10, 100);
+        new Trader_Stock(3L, 3L, 1, 1, 10, 100);
+        new Trader_Stock(4L, 2L, 1, 1, 10, 100);
+        new Trader_Stock(5L, 9L, 1, 1, 1, 10);
+        new Trader_Stock(5L, 8L, 1, 1, 1, 10);
 
         new Slot(1, 0, 0);
         new Slot(1, 5, 0);

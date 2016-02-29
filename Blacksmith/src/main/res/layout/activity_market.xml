@@ -6,7 +6,6 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/furnace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="30dp"
@@ -20,68 +19,38 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:weightSum="2"
-        tools:context="uk.co.jakelee.blacksmith.main.MineActivity">
+        tools:context=".main.MarketActivity">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/shopTitle"
+            android:id="@+id/marketTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:text="@string/shopText"
+            android:text="@string/marketText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="60sp" />
 
-    <RelativeLayout
-        android:id="@+id/shopkeeperInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/shopTitle"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="15dp">
-
-        <ImageView
-            android:id="@+id/shopkeeperImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
-
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/shopkeeperName"
-            android:layout_width="wrap_content"
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/marketScroller"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/shopkeeperImage"
-            android:layout_alignTop="@id/shopkeeperImage"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:singleLine="false"/>
+            android:layout_below="@id/marketTitle"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp">
 
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/shopkeeperGreeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/shopkeeperName"
-            android:layout_alignLeft="@id/shopkeeperName"
-            android:layout_marginTop="5dp"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:singleLine="false"/>
-        </RelativeLayout>
-
-    <TableLayout
-        android:id="@+id/shopItemsInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/shopkeeperInfo"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:stretchColumns="1"/>
-
-</RelativeLayout>
+            <TableLayout
+                android:id="@+id/marketList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0"
+                android:shrinkColumns="0"/>
+        </ScrollView>
+    </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -89,7 +58,7 @@
         android:layout_height="64dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="closeShop"
+        android:onClick="closePopup"
         android:src="@drawable/close" />
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -101,4 +70,4 @@
         android:layout_alignParentRight="true"
         android:onClick="openHelp"
         android:src="@drawable/help" />
-    </RelativeLayout>
+</RelativeLayout>

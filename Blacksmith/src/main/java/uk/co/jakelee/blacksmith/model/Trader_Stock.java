@@ -8,20 +8,20 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
 
-public class Shop_Stock extends SugarRecord {
-    Long shopID;
+public class Trader_Stock extends SugarRecord {
+    Long traderID;
     Long itemID;
     int state;
     int discovered;
     int stock;
     int defaultStock;
 
-    public Shop_Stock() {
+    public Trader_Stock() {
 
     }
 
-    public Shop_Stock(Long shopID, Long itemID, int state, int discovered, int stock, int defaultStock) {
-        this.shopID = shopID;
+    public Trader_Stock(Long traderID, Long itemID, int state, int discovered, int stock, int defaultStock) {
+        this.traderID = traderID;
         this.itemID = itemID;
         this.state = state;
         this.discovered = discovered;
@@ -38,12 +38,12 @@ public class Shop_Stock extends SugarRecord {
         this.itemID = itemID;
     }
 
-    public Long getShopID() {
-        return shopID;
+    public Long getTraderID() {
+        return traderID;
     }
 
-    public void setShopID(Long shopID) {
-        this.shopID = shopID;
+    public void setTraderID(Long traderID) {
+        this.traderID = traderID;
     }
 
     public int getDiscovered() {
@@ -85,14 +85,14 @@ public class Shop_Stock extends SugarRecord {
         return (dateRefreshed.getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS) < System.currentTimeMillis();
     }
 
-    public static void restockShops() {
+    public static void restockTraders() {
         new Thread(new Runnable() {
             public void run() {
-                List<Shop_Stock> allShops = Shop_Stock.listAll(Shop_Stock.class);
+                List<Trader_Stock> allTraders = Trader_Stock.listAll(Trader_Stock.class);
 
-                for (Shop_Stock shop : allShops) {
-                    shop.setStock(shop.getDefaultStock());
-                    shop.save();
+                for (Trader_Stock trader : allTraders) {
+                    trader.setStock(trader.getDefaultStock());
+                    trader.save();
                 }
 
                 Player_Info dateRefreshed = Select.from(Player_Info.class).where(

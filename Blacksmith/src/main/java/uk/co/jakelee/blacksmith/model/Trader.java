@@ -2,21 +2,21 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
-public class Shop extends SugarRecord {
+public class Trader extends SugarRecord {
     Long id;
-    int shopkeeper;
+    int trader;
     int location;
     String name;
     String description;
     int level;
     int discovered;
 
-    public Shop() {
+    public Trader() {
     }
 
-    public Shop(Long id, int shopkeeper, int location, String name, String description, int level, int discovered) {
+    public Trader(Long id, int trader, int location, String name, String description, int level, int discovered) {
         this.id = id;
-        this.shopkeeper = shopkeeper;
+        this.trader = trader;
         this.location = location;
         this.name = name;
         this.description = description;
@@ -33,12 +33,12 @@ public class Shop extends SugarRecord {
         this.id = id;
     }
 
-    public int getShopkeeper() {
-        return shopkeeper;
+    public int getTrader() {
+        return trader;
     }
 
-    public void setShopkeeper(int shopkeeper) {
-        this.shopkeeper = shopkeeper;
+    public void setTrader(int trader) {
+        this.trader = trader;
     }
 
     public int getLocation() {

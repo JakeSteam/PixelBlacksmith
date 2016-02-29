@@ -9,7 +9,7 @@ public class ErrorHelper {
         HashMap<Integer, String> errors = new HashMap<>();
         errors.put(Constants.ERROR_PLAYER_LEVEL, "This item requires a higher level.");
         errors.put(Constants.ERROR_UNDISCOVERED, "This item's recipe has not been discovered yet.");
-        errors.put(Constants.ERROR_SHOP_RUN_OUT, "This shop has run out of stock for this item.");
+        errors.put(Constants.ERROR_TRADER_RUN_OUT, "This trader has run out of stock for this item.");
         errors.put(Constants.ERROR_NOT_ENOUGH_INGREDIENTS, "The item cannot be created without all ingredients.");
         errors.put(Constants.ERROR_NOT_ENOUGH_COINS, "You don't have enough money for this item!");
         errors.put(Constants.ERROR_NOT_ENOUGH_ITEMS,"You don't have any of these to sell!");

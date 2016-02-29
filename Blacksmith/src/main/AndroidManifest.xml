@@ -36,7 +36,7 @@
             android:name=".main.InventoryActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".main.MineActivity"
+            android:name=".main.MarketActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.FurnaceActivity"
@@ -48,7 +48,7 @@
             android:name=".main.TableActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".main.ShopActivity"
+            android:name=".main.TraderActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.VisitorActivity"

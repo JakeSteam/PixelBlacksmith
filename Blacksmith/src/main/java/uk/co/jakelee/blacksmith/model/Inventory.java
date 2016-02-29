@@ -180,29 +180,29 @@ public class Inventory extends SugarRecord {
         return Constants.SUCCESS;
     }
 
-    public static int canBuyItem(Long itemId, int state, Long shopId, int price) {
+    public static int canBuyItem(Long itemID, int state, Long traderID, int price) {
         Inventory coins = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
 
-        Shop_Stock itemStock = Select.from(Shop_Stock.class).where(
-                Condition.prop("shop_id").eq(shopId),
-                Condition.prop("item_id").eq(itemId),
+        Trader_Stock itemStock = Select.from(Trader_Stock.class).where(
+                Condition.prop("trader_id").eq(traderID),
+                Condition.prop("item_id").eq(itemID),
                 Condition.prop("state").eq(state)).first();
 
         if ((coins.getQuantity() - price) <= 0) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
         } else if (itemStock.getStock() <= 0) {
-            return Constants.ERROR_SHOP_RUN_OUT;
+            return Constants.ERROR_TRADER_RUN_OUT;
         } else {
             return Constants.SUCCESS;
         }
     }
 
-    public static int buyItem(Long itemId, int state, Long shopId, int price) {
-        int canBuyResponse = canBuyItem(itemId, state, shopId, price);
+    public static int buyItem(Long itemID, int state, Long traderID, int price) {
+        int canBuyResponse = canBuyItem(itemID, state, traderID, price);
         if (canBuyResponse != Constants.SUCCESS) {
             return canBuyResponse;
-        } else if (!Slot.hasAvailableSlot(Constants.LOCATION_MINE)) {
+        } else if (!Slot.hasAvailableSlot(Constants.LOCATION_MARKET)) {
             return Constants.ERROR_NO_SPARE_SLOTS;
         } else {
             // Remove coins
@@ -211,15 +211,15 @@ public class Inventory extends SugarRecord {
             coinStock.save();
 
             // Remove stock
-            Shop_Stock itemStock = Select.from(Shop_Stock.class).where(
-                    Condition.prop("shop_id").eq(shopId),
-                    Condition.prop("item_id").eq(itemId),
+            Trader_Stock itemStock = Select.from(Trader_Stock.class).where(
+                    Condition.prop("trader_id").eq(traderID),
+                    Condition.prop("item_id").eq(itemID),
                     Condition.prop("state").eq(state)).first();
             itemStock.setStock(itemStock.getStock() - 1);
             itemStock.save();
 
             // Add item
-            Pending_Inventory.addItem(itemId, 1, 1, Constants.LOCATION_MINE);
+            Pending_Inventory.addItem(itemID, Constants.STATE_NORMAL, 1, Constants.LOCATION_MARKET);
 
             return Constants.SUCCESS;
         }

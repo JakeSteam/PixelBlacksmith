@@ -20,9 +20,9 @@ public class HelpActivity extends Activity {
     public static int INVENTORY = 4;
     public static int CREDITS = 5;
     public static int ENCHANTING = 6;
-    public static int MINE = 7;
+    public static int MARKET = 7;
     public static int SETTINGS = 8;
-    public static int SHOP = 9;
+    public static int TRADER = 9;
     public static int STATISTICS = 10;
     public static int TABLE = 11;
     public static int TRADE = 12;
@@ -56,12 +56,12 @@ public class HelpActivity extends Activity {
             displayHelpCredits(layout);
         } else if (helpToLoad == ENCHANTING) {
             displayHelpEnchanting(layout);
-        } else if (helpToLoad == MINE) {
-            displayHelpMine(layout);
+        } else if (helpToLoad == MARKET) {
+            displayHelpMarket(layout);
         } else if (helpToLoad == SETTINGS) {
             displayHelpSettings(layout);
-        } else if (helpToLoad == SHOP) {
-            displayHelpShop(layout);
+        } else if (helpToLoad == TRADER) {
+            displayHelpTrader(layout);
         } else if (helpToLoad == STATISTICS) {
             displayHelpStatistics(layout);
         } else if (helpToLoad == TABLE) {
@@ -86,7 +86,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("So, here's the deal: You're a blacksmith. A not very good one, to be honest.\n", 22));
         layout.addView(dh.createTextView("If you want to make a name for yourself, you're going to have to keep visitors happy, and keep an eye on your resources.\n", 22));
         layout.addView(dh.createTextView("Or, I guess you could ignore all the visitors and just work towards making the high end gear. But, y'know, don't do that.\n", 22));
-        layout.addView(dh.createTextView("Generally, ores come from the mines and other ingredients come from visitors and certain shops.\n", 22));
+        layout.addView(dh.createTextView("Generally, ores come from the market and other ingredients come from visitors and certain traders.\n", 22));
         layout.addView(dh.createTextView("These ores are smelted in the furnace, crafted at the anvil, finished at the table, and enchanted at the enchanting table, before being sold to a visitor.\n", 22));
         layout.addView(dh.createTextView("Visitors, like the rest of us, have preferences. Once a visitor has been sold one of their favourite types / tiers / states of item, their preference and associated bonus will be saved.\n", 22));
         layout.addView(dh.createTextView("Next time they visit, selling them preferred items will provide a nice healthy bonus tip for yourself.\n", 22));
@@ -96,7 +96,7 @@ public class HelpActivity extends Activity {
     public void displayHelpFurnace(LinearLayout layout) {
         layout.addView(dh.createTextView("Furnace\n", 26));
         layout.addView(dh.createTextView("The furnace is the starting point for creating items.\n", 22));
-        layout.addView(dh.createTextView("Ore is generally bought from shops or passing traders, but it can also be given as a reward by happy visitors.\n", 22));
+        layout.addView(dh.createTextView("Ore is generally bought from passing traders at the marketplace, but it can also be given as a reward by happy visitors.\n", 22));
         layout.addView(dh.createTextView("Ore you receive will have to be smelted into bars before any items can be created with it. Some bars will require a mixer, generally coal, to facilitate the creation of bars.\n", 22));
         layout.addView(dh.createTextView("Whilst bars can be sold, they'll generally be a lot more valuable if they are first hammered into an unfinished item via the anvil.\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Pressing 'Smelt Max' will create as many bars as possible with your current free slots and resources.\n", 22));
@@ -135,8 +135,8 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Once the desired item is selected, tap the gem to be added.\n", 22));
     }
 
-    public void displayHelpMine(LinearLayout layout) {
-        layout.addView(dh.createTextView("Mine\n", 26));
+    public void displayHelpMarket(LinearLayout layout) {
+        layout.addView(dh.createTextView("Market\n", 26));
         layout.addView(dh.createTextView("Raw resources (ore, some secondaries) are generally purchased from the market.\n", 22));
         layout.addView(dh.createTextView("Traders come and go, each with different prices and specialities. If you buy a lot of an item, you'll find the trader unable to resupply for a few hours.\n", 22));
         layout.addView(dh.createTextView("Compare prices between traders to ensure you're getting the best deal, but make sure to trade before they leave for the day.\n", 22));
@@ -149,7 +149,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Changes take place as soon as the settings interface is closed.\n", 22));
     }
 
-    public void displayHelpShop(LinearLayout layout) {
+    public void displayHelpTrader(LinearLayout layout) {
         layout.addView(dh.createTextView("Trader\n", 26));
         layout.addView(dh.createTextView("Traders will drift in and out of the marketplace throughout the day, with some offering steep discounts.\n", 22));
         layout.addView(dh.createTextView("They have a limited amount of stock, restocking happens every few hours (time until next restock is available on the statistics interface, or receive a notification via the settings interface).\n", 22));

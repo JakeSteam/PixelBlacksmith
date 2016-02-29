@@ -17,22 +17,22 @@
             android:background="@drawable/wallpaper">
 
             <ImageView
-                android:id="@+id/open_mine"
+                android:id="@+id/open_market"
                 android:layout_width="225dp"
                 android:layout_height="105dp"
                 android:layout_marginLeft="565dp"
                 android:layout_marginTop="510dp"
                 android:alpha=".10"
-                android:onClick="openMine"
+                android:onClick="openMarket"
                 android:scaleType="centerCrop"
                 android:src="@color/white" />
 
             <RelativeLayout
-                android:id="@+id/slots_mine"
+                android:id="@+id/slots_market"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/open_mine"
-                android:layout_toRightOf="@id/open_mine"
+                android:layout_alignBottom="@id/open_market"
+                android:layout_toRightOf="@id/open_market"
                 android:orientation="horizontal" />
 
             <ImageView

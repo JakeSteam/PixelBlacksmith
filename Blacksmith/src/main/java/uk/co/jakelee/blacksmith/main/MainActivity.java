@@ -21,7 +21,7 @@ import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
-import uk.co.jakelee.blacksmith.model.Shop_Stock;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.service.MusicService;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static RelativeLayout sellingSlots;
     public static RelativeLayout furnaceSlots;
     public static RelativeLayout anvilSlots;
-    public static RelativeLayout mineSlots;
+    public static RelativeLayout marketSlots;
     public static RelativeLayout tableSlots;
     public static RelativeLayout enchantingSlots;
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
         furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
         anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
-        mineSlots = (RelativeLayout) findViewById(R.id.slots_mine);
+        marketSlots = (RelativeLayout) findViewById(R.id.slots_market);
         tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
         enchantingSlots = (RelativeLayout) findViewById(R.id.slots_enchanting);
 
@@ -153,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
         final Runnable checkRestocks = new Runnable() {
             @Override
             public void run() {
-                if (Shop_Stock.shouldRestock()) {
-                    Shop_Stock.restockShops();
+                if (Trader_Stock.shouldRestock()) {
+                    Trader_Stock.restockTraders();
                 }
                 handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_RESTOCK_CHECKS);
             }
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         dh.createSlotContainer(sellingSlots, Location.getSlots(Constants.LOCATION_SELLING));
         dh.createSlotContainer(furnaceSlots, Location.getSlots(Constants.LOCATION_FURNACE));
         dh.createSlotContainer(anvilSlots, Location.getSlots(Constants.LOCATION_ANVIL));
-        dh.createSlotContainer(mineSlots, Location.getSlots(Constants.LOCATION_MINE));
+        dh.createSlotContainer(marketSlots, Location.getSlots(Constants.LOCATION_MARKET));
         dh.createSlotContainer(tableSlots, Location.getSlots(Constants.LOCATION_TABLE));
         dh.createSlotContainer(enchantingSlots, Location.getSlots(Constants.LOCATION_ENCHANTING));
     }
@@ -187,14 +187,14 @@ public class MainActivity extends AppCompatActivity {
         dh.depopulateSlotContainer(sellingSlots);
         dh.depopulateSlotContainer(furnaceSlots);
         dh.depopulateSlotContainer(anvilSlots);
-        dh.depopulateSlotContainer(mineSlots);
+        dh.depopulateSlotContainer(marketSlots);
         dh.depopulateSlotContainer(tableSlots);
         dh.depopulateSlotContainer(enchantingSlots);
 
         dh.populateSlotContainer(sellingSlots, Constants.LOCATION_SELLING);
         dh.populateSlotContainer(furnaceSlots, Constants.LOCATION_FURNACE);
         dh.populateSlotContainer(anvilSlots, Constants.LOCATION_ANVIL);
-        dh.populateSlotContainer(mineSlots, Constants.LOCATION_MINE);
+        dh.populateSlotContainer(marketSlots, Constants.LOCATION_MARKET);
         dh.populateSlotContainer(tableSlots, Constants.LOCATION_TABLE);
         dh.populateSlotContainer(enchantingSlots, Constants.LOCATION_ENCHANTING);
     }
@@ -205,8 +205,8 @@ public class MainActivity extends AppCompatActivity {
         dh.populateVisitorsContainer(getApplicationContext(), MainActivity.this, visitorContainer, visitorContainerOverflow);
     }
 
-    public void openMine(View view) {
-        Intent intent = new Intent(this, MineActivity.class);
+    public void openMarket(View view) {
+        Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
     }
 

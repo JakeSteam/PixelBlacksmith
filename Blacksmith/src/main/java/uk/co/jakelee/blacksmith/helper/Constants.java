@@ -38,7 +38,7 @@ public class Constants {
     public static final int ERROR_NO_GEMS = 7;
     public static final int ERROR_NOT_ENOUGH_ITEMS = 8;
     public static final int ERROR_NOT_ENOUGH_COINS = 9;
-    public static final int ERROR_SHOP_RUN_OUT = 10;
+    public static final int ERROR_TRADER_RUN_OUT = 10;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
@@ -46,7 +46,7 @@ public class Constants {
     public static final Long LOCATION_ANVIL = 1L;
     public static final Long LOCATION_FURNACE = 2L;
     public static final Long LOCATION_SELLING = 3L;
-    public static final Long LOCATION_MINE = 4L;
+    public static final Long LOCATION_MARKET = 4L;
     public static final Long LOCATION_TABLE = 5L;
     public static final Long LOCATION_ENCHANTING = 6L;
 
