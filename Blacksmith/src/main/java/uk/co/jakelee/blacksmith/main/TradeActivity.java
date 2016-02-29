@@ -89,17 +89,21 @@ public class TradeActivity extends Activity {
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView("", 22, Color.BLACK));
-        headerRow.addView(dh.createTextView("Item", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Qty", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView("Item ", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
-        headerRow.addView(dh.createTextView("", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
         itemsTable.addView(headerRow);
 
         List<Inventory> matchingItems = demand.getMatchingInventory();
 
         for(Inventory inventory : matchingItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
+
             Item item = Item.findById(Item.class, inventory.getItem());
+
+            TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
 
             ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, Constants.TRUE);
 
@@ -129,6 +133,7 @@ public class TradeActivity extends Activity {
                 bonusText.setTextColor(Color.GREEN);
             }
 
+            itemRow.addView(quantity);
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(sell);
