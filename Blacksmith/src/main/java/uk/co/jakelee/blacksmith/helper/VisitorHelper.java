@@ -260,8 +260,16 @@ public class VisitorHelper {
         }
     }
 
-    public static int getManualVisitorCost() {
+    public static int getVisitorAddCost() {
         int playerLevel = Player_Info.getPlayerLevel();
         return playerLevel * 100;
+    }
+
+    public static int getVisitorDismissCost(long visitorID) {
+        List<Visitor_Demand> unfulfilledDemands = Visitor_Demand.find(Visitor_Demand.class, "quantity_provided >= quantity AND visitor_id = " + visitorID);
+        int numberUnfulfilled = unfulfilledDemands.size();
+
+        int playerLevel = Player_Info.getPlayerLevel();
+        return playerLevel * 10 * numberUnfulfilled;
     }
 }

@@ -193,7 +193,7 @@ public class DisplayHelper {
     }
 
     public void confirmVisitorAdd(final Context context, MainActivity activity) {
-        final int visitorCost = VisitorHelper.getManualVisitorCost();
+        final int visitorCost = VisitorHelper.getVisitorAddCost();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
         alertDialog.setMessage(String.format("Would you like to bribe a visitor %d coins to come in immediately?", visitorCost));
@@ -224,7 +224,7 @@ public class DisplayHelper {
     }
 
     public void confirmVisitorDismiss(final Context context, final Visitor visitor, final VisitorActivity activity) {
-        final int visitorCost = VisitorHelper.getManualVisitorCost();
+        final int visitorCost = VisitorHelper.getVisitorDismissCost(visitor.getId());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
         alertDialog.setMessage(String.format("Would you like to pay a visitor %d coins to leave immediately?", visitorCost));
