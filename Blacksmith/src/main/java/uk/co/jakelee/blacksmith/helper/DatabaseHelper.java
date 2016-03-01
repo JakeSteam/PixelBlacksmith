@@ -539,7 +539,7 @@ public class DatabaseHelper {
         new Setting(2L, "Music", false);
         new Setting(3L, "RestockNotifications", false);
         new Setting(4L, "NotificationSounds", false);
-        new Setting(5L, "VisitorNotifications", true);
+        new Setting(5L, "VisitorNotifications", false);
 
         new Trader(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
         new Trader(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);

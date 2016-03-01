@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -23,6 +22,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
@@ -36,6 +36,7 @@ public class FurnaceActivity extends Activity {
     public static DisplayHelper dh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
+    private int numberOfItems;
 
 
     @Override
@@ -66,6 +67,7 @@ public class FurnaceActivity extends Activity {
         // Add all bars to the selector
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
+        numberOfItems = items.size();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
@@ -81,14 +83,9 @@ public class FurnaceActivity extends Activity {
 
         // Horizontal selector
         long currentItem = (long) mViewFlipper.getCurrentView().getTag();
-        int numberOfItems = itemSelector.getChildCount();
-        LinearLayout horizontalBar = (LinearLayout)findViewById(R.id.horizontalIndicator);
-        for (int i = 0; i < numberOfItems; i++) {
-            horizontalBar.addView(dh.createTextView(String.valueOf(mViewFlipper.getDisplayedChild()), 10));
-            if (i < numberOfItems - 1) {
-                horizontalBar.addView(dh.createSpace());
-            }
-        }
+        int currentItemPosition = mViewFlipper.getDisplayedChild();
+        HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalBar.addDots(dh, numberOfItems, currentItemPosition);
 
         // Display item name and description
         View furnace = findViewById(R.id.furnace);
@@ -160,6 +157,9 @@ public class FurnaceActivity extends Activity {
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
             dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
+
+            HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }

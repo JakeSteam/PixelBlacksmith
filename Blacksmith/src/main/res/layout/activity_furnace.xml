@@ -56,7 +56,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"/>
 
-        <LinearLayout
+        <uk.co.jakelee.blacksmith.controls.HorizontalDots
             android:id="@+id/horizontalIndicator"
             android:orientation="horizontal"
             android:layout_below="@id/viewFlipper"
