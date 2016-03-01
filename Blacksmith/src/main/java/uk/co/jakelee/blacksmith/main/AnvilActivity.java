@@ -78,7 +78,7 @@ public class AnvilActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getCanCraft());
+            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getHaveCrafted());
             TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_UNFINISHED, Color.WHITE, Color.BLACK);
             count.setWidth(230);
 

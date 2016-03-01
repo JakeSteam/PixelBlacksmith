@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -68,7 +69,7 @@ public class FurnaceActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getCanCraft());
+            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getHaveCrafted());
             TextView count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
             count.setWidth(230);
 
@@ -78,13 +79,24 @@ public class FurnaceActivity extends Activity {
             itemSelector.addView(itemBox);
         }
 
+        // Horizontal selector
+        long currentItem = (long) mViewFlipper.getCurrentView().getTag();
+        int numberOfItems = itemSelector.getChildCount();
+        LinearLayout horizontalBar = (LinearLayout)findViewById(R.id.horizontalIndicator);
+        for (int i = 0; i < numberOfItems; i++) {
+            horizontalBar.addView(dh.createTextView(String.valueOf(mViewFlipper.getDisplayedChild()), 10));
+            if (i < numberOfItems - 1) {
+                horizontalBar.addView(dh.createSpace());
+            }
+        }
+
         // Display item name and description
         View furnace = findViewById(R.id.furnace);
-        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, furnace);
+        dh.displayItemInfo(currentItem, Constants.STATE_NORMAL, furnace);
 
         // Display item ingredients
         TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
+        dh.createItemIngredientsTable(currentItem, Constants.STATE_NORMAL, ingredientsTable);
     }
 
     public void smelt1(View v) {

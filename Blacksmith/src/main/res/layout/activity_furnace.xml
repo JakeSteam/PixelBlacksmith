@@ -53,9 +53,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemName"
-            android:paddingBottom="8dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"/>
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/horizontalIndicator"
+            android:orientation="horizontal"
+            android:layout_below="@id/viewFlipper"
+            android:layout_alignLeft="@id/viewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemDesc"
@@ -75,7 +84,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/viewFlipper"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:padding="5dp"
             android:stretchColumns="1"
             android:shrinkColumns="1"/>

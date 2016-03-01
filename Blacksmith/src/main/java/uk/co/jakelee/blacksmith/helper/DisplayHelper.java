@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -35,8 +36,8 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
-import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class DisplayHelper {
@@ -256,6 +257,16 @@ public class DisplayHelper {
         alertDialog.show();
     }
 
+    public Space createSpace() {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.weight = 1;
+
+        Space space = new Space(context);
+        space.setLayoutParams(params);
+
+        return space;
+    }
+
     public TextViewPixel createTextView(String text, int size) {
         return createTextView(text, size, Color.BLACK, Gravity.LEFT);
     }
@@ -299,13 +310,13 @@ public class DisplayHelper {
         return text;
     }
 
-    public ImageView createItemImage(Long itemId, int width, int height, int canCraft) {
+    public ImageView createItemImage(Long itemId, int width, int height, int haveCrafted) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
         Drawable imageResource = createDrawable(drawableId, width, height);
 
-        if (canCraft != Constants.TRUE) {
+        if (haveCrafted != Constants.TRUE) {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.clearColorFilter();
@@ -412,7 +423,7 @@ public class DisplayHelper {
         TextViewPixel itemDesc = (TextViewPixel) itemArea.findViewById(R.id.itemDesc);
         TextViewPixel itemCount = (TextViewPixel) itemArea.findViewWithTag(itemId + "Count");
 
-        if (item.getCanCraft() == Constants.TRUE) {
+        if (item.getHaveCrafted() == Constants.TRUE) {
             itemName.setText(item.getPrefix(state) + item.getName());
             itemDesc.setText(item.getDescription());
             itemCount.setText(Integer.toString(count.getQuantity()));
@@ -459,7 +470,7 @@ public class DisplayHelper {
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 66, 66, Constants.TRUE));
+            row.addView(createItemImage(ingredient.getIngredient(), 66, 66, itemIngredient.getHaveCrafted()));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));

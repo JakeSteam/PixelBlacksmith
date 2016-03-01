@@ -99,8 +99,8 @@ public class Inventory extends SugarRecord {
             return canCreate;
         }
 
-        if (item.getCanCraft() != Constants.TRUE) {
-            item.setCanCraft(Constants.TRUE);
+        if (item.getHaveCrafted() != Constants.TRUE) {
+            item.setHaveCrafted(Constants.TRUE);
             item.save();
         }
 
