@@ -23,6 +23,16 @@ public class Inventory extends SugarRecord {
         this.save();
     }
 
+    public Inventory(Long item, long state, int quantity, boolean shouldSave) {
+        this.item = item;
+        this.state = state;
+        this.quantity = quantity;
+
+        if (shouldSave) {
+            this.save();
+        }
+    }
+
     public Long getItem() {
         return item;
     }
@@ -140,7 +150,7 @@ public class Inventory extends SugarRecord {
         if (inventories.size() > 0) {
             return inventories.get(0);
         } else {
-            return new Inventory(id, state, 0);
+            return new Inventory(id, state, 0, false);
         }
     }
 
