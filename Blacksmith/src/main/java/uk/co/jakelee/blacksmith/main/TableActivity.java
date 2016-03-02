@@ -22,6 +22,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -35,6 +36,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 public class TableActivity extends Activity {
     public static DisplayHelper dh;
     public int displayedTier = Constants.TIER_MIN;
+    private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -76,7 +78,7 @@ public class TableActivity extends Activity {
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
                 Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
-
+        numberOfItems = items.size();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
@@ -89,6 +91,11 @@ public class TableActivity extends Activity {
             itemBox.setTag(item.getId());
             itemSelector.addView(itemBox);
         }
+
+        // Horizontal selector
+        int currentItemPosition = mViewFlipper.getDisplayedChild();
+        HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalBar.addDots(dh, numberOfItems, currentItemPosition);
 
         // Display item name and description
         View table = findViewById(R.id.table);
@@ -179,6 +186,9 @@ public class TableActivity extends Activity {
 
             TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
             dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
+
+            HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
