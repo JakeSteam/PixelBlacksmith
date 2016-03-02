@@ -105,7 +105,7 @@ public class TradeActivity extends Activity {
 
             TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
 
-            ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, Constants.TRUE);
+            ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, inventory.haveSeen());
 
             String itemName = item.getPrefix(inventory.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);

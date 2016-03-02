@@ -287,15 +287,13 @@ public class DisplayHelper {
     public TextViewPixel createItemCount(Long itemId, int state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
 
-        // Use explicit query so that zero counts are handled correctly
-        List<Inventory> inventories = Select.from(Inventory.class).where(
+        Inventory inventory = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(state),
-                Condition.prop("id").eq(itemId)).list();
-        Inventory item;
-        if (inventories.size() > 0) {
-            item = inventories.get(0);
-        } else {
-            item = new Inventory(itemId, state, 0);
+                Condition.prop("id").eq(itemId)).first();
+
+        int numberOwned = 0;
+        if (inventory != null) {
+            numberOwned = inventory.getQuantity();
         }
 
         TextViewPixel text = new TextViewPixel(context);
@@ -306,20 +304,46 @@ public class DisplayHelper {
         text.setAlpha(0.6F);
         text.setGravity(Gravity.CENTER);
         text.setTextSize(25);
-        text.setText(Integer.toString(item.getQuantity()));
+        text.setText(Integer.toString(numberOwned));
         return text;
     }
 
-    public ImageView createItemImage(Long itemId, int width, int height, int haveCrafted) {
+    public void displayItemInfo(Long itemID, int state, View itemArea) {
+        Item item = Item.findById(Item.class, itemID);
+        Inventory inventory = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(itemID),
+                Condition.prop("state").eq(state)).first();
+
+        int numberOwned = 0;
+        if (inventory != null) {
+            numberOwned = inventory.getQuantity();
+        }
+
+        TextViewPixel itemName = (TextViewPixel) itemArea.findViewById(R.id.itemName);
+        TextViewPixel itemDesc = (TextViewPixel) itemArea.findViewById(R.id.itemDesc);
+        TextViewPixel itemCount = (TextViewPixel) itemArea.findViewWithTag(itemID + "Count");
+
+        if (Inventory.haveSeen(itemID, state)) {
+            itemName.setText(item.getPrefix(state) + item.getName());
+            itemDesc.setText(item.getDescription());
+            itemCount.setText(Integer.toString(numberOwned));
+        } else {
+            itemName.setText(R.string.unknownText);
+            itemDesc.setText(R.string.unknownText);
+            itemCount.setText(R.string.unknownText);
+        }
+    }
+
+    public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
         int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
         Drawable imageResource = createDrawable(drawableId, width, height);
 
-        if (haveCrafted != Constants.TRUE) {
-            imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
-        } else {
+        if (haveSeen) {
             imageResource.clearColorFilter();
+        } else {
+            imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         }
 
         ImageView image = new ImageView(context);
@@ -404,40 +428,10 @@ public class DisplayHelper {
         return String.format("Levelled up to %d! Unlocked %d item(s), %d trader(s), and %d slot(s).", newLevel, numItems, numTraders, numSlots);
     }
 
-    public void displayItemInfo(Long itemId, int state, View itemArea) {
-        Item item = Item.findById(Item.class, itemId);
-        List<Inventory> inventories = Select.from(Inventory.class).where(
-                Condition.prop("item").eq(itemId),
-                Condition.prop("state").eq(state)).list();
-        Inventory count = new Inventory();
-
-        if (inventories.size() > 0) {
-            count = inventories.get(0);
-        } else {
-            count.setItem(itemId);
-            count.setState(state);
-            count.setQuantity(0);
-        }
-
-        TextViewPixel itemName = (TextViewPixel) itemArea.findViewById(R.id.itemName);
-        TextViewPixel itemDesc = (TextViewPixel) itemArea.findViewById(R.id.itemDesc);
-        TextViewPixel itemCount = (TextViewPixel) itemArea.findViewWithTag(itemId + "Count");
-
-        if (item.getHaveCrafted() == Constants.TRUE) {
-            itemName.setText(item.getPrefix(state) + item.getName());
-            itemDesc.setText(item.getDescription());
-            itemCount.setText(Integer.toString(count.getQuantity()));
-        } else {
-            itemName.setText(R.string.unknownText);
-            itemDesc.setText(R.string.unknownText);
-            itemCount.setText(R.string.unknownText);
-        }
-    }
-
-    public void createItemIngredientsTable(Long itemId, int state, TableLayout ingredientsTable) {
+    public void createItemIngredientsTable(Long itemID, int state, TableLayout ingredientsTable) {
         Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
-        List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
+        List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
         ingredientsTable.removeAllViews();
         ingredientsTable.setColumnStretchable(1, true);
 
@@ -451,13 +445,12 @@ public class DisplayHelper {
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
-        Item item = Item.findById(Item.class, itemId);
+        Item item = Item.findById(Item.class, itemID);
         levelRow.addView(createImageView("levels", "", 54, 54));
         levelRow.addView(createTextView("Level", 22, Color.BLACK));
         levelRow.addView(createTextView(Integer.toString(item.getLevel()), 22, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
         ingredientsTable.addView(levelRow);
-
 
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
@@ -465,12 +458,16 @@ public class DisplayHelper {
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
-            String itemName = itemIngredient.getPrefix(state) + itemIngredient.getName();
+            String itemName = "???";
+            boolean haveSeen = Inventory.haveSeen(ingredient.getIngredient(), ingredient.getIngredientState());
+            if (haveSeen) {
+                itemName = itemIngredient.getPrefix(ingredient.getIngredientState()) + itemIngredient.getName();
+            }
             TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 66, 66, itemIngredient.getHaveCrafted()));
+            row.addView(createItemImage(ingredient.getIngredient(), 66, 66, haveSeen));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));

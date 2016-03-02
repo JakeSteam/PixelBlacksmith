@@ -79,7 +79,7 @@ public class TraderActivity extends Activity {
             TableRow itemRow = new TableRow(getApplicationContext());
             Item item = Item.findById(Item.class, itemForSale.getItemID());
 
-            ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, Constants.TRUE);
+            ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, true);
             TextViewPixel itemStock = dh.createTextView(itemForSale.getStock() + " / " + itemForSale.getDefaultStock() + "x " + item.getName(), 16, Color.BLACK);
             TextViewPixel itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             itemBuy.setWidth(30);

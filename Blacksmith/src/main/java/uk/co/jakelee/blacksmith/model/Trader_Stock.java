@@ -12,7 +12,7 @@ public class Trader_Stock extends SugarRecord {
     Long traderID;
     Long itemID;
     int state;
-    int discovered;
+    boolean discovered;
     int stock;
     int defaultStock;
 
@@ -20,7 +20,7 @@ public class Trader_Stock extends SugarRecord {
 
     }
 
-    public Trader_Stock(Long traderID, Long itemID, int state, int discovered, int stock, int defaultStock) {
+    public Trader_Stock(Long traderID, Long itemID, int state, boolean discovered, int stock, int defaultStock) {
         this.traderID = traderID;
         this.itemID = itemID;
         this.state = state;
@@ -46,11 +46,11 @@ public class Trader_Stock extends SugarRecord {
         this.traderID = traderID;
     }
 
-    public int getDiscovered() {
+    public boolean getDiscovered() {
         return discovered;
     }
 
-    public void setDiscovered(int discovered) {
+    public void setDiscovered(boolean discovered) {
         this.discovered = discovered;
     }
 

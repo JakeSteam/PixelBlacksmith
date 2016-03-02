@@ -12,12 +12,11 @@ public class Item extends SugarRecord {
     int tier;
     int value;
     int level;
-    int have_crafted;
 
     public Item() {
     }
 
-    public Item(Long id, String name, String description, int type, int tier, int value, int level, int have_crafted) {
+    public Item(Long id, String name, String description, int type, int tier, int value, int level) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -25,7 +24,6 @@ public class Item extends SugarRecord {
         this.tier = tier;
         this.value = value;
         this.level = level;
-        this.have_crafted = have_crafted;
         this.save();
     }
 
@@ -83,14 +81,6 @@ public class Item extends SugarRecord {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public int getHaveCrafted() {
-        return have_crafted;
-    }
-
-    public void setHaveCrafted(int have_crafted) {
-        this.have_crafted = have_crafted;
     }
 
     public String getPrefix(int id) {

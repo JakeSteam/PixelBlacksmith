@@ -99,11 +99,6 @@ public class Inventory extends SugarRecord {
             return canCreate;
         }
 
-        if (item.getHaveCrafted() != Constants.TRUE) {
-            item.setHaveCrafted(Constants.TRUE);
-            item.save();
-        }
-
         removeItemIngredients(itemId, state);
         Pending_Inventory.addItem(itemId, state, 1, locationID);
         return Constants.SUCCESS;
@@ -147,6 +142,22 @@ public class Inventory extends SugarRecord {
         } else {
             return new Inventory(id, state, 0);
         }
+    }
+
+    public boolean haveSeen() {
+        long itemFound = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(state),
+                Condition.prop("item").eq(item)).count();
+
+        return itemFound > 0L;
+    }
+
+    public static boolean haveSeen(long item, long state) {
+        long itemFound = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(state),
+                Condition.prop("item").eq(item)).count();
+
+        return itemFound > 0L;
     }
 
     public static boolean canSellItem(Long itemId, long state, int quantity) {

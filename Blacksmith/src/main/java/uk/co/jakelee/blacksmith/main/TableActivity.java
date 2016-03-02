@@ -82,7 +82,7 @@ public class TableActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getHaveCrafted());
+            ImageView image = dh.createItemImage(item.getId(), 230, 230, Inventory.haveSeen(item.getId(), Constants.STATE_UNFINISHED));
             TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_UNFINISHED, Color.WHITE, Color.BLACK);
             count.setWidth(230);
 

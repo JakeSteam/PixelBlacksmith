@@ -83,7 +83,7 @@ public class EnchantingActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 230, 230, item.getHaveCrafted());
+            ImageView image = dh.createItemImage(item.getId(), 230, 230, Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL));
             TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
             count.setWidth(230);
 
@@ -166,17 +166,22 @@ public class EnchantingActivity extends Activity {
                 Condition.prop("type").eq(Constants.TYPE_GEM)).list();
 
         for (final Item gem : allGems) {
-            Inventory gemInventory = Inventory.getInventory(gem.getId(), Constants.STATE_NORMAL);
+            boolean haveSeen = Inventory.haveSeen(gem.getId(), Constants.STATE_NORMAL);
 
             LinearLayout gemButton = new LinearLayout(getApplicationContext());
             gemButton.setBackgroundResource(R.drawable.button_extra_wide);
             gemButton.setGravity(Gravity.CENTER);
 
-            ImageView gemImage = dh.createItemImage(gem.getId(), 90, 90, 1);
+            ImageView gemImage = dh.createItemImage(gem.getId(), 90, 90, haveSeen);
             gemImage.setPadding(0, 0, 10, 0);
             gemButton.addView(gemImage);
 
-            String buttonText = gem.getName() + " (x" + gemInventory.getQuantity() + ")";
+            int quantityOwned = 0;
+            if (haveSeen) {
+                quantityOwned = Inventory.getInventory(gem.getId(), Constants.STATE_NORMAL).getQuantity();
+            }
+
+            String buttonText = gem.getName() + " (x" + quantityOwned + ")";
             TextView buttonTextView = dh.createTextView(buttonText, 30);
             gemButton.addView(buttonTextView);
             gemButton.setTag(gem.getId());
