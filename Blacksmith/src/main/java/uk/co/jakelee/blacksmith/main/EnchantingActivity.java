@@ -177,11 +177,13 @@ public class EnchantingActivity extends Activity {
             gemButton.addView(gemImage);
 
             int quantityOwned = 0;
+            String gemName = "???";
             if (haveSeen) {
                 quantityOwned = Inventory.getInventory(gem.getId(), Constants.STATE_NORMAL).getQuantity();
+                gemName = gem.getName();
             }
 
-            String buttonText = gem.getName() + " (x" + quantityOwned + ")";
+            String buttonText = gemName + " (x" + quantityOwned + ")";
             TextView buttonTextView = dh.createTextView(buttonText, 30);
             gemButton.addView(buttonTextView);
             gemButton.setTag(gem.getId());
