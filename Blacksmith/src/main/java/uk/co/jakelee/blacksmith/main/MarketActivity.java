@@ -21,7 +21,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
-import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Type;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
 public class MarketActivity extends Activity {
@@ -39,14 +39,14 @@ public class MarketActivity extends Activity {
 
     public void createTraderLists() {
         int playerLevel = Player_Info.getPlayerLevel();
-        List<Trader> discoveredTraders = Select.from(Trader.class).where(
+        List<Trader_Type> discoveredTraders = Select.from(Trader_Type.class).where(
                 Condition.prop("discovered").eq(Constants.TRUE),
                 Condition.prop("location").eq(Constants.LOCATION_SELLING),
                 Condition.prop("level").lt(playerLevel + 1)).list();
 
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
 
-        for (Trader trader : discoveredTraders) {
+        for (Trader_Type trader : discoveredTraders) {
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
             View inflatedView = inflater.inflate(R.layout.custom_trader_preview, null);
             TableRow traderRow = (TableRow) inflatedView.findViewById(R.id.traderRow);
@@ -75,9 +75,9 @@ public class MarketActivity extends Activity {
         }
     }
 
-    public void populateTraderOfferings(LinearLayout offeringsContainer, long traderID) {
+    public void populateTraderOfferings(LinearLayout offeringsContainer, long traderType) {
         List<Trader_Stock> traderOfferings = Select.from(Trader_Stock.class).where(
-                Condition.prop("trader_ID").eq(traderID)).list();
+                Condition.prop("trader_type").eq(traderType)).list();
 
         for (Trader_Stock stock : traderOfferings) {
             ImageView itemImage = dh.createItemImage(stock.getItemID(), 100, 100, stock.getDiscovered());

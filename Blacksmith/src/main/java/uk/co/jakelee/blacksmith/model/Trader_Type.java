@@ -2,7 +2,7 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
-public class Trader extends SugarRecord {
+public class Trader_Type extends SugarRecord {
     int shopkeeper;
     int location;
     String name;
@@ -10,10 +10,10 @@ public class Trader extends SugarRecord {
     int level;
     boolean discovered;
 
-    public Trader() {
+    public Trader_Type() {
     }
 
-    public Trader(int shopkeeper, int location, String name, String description, int level, boolean discovered) {
+    public Trader_Type(int shopkeeper, int location, String name, String description, int level, boolean discovered) {
         this.shopkeeper = shopkeeper;
         this.location = location;
         this.name = name;

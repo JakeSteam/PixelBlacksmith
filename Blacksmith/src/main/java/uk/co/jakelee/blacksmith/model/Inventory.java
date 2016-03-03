@@ -201,12 +201,12 @@ public class Inventory extends SugarRecord {
         return Constants.SUCCESS;
     }
 
-    public static int canBuyItem(Long itemID, int state, Long traderID, int price) {
+    public static int canBuyItem(Long itemID, int state, Long traderType, int price) {
         Inventory coins = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
 
         Trader_Stock itemStock = Select.from(Trader_Stock.class).where(
-                Condition.prop("trader_id").eq(traderID),
+                Condition.prop("trader_type").eq(traderType),
                 Condition.prop("item_id").eq(itemID),
                 Condition.prop("state").eq(state)).first();
 
@@ -219,8 +219,8 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static int buyItem(Long itemID, int state, Long traderID, int price) {
-        int canBuyResponse = canBuyItem(itemID, state, traderID, price);
+    public static int buyItem(Long itemID, int state, Long traderType, int price) {
+        int canBuyResponse = canBuyItem(itemID, state, traderType, price);
         if (canBuyResponse != Constants.SUCCESS) {
             return canBuyResponse;
         } else if (!Slot.hasAvailableSlot(Constants.LOCATION_MARKET)) {
@@ -233,7 +233,7 @@ public class Inventory extends SugarRecord {
 
             // Remove stock
             Trader_Stock itemStock = Select.from(Trader_Stock.class).where(
-                    Condition.prop("trader_id").eq(traderID),
+                    Condition.prop("trader_type").eq(traderType),
                     Condition.prop("item_id").eq(itemID),
                     Condition.prop("state").eq(state)).first();
             itemStock.setStock(itemStock.getStock() - 1);

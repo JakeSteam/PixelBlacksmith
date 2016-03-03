@@ -9,7 +9,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Trader_Stock extends SugarRecord {
-    Long traderID;
+    Long traderType;
     Long itemID;
     int state;
     boolean discovered;
@@ -20,8 +20,8 @@ public class Trader_Stock extends SugarRecord {
 
     }
 
-    public Trader_Stock(Long traderID, Long itemID, int state, boolean discovered, int stock, int defaultStock) {
-        this.traderID = traderID;
+    public Trader_Stock(Long traderType, Long itemID, int state, boolean discovered, int stock, int defaultStock) {
+        this.traderType = traderType;
         this.itemID = itemID;
         this.state = state;
         this.discovered = discovered;
@@ -38,12 +38,12 @@ public class Trader_Stock extends SugarRecord {
         this.itemID = itemID;
     }
 
-    public Long getTraderID() {
-        return traderID;
+    public Long getTraderType() {
+        return traderType;
     }
 
-    public void setTraderID(Long traderID) {
-        this.traderID = traderID;
+    public void setTraderType(Long traderType) {
+        this.traderType = traderType;
     }
 
     public boolean getDiscovered() {
