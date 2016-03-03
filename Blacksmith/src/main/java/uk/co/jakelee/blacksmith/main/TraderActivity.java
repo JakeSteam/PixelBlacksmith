@@ -55,7 +55,7 @@ public class TraderActivity extends Activity {
     }
 
     public void createTrader() {
-        Character traderCharacter = Character.findById(Character.class, trader.getTrader());
+        Character traderCharacter = Character.findById(Character.class, trader.getShopkeeper());
 
         int drawableID = getApplicationContext().getResources().getIdentifier("character" + traderCharacter.getId(), "drawable", getApplicationContext().getPackageName());
         ImageView traderImage = (ImageView) findViewById(R.id.traderImage);

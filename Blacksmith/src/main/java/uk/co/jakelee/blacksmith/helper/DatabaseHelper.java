@@ -541,11 +541,11 @@ public class DatabaseHelper {
         new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", false);
 
-        new Trader(0L, 1, 3, "Poor Ore", "Full of low quality ore.", 1, 1);
-        new Trader(1L, 2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 1);
-        new Trader(2L, 1, 3, "Rare Ore", "This trader is too rare to be found.", 5, 1);
-        new Trader(3L, 1, 3, "Average Ore", "The ore in store is not too poor.", 10, 1);
-        new Trader(4L, 2, 3, "Silver Miner", "Cor, ore!", 10, 1);
+        new Trader(1, 3, "Poor Ore", "Full of low quality ore.", 1, true);
+        new Trader(2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, true);
+        new Trader(1, 3, "Rare Ore", "This trader is too rare to be found.", 5, true);
+        new Trader(1, 3, "Average Ore", "The ore in store is not too poor.", 10, true);
+        new Trader(2, 3, "Silver Miner", "Cor, ore!", 10, true);
 
         new Trader_Stock(1L, 1L, 1, true, 5, 50);
         new Trader_Stock(1L, 2L, 1, true, 5, 50);
