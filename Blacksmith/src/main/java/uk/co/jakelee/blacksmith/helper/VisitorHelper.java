@@ -14,6 +14,8 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
+import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Type;
 import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -56,11 +58,19 @@ public class VisitorHelper {
     public static int getNumberNewVisitors(long currentTime) {
         long lastSpawn = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
+        int currentVisitors = Visitor.listAll(Visitor.class).size();
+        int maxVisitors = Constants.MAXIMUM_VISITORS;
+        int maximumNewVisitors = maxVisitors - currentVisitors;
 
-        long difference = currentTime - lastSpawn;
-        long numberOfVisitors = difference / Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+        long timeDifference = currentTime - lastSpawn;
+        long possibleNewVisitors = timeDifference / Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
 
-        return (int) numberOfVisitors;
+        // Make sure we don't return more than possible
+        if (possibleNewVisitors >= maximumNewVisitors) {
+            return maximumNewVisitors;
+        } else {
+            return (int) possibleNewVisitors;
+        }
     }
 
     public static void createNewVisitor() {
@@ -266,10 +276,41 @@ public class VisitorHelper {
     }
 
     public static int getVisitorDismissCost(long visitorID) {
-        List<Visitor_Demand> unfulfilledDemands = Visitor_Demand.find(Visitor_Demand.class, "quantity_provided >= quantity AND visitor_id = " + visitorID);
-        int numberUnfulfilled = unfulfilledDemands.size();
+        int unfulfilledDemands = Visitor_Demand.find(Visitor_Demand.class, "quantity_provided >= quantity AND visitor_id = " + visitorID).size();
 
         int playerLevel = Player_Info.getPlayerLevel();
-        return playerLevel * 10 * numberUnfulfilled;
+        return playerLevel * 10 * unfulfilledDemands;
+    }
+
+    public static void createNewTrader() {
+        long arrivalTime = System.currentTimeMillis();
+        long departureTime = DateHelper.minutesToMilliseconds(getRandomNumber(Constants.MINIMUM_VISITOR_MINUTES, Constants.MAXIMUM_VISITOR_MINUTES));
+        Trader_Type traderType = selectTraderType();
+
+        Trader newTrader = new Trader(arrivalTime, departureTime, traderType.getId());
+        newTrader.save();
+    }
+
+    public static Trader_Type selectTraderType () {
+        Trader_Type selectedTraderType = new Trader_Type();
+
+        List<Trader_Type> traderTypes = Trader_Type.findWithQuery(Trader_Type.class,
+                "SELECT * FROM TraderType WHERE id NOT IN (SELECT visitor_type FROM Trader)");
+
+        double totalWeighting = 0.0;
+        for (Trader_Type traderType : traderTypes) {
+            totalWeighting += traderType.getWeighting();
+        }
+
+        double randomNumber = Math.random() * totalWeighting;
+        double probabilityIterator = 0.0;
+        for (Trader_Type traderType :  traderTypes) {
+            probabilityIterator += traderType.getWeighting();
+            if (probabilityIterator >= randomNumber) {
+                selectedTraderType = traderType;
+                break;
+            }
+        }
+        return selectedTraderType;
     }
 }

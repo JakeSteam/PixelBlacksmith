@@ -8,18 +8,18 @@ public class Trader_Type extends SugarRecord {
     String name;
     String description;
     int level;
-    boolean discovered;
+    int weighting;
 
     public Trader_Type() {
     }
 
-    public Trader_Type(int shopkeeper, int location, String name, String description, int level, boolean discovered) {
+    public Trader_Type(int shopkeeper, int location, String name, String description, int level, int weighting) {
         this.shopkeeper = shopkeeper;
         this.location = location;
         this.name = name;
         this.description = description;
         this.level = level;
-        this.discovered = discovered;
+        this.weighting = weighting;
         this.save();
     }
 
@@ -63,11 +63,11 @@ public class Trader_Type extends SugarRecord {
         this.level = level;
     }
 
-    public boolean getDiscovered() {
-        return discovered;
+    public int getWeighting() {
+        return weighting;
     }
 
-    public void setDiscovered(boolean discovered) {
-        this.discovered = discovered;
+    public void setWeighting(int weighting) {
+        this.weighting = weighting;
     }
 }
