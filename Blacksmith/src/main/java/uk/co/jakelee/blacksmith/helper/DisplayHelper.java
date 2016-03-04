@@ -37,7 +37,7 @@ import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slot;
-import uk.co.jakelee.blacksmith.model.Trader_Type;
+import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class DisplayHelper {
@@ -420,7 +420,7 @@ public class DisplayHelper {
     public String getLevelUpText(int newLevel) {
         Long numItems = Select.from(Item.class).where(
                 Condition.prop("level").eq(newLevel)).count();
-        Long numTraders = Select.from(Trader_Type.class).where(
+        Long numTraders = Select.from(Trader.class).where(
                 Condition.prop("level").eq(newLevel)).count();
         Long numSlots = Select.from(Slot.class).where(
                 Condition.prop("level").eq(newLevel)).count();

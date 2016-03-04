@@ -14,8 +14,6 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
-import uk.co.jakelee.blacksmith.model.Trader;
-import uk.co.jakelee.blacksmith.model.Trader_Type;
 import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -280,37 +278,5 @@ public class VisitorHelper {
 
         int playerLevel = Player_Info.getPlayerLevel();
         return playerLevel * 10 * unfulfilledDemands;
-    }
-
-    public static void createNewTrader() {
-        long arrivalTime = System.currentTimeMillis();
-        long departureTime = DateHelper.minutesToMilliseconds(getRandomNumber(Constants.MINIMUM_VISITOR_MINUTES, Constants.MAXIMUM_VISITOR_MINUTES));
-        Trader_Type traderType = selectTraderType();
-
-        Trader newTrader = new Trader(arrivalTime, departureTime, traderType.getId());
-        newTrader.save();
-    }
-
-    public static Trader_Type selectTraderType () {
-        Trader_Type selectedTraderType = new Trader_Type();
-
-        List<Trader_Type> traderTypes = Trader_Type.findWithQuery(Trader_Type.class,
-                "SELECT * FROM TraderType WHERE id NOT IN (SELECT visitor_type FROM Trader)");
-
-        double totalWeighting = 0.0;
-        for (Trader_Type traderType : traderTypes) {
-            totalWeighting += traderType.getWeighting();
-        }
-
-        double randomNumber = Math.random() * totalWeighting;
-        double probabilityIterator = 0.0;
-        for (Trader_Type traderType :  traderTypes) {
-            probabilityIterator += traderType.getWeighting();
-            if (probabilityIterator >= randomNumber) {
-                selectedTraderType = traderType;
-                break;
-            }
-        }
-        return selectedTraderType;
     }
 }

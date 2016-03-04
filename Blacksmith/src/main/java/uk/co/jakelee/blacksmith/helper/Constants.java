@@ -13,8 +13,9 @@ public class Constants {
     public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWNS = 900000; // 15 min
     public static final int MAXIMUM_VISITORS = 10;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
-    public static final int MINIMUM_VISITOR_MINUTES = 1;
-    public static final int MAXIMUM_VISITOR_MINUTES = 360;
+    public static final int MINIMUM_TRADER_MINUTES = 1;
+    public static final int MAXIMUM_TRADER_MINUTES = 360;
+    public static final int MAXIMUM_TRADERS = 3;
     public static final int CRAFT_TIME_MULTIPLIER = 3000;
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;

@@ -27,12 +27,12 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
-import uk.co.jakelee.blacksmith.model.Trader_Type;
+import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
 public class TraderActivity extends Activity {
     public static DisplayHelper dh;
-    public static Trader_Type trader;
+    public static Trader trader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class TraderActivity extends Activity {
         int traderID = Integer.parseInt(intent.getStringExtra(MarketActivity.TRADER_TO_LOAD));
 
         if (traderID > 0) {
-            trader = Trader_Type.findById(Trader_Type.class, traderID);
+            trader = Trader.findById(Trader.class, traderID);
             createTraderInterface();
         }
     }

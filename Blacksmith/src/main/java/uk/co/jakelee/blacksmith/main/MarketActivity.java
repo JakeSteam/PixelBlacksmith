@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -20,8 +21,8 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
-import uk.co.jakelee.blacksmith.model.Player_Info;
-import uk.co.jakelee.blacksmith.model.Trader_Type;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
 public class MarketActivity extends Activity {
@@ -33,20 +34,29 @@ public class MarketActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         dh = DisplayHelper.getInstance(getApplicationContext());
-
-        createTraderLists();
     }
 
-    public void createTraderLists() {
-        int playerLevel = Player_Info.getPlayerLevel();
-        List<Trader_Type> discoveredTraders = Select.from(Trader_Type.class).where(
-                Condition.prop("discovered").eq(Constants.TRUE),
-                Condition.prop("location").eq(Constants.LOCATION_SELLING),
-                Condition.prop("level").lt(playerLevel + 1)).list();
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        List<Trader> newTraders = Trader.checkTraderStatus(Constants.LOCATION_MARKET);
+        populateTraderList();
+
+        for (Trader trader : newTraders) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, "The " + trader.getName() + " trader has arrived.");
+        }
+    }
+
+    public void populateTraderList() {
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
+        marketLayout.removeAllViews();
 
-        for (Trader_Type trader : discoveredTraders) {
+        List<Trader> traders = Select.from(Trader.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_MARKET),
+                Condition.prop("arrival_time").gt(0)).list();
+
+        for (Trader trader : traders) {
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
             View inflatedView = inflater.inflate(R.layout.custom_trader_preview, null);
             TableRow traderRow = (TableRow) inflatedView.findViewById(R.id.traderRow);

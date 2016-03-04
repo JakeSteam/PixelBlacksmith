@@ -9,7 +9,7 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
-import uk.co.jakelee.blacksmith.model.Trader_Type;
+import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
@@ -541,11 +541,11 @@ public class DatabaseHelper {
         new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", false);
 
-        new Trader_Type(1, 3, "Poor Ore", "Full of low quality ore.", 1, 60);
-        new Trader_Type(2, 3, "Less Poor Ore", "The ore here is not so poor.", 5, 40);
-        new Trader_Type(1, 3, "Rare Ore", "This trader is too rare to be found.", 5, 5);
-        new Trader_Type(1, 3, "Average Ore", "The ore in store is not too poor.", 10, 15);
-        new Trader_Type(2, 3, "Silver Miner", "Cor, ore!", 10, 5);
+        new Trader(1, 4, "Poor Ore", "Full of low quality ore.", 1, 60, 1457066960237L);
+        new Trader(2, 4, "Less Poor Ore", "The ore here is not so poor.", 5, 40, 1457066960237L);
+        new Trader(1, 4, "Rare Ore", "This trader is too rare to be found.", 5, 5, 1457066960237L);
+        new Trader(1, 4, "Average Ore", "The ore in store is not too poor.", 10, 15, 0L);
+        new Trader(2, 4, "Silver Miner", "Cor, ore!", 10, 5, 0L);
 
         new Trader_Stock(1L, 1L, 1, true, 5, 50);
         new Trader_Stock(1L, 2L, 1, true, 5, 50);
