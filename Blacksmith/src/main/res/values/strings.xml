@@ -36,6 +36,7 @@
 
     <string name="unknownText">\???</string>
 
+    <string name="noTraders">The marketplace is empty!\n\nThe traders should return when they have restocked.</string>
     <string name="craftFailure">You cannot craft this.</string>
     <string name="craftAdd">Item added to craft queue.</string>
     <string name="enchantAdd">Item added to enchanting queue.</string>

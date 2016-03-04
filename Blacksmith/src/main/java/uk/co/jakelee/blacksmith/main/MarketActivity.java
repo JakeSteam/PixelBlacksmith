@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -19,9 +18,9 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
-import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -40,12 +39,8 @@ public class MarketActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        List<Trader> newTraders = Trader.checkTraderStatus(Constants.LOCATION_MARKET);
+        Trader.checkTraderStatus(this, Constants.LOCATION_MARKET);
         populateTraderList();
-
-        for (Trader trader : newTraders) {
-            ToastHelper.showToast(this, Toast.LENGTH_SHORT, "The " + trader.getName() + " trader has arrived.");
-        }
     }
 
     public void populateTraderList() {
@@ -83,6 +78,9 @@ public class MarketActivity extends Activity {
             marketLayout.addView(inflatedView);
 
         }
+
+        TextViewPixel noTradersMessage = (TextViewPixel) findViewById(R.id.noTradersMessage);
+        noTradersMessage.setVisibility(traders.size() > 0 ? View.GONE : View.VISIBLE);
     }
 
     public void populateTraderOfferings(LinearLayout offeringsContainer, long traderType) {

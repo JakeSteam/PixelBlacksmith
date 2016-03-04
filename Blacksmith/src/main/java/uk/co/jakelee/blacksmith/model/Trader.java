@@ -1,13 +1,17 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 
 public class Trader extends SugarRecord {
     int shopkeeper;
@@ -88,35 +92,38 @@ public class Trader extends SugarRecord {
         this.arrivalTime = arrivalTime;
     }
 
-    public static List<Trader> checkTraderStatus(long location) {
+    public static void checkTraderStatus(Context context, long location) {
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(location),
                 Condition.prop("arrival_time").gt(0)).list();
-        List<Trader> newTraders = new ArrayList<Trader>();
+        Iterator<Trader> tradersIter = traders.iterator();
+        int numberOfTraders = traders.size();
 
         // Remove any completed traders
-        for (Trader trader : traders) {
+        while (tradersIter.hasNext()) {
+            Trader trader = tradersIter.next();
             if (trader.isOutOfStock()) {
-                trader.delete();
-                traders.remove(trader);
+                trader.setArrivalTime(-1L);
+                trader.save();
+                tradersIter.remove();
+                numberOfTraders--;
             }
         }
 
         // Add any necessary new traders
-        int numberOfTraders = traders.size();
         while (numberOfTraders < Constants.MAXIMUM_TRADERS) {
-            newTraders.add(Trader.makeTraderAppear());
+            Trader.makeTraderAppear(context);
             numberOfTraders++;
         }
-
-        return newTraders;
     }
 
-    public static Trader makeTraderAppear() {
+    public static void makeTraderAppear(Context context) {
         Trader traderToArrive = selectTraderType();
-        traderToArrive.setArrivalTime(System.currentTimeMillis());
-        traderToArrive.save();
-        return traderToArrive;
+        if (traderToArrive.getName() != null) {
+            traderToArrive.setArrivalTime(System.currentTimeMillis());
+            traderToArrive.save();
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The " + traderToArrive.getName() + " trader has arrived.");
+        }
     }
 
     public static Trader selectTraderType () {

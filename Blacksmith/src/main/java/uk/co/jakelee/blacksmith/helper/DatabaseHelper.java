@@ -547,12 +547,12 @@ public class DatabaseHelper {
         new Trader(1, 4, "Average Ore", "The ore in store is not too poor.", 10, 15, 0L);
         new Trader(2, 4, "Silver Miner", "Cor, ore!", 10, 5, 0L);
 
-        new Trader_Stock(1L, 1L, 1, true, 5, 50);
-        new Trader_Stock(1L, 2L, 1, true, 5, 50);
-        new Trader_Stock(2L, 1L, 1, true, 10, 100);
-        new Trader_Stock(2L, 2L, 1, true, 10, 100);
-        new Trader_Stock(3L, 3L, 1, true, 10, 100);
-        new Trader_Stock(4L, 2L, 1, true, 10, 100);
+        new Trader_Stock(1L, 1L, 1, true, 1, 50);
+        new Trader_Stock(1L, 2L, 1, true, 1, 50);
+        new Trader_Stock(2L, 1L, 1, true, 1, 100);
+        new Trader_Stock(2L, 2L, 1, true, 1, 100);
+        new Trader_Stock(3L, 3L, 1, true, 1, 100);
+        new Trader_Stock(4L, 2L, 1, true, 1, 100);
         new Trader_Stock(5L, 9L, 1, true, 1, 10);
         new Trader_Stock(5L, 8L, 1, true, 1, 10);
 

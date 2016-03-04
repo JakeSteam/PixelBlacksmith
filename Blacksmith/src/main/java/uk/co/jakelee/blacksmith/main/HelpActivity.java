@@ -139,7 +139,9 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Market\n", 26));
         layout.addView(dh.createTextView("Raw resources (ore, some secondaries) are generally purchased from the market.\n", 22));
         layout.addView(dh.createTextView("Traders come and go, each with different prices and specialities. If you buy a lot of an item, you'll find the trader unable to resupply for a few hours.\n", 22));
-        layout.addView(dh.createTextView("Compare prices between traders to ensure you're getting the best deal, but make sure to trade before they leave for the day.\n", 22));
+        layout.addView(dh.createTextView("Compare prices between traders to ensure you're getting the best deal, but make sure to trade before the next restock.\n", 22));
+        layout.addView(dh.createTextView("Only visitors with stock will be displayed, so buying all stock from more common traders is a good way to get rarer traders.\n", 22));
+        layout.addView(dh.createTextView("If a lot of trades are conducted with a visitor, more items will unlock for sale.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to see the full list of traders.\n", 22));
     }
 
