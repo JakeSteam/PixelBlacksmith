@@ -88,10 +88,15 @@ public class Trader_Stock extends SugarRecord {
     public static void restockTraders() {
         new Thread(new Runnable() {
             public void run() {
-                List<Trader_Stock> allTraders = Trader_Stock.listAll(Trader_Stock.class);
+                List<Trader_Stock> traderStocks = Trader_Stock.listAll(Trader_Stock.class);
+                for (Trader_Stock traderStock : traderStocks) {
+                    traderStock.setStock(traderStock.getDefaultStock());
+                    traderStock.save();
+                }
 
-                for (Trader_Stock trader : allTraders) {
-                    trader.setStock(trader.getDefaultStock());
+                List<Trader> traders = Trader.listAll(Trader.class);
+                for (Trader trader : traders) {
+                    trader.setArrivalTime(0L);
                     trader.save();
                 }
 

@@ -102,9 +102,11 @@ public class Trader extends SugarRecord {
             }
         }
 
-        // Add any new traders
-        if (traders.size() < Constants.MAXIMUM_TRADERS) {
+        // Add any necessary new traders
+        int numberOfTraders = traders.size();
+        while (numberOfTraders < Constants.MAXIMUM_TRADERS) {
             newTraders.add(Trader.makeTraderAppear());
+            numberOfTraders++;
         }
 
         return newTraders;
