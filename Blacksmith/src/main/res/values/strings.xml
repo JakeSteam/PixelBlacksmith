@@ -46,6 +46,7 @@
     <string name="statisticsSmelted">Items Smelted:</string>
     <string name="statisticsCrafted">Items Crafted:</string>
     <string name="statisticsTraded">Items Traded:</string>
+    <string name="statisticsBought">Items Bought:</string>
     <string name="statisticsSold">Items Sold:</string>
     <string name="statisticsVisitors">Visitors Completed:</string>
     <string name="statisticsCoins">Coins Earned:</string>

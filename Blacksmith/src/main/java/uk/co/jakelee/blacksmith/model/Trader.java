@@ -19,20 +19,22 @@ public class Trader extends SugarRecord {
     String name;
     String description;
     int level;
+    int status;
+    int purchases;
     int weighting;
-    long arrivalTime;
 
     public Trader() {
     }
 
-    public Trader(int shopkeeper, int location, String name, String description, int level, int weighting, long arrivalTime) {
+    public Trader(int shopkeeper, int location, String name, String description, int level, int status, int purchases, int weighting) {
         this.shopkeeper = shopkeeper;
         this.location = location;
         this.name = name;
         this.description = description;
         this.level = level;
+        this.status = status;
+        this.purchases = purchases;
         this.weighting = weighting;
-        this.arrivalTime = arrivalTime;
         this.save();
     }
 
@@ -76,6 +78,22 @@ public class Trader extends SugarRecord {
         this.level = level;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(int purchases) {
+        this.purchases = purchases;
+    }
+
     public int getWeighting() {
         return weighting;
     }
@@ -84,18 +102,10 @@ public class Trader extends SugarRecord {
         this.weighting = weighting;
     }
 
-    public long getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(long arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
     public static void checkTraderStatus(Context context, long location) {
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(location),
-                Condition.prop("arrival_time").gt(0)).list();
+                Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
         Iterator<Trader> tradersIter = traders.iterator();
         int numberOfTraders = traders.size();
 
@@ -103,7 +113,7 @@ public class Trader extends SugarRecord {
         while (tradersIter.hasNext()) {
             Trader trader = tradersIter.next();
             if (trader.isOutOfStock()) {
-                trader.setArrivalTime(-1L);
+                trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
                 trader.save();
                 tradersIter.remove();
                 numberOfTraders--;
@@ -120,7 +130,7 @@ public class Trader extends SugarRecord {
     public static void makeTraderAppear(Context context) {
         Trader traderToArrive = selectTraderType();
         if (traderToArrive.getName() != null) {
-            traderToArrive.setArrivalTime(System.currentTimeMillis());
+            traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The " + traderToArrive.getName() + " trader has arrived.");
         }
@@ -132,7 +142,7 @@ public class Trader extends SugarRecord {
         List<Trader> traderTypes = Select.from(Trader.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_MARKET),
                 Condition.prop("level").lt(playerLevel + 1),
-                Condition.prop("arrival_time").eq(0)).list();
+                Condition.prop("status").eq(Constants.TRADER_NOT_PRESENT)).list();
 
         double totalWeighting = 0.0;
         for (Trader traderType : traderTypes) {

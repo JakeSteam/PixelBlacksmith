@@ -49,7 +49,7 @@ public class MarketActivity extends Activity {
 
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("arrival_time").gt(0)).list();
+                Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
 
         for (Trader trader : traders) {
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
@@ -63,7 +63,7 @@ public class MarketActivity extends Activity {
             traderDescription.setText(trader.getDescription());
 
             LinearLayout traderOfferingsContainer = (LinearLayout) traderRow.findViewById(R.id.traderOfferings);
-            populateTraderOfferings(traderOfferingsContainer, trader.getId());
+            populateTraderOfferings(traderOfferingsContainer, trader);
 
             ImageView traderButton = (ImageView) traderRow.findViewById(R.id.traderButton);
             traderButton.setTag(trader.getId());
@@ -83,12 +83,13 @@ public class MarketActivity extends Activity {
         noTradersMessage.setVisibility(traders.size() > 0 ? View.GONE : View.VISIBLE);
     }
 
-    public void populateTraderOfferings(LinearLayout offeringsContainer, long traderType) {
+    public void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
         List<Trader_Stock> traderOfferings = Select.from(Trader_Stock.class).where(
-                Condition.prop("trader_type").eq(traderType)).list();
+                Condition.prop("trader_type").eq(trader.getId())).list();
 
         for (Trader_Stock stock : traderOfferings) {
-            ImageView itemImage = dh.createItemImage(stock.getItemID(), 100, 100, stock.getDiscovered());
+            boolean isUnlocked = trader.getPurchases() >= stock.getRequiredPurchases();
+            ImageView itemImage = dh.createItemImage(stock.getItemID(), 100, 100, isUnlocked);
             offeringsContainer.addView(itemImage);
         }
     }

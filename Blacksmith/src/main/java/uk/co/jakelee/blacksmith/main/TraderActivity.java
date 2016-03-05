@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -72,8 +73,8 @@ public class TraderActivity extends Activity {
         TableLayout traderItemsInfo = (TableLayout) findViewById(R.id.traderItemsInfo);
         traderItemsInfo.removeAllViews();
         List<Trader_Stock> itemsForSale = Select.from(Trader_Stock.class).where(
-                Condition.prop("discovered").eq(Constants.TRUE),
-                Condition.prop("trader_type").eq(trader.getId())).list();
+                Condition.prop("trader_type").eq(trader.getId()),
+                Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         for (Trader_Stock itemForSale : itemsForSale) {
             TableRow itemRow = new TableRow(getApplicationContext());
@@ -108,6 +109,9 @@ public class TraderActivity extends Activity {
         int buyResponse = Inventory.buyItem(itemToBuy.getId(), quantity, trader.getId(), itemToBuy.getValue());
         if (buyResponse == Constants.SUCCESS) {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", 1, itemToBuy.getName(), itemToBuy.getValue()));
+            Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
+            trader.setPurchases(trader.getPurchases() + quantity);
+            trader.save();
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
         }

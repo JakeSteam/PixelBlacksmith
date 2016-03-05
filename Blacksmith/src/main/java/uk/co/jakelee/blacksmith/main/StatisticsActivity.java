@@ -38,6 +38,9 @@ public class StatisticsActivity extends Activity {
         int itemsTraded = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsTraded")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.itemsTraded)).setText(Integer.toString(itemsTraded));
 
+        int itemsBought = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsBought")).first().getIntValue();
+        ((TextViewPixel) findViewById(R.id.itemsBought)).setText(Integer.toString(itemsBought));
+
         int itemsSold = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsSold")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.itemsSold)).setText(Integer.toString(itemsSold));
 

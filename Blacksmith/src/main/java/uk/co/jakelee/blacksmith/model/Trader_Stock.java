@@ -12,7 +12,7 @@ public class Trader_Stock extends SugarRecord {
     Long traderType;
     Long itemID;
     int state;
-    boolean discovered;
+    int requiredPurchases;
     int stock;
     int defaultStock;
 
@@ -20,11 +20,11 @@ public class Trader_Stock extends SugarRecord {
 
     }
 
-    public Trader_Stock(Long traderType, Long itemID, int state, boolean discovered, int stock, int defaultStock) {
+    public Trader_Stock(Long traderType, Long itemID, int state, int requiredPurchases, int stock, int defaultStock) {
         this.traderType = traderType;
         this.itemID = itemID;
         this.state = state;
-        this.discovered = discovered;
+        this.requiredPurchases = requiredPurchases;
         this.stock = stock;
         this.defaultStock = defaultStock;
         this.save();
@@ -46,12 +46,12 @@ public class Trader_Stock extends SugarRecord {
         this.traderType = traderType;
     }
 
-    public boolean getDiscovered() {
-        return discovered;
+    public int getRequiredPurchases() {
+        return requiredPurchases;
     }
 
-    public void setDiscovered(boolean discovered) {
-        this.discovered = discovered;
+    public void setRequiredPurchases(int requiredPurchases) {
+        this.requiredPurchases = requiredPurchases;
     }
 
     public int getState() {
@@ -96,7 +96,7 @@ public class Trader_Stock extends SugarRecord {
 
                 List<Trader> traders = Trader.listAll(Trader.class);
                 for (Trader trader : traders) {
-                    trader.setArrivalTime(0L);
+                    trader.setStatus(Constants.TRADER_NOT_PRESENT);
                     trader.save();
                 }
 

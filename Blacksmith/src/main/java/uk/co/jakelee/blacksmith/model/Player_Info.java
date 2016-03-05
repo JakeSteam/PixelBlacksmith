@@ -15,7 +15,7 @@ public class Player_Info extends SugarRecord {
     Long longValue;
 
     @Ignore
-    public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel}
+    public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel}
 
     public Player_Info() {
 

@@ -199,6 +199,7 @@ public class DatabaseHelper {
         new Player_Info("ItemsCrafted", 100);
         new Player_Info("ItemsTraded", 100);
         new Player_Info("ItemsSold", 100);
+        new Player_Info("ItemsBought", 1);
         new Player_Info("VisitorsCompleted", 100);
         new Player_Info("DateRestocked", System.currentTimeMillis());
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
@@ -541,20 +542,20 @@ public class DatabaseHelper {
         new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", false);
 
-        new Trader(1, 4, "Poor Ore", "Full of low quality ore.", 1, 60, 0L);
-        new Trader(2, 4, "Less Poor Ore", "The ore here is not so poor.", 5, 40, 0L);
-        new Trader(1, 4, "Rare Ore", "This trader is too rare to be found.", 5, 5, 0L);
-        new Trader(1, 4, "Average Ore", "The ore in store is not too poor.", 10, 15, 0L);
-        new Trader(2, 4, "Silver Miner", "Cor, ore!", 10, 5, 0L);
+        new Trader(1, 4, "Poor Ore", "Full of low quality ore.", 1, 0, 0, 60);
+        new Trader(2, 4, "Less Poor Ore", "The ore here is not so poor.", 5, 0, 0, 40);
+        new Trader(1, 4, "Rare Ore", "This trader is too rare to be found.", 5, 0, 0, 5);
+        new Trader(1, 4, "Average Ore", "The ore in store is not too poor.", 10, 0, 0, 15);
+        new Trader(2, 4, "Silver Miner", "Cor, ore!", 10, 0, 0, 5);
 
-        new Trader_Stock(1L, 1L, 1, true, 1, 50);
-        new Trader_Stock(1L, 2L, 1, true, 1, 50);
-        new Trader_Stock(2L, 1L, 1, true, 1, 100);
-        new Trader_Stock(2L, 2L, 1, true, 1, 100);
-        new Trader_Stock(3L, 3L, 1, true, 1, 100);
-        new Trader_Stock(4L, 2L, 1, true, 1, 100);
-        new Trader_Stock(5L, 9L, 1, true, 1, 10);
-        new Trader_Stock(5L, 8L, 1, true, 1, 10);
+        new Trader_Stock(1L, 1L, 1, 0, 5, 50);
+        new Trader_Stock(1L, 2L, 1, 1, 5, 50);
+        new Trader_Stock(2L, 1L, 1, 0, 10, 100);
+        new Trader_Stock(2L, 2L, 1, 10, 10, 100);
+        new Trader_Stock(3L, 3L, 1, 0, 10, 100);
+        new Trader_Stock(4L, 2L, 1, 0, 10, 100);
+        new Trader_Stock(5L, 9L, 1, 0, 1, 10);
+        new Trader_Stock(5L, 8L, 1, 1, 1, 10);
 
         new Slot(1, 0, 0);
         new Slot(1, 5, 0);
