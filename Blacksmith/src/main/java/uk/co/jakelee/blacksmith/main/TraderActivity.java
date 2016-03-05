@@ -77,11 +77,14 @@ public class TraderActivity extends Activity {
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         for (Trader_Stock itemForSale : itemsForSale) {
-            TableRow itemRow = new TableRow(getApplicationContext());
             Item item = Item.findById(Item.class, itemForSale.getItemID());
+            TableRow itemRow = new TableRow(getApplicationContext());
 
             ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, true);
-            TextViewPixel itemStock = dh.createTextView(itemForSale.getStock() + " / " + itemForSale.getDefaultStock() + "x " + item.getName(), 16, Color.BLACK);
+
+            TextViewPixel itemStock = dh.createTextView(item.getName() + "\n" + itemForSale.getStock() + " / " + itemForSale.getDefaultStock() + "x ", 20, Color.BLACK);
+            itemStock.setPadding(0, 0, 0, 10);
+
             TextViewPixel itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
             itemBuy.setWidth(30);
             itemBuy.setShadowLayer(10, 0, 0, Color.WHITE);
@@ -108,7 +111,7 @@ public class TraderActivity extends Activity {
 
         int buyResponse = Inventory.buyItem(itemToBuy.getId(), quantity, trader.getId(), itemToBuy.getValue());
         if (buyResponse == Constants.SUCCESS) {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", 1, itemToBuy.getName(), itemToBuy.getValue()));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", quantity, itemToBuy.getName(), itemToBuy.getValue()));
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
             trader.setPurchases(trader.getPurchases() + quantity);
             trader.save();

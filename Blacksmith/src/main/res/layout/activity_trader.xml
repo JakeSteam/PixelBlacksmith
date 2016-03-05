@@ -79,7 +79,8 @@
         android:layout_below="@id/traderInfo"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:stretchColumns="1"/>
+        android:stretchColumns="1"
+        android:shrinkColumns="1"/>
 
 </RelativeLayout>
 
