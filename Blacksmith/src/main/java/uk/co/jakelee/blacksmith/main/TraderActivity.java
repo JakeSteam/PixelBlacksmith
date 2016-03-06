@@ -17,6 +17,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -108,7 +109,7 @@ public class TraderActivity extends Activity {
     public void clickBuy(View v) {
         long itemID = (long) v.getTag(R.id.itemID);
         int itemStock = (int) v.getTag(R.id.itemStock);
-        dh.confirmItemBuy(getApplicationContext(), this, trader, itemID, itemStock);
+        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, trader, itemID, itemStock);
         createItemList();
     }
 

@@ -24,6 +24,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
@@ -200,7 +201,7 @@ public class VisitorActivity extends Activity {
     }
 
     public void dismissVisitor(View view) {
-        dh.confirmVisitorDismiss(getApplicationContext(), visitor, this);
+        AlertDialogHelper.confirmVisitorDismiss(getApplicationContext(), visitor, this);
     }
 
     public String createVisitorReward(Visitor visitor, int numRewards) {
