@@ -98,8 +98,6 @@ public class Inventory extends SugarRecord {
     }
 
     public static int tryCreateItem(Long itemId, long state, Long locationID) {
-        Item item = Item.findById(Item.class, itemId);
-
         if (!Slot.hasAvailableSlot(locationID)) {
             return Constants.ERROR_NO_SPARE_SLOTS;
         }

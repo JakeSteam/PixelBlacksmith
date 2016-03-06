@@ -271,7 +271,7 @@ public class DisplayHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int quantity = 1;
 
-                int buyResponse = Inventory.buyItem(item.getId(), quantity, trader.getId(), item.getValue());
+                int buyResponse = Inventory.buyItem(item.getId(), Constants.STATE_NORMAL, trader.getId(), item.getValue());
                 if (buyResponse == Constants.SUCCESS) {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", quantity, itemName, itemValue));
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
@@ -285,13 +285,23 @@ public class DisplayHelper {
 
         alertDialog.setNegativeButton("Buy Max", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                int quantity = itemStock;
+                int itemsBought = 0;
+                int buyResponse = Constants.ERROR_NO_ITEMS;
+                boolean successful = true;
 
-                int buyResponse = Inventory.buyItem(item.getId(), quantity, trader.getId(), item.getValue());
-                if (buyResponse == Constants.SUCCESS) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", quantity, itemName, itemValue));
-                    Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
-                    trader.setPurchases(trader.getPurchases() + quantity);
+                while (successful) {
+                    buyResponse = Inventory.buyItem(item.getId(), Constants.STATE_NORMAL, trader.getId(), item.getValue());
+                    if (buyResponse == Constants.SUCCESS) {
+                        itemsBought++;
+                    } else {
+                        successful = false;
+                    }
+                }
+
+                if (itemsBought > 0) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", itemsBought, itemName, itemValue * itemsBought));
+                    Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
+                    trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
