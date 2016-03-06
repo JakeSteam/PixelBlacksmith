@@ -71,6 +71,9 @@ public class StatisticsActivity extends Activity {
         int biggestTrade = Select.from(Visitor_Stats.class).orderBy("best_item_value DESC").first().getBestItemValue();
         ((TextViewPixel) findViewById(R.id.biggestTrade)).setText(Integer.toString(biggestTrade));
 
+        int upgradesBought = Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue();
+        ((TextViewPixel) findViewById(R.id.upgradesBought)).setText(Integer.toString(upgradesBought));
+
     }
 
     public void openHelp(View view) {

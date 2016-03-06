@@ -9,12 +9,13 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
-import uk.co.jakelee.blacksmith.model.Trader;
-import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
+import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Type;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
@@ -206,6 +207,7 @@ public class DatabaseHelper {
         new Player_Info("CoinsEarned", 100);
         new Player_Info("DateStarted", System.currentTimeMillis());
         new Player_Info("SavedLevel", 10);
+        new Player_Info("UpgradesBought", 5);
 
         // Bars
         new Recipe(11L, 1L, 1L, 1L, 1);
@@ -620,6 +622,13 @@ public class DatabaseHelper {
         new Type(20L, "Gem", 1, 5);
         new Type(21L, "Food", 2, 30);
         new Type(100L, "Internal", 0, 0);
+
+        new Upgrade("Visitor Spawn Time", "mins", 1000, 25, 10, 25);
+        new Upgrade("Shop Restock Time", "hours", 250, 24, 2, 20);
+        new Upgrade("Maximum Visitors", "visitors", 1000, 2, 10, 3);
+        new Upgrade("Maximum Traders", "traders", 250, 3, 10, 3);
+        new Upgrade("Gold Bonus", "%", 250, 0, 20, 0);
+        new Upgrade("XP Bonus", "%", 250, 0, 20, 0);
 
         new Visitor_Stats(1L, 99, 1L, 1L, 1, 1452022352000L, 1454841674000L);
         new Visitor_Stats(2L, 99, 2L, 2L, 2, 1452022352000L, 1454841674000L);

@@ -41,8 +41,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/upgradeTitle">
 
-        </ScrollView>
+            <TableLayout
+                android:id="@+id/upgradeTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:stretchColumns="0"
+                android:shrinkColumns="0"/>
 
+        </ScrollView>
     </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
