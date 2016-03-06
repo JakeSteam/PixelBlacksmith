@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemRow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/itemImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:id="@+id/itemBuy"
+        android:background="@drawable/button"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="Buy"/>
+</TableRow>

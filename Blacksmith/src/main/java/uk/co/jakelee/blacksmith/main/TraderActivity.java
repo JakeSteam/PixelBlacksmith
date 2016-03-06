@@ -2,9 +2,8 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
@@ -50,6 +48,13 @@ public class TraderActivity extends Activity {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        createItemList();
+    }
+
     public void createTraderInterface() {
         createTrader();
         createItemList();
@@ -78,31 +83,38 @@ public class TraderActivity extends Activity {
 
         for (Trader_Stock itemForSale : itemsForSale) {
             Item item = Item.findById(Item.class, itemForSale.getItemID());
-            TableRow itemRow = new TableRow(getApplicationContext());
 
-            ImageView itemImage = dh.createItemImage(itemForSale.getItemID(), 100, 100, true);
+            LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+            View inflatedView = inflater.inflate(R.layout.custom_trader_stock, null);
+            TableRow itemRow = (TableRow) inflatedView.findViewById(R.id.itemRow);
 
-            TextViewPixel itemStock = dh.createTextView(item.getName() + "\n" + itemForSale.getStock() + " / " + itemForSale.getDefaultStock() + "x ", 20, Color.BLACK);
-            itemStock.setPadding(0, 0, 0, 10);
+            ImageView itemImage = (ImageView) itemRow.findViewById(R.id.itemImage);
+            int itemImageDrawable = this.getResources().getIdentifier("item" + itemForSale.getId(), "drawable", this.getPackageName());
+            itemImage.setImageDrawable(dh.createDrawable(itemImageDrawable, 100, 100));
 
-            TextViewPixel itemBuy = dh.createTextView(Integer.toString(item.getValue()), 18, Color.BLACK);
-            itemBuy.setWidth(30);
-            itemBuy.setShadowLayer(10, 0, 0, Color.WHITE);
-            itemBuy.setGravity(Gravity.CENTER);
-            itemBuy.setBackgroundResource(R.drawable.sell_small);
-            itemBuy.setTag(item.getId());
+            TextView itemName = (TextView) itemRow.findViewById(R.id.itemName);
+            itemName.setText(item.getName());
+
+            TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
+            itemStock.setText(itemForSale.getStock() + " / " + itemForSale.getDefaultStock());
+
+            TextView itemBuy = (TextView) itemRow.findViewById(R.id.itemBuy);
+            itemBuy.setTag(R.id.itemStock, itemForSale.getStock());
+            itemBuy.setTag(R.id.itemID, itemForSale.getItemID());
             itemBuy.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    clickBuyButton(v);
+                    clickBuy(v);
                 }
             });
 
-            itemRow.addView(itemImage);
-            itemRow.addView(itemStock);
-            itemRow.addView(itemBuy);
-
-            traderItemsInfo.addView(itemRow);
+            traderItemsInfo.addView(inflatedView);
         }
+    }
+
+    public void clickBuy(View v) {
+        long itemID = (long) v.getTag(R.id.itemID);
+        int itemStock = (int) v.getTag(R.id.itemStock);
+        dh.confirmItemBuy(getApplicationContext(), this, trader, itemID, itemStock);
     }
 
     public void clickBuyButton(View v) {

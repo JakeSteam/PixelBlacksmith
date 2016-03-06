@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -249,6 +250,56 @@ public class DisplayHelper {
         });
 
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public void confirmItemBuy(final Context context, final TraderActivity activity, final Trader trader, long itemID, final int itemStock) {
+        final Item item = Item.findById(Item.class, itemID);
+        final int itemValue = item.getValue();
+        final String itemName = item.getFullName(Constants.STATE_NORMAL);
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format("Would you like to buy 1x %1s for %2d coin(s), or up to %3d for %4d coin(s) each?", itemName, itemValue, itemStock, itemValue));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton("Buy 1", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int quantity = 1;
+
+                int buyResponse = Inventory.buyItem(item.getId(), quantity, trader.getId(), item.getValue());
+                if (buyResponse == Constants.SUCCESS) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", quantity, itemName, itemValue));
+                    Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
+                    trader.setPurchases(trader.getPurchases() + quantity);
+                    trader.save();
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton("Buy Max", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int quantity = itemStock;
+
+                int buyResponse = Inventory.buyItem(item.getId(), quantity, trader.getId(), item.getValue());
+                if (buyResponse == Constants.SUCCESS) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", quantity, itemName, itemValue));
+                    Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
+                    trader.setPurchases(trader.getPurchases() + quantity);
+                    trader.save();
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
+                }
+            }
+        });
+
+        alertDialog.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

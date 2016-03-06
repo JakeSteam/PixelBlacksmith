@@ -83,6 +83,10 @@ public class Item extends SugarRecord {
         this.level = level;
     }
 
+    public String getFullName(long state) {
+        return getPrefix(state) + getName();
+    }
+
     public String getPrefix(int id) {
         return getPrefix(Long.valueOf(id));
     }
