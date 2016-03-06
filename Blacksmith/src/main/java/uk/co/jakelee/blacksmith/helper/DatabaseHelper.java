@@ -624,8 +624,8 @@ public class DatabaseHelper {
         new Type(100L, "Internal", 0, 0);
 
         new Upgrade("Visitor Spawn Time", "mins", 1000, 25, 10, 25);
-        new Upgrade("Shop Restock Time", "hours", 250, 24, 2, 20);
-        new Upgrade("Maximum Visitors", "visitors", 1000, 2, 10, 3);
+        new Upgrade("Shop Restock Time", "hours", 250, 24, 2, 24);
+        new Upgrade("Maximum Visitors", "visitors", 1000, 2, 10, 2);
         new Upgrade("Maximum Traders", "traders", 250, 3, 10, 3);
         new Upgrade("Gold Bonus", "%", 250, 0, 20, 0);
         new Upgrade("XP Bonus", "%", 250, 0, 20, 0);

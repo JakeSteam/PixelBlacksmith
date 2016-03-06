@@ -75,7 +75,7 @@ public class Upgrade extends SugarRecord {
 
     public int getUpgradeCost() {
         if (minimum > maximum) {
-            return ((current - maximum) + 1) * modifier;
+            return ((minimum - current) + 1) * modifier;
         } else {
             return ((current - minimum) + 1) * modifier;
         }
@@ -86,9 +86,7 @@ public class Upgrade extends SugarRecord {
 
         if (coins.getQuantity() < getUpgradeCost()) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
-        } else if (minimum > maximum && current == maximum) {
-            return Constants.ERROR_MAXIMUM_UPGRADE;
-        } else if (maximum > minimum && current == maximum) {
+        } else if (current == maximum) {
             return Constants.ERROR_MAXIMUM_UPGRADE;
         } else {
             upgrade(coins);
