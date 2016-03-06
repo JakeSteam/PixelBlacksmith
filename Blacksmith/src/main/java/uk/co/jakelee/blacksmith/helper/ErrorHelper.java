@@ -16,6 +16,7 @@ public class ErrorHelper {
         errors.put(Constants.ERROR_NO_SPARE_SLOTS, "There are no slots currently available.");
         errors.put(Constants.ERROR_NO_ITEMS, "You cannot enchant an item you do not have!");
         errors.put(Constants.ERROR_NO_GEMS, "You cannot enchant an item using non-existent gems!");
+        errors.put(Constants.ERROR_MAXIMUM_UPGRADE, "There's no further upgrades to purchase!");
 
         return errors;
     }

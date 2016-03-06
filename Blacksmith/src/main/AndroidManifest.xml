@@ -74,6 +74,9 @@
         <activity
             android:name=".main.HelpActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".main.UpgradeActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>

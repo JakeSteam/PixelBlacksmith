@@ -28,6 +28,7 @@ public class HelpActivity extends Activity {
     public static int TRADE = 12;
     public static int TROPHY = 13;
     public static int VISITOR = 14;
+    public static int UPGRADE = 15;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class HelpActivity extends Activity {
             displayHelpTrophy(layout);
         } else if (helpToLoad == VISITOR) {
             displayHelpVisitor(layout);
+        } else if (helpToLoad == UPGRADE) {
+            displayHelpUpgrade(layout);
         }
     }
 
@@ -195,6 +198,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed.\n", 22));
         layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of uncompleted demands (required + optional).\n", 22));
+    }
+
+    public void displayHelpUpgrade(LinearLayout layout) {
+        layout.addView(dh.createTextView("Upgrade\n", 26));
+        layout.addView(dh.createTextView("Various statistics can be upgraded.\n", 22));
     }
 
     public void openHelp(View view) {

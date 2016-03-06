@@ -131,6 +131,16 @@
                 android:orientation="horizontal" />
 
             <ImageView
+                android:id="@+id/open_upgrades"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="465dp"
+                android:layout_marginTop="95dp"
+                android:onClick="openUpgrades"
+                android:scaleType="centerCrop"
+                android:src="@drawable/uparrow" />
+
+            <ImageView
                 android:id="@+id/open_help"
                 android:layout_width="70dp"
                 android:layout_height="70dp"

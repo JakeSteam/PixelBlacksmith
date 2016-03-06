@@ -255,4 +255,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.MAIN);
         startActivity(intent);
     }
+
+    public void openUpgrades(View view) {
+        Intent intent = new Intent(this, UpgradeActivity.class);
+        startActivity(intent);
+    }
 }
