@@ -36,6 +36,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class DisplayHelper {
@@ -167,7 +168,7 @@ public class DisplayHelper {
             // Adding to appropriate container
             if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
                 visitorsContainer.addView(visitorImage);
-            } else if (displayedVisitors < Constants.MAXIMUM_VISITORS) {
+            } else {
                 visitorsContainerOverflow.addView(visitorImage);
             }
             displayedVisitors++;
@@ -180,7 +181,7 @@ public class DisplayHelper {
             targetContainer = visitorsContainerOverflow;
         }
 
-        if (targetContainer != null) {
+        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors")) {
             ImageView addVisitorButton = createImageView("add", "", 200, 200);
             addVisitorButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

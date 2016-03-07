@@ -15,6 +15,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -24,7 +25,7 @@ public class VisitorHelper {
     public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
 
     public static boolean tryCreateVisitor() {
-        if (Visitor.count(Visitor.class) < Constants.MAXIMUM_VISITORS) {
+        if (Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
             new Thread(new Runnable() {
                 public void run() {
                     createNewVisitor();
@@ -57,7 +58,7 @@ public class VisitorHelper {
         long lastSpawn = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
         int currentVisitors = Visitor.listAll(Visitor.class).size();
-        int maxVisitors = Constants.MAXIMUM_VISITORS;
+        int maxVisitors = Upgrade.getValue("Maximum Visitors");
         int maximumNewVisitors = maxVisitors - currentVisitors;
 
         long timeDifference = currentTime - lastSpawn;

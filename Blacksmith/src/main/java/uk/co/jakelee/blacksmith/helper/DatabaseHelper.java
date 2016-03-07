@@ -206,8 +206,8 @@ public class DatabaseHelper {
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 100);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 10);
-        new Player_Info("UpgradesBought", 5);
+        new Player_Info("SavedLevel", 17);
+        new Player_Info("UpgradesBought", 0);
 
         // Bars
         new Recipe(11L, 1L, 1L, 1L, 1);

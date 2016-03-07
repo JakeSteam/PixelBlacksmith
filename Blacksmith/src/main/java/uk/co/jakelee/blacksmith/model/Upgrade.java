@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
 
@@ -106,6 +108,12 @@ public class Upgrade extends SugarRecord {
             setCurrent(getCurrent() + 1);
         }
         save();
+    }
+
+    public static int getValue(String name) {
+        Upgrade upgrade = Select.from(Upgrade.class).where(
+                Condition.prop("name").eq(name)).first();
+        return upgrade.getCurrent();
     }
 }
 
