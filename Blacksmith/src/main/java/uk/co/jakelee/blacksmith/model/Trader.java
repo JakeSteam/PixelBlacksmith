@@ -121,7 +121,7 @@ public class Trader extends SugarRecord {
         }
 
         // Add any necessary new traders
-        while (numberOfTraders < Constants.MAXIMUM_TRADERS) {
+        while (numberOfTraders < Upgrade.getValue("Maximum Traders")) {
             Trader.makeTraderAppear(context);
             numberOfTraders++;
         }
