@@ -61,7 +61,7 @@ public class NotificationHelper extends BroadcastReceiver{
     public static void addRestockNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;
 
-        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + DateHelper.minutesToMilliseconds(Upgrade.getValue("Shop Restock Time"));
+        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + DateHelper.hoursToMilliseconds(Upgrade.getValue("Shop Restock Time"));
         NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_RESTOCK);
     }
 

@@ -51,7 +51,7 @@ public class StatisticsActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.coinsEarned)).setText(Integer.toString(coinsEarned));
 
         long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
-        long unixNextRestock = unixRestocked + DateHelper.minutesToMilliseconds(Upgrade.getValue("Shop Restock Time"));
+        long unixNextRestock = unixRestocked + DateHelper.hoursToMilliseconds(Upgrade.getValue("Shop Restock Time"));
         long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
         ((TextViewPixel) findViewById(R.id.nextRestock)).setText(DateHelper.getHoursMinsRemaining(unixRestockDifference));
 

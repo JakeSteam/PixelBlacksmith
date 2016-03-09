@@ -83,7 +83,7 @@ public class Trader_Stock extends SugarRecord {
         Player_Info dateRefreshed = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateRestocked")).first();
 
-        return (dateRefreshed.getLongValue() + DateHelper.minutesToMilliseconds(Upgrade.getValue("Shop Restock Time"))) < System.currentTimeMillis();
+        return (dateRefreshed.getLongValue() + DateHelper.hoursToMilliseconds(Upgrade.getValue("Shop Restock Time"))) < System.currentTimeMillis();
     }
 
     public static void restockTraders() {
