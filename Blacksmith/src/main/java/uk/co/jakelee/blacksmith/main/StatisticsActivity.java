@@ -10,10 +10,10 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
-import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 
 public class StatisticsActivity extends Activity {
@@ -51,12 +51,12 @@ public class StatisticsActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.coinsEarned)).setText(Integer.toString(coinsEarned));
 
         long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
-        long unixNextRestock = unixRestocked + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
+        long unixNextRestock = unixRestocked + DateHelper.minutesToMilliseconds(Upgrade.getValue("Shop Restock Time"));
         long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
         ((TextViewPixel) findViewById(R.id.nextRestock)).setText(DateHelper.getHoursMinsRemaining(unixRestockDifference));
 
         long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
-        long unixNextSpawn = unixSpawned + Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+        long unixNextSpawn = unixSpawned + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
         long unixVisitorDifference = unixNextSpawn - System.currentTimeMillis();
         if (unixVisitorDifference > 0) {
             ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(unixVisitorDifference));

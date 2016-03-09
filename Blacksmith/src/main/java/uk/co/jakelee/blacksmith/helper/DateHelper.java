@@ -52,4 +52,8 @@ public class DateHelper {
     public static int minutesToMilliseconds(int minutes) {
         return minutes * (MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE);
     }
+
+    public static int hoursToMilliseconds(int hours) {
+        return hours * minutesToMilliseconds(MINUTES_IN_HOUR);
+    }
 }

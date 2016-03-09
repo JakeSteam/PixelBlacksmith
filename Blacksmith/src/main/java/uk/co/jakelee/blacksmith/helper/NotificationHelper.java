@@ -18,6 +18,7 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class NotificationHelper extends BroadcastReceiver{
     private static boolean useSounds = false;
@@ -60,14 +61,14 @@ public class NotificationHelper extends BroadcastReceiver{
     public static void addRestockNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;
 
-        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS;
+        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + DateHelper.minutesToMilliseconds(Upgrade.getValue("Shop Restock Time"));
         NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_RESTOCK);
     }
 
     public static void addVisitorNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;
 
-        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue() + Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue() + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
         NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_VISITOR);
     }
 

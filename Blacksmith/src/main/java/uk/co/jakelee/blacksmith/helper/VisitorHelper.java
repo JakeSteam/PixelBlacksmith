@@ -62,7 +62,7 @@ public class VisitorHelper {
         int maximumNewVisitors = maxVisitors - currentVisitors;
 
         long timeDifference = currentTime - lastSpawn;
-        long possibleNewVisitors = timeDifference / Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWNS;
+        long possibleNewVisitors = timeDifference / DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
 
         // Make sure we don't return more than possible
         if (possibleNewVisitors >= maximumNewVisitors) {

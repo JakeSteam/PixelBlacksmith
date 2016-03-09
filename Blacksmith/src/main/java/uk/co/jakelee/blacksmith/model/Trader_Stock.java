@@ -7,6 +7,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 
 public class Trader_Stock extends SugarRecord {
     Long traderType;
@@ -82,7 +83,7 @@ public class Trader_Stock extends SugarRecord {
         Player_Info dateRefreshed = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateRestocked")).first();
 
-        return (dateRefreshed.getLongValue() + Constants.MILLISECONDS_BETWEEN_RESTOCKS) < System.currentTimeMillis();
+        return (dateRefreshed.getLongValue() + DateHelper.minutesToMilliseconds(Upgrade.getValue("Shop Restock Time"))) < System.currentTimeMillis();
     }
 
     public static void restockTraders() {
