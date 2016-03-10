@@ -630,19 +630,33 @@ public class DatabaseHelper {
         new Upgrade("Gold Bonus", "%", 250, 0, 50, 40);
         new Upgrade("XP Bonus", "%", 250, 0, 50, 40);
 
-        new Visitor_Stats(1L, 99, 1L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(2L, 99, 2L, 2L, 2, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(3L, 99, 3L, 3L, 3, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(4L, 99, 4L, 4L, 4, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(5L, 99, 5L, 1L, 5, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(6L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(7L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(8L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(9L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(10L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(11L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(12L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
-        new Visitor_Stats(13L, 99, 52L, 1L, 1, 1452022352000L, 1454841674000L);
+        new Visitor_Stats(1L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(2L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(3L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(4L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(5L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(6L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(7L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(8L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(9L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(10L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(11L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(12L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(13L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(14L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(15L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(16L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(17L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(18L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(19L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(20L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(21L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(22L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(23L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(24L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(25L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(26L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(27L, 0, 52L, 1L, 0, 0L, 0L);
 
         new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
         new Visitor_Type(2L, "Mister Hatchet", "If only I was a woodcutter...", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
@@ -657,6 +671,20 @@ public class DatabaseHelper {
         new Visitor_Type(11L, "B. De Couleur", "They say I'm the scary one, but I just like the colour.", 10L, 20L, 7L, 1.25, 1.05, 1.66, false, false, false, 1);
         new Visitor_Type(12L, "Gelatinous Egg", "So what if I'm not quite in shape?", 10L, 19L, 2L, 1.05, 1.15, 1.1, false, false, false, 8);
         new Visitor_Type(13L, "The Great Cheese Menace", "You there! Got any of the yellow stuff?", 10L, 21L, 1L, 1.05, 1.55, 1.05, false, false, false, 6);
+        new Visitor_Type(14L, "The Leech King", "Slurp, slurp.", 7L, 4L, 7L, 1.25, 1.25, 1.25, false, false, false, 3);
+        new Visitor_Type(15L, "Man of Magicka", "Do you like my outfit?", 10L, 14L, 7L, 1.05, 1.05, 1.05, false, false, false, 7);
+        new Visitor_Type(16L, "Rare Chest", "Give me your rare items, I'll look after them!", 5L, 21L, 1L, 1.10, 1.02, 1.04, false, false, false, 1);
+        new Visitor_Type(17L, "Chest", "Give me your items, I'll look after them!", 4L, 21L, 2L, 1.10, 1.01, 1.04, false, false, false, 4);
+        new Visitor_Type(18L, "Eye of Ender", "Don't worry, it's a coloured contact lens.", 6L, 12L, 6L, 1.30, 1.30, 1.30, false, false, false, 1);
+        new Visitor_Type(19L, "BRAINS", "BRAINS", 1L, 12L, 5L, 1.10, 1.15, 1.15, false, false, false, 6);
+        new Visitor_Type(20L, "Asterisk The Ghoul", "Seen Obelix anywhere?", 1L, 16L, 1L, 1.05, 1.10, 1.05, false, false, false, 3);
+        new Visitor_Type(21L, "Eye of Starter", "I don't suppose you've got any monocles?", 3L, 11L, 6L, 1.20, 1.20, 1.20, false, false, false, 4);
+        new Visitor_Type(22L, "Marcell", "I've got shoes on.", 10L, 19L, 1L, 1.01, 1.01, 1.01, false, false, false, 5);
+        new Visitor_Type(23L, "Crabby", "Snippy, snippy!", 10L, 3L, 1L, 1.02, 1.02, 1.02, false, false, false, 3);
+        new Visitor_Type(24L, "Southerner", "From down south. No, REALLY south. REAAALLLY south.", 7L, 6L, 3L, 1.15, 1.15, 1.10, false, false, false, 2);
+        new Visitor_Type(25L, "Magical Mushroom", "No nibbling.", 10L, 21L, 1L, 1.01, 1.15, 1.05, false, false, false, 5);
+        new Visitor_Type(26L, "Overwasp", "You know I can sting repeatedly, right?", 9L, 4L, 1L, 1.25, 1.15, 1.05, false, false, false, 4);
+        new Visitor_Type(27L, "Obelix", "Seen Asterisk anywhere?", 1L, 16L, 1L, 1.05, 1.10, 1.05, false, false, false, 3);
     }
 
 }
