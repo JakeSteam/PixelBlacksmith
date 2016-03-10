@@ -627,8 +627,8 @@ public class DatabaseHelper {
         new Upgrade("Shop Restock Time", "hours", 250, 24, 2, 24);
         new Upgrade("Maximum Visitors", "visitors", 1000, 2, 10, 2);
         new Upgrade("Maximum Traders", "traders", 250, 3, 10, 3);
-        new Upgrade("Gold Bonus", "%", 250, 0, 20, 0);
-        new Upgrade("XP Bonus", "%", 250, 0, 20, 0);
+        new Upgrade("Gold Bonus", "%", 250, 0, 50, 40);
+        new Upgrade("XP Bonus", "%", 250, 0, 50, 40);
 
         new Visitor_Stats(1L, 99, 1L, 1L, 1, 1452022352000L, 1454841674000L);
         new Visitor_Stats(2L, 99, 2L, 2L, 2, 1452022352000L, 1454841674000L);

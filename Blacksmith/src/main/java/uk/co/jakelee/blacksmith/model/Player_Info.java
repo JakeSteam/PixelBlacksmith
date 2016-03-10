@@ -6,6 +6,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
 public class Player_Info extends SugarRecord {
     Long id;
@@ -117,7 +118,10 @@ public class Player_Info extends SugarRecord {
         Player_Info xpInfo = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("XP")).first();
 
-        xpInfo.setIntValue(xpInfo.getIntValue() + xp);
+        double xpMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus"));
+        double modifiedXp = xpMultiplier * xp;
+        
+        xpInfo.setIntValue(xpInfo.getIntValue() + (int) modifiedXp);
         xpInfo.save();
     }
 

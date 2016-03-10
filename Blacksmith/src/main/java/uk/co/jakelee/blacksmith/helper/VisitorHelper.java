@@ -269,6 +269,11 @@ public class VisitorHelper {
         }
     }
 
+    public static double percentToMultiplier(int percent) {
+        double percentMultiplier = percent + 100;
+        return percentMultiplier / 100;
+    }
+
     public static int getVisitorAddCost() {
         int playerLevel = Player_Info.getPlayerLevel();
         return playerLevel * 100;
