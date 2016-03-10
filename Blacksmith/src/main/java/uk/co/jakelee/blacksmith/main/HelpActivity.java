@@ -202,7 +202,9 @@ public class HelpActivity extends Activity {
 
     public void displayHelpUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView("Upgrade\n", 26));
-        layout.addView(dh.createTextView("Various statistics can be upgraded.\n", 22));
+        layout.addView(dh.createTextView("On this screen various upgrades can be bought, to help improve your shop.\n", 22));
+        layout.addView(dh.createTextView("The XP and Gold bonuses will be more effective when dealing with more valuable items.\n", 22));
+        layout.addView(dh.createTextView("Buying premium will increase the current and maximum values of most upgrades significantly.\n", 22));
     }
 
     public void openHelp(View view) {

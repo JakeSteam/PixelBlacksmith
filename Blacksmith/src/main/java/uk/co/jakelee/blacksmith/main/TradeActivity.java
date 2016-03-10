@@ -156,7 +156,7 @@ public class TradeActivity extends Activity {
         double bonus = visitorType.getBonus(itemInventory);
         double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus"));
         double modifiedBonus = coinMultiplier * bonus;
-        
+
         int value = (int) (itemToSell.getModifiedValue(itemState.getId()) * modifiedBonus);
 
         int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (long) v.getTag(R.id.itemState), quantity, value);
