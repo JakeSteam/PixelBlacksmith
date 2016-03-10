@@ -24,9 +24,11 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class InventoryActivity extends Activity {
     public static DisplayHelper dh;
@@ -94,10 +96,13 @@ public class InventoryActivity extends Activity {
         Item itemToSell = Item.findById(Item.class, itemID);
         int itemValue = itemToSell.getModifiedValue(itemState);
 
-        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, itemValue);
+        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus"));
+        double modifiedPrice = coinMultiplier * itemValue;
+
+        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, (int) modifiedPrice);
         if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), itemValue));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), modifiedPrice));
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {

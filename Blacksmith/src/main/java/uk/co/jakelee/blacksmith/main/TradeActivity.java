@@ -31,6 +31,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -153,7 +154,10 @@ public class TradeActivity extends Activity {
 
         // Calculate the item sell value, rounded up
         double bonus = visitorType.getBonus(itemInventory);
-        int value = (int) ((itemToSell.getModifiedValue(itemState.getId()) * bonus) + 0.5);
+        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus"));
+        double modifiedBonus = coinMultiplier * bonus;
+        
+        int value = (int) (itemToSell.getModifiedValue(itemState.getId()) * modifiedBonus);
 
         int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (long) v.getTag(R.id.itemState), quantity, value);
         if (tradeResponse == Constants.SUCCESS) {

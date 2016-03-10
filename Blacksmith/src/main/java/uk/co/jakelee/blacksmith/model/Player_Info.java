@@ -120,7 +120,7 @@ public class Player_Info extends SugarRecord {
 
         double xpMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus"));
         double modifiedXp = xpMultiplier * xp;
-        
+
         xpInfo.setIntValue(xpInfo.getIntValue() + (int) modifiedXp);
         xpInfo.save();
     }
