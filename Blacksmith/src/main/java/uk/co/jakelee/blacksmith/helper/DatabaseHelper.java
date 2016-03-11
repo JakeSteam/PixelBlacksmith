@@ -657,6 +657,11 @@ public class DatabaseHelper {
         new Visitor_Stats(25L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(26L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(27L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(28L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(29L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(30L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(31L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(32L, 0, 52L, 1L, 0, 0L, 0L);
 
         new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
         new Visitor_Type(2L, "Mister Hatchet", "If only I was a woodcutter...", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
@@ -685,6 +690,11 @@ public class DatabaseHelper {
         new Visitor_Type(25L, "Magical Mushroom", "No nibbling.", 10L, 21L, 1L, 1.01, 1.15, 1.05, false, false, false, 5);
         new Visitor_Type(26L, "Overwasp", "You know I can sting repeatedly, right?", 9L, 4L, 1L, 1.25, 1.15, 1.05, false, false, false, 4);
         new Visitor_Type(27L, "Obelix", "Seen Asterisk anywhere?", 1L, 16L, 1L, 1.05, 1.10, 1.05, false, false, false, 3);
+        new Visitor_Type(28L, "Whippersnappette", "Don't tell Steve, but his secret mine isn't so secret.", 5L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 5);
+        new Visitor_Type(29L, "Hatty", "I wish my hair wasn't so exposed to the elements.", 10L, 12L, 1L, 1.08, 1.15, 1.05, false, false, false, 5);
+        new Visitor_Type(30L, "Archer", "It's all about the bullseye.", 2L, 6L, 5L, 1.10, 1.25, 1.15, false, false, false, 2);
+        new Visitor_Type(31L, "Steve", "Gotta dig deeper and deeper and deeper and...", 6L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 6);
+        new Visitor_Type(32L, "Whippersnapper", "Don't tell Steve, but his secret fish pond isn't so secret.", 10L, 17L, 4L, 1.05, 1.20, 1.02, false, false, false, 6);
     }
 
 }
