@@ -10,7 +10,7 @@ public class Constants {
     public static final int MILLISECONDS_BETWEEN_RESTOCK_CHECKS = 60000; // 60 sec
     public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS = 10000; // 10 seconds
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
-    public static final int CRAFT_TIME_MULTIPLIER = 3000;
+    public static final int CRAFT_TIME_MULTIPLIER = 200;
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;
     public static final int MAXIMUM_REWARDS = 3;
