@@ -23,7 +23,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
@@ -124,10 +123,12 @@ public class DisplayHelper {
                 Inventory.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
                 Pending_Inventory.delete(pendingItem);
             } else {
-                // Add 500 so we always round up
-                long timeLeft = TimeUnit.MILLISECONDS.toSeconds((itemFinishTime - currentTime) + 500);
+                long millisecondsLeft = (itemFinishTime - currentTime);
+                double secondsLeft = (double) millisecondsLeft / DateHelper.MILLISECONDS_IN_SECOND;
+                String roundedSecondsLeft = Integer.toString((int) Math.ceil(secondsLeft));
+
                 slotItem.setImageResource(drawableId);
-                slotCount.setText(Long.toString(timeLeft));
+                slotCount.setText(roundedSecondsLeft);
                 i++;
             }
         }
