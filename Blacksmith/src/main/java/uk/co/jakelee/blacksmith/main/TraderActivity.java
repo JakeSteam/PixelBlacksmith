@@ -84,7 +84,7 @@ public class TraderActivity extends Activity {
             TableRow itemRow = (TableRow) inflatedView.findViewById(R.id.itemRow);
 
             ImageView itemImage = (ImageView) itemRow.findViewById(R.id.itemImage);
-            int itemImageDrawable = this.getResources().getIdentifier("item" + itemForSale.getId(), "drawable", this.getPackageName());
+            int itemImageDrawable = this.getResources().getIdentifier("item" + itemForSale.getItemID(), "drawable", this.getPackageName());
             itemImage.setImageDrawable(dh.createDrawable(itemImageDrawable, 100, 100));
 
             TextView itemName = (TextView) itemRow.findViewById(R.id.itemName);

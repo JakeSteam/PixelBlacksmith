@@ -21,22 +21,14 @@ public class Trader_Stock extends SugarRecord {
 
     }
 
-    public Trader_Stock(Long traderType, Long itemID, int state, int requiredPurchases, int stock, int defaultStock) {
+    public Trader_Stock(Long traderType, Long itemID, int state, int requiredPurchases, int stock) {
         this.traderType = traderType;
         this.itemID = itemID;
         this.state = state;
         this.requiredPurchases = requiredPurchases;
         this.stock = stock;
-        this.defaultStock = defaultStock;
+        this.defaultStock = stock;
         this.save();
-    }
-
-    public Long getItemID() {
-        return itemID;
-    }
-
-    public void setItemID(Long itemID) {
-        this.itemID = itemID;
     }
 
     public Long getTraderType() {
@@ -47,12 +39,12 @@ public class Trader_Stock extends SugarRecord {
         this.traderType = traderType;
     }
 
-    public int getRequiredPurchases() {
-        return requiredPurchases;
+    public Long getItemID() {
+        return itemID;
     }
 
-    public void setRequiredPurchases(int requiredPurchases) {
-        this.requiredPurchases = requiredPurchases;
+    public void setItemID(Long itemID) {
+        this.itemID = itemID;
     }
 
     public int getState() {
@@ -61,6 +53,14 @@ public class Trader_Stock extends SugarRecord {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public int getRequiredPurchases() {
+        return requiredPurchases;
+    }
+
+    public void setRequiredPurchases(int requiredPurchases) {
+        this.requiredPurchases = requiredPurchases;
     }
 
     public int getStock() {

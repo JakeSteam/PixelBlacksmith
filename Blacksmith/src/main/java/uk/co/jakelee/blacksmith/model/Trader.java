@@ -14,7 +14,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 
 public class Trader extends SugarRecord {
-    int shopkeeper;
+    long shopkeeper;
     int location;
     String name;
     String description;
@@ -26,7 +26,7 @@ public class Trader extends SugarRecord {
     public Trader() {
     }
 
-    public Trader(int shopkeeper, int location, String name, String description, int level, int status, int purchases, int weighting) {
+    public Trader(long shopkeeper, int location, String name, String description, int level, int status, int purchases, int weighting) {
         this.shopkeeper = shopkeeper;
         this.location = location;
         this.name = name;
@@ -38,11 +38,11 @@ public class Trader extends SugarRecord {
         this.save();
     }
 
-    public int getShopkeeper() {
+    public long getShopkeeper() {
         return shopkeeper;
     }
 
-    public void setShopkeeper(int shopkeeper) {
+    public void setShopkeeper(long shopkeeper) {
         this.shopkeeper = shopkeeper;
     }
 
@@ -163,7 +163,9 @@ public class Trader extends SugarRecord {
 
     public boolean isOutOfStock() {
         List<Trader_Stock> stocks = Select.from(Trader_Stock.class).where(
-                Condition.prop("trader_type").eq(this.getId())).list();
+                Condition.prop("trader_type").eq(this.getId()),
+                Condition.prop("required_purchases").lt(this.getPurchases() + 1)).list();
+        
         boolean hasStock = false;
         for (Trader_Stock stock : stocks) {
             if (stock.getStock() > 0) {

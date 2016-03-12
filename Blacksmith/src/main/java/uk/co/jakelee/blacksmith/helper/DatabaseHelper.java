@@ -28,8 +28,13 @@ public class DatabaseHelper {
         new Category("Armour", "An item that can be used as armour.");
         new Category("Skill", "An item that can be used to train a skill.");
 
-        new Character(1L, "Sean Keeper", "He looks a little bit shifty...", "Greetings! See anything you like?", "Remember, no refunds!");
-        new Character(2L, "Mr Hellfire", "Hot stuff.", "Hey! Do you like my armour?", "No refunds, comrade.");
+        new Character(1L, "Sean Keeper", "Greetings! See anything you like?");
+        new Character(2L, "The Iron Knight", "Look, it's knight with a k, okay?");
+        new Character(3L, "The Golden Warrior", "Can never have enough golden goldy gold. EVER.");
+        new Character(4L, "Cloth King", "Want clothing? You're gonna need some cloth!");
+        new Character(5L, "Woodchuck", "How much wood can I cut? Enough!");
+        new Character(6L, "Oog", "Oog oog!!!");
+        new Character(7L, "GemBot 5000", "Bzzt!");
 
         new Criteria(1L, "State");
         new Criteria(2L, "Tier");
@@ -544,20 +549,104 @@ public class DatabaseHelper {
         new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", false);
 
-        new Trader(1, 4, "Poor Ore", "Full of low quality ore.", 1, 0, 0, 60);
-        new Trader(2, 4, "Less Poor Ore", "The ore here is not so poor.", 5, 0, 0, 40);
-        new Trader(1, 4, "Rare Ore", "This trader is too rare to be found.", 5, 0, 0, 5);
-        new Trader(1, 4, "Average Ore", "The ore in store is not too poor.", 10, 0, 0, 15);
-        new Trader(2, 4, "Silver Miner", "Cor, ore!", 10, 0, 0, 5);
+        new Trader(1L, 4, "The Scraps", "I was gonna chuck this stuff out.. you interested?", 0, 0, 0, 60);
+        new Trader_Stock(1L, 1L, 1, 0, 5);
+        new Trader_Stock(1L, 1L, 1, 40, 35);
+        new Trader_Stock(1L, 2L, 1, 0, 5);
+        new Trader_Stock(1L, 2L, 1, 40, 35);
+        new Trader_Stock(1L, 11L, 1, 0, 2);
+        new Trader_Stock(1L, 11L, 1, 20, 20);
 
-        new Trader_Stock(1L, 1L, 1, 0, 5, 50);
-        new Trader_Stock(1L, 2L, 1, 1, 5, 50);
-        new Trader_Stock(2L, 1L, 1, 0, 10, 100);
-        new Trader_Stock(2L, 2L, 1, 10, 10, 100);
-        new Trader_Stock(3L, 3L, 1, 0, 10, 100);
-        new Trader_Stock(4L, 2L, 1, 0, 10, 100);
-        new Trader_Stock(5L, 9L, 1, 0, 1, 10);
-        new Trader_Stock(5L, 8L, 1, 1, 1, 10);
+        new Trader(1L, 4, "The Off Cuts", "This stuff isn't the best, but it'll do.", 5, 0, 0, 40);
+        new Trader_Stock(2L, 3L, 1, 0, 5);
+        new Trader_Stock(2L, 3L, 1, 20, 15);
+        new Trader_Stock(2L, 3L, 1, 100, 75);
+
+        new Trader(1L, 4, "The Backbone", "You're gonna like what I've got. I think.", 10, 0, 0, 15);
+        new Trader_Stock(3L, 5L, 1, 0, 10);
+        new Trader_Stock(3L, 5L, 1, 100, 120);
+        new Trader_Stock(3L, 6L, 1, 0, 5);
+        new Trader_Stock(3L, 6L, 1, 100, 75);
+        new Trader_Stock(3L, 14L, 1, 0, 2);
+        new Trader_Stock(3L, 14L, 1, 30, 18);
+        new Trader_Stock(3L, 14L, 1, 120, 40);
+        new Trader_Stock(3L, 15L, 1, 0, 2);
+        new Trader_Stock(3L, 15L, 1, 30, 6);
+        new Trader_Stock(3L, 15L, 1, 100, 20);
+
+        new Trader(1L, 4, "The Prime Cuts", "My very best stock, for the connoisseur.", 15, 0, 0, 5);
+        new Trader_Stock(4L, 7L, 1, 0, 5);
+        new Trader_Stock(4L, 7L, 1, 30, 15);
+        new Trader_Stock(4L, 16L, 1, 0, 2);
+        new Trader_Stock(4L, 16L, 1, 100, 10);
+
+        new Trader(2L, 4, "The Iron Throne", "I rule my iron with an iron fist!", 0, 0, 0, 5);
+        new Trader_Stock(5L, 4L, 1, 0, 5);
+        new Trader_Stock(5L, 4L, 1, 10, 25);
+        new Trader_Stock(5L, 4L, 1, 130, 90);
+        new Trader_Stock(5L, 12L, 1, 0, 5);
+        new Trader_Stock(5L, 12L, 1, 15, 10);
+
+        new Trader(2L, 4, "The Iron Fist", "I rule my iron from an iron throne!", 25, 0, 0, 1);
+        new Trader_Stock(6L, 4L, 1, 0, 25);
+        new Trader_Stock(6L, 4L, 1, 10, 90);
+        new Trader_Stock(6L, 4L, 1, 130, 200);
+        new Trader_Stock(6L, 12L, 1, 0, 15);
+        new Trader_Stock(6L, 12L, 1, 15, 100);
+
+        new Trader(3L, 4, "The Nuggets", "Check out these lil shiners.", 5, 0, 0, 1);
+        new Trader_Stock(7L, 9L, 1, 0, 5);
+        new Trader_Stock(7L, 9L, 1, 25, 15);
+        new Trader_Stock(7L, 17L, 1, 0, 2);
+        new Trader_Stock(7L, 17L, 1, 25, 10);
+
+        new Trader(3L, 4, "The Nougat", "Panned these all myself, honest!", 15, 0, 0, 1);
+        new Trader_Stock(8L, 9L, 1, 0, 5);
+        new Trader_Stock(8L, 9L, 1, 25, 15);
+        new Trader_Stock(8L, 17L, 1, 0, 2);
+        new Trader_Stock(8L, 17L, 1, 25, 10);
+        new Trader_Stock(8L, 8L, 1, 0, 10);
+        new Trader_Stock(8L, 8L, 1, 50, 30);
+        new Trader_Stock(8L, 18L, 1, 0, 5);
+        new Trader_Stock(8L, 19L, 1, 25, 12);
+
+        new Trader(3L, 4, "The Golden Boulders", "Check out these lil shiners.", 35, 0, 0, 1);
+        new Trader_Stock(9L, 8L, 1, 0, 30);
+        new Trader_Stock(9L, 8L, 1, 100, 150);
+        new Trader_Stock(9L, 18L, 1, 0, 15);
+        new Trader_Stock(9L, 19L, 1, 50, 100);
+
+        new Trader(4L, 4, "A Straight Cut", "Definitely not off the back of a cart.", 0, 0, 0, 10);
+        new Trader_Stock(10L, 69L, 1, 0, 15);
+        new Trader_Stock(10L, 69L, 1, 35, 50);
+
+        new Trader(4L, 4, "A Finer Cut", "Reams upon reams of high quality cloth.", 15, 0, 0, 2);
+        new Trader_Stock(11L, 70L, 1, 0, 15);
+        new Trader_Stock(11L, 70L, 1, 35, 50);
+
+        new Trader(5L, 4, "Logged In", "LOGS! LOOOGS! LOTSA LOOOOOOGS!!!", 0, 0, 0, 30);
+        new Trader_Stock(12L, 71L, 1, 0, 10);
+        new Trader_Stock(12L, 71L, 1, 50, 25);
+        new Trader_Stock(12L, 71L, 1, 200, 40);
+
+        new Trader(6L, 4, "Oog", "OOG. OOG. OOG.", 15, 0, 0, 3);
+        new Trader_Stock(13L, 71L, 1, 0, 5);
+        new Trader_Stock(13L, 3L, 1, 0, 2);
+        new Trader_Stock(13L, 1L, 1, 0, 2);
+
+        new Trader(7L, 4, "GemBooth 1000", "Bzzt! Buy gems!", 10, 0, 0, 3);
+        new Trader_Stock(14L, 72L, 1, 0, 1);
+        new Trader_Stock(14L, 72L, 1, 10, 3);
+        new Trader_Stock(14L, 73L, 1, 0, 1);
+        new Trader_Stock(14L, 73L, 1, 10, 3);
+        new Trader_Stock(14L, 74L, 1, 0, 1);
+        new Trader_Stock(14L, 74L, 1, 10, 3);
+
+        new Trader(7L, 4, "GemEmporium 5000", "Bzzt! Buy BETTER gems!", 25, 0, 0, 2);
+        new Trader_Stock(15L, 75L, 1, 0, 1);
+        new Trader_Stock(15L, 75L, 1, 10, 2);
+        new Trader_Stock(15L, 76L, 1, 0, 1);
+        new Trader_Stock(15L, 75L, 1, 10, 2);
 
         new Slot(1, 0, 0);
         new Slot(1, 5, 0);
