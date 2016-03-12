@@ -35,6 +35,7 @@ public class DatabaseHelper {
         new Character(5L, "Woodchuck", "How much wood can I cut? Enough!");
         new Character(6L, "Oog", "Oog oog!!!");
         new Character(7L, "GemBot 5000", "Bzzt!");
+        new Character(8L, "Farmer's Little Friend", "You'd better not have any weedkiller on you.");
 
         new Criteria(1L, "State");
         new Criteria(2L, "Tier");
@@ -191,6 +192,9 @@ public class DatabaseHelper {
         new Item(126L, "Rune hatchet", "An extremely sharp axe, for the mightiest of trees.", 16, 6, 140, 48);
         new Item(127L, "Rune fishing rod", "The fish won't rune away from this rod!", 17, 6, 140, 48);
         new Item(128L, "Rune hammer", "The mightiest of hammers! Or at least a very mighty one.", 18, 6, 95, 48);
+        new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 20, 10, 15, 0);
+        new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 10, 20, 0);
+        new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 10, 45, 0);
 
         new Location(1L, "Anvil");
         new Location(2L, "Furnace");
@@ -213,6 +217,11 @@ public class DatabaseHelper {
         new Player_Info("DateStarted", System.currentTimeMillis());
         new Player_Info("SavedLevel", 17);
         new Player_Info("UpgradesBought", 0);
+
+        // Powdered gems
+        new Recipe(129L, 1L, 73L, 1L, 1);
+        new Recipe(130L, 1L, 74L, 1L, 1);
+        new Recipe(131L, 1L, 75L, 1L, 1);
 
         // Bars
         new Recipe(11L, 1L, 1L, 1L, 1);
@@ -443,105 +452,121 @@ public class DatabaseHelper {
 
         // Mithril finished
         new Recipe(81L, 1L, 81L, 2L, 1);
-        new Recipe(81L, 1L, 77L, 1L, 1);
+        new Recipe(81L, 1L, 129L, 1L, 1);
         new Recipe(82L, 1L, 82L, 2L, 1);
-        new Recipe(82L, 1L, 77L, 1L, 1);
+        new Recipe(82L, 1L, 129L, 1L, 1);
         new Recipe(83L, 1L, 83L, 2L, 1);
-        new Recipe(83L, 1L, 77L, 1L, 1);
+        new Recipe(83L, 1L, 129L, 1L, 1);
         new Recipe(84L, 1L, 84L, 2L, 1);
-        new Recipe(84L, 1L, 77L, 1L, 1);
+        new Recipe(84L, 1L, 129L, 1L, 1);
         new Recipe(85L, 1L, 85L, 2L, 1);
-        new Recipe(85L, 1L, 77L, 1L, 1);
+        new Recipe(85L, 1L, 129L, 1L, 1);
         new Recipe(86L, 1L, 86L, 2L, 1);
-        new Recipe(86L, 1L, 77L, 1L, 1);
+        new Recipe(86L, 1L, 129L, 1L, 1);
         new Recipe(87L, 1L, 87L, 2L, 1);
-        new Recipe(87L, 1L, 77L, 1L, 1);
+        new Recipe(87L, 1L, 129L, 1L, 1);
         new Recipe(88L, 1L, 88L, 2L, 1);
-        new Recipe(88L, 1L, 77L, 1L, 1);
+        new Recipe(88L, 1L, 129L, 1L, 1);
         new Recipe(89L, 1L, 89L, 2L, 1);
-        new Recipe(89L, 1L, 77L, 1L, 1);
+        new Recipe(89L, 1L, 129L, 1L, 1);
         new Recipe(90L, 1L, 90L, 2L, 1);
-        new Recipe(90L, 1L, 77L, 1L, 1);
+        new Recipe(90L, 1L, 129L, 1L, 1);
         new Recipe(91L, 1L, 91L, 2L, 1);
-        new Recipe(91L, 1L, 77L, 1L, 1);
+        new Recipe(91L, 1L, 129L, 1L, 1);
         new Recipe(92L, 1L, 92L, 2L, 1);
-        new Recipe(92L, 1L, 77L, 1L, 1);
+        new Recipe(92L, 1L, 129L, 1L, 1);
         new Recipe(93L, 1L, 93L, 2L, 1);
-        new Recipe(93L, 1L, 77L, 1L, 1);
+        new Recipe(93L, 1L, 129L, 1L, 1);
         new Recipe(94L, 1L, 94L, 2L, 1);
-        new Recipe(94L, 1L, 77L, 1L, 1);
+        new Recipe(94L, 1L, 129L, 1L, 1);
         new Recipe(95L, 1L, 95L, 2L, 1);
-        new Recipe(95L, 1L, 77L, 1L, 1);
+        new Recipe(95L, 1L, 129L, 1L, 1);
         new Recipe(96L, 1L, 96L, 2L, 1);
-        new Recipe(96L, 1L, 77L, 1L, 1);
+        new Recipe(96L, 1L, 129L, 1L, 1);
 
         // Adamant finished
         new Recipe(97L, 1L, 97L, 2L, 1);
-        new Recipe(97L, 1L, 79L, 1L, 1);
+        new Recipe(97L, 1L, 130L, 1L, 1);
         new Recipe(98L, 1L, 98L, 2L, 1);
-        new Recipe(98L, 1L, 79L, 1L, 1);
+        new Recipe(98L, 1L, 130L, 1L, 1);
         new Recipe(99L, 1L, 99L, 2L, 1);
-        new Recipe(99L, 1L, 79L, 1L, 1);
+        new Recipe(99L, 1L, 130L, 1L, 1);
         new Recipe(100L, 1L, 100L, 2L, 1);
-        new Recipe(100L, 1L, 79L, 1L, 1);
+        new Recipe(100L, 1L, 130L, 1L, 1);
         new Recipe(101L, 1L, 101L, 2L, 1);
-        new Recipe(101L, 1L, 79L, 1L, 1);
+        new Recipe(101L, 1L, 130L, 1L, 1);
         new Recipe(102L, 1L, 102L, 2L, 1);
-        new Recipe(102L, 1L, 79L, 1L, 1);
+        new Recipe(102L, 1L, 130L, 1L, 1);
         new Recipe(103L, 1L, 103L, 2L, 1);
-        new Recipe(103L, 1L, 79L, 1L, 1);
+        new Recipe(103L, 1L, 130L, 1L, 1);
         new Recipe(104L, 1L, 104L, 2L, 1);
-        new Recipe(104L, 1L, 79L, 1L, 1);
+        new Recipe(104L, 1L, 130L, 1L, 1);
         new Recipe(105L, 1L, 105L, 2L, 1);
-        new Recipe(105L, 1L, 79L, 1L, 1);
+        new Recipe(105L, 1L, 130L, 1L, 1);
         new Recipe(106L, 1L, 106L, 2L, 1);
-        new Recipe(106L, 1L, 79L, 1L, 1);
+        new Recipe(106L, 1L, 130L, 1L, 1);
         new Recipe(107L, 1L, 107L, 2L, 1);
-        new Recipe(107L, 1L, 79L, 1L, 1);
+        new Recipe(107L, 1L, 130L, 1L, 1);
         new Recipe(108L, 1L, 108L, 2L, 1);
-        new Recipe(108L, 1L, 79L, 1L, 1);
+        new Recipe(108L, 1L, 130L, 1L, 1);
         new Recipe(109L, 1L, 109L, 2L, 1);
-        new Recipe(109L, 1L, 79L, 1L, 1);
+        new Recipe(109L, 1L, 130L, 1L, 1);
         new Recipe(110L, 1L, 110L, 2L, 1);
-        new Recipe(110L, 1L, 79L, 1L, 1);
+        new Recipe(110L, 1L, 130L, 1L, 1);
         new Recipe(111L, 1L, 111L, 2L, 1);
-        new Recipe(111L, 1L, 79L, 1L, 1);
+        new Recipe(111L, 1L, 130L, 1L, 1);
         new Recipe(112L, 1L, 112L, 2L, 1);
-        new Recipe(112L, 1L, 79L, 1L, 1);
+        new Recipe(112L, 1L, 130L, 1L, 1);
 
         // Rune finished
         new Recipe(113L, 1L, 113L, 2L, 1);
-        new Recipe(113L, 1L, 16L, 1L, 1);
+        new Recipe(113L, 1L, 129L, 1L, 1);
+        new Recipe(113L, 1L, 131L, 1L, 1);
         new Recipe(114L, 1L, 114L, 2L, 1);
-        new Recipe(114L, 1L, 16L, 1L, 1);
+        new Recipe(114L, 1L, 129L, 1L, 1);
+        new Recipe(114L, 1L, 131L, 1L, 1);
         new Recipe(115L, 1L, 115L, 2L, 1);
-        new Recipe(115L, 1L, 16L, 1L, 1);
+        new Recipe(115L, 1L, 129L, 1L, 1);
+        new Recipe(115L, 1L, 131L, 1L, 1);
         new Recipe(116L, 1L, 116L, 2L, 1);
-        new Recipe(116L, 1L, 16L, 1L, 1);
+        new Recipe(116L, 1L, 129L, 1L, 1);
+        new Recipe(116L, 1L, 131L, 1L, 1);
         new Recipe(117L, 1L, 117L, 2L, 1);
-        new Recipe(117L, 1L, 16L, 1L, 1);
+        new Recipe(117L, 1L, 129L, 1L, 1);
+        new Recipe(117L, 1L, 131L, 1L, 1);
         new Recipe(118L, 1L, 118L, 2L, 1);
-        new Recipe(118L, 1L, 16L, 1L, 1);
+        new Recipe(118L, 1L, 129L, 1L, 1);
+        new Recipe(118L, 1L, 131L, 1L, 1);
         new Recipe(119L, 1L, 119L, 2L, 1);
-        new Recipe(119L, 1L, 16L, 1L, 1);
+        new Recipe(119L, 1L, 129L, 1L, 1);
+        new Recipe(119L, 1L, 131L, 1L, 1);
         new Recipe(120L, 1L, 120L, 2L, 1);
-        new Recipe(120L, 1L, 16L, 1L, 1);
+        new Recipe(120L, 1L, 129L, 1L, 1);
+        new Recipe(120L, 1L, 131L, 1L, 1);
         new Recipe(121L, 1L, 121L, 2L, 1);
-        new Recipe(121L, 1L, 16L, 1L, 1);
+        new Recipe(121L, 1L, 129L, 1L, 1);
+        new Recipe(121L, 1L, 131L, 1L, 1);
         new Recipe(122L, 1L, 122L, 2L, 1);
-        new Recipe(122L, 1L, 16L, 1L, 1);
+        new Recipe(122L, 1L, 129L, 1L, 1);
+        new Recipe(122L, 1L, 131L, 1L, 1);
         new Recipe(123L, 1L, 123L, 2L, 1);
-        new Recipe(123L, 1L, 16L, 1L, 1);
+        new Recipe(123L, 1L, 129L, 1L, 1);
+        new Recipe(123L, 1L, 131L, 1L, 1);
         new Recipe(124L, 1L, 124L, 2L, 1);
-        new Recipe(124L, 1L, 16L, 1L, 1);
+        new Recipe(124L, 1L, 129L, 1L, 1);
+        new Recipe(124L, 1L, 131L, 1L, 1);
         new Recipe(125L, 1L, 125L, 2L, 1);
-        new Recipe(125L, 1L, 16L, 1L, 1);
+        new Recipe(125L, 1L, 129L, 1L, 1);
+        new Recipe(125L, 1L, 131L, 1L, 1);
         new Recipe(126L, 1L, 126L, 2L, 1);
-        new Recipe(126L, 1L, 16L, 1L, 1);
+        new Recipe(126L, 1L, 129L, 1L, 1);
+        new Recipe(126L, 1L, 131L, 1L, 1);
         new Recipe(127L, 1L, 127L, 2L, 1);
-        new Recipe(127L, 1L, 16L, 1L, 1);
+        new Recipe(127L, 1L, 129L, 1L, 1);
+        new Recipe(127L, 1L, 131L, 1L, 1);
         new Recipe(128L, 1L, 128L, 2L, 1);
-        new Recipe(128L, 1L, 16L, 1L, 1);
+        new Recipe(128L, 1L, 129L, 1L, 1);
+        new Recipe(128L, 1L, 131L, 1L, 1);
 
         new Setting(1L, "Sounds", false);
         new Setting(2L, "Music", false);
@@ -603,18 +628,14 @@ public class DatabaseHelper {
         new Trader(3L, 4, "The Nougat", "Panned these all myself, honest!", 15, 0, 0, 1);
         new Trader_Stock(8L, 9L, 1, 0, 5);
         new Trader_Stock(8L, 9L, 1, 25, 15);
-        new Trader_Stock(8L, 17L, 1, 0, 2);
-        new Trader_Stock(8L, 17L, 1, 25, 10);
         new Trader_Stock(8L, 8L, 1, 0, 10);
         new Trader_Stock(8L, 8L, 1, 50, 30);
-        new Trader_Stock(8L, 18L, 1, 0, 5);
-        new Trader_Stock(8L, 19L, 1, 25, 12);
 
         new Trader(3L, 4, "The Golden Boulders", "Check out these lil shiners.", 35, 0, 0, 1);
         new Trader_Stock(9L, 8L, 1, 0, 30);
         new Trader_Stock(9L, 8L, 1, 100, 150);
         new Trader_Stock(9L, 18L, 1, 0, 15);
-        new Trader_Stock(9L, 19L, 1, 50, 100);
+        new Trader_Stock(9L, 18L, 1, 50, 100);
 
         new Trader(4L, 4, "A Straight Cut", "Definitely not off the back of a cart.", 0, 0, 0, 10);
         new Trader_Stock(10L, 69L, 1, 0, 15);
@@ -647,6 +668,26 @@ public class DatabaseHelper {
         new Trader_Stock(15L, 75L, 1, 10, 2);
         new Trader_Stock(15L, 76L, 1, 0, 1);
         new Trader_Stock(15L, 75L, 1, 10, 2);
+
+        new Trader(7L, 4, "GemCrusher 9000", "Bzzt! Buy BROKEN gems!", 25, 0, 0, 4);
+        new Trader_Stock(15L, 129L, 1, 0, 1);
+        new Trader_Stock(15L, 129L, 1, 10, 2);
+        new Trader_Stock(15L, 130L, 1, 0, 1);
+        new Trader_Stock(15L, 130L, 1, 10, 2);
+        new Trader_Stock(15L, 131L, 1, 0, 1);
+        new Trader_Stock(15L, 131L, 1, 20, 5);
+
+        new Trader(8L, 4, "Farmyard Funland", "All the fun of the farm!", 5, 0, 0, 25);
+        new Trader_Stock(17L, 77L, 1, 0, 5);
+        new Trader_Stock(17L, 77L, 1, 20, 20);
+        new Trader_Stock(17L, 80L, 1, 0, 5);
+        new Trader_Stock(17L, 80L, 1, 20, 20);
+
+        new Trader(8L, 4, "Baker's Dozen", "What, a plant can't run a business?", 5, 0, 0, 25);
+        new Trader_Stock(18L, 78L, 1, 0, 5);
+        new Trader_Stock(18L, 78L, 1, 20, 20);
+        new Trader_Stock(18L, 79L, 1, 0, 5);
+        new Trader_Stock(18L, 79L, 1, 20, 20);
 
         new Slot(1, 0, 0);
         new Slot(1, 5, 0);
@@ -710,6 +751,7 @@ public class DatabaseHelper {
         new Type(19L, "Secondary", 1, 30);
         new Type(20L, "Gem", 1, 5);
         new Type(21L, "Food", 2, 30);
+        new Type(22L, "Powders", 1, 1);
         new Type(100L, "Internal", 0, 0);
 
         new Upgrade("Visitor Spawn Time", "mins", 1000, 25, 10, 25);

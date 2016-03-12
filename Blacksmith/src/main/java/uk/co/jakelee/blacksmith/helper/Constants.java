@@ -8,7 +8,6 @@ public class Constants {
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MILLISECONDS_BETWEEN_UI_REFRESHES = 1000; // 1 sec
     public static final int MILLISECONDS_BETWEEN_RESTOCK_CHECKS = 60000; // 60 sec
-    public static final int MILLISECONDS_BETWEEN_RESTOCKS = 43200000; // 12 hours
     public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS = 10000; // 10 seconds
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int CRAFT_TIME_MULTIPLIER = 3000;
@@ -75,7 +74,8 @@ public class Constants {
     public static final int TYPE_SECONDARY = 19;
     public static final int TYPE_GEM = 20;
     public static final int TYPE_FOOD = 21;
-    public static final int[] VISITOR_REWARD_TYPES = {TYPE_ORE, TYPE_BAR, TYPE_SECONDARY, TYPE_GEM, TYPE_FOOD};
+    public static final int TYPE_POWDERS = 22;
+    public static final int[] VISITOR_REWARD_TYPES = {TYPE_ORE, TYPE_BAR, TYPE_SECONDARY, TYPE_GEM, TYPE_FOOD, TYPE_POWDERS};
 
 
     // State modifiers

@@ -165,7 +165,7 @@ public class Trader extends SugarRecord {
         List<Trader_Stock> stocks = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(this.getId()),
                 Condition.prop("required_purchases").lt(this.getPurchases() + 1)).list();
-        
+
         boolean hasStock = false;
         for (Trader_Stock stock : stocks) {
             if (stock.getStock() > 0) {
