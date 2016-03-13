@@ -94,8 +94,7 @@ public class TraderActivity extends Activity {
             itemStock.setText(itemForSale.getStock() + " / " + itemForSale.getDefaultStock());
 
             TextView itemBuy = (TextView) itemRow.findViewById(R.id.itemBuy);
-            itemBuy.setTag(R.id.itemStock, itemForSale.getStock());
-            itemBuy.setTag(R.id.itemID, itemForSale.getItemID());
+            itemBuy.setTag(itemForSale);
             itemBuy.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     clickBuy(v);
@@ -107,9 +106,8 @@ public class TraderActivity extends Activity {
     }
 
     public void clickBuy(View v) {
-        long itemID = (long) v.getTag(R.id.itemID);
-        int itemStock = (int) v.getTag(R.id.itemStock);
-        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, trader, itemID, itemStock);
+        Trader_Stock itemStock = (Trader_Stock) v.getTag();
+        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
         createItemList();
     }
 

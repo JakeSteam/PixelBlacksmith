@@ -199,16 +199,13 @@ public class Inventory extends SugarRecord {
         return Constants.SUCCESS;
     }
 
-    public static int canBuyItem(Long itemID, int state, Long traderType, int price) {
+    public static int canBuyItem(Trader_Stock itemStock) {
         Inventory coins = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
 
-        Trader_Stock itemStock = Select.from(Trader_Stock.class).where(
-                Condition.prop("trader_type").eq(traderType),
-                Condition.prop("item_id").eq(itemID),
-                Condition.prop("state").eq(state)).first();
+        Item item = Item.findById(Item.class, itemStock.getItemID());
 
-        if ((coins.getQuantity() - price) <= 0) {
+        if ((coins.getQuantity() - item.getModifiedValue(itemStock.getState())) <= 0) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
         } else if (itemStock.getStock() <= 0) {
             return Constants.ERROR_TRADER_RUN_OUT;
@@ -217,28 +214,26 @@ public class Inventory extends SugarRecord {
         }
     }
 
-    public static int buyItem(Long itemID, int state, Long traderType, int price) {
-        int canBuyResponse = canBuyItem(itemID, state, traderType, price);
+    public static int buyItem(Trader_Stock itemStock) {
+        int canBuyResponse = canBuyItem(itemStock);
         if (canBuyResponse != Constants.SUCCESS) {
             return canBuyResponse;
         } else if (!Slot.hasAvailableSlot(Constants.LOCATION_MARKET)) {
             return Constants.ERROR_NO_SPARE_SLOTS;
         } else {
+            Item item = Item.findById(Item.class, itemStock.getItemID());
+
             // Remove coins
-            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, state);
-            coinStock.setQuantity(coinStock.getQuantity() - price);
+            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+            coinStock.setQuantity(coinStock.getQuantity() - item.getModifiedValue(itemStock.getState()));
             coinStock.save();
 
             // Remove stock
-            Trader_Stock itemStock = Select.from(Trader_Stock.class).where(
-                    Condition.prop("trader_type").eq(traderType),
-                    Condition.prop("item_id").eq(itemID),
-                    Condition.prop("state").eq(state)).first();
             itemStock.setStock(itemStock.getStock() - 1);
             itemStock.save();
 
             // Add item
-            Pending_Inventory.addItem(itemID, Constants.STATE_NORMAL, 1, Constants.LOCATION_MARKET);
+            Pending_Inventory.addItem(itemStock.getItemID(), itemStock.getState(), 1, Constants.LOCATION_MARKET);
 
             return Constants.SUCCESS;
         }
