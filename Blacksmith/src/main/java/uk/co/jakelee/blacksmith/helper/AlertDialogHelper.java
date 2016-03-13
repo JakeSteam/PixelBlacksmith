@@ -104,6 +104,7 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
                 }
+                activity.alertDialogCallback();
             }
         });
 
@@ -130,6 +131,7 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
                 }
+                activity.alertDialogCallback();
             }
         });
 

@@ -17,6 +17,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.AlertDialogCallback;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -24,7 +25,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
-public class TraderActivity extends Activity {
+public class TraderActivity extends Activity implements AlertDialogCallback {
     public static DisplayHelper dh;
     public static Trader trader;
 
@@ -108,13 +109,16 @@ public class TraderActivity extends Activity {
     public void clickBuy(View v) {
         Trader_Stock itemStock = (Trader_Stock) v.getTag();
         AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
-        createItemList();
     }
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TRADER);
         startActivity(intent);
+    }
+
+    public void alertDialogCallback() {
+        createItemList();
     }
 
     public void closeTrader(View view) {
