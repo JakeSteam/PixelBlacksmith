@@ -77,8 +77,8 @@ public class DatabaseHelper {
         new Item(5L, "Mithril ore", "A piece of mithril ore.", 1, 10, 12, 0);
         new Item(6L, "Adamantite ore", "A piece of adamantite ore.", 1, 10, 25, 0);
         new Item(7L, "Runite ore", "A piece of runite ore.", 1, 10, 50, 0);
-        new Item(8L, "Gold ore", "A piece of gold ore.", 1, 10, 30, 0);
-        new Item(9L, "Silver ore", "A piece of silver ore.", 1, 10, 20, 0);
+        new Item(8L, "Gold nugget", "A golden nugget.", 1, 10, 30, 0);
+        new Item(9L, "Silver nugget", "A silver nugget.", 1, 10, 20, 0);
         new Item(10L, "Dragonite ore", "A piece of dragonite ore.", 1, 10, 100, 0);
         new Item(11L, "Bronze bar", "A fresh bar of bronze.", 2, 10, 7, 1);
         new Item(12L, "Iron bar", "A fresh bar of iron.", 2, 10, 15, 5);
@@ -218,6 +218,18 @@ public class DatabaseHelper {
         new Item(146L, "Dragon fishing spear", "Let's take the fight to the fishes!", 17, 7, 375, 58);
         new Item(147L, "Dragon hammer", "Want to avoid getting hammered? Use this!", 18, 7, 200, 58);
         new Item(148L, "Draconic visage", "The orb seems to pulsate with power.", 23, 10, 300, 50);
+        new Item(149L, "Silver ring", "A plain ring of silver.", 24, 8, 25, 35);
+        new Item(150L, "Silver sapphire ring", "A ring of silver, with a glittering blue gem.", 24, 8, 185, 40);
+        new Item(151L, "Silver emerald ring", "An emerald-embossed silver ring.", 24, 8, 185, 40);
+        new Item(152L, "Silver ruby ring", "A silver ring with a fine ruby in.", 24, 8, 185, 40);
+        new Item(153L, "Silver diamond ring", "A fine silver ring with a precious white gem.", 24, 8, 285, 45);
+        new Item(154L, "Silver onyx ring", "A mildly ominous silver and black ring.", 24, 8, 285, 45);
+        new Item(155L, "Gold ring", "A plain ring of gold.", 24, 9, 40, 35);
+        new Item(156L, "Gold sapphire ring", "A golden ring, with a stunningly large sapphire.", 24, 9, 200, 40);
+        new Item(157L, "Gold emerald ring", "A ring of fine gold, with a glittering emerald.", 24, 9, 200, 40);
+        new Item(158L, "Gold ruby ring", "An expensive looking gold and red ring.", 24, 9, 200, 40);
+        new Item(159L, "Gold diamond ring", "An intimidatingly opulent ring.", 24, 9, 300, 45);
+        new Item(160L, "Gold onyx ring", "The ultimate in finger decorations.", 24, 9, 300, 45);
 
         new Location(1L, "Anvil");
         new Location(2L, "Furnace");
@@ -245,6 +257,32 @@ public class DatabaseHelper {
         new Recipe(129L, 1L, 73L, 1L, 1);
         new Recipe(130L, 1L, 74L, 1L, 1);
         new Recipe(131L, 1L, 75L, 1L, 1);
+
+        // Silver Rings
+        new Recipe(149L, 1L, 17L, 1L, 1);
+        new Recipe(150L, 1L, 17L, 1L, 1);
+        new Recipe(150L, 1L, 73L, 1L, 1);
+        new Recipe(151L, 1L, 17L, 1L, 1);
+        new Recipe(151L, 1L, 74L, 1L, 1);
+        new Recipe(152L, 1L, 17L, 1L, 1);
+        new Recipe(152L, 1L, 72L, 1L, 1);
+        new Recipe(153L, 1L, 17L, 1L, 1);
+        new Recipe(153L, 1L, 75L, 1L, 1);
+        new Recipe(154L, 1L, 17L, 1L, 1);
+        new Recipe(154L, 1L, 76L, 1L, 1);
+
+        // Gold Rings
+        new Recipe(155L, 1L, 17L, 1L, 1);
+        new Recipe(156L, 1L, 17L, 1L, 1);
+        new Recipe(156L, 1L, 73L, 1L, 1);
+        new Recipe(157L, 1L, 17L, 1L, 1);
+        new Recipe(157L, 1L, 74L, 1L, 1);
+        new Recipe(158L, 1L, 17L, 1L, 1);
+        new Recipe(158L, 1L, 72L, 1L, 1);
+        new Recipe(159L, 1L, 17L, 1L, 1);
+        new Recipe(159L, 1L, 75L, 1L, 1);
+        new Recipe(160L, 1L, 17L, 1L, 1);
+        new Recipe(160L, 1L, 76L, 1L, 1);
 
         // Bars
         new Recipe(11L, 1L, 1L, 1L, 1);
@@ -820,8 +858,8 @@ public class DatabaseHelper {
         new Type(10L, "Platebody", 3, 15);
         new Type(11L, "Half Helmet", 3, 15);
         new Type(12L, "Full Helmet", 3, 15);
-        new Type(13L, "Boots", 3, 15);
-        new Type(14L, "Gloves", 3, 10);
+        new Type(13L, "Boot", 3, 15);
+        new Type(14L, "Glove", 3, 10);
         new Type(15L, "Pickaxe", 4, 10);
         new Type(16L, "Hatchet", 4, 10);
         new Type(17L, "Fishing Rod", 4, 10);
@@ -829,8 +867,9 @@ public class DatabaseHelper {
         new Type(19L, "Secondary", 1, 30);
         new Type(20L, "Gem", 1, 5);
         new Type(21L, "Food", 2, 30);
-        new Type(22L, "Powders", 1, 1);
+        new Type(22L, "Powder", 1, 1);
         new Type(23L, "Rare", 6, 0);
+        new Type(24L, "Ring", 4, 1);
         new Type(100L, "Internal", 0, 0);
 
         new Upgrade("Visitor Spawn Time", "mins", 1000, 25, 10, 25);
