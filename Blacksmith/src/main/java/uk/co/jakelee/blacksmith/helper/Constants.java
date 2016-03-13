@@ -10,7 +10,7 @@ public class Constants {
     public static final int MILLISECONDS_BETWEEN_RESTOCK_CHECKS = 60000; // 60 sec
     public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS = 10000; // 10 seconds
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
-    public static final int CRAFT_TIME_MULTIPLIER = 200;
+    public static final int CRAFT_TIME_MULTIPLIER = 100;
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;
     public static final int MAXIMUM_REWARDS = 3;
@@ -64,7 +64,7 @@ public class Constants {
     public static final int STATE_ENCHANTED_MAX = 7;
 
     public static final int TIER_MIN = 1;
-    public static final int TIER_MAX = 6;
+    public static final int TIER_MAX = 7;
 
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;

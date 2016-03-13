@@ -27,6 +27,7 @@ public class DatabaseHelper {
         new Category("Weapon", "An item that can be used as a weapon.");
         new Category("Armour", "An item that can be used as armour.");
         new Category("Skill", "An item that can be used to train a skill.");
+        new Category("Rare", "An item that is extremely rare, and hard to obtain.");
 
         new Character(1L, "Sean Keeper", "Greetings! See anything you like?");
         new Character(2L, "The Iron Knight", "Look, it's knight with a k, okay?");
@@ -36,6 +37,7 @@ public class DatabaseHelper {
         new Character(6L, "Oog", "Oog oog!!!");
         new Character(7L, "GemBot 5000", "Bzzt!");
         new Character(8L, "Farmer's Little Friend", "You'd better not have any weedkiller on you.");
+        new Character(9L, "Death Beetle", "I am an exclusive trader.");
 
         new Criteria(1L, "State");
         new Criteria(2L, "Tier");
@@ -63,6 +65,10 @@ public class DatabaseHelper {
         new Inventory(78L, 1, 10);
         new Inventory(79L, 1, 10);
         new Inventory(80L, 1, 10);
+        new Inventory(129L, 1, 100);
+        new Inventory(130L, 1, 100);
+        new Inventory(131L, 1, 100);
+        new Inventory(148L, 1, 100);
 
         new Item(1L, "Copper ore", "A piece of copper ore.", 1, 10, 2, 0);
         new Item(2L, "Tin ore", "A piece of tin ore.", 1, 10, 2, 0);
@@ -82,7 +88,7 @@ public class DatabaseHelper {
         new Item(16L, "Rune bar", "A fresh bar of rune.", 2, 10, 100, 40);
         new Item(17L, "Silver bar", "A fresh bar of silver.", 2, 10, 22, 35);
         new Item(18L, "Gold bar", "A fresh bar of gold.", 2, 10, 35, 45);
-        new Item(19L, "Dragon bar", "A fresh bar of dragon.", 2, 10, 175, 60);
+        new Item(19L, "Dragon bar", "A fresh bar of dragon.", 2, 10, 175, 50);
         new Item(20L, "Bronze dagger", "A blunt bronze dagger.", 3, 1, 8, 1);
         new Item(21L, "Bronze sword", "A fairly blunt bronze sword.", 4, 1, 15, 1);
         new Item(22L, "Bronze longsword", "A longer bronze sword.", 5, 1, 15, 1);
@@ -192,9 +198,26 @@ public class DatabaseHelper {
         new Item(126L, "Rune hatchet", "An extremely sharp axe, for the mightiest of trees.", 16, 6, 210, 48);
         new Item(127L, "Rune fishing rod", "The fish won't rune away from this rod!", 17, 6, 210, 48);
         new Item(128L, "Rune hammer", "The mightiest of hammers! Or at least a very mighty one.", 18, 6, 110, 48);
-        new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 10, 15, 0);
-        new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 10, 20, 0);
-        new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 10, 45, 0);
+        new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 10, 20, 0);
+        new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 10, 30, 0);
+        new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 10, 40, 0);
+        new Item(132L, "Dragon dagger", "The deadliest dragon dagger!", 3, 7, 200, 50);
+        new Item(133L, "Dragon sword", "Sharp as a dragon's wit.", 4, 7, 375, 50);
+        new Item(134L, "Dragon longsword", "A very long, and very sharp, sword.", 5, 7, 375, 50);
+        new Item(135L, "Dragon bow", "A striking red bow, with a hint of flames.", 6, 7, 375, 50);
+        new Item(136L, "Dragon half shield", "Half shield or not, this will protect from a dragon's breath.", 7, 7, 550, 52);
+        new Item(137L, "Dragon full shield", "Rumoured to be forged from dragon remains.", 8, 7, 550, 52);
+        new Item(138L, "Dragon chainmail", "Unusually, small insects seem to herd around the item.", 9, 7, 550, 52);
+        new Item(139L, "Dragon platebody", "The ultimate in heavy duty protection.", 10, 7, 900, 54);
+        new Item(140L, "Dragon half helmet", "There'll be no headshots whilst this is worn.", 11, 7, 140, 54);
+        new Item(141L, "Dragon full helmet", "The helmet almost seems to repel arrows.", 12, 7, 725, 56);
+        new Item(142L, "Dragon boots", "I don't think a dragon's foot would fit in these...", 13, 7, 375, 56);
+        new Item(143L, "Dragon gloves", "I'm certain a dragon's claw wouldn't fit in here...", 14, 7, 375, 56);
+        new Item(144L, "Dragon pickaxe", "For mining the toughest of ores.", 15, 7, 375, 58);
+        new Item(145L, "Dragon hatchet", "For felling the tallest great oaks", 16, 7, 375, 58);
+        new Item(146L, "Dragon fishing spear", "Let's take the fight to the fishes!", 17, 7, 375, 58);
+        new Item(147L, "Dragon hammer", "Want to avoid getting hammered? Use this!", 18, 7, 200, 58);
+        new Item(148L, "Draconic visage", "The orb seems to pulsate with power.", 23, 10, 300, 50);
 
         new Location(1L, "Anvil");
         new Location(2L, "Furnace");
@@ -203,19 +226,19 @@ public class DatabaseHelper {
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
-        new Player_Info("XP", 5600);
+        new Player_Info("XP", 55600);
         new Player_Info("DatabaseVersion", 1);
-        new Player_Info("ItemsSmelted", 100);
-        new Player_Info("ItemsCrafted", 100);
-        new Player_Info("ItemsTraded", 100);
-        new Player_Info("ItemsSold", 100);
-        new Player_Info("ItemsBought", 1);
-        new Player_Info("VisitorsCompleted", 100);
+        new Player_Info("ItemsSmelted", 0);
+        new Player_Info("ItemsCrafted", 0);
+        new Player_Info("ItemsTraded", 0);
+        new Player_Info("ItemsSold", 0);
+        new Player_Info("ItemsBought", 0);
+        new Player_Info("VisitorsCompleted", 0);
         new Player_Info("DateRestocked", System.currentTimeMillis());
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
-        new Player_Info("CoinsEarned", 100);
+        new Player_Info("CoinsEarned", 0);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 17);
+        new Player_Info("SavedLevel", 55);
         new Player_Info("UpgradesBought", 0);
 
         // Powdered gems
@@ -347,6 +370,24 @@ public class DatabaseHelper {
         new Recipe(126L, 2L, 16L, 1L, 2);
         new Recipe(127L, 2L, 16L, 1L, 2);
         new Recipe(128L, 2L, 16L, 1L, 1);
+
+        // Dragon unfinished
+        new Recipe(132L, 2L, 19L, 1L, 1);
+        new Recipe(133L, 2L, 19L, 1L, 2);
+        new Recipe(134L, 2L, 19L, 1L, 2);
+        new Recipe(135L, 2L, 19L, 1L, 2);
+        new Recipe(136L, 2L, 19L, 1L, 3);
+        new Recipe(137L, 2L, 19L, 1L, 3);
+        new Recipe(138L, 2L, 19L, 1L, 3);
+        new Recipe(139L, 2L, 19L, 1L, 5);
+        new Recipe(140L, 2L, 19L, 1L, 3);
+        new Recipe(141L, 2L, 19L, 1L, 4);
+        new Recipe(142L, 2L, 19L, 1L, 2);
+        new Recipe(143L, 2L, 19L, 1L, 2);
+        new Recipe(144L, 2L, 19L, 1L, 2);
+        new Recipe(145L, 2L, 19L, 1L, 2);
+        new Recipe(146L, 2L, 19L, 1L, 2);
+        new Recipe(147L, 2L, 19L, 1L, 1);
 
         // Bronze finished
         new Recipe(20L, 1L, 20L, 2L, 1);
@@ -568,6 +609,40 @@ public class DatabaseHelper {
         new Recipe(128L, 1L, 129L, 1L, 1);
         new Recipe(128L, 1L, 131L, 1L, 1);
 
+        // Dragon finished
+        new Recipe(132L, 1L, 132L, 2L, 1);
+        new Recipe(132L, 1L, 148L, 1L, 1);
+        new Recipe(133L, 1L, 133L, 2L, 1);
+        new Recipe(133L, 1L, 148L, 1L, 1);
+        new Recipe(134L, 1L, 134L, 2L, 1);
+        new Recipe(134L, 1L, 148L, 1L, 1);
+        new Recipe(135L, 1L, 135L, 2L, 1);
+        new Recipe(135L, 1L, 148L, 1L, 1);
+        new Recipe(136L, 1L, 136L, 2L, 1);
+        new Recipe(136L, 1L, 148L, 1L, 1);
+        new Recipe(137L, 1L, 137L, 2L, 1);
+        new Recipe(137L, 1L, 148L, 1L, 1);
+        new Recipe(138L, 1L, 138L, 2L, 1);
+        new Recipe(138L, 1L, 148L, 1L, 1);
+        new Recipe(139L, 1L, 139L, 2L, 1);
+        new Recipe(139L, 1L, 148L, 1L, 1);
+        new Recipe(140L, 1L, 140L, 2L, 1);
+        new Recipe(140L, 1L, 148L, 1L, 1);
+        new Recipe(141L, 1L, 141L, 2L, 1);
+        new Recipe(141L, 1L, 148L, 1L, 1);
+        new Recipe(142L, 1L, 142L, 2L, 1);
+        new Recipe(142L, 1L, 148L, 1L, 1);
+        new Recipe(143L, 1L, 143L, 2L, 1);
+        new Recipe(143L, 1L, 148L, 1L, 1);
+        new Recipe(144L, 1L, 144L, 2L, 1);
+        new Recipe(144L, 1L, 148L, 1L, 1);
+        new Recipe(145L, 1L, 145L, 2L, 1);
+        new Recipe(145L, 1L, 148L, 1L, 1);
+        new Recipe(146L, 1L, 146L, 2L, 1);
+        new Recipe(146L, 1L, 148L, 1L, 1);
+        new Recipe(147L, 1L, 147L, 2L, 1);
+        new Recipe(147L, 1L, 148L, 1L, 1);
+
         new Setting(1L, "Sounds", false);
         new Setting(2L, "Music", false);
         new Setting(3L, "RestockNotifications", false);
@@ -670,12 +745,12 @@ public class DatabaseHelper {
         new Trader_Stock(15L, 75L, 1, 10, 2);
 
         new Trader(7L, 4, "GemCrusher 9000", "Bzzt! Buy BROKEN gems!", 25, 0, 0, 4);
-        new Trader_Stock(15L, 129L, 1, 0, 1);
-        new Trader_Stock(15L, 129L, 1, 10, 2);
-        new Trader_Stock(15L, 130L, 1, 0, 1);
-        new Trader_Stock(15L, 130L, 1, 10, 2);
-        new Trader_Stock(15L, 131L, 1, 0, 1);
-        new Trader_Stock(15L, 131L, 1, 20, 5);
+        new Trader_Stock(16L, 129L, 1, 0, 1);
+        new Trader_Stock(16L, 129L, 1, 10, 2);
+        new Trader_Stock(16L, 130L, 1, 0, 1);
+        new Trader_Stock(16L, 130L, 1, 10, 2);
+        new Trader_Stock(16L, 131L, 1, 0, 1);
+        new Trader_Stock(16L, 131L, 1, 20, 5);
 
         new Trader(8L, 4, "Farmyard Funland", "All the fun of the farm!", 5, 0, 0, 25);
         new Trader_Stock(17L, 77L, 1, 0, 5);
@@ -688,6 +763,9 @@ public class DatabaseHelper {
         new Trader_Stock(18L, 78L, 1, 20, 20);
         new Trader_Stock(18L, 79L, 1, 0, 5);
         new Trader_Stock(18L, 79L, 1, 20, 20);
+
+        new Trader(9L, 4, "The Exclusive Emporium", "You won't find any of this anywhere else!", 30, 0, 0, 1);
+        new Trader_Stock(19L, 148L, 1, 0, 1);
 
         new Slot(1, 0, 0);
         new Slot(1, 5, 0);
@@ -752,6 +830,7 @@ public class DatabaseHelper {
         new Type(20L, "Gem", 1, 5);
         new Type(21L, "Food", 2, 30);
         new Type(22L, "Powders", 1, 1);
+        new Type(23L, "Rare", 6, 0);
         new Type(100L, "Internal", 0, 0);
 
         new Upgrade("Visitor Spawn Time", "mins", 1000, 25, 10, 25);
