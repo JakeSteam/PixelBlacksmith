@@ -75,14 +75,13 @@
 
             <ImageView
                 android:id="@+id/open_inventory"
-                android:layout_width="330dp"
-                android:layout_height="190dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="960dp"
                 android:layout_marginTop="170dp"
-                android:alpha=".10"
                 android:onClick="openInventory"
                 android:scaleType="centerCrop"
-                android:src="@color/white" />
+                android:src="@drawable/backpack" />
 
             <RelativeLayout
                 android:id="@+id/slots_inventory"
@@ -148,7 +147,7 @@
                 android:layout_marginTop="95dp"
                 android:onClick="openHelp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/help" />
+                android:src="@drawable/helpbook" />
 
             <ImageView
                 android:id="@+id/open_statistics"
@@ -158,7 +157,7 @@
                 android:layout_marginTop="95dp"
                 android:onClick="openStatistics"
                 android:scaleType="centerCrop"
-                android:src="@drawable/levels" />
+                android:src="@drawable/statistics" />
 
             <ImageView
                 android:id="@+id/open_trophies"
