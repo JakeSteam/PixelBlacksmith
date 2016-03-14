@@ -29,26 +29,33 @@ public class StatisticsActivity extends Activity {
     }
 
     public void displayStatistics() {
+        int currentXP = Player_Info.getXp();
+        ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
+
+        int nextLevelXP = Player_Info.convertLevelToXp(Player_Info.getPlayerLevel() + 1);
+        int nextLevelIn = nextLevelXP - Player_Info.getXp();
+        ((TextViewPixel) findViewById(R.id.nextLevelIn)).setText(String.format("%,d", nextLevelIn));
+
         int itemsSmelted = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsSmelted")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.itemsSmelted)).setText(Integer.toString(itemsSmelted));
+        ((TextViewPixel) findViewById(R.id.itemsSmelted)).setText(String.format("%,d", itemsSmelted));
 
         int itemsCrafted = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsCrafted")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.itemsCrafted)).setText(Integer.toString(itemsCrafted));
+        ((TextViewPixel) findViewById(R.id.itemsCrafted)).setText(String.format("%,d", itemsCrafted));
 
         int itemsTraded = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsTraded")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.itemsTraded)).setText(Integer.toString(itemsTraded));
+        ((TextViewPixel) findViewById(R.id.itemsTraded)).setText(String.format("%,d", itemsTraded));
 
         int itemsBought = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsBought")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.itemsBought)).setText(Integer.toString(itemsBought));
+        ((TextViewPixel) findViewById(R.id.itemsBought)).setText(String.format("%,d", itemsBought));
 
         int itemsSold = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsSold")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.itemsSold)).setText(Integer.toString(itemsSold));
+        ((TextViewPixel) findViewById(R.id.itemsSold)).setText(String.format("%,d", itemsSold));
 
         int visitorsCompleted = Select.from(Player_Info.class).where(Condition.prop("name").eq("VisitorsCompleted")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.visitorsCompleted)).setText(Integer.toString(visitorsCompleted));
+        ((TextViewPixel) findViewById(R.id.visitorsCompleted)).setText(String.format("%,d", visitorsCompleted));
 
         int coinsEarned = Select.from(Player_Info.class).where(Condition.prop("name").eq("CoinsEarned")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.coinsEarned)).setText(Integer.toString(coinsEarned));
+        ((TextViewPixel) findViewById(R.id.coinsEarned)).setText(String.format("%,d", coinsEarned));
 
         long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
         long unixNextRestock = unixRestocked + DateHelper.hoursToMilliseconds(Upgrade.getValue("Shop Restock Time"));
@@ -69,10 +76,10 @@ public class StatisticsActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.dateStarted)).setText(dateRestarted);
 
         int biggestTrade = Select.from(Visitor_Stats.class).orderBy("best_item_value DESC").first().getBestItemValue();
-        ((TextViewPixel) findViewById(R.id.biggestTrade)).setText(Integer.toString(biggestTrade));
+        ((TextViewPixel) findViewById(R.id.biggestTrade)).setText(String.format("%,d", biggestTrade));
 
         int upgradesBought = Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue();
-        ((TextViewPixel) findViewById(R.id.upgradesBought)).setText(Integer.toString(upgradesBought));
+        ((TextViewPixel) findViewById(R.id.upgradesBought)).setText(String.format("%,d", upgradesBought));
 
     }
 

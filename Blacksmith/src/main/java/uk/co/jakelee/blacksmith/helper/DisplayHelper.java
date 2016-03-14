@@ -347,7 +347,7 @@ public class DisplayHelper {
         int newLevel = Player_Info.getPlayerLevel();
         levelCount.setText("Level" + newLevel + " (" + Player_Info.getXp() + "xp)");
 
-        if (newLevel != Player_Info.getPlayerLevelFromDB()) {
+        if (newLevel > Player_Info.getPlayerLevelFromDB()) {
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, getLevelUpText(newLevel));
             Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
         }
