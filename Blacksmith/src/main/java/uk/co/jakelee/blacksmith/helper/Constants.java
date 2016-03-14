@@ -4,7 +4,7 @@ public class Constants {
     public static final int TRUE = 1;
 
     // Information about game mechanics
-    public static final Double LEVEL_MODIFIER = 0.25;
+    public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MILLISECONDS_BETWEEN_UI_REFRESHES = 1000; // 1 sec
     public static final int MILLISECONDS_BETWEEN_RESTOCK_CHECKS = 60000; // 60 sec
