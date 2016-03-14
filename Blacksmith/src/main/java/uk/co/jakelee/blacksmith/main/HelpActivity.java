@@ -13,22 +13,7 @@ public class HelpActivity extends Activity {
     public static DisplayHelper dh;
 
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
-    public static int HELP = 0;
-    public static int MAIN = 1;
-    public static int FURNACE = 2;
-    public static int ANVIL = 3;
-    public static int INVENTORY = 4;
-    public static int CREDITS = 5;
-    public static int ENCHANTING = 6;
-    public static int MARKET = 7;
-    public static int SETTINGS = 8;
-    public static int TRADER = 9;
-    public static int STATISTICS = 10;
-    public static int TABLE = 11;
-    public static int TRADE = 12;
-    public static int TROPHY = 13;
-    public static int VISITOR = 14;
-    public static int UPGRADE = 15;
+    public static enum TOPICS {HELP, MAIN, FURNACE, ANVIL, INVENTORY, CREDITS, ENCHANTING, MARKET, SETTINGS, TRADER, STATISTICS, TABLE, TRADE, TROPHY, VISITOR, UPGRADE};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,44 +21,44 @@ public class HelpActivity extends Activity {
         setContentView(R.layout.activity_help);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
-        int helpToLoad = getIntent().getIntExtra(INTENT_ID, 0);
-        displayHelp(helpToLoad);
+        TOPICS topic = (TOPICS) getIntent().getSerializableExtra(INTENT_ID);
+        displayHelp(topic);
     }
 
-    public void displayHelp(int helpToLoad) {
+    public void displayHelp(TOPICS topic) {
         LinearLayout layout = (LinearLayout) findViewById(R.id.helpLayout);
 
-        if (helpToLoad == HELP) {
+        if (topic == TOPICS.HELP) {
             displayHelpHelp(layout);
-        } else if (helpToLoad == MAIN) {
+        } else if (topic == TOPICS.MAIN) {
             displayHelpMain(layout);
-        } else if (helpToLoad == FURNACE) {
+        } else if (topic == TOPICS.FURNACE) {
             displayHelpFurnace(layout);
-        } else if (helpToLoad == ANVIL) {
+        } else if (topic == TOPICS.ANVIL) {
             displayHelpAnvil(layout);
-        } else if (helpToLoad == INVENTORY) {
+        } else if (topic == TOPICS.INVENTORY) {
             displayHelpInventory(layout);
-        } else if (helpToLoad == CREDITS) {
+        } else if (topic == TOPICS.CREDITS) {
             displayHelpCredits(layout);
-        } else if (helpToLoad == ENCHANTING) {
+        } else if (topic == TOPICS.ENCHANTING) {
             displayHelpEnchanting(layout);
-        } else if (helpToLoad == MARKET) {
+        } else if (topic == TOPICS.MARKET) {
             displayHelpMarket(layout);
-        } else if (helpToLoad == SETTINGS) {
+        } else if (topic == TOPICS.SETTINGS) {
             displayHelpSettings(layout);
-        } else if (helpToLoad == TRADER) {
+        } else if (topic == TOPICS.TRADER) {
             displayHelpTrader(layout);
-        } else if (helpToLoad == STATISTICS) {
+        } else if (topic == TOPICS.STATISTICS) {
             displayHelpStatistics(layout);
-        } else if (helpToLoad == TABLE) {
+        } else if (topic == TOPICS.TABLE) {
             displayHelpTable(layout);
-        } else if (helpToLoad == TRADE) {
+        } else if (topic == TOPICS.TRADE) {
             displayHelpTrade(layout);
-        } else if (helpToLoad == TROPHY) {
+        } else if (topic == TOPICS.TROPHY) {
             displayHelpTrophy(layout);
-        } else if (helpToLoad == VISITOR) {
+        } else if (topic == TOPICS.VISITOR) {
             displayHelpVisitor(layout);
-        } else if (helpToLoad == UPGRADE) {
+        } else if (topic == TOPICS.UPGRADE) {
             displayHelpUpgrade(layout);
         }
     }
@@ -209,7 +194,7 @@ public class HelpActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.HELP);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.HELP);
         startActivity(intent);
         this.finish();
     }

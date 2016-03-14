@@ -96,7 +96,7 @@ public class MarketActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.MARKET);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.MARKET);
         startActivity(intent);
     }
 

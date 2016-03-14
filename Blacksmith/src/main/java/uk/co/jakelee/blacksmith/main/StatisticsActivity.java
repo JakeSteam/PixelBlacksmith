@@ -85,7 +85,7 @@ public class StatisticsActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.STATISTICS);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.STATISTICS);
         startActivity(intent);
     }
 

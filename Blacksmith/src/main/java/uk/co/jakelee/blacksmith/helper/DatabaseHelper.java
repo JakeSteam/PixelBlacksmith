@@ -238,7 +238,7 @@ public class DatabaseHelper {
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
-        new Player_Info("XP", 100000);
+        new Player_Info("XP", 200000);
         new Player_Info("DatabaseVersion", 1);
         new Player_Info("ItemsSmelted", 0);
         new Player_Info("ItemsCrafted", 0);
@@ -250,7 +250,7 @@ public class DatabaseHelper {
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 0);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 55);
+        new Player_Info("SavedLevel", 44);
         new Player_Info("UpgradesBought", 0);
 
         // Powdered gems
