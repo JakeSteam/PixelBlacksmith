@@ -198,24 +198,53 @@
         </RelativeLayout>
     </HorizontalScrollView>
 
-    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-        android:id="@+id/coinCount"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:shadowColor="@color/black"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:padding="5dp">
 
-    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-        android:id="@+id/currentLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/coinCount"
-        android:shadowColor="@color/black"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/coinImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/item52"/>
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/coinCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/currentLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:background="@color/lightBrown"/>
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/currentLevelPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <ProgressBar
+            android:id="@+id/currentLevelProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:indeterminate="false"
+            android:progress="75"
+            android:progressDrawable="@drawable/progress_bar" />
+    </LinearLayout>
 
 </RelativeLayout>

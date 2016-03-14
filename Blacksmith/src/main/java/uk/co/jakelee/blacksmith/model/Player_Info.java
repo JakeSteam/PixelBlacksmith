@@ -107,6 +107,17 @@ public class Player_Info extends SugarRecord {
         return (int) Math.pow(level / Constants.LEVEL_MODIFIER, 2);
     }
 
+    public static int getLevelProgress() {
+        int currentXP = Player_Info.getXp();
+        int currentLevelXP = Player_Info.convertLevelToXp(Player_Info.getPlayerLevel());
+        int nextLevelXP = Player_Info.convertLevelToXp(Player_Info.getPlayerLevel() + 1);
+
+        double neededXP = nextLevelXP - currentLevelXP;
+        double earnedXP = nextLevelXP - currentXP;
+
+        return 100 - (int) ((earnedXP / neededXP) * 100);
+    }
+
     public static int getXp() {
         Player_Info xpInfo = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("XP")).first();

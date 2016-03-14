@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -35,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean musicServiceIsStarted = false;
 
     public static TextViewPixel coins;
-    public static TextViewPixel level;
     public static LinearLayout visitorContainer;
     public static LinearLayout visitorContainerOverflow;
+
+    public static TextViewPixel level;
+    public static ProgressBar levelProgress;
+    public static TextViewPixel levelPercent;
 
     public static RelativeLayout sellingSlots;
     public static RelativeLayout furnaceSlots;
@@ -55,9 +59,12 @@ public class MainActivity extends AppCompatActivity {
         musicService = new Intent(this, MusicService.class);
 
         coins = (TextViewPixel) findViewById(R.id.coinCount);
-        level = (TextViewPixel) findViewById(R.id.currentLevel);
         visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
         visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
+
+        level = (TextViewPixel) findViewById(R.id.currentLevel);
+        levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
+        levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
 
         sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
         furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);

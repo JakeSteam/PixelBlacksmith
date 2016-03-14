@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
@@ -339,16 +340,21 @@ public class DisplayHelper {
 
     public void updateCoinsGUI() {
         String coinCountString = String.format("%,d", getCoins());
-        MainActivity.coins.setText(coinCountString + " coins");
+        MainActivity.coins.setText(coinCountString);
     }
 
     public void updateLevelText(Context context) {
         TextViewPixel levelCount = MainActivity.level;
-        int newLevel = Player_Info.getPlayerLevel();
-        levelCount.setText("Level" + newLevel + " (" + Player_Info.getXp() + "xp)");
+        levelCount.setText(String.format("%d", Player_Info.getPlayerLevel()));
 
-        if (newLevel > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, getLevelUpText(newLevel));
+        ProgressBar levelProgress = MainActivity.levelProgress;
+        levelProgress.setProgress(Player_Info.getLevelProgress());
+
+        TextViewPixel levelPercent = MainActivity.levelPercent;
+        levelPercent.setText(String.format("%d", Player_Info.getLevelProgress()));
+
+        if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, getLevelUpText(Player_Info.getPlayerLevel()));
             Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
         }
     }
