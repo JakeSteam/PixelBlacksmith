@@ -938,7 +938,7 @@ public class DatabaseHelper {
         new Visitor_Type(24L, "Southerner", "From down south. No, REALLY south. REAAALLLY south.", 7L, 6L, 3L, 1.15, 1.15, 1.10, false, false, false, 2);
         new Visitor_Type(25L, "Magical Mushroom", "No nibbling.", 10L, 21L, 1L, 1.01, 1.15, 1.05, false, false, false, 5);
         new Visitor_Type(26L, "Overwasp", "You know I can sting repeatedly, right?", 9L, 4L, 1L, 1.25, 1.15, 1.05, false, false, false, 4);
-        new Visitor_Type(27L, "Obelix", "Seen Asterisk anywhere?", 1L, 16L, 1L, 1.05, 1.10, 1.05, false, false, false, 3);
+        new Visitor_Type(27L, "Obelix The Ghoul", "Seen Asterisk anywhere?", 1L, 16L, 1L, 1.05, 1.10, 1.05, false, false, false, 3);
         new Visitor_Type(28L, "Whippersnappette", "Don't tell Steve, but his secret mine isn't so secret.", 5L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 5);
         new Visitor_Type(29L, "Hatty", "I wish my hair wasn't so exposed to the elements.", 10L, 12L, 1L, 1.08, 1.15, 1.05, false, false, false, 5);
         new Visitor_Type(30L, "Archer", "It's all about the bullseye.", 2L, 6L, 5L, 1.10, 1.25, 1.15, false, false, false, 2);

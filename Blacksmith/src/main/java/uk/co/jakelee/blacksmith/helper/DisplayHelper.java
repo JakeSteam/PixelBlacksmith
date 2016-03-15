@@ -155,8 +155,8 @@ public class DisplayHelper {
         for (final Visitor visitor : visitors) {
 
             // Creating visitor image
-            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 200, 200);
-            visitorImage.setPadding(15, 15, 15, 15);
+            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 170, 170);
+            visitorImage.setPadding(10, 10, 10, 10);
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -351,7 +351,7 @@ public class DisplayHelper {
         levelProgress.setProgress(Player_Info.getLevelProgress());
 
         TextViewPixel levelPercent = MainActivity.levelPercent;
-        levelPercent.setText(String.format("%d", Player_Info.getLevelProgress()));
+        levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
         if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, getLevelUpText(Player_Info.getPlayerLevel()));
