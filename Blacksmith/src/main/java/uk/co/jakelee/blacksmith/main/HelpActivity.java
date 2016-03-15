@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import uk.co.jakelee.blacksmith.R;
@@ -14,7 +15,7 @@ public class HelpActivity extends Activity {
     public static DisplayHelper dh;
 
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
-    public static enum TOPICS {Help, Main, Furnace, Anvil, Inventory, Credits, Enchanting, Market, Settings, Trader, Statistics, Table, Trade, Trophy, Visitor, Upgrade};
+    public static enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,18 +31,31 @@ public class HelpActivity extends Activity {
             displayHelp(helpLayout, topicIntent);
         } else {
             for (TOPICS topic : TOPICS.values()) {
-                TextViewPixel topicView = dh.createTextView(topic.name(), 24);
+                TextViewPixel topicView = dh.createTextView(topic.name(), 34);
+                topicView.setPadding(5, 5, 5, 5);
+                topicView.setTag(topic);
+                topicView.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        clickTopic(v);
+                    }
+                });
+
                 helpLayout.addView(topicView);
             }
         }
     }
 
-    public void displayHelp(LinearLayout layout, TOPICS topic) {
+    public void clickTopic(View v) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, (TOPICS) v.getTag());
+        startActivity(intent);
+    }
 
+    public void displayHelp(LinearLayout layout, TOPICS topic) {
         if (topic == TOPICS.Help) {
             displayHelpHelp(layout);
-        } else if (topic == TOPICS.Main) {
-            displayHelpMain(layout);
+        } else if (topic == TOPICS.Overview) {
+            displayHelpOverview(layout);
         } else if (topic == TOPICS.Furnace) {
             displayHelpFurnace(layout);
         } else if (topic == TOPICS.Anvil) {
@@ -62,8 +76,8 @@ public class HelpActivity extends Activity {
             displayHelpStatistics(layout);
         } else if (topic == TOPICS.Table) {
             displayHelpTable(layout);
-        } else if (topic == TOPICS.Trade) {
-            displayHelpTrade(layout);
+        } else if (topic == TOPICS.Trading) {
+            displayHelpTrading(layout);
         } else if (topic == TOPICS.Trophy) {
             displayHelpTrophy(layout);
         } else if (topic == TOPICS.Visitor) {
@@ -79,7 +93,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Get out of here, there's money to make!\n", 22));
     }
 
-    public void displayHelpMain(LinearLayout layout) {
+    public void displayHelpOverview(LinearLayout layout) {
         layout.addView(dh.createTextView("Overview\n", 26));
         layout.addView(dh.createTextView("So, here's the deal: You're a blacksmith. A not very good one, to be honest.\n", 22));
         layout.addView(dh.createTextView("If you want to make a name for yourself, you're going to have to keep visitors happy, and keep an eye on your resources.\n", 22));
@@ -169,7 +183,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Pressing 'Craft Max' will create as many of the selected item as possible with your current free slots and resources.\n", 22));
     }
 
-    public void displayHelpTrade(LinearLayout layout) {
+    public void displayHelpTrading(LinearLayout layout) {
         layout.addView(dh.createTextView("Trade\n", 26));
         layout.addView(dh.createTextView("This screen is where you'll make all of your money!\n", 22));
         layout.addView(dh.createTextView("The discovered bonus is displayed next to the sell price of each item. It's entirely possible the item will sell for more than this, if all of the visitor's preferences have not yet been discovered.\n", 22));
