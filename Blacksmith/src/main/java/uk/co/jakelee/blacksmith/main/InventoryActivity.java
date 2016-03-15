@@ -102,7 +102,7 @@ public class InventoryActivity extends Activity {
         int sellResponse = Inventory.sellItem(itemID, itemState, quantity, (int) modifiedPrice);
         if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), modifiedPrice));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending selling for %3s coin(s)", quantity, itemToSell.getName(), (int) modifiedPrice));
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {
