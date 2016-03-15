@@ -199,7 +199,7 @@ public class AnvilActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.ANVIL);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Anvil);
         startActivity(intent);
     }
 }

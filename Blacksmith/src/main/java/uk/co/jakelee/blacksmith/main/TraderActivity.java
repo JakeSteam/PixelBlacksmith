@@ -113,7 +113,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.TRADER);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Trader);
         startActivity(intent);
     }
 

@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 
 public class HelpActivity extends Activity {
     public static DisplayHelper dh;
 
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
-    public static enum TOPICS {HELP, MAIN, FURNACE, ANVIL, INVENTORY, CREDITS, ENCHANTING, MARKET, SETTINGS, TRADER, STATISTICS, TABLE, TRADE, TROPHY, VISITOR, UPGRADE};
+    public static enum TOPICS {Help, Main, Furnace, Anvil, Inventory, Credits, Enchanting, Market, Settings, Trader, Statistics, Table, Trade, Trophy, Visitor, Upgrade};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,44 +22,53 @@ public class HelpActivity extends Activity {
         setContentView(R.layout.activity_help);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
-        TOPICS topic = (TOPICS) getIntent().getSerializableExtra(INTENT_ID);
-        displayHelp(topic);
+        LinearLayout helpLayout = (LinearLayout) findViewById(R.id.helpLayout);
+        helpLayout.removeAllViews();
+
+        TOPICS topicIntent = (TOPICS) getIntent().getSerializableExtra(INTENT_ID);
+        if (topicIntent != null) {
+            displayHelp(helpLayout, topicIntent);
+        } else {
+            for (TOPICS topic : TOPICS.values()) {
+                TextViewPixel topicView = dh.createTextView(topic.name(), 24);
+                helpLayout.addView(topicView);
+            }
+        }
     }
 
-    public void displayHelp(TOPICS topic) {
-        LinearLayout layout = (LinearLayout) findViewById(R.id.helpLayout);
+    public void displayHelp(LinearLayout layout, TOPICS topic) {
 
-        if (topic == TOPICS.HELP) {
+        if (topic == TOPICS.Help) {
             displayHelpHelp(layout);
-        } else if (topic == TOPICS.MAIN) {
+        } else if (topic == TOPICS.Main) {
             displayHelpMain(layout);
-        } else if (topic == TOPICS.FURNACE) {
+        } else if (topic == TOPICS.Furnace) {
             displayHelpFurnace(layout);
-        } else if (topic == TOPICS.ANVIL) {
+        } else if (topic == TOPICS.Anvil) {
             displayHelpAnvil(layout);
-        } else if (topic == TOPICS.INVENTORY) {
+        } else if (topic == TOPICS.Inventory) {
             displayHelpInventory(layout);
-        } else if (topic == TOPICS.CREDITS) {
+        } else if (topic == TOPICS.Credits) {
             displayHelpCredits(layout);
-        } else if (topic == TOPICS.ENCHANTING) {
+        } else if (topic == TOPICS.Enchanting) {
             displayHelpEnchanting(layout);
-        } else if (topic == TOPICS.MARKET) {
+        } else if (topic == TOPICS.Market) {
             displayHelpMarket(layout);
-        } else if (topic == TOPICS.SETTINGS) {
+        } else if (topic == TOPICS.Settings) {
             displayHelpSettings(layout);
-        } else if (topic == TOPICS.TRADER) {
+        } else if (topic == TOPICS.Trader) {
             displayHelpTrader(layout);
-        } else if (topic == TOPICS.STATISTICS) {
+        } else if (topic == TOPICS.Statistics) {
             displayHelpStatistics(layout);
-        } else if (topic == TOPICS.TABLE) {
+        } else if (topic == TOPICS.Table) {
             displayHelpTable(layout);
-        } else if (topic == TOPICS.TRADE) {
+        } else if (topic == TOPICS.Trade) {
             displayHelpTrade(layout);
-        } else if (topic == TOPICS.TROPHY) {
+        } else if (topic == TOPICS.Trophy) {
             displayHelpTrophy(layout);
-        } else if (topic == TOPICS.VISITOR) {
+        } else if (topic == TOPICS.Visitor) {
             displayHelpVisitor(layout);
-        } else if (topic == TOPICS.UPGRADE) {
+        } else if (topic == TOPICS.Upgrade) {
             displayHelpUpgrade(layout);
         }
     }
@@ -194,7 +204,7 @@ public class HelpActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.HELP);
+        intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
         startActivity(intent);
         this.finish();
     }
