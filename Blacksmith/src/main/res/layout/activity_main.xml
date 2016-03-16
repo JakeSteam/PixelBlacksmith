@@ -199,9 +199,7 @@
         </RelativeLayout>
     </HorizontalScrollView>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp">
@@ -210,12 +208,36 @@
             android:id="@+id/coinImage"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
             android:src="@drawable/item52"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/coinCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/coinImage"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <ProgressBar
+            android:id="@+id/currentLevelProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/level_progress" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/currentLevelPercent"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/currentLevelProgress"
+            android:layout_alignRight="@id/currentLevelProgress"
+            android:gravity="center"
+            android:layout_centerVertical="true"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -223,29 +245,11 @@
             android:id="@+id/currentLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
+            android:layout_toLeftOf="@id/currentLevelProgress"
             android:padding="5dp"
             android:textColor="@color/white"
             android:textSize="28sp"
-            android:background="@color/lightBrown"/>
-
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/currentLevelPercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
-
-        <ProgressBar
-            android:id="@+id/currentLevelProgress"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:indeterminate="false"
-            android:progress="75"
-            android:progressDrawable="@drawable/progress_bar" />
-    </LinearLayout>
+            android:background="@drawable/levelbackground"/>
+    </RelativeLayout>
 
 </RelativeLayout>
