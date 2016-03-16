@@ -64,7 +64,7 @@ public class Constants {
     public static final int STATE_ENCHANTED_MAX = 7;
 
     public static final int TIER_MIN = 1;
-    public static final int TIER_MAX = 7;
+    public static final int TIER_MAX = 9;
 
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
@@ -75,6 +75,7 @@ public class Constants {
     public static final int TYPE_GEM = 20;
     public static final int TYPE_FOOD = 21;
     public static final int TYPE_POWDERS = 22;
+    public static final int TYPE_RING = 24;
     public static final int[] VISITOR_REWARD_TYPES = {TYPE_ORE, TYPE_BAR, TYPE_SECONDARY, TYPE_GEM, TYPE_FOOD, TYPE_POWDERS};
 
 

@@ -16,9 +16,6 @@ import android.widget.TableLayout;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -74,10 +71,13 @@ public class TableActivity extends Activity {
         }
 
         // Get all items that are of the correct tier
-        List<Item> items = Select.from(Item.class).where(
-                Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
-                Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
-                Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
+        String[] parameters = {
+                String.valueOf(Constants.TYPE_ANVIL_MIN),
+                String.valueOf(Constants.TYPE_ANVIL_MAX),
+                String.valueOf(Constants.TYPE_RING),
+                String.valueOf(displayedTier)};
+        List<Item> items = Item.find(Item.class, "(type BETWEEN ? AND ? OR type = ?) AND tier = ?", parameters, "", "level ASC", "");
+
         numberOfItems = items.size();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
