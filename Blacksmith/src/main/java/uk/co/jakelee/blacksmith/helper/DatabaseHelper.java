@@ -273,16 +273,16 @@ public class DatabaseHelper {
         new Recipe(154L, 1L, 76L, 1L, 1);
 
         // Gold Rings
-        new Recipe(155L, 1L, 17L, 1L, 1);
-        new Recipe(156L, 1L, 17L, 1L, 1);
+        new Recipe(155L, 1L, 18L, 1L, 1);
+        new Recipe(156L, 1L, 18L, 1L, 1);
         new Recipe(156L, 1L, 73L, 1L, 1);
-        new Recipe(157L, 1L, 17L, 1L, 1);
+        new Recipe(157L, 1L, 18L, 1L, 1);
         new Recipe(157L, 1L, 74L, 1L, 1);
-        new Recipe(158L, 1L, 17L, 1L, 1);
+        new Recipe(158L, 1L, 18L, 1L, 1);
         new Recipe(158L, 1L, 72L, 1L, 1);
-        new Recipe(159L, 1L, 17L, 1L, 1);
+        new Recipe(159L, 1L, 18L, 1L, 1);
         new Recipe(159L, 1L, 75L, 1L, 1);
-        new Recipe(160L, 1L, 17L, 1L, 1);
+        new Recipe(160L, 1L, 18L, 1L, 1);
         new Recipe(160L, 1L, 76L, 1L, 1);
 
         // Bars

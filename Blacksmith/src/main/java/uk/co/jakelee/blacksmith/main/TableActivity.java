@@ -16,9 +16,6 @@ import android.widget.TableLayout;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -74,10 +71,13 @@ public class TableActivity extends Activity {
         }
 
         // Get all items that are of the correct tier
-        List<Item> items = Select.from(Item.class).where(
-                Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
-                Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
-                Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
+        String[] parameters = {
+                String.valueOf(Constants.TYPE_ANVIL_MIN),
+                String.valueOf(Constants.TYPE_ANVIL_MAX),
+                String.valueOf(Constants.TYPE_RING),
+                String.valueOf(displayedTier)};
+        List<Item> items = Item.find(Item.class, "(type BETWEEN ? AND ? OR type = ?) AND tier = ?", parameters, "", "level ASC", "");
+
         numberOfItems = items.size();
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
@@ -108,7 +108,7 @@ public class TableActivity extends Activity {
         // Sort out the tier arrows
         Button upArrow = (Button) findViewById(R.id.upButton);
         Button downArrow = (Button) findViewById(R.id.downButton);
-        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, downArrow, upArrow);
+        dh.drawArrows(this.displayedTier, Constants.TIER_TABLE_MIN, Constants.TIER_TABLE_MAX, downArrow, upArrow);
     }
 
     public void craft1(View v) {
@@ -144,14 +144,14 @@ public class TableActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < Constants.TIER_MAX) {
+        if (displayedTier < Constants.TIER_TABLE_MAX) {
             displayedTier++;
             createTableInterface(true);
         }
     }
 
     public void goDownTier(View view) {
-        if (displayedTier > Constants.TIER_MIN) {
+        if (displayedTier > Constants.TIER_TABLE_MIN) {
             displayedTier--;
             createTableInterface(true);
         }
