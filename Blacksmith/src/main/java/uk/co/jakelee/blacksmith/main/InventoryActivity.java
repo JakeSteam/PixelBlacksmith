@@ -45,7 +45,8 @@ public class InventoryActivity extends Activity {
     public void updateInventoryTable() {
         List<Inventory> allInventoryItems = Select.from(Inventory.class).where(
                 Condition.prop("quantity").gt(0),
-                Condition.prop("item").notEq(Constants.ITEM_COINS)).list();
+                Condition.prop("item").notEq(Constants.ITEM_COINS))
+                .orderBy("state ASC").list();
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 
