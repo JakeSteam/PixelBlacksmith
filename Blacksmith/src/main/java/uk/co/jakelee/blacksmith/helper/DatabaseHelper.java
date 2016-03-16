@@ -243,6 +243,7 @@ public class DatabaseHelper {
         new Player_Info("ItemsSmelted", 0);
         new Player_Info("ItemsCrafted", 0);
         new Player_Info("ItemsTraded", 0);
+        new Player_Info("ItemsEnchanted", 0);
         new Player_Info("ItemsSold", 0);
         new Player_Info("ItemsBought", 0);
         new Player_Info("VisitorsCompleted", 0);

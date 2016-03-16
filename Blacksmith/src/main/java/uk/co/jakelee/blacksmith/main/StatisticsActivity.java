@@ -51,6 +51,9 @@ public class StatisticsActivity extends Activity {
         int itemsSold = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsSold")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.itemsSold)).setText(String.format("%,d", itemsSold));
 
+        int itemsEnchanted = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsEnchanted")).first().getIntValue();
+        ((TextViewPixel) findViewById(R.id.itemsEnchanted)).setText(String.format("%,d", itemsEnchanted));
+
         int visitorsCompleted = Select.from(Player_Info.class).where(Condition.prop("name").eq("VisitorsCompleted")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.visitorsCompleted)).setText(String.format("%,d", visitorsCompleted));
 
