@@ -37,7 +37,7 @@ public class Pending_Inventory extends SugarRecord {
         Item item = Item.findById(Item.class, itemId);
         long time = System.currentTimeMillis();
         int craftTimeMultiplier = Constants.CRAFT_TIME_MULTIPLIER;
-        int craftTime = item.getValue() * craftTimeMultiplier;
+        int craftTime = item.getModifiedValue(state) * craftTimeMultiplier;
 
         Pending_Inventory newItem = new Pending_Inventory(itemId, state, time, quantity, craftTime, location);
         newItem.save();

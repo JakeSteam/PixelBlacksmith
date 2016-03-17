@@ -14,6 +14,7 @@ public class Constants {
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;
     public static final int MAXIMUM_REWARDS = 3;
+    public static final double STATE_UNFINISHED_MODIFIER = 0.5;
 
     public static final int TRADER_OUT_OF_STOCK = -1;
     public static final int TRADER_NOT_PRESENT = 0;
@@ -79,11 +80,6 @@ public class Constants {
     public static final int TYPE_POWDERS = 22;
     public static final int TYPE_RING = 24;
     public static final int[] VISITOR_REWARD_TYPES = {TYPE_ORE, TYPE_BAR, TYPE_SECONDARY, TYPE_GEM, TYPE_FOOD, TYPE_POWDERS};
-
-
-    // State modifiers
-    public static final double STATE_UNFINISHED_MODIFIER = 0.5;
-    public static final int STATE_ENCHANTED_ADDER = 100;
 
     // Demands
     public final static int MINIMUM_DEMANDS = 2;

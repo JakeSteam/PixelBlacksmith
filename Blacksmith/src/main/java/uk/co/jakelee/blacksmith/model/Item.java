@@ -100,12 +100,16 @@ public class Item extends SugarRecord {
         return getModifiedValue(Long.valueOf(state));
     }
 
-    public int getModifiedValue(Long state) {
-        if (state == Constants.STATE_UNFINISHED) {
-            return (int) (value * Constants.STATE_UNFINISHED_MODIFIER);
-        } else if (state >= Constants.STATE_ENCHANTED_MIN && state <= Constants.STATE_ENCHANTED_MAX) {
-            return value + Constants.STATE_ENCHANTED_ADDER;
+    public int getModifiedValue(Long itemState) {
+        int itemValue = value;
+        if (itemState >= Constants.STATE_ENCHANTED_MIN && itemState <= Constants.STATE_ENCHANTED_MAX) {
+            State state = State.findById(State.class, itemState);
+            Item initiatingItem = Item.findById(Item.class, state.getInitiatingItem());
+            itemValue += initiatingItem.getValue();
+        } else if (itemState == Constants.STATE_UNFINISHED) {
+            itemValue = (int)(itemValue * Constants.STATE_UNFINISHED_MODIFIER);
         }
-        return value;
+
+        return itemValue;
     }
 }
