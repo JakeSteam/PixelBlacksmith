@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_id">484982205674</string>
+
+    <string name="leaderboard_visitors">CgkI6tnE2Y4OEAIQAA</string>
+    <string name="leaderboard_items">CgkI6tnE2Y4OEAIQAQ</string>
+
+    <string name="achievement_visitors_1">CgkI6tnE2Y4OEAIQAg</string>
+    <string name="achievement_visitors_2">CgkI6tnE2Y4OEAIQAw</string>
+    <string name="achievement_visitors_3">CgkI6tnE2Y4OEAIQBA</string>
+    <string name="achievement_visitors_4">CgkI6tnE2Y4OEAIQBQ</string>
+    <string name="achievement_furnace_1">CgkI6tnE2Y4OEAIQBg</string>
+    <string name="achievement_furnace_2">CgkI6tnE2Y4OEAIQBw</string>
+
     <item name="shopkeeperPic" type="id" />
     <item name="shopkeeperName" type="id" />
     <item name="shopkeeperIntro" type="id" />
