@@ -293,6 +293,16 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void achieveTest (View v) {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            // Call a Play Games services API method, for example:
+            Games.Achievements.unlock(mGoogleApiClient, "CgkI6tnE2Y4OEAIQAg");
+        } else {
+            // Alternative implementation (or warn user that they must
+            // sign in to use this feature)
+        }
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
         // The player is signed in. Hide the sign-in button and allow the

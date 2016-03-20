@@ -2,15 +2,15 @@
 <resources>
     <string name="app_id">484982205674</string>
 
-    <string name="leaderboard_visitors">CgkI6tnE2Y4OEAIQAA</string>
-    <string name="leaderboard_items">CgkI6tnE2Y4OEAIQAQ</string>
+    <item name="leaderboard_visitors" type="id">CgkI6tnE2Y4OEAIQAA</item>
+    <item name="leaderboard_items" type="id">CgkI6tnE2Y4OEAIQAQ</item>
 
-    <string name="achievement_visitors_1">CgkI6tnE2Y4OEAIQAg</string>
-    <string name="achievement_visitors_2">CgkI6tnE2Y4OEAIQAw</string>
-    <string name="achievement_visitors_3">CgkI6tnE2Y4OEAIQBA</string>
-    <string name="achievement_visitors_4">CgkI6tnE2Y4OEAIQBQ</string>
-    <string name="achievement_furnace_1">CgkI6tnE2Y4OEAIQBg</string>
-    <string name="achievement_furnace_2">CgkI6tnE2Y4OEAIQBw</string>
+    <item name="achievement_visitors_1" type="id">CgkI6tnE2Y4OEAIQAg</item>
+    <item name="achievement_visitors_2" type="id">CgkI6tnE2Y4OEAIQAw</item>
+    <item name="achievement_visitors_3" type="id">CgkI6tnE2Y4OEAIQBA</item>
+    <item name="achievement_visitors_4" type="id">CgkI6tnE2Y4OEAIQBQ</item>
+    <item name="achievement_furnace_1" type="id">CgkI6tnE2Y4OEAIQBg</item>
+    <item name="achievement_furnace_2" type="id">CgkI6tnE2Y4OEAIQBw</item>
 
     <item name="shopkeeperPic" type="id" />
     <item name="shopkeeperName" type="id" />

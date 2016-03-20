@@ -209,7 +209,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/item52"/>
+            android:src="@drawable/item52"
+            android:onClick="achieveTest"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/coinCount"
