@@ -238,7 +238,7 @@ public class DatabaseHelper {
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
-        new Player_Info("XP", 200000);
+        new Player_Info("XP", 200);
         new Player_Info("DatabaseVersion", 1);
         new Player_Info("ItemsSmelted", 0);
         new Player_Info("ItemsCrafted", 0);

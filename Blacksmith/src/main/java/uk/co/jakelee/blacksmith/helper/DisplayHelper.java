@@ -68,6 +68,8 @@ public class DisplayHelper {
         LinearLayout frontContainer = new LinearLayout(context);
         LinearLayout countContainer = new LinearLayout(context);
 
+        boolean displayedNextUnlock = false;
+
         for (Slot slot : slots) {
             ImageView slotBackground = new ImageView(context);
             slotBackground.setLayoutParams(slotParams);
@@ -85,8 +87,12 @@ public class DisplayHelper {
             slotCountdown.setGravity(Gravity.CENTER);
 
             if (slot.getLevel() > playerLevel) {
-                slotBackground.setBackgroundResource(R.drawable.close);
-                slotBackground.setTag(false);
+                if (!displayedNextUnlock) {
+                    slotBackground.setBackgroundResource(R.drawable.close);
+                    slotBackground.setTag(false);
+                    //slotCountdown.setText(String.format("Lev %d", slot.getLevel()));
+                }
+                displayedNextUnlock = true;
             } else if (slot.getPremium() == Constants.TRUE) {
                 slotBackground.setBackgroundResource(R.drawable.item52);
                 slotBackground.setTag(false);

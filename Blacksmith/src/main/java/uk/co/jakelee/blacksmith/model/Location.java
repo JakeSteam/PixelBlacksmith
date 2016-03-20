@@ -22,7 +22,7 @@ public class Location extends SugarRecord {
 
     public static List<Slot> getSlots(Long locationID) {
         return Select.from(Slot.class).where(
-                Condition.prop("location").eq(locationID)).list();
+                Condition.prop("location").eq(locationID)).orderBy("level ASC").list();
     }
 
     public Long getId() {
