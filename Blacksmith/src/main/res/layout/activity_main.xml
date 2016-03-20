@@ -219,7 +219,8 @@
             android:layout_toRightOf="@id/coinImage"
             android:layout_centerVertical="true"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:onClick="openAchievs"/>
 
         <ProgressBar
             android:id="@+id/currentLevelProgress"
