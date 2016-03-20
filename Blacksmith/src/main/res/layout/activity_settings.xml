@@ -153,6 +153,19 @@
                         android:background="@drawable/button_extra_wide"
                         android:textSize="35sp"/>
                 </TableRow>
+
+                <TableRow android:gravity="center">
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="openAchievements"
+                        android:text="@string/achievementsText"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:background="@drawable/button_extra_wide"
+                        android:textSize="35sp"/>
+                </TableRow>
             </TableLayout>
 
         </ScrollView>

@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.gms.games.Games;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SettingsActivity extends Activity {
@@ -81,6 +84,10 @@ public class SettingsActivity extends Activity {
     public void openCredits (View view) {
         Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
         startActivity(intent);
+    }
+
+    public void openAchievements (View view) {
+        startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), 123);
     }
 
     public void openHelp(View view) {

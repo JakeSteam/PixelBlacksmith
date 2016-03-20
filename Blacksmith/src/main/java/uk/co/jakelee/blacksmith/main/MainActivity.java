@@ -289,13 +289,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public static void achieveTest (View v) {
         if (GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, "CgkI6tnE2Y4OEAIQBg");
+            Games.Achievements.increment(GooglePlayHelper.mGoogleApiClient, "CgkI6tnE2Y4OEAIQBA", 1);
         }
-    }
-
-    public void openAchievs(View v) {
-        startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient),
-                123);
     }
 
     @Override
