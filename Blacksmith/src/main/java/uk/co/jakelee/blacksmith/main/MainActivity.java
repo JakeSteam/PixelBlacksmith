@@ -204,9 +204,10 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 GooglePlayHelper.UpdateAchievements();
+                handler.postDelayed(this, 60000);
             }
         };
-        handler.postDelayed(checkAchievements, 20000);
+        handler.postDelayed(checkAchievements, 60000);
     }
 
     private void createSlots() {
