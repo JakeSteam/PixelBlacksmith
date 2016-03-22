@@ -94,6 +94,12 @@ public class SettingsActivity extends Activity {
         startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), 234);
     }
 
+    public void openSavedGames (View view) {
+        Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
+                "Cloud Saves", false, false, 1);
+        startActivityForResult(savedGamesIntent, 12345);
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Settings);

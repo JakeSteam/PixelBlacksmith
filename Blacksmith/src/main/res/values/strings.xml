@@ -14,6 +14,7 @@
     <string name="settingsText">Settings</string>
     <string name="achievementsText">Achievements</string>
     <string name="leaderboardsText">Leaderboards</string>
+    <string name="savedGamesText">Cloud Save</string>
     <string name="creditsText">Credits</string>
     <string name="trophyText">Trophies</string>
     <string name="statisticsText">Statistics</string>
