@@ -199,6 +199,14 @@ public class MainActivity extends AppCompatActivity implements
             }
         };
         handler.postDelayed(checkVisitorSpawns, Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS);
+
+        final Runnable checkAchievements = new Runnable() {
+            @Override
+            public void run() {
+                GooglePlayHelper.UpdateAchievements();
+            }
+        };
+        handler.postDelayed(checkAchievements, 20000);
     }
 
     private void createSlots() {
@@ -285,12 +293,6 @@ public class MainActivity extends AppCompatActivity implements
     public void openUpgrades(View view) {
         Intent intent = new Intent(this, UpgradeActivity.class);
         startActivity(intent);
-    }
-
-    public static void achieveTest (View v) {
-        if (GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            Games.Achievements.increment(GooglePlayHelper.mGoogleApiClient, "CgkI6tnE2Y4OEAIQBA", 1);
-        }
     }
 
     @Override

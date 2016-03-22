@@ -1,10 +1,10 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameUtils;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -58,6 +58,8 @@ public class GooglePlayHelper {
     }
 
     public static void UpdateAchievements() {
+        if (!IsConnected()) { return;}
+
         List<Player_Info> statistics = Select.from(Player_Info.class).where(
                 Condition.prop("last_sent_value").notEq(Constants.STATISTIC_NOT_TRACKED)).list();
 
@@ -69,12 +71,21 @@ public class GooglePlayHelper {
 
             for (Achievement achievement : achievements) {
                 boolean hasChanged = (currentValue > lastSentValue);
-                boolean isAchieved = (achievement.getMaximumValue() >= lastSentValue);
+                boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
                 if (hasChanged && !isAchieved) {
                     int difference = currentValue - lastSentValue;
-                    Log.d("ACHIEVES", String.format("Sending increment of %d for %s", difference, statistic.getName()));
+                    Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
                 }
             }
+
+            if (currentValue > lastSentValue) {
+                statistic.setLastSentValue(currentValue);
+                statistic.save();
+            }
         }
+    }
+
+    public static boolean IsConnected() {
+        return GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected();
     }
 }
