@@ -130,6 +130,13 @@ public class Player_Info extends SugarRecord {
         return 100 - (int) ((earnedXP / neededXP) * 100);
     }
 
+    public static int getVisitorsCompleted() {
+        Player_Info xpInfo = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("VisitorsCompleted")).first();
+
+        return xpInfo.getIntValue();
+    }
+
     public static int getXp() {
         Player_Info xpInfo = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("XP")).first();

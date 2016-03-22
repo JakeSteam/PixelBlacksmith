@@ -90,6 +90,10 @@ public class SettingsActivity extends Activity {
         startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), 123);
     }
 
+    public void openLeaderboards (View view) {
+        startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), 234);
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Settings);

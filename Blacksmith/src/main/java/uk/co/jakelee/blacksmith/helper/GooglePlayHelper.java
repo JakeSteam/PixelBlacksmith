@@ -57,6 +57,12 @@ public class GooglePlayHelper {
         }
     }
 
+    public static void UpdateLeaderboards(String leaderboardID, int value) {
+        if (!IsConnected()) { return;}
+
+        Games.Leaderboards.submitScore(mGoogleApiClient, leaderboardID, value);
+    }
+
     public static void UpdateAchievements() {
         if (!IsConnected()) { return;}
 

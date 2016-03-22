@@ -2,16 +2,6 @@
 <resources>
     <string name="app_id">484982205674</string>
 
-    <item name="leaderboard_visitors" type="id">CgkI6tnE2Y4OEAIQAA</item>
-    <item name="leaderboard_items" type="id">CgkI6tnE2Y4OEAIQAQ</item>
-
-    <item name="achievement_visitors_1" type="id">CgkI6tnE2Y4OEAIQAg</item>
-    <item name="achievement_visitors_2" type="id">CgkI6tnE2Y4OEAIQAw</item>
-    <item name="achievement_visitors_3" type="id">CgkI6tnE2Y4OEAIQBA</item>
-    <item name="achievement_visitors_4" type="id">CgkI6tnE2Y4OEAIQBQ</item>
-    <item name="achievement_furnace_1" type="id">CgkI6tnE2Y4OEAIQBg</item>
-    <item name="achievement_furnace_2" type="id">CgkI6tnE2Y4OEAIQBw</item>
-
     <item name="shopkeeperPic" type="id" />
     <item name="shopkeeperName" type="id" />
     <item name="shopkeeperIntro" type="id" />

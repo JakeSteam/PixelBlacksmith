@@ -3,6 +3,9 @@ package uk.co.jakelee.blacksmith.helper;
 public class Constants {
     public static final int TRUE = 1;
 
+    public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
+    public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";
+
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.15;
     public static final Double DEFAULT_BONUS = 1.00;

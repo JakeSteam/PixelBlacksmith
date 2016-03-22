@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
@@ -193,6 +194,9 @@ public class VisitorActivity extends Activity {
                 String itemName = createVisitorReward(visitor, numRewards);
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("As the visitor leaves, you notice %dx %s on the counter.", numRewards, itemName));
             }
+
+            int numVisitors = Player_Info.getVisitorsCompleted();
+            GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
 
             closeVisitor(view);
         } else {

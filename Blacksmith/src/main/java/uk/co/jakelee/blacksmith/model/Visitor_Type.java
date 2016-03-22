@@ -2,6 +2,9 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+
 public class Visitor_Type extends SugarRecord{
     Long visitorID;
     String name;
@@ -196,6 +199,8 @@ public class Visitor_Type extends SugarRecord{
             vStats.setBestItemState(state);
             vStats.setBestItemValue(value);
             vStats.save();
+
+            GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_ITEM_VALUE, value);
         }
     }
 }
