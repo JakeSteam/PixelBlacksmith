@@ -70,22 +70,30 @@ public class GooglePlayHelper {
                     Condition.prop("player_info_id").eq(statistic.getId())).orderBy("maximum_value ASC").list();
 
             for (Achievement achievement : achievements) {
-                boolean hasChanged = (currentValue > lastSentValue);
-                boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
-                if (hasChanged && !isAchieved) {
-                    int difference = currentValue - lastSentValue;
-                    if (achievement.getMaximumValue() == 1) {
-                        Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
-                    } else {
-                        Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
-                    }
-                }
+                UpdateAchievement(mGoogleApiClient, achievement, currentValue, lastSentValue);
             }
 
-            if (currentValue > lastSentValue) {
-                statistic.setLastSentValue(currentValue);
-                statistic.save();
+            UpdateStatistic(statistic, currentValue, lastSentValue);
+        }
+    }
+
+    public static void UpdateAchievement(GoogleApiClient mGoogleApiClient, Achievement achievement, int currentValue, int lastSentValue) {
+        boolean hasChanged = (currentValue > lastSentValue);
+        boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
+        if (hasChanged && !isAchieved) {
+            int difference = currentValue - lastSentValue;
+            if (achievement.getMaximumValue() == 1) {
+                Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
+            } else {
+                Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
             }
+        }
+    }
+
+    public static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
+        if (currentValue > lastSentValue) {
+            statistic.setLastSentValue(currentValue);
+            statistic.save();
         }
     }
 
