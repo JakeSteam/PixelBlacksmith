@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Criteria;
@@ -22,6 +23,15 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 public class DatabaseHelper {
 
     public static void initialSQL() {
+        new Achievement("Open For Business 1", "Completed a visitor", 1, 9, "CgkI6tnE2Y4OEAIQAg");
+        new Achievement("Open For Business 2", "Completed 10 visitors", 10, 9, "CgkI6tnE2Y4OEAIQAw");
+        new Achievement("Open For Business 3", "Completed 100 visitors", 100, 9, "CgkI6tnE2Y4OEAIQBA");
+        new Achievement("Open For Business 4", "Completed 1000 visitors", 1000, 9, "CgkI6tnE2Y4OEAIQBQ");
+        new Achievement("The Forge Is Hot 1", "Smelted a bar", 1, 3, "CgkI6tnE2Y4OEAIQBg");
+        new Achievement("The Forge Is Hot 2", "Smelted 10 bars", 10, 3, "CgkI6tnE2Y4OEAIQBw");
+        new Achievement("The Forge Is Hot 3", "Smelted 100 bars", 100, 3, "CgkI6tnE2Y4OEAIQCg");
+        new Achievement("The Forge Is Hot 4", "Smelted 1000 bars", 1000, 3, "CgkI6tnE2Y4OEAIQCw");
+
         new Category("Unknown", "Item type category could not be found.");
         new Category("Crafting", "An item that can be used for crafting.");
         new Category("Weapon", "An item that can be used as a weapon.");
@@ -240,18 +250,18 @@ public class DatabaseHelper {
 
         new Player_Info("XP", 200);
         new Player_Info("DatabaseVersion", 1);
-        new Player_Info("ItemsSmelted", 0);
+        new Player_Info("ItemsSmelted", 0, 0);
         new Player_Info("ItemsCrafted", 0);
         new Player_Info("ItemsTraded", 0);
         new Player_Info("ItemsEnchanted", 0);
         new Player_Info("ItemsSold", 0);
         new Player_Info("ItemsBought", 0);
-        new Player_Info("VisitorsCompleted", 0);
+        new Player_Info("VisitorsCompleted", 0, 0);
         new Player_Info("DateRestocked", System.currentTimeMillis());
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 0);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 44);
+        new Player_Info("SavedLevel", 44, 0);
         new Player_Info("UpgradesBought", 0);
 
         // Powdered gems

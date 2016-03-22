@@ -14,6 +14,7 @@ public class Player_Info extends SugarRecord {
     String textValue;
     int intValue;
     Long longValue;
+    int lastSentValue;
 
     @Ignore
     public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought}
@@ -25,26 +26,29 @@ public class Player_Info extends SugarRecord {
     public Player_Info(String name, Long longValue) {
         this.name = name;
         this.longValue = longValue;
+        this.lastSentValue = -1;
         this.save();
     }
 
     public Player_Info(String name, String textValue) {
         this.name = name;
         this.textValue = textValue;
+        this.lastSentValue = -1;
         this.save();
     }
 
     public Player_Info(String name, int intValue) {
         this.name = name;
         this.intValue = intValue;
+        this.lastSentValue = -1;
         this.save();
     }
 
-    public Player_Info(Long id, String name, String textValue, int intValue) {
-        this.id = id;
+    public Player_Info(String name, int intValue, int lastSentValue) {
         this.name = name;
-        this.textValue = textValue;
         this.intValue = intValue;
+        this.lastSentValue = lastSentValue;
+        this.save();
     }
 
     public Long getId() {
@@ -85,6 +89,14 @@ public class Player_Info extends SugarRecord {
 
     public void setLongValue(Long longValue) {
         this.longValue = longValue;
+    }
+
+    public int getLastSentValue() {
+        return lastSentValue;
+    }
+
+    public void setLastSentValue(int lastSentValue) {
+        this.lastSentValue = lastSentValue;
     }
 
     public static int getPlayerLevel() {
