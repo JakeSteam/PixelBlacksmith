@@ -327,13 +327,6 @@ public class DisplayHelper {
         return image;
     }
 
-    public int getCoins() {
-        Inventory coins = Select.from(Inventory.class).where(
-                Condition.prop("state").eq(Constants.STATE_NORMAL),
-                Condition.prop("item").eq(Constants.ITEM_COINS)).first();
-        return coins.getQuantity();
-    }
-
     public void updateCoins(int coins) {
         Inventory ownedCoins = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(Constants.STATE_NORMAL),
@@ -345,7 +338,7 @@ public class DisplayHelper {
     }
 
     public void updateCoinsGUI() {
-        String coinCountString = String.format("%,d", getCoins());
+        String coinCountString = String.format("%,d", Inventory.getCoins());
         MainActivity.coins.setText(coinCountString);
     }
 

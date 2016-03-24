@@ -171,7 +171,7 @@ public class TradeActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse));
         }
 
-        dh.updateCoins(dh.getCoins());
+        dh.updateCoins(Inventory.getCoins());
         displayDemandInfo();
         visitorType.updateUnlockedPreferences(itemToSell, (long) v.getTag(R.id.itemState));
         visitorType.updateBestItem(itemToSell, (long) v.getTag(R.id.itemState), value);

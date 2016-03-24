@@ -110,7 +110,7 @@ public class InventoryActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse));
         }
         updateInventoryTable();
-        dh.updateCoins(dh.getCoins());
+        dh.updateCoins(Inventory.getCoins());
     }
 
     public void openHelp(View view) {

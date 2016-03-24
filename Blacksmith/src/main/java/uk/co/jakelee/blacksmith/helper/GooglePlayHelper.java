@@ -1,13 +1,15 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.snapshot.Snapshot;
 import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
@@ -22,6 +24,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 /**
@@ -38,8 +41,6 @@ public class GooglePlayHelper {
     private static boolean mAutoStartSignInFlow = true;
     private static boolean mSignInClicked = false;
     private static String mCurrentSaveName = "blacksmithCloudSave";
-    private static byte[] mSaveGameData;
-    private static byte[] dummyData = "Dummy data".getBytes();
 
     public static GoogleApiClient mGoogleApiClient;
 
@@ -118,7 +119,9 @@ public class GooglePlayHelper {
         }
     }
 
-    public static void SavedGamesIntent(int requestCode, int resultCode, Intent intent) {
+    public static void SavedGamesIntent(final Context context, final Intent intent) {
+        if (intent == null) { return; }
+
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
             @Override
             protected Integer doInBackground(Void... params) {
@@ -126,10 +129,12 @@ public class GooglePlayHelper {
 
                 if (result.getStatus().isSuccess()) {
                     Snapshot snapshot = result.getSnapshot();
-                    // Read the byte content of the saved game.
                     try {
-                        mSaveGameData = snapshot.getSnapshotContents().readFully();
-                        SaveToCloud(snapshot);
+                        if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
+                            loadFromCloud(snapshot.getSnapshotContents().readFully());
+                        } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
+                            saveToCloud(context, snapshot);
+                        }
                     } catch (IOException e) {
                         Log.e("TEST", "Error while reading Snapshot.", e);
                     }
@@ -144,34 +149,30 @@ public class GooglePlayHelper {
         task.execute();
     }
 
-    private static PendingResult<Snapshots.CommitSnapshotResult> writeSnapshot(Snapshot snapshot) {
+    private static void loadFromCloud(byte[] cloudData) {
 
-        // Set the data payload for the snapshot
-        snapshot.getSnapshotContents().writeBytes(dummyData);
-
-        // Create the change operation
-        SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
-                .setDescription("No idea")
-                .build();
-
-        // Commit the operation
-        return Games.Snapshots.commitAndClose(mGoogleApiClient, snapshot, metadataChange);
     }
 
-    public static void SaveToCloud(Snapshot snapshot) {
+    private static void saveToCloud(Context context, Snapshot snapshot) {
         if (!IsConnected()) { return;}
 
-        byte[] data = dummyData;
-        String desc = "Test description";
+        byte[] data = createBackup();
+        String desc = String.format("Blacksmith: Level %d | %,d coins",Player_Info.getPlayerLevel(), Inventory.getCoins());
+        Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.wallpaper);
 
         snapshot.getSnapshotContents().writeBytes(data);
 
         SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
                 .setDescription(desc)
+                .setCoverImage(cover)
                 .build();
 
         // Commit the operation
         Games.Snapshots.commitAndClose(mGoogleApiClient, snapshot, metadataChange);
+    }
+
+    private static byte[] createBackup() {
+        return "Test data".getBytes();
     }
 
     public static boolean IsConnected() {
