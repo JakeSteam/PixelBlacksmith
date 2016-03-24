@@ -311,6 +311,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
+        GooglePlayHelper.ActivityResult(this, requestCode, resultCode, intent);
     }
 }
