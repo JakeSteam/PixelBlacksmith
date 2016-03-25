@@ -156,7 +156,7 @@ public class GooglePlayHelper {
     private static void saveToCloud(Context context, Snapshot snapshot) {
         if (!IsConnected()) { return;}
 
-        byte[] data = createBackup();
+        byte[] data = DatabaseHelper.createBackup();
         String desc = String.format("Blacksmith: Level %d | %,d coins",Player_Info.getPlayerLevel(), Inventory.getCoins());
         Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.wallpaper);
 
@@ -169,10 +169,6 @@ public class GooglePlayHelper {
 
         // Commit the operation
         Games.Snapshots.commitAndClose(mGoogleApiClient, snapshot, metadataChange);
-    }
-
-    private static byte[] createBackup() {
-        return "Test data".getBytes();
     }
 
     public static boolean IsConnected() {

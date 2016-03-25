@@ -4,11 +4,12 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.io.Serializable;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
 
-public class Inventory extends SugarRecord {
+public class Inventory extends SugarRecord implements Serializable {
     Long item;
     int quantity;
     long state;

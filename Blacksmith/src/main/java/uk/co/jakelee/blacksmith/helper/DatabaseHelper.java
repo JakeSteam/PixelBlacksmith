@@ -1,5 +1,12 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -957,5 +964,27 @@ public class DatabaseHelper {
         new Visitor_Type(32L, "Whippersnapper", "Don't tell Steve, but his secret fish pond isn't so secret.", 10L, 17L, 4L, 1.05, 1.20, 1.02, false, false, false, 6);
     }
 
+    public static byte[] createBackup() {
+        List<Inventory> inventory = Inventory.listAll(Inventory.class);
+
+        try {
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(inventory);
+            byte[] bytes = bos.toByteArray();
+
+
+            ByteArrayInputStream bos2 = new ByteArrayInputStream(bytes);
+            ObjectInputStream oos2 = new ObjectInputStream(bos2);
+            List<Inventory> inventory2 = (List<Inventory>)oos2.readObject();
+            inventory2.size();
+        } catch (IOException e) {
+            return "Help".getBytes();
+        } catch (ClassNotFoundException e) {
+            return "Help".getBytes();
+        }
+        return "Help".getBytes();
+    }
 }
 
