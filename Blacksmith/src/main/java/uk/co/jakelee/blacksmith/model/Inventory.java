@@ -244,6 +244,11 @@ public class Inventory extends SugarRecord implements Serializable {
         Inventory coins = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(Constants.STATE_NORMAL),
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
-        return coins.getQuantity();
+
+        if (coins != null) {
+            return coins.getQuantity();
+        } else {
+            return 0;
+        }
     }
 }

@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Upgrade;
+import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
@@ -970,6 +971,7 @@ public class DatabaseHelper {
         List<Setting> settings = Setting.listAll(Setting.class);
         List<Trader> traders = Trader.listAll(Trader.class);
         List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
+        List<Visitor> visitors = Visitor.listAll(Visitor.class);
         List<Visitor_Stats> visitor_stats = Visitor_Stats.listAll(Visitor_Stats.class);
         List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
 
@@ -978,6 +980,7 @@ public class DatabaseHelper {
         backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(traders) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(upgrades) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(visitors) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitor_types);
 
@@ -991,12 +994,52 @@ public class DatabaseHelper {
         String[] splitData = splitBackupData(backupData);
 
         Inventory[] inventories = gson.fromJson(splitData[0], Inventory[].class);
+        Inventory.deleteAll(Inventory.class);
+        for (Inventory inventory : inventories) {
+            inventory.save();
+        }
+
         Player_Info[] player_infos = gson.fromJson(splitData[1], Player_Info[].class);
+        Player_Info.deleteAll(Player_Info.class);
+        for (Player_Info player_info : player_infos) {
+            player_info.save();
+        }
+
         Setting[] settings = gson.fromJson(splitData[2], Setting[].class);
+        Setting.deleteAll(Setting.class);
+        for (Setting setting : settings) {
+            setting.save();
+        }
+
         Trader[] traders = gson.fromJson(splitData[3], Trader[].class);
+        Trader.deleteAll(Trader.class);
+        for (Trader trader : traders) {
+            trader.save();
+        }
+
         Upgrade[] upgrades = gson.fromJson(splitData[4], Upgrade[].class);
-        Visitor_Stats[] visitor_stats = gson.fromJson(splitData[5], Visitor_Stats[].class);
-        Visitor_Type[] visitor_types = gson.fromJson(splitData[6], Visitor_Type[].class);
+        Upgrade.deleteAll(Upgrade.class);
+        for (Upgrade upgrade : upgrades) {
+            upgrade.save();
+        }
+
+        Visitor[] visitors = gson.fromJson(splitData[5], Visitor[].class);
+        Visitor.deleteAll(Visitor.class);
+        for (Visitor visitor : visitors) {
+            visitor.save();
+        }
+
+        Visitor_Stats[] visitor_stats = gson.fromJson(splitData[6], Visitor_Stats[].class);
+        Visitor_Stats.deleteAll(Visitor_Stats.class);
+        for (Visitor_Stats visitor_stat : visitor_stats) {
+            visitor_stat.save();
+        }
+
+        Visitor_Type[] visitor_types = gson.fromJson(splitData[7], Visitor_Type[].class);
+        Visitor_Type.deleteAll(Visitor_Type.class);
+        for (Visitor_Type visitor_type : visitor_types) {
+            visitor_type.save();
+        }
 
         return true;
     }

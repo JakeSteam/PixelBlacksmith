@@ -95,9 +95,14 @@ public class Player_Info extends SugarRecord {
     }
 
     public static int getPlayerLevelFromDB() {
-        int playerLevel = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("SavedLevel")).first().getIntValue();
-        return playerLevel;
+        Player_Info playerLevel = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("SavedLevel")).first();
+
+        if (playerLevel != null) {
+            return playerLevel.getIntValue();
+        } else {
+            return 0;
+        }
     }
 
     public static int convertXpToLevel(int xp) {
@@ -132,7 +137,11 @@ public class Player_Info extends SugarRecord {
         Player_Info xpInfo = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("XP")).first();
 
-        return xpInfo.getIntValue();
+        if (xpInfo != null) {
+            return xpInfo.getIntValue();
+        } else {
+            return 0;
+        }
     }
 
     public static void addXp(int xp) {
