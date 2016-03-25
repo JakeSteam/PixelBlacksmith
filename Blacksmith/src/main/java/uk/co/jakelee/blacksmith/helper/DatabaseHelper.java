@@ -1,10 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.model.Achievement;
@@ -965,26 +962,33 @@ public class DatabaseHelper {
     }
 
     public static byte[] createBackup() {
-        List<Inventory> inventory = Inventory.listAll(Inventory.class);
+        Gson gson = new Gson();
+        String backupString = "";
 
-        try {
+        List<Inventory> inventories = Inventory.listAll(Inventory.class);
+        List<Player_Info> player_infos = Player_Info.listAll(Player_Info.class);
+        List<Setting> settings = Setting.listAll(Setting.class);
+        List<Trader> traders = Trader.listAll(Trader.class);
+        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
+        List<Visitor_Stats> visitor_stats = Visitor_Stats.listAll(Visitor_Stats.class);
+        List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
 
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-            oos.writeObject(inventory);
-            byte[] bytes = bos.toByteArray();
+        backupString = gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(traders) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(upgrades) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(visitor_types);
 
+        return backupString.getBytes();
 
-            ByteArrayInputStream bos2 = new ByteArrayInputStream(bytes);
-            ObjectInputStream oos2 = new ObjectInputStream(bos2);
-            List<Inventory> inventory2 = (List<Inventory>)oos2.readObject();
-            inventory2.size();
-        } catch (IOException e) {
-            return "Help".getBytes();
-        } catch (ClassNotFoundException e) {
-            return "Help".getBytes();
-        }
-        return "Help".getBytes();
+    }
+
+    public static boolean applyBackup(String backupData) {
+        String[] splitData = backupData.split(GooglePlayHelper.SAVE_DELIMITER);
+
+        return true;
     }
 }
 

@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -42,9 +41,11 @@ public class GooglePlayHelper {
     private static boolean mSignInClicked = false;
     private static String mCurrentSaveName = "blacksmithCloudSave";
 
+    public static String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
+
     public static GoogleApiClient mGoogleApiClient;
 
-    public static void ConnectionFailed(MainActivity activity, ConnectionResult connectionResult) {
+    public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
         if (mResolvingConnectionFailure) { return; }
 
         if (mSignInClicked || mAutoStartSignInFlow) {
@@ -150,7 +151,7 @@ public class GooglePlayHelper {
     }
 
     private static void loadFromCloud(byte[] cloudData) {
-
+        DatabaseHelper.applyBackup(cloudData.toString());
     }
 
     private static void saveToCloud(Context context, Snapshot snapshot) {

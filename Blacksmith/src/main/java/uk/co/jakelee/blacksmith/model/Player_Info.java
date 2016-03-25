@@ -9,7 +9,6 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
 public class Player_Info extends SugarRecord {
-    Long id;
     String name;
     String textValue;
     int intValue;
@@ -49,14 +48,6 @@ public class Player_Info extends SugarRecord {
         this.intValue = intValue;
         this.lastSentValue = lastSentValue;
         this.save();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
