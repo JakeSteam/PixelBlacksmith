@@ -986,9 +986,28 @@ public class DatabaseHelper {
     }
 
     public static boolean applyBackup(String backupData) {
-        String[] splitData = backupData.split(GooglePlayHelper.SAVE_DELIMITER);
+        Gson gson = new Gson();
+
+        String[] splitData = splitBackupData(backupData);
+
+        Inventory[] inventories = gson.fromJson(splitData[0], Inventory[].class);
+        Player_Info[] player_infos = gson.fromJson(splitData[1], Player_Info[].class);
+        Setting[] settings = gson.fromJson(splitData[2], Setting[].class);
+        Trader[] traders = gson.fromJson(splitData[3], Trader[].class);
+        Upgrade[] upgrades = gson.fromJson(splitData[4], Upgrade[].class);
+        Visitor_Stats[] visitor_stats = gson.fromJson(splitData[5], Visitor_Stats[].class);
+        Visitor_Type[] visitor_types = gson.fromJson(splitData[6], Visitor_Type[].class);
 
         return true;
+    }
+
+    private static String[] splitBackupData(String backupData) {
+        String[] splitData = backupData.split(GooglePlayHelper.SAVE_DELIMITER);
+        for (int i = 0; i < splitData.length; i++) {
+            splitData[i] = splitData[i].replace(GooglePlayHelper.SAVE_DELIMITER, "");
+        }
+
+        return splitData;
     }
 }
 

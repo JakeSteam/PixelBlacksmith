@@ -151,7 +151,7 @@ public class GooglePlayHelper {
     }
 
     private static void loadFromCloud(byte[] cloudData) {
-        DatabaseHelper.applyBackup(cloudData.toString());
+        DatabaseHelper.applyBackup(new String(cloudData));
     }
 
     private static void saveToCloud(Context context, Snapshot snapshot) {
