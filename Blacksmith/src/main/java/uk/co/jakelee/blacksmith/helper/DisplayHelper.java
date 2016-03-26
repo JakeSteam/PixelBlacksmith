@@ -85,12 +85,15 @@ public class DisplayHelper {
             slotCountdown.setBackgroundColor(Color.BLACK);
             slotCountdown.setAlpha(0.6F);
             slotCountdown.setGravity(Gravity.CENTER);
+            slotCountdown.setTag(0);
 
             if (slot.getLevel() > playerLevel) {
                 if (!displayedNextUnlock) {
                     slotBackground.setBackgroundResource(R.drawable.close);
                     slotBackground.setTag(false);
-                    //slotCountdown.setText(String.format("Lev %d", slot.getLevel()));
+                    slotCountdown.setTag(slot.getLevel());
+                } else {
+                    slotCountdown.setVisibility(View.INVISIBLE);
                 }
                 displayedNextUnlock = true;
             } else if (slot.getPremium() == Constants.TRUE) {
@@ -136,7 +139,15 @@ public class DisplayHelper {
 
                 slotItem.setImageResource(drawableId);
                 slotCount.setText(roundedSecondsLeft);
+                slotCount.setVisibility(View.VISIBLE);
                 i++;
+            }
+        }
+
+        for (int j = 0; j < countContainer.getChildCount(); j++) {
+            TextViewPixel slotCount = (TextViewPixel) countContainer.getChildAt(j);
+            if ((int)slotCount.getTag() > j) {
+                slotCount.setText(String.valueOf((int)slotCount.getTag()));
             }
         }
     }
