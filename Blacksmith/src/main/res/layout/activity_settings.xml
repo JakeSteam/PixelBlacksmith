@@ -159,8 +159,10 @@
                         android:background="@drawable/button_extra_wide"
                         android:onClick="openAchievements">
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:paddingTop="6dp"
+                            android:paddingLeft="5dp"
                             android:src="@drawable/playachievements"/>
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:tools="http://schemas.android.com/tools"
@@ -179,8 +181,10 @@
                         android:background="@drawable/button_extra_wide"
                         android:onClick="openLeaderboards">
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:paddingTop="8dp"
+                            android:paddingLeft="5dp"
                             android:src="@drawable/playleaderboards"/>
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:tools="http://schemas.android.com/tools"
@@ -199,8 +203,10 @@
                         android:background="@drawable/button_extra_wide"
                         android:onClick="openSavedGames">
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:paddingTop="7dp"
+                            android:paddingLeft="5dp"
                             android:src="@drawable/playcloud"/>
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:tools="http://schemas.android.com/tools"
