@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -124,6 +124,8 @@ public class GooglePlayHelper {
         if (intent == null) { return; }
 
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
+            String currentTask = "synchronising";
+
             @Override
             protected Integer doInBackground(Void... params) {
                 Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
@@ -133,17 +135,24 @@ public class GooglePlayHelper {
                     try {
                         if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
                             loadFromCloud(snapshot.getSnapshotContents().readFully());
+                            currentTask = "loading";
                         } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
                             saveToCloud(context, snapshot);
+                            currentTask = "saving";
                         }
                     } catch (IOException e) {
-                        Log.e("TEST", "Error while reading Snapshot.", e);
+                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A local error occurred whilst %s from cloud: %s", currentTask, e.toString()));
                     }
                 } else{
-                    Log.e("TEST", "Error while loading: " + result.getStatus().getStatusCode());
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT,  String.format("A remote error occurred whilst %s from cloud: %s", currentTask, result.getStatus().getStatusCode()));
                 }
 
                 return result.getStatus().getStatusCode();
+            }
+
+            @Override
+            protected void onPostExecute(Integer status) {
+                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Cloud %s successful!", currentTask));
             }
         };
 
@@ -151,6 +160,8 @@ public class GooglePlayHelper {
     }
 
     private static void loadFromCloud(byte[] cloudData) {
+        if (!IsConnected()) { return;}
+
         DatabaseHelper.applyBackup(new String(cloudData));
     }
 
