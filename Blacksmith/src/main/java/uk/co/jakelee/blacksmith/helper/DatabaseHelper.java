@@ -36,6 +36,26 @@ public class DatabaseHelper {
         new Achievement("The Forge Is Hot 2", "Smelted 10 bars", 10, 3, "CgkI6tnE2Y4OEAIQBw");
         new Achievement("The Forge Is Hot 3", "Smelted 100 bars", 100, 3, "CgkI6tnE2Y4OEAIQCg");
         new Achievement("The Forge Is Hot 4", "Smelted 1000 bars", 1000, 3, "CgkI6tnE2Y4OEAIQCw");
+        new Achievement("Like Hot Cakes 1", "Sell an item to visitors", 1, 5, "CgkI6tnE2Y4OEAIQDA");
+        new Achievement("Like Hot Cakes 2", "Sell 10 items to visitors", 10, 5, "CgkI6tnE2Y4OEAIQDQ");
+        new Achievement("Like Hot Cakes 3", "Sell 100 items to visitors", 100, 5, "CgkI6tnE2Y4OEAIQDg");
+        new Achievement("Like Hot Cakes 4", "Sell 1000 items to visitors", 1000, 5, "CgkI6tnE2Y4OEAIQDw");
+        new Achievement("Supply And Demand 1", "Buy an item from the marketplace", 1, 8, "CgkI6tnE2Y4OEAIQEA");
+        new Achievement("Supply And Demand 2", "Buy 10 items from the marketplace", 10, 8, "CgkI6tnE2Y4OEAIQEQ");
+        new Achievement("Supply And Demand 3", "Buy 100 items from the marketplace", 100, 8, "CgkI6tnE2Y4OEAIQEg");
+        new Achievement("Supply And Demand 4", "Buy 1000 items from the marketplace", 1000, 8, "CgkI6tnE2Y4OEAIQEw");
+        new Achievement("Mr Moneybags 1", "Earn 200 coins", 200, 12, "CgkI6tnE2Y4OEAIQFA");
+        new Achievement("Mr Moneybags 2", "Earn 1000 coins", 1000, 12, "CgkI6tnE2Y4OEAIQFQ");
+        new Achievement("Mr Moneybags 3", "Earn 3000 coins", 3000, 12, "CgkI6tnE2Y4OEAIQFg");
+        new Achievement("Mr Moneybags 4", "Earn 10000 coins", 10000, 12, "CgkI6tnE2Y4OEAIQFw");
+        new Achievement("Mastery Of Bronze", "Reach level 5", 5, 14, "CgkI6tnE2Y4OEAIQGA");
+        new Achievement("Mastery Of Iron", "Reach level 10", 10, 14, "CgkI6tnE2Y4OEAIQGQ");
+        new Achievement("Mastery Of Steel", "Reach level 20", 20, 14, "CgkI6tnE2Y4OEAIQGg");
+        new Achievement("Mastery Of Mithril", "Reach level 30", 30, 14, "CgkI6tnE2Y4OEAIQGw");
+        new Achievement("Mastery Of Adamant", "Reach level 40", 40, 14, "CgkI6tnE2Y4OEAIQHA");
+        new Achievement("Mastery Of Jewellery", "Reach level 45", 45, 14, "CgkI6tnE2Y4OEAIQHQ");
+        new Achievement("Mastery Of Rune", "Reach level 50", 50, 14, "CgkI6tnE2Y4OEAIQHg");
+        new Achievement("Mastery Of Dragon", "Reach level 60", 60, 14, "CgkI6tnE2Y4OEAIQHw");
 
         new Category("Unknown", "Item type category could not be found.");
         new Category("Crafting", "An item that can be used for crafting.");
@@ -253,20 +273,20 @@ public class DatabaseHelper {
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
-        new Player_Info("XP", 200);
+        new Player_Info("XP", 100000);
         new Player_Info("DatabaseVersion", 1);
         new Player_Info("ItemsSmelted", 0, 0);
         new Player_Info("ItemsCrafted", 0);
-        new Player_Info("ItemsTraded", 0);
+        new Player_Info("ItemsTraded", 0, 0);
         new Player_Info("ItemsEnchanted", 0);
-        new Player_Info("ItemsSold", 0);
-        new Player_Info("ItemsBought", 0);
+        new Player_Info("ItemsSold", 0, 0);
+        new Player_Info("ItemsBought", 0, 0);
         new Player_Info("VisitorsCompleted", 0, 0);
         new Player_Info("DateRestocked", System.currentTimeMillis());
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 0);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 44, 0);
+        new Player_Info("SavedLevel", 47, 0);
         new Player_Info("UpgradesBought", 0);
 
         // Powdered gems
