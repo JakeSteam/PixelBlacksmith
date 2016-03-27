@@ -317,7 +317,9 @@ public class DisplayHelper {
 
     public Drawable createDrawable(int drawableId, int width, int height) {
         Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
+        int adjustedWidth = convertDpToPixel(width);
+        int adjustedHeight = convertDpToPixel(height);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
         return new BitmapDrawable(context.getResources(), resizedImage);
     }
 

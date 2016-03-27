@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/tools">
 
     <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainScroller"
@@ -11,20 +12,26 @@
 
         <RelativeLayout
             android:id="@+id/shapeLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="-50dp"
-            android:background="@drawable/wallpaper">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/wallpaper_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/wallpaper" />
 
             <ImageView
                 android:id="@+id/open_market"
                 android:layout_width="190dp"
                 android:layout_height="75dp"
-                android:layout_marginLeft="255dp"
-                android:layout_marginTop="545dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="300dp"
                 android:alpha=".10"
                 android:onClick="openMarket"
-                android:scaleType="centerCrop"
+                android:scaleType="center"
                 android:src="@color/white" />
 
             <LinearLayout
