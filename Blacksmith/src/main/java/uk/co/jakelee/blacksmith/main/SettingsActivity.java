@@ -87,17 +87,23 @@ public class SettingsActivity extends Activity {
     }
 
     public void openAchievements (View view) {
-        startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
+        }
     }
 
     public void openLeaderboards (View view) {
-        startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+        }
     }
 
     public void openSavedGames (View view) {
-        Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
-                "Cloud Saves", true, true, 1);
-        startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
+                    "Cloud Saves", true, true, 1);
+            startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
+        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

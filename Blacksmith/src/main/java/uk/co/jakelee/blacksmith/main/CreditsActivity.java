@@ -3,9 +3,12 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 
 public class CreditsActivity extends Activity {
@@ -16,6 +19,14 @@ public class CreditsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
         dh = DisplayHelper.getInstance(getApplicationContext());
+
+        // Make all the links work
+        LinearLayout root = (LinearLayout)findViewById(R.id.creditsContainer);
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if (root.getChildAt(i) instanceof TextViewPixel) {
+                ((TextViewPixel) root.getChildAt(i)).setMovementMethod(LinkMovementMethod.getInstance());
+            }
+        }
     }
 
     public void openHelp(View view) {

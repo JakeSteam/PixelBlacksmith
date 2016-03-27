@@ -65,8 +65,15 @@
     <string name="statisticsUpgradesBought">Upgrades Bought:</string>
 
     <string name="creditsMusic">Music</string>
-    <string name="creditsMusicDetails">\"The Path of the Goblin King\" - Kevin MacLeod (incompetech.com)</string>
-    <string name="creditsCCBY">Modified: Reduced bitrate. Licensed under Creative Commons: By Attribution 3.0.\nhttp://creativecommons.org/licenses/by/3.0/</string>
+    <string name="creditsMusicDetails">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
+    <string name="creditsCCBY">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
+    <string name="creditsGraphics">Graphics</string>
+    <string name="creditsGraphicsDetails">Significant contributions by <a href='https://twitter.com/7souldesign'>7Soul</a>, <a href='https://twitter.com/TeaGadd'>EGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.</string>
+    <string name="creditsTechnology">Technology</string>
+    <string name="creditsTechnologyDetails"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management.
+\n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a>.
+    </string>
 
 
 </resources>
