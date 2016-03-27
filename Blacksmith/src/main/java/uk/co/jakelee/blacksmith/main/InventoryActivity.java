@@ -63,12 +63,12 @@ public class InventoryActivity extends Activity {
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            ImageView image = dh.createItemImage(item.getId(), 100, 100, inventoryItem.haveSeen());
+            ImageView image = dh.createItemImage(item.getId(), 35, 35, inventoryItem.haveSeen());
 
             String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
-            name.setPadding(0, 12, 0, 0);
+            name.setPadding(0, dh.convertDpToPixel(5), 0, 0);
 
             TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
             sell.setGravity(Gravity.CENTER);

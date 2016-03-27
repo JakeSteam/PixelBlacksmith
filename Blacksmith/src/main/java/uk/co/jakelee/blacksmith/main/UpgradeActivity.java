@@ -47,10 +47,15 @@ public class UpgradeActivity extends Activity {
         for (final Upgrade upgrade : upgrades) {
             TableRow upgradeRow = new TableRow(this);
 
-            String upgradeDescriptionText = String.format("%s\n%d / %d %s\n%s coins", upgrade.getName(), upgrade.getCurrent(), upgrade.getMaximum(), upgrade.getUnits(), upgrade.getUpgradeCost());
+            String upgradeDescriptionText = String.format("%s\n%d / %d %s\n%s coins",
+                    upgrade.getName(),
+                    upgrade.getCurrent(),
+                    upgrade.getMaximum(),
+                    upgrade.getUnits(),
+                    upgrade.getUpgradeCost());
             TextViewPixel upgradeDescription = dh.createTextView(upgradeDescriptionText, 20);
 
-            ImageView upgradeButton = dh.createImageView("", "uparrow", 200, 200);
+            ImageView upgradeButton = dh.createImageView("", "uparrow", 50, 50);
             upgradeButton.setTag(upgrade.getId());
             upgradeButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

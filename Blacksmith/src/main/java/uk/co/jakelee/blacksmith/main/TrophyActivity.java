@@ -39,7 +39,9 @@ public class TrophyActivity extends Activity {
         Long allVisitors = Visitor_Stats.count(Visitor_Stats.class);
         Long seenVisitors = Select.from(Visitor_Stats.class).where(
                 Condition.prop("visits").gt(Constants.VISITS_TROPHY - 1)).count();
-        ((TextViewPixel) findViewById(R.id.trophySubtitle)).setText(seenVisitors + " / " + allVisitors);
+        ((TextViewPixel) findViewById(R.id.trophySubtitle)).setText(String.format("%d / %d",
+                seenVisitors,
+                allVisitors));
     }
 
     public void populateVisitorGrid() {
@@ -51,14 +53,15 @@ public class TrophyActivity extends Activity {
             Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorType.getVisitorID());
 
             // Create image for the visitor.
-            ImageView visitorImage = dh.createImageView("visitor", visitorType.getVisitorID(), 170, 170);
+            ImageView visitorImage = dh.createImageView("visitor", visitorType.getVisitorID(), 50, 50);
             visitorImage.setTag(visitorType.getVisitorID());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     loadVisitor(v);
                 }
             });
-            visitorImage.setPadding(5, 5, 5, 5);
+            int visitorImagePadding = dh.convertDpToPixel(3);
+            visitorImage.setPadding(visitorImagePadding, visitorImagePadding, visitorImagePadding, visitorImagePadding);
 
             // Apply colouring based on number of visits.
             int numVisits = visitorStats.getVisits();
@@ -91,7 +94,7 @@ public class TrophyActivity extends Activity {
             String trophyAchievedText = DateHelper.displayTime(visitorStats.getTrophyAchieved(), DateHelper.date);
             int drawableId = this.getResources().getIdentifier("visitor" + visitorTypeID, "drawable", this.getPackageName());
 
-            ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 90, 90));
+            ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 40, 40));
             ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
             ((TextViewPixel) findViewById(R.id.visitorVisits)).setText("Visits: " + visitorStats.getVisits());
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc());

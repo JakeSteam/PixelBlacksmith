@@ -77,7 +77,12 @@ public class TradeActivity extends Activity {
         Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
         TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
-        demandTextView.setText(demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand) + " (" + demand.getQuantityProvided() + "/" + demand.getQuantity() + ")");
+        demandTextView.setText(String.format("%s: %s (%d/%d)",
+                demandCriteria.getName(),
+                Visitor_Demand.getCriteriaName(demand),
+                demand.getQuantityProvided(),
+                demand.getQuantity()
+                ));
 
         ProgressBar demandProgress = (ProgressBar) findViewById(R.id.demandProgress);
         demandProgress.setMax(demand.getQuantity());
@@ -106,7 +111,7 @@ public class TradeActivity extends Activity {
 
             TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
 
-            ImageView image = dh.createItemImage(inventory.getItem(), 100, 100, inventory.haveSeen());
+            ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, inventory.haveSeen());
 
             String itemName = item.getPrefix(inventory.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
@@ -114,7 +119,7 @@ public class TradeActivity extends Activity {
 
             // Create a sell button for that item
             TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
-            sell.setWidth(30);
+            sell.setWidth(dh.convertDpToPixel(40));
             sell.setShadowLayer(10, 0, 0, Color.WHITE);
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell_small);

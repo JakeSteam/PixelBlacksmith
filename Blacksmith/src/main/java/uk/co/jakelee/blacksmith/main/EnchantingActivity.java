@@ -68,7 +68,7 @@ public class EnchantingActivity extends Activity {
         ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        countParams.setMargins(0, 180, 0, 0);
+        countParams.setMargins(0, dh.convertDpToPixel(60), 0, 0);
 
         // If we're switching tiers, we have to clear the selector first
         if (clearExisting) {
@@ -84,9 +84,9 @@ public class EnchantingActivity extends Activity {
         for (Item item : items) {
             RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 230, 230, Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL));
+            ImageView image = dh.createItemImage(item.getId(), 80, 80, Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL));
             TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
-            count.setWidth(230);
+            count.setWidth(dh.convertDpToPixel(80));
 
             itemBox.addView(image);
             itemBox.addView(count, countParams);
@@ -185,8 +185,8 @@ public class EnchantingActivity extends Activity {
         itemButton.setBackgroundResource(R.drawable.button_extra_wide);
         itemButton.setGravity(Gravity.CENTER);
 
-        ImageView itemImage = dh.createItemImage(item.getId(), 90, 90, haveSeen);
-        itemImage.setPadding(0, 0, 10, 0);
+        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, haveSeen);
+        itemImage.setPadding(0, 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 
         int quantityOwned = 0;

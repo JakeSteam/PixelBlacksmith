@@ -3,12 +3,14 @@ package uk.co.jakelee.blacksmith.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,8 +175,9 @@ public class DisplayHelper {
         for (final Visitor visitor : visitors) {
 
             // Creating visitor image
-            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 170, 170);
-            visitorImage.setPadding(10, 10, 10, 10);
+            int visitorImagePadding = convertDpToPixel(10);
+            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 50, 50);
+            visitorImage.setPadding(visitorImagePadding, visitorImagePadding, visitorImagePadding, visitorImagePadding);
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -202,7 +205,7 @@ public class DisplayHelper {
         }
 
         if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors")) {
-            ImageView addVisitorButton = createImageView("add", "", 200, 200);
+            ImageView addVisitorButton = createImageView("add", "", 50, 50);
             addVisitorButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialogHelper.confirmVisitorAdd(context, activity);
@@ -293,7 +296,9 @@ public class DisplayHelper {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
         int drawableId = getItemDrawableID(context, itemId);
-        Drawable imageResource = createDrawable(drawableId, width, height);
+        int adjustedWidth = convertDpToPixel(width);
+        int adjustedHeight = convertDpToPixel(height);
+        Drawable imageResource = createDrawable(drawableId, adjustedWidth, adjustedHeight);
 
         if (haveSeen) {
             imageResource.clearColorFilter();
@@ -313,9 +318,15 @@ public class DisplayHelper {
     public Drawable createDrawable(int drawableId, int width, int height) {
         Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
         Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
-        Drawable drawableImage = new BitmapDrawable(context.getResources(), resizedImage);
+        return new BitmapDrawable(context.getResources(), resizedImage);
+    }
 
-        return drawableImage;
+    public int convertDpToPixel(int dp)
+    {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return (int)px;
     }
 
     public ImageView createImageView(String type, Long value, int width, int height) {
@@ -325,9 +336,11 @@ public class DisplayHelper {
     public ImageView createImageView(String type, String value, int width, int height) {
         int viewId = context.getResources().getIdentifier("img" + value, "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier(type + value, "drawable", context.getPackageName());
+        int adjustedWidth = convertDpToPixel(width);
+        int adjustedHeight = convertDpToPixel(height);
 
         Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, width, height, false);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
         Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
 
         ImageView image = new ImageView(context);
@@ -399,7 +412,7 @@ public class DisplayHelper {
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
         Item item = Item.findById(Item.class, itemID);
-        levelRow.addView(createImageView("levels", "", 54, 54));
+        levelRow.addView(createImageView("levels", "", 25, 25));
         levelRow.addView(createTextView("Level", 22, Color.BLACK));
         levelRow.addView(createTextView(Integer.toString(item.getLevel()), 22, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
@@ -420,7 +433,7 @@ public class DisplayHelper {
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 66, 66, haveSeen));
+            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, haveSeen));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));

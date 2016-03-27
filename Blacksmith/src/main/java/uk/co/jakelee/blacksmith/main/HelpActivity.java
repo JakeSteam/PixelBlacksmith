@@ -32,7 +32,8 @@ public class HelpActivity extends Activity {
         } else {
             for (TOPICS topic : TOPICS.values()) {
                 TextViewPixel topicView = dh.createTextView(topic.name(), 34);
-                topicView.setPadding(5, 5, 5, 5);
+                int topicPadding = dh.convertDpToPixel(3);
+                topicView.setPadding(topicPadding, topicPadding, topicPadding, topicPadding);
                 topicView.setTag(topic);
                 topicView.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {

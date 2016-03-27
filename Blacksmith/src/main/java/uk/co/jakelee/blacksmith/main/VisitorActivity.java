@@ -86,7 +86,8 @@ public class VisitorActivity extends Activity {
         visitorDesc.setText(visitorType.getDesc());
 
         TextViewPixel visitorVisits = (TextViewPixel) findViewById(R.id.visitorVisits);
-        visitorVisits.setText("Visits: " + Integer.toString(visitorStats.getVisits()));
+        visitorVisits.setText(String.format("Visits: %d",
+                visitorStats.getVisits()));
     }
 
     public void displayVisitorStats() {
@@ -147,20 +148,21 @@ public class VisitorActivity extends Activity {
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
             int statusDrawableID = (demand.isDemandFulfilled() ? R.drawable.tick : R.drawable.cross);
-            Drawable statusDrawable = dh.createDrawable(statusDrawableID, 100, 100);
+            Drawable statusDrawable = dh.createDrawable(statusDrawableID, 25, 25);
             ImageView criteriaStatus = new ImageView(getApplicationContext());
             criteriaStatus.setImageDrawable(statusDrawable);
 
             String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
             TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
-            criteriaValue.setHeight(100);
+            criteriaValue.setHeight(dh.convertDpToPixel(35));
             criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
             criteriaValue.setSingleLine(false);
 
             ImageView tradeBtn = new ImageView(getApplicationContext());
             if (!demand.isDemandFulfilled()) {
-                tradeBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 100, 100));
-                tradeBtn.setPadding(5, 5, 5, 5);
+                tradeBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
+                int tradeBtnPadding = dh.convertDpToPixel(3);
+                tradeBtn.setPadding(tradeBtnPadding, tradeBtnPadding, tradeBtnPadding, tradeBtnPadding);
                 tradeBtn.setTag(demand.getId());
                 tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -192,7 +194,9 @@ public class VisitorActivity extends Activity {
             } else {
                 int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
                 String itemName = createVisitorReward(visitor, numRewards);
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("As the visitor leaves, you notice %dx %s on the counter.", numRewards, itemName));
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("As the visitor leaves, you notice %dx %s on the counter.",
+                        numRewards,
+                        itemName));
             }
 
             int numVisitors = Player_Info.getVisitorsCompleted();

@@ -28,8 +28,8 @@ public class SettingsActivity extends Activity {
     }
 
     public void displaySettingsList() {
-        Drawable tick = dh.createDrawable(R.drawable.tick, 64, 64);
-        Drawable cross = dh.createDrawable(R.drawable.cross, 64, 64);
+        Drawable tick = dh.createDrawable(R.drawable.tick, dh.convertDpToPixel(50), dh.convertDpToPixel(50));
+        Drawable cross = dh.createDrawable(R.drawable.cross, dh.convertDpToPixel(50), dh.convertDpToPixel(50));
 
         ImageView soundToggle = (ImageView) findViewById(R.id.soundToggleButton);
         boolean soundToggleValue = Setting.findById(Setting.class, Constants.SETTING_SOUNDS).getBoolValue();
