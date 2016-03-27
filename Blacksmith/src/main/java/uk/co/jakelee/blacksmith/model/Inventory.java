@@ -58,6 +58,10 @@ public class Inventory extends SugarRecord implements Serializable {
         this.state = state;
     }
 
+    public static void addItem(Pending_Inventory item) {
+        addItem(item.getItem(), item.getState(), item.getQuantity());
+    }
+
     public static void addItem(Long itemId, long state, int quantity) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);

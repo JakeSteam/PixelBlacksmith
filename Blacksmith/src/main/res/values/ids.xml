@@ -2,11 +2,6 @@
 <resources>
     <string name="app_id">484982205674</string>
 
-    <item name="shopkeeperPic" type="id" />
-    <item name="shopkeeperName" type="id" />
-    <item name="shopkeeperIntro" type="id" />
-    <item name="shopName" type="id" />
-    <item name="shopDesc" type="id" />
     <item name="itemID" type="id" />
     <item name="itemState" type="id" />
     <item name="itemImage" type="id" />

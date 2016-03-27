@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
@@ -40,10 +43,20 @@ import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class DisplayHelper {
-    private static DisplayHelper dhInstance = null;
-    private static Context context;
     public final static String VISITOR_TO_LOAD = "uk.co.jakelee.blacksmith.visitortoload";
     public final static String DEMAND_TO_LOAD = "uk.co.jakelee.blacksmith.tradetoload";
+
+    private static DisplayHelper dhInstance = null;
+    private static Context context;
+    private static int[] slotIDs = {
+            0,
+            R.id.slots_anvil,
+            R.id.slots_furnace,
+            R.id.slots_inventory,
+            R.id.slots_market,
+            R.id.slots_table,
+            R.id.slots_enchanting
+    };
 
     public DisplayHelper(Context context) {
         DisplayHelper.context = context;
@@ -56,113 +69,101 @@ public class DisplayHelper {
         return dhInstance;
     }
 
-    public void createSlotContainer(RelativeLayout slotContainer, List<Slot> slots) {
-        slotContainer.removeAllViews();
+    public void createAllSlots(Activity activity) {
+        List<Location> locations = Select.from(Location.class).list();
         int playerLevel = Player_Info.getPlayerLevel();
 
-        LinearLayout.LayoutParams slotParams = new LinearLayout.LayoutParams(180, 180);
-        LinearLayout.LayoutParams countParams = new LinearLayout.LayoutParams(180, LinearLayout.LayoutParams.WRAP_CONTENT);
-        countParams.setMargins(0, 110, 0, 0);
+        for (Location location : locations) {
+            LinearLayout slotContainer = (LinearLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
+            slotContainer.removeAllViews();
 
-        LinearLayout backContainer = new LinearLayout(context);
-        LinearLayout frontContainer = new LinearLayout(context);
-        LinearLayout countContainer = new LinearLayout(context);
+            List<Slot> slots = Select.from(Slot.class).where(
+                    Condition.prop("location").eq(location.getId())).orderBy("level ASC").list();
 
-        boolean displayedNextUnlock = false;
+            boolean displayedNextSlot = false;
+            for (Slot slot : slots) {
+                RelativeLayout slotRoot = createSlotRoot(activity.getApplicationContext());
 
-        for (Slot slot : slots) {
-            ImageView slotBackground = new ImageView(context);
-            slotBackground.setLayoutParams(slotParams);
-            slotBackground.setAlpha(0.6F);
+                ImageView slotBackground = (ImageView) slotRoot.findViewById(R.id.slot_background);
+                ImageView slotForeground = (ImageView) slotRoot.findViewById(R.id.slot_foreground);
+                TextViewPixel slotCount = (TextViewPixel) slotRoot.findViewById(R.id.slot_count);
 
-            ImageView slotForeground = new ImageView(context);
-            slotForeground.setLayoutParams(slotParams);
-            slotForeground.setImageResource(R.drawable.transparent);
-
-            TextViewPixel slotCountdown = new TextViewPixel(context);
-            slotCountdown.setTextSize(30);
-            slotCountdown.setTextColor(Color.WHITE);
-            slotCountdown.setBackgroundColor(Color.BLACK);
-            slotCountdown.setAlpha(0.6F);
-            slotCountdown.setGravity(Gravity.CENTER);
-            slotCountdown.setTag(0);
-
-            if (slot.getLevel() > playerLevel) {
-                if (!displayedNextUnlock) {
-                    slotBackground.setBackgroundResource(R.drawable.close);
-                    slotBackground.setTag(false);
-                    slotCountdown.setTag(slot.getLevel());
-                } else {
-                    slotCountdown.setVisibility(View.INVISIBLE);
+                if (!displayedNextSlot) {
+                    slotBackground.setBackgroundResource(R.drawable.slot);
+                    slotCount.setVisibility(View.VISIBLE);
+                    if (slot.getLevel() > playerLevel) {
+                        slotForeground.setBackgroundResource(R.drawable.close);
+                        slotCount.setText(String.format("Lv %d", slot.getLevel()));
+                        displayedNextSlot = true;
+                    } else if (slot.isPremium()) {
+                        slotForeground.setBackgroundResource(R.drawable.item52);
+                        slotCount.setText("Prem");
+                    } else {
+                        slotRoot.setTag(true);
+                    }
                 }
-                displayedNextUnlock = true;
-            } else if (slot.getPremium() == Constants.TRUE) {
-                slotBackground.setBackgroundResource(R.drawable.item52);
-                slotBackground.setTag(false);
-            } else {
-                slotBackground.setBackgroundResource(R.drawable.slot);
-                slotBackground.setTag(true);
+                slotContainer.addView(slotRoot);
             }
-
-            backContainer.addView(slotBackground);
-            frontContainer.addView(slotForeground);
-            countContainer.addView(slotCountdown, countParams);
         }
-
-        slotContainer.addView(backContainer);
-        slotContainer.addView(frontContainer);
-        slotContainer.addView(countContainer);
     }
 
-    public void populateSlotContainer(RelativeLayout slotContainer, Long locationID) {
-        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
-        LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
-        LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
+    public void populateSlots(View parentView) {
+        List<Location> locations = Select.from(Location.class).list();
+        for (Location location : locations) {
+            populateSlot(location.getId(), parentView);
+        }
+    }
 
-        int i = 0;
+    private void populateSlot(long locationID, View parentView) {
+        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
+        LinearLayout slotContainer = (LinearLayout)parentView.findViewById(slotIDs[(int)locationID]);
+        emptySlotContainer(slotContainer);
+
+        int slotIndex = 0;
         for (Pending_Inventory pendingItem : pendingItems) {
+            RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
+            ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
+            TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
+
             long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
             long currentTime = System.currentTimeMillis();
-            int drawableId = context.getResources().getIdentifier("item" + pendingItem.getItem(), "drawable", context.getPackageName());
-
-            ImageView slotItem = (ImageView) frontContainer.getChildAt(i);
-            TextViewPixel slotCount = (TextViewPixel) countContainer.getChildAt(i);
 
             if (itemFinishTime <= currentTime) {
-                // If the item has finished crafting
-                Inventory.addItem(pendingItem.getItem(), pendingItem.getState(), pendingItem.getQuantity());
+                Inventory.addItem(pendingItem);
                 Pending_Inventory.delete(pendingItem);
             } else {
-                long millisecondsLeft = (itemFinishTime - currentTime);
-                double secondsLeft = (double) millisecondsLeft / DateHelper.MILLISECONDS_IN_SECOND;
-                String roundedSecondsLeft = Integer.toString((int) Math.ceil(secondsLeft));
+                int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                slotItem.setImageResource(drawableId);
-                slotCount.setText(roundedSecondsLeft);
-                slotCount.setVisibility(View.VISIBLE);
-                i++;
-            }
-        }
-
-        for (int j = 0; j < countContainer.getChildCount(); j++) {
-            TextViewPixel slotCount = (TextViewPixel) countContainer.getChildAt(j);
-            if ((int)slotCount.getTag() > j) {
-                slotCount.setText(String.valueOf((int)slotCount.getTag()));
+                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                slotCount.setText(String.format("%ds", seconds));
+                slotIndex++;
             }
         }
     }
 
-    public void depopulateSlotContainer(RelativeLayout slotContainer) {
-        LinearLayout frontContainer = (LinearLayout) slotContainer.getChildAt(1);
-        LinearLayout countContainer = (LinearLayout) slotContainer.getChildAt(2);
+    private void emptySlotContainer(LinearLayout slotContainer) {
+        int numSlots = slotContainer.getChildCount();
 
-        for (int i = 0; i < frontContainer.getChildCount(); i++) {
-            TextViewPixel count = (TextViewPixel) countContainer.getChildAt(i);
-            count.setText("");
+        for (int i = 0; i < numSlots; i++) {
+            RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(i);
+            if (slot.getTag() != null) {
+                ImageView slotForeground = (ImageView)slot.findViewById(R.id.slot_foreground);
+                slotForeground.setImageResource(R.drawable.transparent);
 
-            ImageView slot = (ImageView) frontContainer.getChildAt(i);
-            slot.setImageResource(R.drawable.transparent);
+                TextViewPixel slotCount = (TextViewPixel)slot.findViewById(R.id.slot_count);
+                slotCount.setText("");
+            }
         }
+    }
+
+    private static int getItemDrawableID(Context context, long item) {
+        return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
+    }
+
+    private static RelativeLayout createSlotRoot(Context context) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View inflatedView = inflater.inflate(R.layout.custom_slot, null);
+        return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
     }
 
     public void populateVisitorsContainer(final Context context, final MainActivity activity, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
@@ -291,7 +292,7 @@ public class DisplayHelper {
     public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
-        int drawableId = context.getResources().getIdentifier("item" + itemId, "drawable", context.getPackageName());
+        int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
 
         if (haveSeen) {

@@ -30,7 +30,8 @@ public class Pending_Inventory extends SugarRecord {
 
     public static List<Pending_Inventory> getPendingItems(Long locationID) {
         return Select.from(Pending_Inventory.class).where(
-                Condition.prop("location_id").eq(locationID)).list();
+                Condition.prop("location_id").eq(locationID))
+                .orderBy("time_created ASC").list();
     }
 
     public static void addItem(Long itemId, long state, int quantity, Long location) {

@@ -11,13 +11,13 @@ import java.util.List;
 public class Slot extends SugarRecord {
     int location;
     int level;
-    int premium;
+    boolean premium;
 
     public Slot() {
 
     }
 
-    public Slot(int location, int level, int premium) {
+    public Slot(int location, int level, boolean premium) {
         this.location = location;
         this.level = level;
         this.premium = premium;
@@ -31,7 +31,7 @@ public class Slot extends SugarRecord {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
         List<Slot> allSlots = Location.getSlots(locationID);
         for (Slot slot : allSlots) {
-            if (slot.getLevel() <= playerLevel && slot.getPremium() != 1) {
+            if (slot.getLevel() <= playerLevel && !slot.isPremium()) {
                 availableSlots++;
             }
         }
@@ -55,11 +55,11 @@ public class Slot extends SugarRecord {
         this.level = level;
     }
 
-    public int getPremium() {
+    public boolean isPremium() {
         return premium;
     }
 
-    public void setPremium(int premium) {
+    public void setPremium(boolean premium) {
         this.premium = premium;
     }
 }

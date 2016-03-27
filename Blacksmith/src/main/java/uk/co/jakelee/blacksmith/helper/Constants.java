@@ -9,9 +9,6 @@ public class Constants {
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.15;
     public static final Double DEFAULT_BONUS = 1.00;
-    public static final int MILLISECONDS_BETWEEN_UI_REFRESHES = 1000; // 1 sec
-    public static final int MILLISECONDS_BETWEEN_RESTOCK_CHECKS = 60000; // 60 sec
-    public static final int MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS = 10000; // 10 seconds
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int CRAFT_TIME_MULTIPLIER = 100;
     public static final int MAX_CRAFTS = 10;

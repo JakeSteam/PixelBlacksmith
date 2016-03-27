@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -20,12 +20,12 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
-import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -51,13 +51,6 @@ public class MainActivity extends AppCompatActivity implements
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
 
-    public static RelativeLayout sellingSlots;
-    public static RelativeLayout furnaceSlots;
-    public static RelativeLayout anvilSlots;
-    public static RelativeLayout marketSlots;
-    public static RelativeLayout tableSlots;
-    public static RelativeLayout enchantingSlots;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,13 +67,6 @@ public class MainActivity extends AppCompatActivity implements
         levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
         levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
 
-        sellingSlots = (RelativeLayout) findViewById(R.id.slots_inventory);
-        furnaceSlots = (RelativeLayout) findViewById(R.id.slots_furnace);
-        anvilSlots = (RelativeLayout) findViewById(R.id.slots_anvil);
-        marketSlots = (RelativeLayout) findViewById(R.id.slots_market);
-        tableSlots = (RelativeLayout) findViewById(R.id.slots_table);
-        enchantingSlots = (RelativeLayout) findViewById(R.id.slots_enchanting);
-
         if (Player_Info.listAll(Player_Info.class).size() == 0) {
             DatabaseHelper.initialSQL();
         }
@@ -92,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .build();
 
-        createSlots();
+        dh.createAllSlots(this);
     }
 
     @Override
@@ -165,74 +151,44 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void setupRecurringEvents() {
-        final Runnable updateMainUI = new Runnable() {
+        final Activity activity = this;
+        
+        final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
-                updateSlots();
+                dh.populateSlots(findViewById(R.id.mainScroller));
                 updateVisitors();
                 dh.updateCoinsGUI();
                 dh.updateLevelText(getApplicationContext());
-                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_UI_REFRESHES);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
-        handler.post(updateMainUI);
+        handler.post(everySecond);
 
-        final Runnable checkRestocks = new Runnable() {
-            @Override
-            public void run() {
-                if (Trader_Stock.shouldRestock()) {
-                    Trader_Stock.restockTraders();
-                }
-                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_RESTOCK_CHECKS);
-            }
-        };
-        handler.post(checkRestocks);
-
-        final Runnable checkVisitorSpawns = new Runnable() {
+        final Runnable everyTenSeconds = new Runnable() {
             @Override
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors > 0) {
                     ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("A visitor wanders into the shop...", newVisitors));
                 }
-                handler.postDelayed(this, Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
-        handler.postDelayed(checkVisitorSpawns, Constants.MILLISECONDS_BETWEEN_VISITOR_SPAWN_CHECKS);
+        handler.postDelayed(everyTenSeconds, DateHelper.MILLISECONDS_IN_SECOND * 10);
 
-        final Runnable checkAchievements = new Runnable() {
+        final Runnable everyMinute = new Runnable() {
             @Override
             public void run() {
+                dh.createAllSlots(activity);
+                if (Trader_Stock.shouldRestock()) {
+                    Trader_Stock.restockTraders();
+                }
                 GooglePlayHelper.UpdateAchievements();
-                handler.postDelayed(this, 60000);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
-        handler.postDelayed(checkAchievements, 60000);
-    }
-
-    private void createSlots() {
-        dh.createSlotContainer(sellingSlots, Location.getSlots(Constants.LOCATION_SELLING));
-        dh.createSlotContainer(furnaceSlots, Location.getSlots(Constants.LOCATION_FURNACE));
-        dh.createSlotContainer(anvilSlots, Location.getSlots(Constants.LOCATION_ANVIL));
-        dh.createSlotContainer(marketSlots, Location.getSlots(Constants.LOCATION_MARKET));
-        dh.createSlotContainer(tableSlots, Location.getSlots(Constants.LOCATION_TABLE));
-        dh.createSlotContainer(enchantingSlots, Location.getSlots(Constants.LOCATION_ENCHANTING));
-    }
-
-    public void updateSlots() {
-        dh.depopulateSlotContainer(sellingSlots);
-        dh.depopulateSlotContainer(furnaceSlots);
-        dh.depopulateSlotContainer(anvilSlots);
-        dh.depopulateSlotContainer(marketSlots);
-        dh.depopulateSlotContainer(tableSlots);
-        dh.depopulateSlotContainer(enchantingSlots);
-
-        dh.populateSlotContainer(sellingSlots, Constants.LOCATION_SELLING);
-        dh.populateSlotContainer(furnaceSlots, Constants.LOCATION_FURNACE);
-        dh.populateSlotContainer(anvilSlots, Constants.LOCATION_ANVIL);
-        dh.populateSlotContainer(marketSlots, Constants.LOCATION_MARKET);
-        dh.populateSlotContainer(tableSlots, Constants.LOCATION_TABLE);
-        dh.populateSlotContainer(enchantingSlots, Constants.LOCATION_ENCHANTING);
+        handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 60);
     }
 
     public void updateVisitors() {
