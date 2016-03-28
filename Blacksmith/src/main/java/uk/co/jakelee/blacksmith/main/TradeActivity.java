@@ -82,7 +82,7 @@ public class TradeActivity extends Activity {
                 Visitor_Demand.getCriteriaName(demand),
                 demand.getQuantityProvided(),
                 demand.getQuantity()
-                ));
+        ));
 
         ProgressBar demandProgress = (ProgressBar) findViewById(R.id.demandProgress);
         demandProgress.setMax(demand.getQuantity());
@@ -104,7 +104,7 @@ public class TradeActivity extends Activity {
 
         List<Inventory> matchingItems = demand.getMatchingInventory();
 
-        for(Inventory inventory : matchingItems) {
+        for (Inventory inventory : matchingItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
 
             Item item = Item.findById(Item.class, inventory.getItem());

@@ -38,6 +38,65 @@ public class Trader extends SugarRecord {
         this.save();
     }
 
+    public static void checkTraderStatus(Context context, long location) {
+        List<Trader> traders = Select.from(Trader.class).where(
+                Condition.prop("location").eq(location),
+                Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
+        Iterator<Trader> tradersIter = traders.iterator();
+        int numberOfTraders = traders.size();
+
+        // Remove any completed traders
+        while (tradersIter.hasNext()) {
+            Trader trader = tradersIter.next();
+            if (trader.isOutOfStock()) {
+                trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
+                trader.save();
+                tradersIter.remove();
+                numberOfTraders--;
+            }
+        }
+
+        // Add any necessary new traders
+        while (numberOfTraders < Upgrade.getValue("Maximum Traders")) {
+            Trader.makeTraderAppear(context);
+            numberOfTraders++;
+        }
+    }
+
+    public static void makeTraderAppear(Context context) {
+        Trader traderToArrive = selectTraderType();
+        if (traderToArrive.getName() != null) {
+            traderToArrive.setStatus(Constants.TRADER_PRESENT);
+            traderToArrive.save();
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The " + traderToArrive.getName() + " trader has arrived.");
+        }
+    }
+
+    public static Trader selectTraderType() {
+        Trader selectedTraderType = new Trader();
+        int playerLevel = Player_Info.getPlayerLevel();
+        List<Trader> traderTypes = Select.from(Trader.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_MARKET),
+                Condition.prop("level").lt(playerLevel + 1),
+                Condition.prop("status").eq(Constants.TRADER_NOT_PRESENT)).list();
+
+        double totalWeighting = 0.0;
+        for (Trader traderType : traderTypes) {
+            totalWeighting += traderType.getWeighting();
+        }
+
+        double randomNumber = Math.random() * totalWeighting;
+        double probabilityIterator = 0.0;
+        for (Trader traderType : traderTypes) {
+            probabilityIterator += traderType.getWeighting();
+            if (probabilityIterator >= randomNumber) {
+                selectedTraderType = traderType;
+                break;
+            }
+        }
+        return selectedTraderType;
+    }
+
     public long getShopkeeper() {
         return shopkeeper;
     }
@@ -100,65 +159,6 @@ public class Trader extends SugarRecord {
 
     public void setWeighting(int weighting) {
         this.weighting = weighting;
-    }
-
-    public static void checkTraderStatus(Context context, long location) {
-        List<Trader> traders = Select.from(Trader.class).where(
-                Condition.prop("location").eq(location),
-                Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
-        Iterator<Trader> tradersIter = traders.iterator();
-        int numberOfTraders = traders.size();
-
-        // Remove any completed traders
-        while (tradersIter.hasNext()) {
-            Trader trader = tradersIter.next();
-            if (trader.isOutOfStock()) {
-                trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
-                trader.save();
-                tradersIter.remove();
-                numberOfTraders--;
-            }
-        }
-
-        // Add any necessary new traders
-        while (numberOfTraders < Upgrade.getValue("Maximum Traders")) {
-            Trader.makeTraderAppear(context);
-            numberOfTraders++;
-        }
-    }
-
-    public static void makeTraderAppear(Context context) {
-        Trader traderToArrive = selectTraderType();
-        if (traderToArrive.getName() != null) {
-            traderToArrive.setStatus(Constants.TRADER_PRESENT);
-            traderToArrive.save();
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The " + traderToArrive.getName() + " trader has arrived.");
-        }
-    }
-
-    public static Trader selectTraderType () {
-        Trader selectedTraderType = new Trader();
-        int playerLevel = Player_Info.getPlayerLevel();
-        List<Trader> traderTypes = Select.from(Trader.class).where(
-                Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("level").lt(playerLevel + 1),
-                Condition.prop("status").eq(Constants.TRADER_NOT_PRESENT)).list();
-
-        double totalWeighting = 0.0;
-        for (Trader traderType : traderTypes) {
-            totalWeighting += traderType.getWeighting();
-        }
-
-        double randomNumber = Math.random() * totalWeighting;
-        double probabilityIterator = 0.0;
-        for (Trader traderType :  traderTypes) {
-            probabilityIterator += traderType.getWeighting();
-            if (probabilityIterator >= randomNumber) {
-                selectedTraderType = traderType;
-                break;
-            }
-        }
-        return selectedTraderType;
     }
 
     public boolean isOutOfStock() {

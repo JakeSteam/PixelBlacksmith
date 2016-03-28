@@ -71,6 +71,16 @@ public class DisplayHelper {
         return dhInstance;
     }
 
+    private static int getItemDrawableID(Context context, long item) {
+        return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
+    }
+
+    private static RelativeLayout createSlotRoot(Context context) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View inflatedView = inflater.inflate(R.layout.custom_slot, null);
+        return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
+    }
+
     public void createAllSlots(Activity activity) {
         List<Location> locations = Select.from(Location.class).list();
         int playerLevel = Player_Info.getPlayerLevel();
@@ -118,7 +128,7 @@ public class DisplayHelper {
 
     private void populateSlot(long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
-        LinearLayout slotContainer = (LinearLayout)parentView.findViewById(slotIDs[(int)locationID]);
+        LinearLayout slotContainer = (LinearLayout) parentView.findViewById(slotIDs[(int) locationID]);
         emptySlotContainer(slotContainer);
 
         int slotIndex = 0;
@@ -149,23 +159,13 @@ public class DisplayHelper {
         for (int i = 0; i < numSlots; i++) {
             RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(i);
             if (slot.getTag() != null) {
-                ImageView slotForeground = (ImageView)slot.findViewById(R.id.slot_foreground);
+                ImageView slotForeground = (ImageView) slot.findViewById(R.id.slot_foreground);
                 slotForeground.setImageResource(R.drawable.transparent);
 
-                TextViewPixel slotCount = (TextViewPixel)slot.findViewById(R.id.slot_count);
+                TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
                 slotCount.setText("");
             }
         }
-    }
-
-    private static int getItemDrawableID(Context context, long item) {
-        return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
-    }
-
-    private static RelativeLayout createSlotRoot(Context context) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View inflatedView = inflater.inflate(R.layout.custom_slot, null);
-        return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
     }
 
     public void populateVisitorsContainer(final Context context, final MainActivity activity, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
@@ -322,12 +322,11 @@ public class DisplayHelper {
         return new BitmapDrawable(context.getResources(), resizedImage);
     }
 
-    public int convertDpToPixel(int dp)
-    {
+    public int convertDpToPixel(int dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
-        return (int)px;
+        return (int) px;
     }
 
     public ImageView createImageView(String type, Long value, int width, int height) {

@@ -57,7 +57,7 @@ public class DateHelper {
         return hours * minutesToMilliseconds(MINUTES_IN_HOUR);
     }
 
-    public static int getSecondsRoundUp (long milliseconds) {
+    public static int getSecondsRoundUp(long milliseconds) {
         double secondsLeft = (double) milliseconds / MILLISECONDS_IN_SECOND;
         return (int) Math.ceil(secondsLeft);
     }

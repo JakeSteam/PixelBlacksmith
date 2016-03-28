@@ -26,63 +26,63 @@
             android:id="@+id/traderTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="@string/traderText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="60sp" />
 
-    <RelativeLayout
-        android:id="@+id/traderInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/traderTitle"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="15dp">
-
-        <ImageView
-            android:id="@+id/traderImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
-
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/traderName"
+        <RelativeLayout
+            android:id="@+id/traderInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/traderImage"
-            android:layout_alignTop="@id/traderImage"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/traderTitle"
             android:layout_marginLeft="10dp"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:singleLine="false"/>
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp">
 
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/traderGreeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/traderName"
-            android:layout_alignLeft="@id/traderName"
-            android:layout_marginTop="5dp"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:singleLine="false"/>
+            <ImageView
+                android:id="@+id/traderImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/traderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/traderImage"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/traderImage"
+                android:singleLine="false"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/traderGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/traderName"
+                android:layout_below="@id/traderName"
+                android:layout_marginTop="5dp"
+                android:singleLine="false"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </RelativeLayout>
 
-    <TableLayout
-        android:id="@+id/traderItemsInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/traderInfo"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:stretchColumns="1"
-        android:shrinkColumns="1"/>
+        <TableLayout
+            android:id="@+id/traderItemsInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/traderInfo"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:shrinkColumns="1"
+            android:stretchColumns="1" />
 
-</RelativeLayout>
+    </RelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -97,9 +97,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
         android:onClick="openHelp"
         android:src="@drawable/help" />
-    </RelativeLayout>
+</RelativeLayout>

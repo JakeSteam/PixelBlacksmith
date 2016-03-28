@@ -15,9 +15,6 @@ public class Player_Info extends SugarRecord {
     Long longValue;
     int lastSentValue;
 
-    @Ignore
-    public enum Statistic {ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought}
-
     public Player_Info() {
 
     }
@@ -48,46 +45,6 @@ public class Player_Info extends SugarRecord {
         this.intValue = intValue;
         this.lastSentValue = lastSentValue;
         this.save();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTextValue() {
-        return textValue;
-    }
-
-    public void setTextValue(String textValue) {
-        this.textValue = textValue;
-    }
-
-    public int getIntValue() {
-        return intValue;
-    }
-
-    public void setIntValue(int intValue) {
-        this.intValue = intValue;
-    }
-
-    public Long getLongValue() {
-        return longValue;
-    }
-
-    public void setLongValue(Long longValue) {
-        this.longValue = longValue;
-    }
-
-    public int getLastSentValue() {
-        return lastSentValue;
-    }
-
-    public void setLastSentValue(int lastSentValue) {
-        this.lastSentValue = lastSentValue;
     }
 
     public static int getPlayerLevel() {
@@ -169,5 +126,50 @@ public class Player_Info extends SugarRecord {
 
         statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
         statToIncrease.save();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTextValue() {
+        return textValue;
+    }
+
+    public void setTextValue(String textValue) {
+        this.textValue = textValue;
+    }
+
+    public int getIntValue() {
+        return intValue;
+    }
+
+    public void setIntValue(int intValue) {
+        this.intValue = intValue;
+    }
+
+    public Long getLongValue() {
+        return longValue;
+    }
+
+    public void setLongValue(Long longValue) {
+        this.longValue = longValue;
+    }
+
+    public int getLastSentValue() {
+        return lastSentValue;
+    }
+
+    public void setLastSentValue(int lastSentValue) {
+        this.lastSentValue = lastSentValue;
+    }
+
+    @Ignore
+    public enum Statistic {
+        ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought
     }
 }

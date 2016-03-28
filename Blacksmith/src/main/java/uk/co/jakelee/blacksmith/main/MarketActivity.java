@@ -25,8 +25,8 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
 public class MarketActivity extends Activity {
-    public static DisplayHelper dh;
     public final static String TRADER_TO_LOAD = "uk.co.jakelee.blacksmith.tradertoload";
+    public static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

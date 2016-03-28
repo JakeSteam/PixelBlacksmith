@@ -86,7 +86,7 @@
             android:layout_height="55dp"
             android:layout_alignLeft="@id/visitorPicture"
             android:layout_below="@id/visitorPicture"
-            android:background="@drawable/slot"/>
+            android:background="@drawable/slot" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeMultiplier"
@@ -96,8 +96,8 @@
             android:layout_alignLeft="@id/typeImage"
             android:alpha="0.6"
             android:background="@color/black"
-            android:text="@string/unknownText"
             android:gravity="center"
+            android:text="@string/unknownText"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -118,8 +118,8 @@
             android:layout_alignLeft="@id/tierImage"
             android:alpha="0.6"
             android:background="@color/black"
-            android:text="@string/unknownText"
             android:gravity="center"
+            android:text="@string/unknownText"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -161,8 +161,8 @@
             android:layout_alignLeft="@id/bestItemImage"
             android:alpha="0.6"
             android:background="@color/black"
-            android:text="@string/unknownText"
             android:gravity="center"
+            android:text="@string/unknownText"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -172,8 +172,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/typeImage"
             android:layout_below="@id/typeImage"
-            android:text="@string/typeText"
             android:gravity="center"
+            android:text="@string/typeText"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -183,8 +183,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/tierImage"
             android:layout_below="@id/tierImage"
-            android:text="@string/tierText"
             android:gravity="center"
+            android:text="@string/tierText"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -194,8 +194,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/stateImage"
             android:layout_below="@id/stateImage"
-            android:text="@string/stateText"
             android:gravity="center"
+            android:text="@string/stateText"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -205,8 +205,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/bestItemImage"
             android:layout_below="@id/bestItemImage"
-            android:text="@string/bestText"
             android:gravity="center"
+            android:text="@string/bestText"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -237,26 +237,26 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:background="@drawable/button_wide"
+                    android:clickable="true"
                     android:gravity="center"
                     android:onClick="completeVisitor"
                     android:text="Complete"
-                    android:textSize="35sp"
-                    android:background="@drawable/button_wide"
-                    android:clickable="true"/>
+                    android:textSize="35sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/dismissButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/demandsTable"
                     android:layout_alignTop="@id/completeButton"
+                    android:layout_below="@id/demandsTable"
                     android:layout_toRightOf="@id/completeButton"
+                    android:background="@drawable/button"
+                    android:clickable="true"
                     android:gravity="center"
                     android:onClick="dismissVisitor"
-                    android:clickable="true"
                     android:text=" X "
-                    android:textSize="35sp"
-                    android:background="@drawable/button"/>
+                    android:textSize="35sp" />
             </RelativeLayout>
 
         </ScrollView>
@@ -275,9 +275,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
         android:onClick="openHelp"
         android:src="@drawable/help" />
 </RelativeLayout>

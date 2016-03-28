@@ -5,7 +5,7 @@ import com.orm.SugarRecord;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 
-public class Visitor_Type extends SugarRecord{
+public class Visitor_Type extends SugarRecord {
     Long visitorID;
     String name;
     String desc;
@@ -158,7 +158,7 @@ public class Visitor_Type extends SugarRecord{
             bonus *= getTypeMultiplier();
         }
 
-        return (double)bonus / (double)100;
+        return (double) bonus / (double) 100;
     }
 
     public double getBonus(Inventory invent) {
@@ -175,7 +175,7 @@ public class Visitor_Type extends SugarRecord{
             bonus *= getTypeMultiplier();
         }
 
-        return (double)bonus / (double)100;
+        return (double) bonus / (double) 100;
     }
 
 

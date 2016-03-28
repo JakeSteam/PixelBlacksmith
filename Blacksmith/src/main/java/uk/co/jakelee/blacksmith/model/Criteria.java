@@ -2,7 +2,7 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
-public class Criteria extends SugarRecord{
+public class Criteria extends SugarRecord {
     Long criteriaID;
     String name;
 

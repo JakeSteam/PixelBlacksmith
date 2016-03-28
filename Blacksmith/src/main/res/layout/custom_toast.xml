@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toast"
-    android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:background="@color/lightBrown">
+    android:background="@color/lightBrown"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
-    <TextView android:id="@+id/text"
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:textColor="@color/white"/>
-    </LinearLayout>
+        android:textColor="@color/white" />
+</LinearLayout>

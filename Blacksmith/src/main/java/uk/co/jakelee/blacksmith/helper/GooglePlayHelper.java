@@ -30,23 +30,22 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
  * Created by Jake on 20/03/2016.
  */
 public class GooglePlayHelper {
+    public static final int RESULT_OK = -1;
     public static int RC_SIGN_IN = 9001;
     public static int RC_ACHIEVEMENTS = 9002;
     public static int RC_LEADERBOARDS = 9003;
     public static int RC_SAVED_GAMES = 9004;
-
-    public static final int RESULT_OK = -1;
+    public static String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
+    public static GoogleApiClient mGoogleApiClient;
     private static boolean mResolvingConnectionFailure = false;
     private static boolean mAutoStartSignInFlow = true;
     private static boolean mSignInClicked = false;
     private static String mCurrentSaveName = "blacksmithCloudSave";
 
-    public static String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
-
-    public static GoogleApiClient mGoogleApiClient;
-
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
-        if (mResolvingConnectionFailure) { return; }
+        if (mResolvingConnectionFailure) {
+            return;
+        }
 
         if (mSignInClicked || mAutoStartSignInFlow) {
             mAutoStartSignInFlow = false;
@@ -75,13 +74,17 @@ public class GooglePlayHelper {
     }
 
     public static void UpdateLeaderboards(String leaderboardID, int value) {
-        if (!IsConnected()) { return;}
+        if (!IsConnected()) {
+            return;
+        }
 
         Games.Leaderboards.submitScore(mGoogleApiClient, leaderboardID, value);
     }
 
     public static void UpdateAchievements() {
-        if (!IsConnected()) { return;}
+        if (!IsConnected()) {
+            return;
+        }
 
         List<Player_Info> statistics = Select.from(Player_Info.class).where(
                 Condition.prop("last_sent_value").notEq(Constants.STATISTIC_NOT_TRACKED)).list();
@@ -121,7 +124,9 @@ public class GooglePlayHelper {
     }
 
     public static void SavedGamesIntent(final Context context, final Intent intent) {
-        if (intent == null) { return; }
+        if (intent == null) {
+            return;
+        }
 
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
             String currentTask = "synchronising";
@@ -143,8 +148,8 @@ public class GooglePlayHelper {
                     } catch (IOException e) {
                         ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A local error occurred whilst %s from cloud: %s", currentTask, e.toString()));
                     }
-                } else{
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT,  String.format("A remote error occurred whilst %s from cloud: %s", currentTask, result.getStatus().getStatusCode()));
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A remote error occurred whilst %s from cloud: %s", currentTask, result.getStatus().getStatusCode()));
                 }
 
                 return result.getStatus().getStatusCode();
@@ -160,16 +165,20 @@ public class GooglePlayHelper {
     }
 
     private static void loadFromCloud(byte[] cloudData) {
-        if (!IsConnected()) { return;}
+        if (!IsConnected()) {
+            return;
+        }
 
         DatabaseHelper.applyBackup(new String(cloudData));
     }
 
     private static void saveToCloud(Context context, Snapshot snapshot) {
-        if (!IsConnected()) { return;}
+        if (!IsConnected()) {
+            return;
+        }
 
         byte[] data = DatabaseHelper.createBackup();
-        String desc = String.format("Blacksmith: Level %d | %,d coins",Player_Info.getPlayerLevel(), Inventory.getCoins());
+        String desc = String.format("Blacksmith: Level %d | %,d coins", Player_Info.getPlayerLevel(), Inventory.getCoins());
         Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.wallpaper);
 
         snapshot.getSnapshotContents().writeBytes(data);

@@ -101,7 +101,7 @@ public class TrophyActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText("First seen: " + firstSeenText);
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText("100th visit: " + trophyAchievedText);
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText("Best item: " + bestItemText);
-        } else if (visitorStats.getVisits() > 0){
+        } else if (visitorStats.getVisits() > 0) {
             String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
 
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));

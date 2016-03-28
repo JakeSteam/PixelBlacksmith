@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 import java.util.List;
 
-public class Visitor_Demand extends SugarRecord{
+public class Visitor_Demand extends SugarRecord {
     Long visitorID;
     Long criteriaType;
     Long criteriaValue;
@@ -22,6 +22,21 @@ public class Visitor_Demand extends SugarRecord{
         this.quantityProvided = quantityProvided;
         this.quantity = quantity;
         this.required = required;
+    }
+
+    public static String getCriteriaName(Visitor_Demand demand) {
+        String demandText = "Unknown";
+        if (demand.getCriteriaType() == 1L) {
+            State demandState = State.findById(State.class, demand.getCriteriaValue());
+            demandText = demandState.getName();
+        } else if (demand.getCriteriaType() == 2L) {
+            Tier demandTier = Tier.findById(Tier.class, demand.getCriteriaValue());
+            demandText = demandTier.getName();
+        } else if (demand.getCriteriaType() == 3L) {
+            Type demandType = Type.findById(Type.class, demand.getCriteriaValue());
+            demandText = demandType.getName();
+        }
+        return demandText;
     }
 
     public Long getVisitorID() {
@@ -70,21 +85,6 @@ public class Visitor_Demand extends SugarRecord{
 
     public void setRequired(boolean required) {
         this.required = required;
-    }
-
-    public static String getCriteriaName(Visitor_Demand demand) {
-        String demandText = "Unknown";
-        if (demand.getCriteriaType() == 1L) {
-            State demandState = State.findById(State.class, demand.getCriteriaValue());
-            demandText = demandState.getName();
-        } else if (demand.getCriteriaType() == 2L) {
-            Tier demandTier = Tier.findById(Tier.class, demand.getCriteriaValue());
-            demandText = demandTier.getName();
-        } else if (demand.getCriteriaType() == 3L) {
-            Type demandType = Type.findById(Type.class, demand.getCriteriaValue());
-            demandText = demandType.getName();
-        }
-        return demandText;
     }
 
     public boolean isDemandFulfilled() {

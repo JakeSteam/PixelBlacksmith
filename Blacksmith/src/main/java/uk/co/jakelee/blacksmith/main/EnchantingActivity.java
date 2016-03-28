@@ -127,40 +127,6 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
-        Animation slide_in_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_left);
-        Animation slide_out_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
-        Animation slide_in_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
-        Animation slide_out_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_left);
-
-        @Override
-        public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {
-            // Swipe left (next)
-            if (startXY.getX() > finishXY.getX()) {
-                mViewFlipper.setInAnimation(slide_in_right);
-                mViewFlipper.setOutAnimation(slide_out_left);
-                mViewFlipper.showNext();
-                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
-            }
-
-            // Swipe right (previous)
-            if (startXY.getX() < finishXY.getX()) {
-                mViewFlipper.setInAnimation(slide_in_left);
-                mViewFlipper.setOutAnimation(slide_out_right);
-                mViewFlipper.showPrevious();
-                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
-            }
-
-            View enchanting = findViewById(R.id.enchanting);
-            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
-
-            HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
-
-            return super.onFling(startXY, finishXY, velocityX, velocityY);
-        }
-    }
-
     public void createGemsTable(final LinearLayout gemsTable) {
         gemsTable.removeAllViews();
         List<Item> allGems = Select.from(Item.class).where(
@@ -221,7 +187,7 @@ public class EnchantingActivity extends Activity {
         return itemButton;
     }
 
-    public void clickPowderButton (View v) {
+    public void clickPowderButton(View v) {
 
         Long powderID = (Long) v.getTag();
 
@@ -236,7 +202,7 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    public void clickEnchantButton (View v) {
+    public void clickEnchantButton(View v) {
         View enchantingItemInfo = findViewById(R.id.enchanting);
 
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
@@ -263,5 +229,39 @@ public class EnchantingActivity extends Activity {
 
     public void closePopup(View view) {
         finish();
+    }
+
+    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        Animation slide_in_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_left);
+        Animation slide_out_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
+        Animation slide_in_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
+        Animation slide_out_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_left);
+
+        @Override
+        public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {
+            // Swipe left (next)
+            if (startXY.getX() > finishXY.getX()) {
+                mViewFlipper.setInAnimation(slide_in_right);
+                mViewFlipper.setOutAnimation(slide_out_left);
+                mViewFlipper.showNext();
+                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
+            }
+
+            // Swipe right (previous)
+            if (startXY.getX() < finishXY.getX()) {
+                mViewFlipper.setInAnimation(slide_in_left);
+                mViewFlipper.setOutAnimation(slide_out_right);
+                mViewFlipper.showPrevious();
+                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
+            }
+
+            View enchanting = findViewById(R.id.enchanting);
+            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
+
+            HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
+
+            return super.onFling(startXY, finishXY, velocityX, velocityY);
+        }
     }
 }

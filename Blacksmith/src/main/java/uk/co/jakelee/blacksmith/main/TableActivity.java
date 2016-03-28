@@ -137,7 +137,7 @@ public class TableActivity extends Activity {
 
         if (quantityCrafted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantityCrafted + " item(s) to craft queue." );
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantityCrafted + " item(s) to craft queue.");
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             createTableInterface(false);
         }
@@ -155,6 +155,16 @@ public class TableActivity extends Activity {
             displayedTier--;
             createTableInterface(true);
         }
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Table);
+        startActivity(intent);
+    }
+
+    public void closePopup(View view) {
+        finish();
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
@@ -192,15 +202,5 @@ public class TableActivity extends Activity {
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
-    }
-
-    public void openHelp(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Table);
-        startActivity(intent);
-    }
-
-    public void closePopup(View view) {
-        finish();
     }
 }

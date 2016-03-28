@@ -3,13 +3,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainScroller"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+        android:id="@+id/mainScroller"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
         <android.support.percent.PercentRelativeLayout
             android:id="@+id/shapeLayout"
@@ -25,15 +24,15 @@
 
             <ImageView
                 android:id="@+id/open_furnace"
-                android:layout_marginLeft="515dp"
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="22%"
-                app:layout_heightPercent="22%"
+                android:layout_marginLeft="515dp"
                 android:alpha=".10"
                 android:onClick="openFurnace"
                 android:scaleType="fitXY"
-                android:src="@color/white" />
+                android:src="@color/white"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="22%" />
 
             <LinearLayout
                 android:id="@+id/slots_furnace"
@@ -45,15 +44,15 @@
 
             <ImageView
                 android:id="@+id/open_market"
-                android:layout_marginLeft="260dp"
                 android:layout_width="190dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="90%"
-                app:layout_heightPercent="10%"
+                android:layout_marginLeft="260dp"
                 android:alpha=".10"
                 android:onClick="openMarket"
                 android:scaleType="fitXY"
-                android:src="@color/white"/>
+                android:src="@color/white"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="90%" />
 
             <LinearLayout
                 android:id="@+id/slots_market"
@@ -65,15 +64,15 @@
 
             <ImageView
                 android:id="@+id/open_anvil"
-                android:layout_marginLeft="770dp"
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="22%"
-                app:layout_heightPercent="22%"
+                android:layout_marginLeft="770dp"
                 android:alpha=".10"
                 android:onClick="openAnvil"
                 android:scaleType="centerCrop"
-                android:src="@color/white" />
+                android:src="@color/white"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="22%" />
 
             <LinearLayout
                 android:id="@+id/slots_anvil"
@@ -85,15 +84,15 @@
 
             <ImageView
                 android:id="@+id/open_inventory"
-                android:layout_marginLeft="1090dp"
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="22%"
-                app:layout_heightPercent="22%"
+                android:layout_marginLeft="1090dp"
+                android:alpha=".10"
                 android:onClick="openInventory"
                 android:scaleType="centerCrop"
-                android:alpha=".10"
-                android:src="@color/white" />
+                android:src="@color/white"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="22%" />
 
             <LinearLayout
                 android:id="@+id/slots_inventory"
@@ -105,15 +104,15 @@
 
             <ImageView
                 android:id="@+id/open_table"
-                android:layout_marginLeft="512dp"
                 android:layout_width="190dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="66%"
-                app:layout_heightPercent="11%"
+                android:layout_marginLeft="512dp"
                 android:alpha=".10"
                 android:onClick="openTable"
                 android:scaleType="centerCrop"
-                android:src="@color/white" />
+                android:src="@color/white"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="66%" />
 
             <LinearLayout
                 android:id="@+id/slots_table"
@@ -125,15 +124,15 @@
 
             <ImageView
                 android:id="@+id/open_enchanting"
-                android:layout_marginLeft="770dp"
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="55%"
-                app:layout_heightPercent="22%"
+                android:layout_marginLeft="770dp"
                 android:alpha=".10"
                 android:onClick="openEnchanting"
                 android:scaleType="centerCrop"
-                android:src="@color/white" />
+                android:src="@color/white"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="55%" />
 
             <LinearLayout
                 android:id="@+id/slots_enchanting"
@@ -145,76 +144,76 @@
 
             <ImageView
                 android:id="@+id/open_upgrades"
-                android:layout_marginLeft="1025dp"
                 android:layout_width="60dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="68%"
-                app:layout_heightPercent="11%"
+                android:layout_marginLeft="1025dp"
                 android:onClick="openUpgrades"
                 android:scaleType="centerCrop"
-                android:src="@drawable/uparrow" />
+                android:src="@drawable/uparrow"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="68%" />
 
             <ImageView
                 android:id="@+id/open_help"
-                android:layout_marginLeft="1090dp"
                 android:layout_width="60dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="68%"
-                app:layout_heightPercent="11%"
+                android:layout_marginLeft="1090dp"
                 android:onClick="openHelp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/helpbook" />
+                android:src="@drawable/helpbook"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="68%" />
 
             <ImageView
                 android:id="@+id/open_statistics"
-                android:layout_marginLeft="1155dp"
                 android:layout_width="60dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="68%"
-                app:layout_heightPercent="11%"
+                android:layout_marginLeft="1155dp"
                 android:onClick="openStatistics"
                 android:scaleType="centerCrop"
-                android:src="@drawable/statistics" />
+                android:src="@drawable/statistics"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="68%" />
 
             <ImageView
                 android:id="@+id/open_trophies"
-                android:layout_marginLeft="1090dp"
                 android:layout_width="60dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="80%"
-                app:layout_heightPercent="11%"
+                android:layout_marginLeft="1090dp"
                 android:onClick="openTrophies"
                 android:scaleType="centerCrop"
-                android:src="@drawable/trophies" />
+                android:src="@drawable/trophies"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="80%" />
 
             <ImageView
                 android:id="@+id/open_settings"
-                android:layout_marginLeft="1155dp"
                 android:layout_width="60dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="80%"
-                app:layout_heightPercent="11%"
+                android:layout_marginLeft="1155dp"
                 android:onClick="openSettings"
                 android:scaleType="centerCrop"
-                android:src="@drawable/settings" />
+                android:src="@drawable/settings"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="80%" />
 
             <LinearLayout
                 android:id="@+id/visitors_container"
-                android:orientation="horizontal"
-                android:layout_marginLeft="65dp"
                 android:layout_width="315dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="56%"
-                app:layout_heightPercent="11%"/>
+                android:layout_marginLeft="65dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="56%" />
 
             <LinearLayout
                 android:id="@+id/visitors_container_overflow"
-                android:orientation="horizontal"
-                android:layout_marginLeft="65dp"
                 android:layout_width="315dp"
                 android:layout_alignParentTop="true"
-                app:layout_marginTopPercent="44%"
-                app:layout_heightPercent="11%"/>
+                android:layout_marginLeft="65dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="44%" />
 
         </android.support.percent.PercentRelativeLayout>
     </HorizontalScrollView>
@@ -229,16 +228,16 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/item52"/>
+            android:src="@drawable/item52" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/coinCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/coinImage"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/coinImage"
             android:textColor="@color/white"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <ProgressBar
             android:id="@+id/currentLevelProgress"
@@ -256,8 +255,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/currentLevelProgress"
             android:layout_alignRight="@id/currentLevelProgress"
-            android:gravity="center"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -266,10 +265,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/currentLevelProgress"
+            android:background="@drawable/levelbackground"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:textSize="28sp"
-            android:background="@drawable/levelbackground"/>
+            android:textSize="28sp" />
     </RelativeLayout>
 
 </RelativeLayout>

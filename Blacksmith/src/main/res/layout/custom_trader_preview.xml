@@ -15,16 +15,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/traderDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/traderName"
+            android:singleLine="false"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:singleLine="false"/>
+            android:textSize="14sp" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/traderScroller"
@@ -36,7 +36,7 @@
                 android:id="@+id/traderOfferings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
 
         </ScrollView>
     </RelativeLayout>
@@ -46,6 +46,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/open"/>
+        android:src="@drawable/open" />
 
 </TableRow>

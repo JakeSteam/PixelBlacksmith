@@ -140,7 +140,7 @@ public class AnvilActivity extends Activity {
 
         if (quantityCrafted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantityCrafted + " item(s) to craft queue." );
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantityCrafted + " item(s) to craft queue.");
             createAnvilInterface(false);
         }
     }
@@ -157,6 +157,12 @@ public class AnvilActivity extends Activity {
             displayedTier--;
             createAnvilInterface(true);
         }
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Anvil);
+        startActivity(intent);
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
@@ -195,11 +201,5 @@ public class AnvilActivity extends Activity {
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
-    }
-
-    public void openHelp(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Anvil);
-        startActivity(intent);
     }
 }

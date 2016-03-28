@@ -122,10 +122,20 @@ public class FurnaceActivity extends Activity {
 
         if (quantitySmelted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantitySmelted + " item(s) to craft queue." );
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantitySmelted + " item(s) to craft queue.");
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             createFurnaceInterface();
         }
+    }
+
+    public void openHelp(View view) {
+        Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Furnace);
+        startActivity(intent);
+    }
+
+    public void closePopup(View view) {
+        finish();
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
@@ -163,15 +173,5 @@ public class FurnaceActivity extends Activity {
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
-    }
-
-    public void openHelp(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Furnace);
-        startActivity(intent);
-    }
-
-    public void closePopup(View view) {
-        finish();
     }
 }

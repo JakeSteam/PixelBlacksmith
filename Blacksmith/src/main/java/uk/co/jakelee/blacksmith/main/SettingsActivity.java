@@ -81,24 +81,24 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    public void openCredits (View view) {
+    public void openCredits(View view) {
         Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
         startActivity(intent);
     }
 
-    public void openAchievements (View view) {
+    public void openAchievements(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
         }
     }
 
-    public void openLeaderboards (View view) {
+    public void openLeaderboards(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
         }
     }
 
-    public void openSavedGames (View view) {
+    public void openSavedGames(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
                     "Cloud Saves", true, true, 1);

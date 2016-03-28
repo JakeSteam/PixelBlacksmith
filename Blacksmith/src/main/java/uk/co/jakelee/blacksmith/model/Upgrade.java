@@ -27,6 +27,12 @@ public class Upgrade extends SugarRecord {
         this.save();
     }
 
+    public static int getValue(String name) {
+        Upgrade upgrade = Select.from(Upgrade.class).where(
+                Condition.prop("name").eq(name)).first();
+        return upgrade.getCurrent();
+    }
+
     public String getName() {
         return name;
     }
@@ -108,12 +114,6 @@ public class Upgrade extends SugarRecord {
             setCurrent(getCurrent() + 1);
         }
         save();
-    }
-
-    public static int getValue(String name) {
-        Upgrade upgrade = Select.from(Upgrade.class).where(
-                Condition.prop("name").eq(name)).first();
-        return upgrade.getCurrent();
     }
 }
 

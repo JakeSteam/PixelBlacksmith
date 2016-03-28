@@ -175,7 +175,7 @@ public class DatabaseHelper {
         new Item(68L, "Steel hammer", "A heavier hammer that tends to hit the anvil. Just.", 18, 3, 23, 18);
         new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 10, 1, 1);
         new Item(70L, "Silk", "A fine strip of silk.", 19, 10, 1, 1);
-        new Item(71L, "Logs", "Some basic logs.",19, 10, 1, 1);
+        new Item(71L, "Logs", "Some basic logs.", 19, 10, 1, 1);
         new Item(72L, "Ruby", "A red gem.", 20, 10, 150, 12);
         new Item(73L, "Sapphire", "A blue gem.", 20, 10, 150, 12);
         new Item(74L, "Emerald", "A green gem.", 20, 10, 150, 12);

@@ -46,138 +46,146 @@
                 android:id="@+id/settingsTable"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:shrinkColumns="0"
                 android:stretchColumns="0">
 
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/soundToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:text="@string/soundSettingText"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:text="@string/soundSettingText"/>
+                        android:textSize="22sp" />
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/soundToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:onClick="toggleSetting"/>
+                        android:onClick="toggleSetting" />
                 </TableRow>
 
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/musicToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:text="@string/musicSettingText"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:text="@string/musicSettingText"/>
+                        android:textSize="22sp" />
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/musicToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:onClick="toggleSetting"/>
+                        android:onClick="toggleSetting" />
                 </TableRow>
 
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/restockNotificationToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:text="@string/restockNotificationSettingText"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:text="@string/restockNotificationSettingText"/>
+                        android:textSize="22sp" />
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/restockNotificationToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:onClick="toggleSetting"/>
+                        android:onClick="toggleSetting" />
                 </TableRow>
 
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/visitorNotificationToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:text="@string/visitorNotificationSettingText"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:text="@string/visitorNotificationSettingText"/>
+                        android:textSize="22sp" />
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/visitorNotificationToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:onClick="toggleSetting"/>
+                        android:onClick="toggleSetting" />
                 </TableRow>
 
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/notificationSoundToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:text="@string/notificationSoundSettingText"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:text="@string/notificationSoundSettingText"/>
+                        android:textSize="22sp" />
 
                     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/notificationSoundToggleButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:onClick="toggleSetting"/>
+                        android:onClick="toggleSetting" />
                 </TableRow>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/creditsText"
-                    android:gravity="center"
-                    android:textColor="@color/black"
                     android:background="@drawable/button_extra_wide"
-                    android:textSize="30sp"
                     android:clickable="true"
-                    android:onClick="openCredits"/>
+                    android:gravity="center"
+                    android:onClick="openCredits"
+                    android:text="@string/creditsText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center">
+
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:padding="10dp"
                         android:background="@drawable/button"
-                        android:src="@drawable/playcloud"
-                        android:onClick="openSavedGames"/>
+                        android:onClick="openSavedGames"
+                        android:padding="10dp"
+                        android:src="@drawable/playcloud" />
+
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:padding="10dp"
                         android:background="@drawable/button"
-                        android:src="@drawable/playachievements"
-                        android:onClick="openAchievements"/>
+                        android:onClick="openAchievements"
+                        android:padding="10dp"
+                        android:src="@drawable/playachievements" />
+
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:padding="10dp"
                         android:background="@drawable/button"
-                        android:src="@drawable/playleaderboards"
-                        android:onClick="openLeaderboards"/>
+                        android:onClick="openLeaderboards"
+                        android:padding="10dp"
+                        android:src="@drawable/playleaderboards" />
                 </LinearLayout>
             </TableLayout>
 
@@ -198,9 +206,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
         android:onClick="openHelp"
         android:src="@drawable/help" />
 </RelativeLayout>

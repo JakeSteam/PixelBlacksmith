@@ -155,7 +155,7 @@ public class VisitorHelper {
         return getRandomNumber(0, 100) > truePercentage;
     }
 
-    public static Visitor_Type selectVisitorType () {
+    public static Visitor_Type selectVisitorType() {
         Visitor_Type visitor = new Visitor_Type();
 
         List<Visitor_Type> visitorTypes = Visitor_Type.findWithQuery(Visitor_Type.class,
@@ -182,7 +182,7 @@ public class VisitorHelper {
         return visitor;
     }
 
-    public static State selectDemandState () {
+    public static State selectDemandState() {
         State selectedState = new State();
 
         // Work out the total probability for the visitors.
@@ -207,7 +207,7 @@ public class VisitorHelper {
         return selectedState;
     }
 
-    public static Type selectDemandType () {
+    public static Type selectDemandType() {
         Type selectedType = new Type();
 
         // Work out the total probability for the visitors.
@@ -232,7 +232,7 @@ public class VisitorHelper {
         return selectedType;
     }
 
-    public static Tier selectDemandTier () {
+    public static Tier selectDemandTier() {
         Tier selectedTier = new Tier();
 
         // Work out the total probability for the visitors.

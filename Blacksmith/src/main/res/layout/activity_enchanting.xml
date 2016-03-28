@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <android.support.percent.PercentRelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/enchanting"
         android:layout_width="match_parent"
@@ -27,15 +26,15 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/enchantingTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/enchantingText"
-            app:layout_marginTopPercent="1%"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="45sp" />
+            android:textSize="45sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
 
         <Button
             android:id="@+id/upButton"
@@ -51,8 +50,8 @@
             android:layout_height="40dp"
             android:layout_alignLeft="@id/upButton"
             android:layout_below="@id/upButton"
-            android:onClick="goDownTier"
-            android:background="@drawable/downarrow" />
+            android:background="@drawable/downarrow"
+            android:onClick="goDownTier" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemName"
@@ -60,12 +59,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/enchantingTitle"
             android:layout_marginLeft="5dp"
-            app:layout_marginTopPercent="6%"
             android:padding="5dp"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            app:layout_marginTopPercent="6%" />
 
         <ViewFlipper
             android:id="@+id/viewFlipper"
@@ -73,20 +72,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/enchantingTitle"
             android:layout_toRightOf="@id/upButton"
-            app:layout_marginTopPercent="12%"
             android:paddingLeft="2dp"
-            android:paddingRight="8dp" />
+            android:paddingRight="8dp"
+            app:layout_marginTopPercent="12%" />
 
         <uk.co.jakelee.blacksmith.controls.HorizontalDots
             android:id="@+id/horizontalIndicator"
-            android:orientation="horizontal"
-            android:layout_below="@id/enchantingTitle"
-            app:layout_marginTopPercent="32%"
-            android:layout_alignLeft="@id/upButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/upButton"
+            android:layout_below="@id/enchantingTitle"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="32%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/itemDesc"
@@ -105,8 +104,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontalIndicator"
-            app:layout_marginTopPercent="5%"
-            app:layout_marginBottomPercent="3%">
+            app:layout_marginBottomPercent="3%"
+            app:layout_marginTopPercent="5%">
 
             <LinearLayout
                 android:id="@+id/gemsTable"
@@ -130,9 +129,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
         android:onClick="openHelp"
         android:src="@drawable/help" />
 </RelativeLayout>

@@ -35,21 +35,18 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
     public static DisplayHelper dh;
     public static Handler handler = new Handler();
-    public int newVisitors;
-
-    public Intent musicService;
-    public boolean musicServiceIsStarted = false;
-
     public static TextViewPixel coins;
     public static LinearLayout visitorContainer;
     public static LinearLayout visitorContainerOverflow;
-
     public static TextViewPixel level;
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
+    public int newVisitors;
+    public Intent musicService;
+    public boolean musicServiceIsStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setupRecurringEvents() {
         final Activity activity = this;
-        
+
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {

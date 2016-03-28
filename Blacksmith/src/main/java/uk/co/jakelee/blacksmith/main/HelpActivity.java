@@ -15,7 +15,6 @@ public class HelpActivity extends Activity {
     public static DisplayHelper dh;
 
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
-    public static enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,8 @@ public class HelpActivity extends Activity {
             }
         }
     }
+
+    ;
 
     public void clickTopic(View v) {
         Intent intent = new Intent(this, HelpActivity.class);
@@ -227,4 +228,6 @@ public class HelpActivity extends Activity {
     public void closePopup(View view) {
         finish();
     }
+
+    public static enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }

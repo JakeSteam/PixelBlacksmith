@@ -6,11 +6,11 @@ import com.orm.query.Select;
 
 import java.util.List;
 
-public class Visitor extends SugarRecord{
+public class Visitor extends SugarRecord {
     Long arrivalTime;
     Long type;
 
-    public Visitor(){
+    public Visitor() {
     }
 
     public Visitor(Long arrivalTime, Long type) {

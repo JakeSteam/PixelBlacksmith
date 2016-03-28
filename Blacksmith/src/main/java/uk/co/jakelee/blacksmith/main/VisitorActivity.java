@@ -143,7 +143,7 @@ public class VisitorActivity extends Activity {
             }
         });
 
-        for(Visitor_Demand demand : visitorDemands) {
+        for (Visitor_Demand demand : visitorDemands) {
             TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 

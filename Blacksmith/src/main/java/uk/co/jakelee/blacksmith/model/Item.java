@@ -107,7 +107,7 @@ public class Item extends SugarRecord {
             Item initiatingItem = Item.findById(Item.class, state.getInitiatingItem());
             itemValue += initiatingItem.getValue();
         } else if (itemState == Constants.STATE_UNFINISHED) {
-            itemValue = (int)(itemValue * Constants.STATE_UNFINISHED_MODIFIER);
+            itemValue = (int) (itemValue * Constants.STATE_UNFINISHED_MODIFIER);
         }
 
         return itemValue;

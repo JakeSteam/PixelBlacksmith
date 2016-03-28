@@ -15,7 +15,7 @@ public class Category extends SugarRecord {
         this.description = description;
         this.save();
     }
-    
+
     public Long getId() {
         return id;
     }

@@ -31,6 +31,36 @@ public class Trader_Stock extends SugarRecord {
         this.save();
     }
 
+    public static boolean shouldRestock() {
+        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateRestocked")).first();
+
+        return (dateRefreshed.getLongValue() + DateHelper.hoursToMilliseconds(Upgrade.getValue("Shop Restock Time"))) < System.currentTimeMillis();
+    }
+
+    public static void restockTraders() {
+        new Thread(new Runnable() {
+            public void run() {
+                List<Trader_Stock> traderStocks = Trader_Stock.listAll(Trader_Stock.class);
+                for (Trader_Stock traderStock : traderStocks) {
+                    traderStock.setStock(traderStock.getDefaultStock());
+                    traderStock.save();
+                }
+
+                List<Trader> traders = Trader.listAll(Trader.class);
+                for (Trader trader : traders) {
+                    trader.setStatus(Constants.TRADER_NOT_PRESENT);
+                    trader.save();
+                }
+
+                Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                        Condition.prop("name").eq("DateRestocked")).first();
+                dateRefreshed.setLongValue(System.currentTimeMillis());
+                dateRefreshed.save();
+            }
+        }).start();
+    }
+
     public Long getTraderType() {
         return traderType;
     }
@@ -77,35 +107,5 @@ public class Trader_Stock extends SugarRecord {
 
     public void setDefaultStock(int defaultStock) {
         this.defaultStock = defaultStock;
-    }
-
-    public static boolean shouldRestock() {
-        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("DateRestocked")).first();
-
-        return (dateRefreshed.getLongValue() + DateHelper.hoursToMilliseconds(Upgrade.getValue("Shop Restock Time"))) < System.currentTimeMillis();
-    }
-
-    public static void restockTraders() {
-        new Thread(new Runnable() {
-            public void run() {
-                List<Trader_Stock> traderStocks = Trader_Stock.listAll(Trader_Stock.class);
-                for (Trader_Stock traderStock : traderStocks) {
-                    traderStock.setStock(traderStock.getDefaultStock());
-                    traderStock.save();
-                }
-
-                List<Trader> traders = Trader.listAll(Trader.class);
-                for (Trader trader : traders) {
-                    trader.setStatus(Constants.TRADER_NOT_PRESENT);
-                    trader.save();
-                }
-
-                Player_Info dateRefreshed = Select.from(Player_Info.class).where(
-                        Condition.prop("name").eq("DateRestocked")).first();
-                dateRefreshed.setLongValue(System.currentTimeMillis());
-                dateRefreshed.save();
-            }
-        }).start();
     }
 }

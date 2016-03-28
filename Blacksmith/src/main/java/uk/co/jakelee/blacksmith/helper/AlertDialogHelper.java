@@ -25,7 +25,7 @@ public class AlertDialogHelper {
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton("Bribe", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
+            public void onClick(DialogInterface dialog, int which) {
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                 if (coinStock.getQuantity() >= visitorCost) {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);

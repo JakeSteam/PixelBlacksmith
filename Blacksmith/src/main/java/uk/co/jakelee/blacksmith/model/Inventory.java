@@ -34,30 +34,6 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
-    public Long getItem() {
-        return item;
-    }
-
-    public void setItem(Long item) {
-        this.item = item;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public long getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public static void addItem(Pending_Inventory item) {
         addItem(item.getItem(), item.getState(), item.getQuantity());
     }
@@ -157,14 +133,6 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
-    public boolean haveSeen() {
-        long itemFound = Select.from(Inventory.class).where(
-                Condition.prop("state").eq(state),
-                Condition.prop("item").eq(item)).count();
-
-        return itemFound > 0L;
-    }
-
     public static boolean haveSeen(long item, long state) {
         long itemFound = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(state),
@@ -254,5 +222,37 @@ public class Inventory extends SugarRecord implements Serializable {
         } else {
             return 0;
         }
+    }
+
+    public Long getItem() {
+        return item;
+    }
+
+    public void setItem(Long item) {
+        this.item = item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public long getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public boolean haveSeen() {
+        long itemFound = Select.from(Inventory.class).where(
+                Condition.prop("state").eq(state),
+                Condition.prop("item").eq(item)).count();
+
+        return itemFound > 0L;
     }
 }

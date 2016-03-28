@@ -92,8 +92,8 @@ public class InventoryActivity extends Activity {
 
     public void clickSellButton(View view) {
         int quantity = 1;
-        Long itemID = (Long)view.getTag(R.id.itemID);
-        Long itemState = (Long)view.getTag(R.id.itemState);
+        Long itemID = (Long) view.getTag(R.id.itemID);
+        Long itemState = (Long) view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
         int itemValue = itemToSell.getModifiedValue(itemState);
 

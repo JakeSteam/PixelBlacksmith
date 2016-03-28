@@ -21,7 +21,7 @@ public class CreditsActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         // Make all the links work
-        LinearLayout root = (LinearLayout)findViewById(R.id.creditsContainer);
+        LinearLayout root = (LinearLayout) findViewById(R.id.creditsContainer);
         for (int i = 0; i < root.getChildCount(); i++) {
             if (root.getChildAt(i) instanceof TextViewPixel) {
                 ((TextViewPixel) root.getChildAt(i)).setMovementMethod(LinkMovementMethod.getInstance());
