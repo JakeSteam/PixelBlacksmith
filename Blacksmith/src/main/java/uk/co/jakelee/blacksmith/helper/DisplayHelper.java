@@ -175,9 +175,10 @@ public class DisplayHelper {
         for (final Visitor visitor : visitors) {
 
             // Creating visitor image
-            int visitorImagePadding = convertDpToPixel(10);
-            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 50, 50);
-            visitorImage.setPadding(visitorImagePadding, visitorImagePadding, visitorImagePadding, visitorImagePadding);
+            int visitorImageyPadding = convertDpToPixel(4);
+            int visitorImagexPadding = convertDpToPixel(7);
+            ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 51, 51);
+            visitorImage.setPadding(visitorImagexPadding, visitorImageyPadding, visitorImagexPadding, visitorImageyPadding);
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -296,9 +297,7 @@ public class DisplayHelper {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
         int drawableId = getItemDrawableID(context, itemId);
-        int adjustedWidth = convertDpToPixel(width);
-        int adjustedHeight = convertDpToPixel(height);
-        Drawable imageResource = createDrawable(drawableId, adjustedWidth, adjustedHeight);
+        Drawable imageResource = createDrawable(drawableId, width, height);
 
         if (haveSeen) {
             imageResource.clearColorFilter();
