@@ -74,7 +74,7 @@
             android:layout_toRightOf="@id/upButton"
             app:layout_marginTopPercent="12%"
             android:paddingRight="8dp"
-            android:paddingLeft="8dp" />
+            android:paddingLeft="2dp" />
 
         <uk.co.jakelee.blacksmith.controls.HorizontalDots
             android:id="@+id/horizontalIndicator"
