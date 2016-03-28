@@ -141,84 +141,44 @@
                         android:onClick="toggleSetting"/>
                 </TableRow>
 
-                <TableRow android:gravity="center">
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="openCredits"
-                        android:text="@string/creditsText"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:background="@drawable/button_extra_wide"
-                        android:textSize="30sp"/>
-                </TableRow>
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/creditsText"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_extra_wide"
+                    android:textSize="30sp"
+                    android:clickable="true"
+                    android:onClick="openCredits"/>
 
-                <TableRow android:gravity="center">
-                    <LinearLayout
-                        android:background="@drawable/button_extra_wide"
-                        android:onClick="openAchievements">
-                        <ImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:paddingTop="6dp"
-                            android:paddingLeft="5dp"
-                            android:src="@drawable/playachievements"/>
-                        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/achievementsText"
-                            android:paddingTop="13dp"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"/>
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow android:gravity="center">
-                    <LinearLayout
-                        android:background="@drawable/button_extra_wide"
-                        android:onClick="openLeaderboards">
-                        <ImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:paddingTop="8dp"
-                            android:paddingLeft="5dp"
-                            android:src="@drawable/playleaderboards"/>
-                        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/leaderboardsText"
-                            android:paddingTop="13dp"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"/>
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow android:gravity="center">
-                    <LinearLayout
-                        android:background="@drawable/button_extra_wide"
-                        android:onClick="openSavedGames">
-                        <ImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:paddingTop="7dp"
-                            android:paddingLeft="5dp"
-                            android:src="@drawable/playcloud"/>
-                        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:tools="http://schemas.android.com/tools"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/savedGamesText"
-                            android:paddingTop="13dp"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"/>
-                    </LinearLayout>
-                </TableRow>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:background="@drawable/button"
+                        android:src="@drawable/playcloud"
+                        android:onClick="openSavedGames"/>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:background="@drawable/button"
+                        android:src="@drawable/playachievements"
+                        android:onClick="openAchievements"/>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:background="@drawable/button"
+                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"/>
+                </LinearLayout>
             </TableLayout>
 
         </ScrollView>
