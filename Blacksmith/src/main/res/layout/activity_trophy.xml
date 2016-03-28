@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/trophy"
         android:layout_width="match_parent"
@@ -25,34 +27,32 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/trophyTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="35dp"
-            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/trophyText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/trophySubtitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/trophyTitle"
-            android:layout_marginTop="-35dp"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            app:layout_heightPercent="3%"
+            app:layout_marginTopPercent="11%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/visitorScroller"
             android:layout_width="match_parent"
-            android:layout_height="155dp"
             android:layout_below="@id/trophyTitle"
-            android:layout_marginTop="10dp">
+            app:layout_heightPercent="35%"
+            app:layout_marginTopPercent="8%">
 
             <GridLayout
                 android:id="@+id/visitorGrid"
@@ -67,7 +67,8 @@
             android:id="@+id/visitorInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/visitorScroller">
+            android:layout_below="@id/visitorScroller"
+            app:layout_marginTopPercent="6%" >
 
             <ImageView
                 android:id="@+id/visitorPicture"
@@ -76,8 +77,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="35dp"
-                android:src="@color/black" />
+                android:src="@color/black"/>
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorVisits"
@@ -99,10 +99,9 @@
                 android:layout_alignTop="@id/visitorPicture"
                 android:layout_toRightOf="@id/visitorPicture"
                 android:paddingLeft="5dp"
-                android:paddingTop="5dp"
                 android:text="@string/unknownText"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="22sp"/>
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorDesc"
@@ -111,11 +110,11 @@
                 android:layout_alignLeft="@id/visitorName"
                 android:layout_below="@id/visitorName"
                 android:paddingLeft="5dp"
-                android:paddingTop="5dp"
                 android:singleLine="false"
                 android:text="@string/unknownText"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%"  />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorFirstSeen"
@@ -123,11 +122,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorPicture"
                 android:layout_below="@id/visitorPicture"
-                android:paddingTop="5dp"
                 android:singleLine="false"
                 android:text="First seen: ???"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%"  />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitor100thVisit"
@@ -135,11 +134,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorFirstSeen"
                 android:layout_below="@id/visitorFirstSeen"
-                android:paddingTop="5dp"
                 android:singleLine="false"
                 android:text="100th visit: ???"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%"  />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorBestItem"
@@ -147,14 +146,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitor100thVisit"
                 android:layout_below="@id/visitor100thVisit"
-                android:paddingTop="5dp"
                 android:singleLine="false"
                 android:text="Best item: ???"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%"  />
 
         </RelativeLayout>
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
