@@ -125,7 +125,7 @@ public class VisitorActivity extends Activity {
         }
 
         TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
-        bestItemValue.setText(Integer.toString(visitorStats.getBestItemValue()));
+        bestItemValue.setText(String.format("%d", visitorStats.getBestItemValue()));
     }
 
     public void displayVisitorDemands() {

@@ -50,13 +50,10 @@ public class GooglePlayHelper {
         if (mSignInClicked || mAutoStartSignInFlow) {
             mAutoStartSignInFlow = false;
             mSignInClicked = false;
-            mResolvingConnectionFailure = true;
 
-            if (!BaseGameUtils.resolveConnectionFailure(activity,
+            mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
                     mGoogleApiClient, connectionResult,
-                    RC_SIGN_IN, "Couldn't log in. Please try again later.")) {
-                mResolvingConnectionFailure = false;
-            }
+                    RC_SIGN_IN, "Couldn't log in. Please try again later.");
         }
     }
 
@@ -67,8 +64,7 @@ public class GooglePlayHelper {
             if (resultCode == RESULT_OK) {
                 mGoogleApiClient.connect();
             } else {
-                BaseGameUtils.showActivityResultError(activity,
-                        requestCode, resultCode, R.string.unknown_error);
+                BaseGameUtils.showActivityResultError(activity, requestCode, resultCode, R.string.unknown_error);
             }
         }
     }

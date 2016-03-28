@@ -45,8 +45,6 @@ public class HelpActivity extends Activity {
         }
     }
 
-    ;
-
     public void clickTopic(View v) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, (TOPICS) v.getTag());
@@ -229,5 +227,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public static enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }
