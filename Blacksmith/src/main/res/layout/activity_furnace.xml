@@ -107,7 +107,8 @@
                 android:onClick="smelt1"
                 android:text="@string/smelt1Text"
                 android:textSize="25sp"
-                android:background="@drawable/button"/>
+                android:background="@drawable/button"
+                android:clickable="true"/>
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/smeltMax"
@@ -118,7 +119,8 @@
                 android:onClick="smeltMax"
                 android:text="@string/smeltMaxText"
                 android:textSize="25sp"
-                android:background="@drawable/button"/>
+                android:background="@drawable/button"
+                android:clickable="true"/>
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
 

@@ -78,7 +78,8 @@
             android:gravity="center"
             android:onClick="closeTrade"
             android:text="@string/finishText"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            android:clickable="true"/>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/itemsScroller"

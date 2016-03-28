@@ -129,7 +129,8 @@
                 android:onClick="craft1"
                 android:text="@string/craft1Text"
                 android:textSize="25sp"
-                android:background="@drawable/button"/>
+                android:background="@drawable/button"
+                android:clickable="true"/>
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/craftMax"
@@ -140,7 +141,8 @@
                 android:onClick="craftMax"
                 android:text="@string/craftMaxText"
                 android:textSize="25sp"
-                android:background="@drawable/button"/>
+                android:background="@drawable/button"
+                android:clickable="true"/>
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
 

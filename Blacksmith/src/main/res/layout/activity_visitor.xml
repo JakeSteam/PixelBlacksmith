@@ -241,7 +241,8 @@
                     android:onClick="completeVisitor"
                     android:text="Complete"
                     android:textSize="35sp"
-                    android:background="@drawable/button_wide"/>
+                    android:background="@drawable/button_wide"
+                    android:clickable="true"/>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/dismissButton"
@@ -252,6 +253,7 @@
                     android:layout_toRightOf="@id/completeButton"
                     android:gravity="center"
                     android:onClick="dismissVisitor"
+                    android:clickable="true"
                     android:text=" X "
                     android:textSize="35sp"
                     android:background="@drawable/button"/>
