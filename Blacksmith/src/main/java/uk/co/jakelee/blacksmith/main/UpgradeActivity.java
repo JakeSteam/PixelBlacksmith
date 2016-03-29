@@ -57,6 +57,7 @@ public class UpgradeActivity extends Activity {
 
             ImageView upgradeButton = dh.createImageView("", "uparrow", 50, 50);
             upgradeButton.setTag(upgrade.getId());
+            upgradeButton.setPadding(0, 0, 0, dh.convertDpToPixel(15));
             upgradeButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
