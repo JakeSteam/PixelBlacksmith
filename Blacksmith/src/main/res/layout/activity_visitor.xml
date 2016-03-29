@@ -38,15 +38,16 @@
 
         <ImageView
             android:id="@+id/visitorPicture"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="20%"
             android:layout_below="@id/visitorTitle"
             android:layout_marginLeft="5dp"
-            app:layout_marginTopPercent="7%" />
+            app:layout_marginTopPercent="7%"
+            android:scaleType="fitCenter"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/visitorVisits"
-            android:layout_width="90dp"
+            app:layout_widthPercent="30%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/visitorPicture"
             android:layout_alignLeft="@id/visitorPicture"
@@ -82,16 +83,16 @@
 
         <ImageView
             android:id="@+id/typeImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:layout_alignLeft="@id/visitorPicture"
             android:layout_below="@id/visitorPicture"
             android:background="@drawable/slot"
-            app:layout_marginTopPercent="2%" />
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%"
+            app:layout_heightPercent="12%"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeMultiplier"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/typeImage"
             android:layout_alignLeft="@id/typeImage"
@@ -104,17 +105,17 @@
 
         <ImageView
             android:id="@+id/tierImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:layout_below="@id/visitorPicture"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/typeImage"
             android:background="@drawable/slot"
-            app:layout_marginTopPercent="2%" />
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%"
+            app:layout_heightPercent="12%"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tierMultiplier"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/tierImage"
             android:layout_alignLeft="@id/tierImage"
@@ -127,17 +128,17 @@
 
         <ImageView
             android:id="@+id/stateImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:layout_below="@id/visitorPicture"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tierImage"
             android:background="@drawable/slot"
-            app:layout_marginTopPercent="2%" />
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%"
+            app:layout_heightPercent="12%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/stateMultiplier"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/stateImage"
             android:layout_alignLeft="@id/stateImage"
@@ -150,16 +151,16 @@
 
         <ImageView
             android:id="@+id/bestItemImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:layout_below="@id/visitorPicture"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/stateImage"
-            app:layout_marginTopPercent="2%" />
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%"
+            app:layout_heightPercent="12%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/bestItemValue"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/bestItemImage"
             android:layout_alignLeft="@id/bestItemImage"
@@ -172,7 +173,7 @@
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeText"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/typeImage"
             android:layout_below="@id/typeImage"
@@ -183,7 +184,7 @@
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tierText"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/tierImage"
             android:layout_below="@id/tierImage"
@@ -194,7 +195,7 @@
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/stateText"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/stateImage"
             android:layout_below="@id/stateImage"
@@ -205,7 +206,7 @@
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/bestItemText"
-            android:layout_width="40dp"
+            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/bestItemImage"
             android:layout_below="@id/bestItemImage"
