@@ -115,6 +115,8 @@ public class TradeActivity extends Activity {
 
             String itemName = item.getPrefix(inventory.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
+            name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            name.setPadding(0, 0, 0, 17);
             name.setSingleLine(false);
 
             // Create a sell button for that item
