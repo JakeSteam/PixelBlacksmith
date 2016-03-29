@@ -68,7 +68,8 @@ public class InventoryActivity extends Activity {
             String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
-            name.setPadding(0, dh.convertDpToPixel(5), 0, 0);
+            name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
 
             TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
             sell.setGravity(Gravity.CENTER);
