@@ -132,8 +132,7 @@ public class VisitorHelper {
 
     public static int getRandomNumber(int minimum, int maximum) {
         Random random = new Random();
-        int number = random.nextInt((maximum - minimum) + 1) + minimum;
-        return number;
+        return random.nextInt((maximum - minimum) + 1) + minimum;
     }
 
     public static void removeVisitor(Visitor visitor) {

@@ -26,9 +26,6 @@ import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
-/**
- * Created by Jake on 20/03/2016.
- */
 public class GooglePlayHelper {
     public static final int RESULT_OK = -1;
     public static int RC_SIGN_IN = 9001;
@@ -57,7 +54,7 @@ public class GooglePlayHelper {
         }
     }
 
-    public static void ActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
+    public static void ActivityResult(Activity activity, int requestCode, int resultCode) {
         if (requestCode == RC_SIGN_IN) {
             mSignInClicked = false;
             mResolvingConnectionFailure = false;

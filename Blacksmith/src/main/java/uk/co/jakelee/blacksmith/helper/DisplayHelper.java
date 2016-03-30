@@ -284,8 +284,13 @@ public class DisplayHelper {
 
         if (Inventory.haveSeen(itemID, state)) {
             itemName.setText(item.getPrefix(state) + item.getName());
+            itemName.setText(String.format("%s%s",
+                    item.getPrefix(state),
+                    item.getName()));
             itemDesc.setText(item.getDescription());
             itemCount.setText(Integer.toString(numberOwned));
+            itemCount.setText(String.format("%d",
+                    numberOwned));
         } else {
             itemName.setText(R.string.unknownText);
             itemDesc.setText(R.string.unknownText);

@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("A visitor wanders into the shop...", newVisitors));
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("%d visitor(s) wander into the shop...", newVisitors));
                 }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
@@ -264,6 +264,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.ActivityResult(this, requestCode, resultCode, intent);
+        GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
     }
 }
