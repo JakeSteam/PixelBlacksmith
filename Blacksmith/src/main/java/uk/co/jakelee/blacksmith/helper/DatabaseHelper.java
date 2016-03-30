@@ -286,7 +286,7 @@ public class DatabaseHelper {
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 0);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 47, 0);
+        new Player_Info("SavedLevel", 2, 0);
         new Player_Info("UpgradesBought", 0);
 
         // Powdered gems
