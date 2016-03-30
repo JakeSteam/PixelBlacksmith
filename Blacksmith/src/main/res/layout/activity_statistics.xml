@@ -48,305 +48,245 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="8dp"
-                android:columnCount="2">
+                android:columnCount="1">
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsCurrentXP"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/currentXP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsNextLevel"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/nextLevelIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsSmelted"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/itemsSmelted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsCrafted"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/itemsCrafted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsTraded"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/itemsTraded"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsBought"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/itemsBought"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsSold"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/itemsSold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsEnchanted"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/itemsEnchanted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsVisitors"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/visitorsCompleted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsCoins"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/coinsEarned"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsStarted"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/dateStarted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsRestock"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/nextRestock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsNextVisitorCheck"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/nextVisitorCheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsBiggestTrade"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/biggestTrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/statisticsUpgradesBought"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/upgradesBought"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </GridLayout>
