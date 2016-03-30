@@ -2,15 +2,12 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.Toast;
@@ -20,7 +17,6 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.HorizontalDots;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
@@ -60,17 +56,6 @@ public class TableActivity extends Activity {
     }
 
     public void createTableInterface(boolean clearExisting) {
-        ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
-
-        RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        countParams.setMargins(0, dh.convertDpToPixel(60), 0, 0);
-
-        // If we're switching tiers, we have to clear the selector first
-        if (clearExisting) {
-            itemSelector.removeAllViews();
-        }
-
-        // Get all items that are of the correct tier
         String[] parameters = {
                 String.valueOf(Constants.TYPE_ANVIL_MIN),
                 String.valueOf(Constants.TYPE_ANVIL_MAX),
@@ -79,36 +64,20 @@ public class TableActivity extends Activity {
         List<Item> items = Item.find(Item.class, "(type BETWEEN ? AND ? OR type = ?) AND tier = ?", parameters, "", "level ASC", "");
 
         numberOfItems = items.size();
-        for (Item item : items) {
-            RelativeLayout itemBox = new RelativeLayout(this);
+        dh.createItemSelector(
+                (ViewFlipper) findViewById(R.id.viewFlipper),
+                clearExisting,
+                items);
 
-            ImageView image = dh.createItemImage(item.getId(), 80, 80, Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL));
-            TextViewPixel count = dh.createItemCount(item.getId(), Constants.STATE_UNFINISHED, Color.WHITE, Color.BLACK);
-            count.setWidth(dh.convertDpToPixel(80));
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.table),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
+                mViewFlipper,
+                numberOfItems,
+                Constants.STATE_NORMAL);
 
-            itemBox.addView(image);
-            itemBox.addView(count, countParams);
-            itemBox.setTag(item.getId());
-            itemSelector.addView(itemBox);
-        }
-
-        // Horizontal selector
-        int currentItemPosition = mViewFlipper.getDisplayedChild();
-        HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-        horizontalBar.addDots(dh, numberOfItems, currentItemPosition);
-
-        // Display item name and description
-        View table = findViewById(R.id.table);
-        dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, table);
-
-        // Display item ingredients
-        TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
-
-        // Sort out the tier arrows
-        Button upArrow = (Button) findViewById(R.id.upButton);
-        Button downArrow = (Button) findViewById(R.id.downButton);
-        dh.drawArrows(this.displayedTier, Constants.TIER_TABLE_MIN, Constants.TIER_TABLE_MAX, downArrow, upArrow);
+        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
     }
 
     public void craft1(View v) {

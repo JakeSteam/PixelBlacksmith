@@ -22,7 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -30,6 +32,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
@@ -243,7 +246,24 @@ public class DisplayHelper {
         return textView;
     }
 
-    public TextViewPixel createItemCount(Long itemId, int state, int textColour, int backColour) {
+    public RelativeLayout createItemSelectorElement(long itemID, long state) {
+        RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        countParams.setMargins(0, convertDpToPixel(60), 0, 0);
+
+        RelativeLayout itemBox = new RelativeLayout(context);
+
+        ImageView image = createItemImage(itemID, 80, 80, Inventory.haveSeen(itemID, state));
+        TextView count = createItemCount(itemID, state, Color.WHITE, Color.BLACK);
+        count.setWidth(convertDpToPixel(80));
+
+        itemBox.addView(image);
+        itemBox.addView(count, countParams);
+        itemBox.setTag(itemID);
+
+        return itemBox;
+    }
+
+    public TextViewPixel createItemCount(Long itemId, long state, int textColour, int backColour) {
         int viewId = context.getResources().getIdentifier("text" + Long.toString(itemId), "id", context.getPackageName());
 
         Inventory inventory = Select.from(Inventory.class).where(
@@ -267,7 +287,7 @@ public class DisplayHelper {
         return text;
     }
 
-    public void displayItemInfo(Long itemID, int state, View itemArea) {
+    public void displayItemInfo(Long itemID, long state, View itemArea) {
         Item item = Item.findById(Item.class, itemID);
         Inventory inventory = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(itemID),
@@ -283,12 +303,10 @@ public class DisplayHelper {
         TextViewPixel itemCount = (TextViewPixel) itemArea.findViewWithTag(itemID + "Count");
 
         if (Inventory.haveSeen(itemID, state)) {
-            itemName.setText(item.getPrefix(state) + item.getName());
             itemName.setText(String.format("%s%s",
                     item.getPrefix(state),
                     item.getName()));
             itemDesc.setText(item.getDescription());
-            itemCount.setText(Integer.toString(numberOwned));
             itemCount.setText(String.format("%d",
                     numberOwned));
         } else {
@@ -372,6 +390,14 @@ public class DisplayHelper {
         MainActivity.coins.setText(coinCountString);
     }
 
+    public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, HorizontalDots horizontalIndicator, ViewFlipper viewFlipper, int numberOfItems, long state) {
+        horizontalIndicator.addDots(this, numberOfItems, viewFlipper.getDisplayedChild());
+
+        long currentItemID = (long) viewFlipper.getCurrentView().getTag();
+        displayItemInfo(currentItemID, state, main);
+        createItemIngredientsTable(currentItemID, state, ingredientsTable);
+    }
+
     public void updateLevelText(Context context) {
         TextViewPixel levelCount = MainActivity.level;
         levelCount.setText(String.format("%d", Player_Info.getPlayerLevel()));
@@ -399,7 +425,7 @@ public class DisplayHelper {
         return String.format("Levelled up to %d! Unlocked %d item(s), %d trader(s), and %d slot(s).", newLevel, numItems, numTraders, numSlots);
     }
 
-    public void createItemIngredientsTable(Long itemID, int state, TableLayout ingredientsTable) {
+    public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
         Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
@@ -444,6 +470,16 @@ public class DisplayHelper {
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));
 
             ingredientsTable.addView(row);
+        }
+    }
+
+    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items) {
+        if (clearExisting) {
+            itemSelector.removeAllViews();
+        }
+
+        for (Item item : items) {
+            itemSelector.addView(createItemSelectorElement(item.getId(), Constants.STATE_NORMAL));
         }
     }
 

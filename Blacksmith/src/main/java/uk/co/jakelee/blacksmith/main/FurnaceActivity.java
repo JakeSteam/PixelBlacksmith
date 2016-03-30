@@ -2,17 +2,14 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -59,41 +56,22 @@ public class FurnaceActivity extends Activity {
     }
 
     public void createFurnaceInterface() {
-        ViewFlipper itemSelector = (ViewFlipper) findViewById(R.id.viewFlipper);
-
-        RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        countParams.setMargins(0, dh.convertDpToPixel(60), 0, 0);
-
-        // Add all bars to the selector
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
         numberOfItems = items.size();
-        for (Item item : items) {
-            RelativeLayout itemBox = new RelativeLayout(this);
 
-            ImageView image = dh.createItemImage(item.getId(), 80, 80, Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL));
-            TextView count = dh.createItemCount(item.getId(), Constants.STATE_NORMAL, Color.WHITE, Color.BLACK);
-            count.setWidth(dh.convertDpToPixel(80));
+        dh.createItemSelector(
+                (ViewFlipper) findViewById(R.id.viewFlipper),
+                false,
+                items);
 
-            itemBox.addView(image);
-            itemBox.addView(count, countParams);
-            itemBox.setTag(item.getId());
-            itemSelector.addView(itemBox);
-        }
-
-        // Horizontal selector
-        long currentItem = (long) mViewFlipper.getCurrentView().getTag();
-        int currentItemPosition = mViewFlipper.getDisplayedChild();
-        HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-        horizontalBar.addDots(dh, numberOfItems, currentItemPosition);
-
-        // Display item name and description
-        View furnace = findViewById(R.id.furnace);
-        dh.displayItemInfo(currentItem, Constants.STATE_NORMAL, furnace);
-
-        // Display item ingredients
-        TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-        dh.createItemIngredientsTable(currentItem, Constants.STATE_NORMAL, ingredientsTable);
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.furnace),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
+                mViewFlipper,
+                numberOfItems,
+                Constants.STATE_NORMAL);
     }
 
     public void smelt1(View v) {
