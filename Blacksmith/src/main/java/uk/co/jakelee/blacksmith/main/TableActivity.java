@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.Toast;
@@ -20,6 +18,7 @@ import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -28,6 +27,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class TableActivity extends Activity {
     public static DisplayHelper dh;
+    public static GestureHelper gh;
     public int displayedTier = Constants.TIER_MIN;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
@@ -38,10 +38,9 @@ public class TableActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        gh = new GestureHelper(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
-        mViewFlipper.setInAnimation(this, android.R.anim.fade_in);
-        mViewFlipper.setOutAnimation(this, android.R.anim.fade_out);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -137,37 +136,18 @@ public class TableActivity extends Activity {
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
-        Animation slide_in_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_left);
-        Animation slide_out_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
-        Animation slide_in_right = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
-        Animation slide_out_left = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_left);
 
         @Override
         public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {
-            // Swipe left (next)
-            if (startXY.getX() > finishXY.getX()) {
-                mViewFlipper.setInAnimation(slide_in_right);
-                mViewFlipper.setOutAnimation(slide_out_left);
-                mViewFlipper.showNext();
-                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
-            }
+            gh.swipe(mViewFlipper, startXY, finishXY);
 
-            // Swipe right (previous)
-            if (startXY.getX() < finishXY.getX()) {
-                mViewFlipper.setInAnimation(slide_in_left);
-                mViewFlipper.setOutAnimation(slide_out_right);
-                mViewFlipper.showPrevious();
-                SoundHelper.playSound(getApplicationContext(), SoundHelper.transitionSounds);
-            }
-
-            View table = findViewById(R.id.table);
-            dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, table);
-
-            TableLayout ingredientsTable = (TableLayout) findViewById(R.id.ingredientsTable);
-            dh.createItemIngredientsTable((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, ingredientsTable);
-
-            HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
+            dh.createCraftingInterface(
+                    (RelativeLayout) findViewById(R.id.table),
+                    (TableLayout) findViewById(R.id.ingredientsTable),
+                    (HorizontalDots) findViewById(R.id.horizontalIndicator),
+                    mViewFlipper,
+                    numberOfItems,
+                    Constants.STATE_NORMAL);
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
