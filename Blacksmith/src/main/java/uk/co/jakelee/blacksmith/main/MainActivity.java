@@ -94,7 +94,9 @@ public class MainActivity extends AppCompatActivity implements
             }
         }).start();
 
-        GooglePlayHelper.mGoogleApiClient.connect();
+        if (Setting.findById(Setting.class, Constants.SETTING_SIGN_IN).getBoolValue() && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            GooglePlayHelper.mGoogleApiClient.connect();
+        }
     }
 
     @Override

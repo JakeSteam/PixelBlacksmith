@@ -722,6 +722,7 @@ public class DatabaseHelper {
         new Setting(3L, "RestockNotifications", false);
         new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", false);
+        new Setting(6L, "TrySignIn", true);
 
         new Trader(1L, 4, "The Scraps", "I was gonna chuck this stuff out.. you interested?", 0, 0, 0, 60);
         new Trader_Stock(1L, 1L, 1, 0, 5);

@@ -59,6 +59,7 @@ public class Constants {
     public static final Long SETTING_RESTOCK_NOTIFICATIONS = 3L;
     public static final Long SETTING_NOTIFICATION_SOUNDS = 4L;
     public static final Long SETTING_VISITOR_NOTIFICATIONS = 5L;
+    public static final Long SETTING_SIGN_IN = 6L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

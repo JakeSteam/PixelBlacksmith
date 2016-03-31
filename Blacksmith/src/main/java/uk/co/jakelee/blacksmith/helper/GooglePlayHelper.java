@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.snapshot.Snapshot;
@@ -183,6 +184,12 @@ public class GooglePlayHelper {
 
         // Commit the operation
         Games.Snapshots.commitAndClose(mGoogleApiClient, snapshot, metadataChange);
+    }
+
+    public static boolean AreGooglePlayServicesInstalled(Activity activity) {
+        GoogleApiAvailability api = GoogleApiAvailability.getInstance();
+        int code = api.isGooglePlayServicesAvailable(activity);
+        return code == ConnectionResult.SUCCESS;
     }
 
     public static boolean IsConnected() {

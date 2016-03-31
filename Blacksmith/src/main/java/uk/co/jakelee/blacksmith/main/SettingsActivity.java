@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import com.google.android.gms.games.Games;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -33,18 +35,46 @@ public class SettingsActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        updateSignInVisibility();
+        final Handler handler = new Handler();
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                updateSignInVisibility();
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
+    }
+
+    public void signIn(View v) {
+        GooglePlayHelper.mGoogleApiClient.connect();
+
+        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
+        signIn.setBoolValue(true);
+        signIn.save();
+    }
+
+    public void signOut(View v) {
+        Games.signOut(GooglePlayHelper.mGoogleApiClient);
+        GooglePlayHelper.mGoogleApiClient.disconnect();
+
+        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
+        signIn.setBoolValue(false);
+        signIn.save();
     }
 
     public void updateSignInVisibility() {
-        TextViewPixel signInButton = (TextViewPixel) findViewById(R.id.signInOutButton);
+        TextViewPixel signInButton = (TextViewPixel) findViewById(R.id.signInButton);
+        TextViewPixel signOutButton = (TextViewPixel) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
 
         if (GooglePlayHelper.IsConnected()) {
-            signInButton.setText(getString(R.string.signOut));
+            signInButton.setVisibility(View.GONE);
+            signOutButton.setVisibility(View.VISIBLE);
             playButtons.setVisibility(View.VISIBLE);
         } else {
-            signInButton.setText(getString(R.string.signIn));
+            signInButton.setVisibility(View.VISIBLE);
+            signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
         }
 
@@ -102,10 +132,6 @@ public class SettingsActivity extends Activity {
 
             displaySettingsList();
         }
-    }
-
-    public void signInOut(View view) {
-        updateSignInVisibility();
     }
 
     public void openCredits(View view) {
