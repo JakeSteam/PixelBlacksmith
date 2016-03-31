@@ -64,6 +64,9 @@
     <string name="statisticsBiggestTrade">Biggest Trade:</string>
     <string name="statisticsUpgradesBought">Upgrades Bought:</string>
 
+    <string name="signIn">Sign In</string>
+    <string name="signOut">Sign Out</string>
+
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
     <string name="creditsCCBY">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>

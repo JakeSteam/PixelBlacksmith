@@ -6,10 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.games.Games;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
@@ -25,6 +27,27 @@ public class SettingsActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         displaySettingsList();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        updateSignInVisibility();
+    }
+
+    public void updateSignInVisibility() {
+        TextViewPixel signInButton = (TextViewPixel) findViewById(R.id.signInOutButton);
+        LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
+
+        if (GooglePlayHelper.IsConnected()) {
+            signInButton.setText(getString(R.string.signOut));
+            playButtons.setVisibility(View.VISIBLE);
+        } else {
+            signInButton.setText(getString(R.string.signIn));
+            playButtons.setVisibility(View.GONE);
+        }
+
     }
 
     public void displaySettingsList() {
@@ -79,6 +102,10 @@ public class SettingsActivity extends Activity {
 
             displaySettingsList();
         }
+    }
+
+    public void signInOut(View view) {
+        updateSignInVisibility();
     }
 
     public void openCredits(View view) {

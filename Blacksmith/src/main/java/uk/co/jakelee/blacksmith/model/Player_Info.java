@@ -116,16 +116,20 @@ public class Player_Info extends SugarRecord {
         Player_Info statToIncrease = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq(statistic)).first();
 
-        statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
-        statToIncrease.save();
+        if (statToIncrease != null) {
+            statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
+            statToIncrease.save();
+        }
     }
 
     public static void increaseByX(Statistic statistic, int value) {
         Player_Info statToIncrease = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq(statistic)).first();
 
-        statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
-        statToIncrease.save();
+        if (statToIncrease != null) {
+            statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
+            statToIncrease.save();
+        }
     }
 
     public String getName() {
