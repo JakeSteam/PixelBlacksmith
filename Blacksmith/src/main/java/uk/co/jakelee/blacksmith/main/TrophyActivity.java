@@ -53,7 +53,7 @@ public class TrophyActivity extends Activity {
             Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorType.getVisitorID());
 
             // Create image for the visitor.
-            ImageView visitorImage = dh.createImageView("visitor", visitorType.getVisitorID(), 50, 50);
+            ImageView visitorImage = dh.createImageView("visitor", visitorType.getVisitorID(), 45, 45);
             visitorImage.setTag(visitorType.getVisitorID());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

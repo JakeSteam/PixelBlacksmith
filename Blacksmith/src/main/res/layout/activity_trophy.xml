@@ -60,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:columnCount="4"
                 android:orientation="horizontal"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_gravity="center"/>
         </ScrollView>
 
         <RelativeLayout
