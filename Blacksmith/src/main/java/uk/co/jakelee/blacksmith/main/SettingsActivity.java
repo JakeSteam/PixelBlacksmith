@@ -52,6 +52,8 @@ public class SettingsActivity extends Activity {
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBoolValue(true);
         signIn.save();
+
+        finish();
     }
 
     public void signOut(View v) {
@@ -157,10 +159,6 @@ public class SettingsActivity extends Activity {
                     "Cloud Saves", true, true, 1);
             startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
         }
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.SavedGamesIntent(getApplicationContext(), intent);
     }
 
     public void openHelp(View view) {

@@ -37,8 +37,6 @@ public class GooglePlayHelper {
     public static String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
     public static GoogleApiClient mGoogleApiClient;
     private static boolean mResolvingConnectionFailure = false;
-    private static boolean mAutoStartSignInFlow = true;
-    private static boolean mSignInClicked = false;
     private static String mCurrentSaveName = "blacksmithCloudSave";
 
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
@@ -46,20 +44,13 @@ public class GooglePlayHelper {
             return;
         }
 
-        if (mSignInClicked || mAutoStartSignInFlow) {
-            mAutoStartSignInFlow = false;
-            mSignInClicked = false;
-
-            mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
-                    mGoogleApiClient, connectionResult,
-                    RC_SIGN_IN, "Couldn't log in. Please try again later.");
-        }
+        mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
+                mGoogleApiClient, connectionResult,
+                RC_SIGN_IN, "Couldn't log in. Please try again later.");
     }
 
     public static void ActivityResult(Activity activity, int requestCode, int resultCode) {
         if (requestCode == RC_SIGN_IN) {
-            mSignInClicked = false;
-            mResolvingConnectionFailure = false;
             if (resultCode == RESULT_OK) {
                 mGoogleApiClient.connect();
             } else {

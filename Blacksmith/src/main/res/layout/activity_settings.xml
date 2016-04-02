@@ -20,7 +20,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:weightSum="2"
-        tools:context="uk.co.jakelee.blacksmith.main.InventoryActivity">
+        tools:context="uk.co.jakelee.blacksmith.main.MainActivity">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/settingsTitle"
@@ -162,15 +162,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="signIn"
-                    android:background="@drawable/button_extra_wide">
+                    android:background="@drawable/button_extra_wide"
+                    android:visibility="gone">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:orientation="horizontal">
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:src="@drawable/playgames"/>
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:layout_width="wrap_content"
@@ -198,11 +199,13 @@
                         <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
-                            android:src="@drawable/playgames"/>
+                            android:src="@drawable/playgames"
+                            android:layout_gravity="center_vertical"/>
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:layout_gravity="center_vertical"
                             android:text="@string/signOut"
                             android:textSize="30sp"
                             android:textColor="@color/black"
