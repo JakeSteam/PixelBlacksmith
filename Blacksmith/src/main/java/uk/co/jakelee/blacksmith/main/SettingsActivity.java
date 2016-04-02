@@ -8,11 +8,11 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.games.Games;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -64,8 +64,8 @@ public class SettingsActivity extends Activity {
     }
 
     public void updateSignInVisibility() {
-        TextViewPixel signInButton = (TextViewPixel) findViewById(R.id.signInButton);
-        TextViewPixel signOutButton = (TextViewPixel) findViewById(R.id.signOutButton);
+        RelativeLayout signInButton = (RelativeLayout) findViewById(R.id.signInButton);
+        RelativeLayout signOutButton = (RelativeLayout) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
 
         if (GooglePlayHelper.IsConnected()) {

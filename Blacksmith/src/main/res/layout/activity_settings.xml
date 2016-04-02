@@ -157,32 +157,58 @@
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
+                <RelativeLayout
                     android:id="@+id/signInButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
                     android:onClick="signIn"
-                    android:text="@string/signIn"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
+                    android:background="@drawable/button_extra_wide">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/playgames"/>
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/signIn"
+                            android:textSize="30sp"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </RelativeLayout>
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
+                <RelativeLayout
                     android:id="@+id/signOutButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
                     android:onClick="signOut"
-                    android:text="@string/signOut"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:visibility="gone"/>
+                    android:background="@drawable/button_extra_wide"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/playgames"/>
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/signOut"
+                            android:textSize="30sp"
+                            android:textColor="@color/black"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/playShortcuts"

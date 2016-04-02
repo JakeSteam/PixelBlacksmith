@@ -93,17 +93,17 @@ public class GooglePlayHelper {
                     Condition.prop("player_info_id").eq(statistic.getId())).orderBy("maximum_value ASC").list();
 
             for (Achievement achievement : achievements) {
-                UpdateAchievement(mGoogleApiClient, achievement, currentValue, lastSentValue);
+                UpdateAchievement(achievement, currentValue, lastSentValue);
             }
 
             UpdateStatistic(statistic, currentValue, lastSentValue);
         }
     }
 
-    public static void UpdateAchievement(GoogleApiClient mGoogleApiClient, Achievement achievement, int currentValue, int lastSentValue) {
+    public static void UpdateAchievement(Achievement achievement, int currentValue, int lastSentValue) {
         boolean hasChanged = (currentValue > lastSentValue);
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
-        if (hasChanged && !isAchieved) {
+        if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
             int difference = currentValue - lastSentValue;
             if (achievement.getMaximumValue() == 1) {
                 Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
@@ -114,14 +114,14 @@ public class GooglePlayHelper {
     }
 
     public static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
-        if (currentValue > lastSentValue) {
+        if (currentValue > lastSentValue && mGoogleApiClient.isConnected()) {
             statistic.setLastSentValue(currentValue);
             statistic.save();
         }
     }
 
     public static void SavedGamesIntent(final Context context, final Intent intent) {
-        if (intent == null) {
+        if (intent == null || !mGoogleApiClient.isConnected()) {
             return;
         }
 
