@@ -26,6 +26,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 
 public class GooglePlayHelper {
     public static final int RESULT_OK = -1;
@@ -62,7 +63,9 @@ public class GooglePlayHelper {
             if (resultCode == RESULT_OK) {
                 mGoogleApiClient.connect();
             } else {
-                BaseGameUtils.showActivityResultError(activity, requestCode, resultCode, R.string.unknown_error);
+                Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
+                signIn.setBoolValue(false);
+                signIn.save();
             }
         }
     }
