@@ -74,8 +74,12 @@ public class SettingsActivity extends Activity {
             signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.VISIBLE);
             playButtons.setVisibility(View.VISIBLE);
-        } else {
+        } else if (GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
             signInButton.setVisibility(View.VISIBLE);
+            signOutButton.setVisibility(View.GONE);
+            playButtons.setVisibility(View.GONE);
+        } else {
+            signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
         }
