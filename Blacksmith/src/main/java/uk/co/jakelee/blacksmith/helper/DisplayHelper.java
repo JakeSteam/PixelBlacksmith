@@ -52,7 +52,7 @@ public class DisplayHelper {
     public final static String DEMAND_TO_LOAD = "uk.co.jakelee.blacksmith.tradetoload";
 
     private static DisplayHelper dhInstance = null;
-    private static Context context;
+    private Context context;
     private static int[] slotIDs = {
             0,
             R.id.slots_anvil,
@@ -64,7 +64,7 @@ public class DisplayHelper {
     };
 
     public DisplayHelper(Context context) {
-        DisplayHelper.context = context;
+        this.context = context;
     }
 
     public static DisplayHelper getInstance(Context ctx) {
@@ -82,6 +82,10 @@ public class DisplayHelper {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflatedView = inflater.inflate(R.layout.custom_slot, null);
         return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
+    }
+
+    public String getString(int ID) {
+        return this.context.getString(ID);
     }
 
     public void createAllSlots(Activity activity) {
@@ -108,11 +112,11 @@ public class DisplayHelper {
                     slotCount.setVisibility(View.VISIBLE);
                     if (slot.getLevel() > playerLevel) {
                         slotForeground.setBackgroundResource(R.drawable.close);
-                        slotCount.setText(String.format("Lv %d", slot.getLevel()));
+                        slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
                         displayedNextSlot = true;
                     } else if (slot.isPremium()) {
                         slotForeground.setBackgroundResource(R.drawable.item52);
-                        slotCount.setText("Prem");
+                        slotCount.setText(activity.getString(R.string.slotPremium));
                     } else {
                         slotRoot.setTag(true);
                     }
@@ -150,7 +154,7 @@ public class DisplayHelper {
                 int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
                 slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                slotCount.setText(String.format("%ds", seconds));
+                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
                 slotIndex++;
             }
         }
@@ -283,7 +287,7 @@ public class DisplayHelper {
         text.setAlpha(0.6F);
         text.setGravity(Gravity.CENTER);
         text.setTextSize(25);
-        text.setText(Integer.toString(numberOwned));
+        text.setText(String.format("%d", numberOwned));
         return text;
     }
 
@@ -422,7 +426,7 @@ public class DisplayHelper {
         Long numSlots = Select.from(Slot.class).where(
                 Condition.prop("level").eq(newLevel)).count();
 
-        return String.format("Levelled up to %d! Unlocked %d item(s), %d trader(s), and %d slot(s).", newLevel, numItems, numTraders, numSlots);
+        return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots);
     }
 
     public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
@@ -455,7 +459,7 @@ public class DisplayHelper {
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
-            String itemName = "???";
+            String itemName = this.context.getString(R.string.unknownText);
             boolean haveSeen = Inventory.haveSeen(ingredient.getIngredient(), ingredient.getIngredientState());
             if (haveSeen) {
                 itemName = itemIngredient.getPrefix(ingredient.getIngredientState()) + itemIngredient.getName();

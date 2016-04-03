@@ -21,25 +21,25 @@ public class AlertDialogHelper {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
-        alertDialog.setMessage(String.format("Would you like to bribe a visitor %d coins to come in immediately?", visitorCost));
+        alertDialog.setMessage(String.format(context.getString(R.string.bribeQuestion), visitorCost));
         alertDialog.setIcon(R.drawable.item52);
 
-        alertDialog.setPositiveButton("Bribe", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(context.getString(R.string.bribeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                 if (coinStock.getQuantity() >= visitorCost) {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
                     coinStock.save();
                     if (VisitorHelper.tryCreateVisitor()) {
-                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A visitor walks in, with %d coins. What a coincidence!", visitorCost));
+                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost));
                     }
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, "Not enough money to bribe a visitor.");
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.bribeFailure));
                 }
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(context.getString(R.string.bribeCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

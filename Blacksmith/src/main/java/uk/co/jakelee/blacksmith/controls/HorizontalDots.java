@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 
 public class HorizontalDots extends LinearLayout {
@@ -21,9 +22,9 @@ public class HorizontalDots extends LinearLayout {
         this.removeAllViews();
         for (int i = 0; i < numChildren; i++) {
             if (i == selectedDot) {
-                this.addView(dh.createTextView("x", 10, Color.RED));
+                this.addView(dh.createTextView(dh.getString(R.string.horizontalDotsSelected), 10, Color.RED));
             } else {
-                this.addView(dh.createTextView("o", 10));
+                this.addView(dh.createTextView(dh.getString(R.string.horizontalDotsUnselected), 10));
             }
 
             if (i < numChildren - 1) {

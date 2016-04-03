@@ -21,6 +21,21 @@
     <string name="helpText">Help</string>
     <string name="upgradeText">Upgrades</string>
 
+    <string name="slotLevel">Lv %d</string>
+    <string name="slotPremium">Prem</string>
+    <string name="slotSeconds">%ds</string>
+
+    <string name="levelUpText">Levelled up to %d! Unlocked %d item(s), %d trader(s), and %d slot(s).</string>
+
+    <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
+    <string name="bribeConfirm">Bribe</string>
+    <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
+    <string name="bribeFailure">Not enough money to bribe a visitor.</string>
+    <string name="bribeCancel">Cancel</string>
+
+    <string name="horizontalDotsSelected">x</string>
+    <string name="horizontalDotsUnselected">o</string>
+
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
     <string name="stateText">State</string>
