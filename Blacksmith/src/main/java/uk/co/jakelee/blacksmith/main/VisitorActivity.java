@@ -194,7 +194,7 @@ public class VisitorActivity extends Activity {
             } else {
                 int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
                 String itemName = createVisitorReward(visitor, numRewards);
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("As the visitor leaves, you notice %dx %s on the counter.",
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.visitorLeaves),
                         numRewards,
                         itemName));
             }

@@ -100,27 +100,24 @@ public class VisitorHelper {
     }
 
     public static void generateDemand(int i, Long visitorID) {
-        Long criteriaType = Long.valueOf(getRandomNumber(Constants.MINIMUM_CRITERIA, Constants.MAXIMUM_CRITERIA));
+        Long criteriaType = (long) getRandomNumber(Constants.MINIMUM_CRITERIA, Constants.MAXIMUM_CRITERIA);
         Criteria criteria = Criteria.findById(Criteria.class, criteriaType);
 
         Long criteriaValue = 1L;
-        if (criteria.getName().equals("State")) {
-            criteriaValue = selectDemandState().getId();
-        } else if (criteria.getName().equals("Tier")) {
-            criteriaValue = selectDemandTier().getId();
-        } else if (criteria.getName().equals("Type")) {
-            criteriaValue = selectDemandType().getId();
+        switch (criteria.getName()) {
+            case "State": criteriaValue = selectDemandState().getId();
+                break;
+            case "Tier": criteriaValue = selectDemandTier().getId();
+                break;
+            case "Type": criteriaValue = selectDemandType().getId();
+                break;
         }
 
         int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, Constants.MAXIMUM_QUANTITY);
-
-        boolean required = getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE);
-        if (i == 1) {
-            required = true;
-        }
+        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE));
 
         // Check if the current criteria already exists. If it does, try again.
-        Pair currentCriteria = new Pair(criteriaType, criteriaValue);
+        Pair<Long, Long> currentCriteria = new Pair<>(criteriaType, criteriaValue);
         if (existingCriteria.contains(currentCriteria)) {
             generateDemand(i, visitorID);
         } else {

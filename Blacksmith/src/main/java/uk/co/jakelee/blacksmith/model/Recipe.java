@@ -26,11 +26,9 @@ public class Recipe extends SugarRecord {
     }
 
     public static List<Recipe> getIngredients(Long id, long state) {
-        List<Recipe> ingredientList = Select.from(Recipe.class).where(
+        return Select.from(Recipe.class).where(
                 Condition.prop("item").eq(id),
                 Condition.prop("item_state").eq(state)).list();
-
-        return ingredientList;
     }
 
     public long getItem() {

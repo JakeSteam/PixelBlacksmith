@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
 
         if (newVisitors > 0) {
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Whilst you've been gone, %d visitor(s) have arrived.", newVisitors));
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors));
             newVisitors = 0;
         }
     }
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("%d visitor(s) wander into the shop...", newVisitors));
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArriving), newVisitors));
                 }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }

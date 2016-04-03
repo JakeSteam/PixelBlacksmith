@@ -67,13 +67,13 @@ public class NotificationHelper extends BroadcastReceiver {
         int notificationType = intent.getExtras().getInt(NOTIFICATION_TYPE);
         String notificationText = "";
         if (notificationType == Constants.NOTIFICATION_RESTOCK) {
-            notificationText = "All traders have been restocked!";
+            notificationText = context.getString(R.string.notificationTrader);
         } else if (notificationType == Constants.NOTIFICATION_VISITOR) {
-            notificationText = "A new visitor has arrived!";
+            notificationText = context.getString(R.string.notificationVisitor);
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        Notification notification = builder.setContentTitle("Blacksmith")
+        Notification notification = builder.setContentTitle(context.getString(R.string.app_name))
                 .setContentText(notificationText)
                 .setSmallIcon(R.drawable.item35)
                 .setContentIntent(pendingIntent)

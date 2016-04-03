@@ -77,7 +77,7 @@ public class TradeActivity extends Activity {
         Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
         TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
-        demandTextView.setText(String.format("%s: %s (%d/%d)",
+        demandTextView.setText(String.format(getString(R.string.demandText),
                 demandCriteria.getName(),
                 Visitor_Demand.getCriteriaName(demand),
                 demand.getQuantityProvided(),
@@ -95,10 +95,10 @@ public class TradeActivity extends Activity {
 
         // Create header row
         TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView("Qty", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView(getString(R.string.tableQuantity), 22, Color.BLACK));
         headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
-        headerRow.addView(dh.createTextView("Item ", 22, Color.BLACK));
-        headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
+        headerRow.addView(dh.createTextView(getString(R.string.tableItem), 22, Color.BLACK));
+        headerRow.addView(dh.createTextView(getString(R.string.tableSold), 22, Color.BLACK));
         headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
         itemsTable.addView(headerRow);
 
@@ -134,7 +134,7 @@ public class TradeActivity extends Activity {
             });
 
             // Work out the multiplier that the player can see
-            TextViewPixel bonusText = dh.createTextView("???", 18, Color.BLACK);
+            TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
             double bonus = visitorType.getDisplayedBonus(inventory);
             if (bonus > Constants.DEFAULT_BONUS) {
                 bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
@@ -169,7 +169,7 @@ public class TradeActivity extends Activity {
         int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (long) v.getTag(R.id.itemState), quantity, value);
         if (tradeResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Sold %1sx %2s for%3s coin(s)", quantity, itemToSell.getName(), value));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.soldItem), quantity, itemToSell.getName(), value));
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsTraded);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value);
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);

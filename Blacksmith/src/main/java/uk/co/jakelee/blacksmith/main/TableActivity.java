@@ -105,7 +105,7 @@ public class TableActivity extends Activity {
 
         if (quantityCrafted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantityCrafted + " item(s) to craft queue.");
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted));
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             createTableInterface(false);
         }

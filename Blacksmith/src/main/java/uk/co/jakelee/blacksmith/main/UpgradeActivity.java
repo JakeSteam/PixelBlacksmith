@@ -47,7 +47,7 @@ public class UpgradeActivity extends Activity {
         for (final Upgrade upgrade : upgrades) {
             TableRow upgradeRow = new TableRow(this);
 
-            String upgradeDescriptionText = String.format("%s\n%d / %d %s\n%s coins",
+            String upgradeDescriptionText = String.format(getString(R.string.upgradeDescription),
                     upgrade.getName(),
                     upgrade.getCurrent(),
                     upgrade.getMaximum(),
@@ -63,7 +63,7 @@ public class UpgradeActivity extends Activity {
                     Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
                     int upgradeResponse = selectedUpgrade.tryUpgrade();
                     if (upgradeResponse == Constants.SUCCESS) {
-                        ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format("Upgraded %s!", upgrade.getName()));
+                        ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.upgradeSuccess), upgrade.getName()));
                         Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
                         createUpgradeInterface();
                     } else {

@@ -10,6 +10,7 @@ import com.orm.query.Select;
 import java.util.Iterator;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 
@@ -68,7 +69,7 @@ public class Trader extends SugarRecord {
         if (traderToArrive.getName() != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The " + traderToArrive.getName() + " trader has arrived.");
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()));
         }
     }
 

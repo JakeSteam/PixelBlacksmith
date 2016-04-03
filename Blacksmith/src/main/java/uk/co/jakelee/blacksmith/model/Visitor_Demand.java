@@ -25,7 +25,7 @@ public class Visitor_Demand extends SugarRecord {
     }
 
     public static String getCriteriaName(Visitor_Demand demand) {
-        String demandText = "Unknown";
+        String demandText = "";
         if (demand.getCriteriaType() == 1L) {
             State demandState = State.findById(State.class, demand.getCriteriaValue());
             demandText = demandState.getName();

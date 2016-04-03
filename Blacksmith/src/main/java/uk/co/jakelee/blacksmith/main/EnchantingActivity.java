@@ -131,12 +131,12 @@ public class EnchantingActivity extends Activity {
         itemButton.addView(itemImage);
 
         int quantityOwned = 0;
-        String itemName = "???";
+        String itemName = getString(R.string.unknownText);
         if (haveSeen || item.getType() == Constants.TYPE_POWDERS) {
             quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
             itemName = item.getName();
         }
-        String buttonText = itemName + " (x" + quantityOwned + ")";
+        String buttonText = String.format(getString(R.string.enchantingButtonText), itemName, quantityOwned);
 
         int textSize = 18;
         if (item.getType() == Constants.TYPE_GEM) {

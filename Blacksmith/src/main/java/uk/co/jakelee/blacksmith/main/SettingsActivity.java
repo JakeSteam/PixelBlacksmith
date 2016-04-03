@@ -165,6 +165,11 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        GooglePlayHelper.SavedGamesIntent(getApplicationContext(), intent);
+    }
+
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Settings);

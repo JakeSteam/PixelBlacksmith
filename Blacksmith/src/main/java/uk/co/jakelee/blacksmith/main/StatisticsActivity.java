@@ -71,7 +71,7 @@ public class StatisticsActivity extends Activity {
         if (unixVisitorDifference > 0) {
             ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(unixVisitorDifference));
         } else {
-            ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText("Never!");
+            ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(getString(R.string.visitorsFullRestockTime));
         }
 
         Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();

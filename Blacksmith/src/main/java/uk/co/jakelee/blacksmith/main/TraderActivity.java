@@ -92,7 +92,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
             itemName.setText(item.getName());
 
             TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
-            itemStock.setText(String.format("%d / %d",
+            itemStock.setText(String.format(getString(R.string.genericProgress),
                     itemForSale.getStock(),
                     itemForSale.getDefaultStock()));
 

@@ -46,7 +46,7 @@ public class GooglePlayHelper {
 
         mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
                 mGoogleApiClient, connectionResult,
-                RC_SIGN_IN, "Couldn't log in. Please try again later.");
+                RC_SIGN_IN, activity.getString(R.string.connectionFailure));
     }
 
     public static void ActivityResult(Activity activity, int requestCode, int resultCode) {
@@ -134,10 +134,10 @@ public class GooglePlayHelper {
                             currentTask = "saving";
                         }
                     } catch (IOException e) {
-                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A local error occurred whilst %s from cloud: %s", currentTask, e.toString()));
+                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()));
                     }
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("A remote error occurred whilst %s from cloud: %s", currentTask, result.getStatus().getStatusCode()));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()));
                 }
 
                 return result.getStatus().getStatusCode();
@@ -145,7 +145,7 @@ public class GooglePlayHelper {
 
             @Override
             protected void onPostExecute(Integer status) {
-                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Cloud %s successful!", currentTask));
+                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask));
             }
         };
 
@@ -166,7 +166,7 @@ public class GooglePlayHelper {
         }
 
         byte[] data = DatabaseHelper.createBackup();
-        String desc = String.format("Blacksmith: Level %d | %,d coins", Player_Info.getPlayerLevel(), Inventory.getCoins());
+        String desc = String.format(context.getString(R.string.cloudSuccess), Player_Info.getPlayerLevel(), Inventory.getCoins());
         Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.wallpaper);
 
         snapshot.getSnapshotContents().writeBytes(data);

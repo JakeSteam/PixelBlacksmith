@@ -101,7 +101,7 @@ public class FurnaceActivity extends Activity {
 
         if (quantitySmelted > 0) {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, "Successfully added " + quantitySmelted + " item(s) to craft queue.");
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted));
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             createFurnaceInterface();
         }
