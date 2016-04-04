@@ -52,10 +52,10 @@ public class AlertDialogHelper {
         final int visitorCost = VisitorHelper.getVisitorDismissCost(visitor.getId());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        alertDialog.setMessage(String.format("Would you like to pay a visitor %d coins to leave immediately?", visitorCost));
+        alertDialog.setMessage(String.format(context.getString(R.string.dismissQuestion), visitorCost));
         alertDialog.setIcon(R.drawable.item52);
 
-        alertDialog.setPositiveButton("Bribe", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(context.getString(R.string.dismissConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                 if (coinStock.getQuantity() >= visitorCost) {
@@ -64,15 +64,15 @@ public class AlertDialogHelper {
 
                     VisitorHelper.removeVisitor(visitor);
                     SoundHelper.playSound(context, SoundHelper.walkingSounds);
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, "The visitor leaves, a little bit grumpily.");
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissComplete));
                     activity.finish();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, "Not enough money to bribe a visitor.");
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure));
                 }
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(context.getString(R.string.dismissCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -88,16 +88,16 @@ public class AlertDialogHelper {
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        alertDialog.setMessage(String.format("Would you like to buy 1x %1s for %2d coin(s), or up to %3d for %4d coin(s) each?", itemName, itemValue, itemStock.getStock(), itemValue));
+        alertDialog.setMessage(String.format(context.getString(R.string.itemBuyQuestion), itemName, itemValue, itemStock.getStock(), itemValue));
         alertDialog.setIcon(R.drawable.item52);
 
-        alertDialog.setPositiveButton("Buy 1", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(context.getString(R.string.itemBuy1Confirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int quantity = 1;
 
                 int buyResponse = Inventory.buyItem(itemStock);
                 if (buyResponse == Constants.SUCCESS) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", quantity, itemName, itemValue));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue));
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
@@ -108,7 +108,7 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton("Buy Max", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NO_ITEMS;
@@ -124,7 +124,7 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format("Added %1sx %2s to pending buying for %3s coin(s)", itemsBought, itemName, itemValue * itemsBought));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought));
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
@@ -135,7 +135,7 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
