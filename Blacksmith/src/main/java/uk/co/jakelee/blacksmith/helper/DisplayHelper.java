@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -93,7 +94,7 @@ public class DisplayHelper {
         int playerLevel = Player_Info.getPlayerLevel();
 
         for (Location location : locations) {
-            LinearLayout slotContainer = (LinearLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
+            GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
             slotContainer.removeAllViews();
 
             List<Slot> slots = Select.from(Slot.class).where(
@@ -135,7 +136,7 @@ public class DisplayHelper {
 
     private void populateSlot(long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
-        LinearLayout slotContainer = (LinearLayout) parentView.findViewById(slotIDs[(int) locationID]);
+        GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
         emptySlotContainer(slotContainer);
 
         int slotIndex = 0;
@@ -160,7 +161,7 @@ public class DisplayHelper {
         }
     }
 
-    private void emptySlotContainer(LinearLayout slotContainer) {
+    private void emptySlotContainer(GridLayout slotContainer) {
         int numSlots = slotContainer.getChildCount();
 
         for (int i = 0; i < numSlots; i++) {

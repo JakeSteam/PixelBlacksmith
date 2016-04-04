@@ -34,7 +34,8 @@
                 app:layout_heightPercent="22%"
                 app:layout_marginTopPercent="22%" />
 
-            <LinearLayout
+            <GridLayout
+                android:columnCount="3"
                 android:id="@+id/slots_furnace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +55,8 @@
                 app:layout_heightPercent="10%"
                 app:layout_marginTopPercent="90%" />
 
-            <LinearLayout
+            <GridLayout
+                android:columnCount="6"
                 android:id="@+id/slots_market"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +76,8 @@
                 app:layout_heightPercent="22%"
                 app:layout_marginTopPercent="22%" />
 
-            <LinearLayout
+            <GridLayout
+                android:columnCount="6"
                 android:id="@+id/slots_anvil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,7 +97,8 @@
                 app:layout_heightPercent="22%"
                 app:layout_marginTopPercent="22%" />
 
-            <LinearLayout
+            <GridLayout
+                android:columnCount="3"
                 android:id="@+id/slots_inventory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -114,7 +118,8 @@
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="66%" />
 
-            <LinearLayout
+            <GridLayout
+                android:columnCount="5"
                 android:id="@+id/slots_table"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,7 +139,8 @@
                 app:layout_heightPercent="22%"
                 app:layout_marginTopPercent="55%" />
 
-            <LinearLayout
+            <GridLayout
+                android:columnCount="5"
                 android:id="@+id/slots_enchanting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
