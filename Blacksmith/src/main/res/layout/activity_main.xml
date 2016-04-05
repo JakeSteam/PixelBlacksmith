@@ -27,12 +27,9 @@
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="515dp"
-                android:alpha=".10"
                 android:onClick="openFurnace"
-                android:scaleType="fitXY"
-                android:src="@color/white"
                 app:layout_heightPercent="22%"
-                app:layout_marginTopPercent="22%" />
+                app:layout_marginTopPercent="11%" />
 
             <GridLayout
                 android:columnCount="3"
@@ -48,12 +45,9 @@
                 android:layout_width="190dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="260dp"
-                android:alpha=".10"
-                android:onClick="openMarket"
-                android:scaleType="fitXY"
-                android:src="@color/white"
                 app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="90%" />
+                app:layout_marginTopPercent="90%"
+                android:onClick="openMarket"/>
 
             <GridLayout
                 android:columnCount="6"
@@ -90,10 +84,7 @@
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="1090dp"
-                android:alpha=".10"
                 android:onClick="openInventory"
-                android:scaleType="centerCrop"
-                android:src="@color/white"
                 app:layout_heightPercent="22%"
                 app:layout_marginTopPercent="22%" />
 
@@ -111,10 +102,7 @@
                 android:layout_width="190dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="512dp"
-                android:alpha=".10"
                 android:onClick="openTable"
-                android:scaleType="centerCrop"
-                android:src="@color/white"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="66%" />
 
@@ -150,57 +138,57 @@
 
             <ImageView
                 android:id="@+id/open_upgrades"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="1025dp"
+                android:layout_marginLeft="1030dp"
                 android:onClick="openUpgrades"
                 android:scaleType="centerCrop"
                 android:src="@drawable/uparrow"
-                app:layout_heightPercent="11%"
+                app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="68%" />
 
             <ImageView
                 android:id="@+id/open_help"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="1090dp"
+                android:layout_marginLeft="1095dp"
                 android:onClick="openHelp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/helpbook"
-                app:layout_heightPercent="11%"
+                app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="68%" />
 
             <ImageView
                 android:id="@+id/open_statistics"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="1155dp"
+                android:layout_marginLeft="1160dp"
                 android:onClick="openStatistics"
                 android:scaleType="centerCrop"
                 android:src="@drawable/statistics"
-                app:layout_heightPercent="11%"
+                app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="68%" />
 
             <ImageView
                 android:id="@+id/open_trophies"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="1090dp"
+                android:layout_marginLeft="1095dp"
                 android:onClick="openTrophies"
                 android:scaleType="centerCrop"
                 android:src="@drawable/trophies"
-                app:layout_heightPercent="11%"
+                app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="80%" />
 
             <ImageView
                 android:id="@+id/open_settings"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="1155dp"
+                android:layout_marginLeft="1160dp"
                 android:onClick="openSettings"
                 android:scaleType="centerCrop"
                 android:src="@drawable/settings"
-                app:layout_heightPercent="11%"
+                app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="80%" />
 
             <LinearLayout
