@@ -84,6 +84,8 @@ public class HelpActivity extends Activity {
             displayHelpVisitor(layout);
         } else if (topic == TOPICS.Upgrade) {
             displayHelpUpgrade(layout);
+        } else if (topic == TOPICS.Premium) {
+            displayHelpPremium(layout);
         }
     }
 
@@ -216,6 +218,10 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Buying premium will increase the current and maximum values of most upgrades significantly.\n", 22));
     }
 
+    public void displayHelpPremium(LinearLayout layout) {
+        layout.addView(dh.createTextView("Premium\n", 26));
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
@@ -227,5 +233,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Overview, Premium, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }

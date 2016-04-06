@@ -251,6 +251,11 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void openPremium(View view) {
+        Intent intent = new Intent(this, PremiumActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
     }
