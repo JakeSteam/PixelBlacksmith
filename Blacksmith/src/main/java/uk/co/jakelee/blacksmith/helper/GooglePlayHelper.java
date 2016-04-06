@@ -166,7 +166,7 @@ public class GooglePlayHelper {
         }
 
         byte[] data = DatabaseHelper.createBackup();
-        String desc = String.format(context.getString(R.string.cloudSuccess), Player_Info.getPlayerLevel(), Inventory.getCoins());
+        String desc = String.format(context.getString(R.string.cloudSaveCaption), Player_Info.getPlayerLevel(), Inventory.getCoins());
         Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.wallpaper);
 
         snapshot.getSnapshotContents().writeBytes(data);

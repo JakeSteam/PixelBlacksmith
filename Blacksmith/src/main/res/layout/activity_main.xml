@@ -63,11 +63,8 @@
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="770dp"
-                android:alpha=".10"
                 android:onClick="openAnvil"
-                android:scaleType="centerCrop"
-                android:src="@color/white"
-                app:layout_heightPercent="22%"
+                app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="22%" />
 
             <GridLayout
@@ -120,12 +117,9 @@
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="770dp"
-                android:alpha=".10"
                 android:onClick="openEnchanting"
-                android:scaleType="centerCrop"
-                android:src="@color/white"
-                app:layout_heightPercent="22%"
-                app:layout_marginTopPercent="55%" />
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="66%" />
 
             <GridLayout
                 android:columnCount="5"

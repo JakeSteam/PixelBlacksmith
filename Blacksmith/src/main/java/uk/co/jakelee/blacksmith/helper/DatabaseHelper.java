@@ -288,6 +288,7 @@ public class DatabaseHelper {
         new Player_Info("DateStarted", System.currentTimeMillis());
         new Player_Info("SavedLevel", 2, 0);
         new Player_Info("UpgradesBought", 0);
+        new Player_Info("Premium", 0);
 
         // Powdered gems
         new Recipe(129L, 1L, 73L, 1L, 1);
