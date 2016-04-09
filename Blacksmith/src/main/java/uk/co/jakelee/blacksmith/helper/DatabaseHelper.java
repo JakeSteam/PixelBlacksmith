@@ -956,13 +956,13 @@ public class DatabaseHelper {
         new Type(24L, "Ring", 4, 1);
         new Type(100L, "Internal", 0, 0);
 
-        new Upgrade("Visitor Spawn Time", "mins", 1000, 25, 10, 25);
-        new Upgrade("Shop Restock Time", "hours", 250, 24, 2, 24);
-        new Upgrade("Maximum Visitors", "visitors", 1000, 2, 10, 2);
-        new Upgrade("Maximum Traders", "traders", 250, 3, 10, 3);
-        new Upgrade("Gold Bonus", "%", 250, 0, 50, 40);
-        new Upgrade("XP Bonus", "%", 250, 0, 50, 40);
-        new Upgrade("Legendary Chance", "%", 1250, 5, 100, 90);
+        new Upgrade("Visitor Spawn Time", "mins", 1000, 1, 25, 10, 25);
+        new Upgrade("Shop Restock Time", "hours", 250, 1, 24, 2, 24);
+        new Upgrade("Maximum Visitors", "visitors", 1000, 1, 2, 10, 2);
+        new Upgrade("Maximum Traders", "traders", 250, 1, 3, 10, 3);
+        new Upgrade("Gold Bonus", "%", 250, 5, 0, 50, 40);
+        new Upgrade("XP Bonus", "%", 250, 5, 0, 50, 40);
+        new Upgrade("Legendary Chance", "%", 1250, 5, 5, 100, 90);
 
         new Visitor_Stats(1L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(2L, 0, 52L, 1L, 0, 0L, 0L);

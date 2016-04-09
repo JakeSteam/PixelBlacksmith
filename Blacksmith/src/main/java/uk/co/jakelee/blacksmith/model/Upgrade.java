@@ -10,6 +10,7 @@ public class Upgrade extends SugarRecord {
     String name;
     String units;
     int modifier;
+    int increment;
     int minimum;
     int maximum;
     int current;
@@ -17,10 +18,11 @@ public class Upgrade extends SugarRecord {
     public Upgrade() {
     }
 
-    public Upgrade(String name, String units, int modifier, int minimum, int maximum, int current) {
+    public Upgrade(String name, String units, int modifier, int increment, int minimum, int maximum, int current) {
         this.name = name;
         this.units = units;
         this.modifier = modifier;
+        this.increment = increment;
         this.minimum = minimum;
         this.maximum = maximum;
         this.current = current;
@@ -57,6 +59,14 @@ public class Upgrade extends SugarRecord {
         this.modifier = modifier;
     }
 
+    public int getIncrement() {
+        return increment;
+    }
+
+    public void setIncrement(int increment) {
+        this.increment = increment;
+    }
+
     public int getMinimum() {
         return minimum;
     }
@@ -83,9 +93,9 @@ public class Upgrade extends SugarRecord {
 
     public int getUpgradeCost() {
         if (minimum > maximum) {
-            return ((minimum - current) + 1) * modifier;
+            return ((minimum - current) + increment) * modifier;
         } else {
-            return ((current - minimum) + 1) * modifier;
+            return ((current - minimum) + increment) * modifier;
         }
     }
 
@@ -94,11 +104,21 @@ public class Upgrade extends SugarRecord {
 
         if (coins.getQuantity() < getUpgradeCost()) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
-        } else if (current == maximum) {
+        } else if (isAtMaximum()) {
             return Constants.ERROR_MAXIMUM_UPGRADE;
         } else {
             upgrade(coins);
             return Constants.SUCCESS;
+        }
+    }
+
+    private boolean isAtMaximum() {
+        if (minimum > maximum && current <= minimum) {
+            return true;
+        } else if (maximum > minimum && current >= maximum) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -108,10 +128,10 @@ public class Upgrade extends SugarRecord {
 
         if (minimum > maximum) {
             // If lower values are better.
-            setCurrent(getCurrent() - 1);
+            setCurrent(getCurrent() - increment);
         } else {
             // If higher values are better.
-            setCurrent(getCurrent() + 1);
+            setCurrent(getCurrent() + increment);
         }
         save();
     }
