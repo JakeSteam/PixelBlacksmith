@@ -1,7 +1,6 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
-import com.orm.dsl.Ignore;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -179,7 +178,6 @@ public class Player_Info extends SugarRecord {
         this.lastSentValue = lastSentValue;
     }
 
-    @Ignore
     public enum Statistic {
         ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought
     }

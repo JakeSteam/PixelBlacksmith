@@ -76,7 +76,7 @@ public class TableActivity extends Activity {
                 numberOfItems,
                 Constants.STATE_NORMAL);
 
-        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+        dh.drawArrows(this.displayedTier, Constants.TIER_TABLE_MIN, Constants.TIER_TABLE_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
     }
 
     public void craft1(View v) {

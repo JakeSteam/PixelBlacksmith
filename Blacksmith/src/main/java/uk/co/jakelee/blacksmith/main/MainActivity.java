@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,6 @@ import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
-import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -56,17 +56,8 @@ public class MainActivity extends AppCompatActivity implements
         dh = DisplayHelper.getInstance(getApplicationContext());
         musicService = new Intent(this, MusicService.class);
 
-        coins = (TextViewPixel) findViewById(R.id.coinCount);
-        visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
-        visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
-
-        level = (TextViewPixel) findViewById(R.id.currentLevel);
-        levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
-        levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
-
-        if (Player_Info.listAll(Player_Info.class).size() == 0) {
-            DatabaseHelper.initialSQL();
-        }
+        assignUIElements();
+        checkFirstRun();
 
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -76,6 +67,24 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         dh.createAllSlots(this);
+    }
+
+    private void assignUIElements() {
+        coins = (TextViewPixel) findViewById(R.id.coinCount);
+        visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
+        visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
+
+        level = (TextViewPixel) findViewById(R.id.currentLevel);
+        levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
+        levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
+    }
+
+    private void checkFirstRun() {
+        SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        if (prefs.getBoolean("firstrun", true)) {
+            DatabaseHelper.initialSQL();
+            prefs.edit().putBoolean("firstrun", false).apply();
+        }
     }
 
     @Override
