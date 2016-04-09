@@ -32,7 +32,7 @@
                 app:layout_marginTopPercent="11%" />
 
             <GridLayout
-                android:columnCount="3"
+                android:columnCount="4"
                 android:id="@+id/slots_furnace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 app:layout_marginTopPercent="22%" />
 
             <GridLayout
-                android:columnCount="6"
+                android:columnCount="4"
                 android:id="@+id/slots_anvil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,10 +101,10 @@
                 android:layout_marginLeft="512dp"
                 android:onClick="openTable"
                 app:layout_heightPercent="11%"
-                app:layout_marginTopPercent="66%" />
+                app:layout_marginTopPercent="55%" />
 
             <GridLayout
-                android:columnCount="5"
+                android:columnCount="4"
                 android:id="@+id/slots_table"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,10 +119,10 @@
                 android:layout_marginLeft="770dp"
                 android:onClick="openEnchanting"
                 app:layout_heightPercent="11%"
-                app:layout_marginTopPercent="66%" />
+                app:layout_marginTopPercent="55%" />
 
             <GridLayout
-                android:columnCount="5"
+                android:columnCount="4"
                 android:id="@+id/slots_enchanting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

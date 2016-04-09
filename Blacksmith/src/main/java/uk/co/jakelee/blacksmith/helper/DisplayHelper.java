@@ -98,7 +98,7 @@ public class DisplayHelper {
             slotContainer.removeAllViews();
 
             List<Slot> slots = Select.from(Slot.class).where(
-                    Condition.prop("location").eq(location.getId())).orderBy("level ASC").list();
+                    Condition.prop("location").eq(location.getId())).orderBy("premium ASC, level ASC").list();
 
             boolean displayedNextSlot = false;
             for (Slot slot : slots) {

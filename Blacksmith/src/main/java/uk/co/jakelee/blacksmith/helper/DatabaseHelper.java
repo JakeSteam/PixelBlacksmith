@@ -289,7 +289,7 @@ public class DatabaseHelper {
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
 
-        new Player_Info("XP", 1000000);
+        new Player_Info("XP", 1000);
         new Player_Info("DatabaseVersion", 1);
         new Player_Info("ItemsSmelted", 0, 0);
         new Player_Info("ItemsCrafted", 0);
@@ -302,9 +302,9 @@ public class DatabaseHelper {
         new Player_Info("DateVisitorSpawned", System.currentTimeMillis());
         new Player_Info("CoinsEarned", 0);
         new Player_Info("DateStarted", System.currentTimeMillis());
-        new Player_Info("SavedLevel", 149, 0);
+        new Player_Info("SavedLevel", 1, 0);
         new Player_Info("UpgradesBought", 0);
-        new Player_Info("Premium", 1);
+        new Player_Info("Premium", 0);
 
         // Powdered gems
         new Recipe(129L, 1L, 73L, 1L, 1);
@@ -883,32 +883,44 @@ public class DatabaseHelper {
         new Slot(1, 16, false);
         new Slot(1, 25, false);
         new Slot(1, 33, false);
+        new Slot(1, 42, false);
+        new Slot(1, 1, true);
         new Slot(2, 1, false);
         new Slot(2, 4, false);
         new Slot(2, 8, false);
         new Slot(2, 17, false);
         new Slot(2, 24, false);
         new Slot(2, 30, false);
+        new Slot(2, 44, false);
+        new Slot(2, 1, true);
         new Slot(3, 1, false);
         new Slot(3, 5, false);
         new Slot(3, 13, false);
         new Slot(3, 20, false);
         new Slot(3, 35, false);
+        new Slot(3, 1, true);
         new Slot(4, 1, false);
         new Slot(4, 6, false);
         new Slot(4, 10, false);
         new Slot(4, 23, false);
         new Slot(4, 40, false);
+        new Slot(4, 1, true);
         new Slot(5, 1, false);
         new Slot(5, 5, false);
         new Slot(5, 10, false);
         new Slot(5, 15, false);
         new Slot(5, 27, false);
+        new Slot(5, 39, false);
+        new Slot(5, 50, false);
+        new Slot(5, 1, true);
         new Slot(6, 1, false);
         new Slot(6, 20, false);
         new Slot(6, 30, false);
         new Slot(6, 40, false);
         new Slot(6, 50, false);
+        new Slot(6, 60, false);
+        new Slot(6, 70, false);
+        new Slot(6, 1, true);
 
         new State(1L, "Normal", "", 0L, 15);
         new State(2L, "Unfinished", "(unf) ", 0L, 15);
