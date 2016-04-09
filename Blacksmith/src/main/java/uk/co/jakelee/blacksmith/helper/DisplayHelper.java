@@ -115,9 +115,10 @@ public class DisplayHelper {
                         slotForeground.setBackgroundResource(R.drawable.close);
                         slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
                         displayedNextSlot = true;
-                    } else if (slot.isPremium()) {
+                    } else if (slot.isPremium() && !Player_Info.isPremium()) {
                         slotForeground.setBackgroundResource(R.drawable.item52);
                         slotCount.setText(activity.getString(R.string.slotPremium));
+                        displayedNextSlot = true;
                     } else {
                         slotRoot.setTag(true);
                     }

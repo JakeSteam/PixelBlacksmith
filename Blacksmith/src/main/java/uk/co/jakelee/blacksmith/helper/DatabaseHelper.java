@@ -265,6 +265,22 @@ public class DatabaseHelper {
         new Item(158L, "Gold ruby ring", "An expensive looking gold and red ring.", 24, 9, 200, 40);
         new Item(159L, "Gold diamond ring", "An intimidatingly opulent ring.", 24, 9, 300, 45);
         new Item(160L, "Gold onyx ring", "The ultimate in finger decorations.", 24, 9, 300, 45);
+        new Item(161L, "Legendary dagger", "The dagger whispers of murders past.", 3, 11, 1000, 50);
+        new Item(162L, "Legendary sword", "An absurdly menacing blade.", 4, 11, 2000, 50);
+        new Item(163L, "Legendary longsword", "For long distance damage.", 5, 11, 2000, 50);
+        new Item(164L, "Legendary bow", "Fired arrows seem to hone in on the target.", 6, 11, 2000, 50);
+        new Item(165L, "Legendary half shield", "No, two halves don't make a whole. Sorry.", 7, 11, 3000, 52);
+        new Item(166L, "Legendary full shield", "Maximum protection, maximum style.", 8, 11, 3000, 52);
+        new Item(167L, "Legendary chainmail", "All the protection, with all the mobility.", 9, 11, 3000, 52);
+        new Item(168L, "Legendary platebody", "Distinctly better for not-dying than dragon armour.", 10, 11, 5000, 54);
+        new Item(169L, "Legendary half helmet", "Incoming arrows swerve away from the helmet.", 11, 11, 1000, 54);
+        new Item(170L, "Legendary full helmet", "Possibly the comfiest helmet ever made.", 12, 11, 4000, 56);
+        new Item(171L, "Legendary boots", "These boots were made for stomping. On enemies.", 13, 11, 2000, 56);
+        new Item(172L, "Legendary gloves", "These gloves seem to fuse to legendary weapons automatically.", 14, 11, 2000, 56);
+        new Item(173L, "Legendary pickaxe", "Fragments of ore seem to be drawn to the powerful blade.", 15, 11, 3000, 58);
+        new Item(174L, "Legendary hatchet", "Trees shake with fear when the axe draws closer.", 16, 11, 3000, 58);
+        new Item(175L, "Legendary fishing spear", "Arguably, this could be used as a weapon...", 17, 11, 3000, 58);
+        new Item(176L, "Legendary hammer", "Used for the forging of the mightiest equipment.", 18, 11, 2000, 58);
 
         new Location(1L, "Anvil");
         new Location(2L, "Furnace");
@@ -718,6 +734,24 @@ public class DatabaseHelper {
         new Recipe(147L, 1L, 147L, 2L, 1);
         new Recipe(147L, 1L, 148L, 1L, 1);
 
+        // Legendary finished
+        new Recipe(161L, 1L, 161L, 2L, 1);
+        new Recipe(162L, 1L, 162L, 2L, 2);
+        new Recipe(163L, 1L, 163L, 2L, 2);
+        new Recipe(164L, 1L, 164L, 2L, 2);
+        new Recipe(165L, 1L, 165L, 2L, 3);
+        new Recipe(166L, 1L, 166L, 2L, 3);
+        new Recipe(167L, 1L, 167L, 2L, 3);
+        new Recipe(168L, 1L, 168L, 2L, 5);
+        new Recipe(169L, 1L, 169L, 2L, 1);
+        new Recipe(170L, 1L, 170L, 2L, 4);
+        new Recipe(171L, 1L, 171L, 2L, 2);
+        new Recipe(172L, 1L, 172L, 2L, 2);
+        new Recipe(173L, 1L, 173L, 2L, 3);
+        new Recipe(174L, 1L, 174L, 2L, 3);
+        new Recipe(175L, 1L, 175L, 2L, 3);
+        new Recipe(176L, 1L, 176L, 2L, 2);
+
         new Setting(1L, "Sounds", false);
         new Setting(2L, "Music", false);
         new Setting(3L, "RestockNotifications", false);
@@ -894,6 +928,7 @@ public class DatabaseHelper {
         new Tier(8L, "Silver", 10);
         new Tier(9L, "Gold", 10);
         new Tier(10L, "None", 35);
+        new Tier(11L, "Premium", 0);
 
         new Type(1L, "Ore", 1, 30);
         new Type(2L, "Bar", 1, 30);

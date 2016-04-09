@@ -90,6 +90,13 @@ public class Player_Info extends SugarRecord {
         return xpInfo.getIntValue();
     }
 
+    public static boolean isPremium() {
+        Player_Info xpInfo = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("Premium")).first();
+
+        return xpInfo.getIntValue() == 1;
+    }
+
     public static int getXp() {
         Player_Info xpInfo = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("XP")).first();
