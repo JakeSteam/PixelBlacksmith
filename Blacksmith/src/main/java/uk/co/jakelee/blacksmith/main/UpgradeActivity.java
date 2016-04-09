@@ -45,36 +45,52 @@ public class UpgradeActivity extends Activity {
         upgradeTable.removeAllViews();
 
         for (final Upgrade upgrade : upgrades) {
+            if (upgrade.getName().equals("Legendary Chance") && !Player_Info.isPremium()) {
+                continue;
+            }
+
             TableRow upgradeRow = new TableRow(this);
-
-            String upgradeDescriptionText = String.format(getString(R.string.upgradeDescription),
-                    upgrade.getName(),
-                    upgrade.getCurrent(),
-                    upgrade.getMaximum(),
-                    upgrade.getUnits(),
-                    upgrade.getUpgradeCost());
-            TextViewPixel upgradeDescription = dh.createTextView(upgradeDescriptionText, 20);
-
-            ImageView upgradeButton = dh.createImageView("", "uparrow", 50, 50);
-            upgradeButton.setTag(upgrade.getId());
-            upgradeButton.setPadding(0, 0, 0, dh.convertDpToPixel(15));
-            upgradeButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
-                    int upgradeResponse = selectedUpgrade.tryUpgrade();
-                    if (upgradeResponse == Constants.SUCCESS) {
-                        ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.upgradeSuccess), upgrade.getName()));
-                        Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
-                        createUpgradeInterface();
-                    } else {
-                        ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse));
-                    }
-                }
-            });
+            TextViewPixel upgradeDescription = dh.createTextView(getUpgradeText(upgrade), 20);
+            ImageView upgradeButton = getUpgradeButton(upgrade);
 
             upgradeRow.addView(upgradeDescription);
             upgradeRow.addView(upgradeButton);
             upgradeTable.addView(upgradeRow);
+
+        }
+    }
+
+    private ImageView getUpgradeButton(final Upgrade upgrade) {
+        ImageView upgradeButton = dh.createImageView("", "uparrow", 50, 50);
+        upgradeButton.setTag(upgrade.getId());
+        upgradeButton.setPadding(0, 0, 0, dh.convertDpToPixel(15));
+        upgradeButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                upgradeOnClick(v, upgrade);
+            }
+        });
+
+        return upgradeButton;
+    }
+
+    private String getUpgradeText(Upgrade upgrade) {
+        return String.format(getString(R.string.upgradeDescription),
+                upgrade.getName(),
+                upgrade.getCurrent(),
+                upgrade.getMaximum(),
+                upgrade.getUnits(),
+                upgrade.getUpgradeCost());
+    }
+
+    private void upgradeOnClick(View v, Upgrade upgrade) {
+        Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
+        int upgradeResponse = selectedUpgrade.tryUpgrade();
+        if (upgradeResponse == Constants.SUCCESS) {
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.upgradeSuccess), upgrade.getName()));
+            Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
+            createUpgradeInterface();
+        } else {
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse));
         }
     }
 

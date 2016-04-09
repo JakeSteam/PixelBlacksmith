@@ -102,8 +102,8 @@
 
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeDescription">%1$s
-%2$d / %3$d %4$s
-%5$s coins</string>
+\n%2$d / %3$d %4$s
+\n%5$s coins</string>
 
     <string name="soldItem">Sold %1$sx %2$s for %3$s coin(s)</string>
 
@@ -121,6 +121,7 @@
     <string name="visitorArriving">%d visitor(s) wander into the shop&#8320;</string>
     <string name="visitorsFullRestockTime">Never!</string>
     <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s on the counter.</string>
+    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s and on the counter, and a rare %3$s!</string>
 
     <string name="statisticsCurrentXP">Current XP:</string>
     <string name="statisticsNextLevel">Next Level In:</string>

@@ -304,7 +304,7 @@ public class DatabaseHelper {
         new Player_Info("DateStarted", System.currentTimeMillis());
         new Player_Info("SavedLevel", 149, 0);
         new Player_Info("UpgradesBought", 0);
-        new Player_Info("Premium", 0);
+        new Player_Info("Premium", 1);
 
         // Powdered gems
         new Recipe(129L, 1L, 73L, 1L, 1);
@@ -962,6 +962,7 @@ public class DatabaseHelper {
         new Upgrade("Maximum Traders", "traders", 250, 3, 10, 3);
         new Upgrade("Gold Bonus", "%", 250, 0, 50, 40);
         new Upgrade("XP Bonus", "%", 250, 0, 50, 40);
+        new Upgrade("Legendary Chance", "%", 1250, 5, 100, 90);
 
         new Visitor_Stats(1L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(2L, 0, 52L, 1L, 0, 0L, 0L);

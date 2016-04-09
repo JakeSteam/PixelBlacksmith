@@ -35,6 +35,7 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -191,13 +192,8 @@ public class VisitorActivity extends Activity {
             if (visitorStats.getVisits() == Constants.VISITS_TROPHY) {
                 createVisitorTrophyReward(visitor);
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned);
-            } else {
-                int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
-                String itemName = createVisitorReward(visitor, numRewards);
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.visitorLeaves),
-                        numRewards,
-                        itemName));
             }
+            createVisitorReward();
 
             int numVisitors = Player_Info.getVisitorsCompleted();
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
@@ -212,26 +208,41 @@ public class VisitorActivity extends Activity {
         AlertDialogHelper.confirmVisitorDismiss(getApplicationContext(), visitor, this);
     }
 
-    public String createVisitorReward(Visitor visitor, int numRewards) {
+    public void createVisitorReward() {
+        int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
+        boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
         int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
-        List<Item> matchingItems = Select.from(Item.class).where(
-                Condition.prop("type").eq(typeID)).list();
-        Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
 
+        // Get normal reward
+        List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
+        Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
         Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
-        return selectedItem.getName();
+
+        // Get legendary reward
+        if (rewardLegendary) {
+            List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
+            Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
+            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeavesPremium),
+                    numRewards,
+                    selectedItem.getName(),
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED)));
+        } else {
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
+                    numRewards,
+                    selectedItem.getFullName(Constants.STATE_NORMAL)));
+        }
     }
 
     public void createVisitorTrophyReward(Visitor visitor) {
         Visitor_Type visitorType = Select.from(Visitor_Type.class).where(
                 Condition.prop("visitor_id").eq(visitor.getType())).first();
 
-        Item preferredItem;
         Long preferredState = visitorType.getStatePreferred();
         Long preferredTier = visitorType.getTierPreferred();
         Long preferredType = visitorType.getTypePreferred();
 
-        preferredItem = Select.from(Item.class).where(
+        Item preferredItem = Select.from(Item.class).where(
                 Condition.prop("tier").eq(preferredTier),
                 Condition.prop("type").eq(preferredType)).orderBy("value DESC").first();
 

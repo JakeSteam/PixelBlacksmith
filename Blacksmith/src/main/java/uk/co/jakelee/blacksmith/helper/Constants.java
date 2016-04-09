@@ -70,6 +70,7 @@ public class Constants {
     public static final int TIER_MAX = 7;
     public static final int TIER_TABLE_MIN = 1;
     public static final int TIER_TABLE_MAX = 10;
+    public static final int TIER_PREMIUM = 10;
 
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
