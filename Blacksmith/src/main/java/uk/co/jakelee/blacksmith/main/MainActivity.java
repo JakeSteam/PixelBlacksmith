@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
+import uk.co.jakelee.blacksmith.helper.PremiumHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArriving), newVisitors));
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorArriving), newVisitors));
                 }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
@@ -191,12 +192,23 @@ public class MainActivity extends AppCompatActivity implements
                 dh.createAllSlots(activity);
                 if (Trader_Stock.shouldRestock()) {
                     Trader_Stock.restockTraders();
+                    boolean taxPaid = PremiumHelper.payOutTax();
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid));
                 }
                 GooglePlayHelper.UpdateAchievements();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
         handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 60);
+    }
+
+    private String getRestockText(boolean taxPaid) {
+        if (taxPaid) {
+            return String.format(getString(R.string.restockTextWithPremium),
+                    PremiumHelper.getTaxAmount());
+        } else {
+            return getString(R.string.restockTextNoPremium);
+        }
     }
 
     public void updateVisitors() {

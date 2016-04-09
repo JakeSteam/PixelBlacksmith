@@ -91,6 +91,9 @@
     <string name="cloudSuccess">Cloud %s successful!</string>
     <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
 
+    <string name="restockTextWithPremium">All traders have been restocked, and have paid a tax of %s!</string>
+    <string name="restockTextNoPremium">All traders have been restocked!</string>
+
     <string name="notificationTrader">All traders have been restocked!</string>
     <string name="notificationVisitor">A new visitor has arrived!</string>
 
