@@ -930,17 +930,17 @@ public class DatabaseHelper {
         new State(6L, "White Enchant", "(white) ", 75L, 1);
         new State(7L, "Black Enchant", "(black) ", 76L, 1);
 
-        new Tier(1L, "Bronze", 30);
-        new Tier(2L, "Iron", 25);
-        new Tier(3L, "Steel", 15);
-        new Tier(4L, "Mithril", 10);
-        new Tier(5L, "Adamant", 7);
-        new Tier(6L, "Rune", 4);
-        new Tier(7L, "Dragon", 2);
-        new Tier(8L, "Silver", 10);
-        new Tier(9L, "Gold", 10);
-        new Tier(10L, "Premium", 0);
-        new Tier(20L, "None", 35);
+        new Tier(1L, "Bronze", 1, 30);
+        new Tier(2L, "Iron", 5, 25);
+        new Tier(3L, "Steel", 10, 15);
+        new Tier(4L, "Mithril", 20, 10);
+        new Tier(5L, "Adamant", 30, 7);
+        new Tier(6L, "Rune", 40, 4);
+        new Tier(7L, "Dragon", 50, 2);
+        new Tier(8L, "Silver", 35, 10);
+        new Tier(9L, "Gold", 45, 10);
+        new Tier(10L, "Premium", 1, 0);
+        new Tier(20L, "None", 1, 35);
 
         new Type(1L, "Ore", 1, 30);
         new Type(2L, "Bar", 1, 30);

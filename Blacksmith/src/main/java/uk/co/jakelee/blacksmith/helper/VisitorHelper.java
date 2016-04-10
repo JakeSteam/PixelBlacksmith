@@ -232,7 +232,8 @@ public class VisitorHelper {
         Tier selectedTier = new Tier();
 
         // Work out the total probability for the visitors.
-        List<Tier> tiers = Tier.listAll(Tier.class);
+        List<Tier> tiers = Select.from(Tier.class).where(
+                Condition.prop("minimum_level").lt(Player_Info.getPlayerLevel() + 2)).list(); // + 2 so next level unlocks are shown
         double totalWeighting = 0.0;
         for (Tier tier : tiers) {
             totalWeighting += tier.getWeighting();
