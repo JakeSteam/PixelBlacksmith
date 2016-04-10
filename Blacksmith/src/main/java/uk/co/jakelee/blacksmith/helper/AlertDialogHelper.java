@@ -18,14 +18,14 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class AlertDialogHelper {
     public static void confirmPrestige(final Context context, Activity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
         alertDialog.setMessage(context.getString(R.string.prestigeQuestion));
         alertDialog.setIcon(R.drawable.levels);
 
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 PrestigeHelper.prestigeAccount();
-                ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.prestigeComplete));
+                ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete), Player_Info.getPrestige()));
             }
         });
 
