@@ -62,12 +62,12 @@ public class Player_Info extends SugarRecord {
     }
 
     public static int convertXpToLevel(int xp) {
-        // Level = 0.25 * sqrt(xp)
+        // Level = 0.15 * sqrt(xp)
         return (int) (Constants.LEVEL_MODIFIER * Math.sqrt(xp));
     }
 
     public static int convertLevelToXp(int level) {
-        // XP = (Level / 0.25) ^ 2
+        // XP = (Level / 0.15) ^ 2
         return (int) Math.pow(level / Constants.LEVEL_MODIFIER, 2);
     }
 
@@ -90,10 +90,17 @@ public class Player_Info extends SugarRecord {
     }
 
     public static boolean isPremium() {
-        Player_Info xpInfo = Select.from(Player_Info.class).where(
+        Player_Info premium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
 
-        return xpInfo.getIntValue() == 1;
+        return premium.getIntValue() == 1;
+    }
+
+    public static int getPrestige() {
+        Player_Info prestige = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("Prestige")).first();
+
+        return prestige.getIntValue();
     }
 
     public static int getXp() {
@@ -112,7 +119,8 @@ public class Player_Info extends SugarRecord {
                 Condition.prop("name").eq("XP")).first();
 
         double xpMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus"));
-        double modifiedXp = xpMultiplier * xp;
+        double xpMultiplierPrestige = xpMultiplier * Player_Info.getPrestige();
+        double modifiedXp = xpMultiplierPrestige * xp;
 
         xpInfo.setIntValue(xpInfo.getIntValue() + (int) modifiedXp);
         xpInfo.save();

@@ -18,10 +18,8 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class AlertDialogHelper {
     public static void confirmPrestige(final Context context, Activity activity) {
-        final int visitorCost = VisitorHelper.getVisitorAddCost();
-
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
-        alertDialog.setMessage(String.format(context.getString(R.string.prestigeQuestion), visitorCost));
+        alertDialog.setMessage(context.getString(R.string.prestigeQuestion));
         alertDialog.setIcon(R.drawable.levels);
 
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
