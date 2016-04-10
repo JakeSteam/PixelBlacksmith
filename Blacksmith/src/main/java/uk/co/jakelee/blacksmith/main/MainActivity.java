@@ -17,6 +17,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -68,6 +71,11 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         dh.createAllSlots(this);
+        TourGuide.init(this)
+                .with(TourGuide.Technique.Click)
+                .setToolTip(new ToolTip().setTitle("Visitors").setDescription("Tap the visitor to get started"))
+                .setOverlay(new Overlay())
+                .playOn(coins);
     }
 
     private void assignUIElements() {

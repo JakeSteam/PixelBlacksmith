@@ -27,5 +27,8 @@ dependencies {
     compile 'com.android.support:percent:23.2.0'
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
+    compile ('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar'){
+        transitive=true
+    }
     compile project(':BaseGameUtils')
 }
