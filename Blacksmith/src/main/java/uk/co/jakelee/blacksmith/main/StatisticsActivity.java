@@ -84,6 +84,9 @@ public class StatisticsActivity extends Activity {
         int upgradesBought = Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.upgradesBought)).setText(String.format("%,d", upgradesBought));
 
+        int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
+        ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue), prestigeLevel));
+
     }
 
     public void openHelp(View view) {

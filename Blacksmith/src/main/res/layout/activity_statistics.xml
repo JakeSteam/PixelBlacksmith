@@ -289,6 +289,22 @@
                     android:paddingBottom="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsPrestige"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/prestigeLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </GridLayout>
         </ScrollView>
 

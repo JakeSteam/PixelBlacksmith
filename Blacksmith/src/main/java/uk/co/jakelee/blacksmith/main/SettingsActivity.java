@@ -9,14 +9,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SettingsActivity extends Activity {
@@ -109,6 +113,11 @@ public class SettingsActivity extends Activity {
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
         boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
+
+        TextView prestigeButton = (TextViewPixel) findViewById(R.id.prestigeButton);
+        if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
+            prestigeButton.setVisibility(View.VISIBLE);
+        }
     }
 
     public void toggleSetting(View v) {
@@ -138,6 +147,10 @@ public class SettingsActivity extends Activity {
 
             displaySettingsList();
         }
+    }
+
+    public void prestigeClick(View view) {
+        AlertDialogHelper.confirmPrestige(getApplicationContext(), this);
     }
 
     public void openCredits(View view) {

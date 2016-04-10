@@ -1,12 +1,12 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -17,7 +17,30 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class AlertDialogHelper {
-    public static void confirmVisitorAdd(final Context context, MainActivity activity) {
+    public static void confirmPrestige(final Context context, Activity activity) {
+        final int visitorCost = VisitorHelper.getVisitorAddCost();
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        alertDialog.setMessage(String.format(context.getString(R.string.prestigeQuestion), visitorCost));
+        alertDialog.setIcon(R.drawable.levels);
+
+        alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                PrestigeHelper.prestigeAccount();
+                ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.prestigeComplete));
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.prestigeCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void confirmVisitorAdd(final Context context, Activity activity) {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);

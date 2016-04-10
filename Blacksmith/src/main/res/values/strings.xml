@@ -34,6 +34,11 @@
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
 
+    <string name="prestigeQuestion">Would you like to lose all items / gold / upgrades / visitor progress in return for +100% all gold and xp? This CANNOT be undone.</string>
+    <string name="prestigeConfirm">Prestige</string>
+    <string name="prestigeComplete">Prestige successful! Good luck!</string>
+    <string name="prestigeCancel">Cancel</string>
+
     <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
     <string name="dismissConfirm">Dismiss</string>
     <string name="dismissComplete">The visitor leaves, a little bit grumpily.</string>
@@ -81,10 +86,15 @@
     <string name="restockNotificationSettingText">Restock notifications?</string>
     <string name="visitorNotificationSettingText">Visitor notifications?</string>
     <string name="notificationSoundSettingText">Enable notification sounds?</string>
+    <string name="prestigeSettingText">Prestige</string>
 
     <string name="unknownText">\???</string>
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
+
+    <string name="cloudLoadQuestion">Are you sure you wish to overwrite your local save with your cloud save? This CANNOT be undone!</string>
+    <string name="cloudLoadConfirm">Overwrite</string>
+    <string name="cloudLoadCancel">Cancel</string>
 
     <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
     <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
@@ -141,6 +151,9 @@
     <string name="statisticsNextVisitorCheck">Next Visitor:</string>
     <string name="statisticsBiggestTrade">Biggest Trade:</string>
     <string name="statisticsUpgradesBought">Upgrades Bought:</string>
+    <string name="statisticsPrestige">Prestige Level:</string>
+
+    <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
