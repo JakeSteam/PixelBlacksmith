@@ -24,6 +24,11 @@ public class PrestigeHelper {
 
     private static void increasePrestige() {
         Player_Info.increaseByOne(Player_Info.Statistic.Prestige);
+
+        Player_Info prestigeDate = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateLastPrestiged")).first();
+        prestigeDate.setLongValue(System.currentTimeMillis());
+        prestigeDate.save();
     }
 
     private static void resetItems() {

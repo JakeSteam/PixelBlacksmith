@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.model.Message;
 
 public class ToastHelper {
     private static Toast internalToast;
@@ -34,6 +35,8 @@ public class ToastHelper {
 
         internalToast = toast;
         internalToast.show();
+
+        Message.add(text);
     }
 
     private static void cancelCurrentToast() {

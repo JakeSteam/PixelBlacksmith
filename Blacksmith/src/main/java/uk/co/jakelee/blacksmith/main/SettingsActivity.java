@@ -153,6 +153,11 @@ public class SettingsActivity extends Activity {
         AlertDialogHelper.confirmPrestige(getApplicationContext(), this);
     }
 
+    public void openMessages(View view) {
+        Intent intent = new Intent(getApplicationContext(), MessagesActivity.class);
+        startActivity(intent);
+    }
+
     public void openCredits(View view) {
         Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
         startActivity(intent);

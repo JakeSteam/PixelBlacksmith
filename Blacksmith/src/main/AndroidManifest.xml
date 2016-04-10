@@ -85,6 +85,9 @@
             android:name=".main.UpgradeActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
+            android:name=".main.MessagesActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
             android:name=".main.PremiumActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 

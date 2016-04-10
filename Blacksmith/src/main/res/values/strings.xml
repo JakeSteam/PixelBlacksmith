@@ -21,6 +21,7 @@
     <string name="helpText">Help</string>
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
+    <string name="messagesText">Messages</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>

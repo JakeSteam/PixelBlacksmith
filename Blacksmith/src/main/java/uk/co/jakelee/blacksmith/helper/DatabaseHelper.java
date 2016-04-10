@@ -7,6 +7,7 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
+import uk.co.jakelee.blacksmith.model.Message;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -32,6 +33,7 @@ public class DatabaseHelper {
         createInventory();
         createItem();
         createLocation();
+        createMessage();
         createPlayerInfo();
         createRecipe();
         createSetting();
@@ -334,6 +336,10 @@ public class DatabaseHelper {
         new Location(4L, "Market");
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
+    }
+
+    private static void createMessage() {
+        new Message(System.currentTimeMillis(), "This is the first message! After 99 other messages, you'll never see it again.");
     }
 
     private static void createPlayerInfo() {

@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class DateHelper {
     public static String date = "yyyy/MM/dd";
-    public static String time = "HH:mm:ss";
+    public static String time = "HH:mm";
 
     public static int MILLISECONDS_IN_SECOND = 1000;
     public static int SECONDS_IN_MINUTE = 60;

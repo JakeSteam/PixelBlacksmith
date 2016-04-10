@@ -148,7 +148,7 @@
                 android:layout_marginLeft="1095dp"
                 android:onClick="openHelp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/helpbook"
+                android:src="@drawable/help"
                 app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="68%" />
 
