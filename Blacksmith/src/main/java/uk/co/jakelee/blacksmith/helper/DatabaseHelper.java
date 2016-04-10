@@ -1,9 +1,5 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import com.google.gson.Gson;
-
-import java.util.List;
-
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -22,12 +18,36 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
+import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class DatabaseHelper {
 
     public static void initialSQL() {
+        createAchievement();
+        createCategory();
+        createCharacter();
+        createCriteria();
+        createInventory();
+        createItem();
+        createLocation();
+        createPlayerInfo();
+        createRecipe();
+        createSetting();
+        createSlot();
+        createState();
+        createTier();
+        createTrader();
+        createType();
+        createUpgrade();
+        createVisitor();
+        createVisitorDemand();
+        createVisitorStats();
+        createVisitorType();
+    }
+
+    private static void createAchievement() {
         new Achievement("Open For Business 1", "Completed a visitor", 1, 9, "CgkI6tnE2Y4OEAIQAg");
         new Achievement("Open For Business 2", "Completed 10 visitors", 10, 9, "CgkI6tnE2Y4OEAIQAw");
         new Achievement("Open For Business 3", "Completed 100 visitors", 100, 9, "CgkI6tnE2Y4OEAIQBA");
@@ -56,14 +76,18 @@ public class DatabaseHelper {
         new Achievement("Mastery Of Jewellery", "Reach level 45", 45, 14, "CgkI6tnE2Y4OEAIQHQ");
         new Achievement("Mastery Of Rune", "Reach level 50", 50, 14, "CgkI6tnE2Y4OEAIQHg");
         new Achievement("Mastery Of Dragon", "Reach level 60", 60, 14, "CgkI6tnE2Y4OEAIQHw");
+    }
 
+    private static void createCategory() {
         new Category("Unknown", "Item type category could not be found.");
         new Category("Crafting", "An item that can be used for crafting.");
         new Category("Weapon", "An item that can be used as a weapon.");
         new Category("Armour", "An item that can be used as armour.");
         new Category("Skill", "An item that can be used to train a skill.");
         new Category("Rare", "An item that is extremely rare, and hard to obtain.");
+    }
 
+    private static void createCharacter() {
         new Character(1L, "Sean Keeper", "Greetings! See anything you like?");
         new Character(2L, "The Iron Knight", "Look, it's knight with a k, okay?");
         new Character(3L, "The Golden Warrior", "Can never have enough golden goldy gold. EVER.");
@@ -73,12 +97,30 @@ public class DatabaseHelper {
         new Character(7L, "GemBot 5000", "Bzzt!");
         new Character(8L, "Farmer's Little Friend", "You'd better not have any weedkiller on you.");
         new Character(9L, "Death Beetle", "I am an exclusive trader.");
+    }
 
+    private static void createCriteria() {
         new Criteria(1L, "State");
         new Criteria(2L, "Tier");
         new Criteria(3L, "Type");
+    }
 
-        new Inventory(1L, 1, 101);
+    public static void createInventory() {
+        // 200 gold
+        new Inventory(52L, Constants.STATE_NORMAL, 200);
+
+        // 15 copper & tin.
+        new Inventory(1L, Constants.STATE_NORMAL, 15);
+        new Inventory(2L, Constants.STATE_NORMAL, 15);
+
+        // 2 sapphires
+        new Inventory(73L, Constants.STATE_NORMAL, 2);
+
+        // 5 apples & cheese
+        new Inventory(77L, Constants.STATE_NORMAL, 5);
+        new Inventory(78L, Constants.STATE_NORMAL, 5);
+
+        /*new Inventory(1L, 1, 101);
         new Inventory(2L, 1, 102);
         new Inventory(3L, 1, 303);
         new Inventory(4L, 1, 104);
@@ -103,8 +145,10 @@ public class DatabaseHelper {
         new Inventory(129L, 1, 100);
         new Inventory(130L, 1, 100);
         new Inventory(131L, 1, 100);
-        new Inventory(148L, 1, 100);
+        new Inventory(148L, 1, 100);*/
+    }
 
+    private static void createItem() {
         new Item(1L, "Copper ore", "A piece of copper ore.", 1, 20, 2, 0);
         new Item(2L, "Tin ore", "A piece of tin ore.", 1, 20, 2, 0);
         new Item(3L, "Coal", "A piece of coal.", 1, 20, 5, 0);
@@ -281,14 +325,18 @@ public class DatabaseHelper {
         new Item(174L, "Legendary hatchet", "Trees shake with fear when the axe draws closer.", 16, 10, 3000, 58);
         new Item(175L, "Legendary fishing spear", "Arguably, this could be used as a weapon...", 17, 10, 3000, 58);
         new Item(176L, "Legendary hammer", "Used for the forging of the mightiest equipment.", 18, 10, 2000, 58);
+    }
 
+    private static void createLocation() {
         new Location(1L, "Anvil");
         new Location(2L, "Furnace");
         new Location(3L, "Selling");
         new Location(4L, "Market");
         new Location(5L, "Table");
         new Location(6L, "Enchanting");
+    }
 
+    private static void createPlayerInfo() {
         new Player_Info("XP", 45);
         new Player_Info("DatabaseVersion", 1);
         new Player_Info("ItemsSmelted", 0, 0);
@@ -306,7 +354,10 @@ public class DatabaseHelper {
         new Player_Info("UpgradesBought", 0);
         new Player_Info("Premium", 0);
         new Player_Info("Prestige", 1);
+        new Player_Info("DateLastPrestiged", 0L);
+    }
 
+    private static void createRecipe() {
         // Powdered gems
         new Recipe(129L, 1L, 73L, 1L, 1);
         new Recipe(130L, 1L, 74L, 1L, 1);
@@ -752,14 +803,89 @@ public class DatabaseHelper {
         new Recipe(174L, 1L, 174L, 2L, 3);
         new Recipe(175L, 1L, 175L, 2L, 3);
         new Recipe(176L, 1L, 176L, 2L, 2);
+    }
 
+    private static void createSetting() {
         new Setting(1L, "Sounds", false);
         new Setting(2L, "Music", false);
         new Setting(3L, "RestockNotifications", false);
         new Setting(4L, "NotificationSounds", false);
         new Setting(5L, "VisitorNotifications", false);
         new Setting(6L, "TrySignIn", true);
+    }
 
+    private static void createSlot() {
+        new Slot(1, 1, false);
+        new Slot(1, 3, false);
+        new Slot(1, 7, false);
+        new Slot(1, 16, false);
+        new Slot(1, 25, false);
+        new Slot(1, 33, false);
+        new Slot(1, 42, false);
+        new Slot(1, 1, true);
+        new Slot(2, 1, false);
+        new Slot(2, 4, false);
+        new Slot(2, 8, false);
+        new Slot(2, 17, false);
+        new Slot(2, 24, false);
+        new Slot(2, 30, false);
+        new Slot(2, 44, false);
+        new Slot(2, 1, true);
+        new Slot(3, 1, false);
+        new Slot(3, 5, false);
+        new Slot(3, 13, false);
+        new Slot(3, 20, false);
+        new Slot(3, 35, false);
+        new Slot(3, 1, true);
+        new Slot(4, 1, false);
+        new Slot(4, 6, false);
+        new Slot(4, 10, false);
+        new Slot(4, 23, false);
+        new Slot(4, 40, false);
+        new Slot(4, 1, true);
+        new Slot(5, 1, false);
+        new Slot(5, 5, false);
+        new Slot(5, 10, false);
+        new Slot(5, 15, false);
+        new Slot(5, 27, false);
+        new Slot(5, 39, false);
+        new Slot(5, 50, false);
+        new Slot(5, 1, true);
+        new Slot(6, 1, false);
+        new Slot(6, 20, false);
+        new Slot(6, 30, false);
+        new Slot(6, 40, false);
+        new Slot(6, 50, false);
+        new Slot(6, 60, false);
+        new Slot(6, 70, false);
+        new Slot(6, 1, true);
+    }
+
+    private static void createState() {
+        new State(1L, "Normal", "", 0L, 15);
+        new State(2L, "Unfinished", "(unf) ", 0L, 15);
+        new State(3L, "Red Enchant", "(red) ", 72L, 2);
+        new State(4L, "Blue Enchant", "(blue) ", 73L, 2);
+        new State(5L, "Green Enchant", "(green) ", 74L, 1);
+        new State(6L, "White Enchant", "(white) ", 75L, 1);
+        new State(7L, "Black Enchant", "(black) ", 76L, 1);
+    }
+
+    private static void createTier() {
+        new Tier(1L, "Bronze", 1, 30);
+        new Tier(2L, "Iron", 5, 25);
+        new Tier(3L, "Steel", 10, 15);
+        new Tier(4L, "Mithril", 20, 10);
+        new Tier(5L, "Adamant", 30, 7);
+        new Tier(6L, "Rune", 40, 4);
+        new Tier(7L, "Dragon", 50, 2);
+        new Tier(8L, "Silver", 35, 10);
+        new Tier(9L, "Gold", 45, 10);
+        new Tier(10L, "Premium", 1, 0);
+        new Tier(20L, "None", 1, 35);
+    }
+
+    private static void createTrader() {
         new Trader(1L, 4, "The Scraps", "I was gonna chuck this stuff out.. you interested?", 0, 0, 0, 60);
         new Trader_Stock(1L, 1L, 1, 0, 5);
         new Trader_Stock(1L, 1L, 1, 40, 35);
@@ -877,72 +1003,9 @@ public class DatabaseHelper {
 
         new Trader(9L, 4, "The Exclusive Emporium", "You won't find any of this anywhere else!", 30, 0, 0, 1);
         new Trader_Stock(19L, 148L, 1, 0, 1);
+    }
 
-        new Slot(1, 1, false);
-        new Slot(1, 3, false);
-        new Slot(1, 7, false);
-        new Slot(1, 16, false);
-        new Slot(1, 25, false);
-        new Slot(1, 33, false);
-        new Slot(1, 42, false);
-        new Slot(1, 1, true);
-        new Slot(2, 1, false);
-        new Slot(2, 4, false);
-        new Slot(2, 8, false);
-        new Slot(2, 17, false);
-        new Slot(2, 24, false);
-        new Slot(2, 30, false);
-        new Slot(2, 44, false);
-        new Slot(2, 1, true);
-        new Slot(3, 1, false);
-        new Slot(3, 5, false);
-        new Slot(3, 13, false);
-        new Slot(3, 20, false);
-        new Slot(3, 35, false);
-        new Slot(3, 1, true);
-        new Slot(4, 1, false);
-        new Slot(4, 6, false);
-        new Slot(4, 10, false);
-        new Slot(4, 23, false);
-        new Slot(4, 40, false);
-        new Slot(4, 1, true);
-        new Slot(5, 1, false);
-        new Slot(5, 5, false);
-        new Slot(5, 10, false);
-        new Slot(5, 15, false);
-        new Slot(5, 27, false);
-        new Slot(5, 39, false);
-        new Slot(5, 50, false);
-        new Slot(5, 1, true);
-        new Slot(6, 1, false);
-        new Slot(6, 20, false);
-        new Slot(6, 30, false);
-        new Slot(6, 40, false);
-        new Slot(6, 50, false);
-        new Slot(6, 60, false);
-        new Slot(6, 70, false);
-        new Slot(6, 1, true);
-
-        new State(1L, "Normal", "", 0L, 15);
-        new State(2L, "Unfinished", "(unf) ", 0L, 15);
-        new State(3L, "Red Enchant", "(red) ", 72L, 2);
-        new State(4L, "Blue Enchant", "(blue) ", 73L, 2);
-        new State(5L, "Green Enchant", "(green) ", 74L, 1);
-        new State(6L, "White Enchant", "(white) ", 75L, 1);
-        new State(7L, "Black Enchant", "(black) ", 76L, 1);
-
-        new Tier(1L, "Bronze", 1, 30);
-        new Tier(2L, "Iron", 5, 25);
-        new Tier(3L, "Steel", 10, 15);
-        new Tier(4L, "Mithril", 20, 10);
-        new Tier(5L, "Adamant", 30, 7);
-        new Tier(6L, "Rune", 40, 4);
-        new Tier(7L, "Dragon", 50, 2);
-        new Tier(8L, "Silver", 35, 10);
-        new Tier(9L, "Gold", 45, 10);
-        new Tier(10L, "Premium", 1, 0);
-        new Tier(20L, "None", 1, 35);
-
+    private static void createType() {
         new Type(1L, "Ore", 1, 30);
         new Type(2L, "Bar", 1, 30);
         new Type(3L, "Dagger", 2, 25);
@@ -968,15 +1031,34 @@ public class DatabaseHelper {
         new Type(23L, "Rare", 6, 0);
         new Type(24L, "Ring", 4, 1);
         new Type(100L, "Internal", 0, 0);
+    }
 
+    public static void createUpgrade() {
         new Upgrade("Visitor Spawn Time", "mins", 1000, 1, 25, 10, 25);
         new Upgrade("Shop Restock Time", "hours", 250, 1, 24, 2, 24);
         new Upgrade("Maximum Visitors", "visitors", 1000, 1, 2, 10, 2);
         new Upgrade("Maximum Traders", "traders", 250, 1, 3, 10, 3);
-        new Upgrade("Gold Bonus", "%", 250, 5, 0, 50, 40);
-        new Upgrade("XP Bonus", "%", 250, 5, 0, 50, 40);
-        new Upgrade("Legendary Chance", "%", 1250, 5, 5, 100, 90);
+        new Upgrade("Gold Bonus", "%", 250, 5, 0, 50, 0);
+        new Upgrade("XP Bonus", "%", 250, 5, 0, 50, 0);
+        new Upgrade("Legendary Chance", "%", 1250, 5, 5, 100, 5);
+    }
 
+    public static void createVisitor() {
+        Visitor visitor = new Visitor(System.currentTimeMillis(), 33L);
+        visitor.save();
+    }
+
+    public static void createVisitorDemand() {
+        // Req: 2 ore, 1 bar, 1 unfinished
+        new Visitor_Demand(1L, 3L, 1L, 0, 2, true);
+        new Visitor_Demand(1L, 3L, 2L, 0, 1, true);
+        new Visitor_Demand(1L, 1L, 2L, 0, 1, true);
+
+        // Opt: 1 cheese
+        new Visitor_Demand(1L, 3L, 21L, 0, 1, false);
+    }
+
+    public static void createVisitorStats() {
         new Visitor_Stats(1L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(2L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(3L, 0, 52L, 1L, 0, 0L, 0L);
@@ -1009,7 +1091,10 @@ public class DatabaseHelper {
         new Visitor_Stats(30L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(31L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(32L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(33L, 0, 52L, 1L, 0, 0L, 0L);
+    }
 
+    public static void createVisitorType() {
         new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3);
         new Visitor_Type(2L, "Mister Hatchet", "If only I was a woodcutter...", 3L, 16L, 1L, 1.2, 1.2, 1.2, false, false, false, 6);
         new Visitor_Type(3L, "Lord of the Junk", "It's not rubbish, it's treasure!", 1L, 3L, 2L, 1.05, 1.05, 1.05, false, false, false, 10);
@@ -1042,97 +1127,7 @@ public class DatabaseHelper {
         new Visitor_Type(30L, "Archer", "It's all about the bullseye.", 2L, 6L, 5L, 1.10, 1.25, 1.15, false, false, false, 2);
         new Visitor_Type(31L, "Steve", "Gotta dig deeper and deeper and deeper and...", 6L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 6);
         new Visitor_Type(32L, "Whippersnapper", "Don't tell Steve, but his secret fish pond isn't so secret.", 20L, 17L, 4L, 1.05, 1.20, 1.02, false, false, false, 6);
-    }
-
-    public static byte[] createBackup() {
-        Gson gson = new Gson();
-        String backupString = "";
-
-        List<Inventory> inventories = Inventory.listAll(Inventory.class);
-        List<Player_Info> player_infos = Player_Info.listAll(Player_Info.class);
-        List<Setting> settings = Setting.listAll(Setting.class);
-        List<Trader> traders = Trader.listAll(Trader.class);
-        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
-        List<Visitor> visitors = Visitor.listAll(Visitor.class);
-        List<Visitor_Stats> visitor_stats = Visitor_Stats.listAll(Visitor_Stats.class);
-        List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
-
-        backupString = gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(traders) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(upgrades) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitors) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_types);
-
-        return backupString.getBytes();
-
-    }
-
-    public static boolean applyBackup(String backupData) {
-        Gson gson = new Gson();
-
-        String[] splitData = splitBackupData(backupData);
-
-        Inventory[] inventories = gson.fromJson(splitData[0], Inventory[].class);
-        Inventory.deleteAll(Inventory.class);
-        for (Inventory inventory : inventories) {
-            inventory.save();
-        }
-
-        Player_Info[] player_infos = gson.fromJson(splitData[1], Player_Info[].class);
-        Player_Info.deleteAll(Player_Info.class);
-        for (Player_Info player_info : player_infos) {
-            player_info.save();
-        }
-
-        Setting[] settings = gson.fromJson(splitData[2], Setting[].class);
-        Setting.deleteAll(Setting.class);
-        for (Setting setting : settings) {
-            setting.save();
-        }
-
-        Trader[] traders = gson.fromJson(splitData[3], Trader[].class);
-        Trader.deleteAll(Trader.class);
-        for (Trader trader : traders) {
-            trader.save();
-        }
-
-        Upgrade[] upgrades = gson.fromJson(splitData[4], Upgrade[].class);
-        Upgrade.deleteAll(Upgrade.class);
-        for (Upgrade upgrade : upgrades) {
-            upgrade.save();
-        }
-
-        Visitor[] visitors = gson.fromJson(splitData[5], Visitor[].class);
-        Visitor.deleteAll(Visitor.class);
-        for (Visitor visitor : visitors) {
-            visitor.save();
-        }
-
-        Visitor_Stats[] visitor_stats = gson.fromJson(splitData[6], Visitor_Stats[].class);
-        Visitor_Stats.deleteAll(Visitor_Stats.class);
-        for (Visitor_Stats visitor_stat : visitor_stats) {
-            visitor_stat.save();
-        }
-
-        Visitor_Type[] visitor_types = gson.fromJson(splitData[7], Visitor_Type[].class);
-        Visitor_Type.deleteAll(Visitor_Type.class);
-        for (Visitor_Type visitor_type : visitor_types) {
-            visitor_type.save();
-        }
-
-        return true;
-    }
-
-    private static String[] splitBackupData(String backupData) {
-        String[] splitData = backupData.split(GooglePlayHelper.SAVE_DELIMITER);
-        for (int i = 0; i < splitData.length; i++) {
-            splitData[i] = splitData[i].replace(GooglePlayHelper.SAVE_DELIMITER, "");
-        }
-
-        return splitData;
+        new Visitor_Type(33L, "Mr T Utorial", "Need a hand?", 1L, 3L, 4L, 1.05, 1.05, 1.05, false, false, false, 1);
     }
 }
 

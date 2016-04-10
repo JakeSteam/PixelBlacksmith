@@ -153,8 +153,10 @@
     <string name="statisticsBiggestTrade">Biggest Trade:</string>
     <string name="statisticsUpgradesBought">Upgrades Bought:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
+    <string name="statisticsLastPrestiged">Last Prestige:</string>
 
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
+    <string name="statisticsLastPrestigedNever">Never!</string>
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>

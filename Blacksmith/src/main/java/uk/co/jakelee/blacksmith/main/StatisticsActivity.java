@@ -74,7 +74,7 @@ public class StatisticsActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(getString(R.string.visitorsFullRestockTime));
         }
 
-        Long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
+        long unixRestarted = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateStarted")).first().getLongValue();
         String dateRestarted = DateHelper.displayTime(unixRestarted, DateHelper.date);
         ((TextViewPixel) findViewById(R.id.dateStarted)).setText(dateRestarted);
 
@@ -86,6 +86,15 @@ public class StatisticsActivity extends Activity {
 
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue), prestigeLevel));
+
+        long lastPrestiged = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateLastPrestiged")).first().getLongValue();
+        if (lastPrestiged > 0) {
+            String datePrestiged = DateHelper.displayTime(lastPrestiged, DateHelper.date);
+            ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(datePrestiged);
+        } else {
+            ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(R.string.statisticsLastPrestigedNever);
+        }
+
 
     }
 

@@ -121,8 +121,7 @@ public class VisitorHelper {
         if (existingCriteria.contains(currentCriteria)) {
             generateDemand(i, visitorID);
         } else {
-            Visitor_Demand demand = new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);
-            demand.save();
+            new Visitor_Demand(visitorID, criteriaType, criteriaValue, 0, quantity, required);
             existingCriteria.add(currentCriteria);
         }
     }

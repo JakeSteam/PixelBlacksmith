@@ -19,8 +19,7 @@ public class Constants {
     public static final int TRADER_TAX_MULTIPLIER = 200;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
 
-    public static final int DEFAULT_COINS = 200;
-    public static final int DEFAULT_XP = 45;
+    public static final int STARTING_XP = 45;
 
     public static final int TRADER_OUT_OF_STOCK = -1;
     public static final int TRADER_NOT_PRESENT = 0;
