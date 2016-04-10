@@ -10,6 +10,7 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -91,8 +92,10 @@ public class StatisticsActivity extends Activity {
         if (lastPrestiged > 0) {
             String datePrestiged = DateHelper.displayTime(lastPrestiged, DateHelper.date);
             ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(datePrestiged);
-        } else {
+        } else if (lastPrestiged == 0 && Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED){
             ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(R.string.statisticsLastPrestigedNever);
+        } else {
+            ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(String.format(getString(R.string.statisticsLastPrestigedLowLevel), Constants.PRESTIGE_LEVEL_REQUIRED));
         }
 
 

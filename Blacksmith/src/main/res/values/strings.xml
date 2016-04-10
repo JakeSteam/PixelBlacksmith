@@ -158,6 +158,7 @@
 
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
+    <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
