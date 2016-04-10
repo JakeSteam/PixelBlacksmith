@@ -149,25 +149,25 @@ public class DatabaseHelper {
     }
 
     private static void createItem() {
-        new Item(1L, "Copper ore", "A piece of copper ore.", 1, 20, 2, 0);
-        new Item(2L, "Tin ore", "A piece of tin ore.", 1, 20, 2, 0);
-        new Item(3L, "Coal", "A piece of coal.", 1, 20, 5, 0);
-        new Item(4L, "Iron ore", "A piece of iron ore.", 1, 20, 7, 0);
-        new Item(5L, "Mithril ore", "A piece of mithril ore.", 1, 20, 12, 0);
-        new Item(6L, "Adamantite ore", "A piece of adamantite ore.", 1, 20, 25, 0);
-        new Item(7L, "Runite ore", "A piece of runite ore.", 1, 20, 50, 0);
-        new Item(8L, "Gold nugget", "A golden nugget.", 1, 20, 30, 0);
-        new Item(9L, "Silver nugget", "A silver nugget.", 1, 20, 20, 0);
-        new Item(10L, "Dragonite ore", "A piece of dragonite ore.", 1, 20, 100, 0);
-        new Item(11L, "Bronze bar", "A fresh bar of bronze.", 2, 20, 7, 1);
-        new Item(12L, "Iron bar", "A fresh bar of iron.", 2, 20, 15, 5);
-        new Item(13L, "Steel bar", "A fresh bar of steel.", 2, 20, 20, 10);
-        new Item(14L, "Mithril bar", "A fresh bar of mithril.", 2, 20, 24, 20);
-        new Item(15L, "Adamant bar", "A fresh bar of adamant.", 2, 20, 50, 30);
-        new Item(16L, "Rune bar", "A fresh bar of rune.", 2, 20, 100, 40);
-        new Item(17L, "Silver bar", "A fresh bar of silver.", 2, 20, 22, 35);
-        new Item(18L, "Gold bar", "A fresh bar of gold.", 2, 20, 35, 45);
-        new Item(19L, "Dragon bar", "A fresh bar of dragon.", 2, 20, 175, 50);
+        new Item(1L, "Copper ore", "A piece of copper ore.", 1, 11, 2, 0);
+        new Item(2L, "Tin ore", "A piece of tin ore.", 1, 11, 2, 0);
+        new Item(3L, "Coal", "A piece of coal.", 1, 11, 5, 0);
+        new Item(4L, "Iron ore", "A piece of iron ore.", 1, 11, 7, 0);
+        new Item(5L, "Mithril ore", "A piece of mithril ore.", 1, 11, 12, 0);
+        new Item(6L, "Adamantite ore", "A piece of adamantite ore.", 1, 11, 25, 0);
+        new Item(7L, "Runite ore", "A piece of runite ore.", 1, 11, 50, 0);
+        new Item(8L, "Gold nugget", "A golden nugget.", 1, 11, 30, 0);
+        new Item(9L, "Silver nugget", "A silver nugget.", 1, 11, 20, 0);
+        new Item(10L, "Dragonite ore", "A piece of dragonite ore.", 1, 11, 100, 0);
+        new Item(11L, "Bronze bar", "A fresh bar of bronze.", 2, 11, 7, 1);
+        new Item(12L, "Iron bar", "A fresh bar of iron.", 2, 11, 15, 5);
+        new Item(13L, "Steel bar", "A fresh bar of steel.", 2, 11, 20, 10);
+        new Item(14L, "Mithril bar", "A fresh bar of mithril.", 2, 11, 24, 20);
+        new Item(15L, "Adamant bar", "A fresh bar of adamant.", 2, 11, 50, 30);
+        new Item(16L, "Rune bar", "A fresh bar of rune.", 2, 11, 100, 40);
+        new Item(17L, "Silver bar", "A fresh bar of silver.", 2, 11, 22, 35);
+        new Item(18L, "Gold bar", "A fresh bar of gold.", 2, 11, 35, 45);
+        new Item(19L, "Dragon bar", "A fresh bar of dragon.", 2, 11, 175, 50);
         new Item(20L, "Bronze dagger", "A blunt bronze dagger.", 3, 1, 8, 1);
         new Item(21L, "Bronze sword", "A fairly blunt bronze sword.", 4, 1, 15, 1);
         new Item(22L, "Bronze longsword", "A longer bronze sword.", 5, 1, 15, 1);
@@ -200,7 +200,7 @@ public class DatabaseHelper {
         new Item(49L, "Iron hatchet", "A standard axe for cutting down trees.", 16, 2, 32, 9);
         new Item(50L, "Iron fishing rod", "A standard rod for catching fish.", 17, 2, 32, 9);
         new Item(51L, "Iron hammer", "A standard hammer who misses his anvil.", 18, 2, 17, 9);
-        new Item(52L, "Coins", "Coins! Glorious coins!", 100, 20, 1, 1);
+        new Item(52L, "Coins", "Coins! Glorious coins!", 100, 11, 1, 1);
         new Item(53L, "Steel dagger", "An average steel dagger.", 3, 3, 23, 10);
         new Item(54L, "Steel sword", "A slightly blunt steel sword.", 4, 3, 43, 10);
         new Item(55L, "Steel longsword", "An even longer steel sword.", 5, 3, 43, 10);
@@ -217,18 +217,18 @@ public class DatabaseHelper {
         new Item(66L, "Steel hatchet", "A sharper axe for cutting down trees.", 16, 3, 43, 18);
         new Item(67L, "Steel fishing rod", "A sharper rod for catching fish.", 17, 3, 43, 18);
         new Item(68L, "Steel hammer", "A heavier hammer that tends to hit the anvil. Just.", 18, 3, 23, 18);
-        new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 20, 1, 1);
-        new Item(70L, "Silk", "A fine strip of silk.", 19, 20, 1, 1);
-        new Item(71L, "Logs", "Some basic logs.", 19, 20, 1, 1);
-        new Item(72L, "Ruby", "A red gem.", 20, 20, 150, 12);
-        new Item(73L, "Sapphire", "A blue gem.", 20, 20, 150, 12);
-        new Item(74L, "Emerald", "A green gem.", 20, 20, 150, 12);
-        new Item(75L, "Diamond", "A white gem.", 20, 20, 250, 15);
-        new Item(76L, "Onyx", "A black gem.", 20, 20, 250, 15);
-        new Item(77L, "Apple", "A nice, shiny apple.", 21, 20, 5, 1);
-        new Item(78L, "Cheese", "Smells a bit cheesy.", 21, 20, 5, 1);
-        new Item(79L, "Bread", "A bit stale, but edible.", 21, 20, 5, 1);
-        new Item(80L, "Raw Meat", "Still dripping. Yuck.", 21, 20, 5, 1);
+        new Item(69L, "Spidersilk", "A stand of spidersilk.", 19, 11, 1, 1);
+        new Item(70L, "Silk", "A fine strip of silk.", 19, 11, 1, 1);
+        new Item(71L, "Logs", "Some basic logs.", 19, 11, 1, 1);
+        new Item(72L, "Ruby", "A red gem.", 20, 11, 150, 12);
+        new Item(73L, "Sapphire", "A blue gem.", 20, 11, 150, 12);
+        new Item(74L, "Emerald", "A green gem.", 20, 11, 150, 12);
+        new Item(75L, "Diamond", "A white gem.", 20, 11, 250, 15);
+        new Item(76L, "Onyx", "A black gem.", 20, 11, 250, 15);
+        new Item(77L, "Apple", "A nice, shiny apple.", 21, 11, 5, 1);
+        new Item(78L, "Cheese", "Smells a bit cheesy.", 21, 11, 5, 1);
+        new Item(79L, "Bread", "A bit stale, but edible.", 21, 11, 5, 1);
+        new Item(80L, "Raw Meat", "Still dripping. Yuck.", 21, 11, 5, 1);
         new Item(81L, "Mithril dagger", "A pretty good blue-tinted dagger.", 3, 4, 29, 20);
         new Item(82L, "Mithril sword", "A slightly sharp sword, with a blue hue.", 4, 4, 53, 20);
         new Item(83L, "Mithril longsword", "item = 'long' + previousItem;", 5, 4, 53, 20);
@@ -277,9 +277,9 @@ public class DatabaseHelper {
         new Item(126L, "Rune hatchet", "An extremely sharp axe, for the mightiest of trees.", 16, 6, 210, 48);
         new Item(127L, "Rune fishing rod", "The fish won't rune away from this rod!", 17, 6, 210, 48);
         new Item(128L, "Rune hammer", "The mightiest of hammers! Or at least a very mighty one.", 18, 6, 110, 48);
-        new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 20, 20, 0);
-        new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 20, 30, 0);
-        new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 20, 40, 0);
+        new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 11, 20, 0);
+        new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 11, 30, 0);
+        new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 11, 40, 0);
         new Item(132L, "Dragon dagger", "The deadliest dragon dagger!", 3, 7, 200, 50);
         new Item(133L, "Dragon sword", "Sharp as a dragon's wit.", 4, 7, 375, 50);
         new Item(134L, "Dragon longsword", "A very long, and very sharp, sword.", 5, 7, 375, 50);
@@ -862,13 +862,13 @@ public class DatabaseHelper {
     }
 
     private static void createState() {
-        new State(1L, "Normal", "", 0L, 15);
-        new State(2L, "Unfinished", "(unf) ", 0L, 15);
-        new State(3L, "Red Enchant", "(red) ", 72L, 2);
-        new State(4L, "Blue Enchant", "(blue) ", 73L, 2);
-        new State(5L, "Green Enchant", "(green) ", 74L, 1);
-        new State(6L, "White Enchant", "(white) ", 75L, 1);
-        new State(7L, "Black Enchant", "(black) ", 76L, 1);
+        new State(1L, "Normal", "", 0L, 0, 15);
+        new State(2L, "Unfinished", "(unf) ", 0L, 0, 15);
+        new State(3L, "Red Enchant", "(red) ", 72L, 10, 2);
+        new State(4L, "Blue Enchant", "(blue) ", 73L, 15, 2);
+        new State(5L, "Green Enchant", "(green) ", 74L, 20, 1);
+        new State(6L, "White Enchant", "(white) ", 75L, 25, 1);
+        new State(7L, "Black Enchant", "(black) ", 76L, 30, 1);
     }
 
     private static void createTier() {
@@ -882,7 +882,7 @@ public class DatabaseHelper {
         new Tier(8L, "Silver", 35, 10);
         new Tier(9L, "Gold", 45, 10);
         new Tier(10L, "Premium", 1, 0);
-        new Tier(20L, "None", 1, 35);
+        new Tier(11L, "None", 1, 35);
     }
 
     private static void createTrader() {

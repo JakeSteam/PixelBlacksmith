@@ -7,16 +7,18 @@ public class State extends SugarRecord {
     String name;
     String prefix;
     Long initiatingItem;
+    int minimumLevel;
     int weighting;
 
     public State() {
     }
 
-    public State(Long id, String name, String prefix, Long initiatingItem, int weighting) {
+    public State(Long id, String name, String prefix, Long initiatingItem, int minimumLevel, int weighting) {
         this.id = id;
         this.name = name;
         this.prefix = prefix;
         this.initiatingItem = initiatingItem;
+        this.minimumLevel = minimumLevel;
         this.weighting = weighting;
         this.save();
     }
@@ -51,6 +53,14 @@ public class State extends SugarRecord {
 
     public void setInitiatingItem(Long initiatingItem) {
         this.initiatingItem = initiatingItem;
+    }
+
+    public int getMinimumLevel() {
+        return minimumLevel;
+    }
+
+    public void setMinimumLevel(int minimumLevel) {
+        this.minimumLevel = minimumLevel;
     }
 
     public int getWeighting() {

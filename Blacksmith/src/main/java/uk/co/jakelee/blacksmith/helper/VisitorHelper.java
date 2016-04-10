@@ -181,7 +181,8 @@ public class VisitorHelper {
         State selectedState = new State();
 
         // Work out the total probability for the visitors.
-        List<State> states = State.listAll(State.class);
+        List<State> states = Select.from(State.class).where(
+                Condition.prop("minimum_level").lt(Player_Info.getPlayerLevel() + 1)).list();
         double totalWeighting = 0.0;
         for (State state : states) {
             totalWeighting += state.getWeighting();
