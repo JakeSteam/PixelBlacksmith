@@ -102,7 +102,7 @@ public class GooglePlayHelper {
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
         if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
             int difference = currentValue - lastSentValue;
-            if (achievement.getMaximumValue() == 1) {
+            if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17) {
                 Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
             } else {
                 Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
