@@ -259,15 +259,23 @@
             android:textColor="@color/white"
             android:textSize="24sp" />
 
+        <ImageView
+            android:id="@+id/levelBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/levelbackground"
+            android:layout_toLeftOf="@id/currentLevelProgress" />
+
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/currentLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/currentLevelProgress"
-            android:background="@drawable/levelbackground"
+            android:layout_alignLeft="@id/levelBackground"
+            android:layout_alignRight="@id/levelBackground"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:gravity="center_horizontal"/>
     </RelativeLayout>
 
 </RelativeLayout>
