@@ -181,6 +181,10 @@ public class DisplayHelper {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
         int displayedVisitors = 0;
 
+        if (visitors.size() == 0) {
+            VisitorHelper.tryCreateVisitor();
+        }
+
         for (final Visitor visitor : visitors) {
 
             // Creating visitor image
@@ -313,8 +317,7 @@ public class DisplayHelper {
                     item.getPrefix(state),
                     item.getName()));
             itemDesc.setText(item.getDescription());
-            itemCount.setText(String.format("%d",
-                    numberOwned));
+            itemCount.setText(String.format("%d", numberOwned));
         } else {
             itemName.setText(R.string.unknownText);
             itemDesc.setText(R.string.unknownText);
