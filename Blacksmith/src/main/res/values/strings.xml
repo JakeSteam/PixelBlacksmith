@@ -4,6 +4,8 @@
     <string name="tutorialText">Tutorial</string>
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying&#8230; well, everything. They are earned by trading away items.</string>
+    <string name="tutorialLevel">Level</string>
+    <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, trading, etc.</string>
 
     <string name="marketText">Market</string>
     <string name="menuText">Menu</string>

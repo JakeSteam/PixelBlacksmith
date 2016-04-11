@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 
+import tourguide.tourguide.ChainTourGuide;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -101,7 +102,10 @@ public class MainActivity extends AppCompatActivity implements
 
     public static void startTutorial() {
         mainScroller.scrollTo(0, 0);
-        TutorialHelper.createTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText);
+        TutorialHelper th = new TutorialHelper();
+        ChainTourGuide tut1 = th.createTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText);
+        ChainTourGuide tut2 = th.createTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText);
+        th.finishUp(mainActivity, tut1, tut2);
     }
 
     @Override
