@@ -178,6 +178,18 @@
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
+                    android:onClick="openTutorial"
+                    android:text="@string/tutorialText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
                     android:onClick="openCredits"
                     android:text="@string/creditsText"
                     android:textColor="@color/black"

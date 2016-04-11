@@ -8,6 +8,10 @@ import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 
 public class TutorialHelper {
+    public static void createTutorial(Activity activity, View view, int titleID, int bodyID) {
+        createTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID));
+    }
+
     public static void createTutorial(Activity activity, View view, String title, String body) {
         final TourGuide handler = TourGuide.init(activity)
                 .with(TourGuide.Technique.Click)

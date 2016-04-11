@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,7 +18,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 
-import tourguide.tourguide.TourGuide;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -41,16 +41,19 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
     public static DisplayHelper dh;
     public static Handler handler = new Handler();
+    public int newVisitors;
+    public Intent musicService;
+    public boolean musicServiceIsStarted = false;
+
+    // UI Elements
+    public static Activity mainActivity;
+    public static HorizontalScrollView mainScroller;
     public static TextViewPixel coins;
     public static LinearLayout visitorContainer;
     public static LinearLayout visitorContainerOverflow;
     public static TextViewPixel level;
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
-    public int newVisitors;
-    public Intent musicService;
-    public boolean musicServiceIsStarted = false;
-    private TourGuide tourGuideHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +74,12 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         dh.createAllSlots(this);
-        TutorialHelper.createTutorial(this, coins, "Visitors", "Tap the visitor to get started");
     }
 
     private void assignUIElements() {
+        mainActivity = this;
+        mainScroller = (HorizontalScrollView) findViewById(R.id.mainScroller);
+
         coins = (TextViewPixel) findViewById(R.id.coinCount);
         visitorContainer = (LinearLayout) findViewById(R.id.visitors_container);
         visitorContainerOverflow = (LinearLayout) findViewById(R.id.visitors_container_overflow);
@@ -90,6 +95,13 @@ public class MainActivity extends AppCompatActivity implements
             DatabaseHelper.initialSQL();
             prefs.edit().putBoolean("firstrun", false).apply();
         }
+
+        startTutorial();
+    }
+
+    public static void startTutorial() {
+        mainScroller.scrollTo(0, 0);
+        TutorialHelper.createTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText);
     }
 
     @Override

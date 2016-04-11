@@ -158,6 +158,11 @@ public class SettingsActivity extends Activity {
         startActivity(intent);
     }
 
+    public void openTutorial(View view) {
+        this.finish();
+        MainActivity.startTutorial();
+    }
+
     public void openCredits(View view) {
         Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
         startActivity(intent);
