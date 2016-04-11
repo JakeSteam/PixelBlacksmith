@@ -17,8 +17,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 
-import tourguide.tourguide.Overlay;
-import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
@@ -30,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -51,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements
     public int newVisitors;
     public Intent musicService;
     public boolean musicServiceIsStarted = false;
+    private TourGuide tourGuideHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,7 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         dh.createAllSlots(this);
-        TourGuide.init(this)
-                .with(TourGuide.Technique.Click)
-                .setToolTip(new ToolTip().setTitle("Visitors").setDescription("Tap the visitor to get started"))
-                .setOverlay(new Overlay())
-                .playOn(coins);
+        TutorialHelper.createTutorial(this, coins, "Visitors", "Tap the visitor to get started");
     }
 
     private void assignUIElements() {
