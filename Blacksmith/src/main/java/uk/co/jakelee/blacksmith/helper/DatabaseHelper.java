@@ -123,6 +123,10 @@ public class DatabaseHelper {
         new Inventory(77L, Constants.STATE_NORMAL, 5);
         new Inventory(78L, Constants.STATE_NORMAL, 5);
 
+        // 0 bronze bars + daggers, so that they are visible
+        new Inventory(11L, Constants.STATE_NORMAL, 0);
+        new Inventory(20L, Constants.STATE_NORMAL, 0);
+
         /*new Inventory(1L, 1, 101);
         new Inventory(2L, 1, 102);
         new Inventory(3L, 1, 303);
@@ -1098,7 +1102,7 @@ public class DatabaseHelper {
         new Visitor_Stats(30L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(31L, 0, 52L, 1L, 0, 0L, 0L);
         new Visitor_Stats(32L, 0, 52L, 1L, 0, 0L, 0L);
-        new Visitor_Stats(33L, 0, 52L, 1L, 0, 0L, 0L);
+        new Visitor_Stats(33L, 1, 52L, 1L, 0, System.currentTimeMillis(), 0L);
     }
 
     public static void createVisitorType() {
@@ -1134,7 +1138,7 @@ public class DatabaseHelper {
         new Visitor_Type(30L, "Archer", "It's all about the bullseye.", 2L, 6L, 5L, 1.10, 1.25, 1.15, false, false, false, 2);
         new Visitor_Type(31L, "Steve", "Gotta dig deeper and deeper and deeper and...", 6L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 6);
         new Visitor_Type(32L, "Whippersnapper", "Don't tell Steve, but his secret fish pond isn't so secret.", 20L, 17L, 4L, 1.05, 1.20, 1.02, false, false, false, 6);
-        new Visitor_Type(33L, "Mr T Utorial", "Need a hand?", 1L, 3L, 4L, 1.05, 1.05, 1.05, false, false, false, 1);
+        new Visitor_Type(33L, "Mr T Utorial", "Need a hand?", 1L, 3L, 4L, 1.05, 1.05, 1.05, true, false, false, 1);
     }
 }
 

@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -49,11 +50,21 @@ public class FurnaceActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
 
         createFurnaceInterface();
+
+        if (TutorialHelper.currentlyInTutorial) {
+            startTutorial();
+        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
+    }
+
+    private void startTutorial() {
+        TutorialHelper th = new TutorialHelper();
+        th.addTutorial(this, findViewById(R.id.itemDesc), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, true);
+        th.start(this);
     }
 
     public void createFurnaceInterface() {

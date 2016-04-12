@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -46,6 +48,7 @@ public class VisitorActivity extends Activity {
     public static Visitor visitor;
     public static Visitor_Type visitorType;
     public static Visitor_Stats visitorStats;
+    private static boolean identifyFirstDemand = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +70,25 @@ public class VisitorActivity extends Activity {
             visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
             createVisitorInterface();
         }
+
+        if (TutorialHelper.currentlyInTutorial) {
+            startTutorial();
+        }
     }
 
     public void createVisitorInterface() {
         displayVisitorInfo();
         displayVisitorStats();
         displayVisitorDemands();
+    }
+
+    private void startTutorial() {
+        ScrollView demandsScroller = (ScrollView) findViewById(R.id.demandsScroller);
+        TutorialHelper th = new TutorialHelper();
+        th.addTutorial(this, findViewById(R.id.visitorPicture), R.string.tutorialVisitorPicture, R.string.tutorialVisitorPictureText, false);
+        th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
+        th.addTutorialRectangle(this, findViewById(R.id.demandInfo), R.string.tutorialVisitorDemands, R.string.tutorialVisitorDemandsText, false, Gravity.BOTTOM);
+        th.start(this);
     }
 
     public void displayVisitorInfo() {
@@ -144,9 +160,17 @@ public class VisitorActivity extends Activity {
             }
         });
 
+        if (TutorialHelper.currentlyInTutorial) {
+            identifyFirstDemand = true;
+        }
+
         for (Visitor_Demand demand : visitorDemands) {
-            TableRow demandRow = new TableRow(getApplicationContext());
             Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+            TableRow demandRow = new TableRow(getApplicationContext());
+            if (identifyFirstDemand) {
+                demandRow.setId(R.id.demandInfo);
+                identifyFirstDemand = false;
+            }
 
             int statusDrawableID = (demand.isDemandFulfilled() ? R.drawable.tick : R.drawable.cross);
             Drawable statusDrawable = dh.createDrawable(statusDrawableID, 25, 25);

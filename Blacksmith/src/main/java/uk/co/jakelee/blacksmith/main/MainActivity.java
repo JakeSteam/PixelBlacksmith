@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements
     public static Activity mainActivity;
     public static HorizontalScrollView mainScroller;
     public static TextViewPixel coins;
+    public static ImageView visitorTutorial;
     public static LinearLayout visitorContainer;
     public static LinearLayout visitorContainerOverflow;
     public static TextViewPixel level;
@@ -91,19 +93,22 @@ public class MainActivity extends AppCompatActivity implements
 
     private void checkFirstRun() {
         SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
-        if (prefs.getBoolean("firstrun", true)) {
+        if (prefs.getBoolean("firstrun", true)) { // || TutorialHelper.currentlyInTutorial) {
             DatabaseHelper.initialSQL();
             prefs.edit().putBoolean("firstrun", false).apply();
         }
 
+        TutorialHelper.currentlyInTutorial = true;
         startTutorial();
     }
 
     public static void startTutorial() {
         mainScroller.scrollTo(0, 0);
         TutorialHelper th = new TutorialHelper();
-        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText);
-        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText);
+        th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
+        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
+        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
+        th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
         th.start(mainActivity);
     }
 

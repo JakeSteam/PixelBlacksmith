@@ -2,10 +2,24 @@
     <string name="app_name">Blacksmith</string>
 
     <string name="tutorialText">Tutorial</string>
+    <string name="tutorialIntro">Blacksmith</string>
+    <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be smithing in no time.</string>
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying&#8230; well, everything. They are earned by trading away items.</string>
     <string name="tutorialLevel">Level</string>
-    <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, trading, etc.</string>
+    <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, and trading items.</string>
+    <string name="tutorialVisitor">Visitor</string>
+    <string name="tutorialVisitorText">Your first visitor has arrived! Tap him to continue.</string>
+
+    <string name="tutorialVisitorPicture">Visitor</string>
+    <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
+    <string name="tutorialVisitorPrefs">Preferences</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorDemands">Demands</string>
+    <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, open the trading window to see available items in your inventory.</string>
+
+    <string name="tutorialFurnaceItems">Item</string>
+    <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, items can only be viewed after being created, but the bronze bar has been unlocked for you.</string>
 
     <string name="marketText">Market</string>
     <string name="menuText">Menu</string>
@@ -176,7 +190,8 @@
     <string name="creditsGraphicsDetails">Significant contributions by <a href='https://twitter.com/7souldesign'>7Soul</a>, <a href='https://twitter.com/TeaGadd'>EGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.</string>
     <string name="creditsTechnology">Technology</string>
     <string name="creditsTechnologyDetails"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
-\n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management.
+\n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
+\n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
 \n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a>.
     </string>
 
