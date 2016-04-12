@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -60,6 +61,17 @@ public class TradeActivity extends Activity {
             visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
             createTradeInterface();
         }
+
+        if (TutorialHelper.currentlyInTutorial) {
+            startTutorial();
+        }
+    }
+
+    private void startTutorial() {
+        TutorialHelper th = new TutorialHelper();
+        th.addTutorial(this, findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);
+        th.addTutorial(this, findViewById(R.id.finishTrade), R.string.tutorialTradeFinish, R.string.tutorialTradeFinishText, true, Gravity.TOP);
+        th.start(this);
     }
 
     public void createTradeInterface() {
@@ -98,7 +110,7 @@ public class TradeActivity extends Activity {
         headerRow.addView(dh.createTextView(getString(R.string.tableQuantity), 22, Color.BLACK));
         headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
         headerRow.addView(dh.createTextView(getString(R.string.tableItem), 22, Color.BLACK));
-        headerRow.addView(dh.createTextView(getString(R.string.tableSold), 22, Color.BLACK));
+        headerRow.addView(dh.createTextView(getString(R.string.tableSell), 22, Color.BLACK));
         headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
         itemsTable.addView(headerRow);
 

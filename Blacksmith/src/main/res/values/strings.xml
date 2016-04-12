@@ -18,6 +18,11 @@
     <string name="tutorialVisitorDemands">Demands</string>
     <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, open the trading window to see available items in your inventory.</string>
 
+    <string name="tutorialTradeItems">Tradeable Items</string>
+    <string name="tutorialTradeItemsText">Looks like you\'ve got 2 different ores to sell. How lucky! Sell them both, and you\'ll get more than the 2 coins listed due to the visitor\'s ore preference.</string>
+    <string name="tutorialTradeFinish">Finish Trading</string>
+    <string name="tutorialTradeFinishText">Once any 2 ores have been traded, tap finish to return to the visitor overview.</string>
+
     <string name="tutorialFurnaceItems">Item</string>
     <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, items can only be viewed after being created, but the bronze bar has been unlocked for you.</string>
 
@@ -131,7 +136,7 @@
 
     <string name="tableQuantity">Qty</string>
     <string name="tableItem">Item </string>
-    <string name="tableSold">Sold</string>
+    <string name="tableSell">Sell</string>
 
     <string name="genericProgress">%1$d / %2$d</string>
 

@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -48,6 +47,7 @@ public class VisitorActivity extends Activity {
     public static Visitor visitor;
     public static Visitor_Type visitorType;
     public static Visitor_Stats visitorStats;
+
     private static boolean identifyFirstDemand = false;
 
     @Override
@@ -83,11 +83,10 @@ public class VisitorActivity extends Activity {
     }
 
     private void startTutorial() {
-        ScrollView demandsScroller = (ScrollView) findViewById(R.id.demandsScroller);
         TutorialHelper th = new TutorialHelper();
         th.addTutorial(this, findViewById(R.id.visitorPicture), R.string.tutorialVisitorPicture, R.string.tutorialVisitorPictureText, false);
         th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.demandInfo), R.string.tutorialVisitorDemands, R.string.tutorialVisitorDemandsText, false, Gravity.BOTTOM);
+        th.addTutorialRectangle(this, findViewById(R.id.demandInfo), R.string.tutorialVisitorDemands, R.string.tutorialVisitorDemandsText, true, Gravity.BOTTOM);
         th.start(this);
     }
 

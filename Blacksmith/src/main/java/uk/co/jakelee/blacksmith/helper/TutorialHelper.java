@@ -23,12 +23,16 @@ public class TutorialHelper {
         addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Circle, clickable, Gravity.CENTER);
     }
 
+    public void addTutorial(Activity activity, View view, int titleID, int bodyID, boolean clickable, int gravity) {
+        addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Circle, clickable, gravity);
+    }
+
     public void addTutorialNoOverlay(Activity activity, View view, int titleID, int bodyID, boolean clickable) {
         addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.NoHole, clickable, Gravity.CENTER);
     }
 
-    public void addTutorial(Activity activity, View view, int titleID, int bodyID, boolean clickable, int gravity) {
-        addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Circle, clickable, gravity);
+    public void addTutorialRectangle(Activity activity, View view, int titleID, int bodyID, boolean clickable, int gravity) {
+        addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Rectangle, clickable, gravity);
     }
 
     public void addTutorialRectangle(Activity activity, View view, int titleID, int bodyID, boolean clickable) {
