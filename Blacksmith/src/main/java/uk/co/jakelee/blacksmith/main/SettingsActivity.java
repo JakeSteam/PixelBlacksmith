@@ -160,7 +160,7 @@ public class SettingsActivity extends Activity {
 
     public void openTutorial(View view) {
         this.finish();
-        MainActivity.startTutorial();
+        MainActivity.startFirstTutorial();
     }
 
     public void openCredits(View view) {

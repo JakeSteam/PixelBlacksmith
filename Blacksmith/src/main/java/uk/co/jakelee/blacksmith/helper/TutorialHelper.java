@@ -20,6 +20,11 @@ public class TutorialHelper {
     public static boolean currentlyInTutorial = false;
     private List<ChainTourGuide> tourGuides = new ArrayList<>();
     public static ChainTourGuide chainTourGuide;
+    public static int currentStage;
+
+    public TutorialHelper(int stage) {
+        currentStage = stage;
+    }
 
     public void addTutorial(Activity activity, View view, int titleID, int bodyID, boolean clickable) {
         addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Circle, clickable, Gravity.CENTER);

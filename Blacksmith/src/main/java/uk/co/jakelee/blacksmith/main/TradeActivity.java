@@ -62,7 +62,7 @@ public class TradeActivity extends Activity {
             createTradeInterface();
         }
 
-        if (TutorialHelper.currentlyInTutorial) {
+        if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_3_TRADE) {
             startTutorial();
         }
     }
@@ -77,7 +77,7 @@ public class TradeActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper();
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_3_TRADE);
         th.addTutorial(this, findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);
         th.addTutorial(this, findViewById(R.id.finishTrade), R.string.tutorialTradeFinish, R.string.tutorialTradeFinishText, true, Gravity.TOP);
         th.start(this);

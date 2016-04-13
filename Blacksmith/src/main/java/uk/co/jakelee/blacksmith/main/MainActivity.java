@@ -99,16 +99,21 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         TutorialHelper.currentlyInTutorial = true;
-        startTutorial();
     }
 
-    public static void startTutorial() {
-        mainScroller.scrollTo(0, 0);
-        TutorialHelper th = new TutorialHelper();
+    public static void startFirstTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
         th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
         th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
         th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
         th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
+        th.start(mainActivity);
+    }
+
+    private static void startSecondTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_5_MAIN);
+        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
+        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
         th.start(mainActivity);
     }
 
@@ -164,6 +169,14 @@ public class MainActivity extends AppCompatActivity implements
         if (newVisitors > 0) {
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors));
             newVisitors = 0;
+        }
+
+        if (TutorialHelper.currentlyInTutorial) {
+            if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
+                startFirstTutorial();
+            } else if (TutorialHelper.currentStage <= Constants.STAGE_5_MAIN) {
+                startSecondTutorial();
+            }
         }
     }
 

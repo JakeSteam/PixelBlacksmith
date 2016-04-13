@@ -62,7 +62,7 @@ public class FurnaceActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper();
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_6_FURNACE);
         th.addTutorial(this, findViewById(R.id.itemDesc), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, true);
         th.start(this);
     }

@@ -19,6 +19,16 @@ public class Constants {
     public static final int TRADER_TAX_MULTIPLIER = 200;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
 
+    // Tutorial stages
+    public static final int STAGE_1_MAIN = 1;
+    public static final int STAGE_2_VISITOR = 2;
+    public static final int STAGE_3_TRADE = 3;
+    public static final int STAGE_4_VISITOR = 4;
+    public static final int STAGE_5_MAIN = 5;
+    public static final int STAGE_6_FURNACE = 6;
+    public static final int STAGE_7_MAIN = 7;
+    public static final int STAGE_8_SETTINGS = 8;
+
     public static final int STARTING_XP = 45;
     public static final int MESSAGE_LOG_LIMIT = 100;
 

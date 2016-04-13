@@ -81,7 +81,11 @@ public class VisitorActivity extends Activity {
         }
 
         if (TutorialHelper.currentlyInTutorial) {
-            startTutorial();
+            if (TutorialHelper.currentStage <= Constants.STAGE_2_VISITOR) {
+                startFirstTutorial();
+            } else if (TutorialHelper.currentStage <= Constants.STAGE_4_VISITOR) {
+                startSecondTutorial();
+            }
         }
     }
 
@@ -91,11 +95,18 @@ public class VisitorActivity extends Activity {
         displayVisitorDemands();
     }
 
-    private void startTutorial() {
-        TutorialHelper th = new TutorialHelper();
+    private void startFirstTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_2_VISITOR);
         th.addTutorial(this, findViewById(R.id.visitorPicture), R.string.tutorialVisitorPicture, R.string.tutorialVisitorPictureText, false);
         th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
         th.addTutorialRectangle(this, findViewById(R.id.demandInfo), R.string.tutorialVisitorDemands, R.string.tutorialVisitorDemandsText, true, Gravity.BOTTOM);
+        th.start(this);
+    }
+
+    private void startSecondTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_4_VISITOR);
+        th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
+        th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
         th.start(this);
     }
 
