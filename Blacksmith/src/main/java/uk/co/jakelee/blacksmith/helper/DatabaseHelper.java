@@ -124,8 +124,8 @@ public class DatabaseHelper {
         new Inventory(78L, Constants.STATE_NORMAL, 5);
 
         // 0 bronze bars + daggers, so that they are visible
-        new Inventory(11L, Constants.STATE_NORMAL, 0);
-        new Inventory(20L, Constants.STATE_NORMAL, 0);
+        new Inventory(11L, Constants.STATE_NORMAL, 1);
+        new Inventory(20L, Constants.STATE_NORMAL, 2);
 
         /*new Inventory(1L, 1, 101);
         new Inventory(2L, 1, 102);

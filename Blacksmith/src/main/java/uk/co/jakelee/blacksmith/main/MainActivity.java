@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements
     public static Activity mainActivity;
     public static HorizontalScrollView mainScroller;
     public static TextViewPixel coins;
-    public static ImageView visitorTutorial;
     public static LinearLayout visitorContainer;
     public static LinearLayout visitorContainerOverflow;
     public static TextViewPixel level;
@@ -102,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public static void startFirstTutorial() {
+        mainScroller.scrollTo(0, 0);
         TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
         th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
         th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
@@ -110,10 +109,11 @@ public class MainActivity extends AppCompatActivity implements
         th.start(mainActivity);
     }
 
-    private static void startSecondTutorial() {
+    private void startSecondTutorial() {
+        // mainScroller.scrollTo(X, 0);
         TutorialHelper th = new TutorialHelper(Constants.STAGE_5_MAIN);
-        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
-        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.slots_furnace), R.string.tutorialFurnaceSlots, R.string.tutorialFurnaceSlotsText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.open_furnace), R.string.tutorialFurnace, R.string.tutorialFurnaceText, false);
         th.start(mainActivity);
     }
 

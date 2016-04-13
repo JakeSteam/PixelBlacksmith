@@ -20,6 +20,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 
@@ -33,6 +34,19 @@ public class SettingsActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         displaySettingsList();
+
+        if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_10_SETTINGS) {
+            startTutorial();
+        }
+    }
+
+    private void startTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_10_SETTINGS);
+        th.addTutorial(this, findViewById(R.id.soundToggleButton), R.string.tutorialSettingsToggle, R.string.tutorialSettingsToggleText, false);
+        th.addTutorial(this, findViewById(R.id.messages), R.string.tutorialSettingsMessages, R.string.tutorialSettingsMessagesText, false);
+        th.addTutorial(this, findViewById(R.id.ingredientsTable), R.string.tutorialSettingsGooglePlay, R.string.tutorialSettingsGooglePlayText, false);
+        th.addTutorial(this, findViewById(R.id.craft1), R.string.tutorialSettingsHelp, R.string.tutorialSettingsHelpText, true);
+        th.start(this);
     }
 
     @Override

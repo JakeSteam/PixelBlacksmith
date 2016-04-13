@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -51,7 +52,7 @@ public class FurnaceActivity extends Activity {
 
         createFurnaceInterface();
 
-        if (TutorialHelper.currentlyInTutorial) {
+        if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_6_FURNACE) {
             startTutorial();
         }
     }
@@ -63,7 +64,10 @@ public class FurnaceActivity extends Activity {
 
     private void startTutorial() {
         TutorialHelper th = new TutorialHelper(Constants.STAGE_6_FURNACE);
-        th.addTutorial(this, findViewById(R.id.itemDesc), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, true);
+        th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, false);
+        th.addTutorialRectangle(this, findViewById(R.id.horizontalIndicator), R.string.tutorialFurnaceScroll, R.string.tutorialFurnaceScrollText, false);
+        th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialFurnaceIngredients, R.string.tutorialFurnaceIngredientsText, false);
+        th.addTutorial(this, findViewById(R.id.smelt1), R.string.tutorialFurnaceSmelt, R.string.tutorialFurnaceSmeltText, true, Gravity.TOP);
         th.start(this);
     }
 

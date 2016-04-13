@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -24,6 +25,7 @@ import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
@@ -49,12 +51,25 @@ public class AnvilActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
 
         createAnvilInterface(false);
+
+        if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
+            startTutorial();
+        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
 
         return super.onTouchEvent(event);
+    }
+
+    private void startTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_8_ANVIL);
+        th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialAnvil, R.string.tutorialAnvilText, false);
+        th.addTutorial(this, findViewById(R.id.upButton), R.string.tutorialAnvilUp, R.string.tutorialAnvilUpText, false);
+        th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialAnvilIngredients, R.string.tutorialAnvilIngredientsText, false);
+        th.addTutorial(this, findViewById(R.id.craft1), R.string.tutorialAnvilCraft, R.string.tutorialAnvilCraftText, true, Gravity.TOP);
+        th.start(this);
     }
 
     public void createAnvilInterface(boolean clearExisting) {

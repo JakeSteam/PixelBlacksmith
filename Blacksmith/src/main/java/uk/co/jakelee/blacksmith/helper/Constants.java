@@ -27,7 +27,9 @@ public class Constants {
     public static final int STAGE_5_MAIN = 5;
     public static final int STAGE_6_FURNACE = 6;
     public static final int STAGE_7_MAIN = 7;
-    public static final int STAGE_8_SETTINGS = 8;
+    public static final int STAGE_8_ANVIL = 8;
+    public static final int STAGE_9_MAIN = 9;
+    public static final int STAGE_10_SETTINGS = 10;
 
     public static final int STARTING_XP = 45;
     public static final int MESSAGE_LOG_LIMIT = 100;

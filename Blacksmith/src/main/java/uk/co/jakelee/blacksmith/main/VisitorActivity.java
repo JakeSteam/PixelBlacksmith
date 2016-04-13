@@ -105,8 +105,8 @@ public class VisitorActivity extends Activity {
 
     private void startSecondTutorial() {
         TutorialHelper th = new TutorialHelper(Constants.STAGE_4_VISITOR);
-        th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
-        th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
+        th.addTutorial(this, findViewById(R.id.demandInfo), R.string.tutorialVisitorDemandsLeft, R.string.tutorialVisitorDemandsLeftText, false);
+        th.addTutorial(this, findViewById(R.id.close), R.string.tutorialVisitorClose, R.string.tutorialVisitorCloseText, false);
         th.start(this);
     }
 
