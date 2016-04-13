@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +24,13 @@ public class TutorialHelper {
     public static ChainTourGuide chainTourGuide;
     public static int currentStage;
 
+    Animation enterAnimation = new AlphaAnimation(0f, 1f);
+
     public TutorialHelper(int stage) {
         currentStage = stage;
+
+        enterAnimation.setDuration(300);
+        enterAnimation.setFillAfter(false);
     }
 
     public void addTutorial(Activity activity, View view, int titleID, int bodyID, boolean clickable) {
@@ -56,7 +63,8 @@ public class TutorialHelper {
                         .setTitle(title)
                         .setDescription(body)
                         .setGravity(gravity)
-                        .setBackgroundColor(Color.parseColor("#AAae6c37")))
+                        .setBackgroundColor(Color.parseColor("#AAae6c37"))
+                        .setEnterAnimation(enterAnimation))
                 .setOverlay(new Overlay()
                         .disableClick(true)
                         .disableClickThroughHole(!clickable)
