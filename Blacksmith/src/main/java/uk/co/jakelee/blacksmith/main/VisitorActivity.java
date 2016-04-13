@@ -58,6 +58,15 @@ public class VisitorActivity extends Activity {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        if (TutorialHelper.currentlyInTutorial) {
+            TutorialHelper.chainTourGuide.next();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 

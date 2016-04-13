@@ -67,6 +67,15 @@ public class TradeActivity extends Activity {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (TutorialHelper.currentlyInTutorial) {
+            TutorialHelper.chainTourGuide.next();
+        }
+    }
+
     private void startTutorial() {
         TutorialHelper th = new TutorialHelper();
         th.addTutorial(this, findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);

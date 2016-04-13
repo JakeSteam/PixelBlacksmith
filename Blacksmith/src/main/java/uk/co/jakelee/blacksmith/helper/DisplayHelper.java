@@ -218,7 +218,7 @@ public class DisplayHelper {
             targetContainer = visitorsContainerOverflow;
         }
 
-        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors")) {
+        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
             ImageView addVisitorButton = createImageView("add", "", 50, 50);
             addVisitorButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

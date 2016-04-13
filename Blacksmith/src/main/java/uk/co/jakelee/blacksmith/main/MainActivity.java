@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void checkFirstRun() {
         SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
-        if (prefs.getBoolean("firstrun", true)) { // || TutorialHelper.currentlyInTutorial) {
+        if (prefs.getBoolean("firstrun", true)) {
             DatabaseHelper.initialSQL();
             prefs.edit().putBoolean("firstrun", false).apply();
         }
@@ -130,6 +130,15 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Setting.findById(Setting.class, Constants.SETTING_SIGN_IN).getBoolValue() && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
             GooglePlayHelper.mGoogleApiClient.connect();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (TutorialHelper.currentlyInTutorial) {
+            TutorialHelper.chainTourGuide.next();
         }
     }
 

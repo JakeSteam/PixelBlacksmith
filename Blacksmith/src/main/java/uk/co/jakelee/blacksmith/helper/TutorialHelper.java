@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 
@@ -18,6 +19,7 @@ public class TutorialHelper {
 
     public static boolean currentlyInTutorial = false;
     private List<ChainTourGuide> tourGuides = new ArrayList<>();
+    public static ChainTourGuide chainTourGuide;
 
     public void addTutorial(Activity activity, View view, int titleID, int bodyID, boolean clickable) {
         addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Circle, clickable, Gravity.CENTER);
@@ -48,7 +50,8 @@ public class TutorialHelper {
                 .setToolTip(new ToolTip()
                         .setTitle(title)
                         .setDescription(body)
-                        .setGravity(gravity))
+                        .setGravity(gravity)
+                        .setBackgroundColor(Color.parseColor("#AAae6c37")))
                 .setOverlay(new Overlay()
                         .disableClick(true)
                         .disableClickThroughHole(!clickable)
@@ -66,6 +69,6 @@ public class TutorialHelper {
                 .setContinueMethod(Sequence.ContinueMethod.Overlay)
                 .build();
 
-        ChainTourGuide.init(activity).playInSequence(sequence);
+        chainTourGuide = ChainTourGuide.init(activity).playInSequence(sequence);
     }
 }
