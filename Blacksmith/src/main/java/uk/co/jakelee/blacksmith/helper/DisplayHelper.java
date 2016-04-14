@@ -51,9 +51,6 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 public class DisplayHelper {
     public final static String VISITOR_TO_LOAD = "uk.co.jakelee.blacksmith.visitortoload";
     public final static String DEMAND_TO_LOAD = "uk.co.jakelee.blacksmith.tradetoload";
-
-    private static DisplayHelper dhInstance = null;
-    private final Context context;
     private static final int[] slotIDs = {
             0,
             R.id.slots_anvil,
@@ -63,6 +60,8 @@ public class DisplayHelper {
             R.id.slots_table,
             R.id.slots_enchanting
     };
+    private static DisplayHelper dhInstance = null;
+    private final Context context;
 
     public DisplayHelper(Context context) {
         this.context = context;

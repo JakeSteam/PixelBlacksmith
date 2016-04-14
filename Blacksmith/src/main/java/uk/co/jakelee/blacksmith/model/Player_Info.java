@@ -79,7 +79,7 @@ public class Player_Info extends SugarRecord {
         double neededXP = nextLevelXP - currentLevelXP;
         double earnedXP = nextLevelXP - currentXP;
 
-        return 100 - (int)Math.ceil((earnedXP / neededXP) * 100);
+        return 100 - (int) Math.ceil((earnedXP / neededXP) * 100);
     }
 
     public static int getVisitorsCompleted() {

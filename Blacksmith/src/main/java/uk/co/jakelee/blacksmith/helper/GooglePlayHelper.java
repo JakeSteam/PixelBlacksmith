@@ -35,15 +35,15 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class GooglePlayHelper {
-    private static final int RESULT_OK = -1;
-    private static final int RC_SIGN_IN = 9001;
     public static final int RC_ACHIEVEMENTS = 9002;
     public static final int RC_LEADERBOARDS = 9003;
     public static final int RC_SAVED_GAMES = 9004;
+    private static final int RESULT_OK = -1;
+    private static final int RC_SIGN_IN = 9001;
     private static final String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
+    private static final String mCurrentSaveName = "blacksmithCloudSave";
     public static GoogleApiClient mGoogleApiClient;
     private static boolean mResolvingConnectionFailure = false;
-    private static final String mCurrentSaveName = "blacksmithCloudSave";
 
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
         if (mResolvingConnectionFailure) {

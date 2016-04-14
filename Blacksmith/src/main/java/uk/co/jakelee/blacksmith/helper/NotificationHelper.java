@@ -20,8 +20,8 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class NotificationHelper extends BroadcastReceiver {
-    private static boolean useSounds = false;
     private static final String NOTIFICATION_TYPE = "uk.co.jakelee.notification_type";
+    private static boolean useSounds = false;
 
     public static void addRestockNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;

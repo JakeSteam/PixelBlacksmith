@@ -40,21 +40,31 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
-    private static DisplayHelper dh;
     private static final Handler handler = new Handler();
+    public static TextViewPixel coins;
+    public static TextViewPixel level;
+    public static ProgressBar levelProgress;
+    public static TextViewPixel levelPercent;
+    private static DisplayHelper dh;
+    // UI Elements
+    private static Activity mainActivity;
+    private static HorizontalScrollView mainScroller;
+    private static LinearLayout visitorContainer;
+    private static LinearLayout visitorContainerOverflow;
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
 
-    // UI Elements
-    private static Activity mainActivity;
-    private static HorizontalScrollView mainScroller;
-    public static TextViewPixel coins;
-    private static LinearLayout visitorContainer;
-    private static LinearLayout visitorContainerOverflow;
-    public static TextViewPixel level;
-    public static ProgressBar levelProgress;
-    public static TextViewPixel levelPercent;
+    public static void startFirstTutorial() {
+        mainScroller.scrollTo(0, 0);
+
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
+        th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
+        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
+        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
+        th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
+        th.start(mainActivity);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,17 +108,6 @@ public class MainActivity extends AppCompatActivity implements
 
             TutorialHelper.currentlyInTutorial = true;
         }
-    }
-
-    public static void startFirstTutorial() {
-        mainScroller.scrollTo(0, 0);
-
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
-        th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
-        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
-        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
-        th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
-        th.start(mainActivity);
     }
 
     private void startSecondTutorial(View v) {

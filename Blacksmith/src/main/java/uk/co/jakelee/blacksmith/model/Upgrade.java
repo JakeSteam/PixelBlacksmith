@@ -115,11 +115,7 @@ public class Upgrade extends SugarRecord {
     private boolean isAtMaximum() {
         if (minimum > maximum && current <= minimum) {
             return true;
-        } else if (maximum > minimum && current >= maximum) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return maximum > minimum && current >= maximum;
     }
 
     private void upgrade(Inventory coins) {

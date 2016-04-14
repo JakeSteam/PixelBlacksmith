@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <android.support.percent.PercentRelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/visitor"
         android:layout_width="match_parent"
@@ -34,20 +33,19 @@
             android:textIsSelectable="false"
             android:textSize="60sp"
             app:layout_heightPercent="10%"
-            app:layout_marginTopPercent="1%"  />
+            app:layout_marginTopPercent="1%" />
 
         <ImageView
             android:id="@+id/visitorPicture"
-            app:layout_widthPercent="30%"
-            app:layout_heightPercent="20%"
             android:layout_below="@id/visitorTitle"
             android:layout_marginLeft="5dp"
+            android:scaleType="fitCenter"
+            app:layout_heightPercent="20%"
             app:layout_marginTopPercent="7%"
-            android:scaleType="fitCenter"/>
+            app:layout_widthPercent="30%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/visitorVisits"
-            app:layout_widthPercent="30%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/visitorPicture"
             android:layout_alignLeft="@id/visitorPicture"
@@ -55,7 +53,8 @@
             android:background="@color/black"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_widthPercent="30%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/visitorName"
@@ -86,13 +85,12 @@
             android:layout_alignLeft="@id/visitorPicture"
             android:layout_below="@id/visitorPicture"
             android:background="@drawable/slot"
+            app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="12%"/>
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeMultiplier"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/typeImage"
             android:layout_alignLeft="@id/typeImage"
@@ -101,7 +99,8 @@
             android:gravity="center"
             android:text="@string/unknownText"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
 
         <ImageView
             android:id="@+id/tierImage"
@@ -109,13 +108,12 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/typeImage"
             android:background="@drawable/slot"
+            app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="12%"/>
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tierMultiplier"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/tierImage"
             android:layout_alignLeft="@id/tierImage"
@@ -124,7 +122,8 @@
             android:gravity="center"
             android:text="@string/unknownText"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
 
         <ImageView
             android:id="@+id/stateImage"
@@ -132,13 +131,12 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tierImage"
             android:background="@drawable/slot"
+            app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="12%" />
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/stateMultiplier"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/stateImage"
             android:layout_alignLeft="@id/stateImage"
@@ -147,20 +145,20 @@
             android:gravity="center"
             android:text="@string/unknownText"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
 
         <ImageView
             android:id="@+id/bestItemImage"
             android:layout_below="@id/visitorPicture"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/stateImage"
+            app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="12%" />
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/bestItemValue"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/bestItemImage"
             android:layout_alignLeft="@id/bestItemImage"
@@ -169,51 +167,52 @@
             android:gravity="center"
             android:text="@string/unknownText"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeText"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/typeImage"
             android:layout_below="@id/typeImage"
             android:gravity="center"
             android:text="@string/typeText"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tierText"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/tierImage"
             android:layout_below="@id/tierImage"
             android:gravity="center"
             android:text="@string/tierText"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/stateText"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/stateImage"
             android:layout_below="@id/stateImage"
             android:gravity="center"
             android:text="@string/stateText"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/bestItemText"
-            app:layout_widthPercent="18%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/bestItemImage"
             android:layout_below="@id/bestItemImage"
             android:gravity="center"
             android:text="@string/bestText"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/demandsScroller"
@@ -239,13 +238,13 @@
                     android:layout_below="@id/demandsTable"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="10dp"
-                    app:layout_marginTopPercent="5%"
                     android:background="@drawable/button_wide"
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="completeVisitor"
                     android:text="@string/complete"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    app:layout_marginTopPercent="5%" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/dismissButton"

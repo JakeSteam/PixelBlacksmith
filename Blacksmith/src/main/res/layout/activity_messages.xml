@@ -45,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:stretchColumns="1"
-                android:shrinkColumns="1"/>
+                android:shrinkColumns="1"
+                android:stretchColumns="1" />
 
         </ScrollView>
     </RelativeLayout>

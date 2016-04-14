@@ -23,6 +23,7 @@ import org.json.JSONObject;
  */
 public class Purchase {
     final String mItemType;  // ITEM_TYPE_INAPP or ITEM_TYPE_SUBS
+    final String mOriginalJson;
     String mOrderId;
     String mPackageName;
     String mSku;
@@ -30,7 +31,6 @@ public class Purchase {
     int mPurchaseState;
     String mDeveloperPayload;
     String mToken;
-    final String mOriginalJson;
     String mSignature;
     boolean mIsAutoRenewing;
 
@@ -49,18 +49,52 @@ public class Purchase {
         mSignature = signature;
     }
 
-    public String getItemType() { return mItemType; }
-    public String getOrderId() { return mOrderId; }
-    public String getPackageName() { return mPackageName; }
-    public String getSku() { return mSku; }
-    public long getPurchaseTime() { return mPurchaseTime; }
-    public int getPurchaseState() { return mPurchaseState; }
-    public String getDeveloperPayload() { return mDeveloperPayload; }
-    public String getToken() { return mToken; }
-    public String getOriginalJson() { return mOriginalJson; }
-    public String getSignature() { return mSignature; }
-    public boolean isAutoRenewing() { return mIsAutoRenewing; }
+    public String getItemType() {
+        return mItemType;
+    }
+
+    public String getOrderId() {
+        return mOrderId;
+    }
+
+    public String getPackageName() {
+        return mPackageName;
+    }
+
+    public String getSku() {
+        return mSku;
+    }
+
+    public long getPurchaseTime() {
+        return mPurchaseTime;
+    }
+
+    public int getPurchaseState() {
+        return mPurchaseState;
+    }
+
+    public String getDeveloperPayload() {
+        return mDeveloperPayload;
+    }
+
+    public String getToken() {
+        return mToken;
+    }
+
+    public String getOriginalJson() {
+        return mOriginalJson;
+    }
+
+    public String getSignature() {
+        return mSignature;
+    }
+
+    public boolean isAutoRenewing() {
+        return mIsAutoRenewing;
+    }
 
     @Override
-    public String toString() { return "PurchaseInfo(type:" + mItemType + "):" + mOriginalJson; }
+    public String toString() {
+        return "PurchaseInfo(type:" + mItemType + "):" + mOriginalJson;
+    }
 }

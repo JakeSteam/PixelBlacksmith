@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <android.support.percent.PercentRelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/furnace"
         android:layout_width="match_parent"
@@ -47,18 +46,18 @@
             <ImageView
                 android:id="@+id/traderImage"
                 android:layout_width="100dp"
-                android:layout_height="100dp"/>
+                android:layout_height="100dp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/traderName"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignTop="@id/traderImage"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/traderImage"
                 android:singleLine="false"
                 android:textColor="@color/black"
-                android:textSize="25sp"/>
+                android:textSize="25sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/traderGreeting"
@@ -66,10 +65,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/traderName"
                 android:layout_below="@id/traderName"
-                app:layout_marginTopPercent="2%"
                 android:singleLine="false"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:layout_marginTopPercent="2%" />
         </RelativeLayout>
 
         <TableLayout
@@ -78,9 +77,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/traderInfo"
             android:layout_marginRight="10dp"
-            app:layout_marginTopPercent="3%"
             android:shrinkColumns="1"
-            android:stretchColumns="1" />
+            android:stretchColumns="1"
+            app:layout_marginTopPercent="3%" />
 
     </android.support.percent.PercentRelativeLayout>
 

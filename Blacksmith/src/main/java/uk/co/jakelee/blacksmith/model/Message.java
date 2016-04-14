@@ -18,6 +18,15 @@ public class Message extends SugarRecord {
         this.save();
     }
 
+    public static void add(String text) {
+        new Message(System.currentTimeMillis(), text);
+
+        if (Message.count(Message.class) >= Constants.MESSAGE_LOG_LIMIT) {
+            Message oldestMessage = Select.from(Message.class).orderBy("added ASC").first();
+            oldestMessage.delete();
+        }
+    }
+
     public long getAdded() {
         return added;
     }
@@ -32,14 +41,5 @@ public class Message extends SugarRecord {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public static void add(String text) {
-        new Message(System.currentTimeMillis(), text);
-
-        if (Message.count(Message.class) >= Constants.MESSAGE_LOG_LIMIT) {
-            Message oldestMessage = Select.from(Message.class).orderBy("added ASC").first();
-            oldestMessage.delete();
-        }
     }
 }

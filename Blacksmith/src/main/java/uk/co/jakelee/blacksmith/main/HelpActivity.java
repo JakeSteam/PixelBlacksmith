@@ -12,9 +12,8 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 
 public class HelpActivity extends Activity {
-    private static DisplayHelper dh;
-
     public static final String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

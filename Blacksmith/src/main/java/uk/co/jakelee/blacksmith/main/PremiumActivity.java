@@ -34,8 +34,7 @@ public class PremiumActivity extends Activity {
 
         // Create query listener
         final IabHelper.QueryInventoryFinishedListener mQueryFinishedListener = new IabHelper.QueryInventoryFinishedListener() {
-            public void onQueryInventoryFinished(IabResult result, Inventory inventory)
-            {
+            public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
                 if (result.isFailure()) {
                     return;
                 } else {
@@ -103,8 +102,7 @@ public class PremiumActivity extends Activity {
         // Pass on the activity result to the helper for handling
         if (!ih.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
-        }
-        else {
+        } else {
             Log.i("IAB", "onActivityResult handled by IABUtil.");
         }
     }

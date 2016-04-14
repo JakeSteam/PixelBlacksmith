@@ -105,11 +105,14 @@ public class VisitorHelper {
 
         Long criteriaValue = 1L;
         switch (criteria.getName()) {
-            case "State": criteriaValue = selectDemandState().getId();
+            case "State":
+                criteriaValue = selectDemandState().getId();
                 break;
-            case "Tier": criteriaValue = selectDemandTier().getId();
+            case "Tier":
+                criteriaValue = selectDemandTier().getId();
                 break;
-            case "Type": criteriaValue = selectDemandType().getId();
+            case "Type":
+                criteriaValue = selectDemandType().getId();
                 break;
         }
 

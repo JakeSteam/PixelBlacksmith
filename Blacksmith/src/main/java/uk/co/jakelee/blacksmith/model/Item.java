@@ -88,7 +88,7 @@ public class Item extends SugarRecord {
     }
 
     public String getPrefix(int id) {
-        return getPrefix((long)id);
+        return getPrefix((long) id);
     }
 
     public String getPrefix(Long id) {
@@ -97,7 +97,7 @@ public class Item extends SugarRecord {
     }
 
     public int getModifiedValue(int state) {
-        return getModifiedValue((long)state);
+        return getModifiedValue((long) state);
     }
 
     public int getModifiedValue(Long itemState) {
