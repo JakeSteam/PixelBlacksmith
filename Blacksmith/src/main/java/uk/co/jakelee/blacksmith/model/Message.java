@@ -6,8 +6,8 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Message extends SugarRecord {
-    long added;
-    String message;
+    private long added;
+    private String message;
 
     public Message() {
     }

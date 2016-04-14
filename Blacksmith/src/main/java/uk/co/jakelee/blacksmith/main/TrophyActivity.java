@@ -26,7 +26,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class TrophyActivity extends Activity {
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class TrophyActivity extends Activity {
                 allVisitors));
     }
 
-    public void populateVisitorGrid() {
+    private void populateVisitorGrid() {
         List<Visitor_Type> visitorTypes = Visitor_Type.listAll(Visitor_Type.class);
         GridLayout visitorGrid = (GridLayout) findViewById(R.id.visitorGrid);
         visitorGrid.setRowCount((visitorTypes.size() / Constants.NUMBER_OF_TROPHY_COLUMNS) + 1);
@@ -81,7 +81,7 @@ public class TrophyActivity extends Activity {
         }
     }
 
-    public void loadVisitor(View v) {
+    private void loadVisitor(View v) {
         Long visitorTypeID = (Long) v.getTag();
         Visitor_Type visitorType = Visitor_Type.findById(Visitor_Type.class, visitorTypeID);
         Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorTypeID);

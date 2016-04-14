@@ -15,14 +15,14 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 
 public class Trader extends SugarRecord {
-    long shopkeeper;
-    int location;
-    String name;
-    String description;
-    int level;
-    int status;
-    int purchases;
-    int weighting;
+    private long shopkeeper;
+    private int location;
+    private String name;
+    private String description;
+    private int level;
+    private int status;
+    private int purchases;
+    private int weighting;
 
     public Trader() {
     }
@@ -64,7 +64,7 @@ public class Trader extends SugarRecord {
         }
     }
 
-    public static void makeTraderAppear(Context context) {
+    private static void makeTraderAppear(Context context) {
         Trader traderToArrive = selectTraderType();
         if (traderToArrive.getName() != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
@@ -73,7 +73,7 @@ public class Trader extends SugarRecord {
         }
     }
 
-    public static Trader selectTraderType() {
+    private static Trader selectTraderType() {
         Trader selectedTraderType = new Trader();
         int playerLevel = Player_Info.getPlayerLevel();
         List<Trader> traderTypes = Select.from(Trader.class).where(
@@ -154,7 +154,7 @@ public class Trader extends SugarRecord {
         this.purchases = purchases;
     }
 
-    public int getWeighting() {
+    private int getWeighting() {
         return weighting;
     }
 
@@ -162,7 +162,7 @@ public class Trader extends SugarRecord {
         this.weighting = weighting;
     }
 
-    public boolean isOutOfStock() {
+    private boolean isOutOfStock() {
         List<Trader_Stock> stocks = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(this.getId()),
                 Condition.prop("required_purchases").lt(this.getPurchases() + 1)).list();

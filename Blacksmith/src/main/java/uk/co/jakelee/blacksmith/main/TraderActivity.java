@@ -26,8 +26,8 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
 public class TraderActivity extends Activity implements AlertDialogCallback {
-    public static DisplayHelper dh;
-    public static Trader trader;
+    private static DisplayHelper dh;
+    private static Trader trader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,12 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         createItemList();
     }
 
-    public void createTraderInterface() {
+    private void createTraderInterface() {
         createTrader();
         createItemList();
     }
 
-    public void createTrader() {
+    private void createTrader() {
         Character traderCharacter = Character.findById(Character.class, trader.getShopkeeper());
 
         int drawableID = getApplicationContext().getResources().getIdentifier("character" + traderCharacter.getId(), "drawable", getApplicationContext().getPackageName());
@@ -70,7 +70,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         traderGreeting.setText(traderCharacter.getIntro());
     }
 
-    public void createItemList() {
+    private void createItemList() {
         TableLayout traderItemsInfo = (TableLayout) findViewById(R.id.traderItemsInfo);
         traderItemsInfo.removeAllViews();
         List<Trader_Stock> itemsForSale = Select.from(Trader_Stock.class).where(
@@ -108,7 +108,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         }
     }
 
-    public void clickBuy(View v) {
+    private void clickBuy(View v) {
         Trader_Stock itemStock = (Trader_Stock) v.getTag();
         AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
     }

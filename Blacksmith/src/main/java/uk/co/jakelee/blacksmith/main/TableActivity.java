@@ -26,9 +26,9 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class TableActivity extends Activity {
-    public static DisplayHelper dh;
-    public static GestureHelper gh;
-    public int displayedTier = Constants.TIER_MIN;
+    private static DisplayHelper dh;
+    private static GestureHelper gh;
+    private int displayedTier = Constants.TIER_MIN;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
@@ -54,7 +54,7 @@ public class TableActivity extends Activity {
         return super.onTouchEvent(event);
     }
 
-    public void createTableInterface(boolean clearExisting) {
+    private void createTableInterface(boolean clearExisting) {
         String[] parameters = {
                 String.valueOf(Constants.TYPE_ANVIL_MIN),
                 String.valueOf(Constants.TYPE_ANVIL_MAX),
@@ -89,7 +89,7 @@ public class TableActivity extends Activity {
         craft(itemID, Constants.MAX_CRAFTS);
     }
 
-    public void craft(Long itemID, int maxCrafts) {
+    private void craft(Long itemID, int maxCrafts) {
         boolean successful = true;
         int quantityCrafted = 0;
 
@@ -135,7 +135,7 @@ public class TableActivity extends Activity {
         finish();
     }
 
-    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {

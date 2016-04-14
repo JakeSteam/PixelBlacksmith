@@ -11,7 +11,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class MusicService extends Service {
-    MediaPlayer player;
+    private MediaPlayer player;
 
     public IBinder onBind(Intent arg0) {
         return null;

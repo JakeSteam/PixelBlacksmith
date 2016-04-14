@@ -22,7 +22,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorHelper {
-    public static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
+    private static final List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
 
     public static boolean tryCreateVisitor() {
         if (Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
@@ -54,7 +54,7 @@ public class VisitorHelper {
         return numberOfActualVisitors;
     }
 
-    public static int getNumberNewVisitors(long currentTime) {
+    private static int getNumberNewVisitors(long currentTime) {
         long lastSpawn = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
         int currentVisitors = Visitor.listAll(Visitor.class).size();
@@ -72,7 +72,7 @@ public class VisitorHelper {
         }
     }
 
-    public static void createNewVisitor() {
+    private static void createNewVisitor() {
         Long currentMillis = System.currentTimeMillis();
 
         // Select the visitor type to be used
@@ -99,7 +99,7 @@ public class VisitorHelper {
         }
     }
 
-    public static void generateDemand(int i, Long visitorID) {
+    private static void generateDemand(int i, Long visitorID) {
         Long criteriaType = (long) getRandomNumber(Constants.MINIMUM_CRITERIA, Constants.MAXIMUM_CRITERIA);
         Criteria criteria = Criteria.findById(Criteria.class, criteriaType);
 
@@ -150,7 +150,7 @@ public class VisitorHelper {
         return getRandomNumber(0, 100) > truePercentage;
     }
 
-    public static Visitor_Type selectVisitorType() {
+    private static Visitor_Type selectVisitorType() {
         Visitor_Type visitor = new Visitor_Type();
 
         List<Visitor_Type> visitorTypes = Visitor_Type.findWithQuery(Visitor_Type.class,
@@ -177,7 +177,7 @@ public class VisitorHelper {
         return visitor;
     }
 
-    public static State selectDemandState() {
+    private static State selectDemandState() {
         State selectedState = new State();
 
         // Work out the total probability for the visitors.
@@ -203,7 +203,7 @@ public class VisitorHelper {
         return selectedState;
     }
 
-    public static Type selectDemandType() {
+    private static Type selectDemandType() {
         Type selectedType = new Type();
 
         // Work out the total probability for the visitors.
@@ -228,7 +228,7 @@ public class VisitorHelper {
         return selectedType;
     }
 
-    public static Tier selectDemandTier() {
+    private static Tier selectDemandTier() {
         Tier selectedTier = new Tier();
 
         // Work out the total probability for the visitors.

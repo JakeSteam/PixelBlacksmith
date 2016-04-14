@@ -9,12 +9,12 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Pending_Inventory extends SugarRecord {
-    Long item;
-    long state;
-    long timeCreated;
-    int quantity;
-    int craftTime;
-    Long locationID;
+    private Long item;
+    private long state;
+    private long timeCreated;
+    private int quantity;
+    private int craftTime;
+    private Long locationID;
 
     public Pending_Inventory() {
     }

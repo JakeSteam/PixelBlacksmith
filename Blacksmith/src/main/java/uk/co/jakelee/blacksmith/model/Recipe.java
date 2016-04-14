@@ -7,11 +7,11 @@ import com.orm.query.Select;
 import java.util.List;
 
 public class Recipe extends SugarRecord {
-    long item;
-    long itemState;
-    long ingredient;
-    long ingredientState;
-    int quantity;
+    private long item;
+    private long itemState;
+    private long ingredient;
+    private long ingredientState;
+    private int quantity;
 
     public Recipe() {
     }

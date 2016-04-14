@@ -40,18 +40,18 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
-    public static DisplayHelper dh;
-    public static Handler handler = new Handler();
-    public int newVisitors;
-    public Intent musicService;
-    public boolean musicServiceIsStarted = false;
+    private static DisplayHelper dh;
+    private static final Handler handler = new Handler();
+    private int newVisitors;
+    private Intent musicService;
+    private boolean musicServiceIsStarted = false;
 
     // UI Elements
-    public static Activity mainActivity;
-    public static HorizontalScrollView mainScroller;
+    private static Activity mainActivity;
+    private static HorizontalScrollView mainScroller;
     public static TextViewPixel coins;
-    public static LinearLayout visitorContainer;
-    public static LinearLayout visitorContainerOverflow;
+    private static LinearLayout visitorContainer;
+    private static LinearLayout visitorContainerOverflow;
     public static TextViewPixel level;
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements
         th.start(mainActivity);
     }
 
-    public void startSecondTutorial(View v) {
+    private void startSecondTutorial(View v) {
         findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(400), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_5_MAIN);
@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    public void updateVisitors() {
+    private void updateVisitors() {
         visitorContainer.removeAllViews();
         visitorContainerOverflow.removeAllViews();
         dh.populateVisitorsContainer(getApplicationContext(), MainActivity.this, visitorContainer, visitorContainerOverflow);

@@ -3,10 +3,10 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Tier extends SugarRecord {
-    Long id;
-    String name;
-    int minimumLevel;
-    int weighting;
+    private Long id;
+    private String name;
+    private int minimumLevel;
+    private int weighting;
 
     public Tier() {
     }

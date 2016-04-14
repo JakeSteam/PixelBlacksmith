@@ -30,10 +30,10 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class AnvilActivity extends Activity {
-    public static DisplayHelper dh;
-    public static GestureHelper gh;
+    private static DisplayHelper dh;
+    private static GestureHelper gh;
 
-    public int displayedTier = Constants.TIER_MIN;
+    private int displayedTier = Constants.TIER_MIN;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
@@ -72,7 +72,7 @@ public class AnvilActivity extends Activity {
         th.start(this);
     }
 
-    public void createAnvilInterface(boolean clearExisting) {
+    private void createAnvilInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
@@ -109,7 +109,7 @@ public class AnvilActivity extends Activity {
         craft(itemID, Constants.MAX_CRAFTS);
     }
 
-    public void craft(Long itemID, int maxCrafts) {
+    private void craft(Long itemID, int maxCrafts) {
         boolean successful = true;
         int quantityCrafted = 0;
 
@@ -150,7 +150,7 @@ public class AnvilActivity extends Activity {
         startActivity(intent);
     }
 
-    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {

@@ -7,13 +7,13 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Upgrade extends SugarRecord {
-    String name;
-    String units;
-    int modifier;
-    int increment;
-    int minimum;
-    int maximum;
-    int current;
+    private String name;
+    private String units;
+    private int modifier;
+    private int increment;
+    private int minimum;
+    private int maximum;
+    private int current;
 
     public Upgrade() {
     }
@@ -122,7 +122,7 @@ public class Upgrade extends SugarRecord {
         }
     }
 
-    public void upgrade(Inventory coins) {
+    private void upgrade(Inventory coins) {
         coins.setQuantity(coins.getQuantity() - getUpgradeCost());
         coins.save();
 

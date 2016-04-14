@@ -10,12 +10,12 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 
 public class Trader_Stock extends SugarRecord {
-    Long traderType;
-    Long itemID;
-    int state;
-    int requiredPurchases;
-    int stock;
-    int defaultStock;
+    private Long traderType;
+    private Long itemID;
+    private int state;
+    private int requiredPurchases;
+    private int stock;
+    private int defaultStock;
 
     public Trader_Stock() {
 

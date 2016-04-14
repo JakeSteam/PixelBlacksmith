@@ -3,11 +3,11 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Achievement extends SugarRecord {
-    String name;
-    String description;
-    int maximumValue;
-    long playerInfoID;
-    String remoteID;
+    private String name;
+    private String description;
+    private int maximumValue;
+    private long playerInfoID;
+    private String remoteID;
 
     public Achievement() {
     }

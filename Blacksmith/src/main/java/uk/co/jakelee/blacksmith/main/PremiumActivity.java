@@ -21,10 +21,10 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity {
-    public static String SKU_PREMIUM = "premium";
-    public static List<String> SKUs = Collections.singletonList(SKU_PREMIUM);
-    public static DisplayHelper dh;
-    public static IabHelper ih;
+    private static final String SKU_PREMIUM = "premium";
+    private static final List<String> SKUs = Collections.singletonList(SKU_PREMIUM);
+    private static DisplayHelper dh;
+    private static IabHelper ih;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

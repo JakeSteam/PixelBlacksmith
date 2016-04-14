@@ -3,11 +3,11 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Setting extends SugarRecord {
-    long settingId;
-    String settingName;
-    boolean boolValue;
-    int intValue;
-    String strValue;
+    private long settingId;
+    private String settingName;
+    private boolean boolValue;
+    private int intValue;
+    private String strValue;
 
     public Setting() {
     }
@@ -19,14 +19,14 @@ public class Setting extends SugarRecord {
         this.save();
     }
 
-    public Setting(long settingId, String name, int intValue) {
+    public Setting(long settingId, String settingName, int intValue) {
         this.settingId = settingId;
         this.settingName = settingName;
         this.intValue = intValue;
         this.save();
     }
 
-    public Setting(long settingId, String name, String strValue) {
+    public Setting(long settingId, String settingName, String strValue) {
         this.settingId = settingId;
         this.settingName = settingName;
         this.strValue = strValue;

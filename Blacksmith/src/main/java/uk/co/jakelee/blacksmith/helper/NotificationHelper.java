@@ -21,7 +21,7 @@ import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class NotificationHelper extends BroadcastReceiver {
     private static boolean useSounds = false;
-    private static String NOTIFICATION_TYPE = "uk.co.jakelee.notification_type";
+    private static final String NOTIFICATION_TYPE = "uk.co.jakelee.notification_type";
 
     public static void addRestockNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;

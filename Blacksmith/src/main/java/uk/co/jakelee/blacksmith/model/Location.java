@@ -7,8 +7,8 @@ import com.orm.query.Select;
 import java.util.List;
 
 public class Location extends SugarRecord {
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 
     public Location() {
 

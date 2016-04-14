@@ -12,9 +12,9 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 
 public class HelpActivity extends Activity {
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
-    public static String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
+    public static final String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,13 +45,13 @@ public class HelpActivity extends Activity {
         }
     }
 
-    public void clickTopic(View v) {
+    private void clickTopic(View v) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, (TOPICS) v.getTag());
         startActivity(intent);
     }
 
-    public void displayHelp(LinearLayout layout, TOPICS topic) {
+    private void displayHelp(LinearLayout layout, TOPICS topic) {
         if (topic == TOPICS.Help) {
             displayHelpHelp(layout);
         } else if (topic == TOPICS.Overview) {
@@ -91,13 +91,13 @@ public class HelpActivity extends Activity {
         }
     }
 
-    public void displayHelpHelp(LinearLayout layout) {
+    private void displayHelpHelp(LinearLayout layout) {
         layout.addView(dh.createTextView("Help\n", 26));
         layout.addView(dh.createTextView("You want help for the help!?\n", 22));
         layout.addView(dh.createTextView("Get out of here, there's money to make!\n", 22));
     }
 
-    public void displayHelpOverview(LinearLayout layout) {
+    private void displayHelpOverview(LinearLayout layout) {
         layout.addView(dh.createTextView("Overview\n", 26));
         layout.addView(dh.createTextView("So, here's the deal: You're a blacksmith. A not very good one, to be honest.\n", 22));
         layout.addView(dh.createTextView("If you want to make a name for yourself, you're going to have to keep visitors happy, and keep an eye on your resources.\n", 22));
@@ -109,7 +109,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Get stuck at any stage in the process? Press the help button!\n", 22));
     }
 
-    public void displayHelpFurnace(LinearLayout layout) {
+    private void displayHelpFurnace(LinearLayout layout) {
         layout.addView(dh.createTextView("Furnace\n", 26));
         layout.addView(dh.createTextView("The furnace is the starting point for creating items.\n", 22));
         layout.addView(dh.createTextView("Ore is generally bought from passing traders at the marketplace, but it can also be given as a reward by happy visitors.\n", 22));
@@ -118,7 +118,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Swipe left and right to change items. Pressing 'Smelt Max' will create as many bars as possible with your current free slots and resources.\n", 22));
     }
 
-    public void displayHelpAnvil(LinearLayout layout) {
+    private void displayHelpAnvil(LinearLayout layout) {
         layout.addView(dh.createTextView("Anvil\n", 26));
         layout.addView(dh.createTextView("After the furnace creates bars, the anvil must be used to hammer them into shape.\n", 22));
         layout.addView(dh.createTextView("Most recipes only require bars, with more valuable / higher tier items requiring more bars.\n", 22));
@@ -127,7 +127,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Pressing 'Craft Max' will create as many of the selected item as possible with your current free slots and resources.\n", 22));
     }
 
-    public void displayHelpInventory(LinearLayout layout) {
+    private void displayHelpInventory(LinearLayout layout) {
         layout.addView(dh.createTextView("Inventory\n", 26));
         layout.addView(dh.createTextView("All of your current stock can be viewed here.\n", 22));
         layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended.\n", 22));
@@ -135,7 +135,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Scroll up and down to view all items.\n", 22));
     }
 
-    public void displayHelpCredits(LinearLayout layout) {
+    private void displayHelpCredits(LinearLayout layout) {
         layout.addView(dh.createTextView("Credits\n", 26));
         layout.addView(dh.createTextView("Making a game is hard, but it's also extremely rewarding and educational.\n", 22));
         layout.addView(dh.createTextView("Development would be impossible without building on the work of others via open-source libraries, free resources, and places like StackOverflow.\n", 22));
@@ -143,7 +143,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Thanks, y'all!\n", 22));
     }
 
-    public void displayHelpEnchanting(LinearLayout layout) {
+    private void displayHelpEnchanting(LinearLayout layout) {
         layout.addView(dh.createTextView("Gem Table\n", 26));
         layout.addView(dh.createTextView("Once an item is finished, its value can be greatly increased by putting a valuable gem inside.\n", 22));
         layout.addView(dh.createTextView("Use these wisely, as they are only available in limited quantities, and certain visitors will pay a very hefty bonus for items with their preferred gem in.\n", 22));
@@ -151,7 +151,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Once the desired item is selected, tap the gem to be added.\n", 22));
     }
 
-    public void displayHelpMarket(LinearLayout layout) {
+    private void displayHelpMarket(LinearLayout layout) {
         layout.addView(dh.createTextView("Market\n", 26));
         layout.addView(dh.createTextView("Raw resources (ore, some secondaries) are generally purchased from the market.\n", 22));
         layout.addView(dh.createTextView("Traders come and go, each with different prices and specialities. If you buy a lot of an item, you'll find the trader unable to resupply for a few hours.\n", 22));
@@ -161,25 +161,25 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Scroll up and down to see the full list of traders.\n", 22));
     }
 
-    public void displayHelpSettings(LinearLayout layout) {
+    private void displayHelpSettings(LinearLayout layout) {
         layout.addView(dh.createTextView("Settings\n", 26));
         layout.addView(dh.createTextView("Here, game settings such as music / sound and notifications can be enabled and disabled.\n", 22));
         layout.addView(dh.createTextView("Changes take place as soon as the settings interface is closed.\n", 22));
     }
 
-    public void displayHelpTrader(LinearLayout layout) {
+    private void displayHelpTrader(LinearLayout layout) {
         layout.addView(dh.createTextView("Trader\n", 26));
         layout.addView(dh.createTextView("Traders will drift in and out of the marketplace throughout the day, with some offering steep discounts.\n", 22));
         layout.addView(dh.createTextView("They have a limited amount of stock, restocking happens every few hours (time until next restock is available on the statistics interface, or receive a notification via the settings interface).\n", 22));
     }
 
-    public void displayHelpStatistics(LinearLayout layout) {
+    private void displayHelpStatistics(LinearLayout layout) {
         layout.addView(dh.createTextView("Statistics\n", 26));
         layout.addView(dh.createTextView("Useful statistics such as time until next restock / visitor are available here.\n", 22));
         layout.addView(dh.createTextView("Additionally, progress towards various achievements can be tracked using the miscellaneous statistics displayed.\n", 22));
     }
 
-    public void displayHelpTable(LinearLayout layout) {
+    private void displayHelpTable(LinearLayout layout) {
         layout.addView(dh.createTextView("Table\n", 26));
         layout.addView(dh.createTextView("The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\n", 22));
         layout.addView(dh.createTextView("After this, items can be optionally embedded with gems at the gem table.\n", 22));
@@ -187,7 +187,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Pressing 'Craft Max' will create as many of the selected item as possible with your current free slots and resources.\n", 22));
     }
 
-    public void displayHelpTrading(LinearLayout layout) {
+    private void displayHelpTrading(LinearLayout layout) {
         layout.addView(dh.createTextView("Trade\n", 26));
         layout.addView(dh.createTextView("This screen is where you'll make all of your money!\n", 22));
         layout.addView(dh.createTextView("The discovered bonus is displayed next to the sell price of each item. It's entirely possible the item will sell for more than this, if all of the visitor's preferences have not yet been discovered.\n", 22));
@@ -195,7 +195,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The finish button will close this criteria trade for now.\n", 22));
     }
 
-    public void displayHelpTrophy(LinearLayout layout) {
+    private void displayHelpTrophy(LinearLayout layout) {
         layout.addView(dh.createTextView("Trophy\n", 26));
         layout.addView(dh.createTextView("The trophy screen is where notes about all of the seen visitors can be looked at.\n", 22));
         layout.addView(dh.createTextView("Unseen visitors will have no information available about them.\n", 22));
@@ -203,7 +203,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Once a visitor has been seen 100 times, they will provide you with a gift, and become fully visible.\n", 22));
     }
 
-    public void displayHelpVisitor(LinearLayout layout) {
+    private void displayHelpVisitor(LinearLayout layout) {
         layout.addView(dh.createTextView("Visitor\n", 26));
         layout.addView(dh.createTextView("This screen provides an overview of the currently selected visitor.\n", 22));
         layout.addView(dh.createTextView("If their preferred item type, tier, and state have been discovered, the associated bonus will be displayed.\n", 22));
@@ -213,18 +213,18 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of uncompleted demands (required + optional).\n", 22));
     }
 
-    public void displayHelpUpgrade(LinearLayout layout) {
+    private void displayHelpUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView("Upgrade\n", 26));
         layout.addView(dh.createTextView("On this screen various upgrades can be bought, to help improve your shop.\n", 22));
         layout.addView(dh.createTextView("The XP and Gold bonuses will be more effective when dealing with more valuable items.\n", 22));
         layout.addView(dh.createTextView("Buying premium will increase the current and maximum values of most upgrades significantly.\n", 22));
     }
 
-    public void displayHelpPremium(LinearLayout layout) {
+    private void displayHelpPremium(LinearLayout layout) {
         layout.addView(dh.createTextView("Premium\n", 26));
     }
 
-    public void displayHelpMessages(LinearLayout layout) {
+    private void displayHelpMessages(LinearLayout layout) {
         layout.addView(dh.createTextView("Messages\n", 26));
     }
 

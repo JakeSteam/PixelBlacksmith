@@ -244,7 +244,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="completeVisitor"
-                    android:text="Complete"
+                    android:text="@string/complete"
                     android:textSize="35sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -258,7 +258,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="dismissVisitor"
-                    android:text="X"
+                    android:text="@string/close"
                     android:textSize="35sp" />
             </RelativeLayout>
 

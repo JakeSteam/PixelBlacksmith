@@ -3,10 +3,10 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Type extends SugarRecord {
-    Long id;
-    String name;
-    int category;
-    int weighting;
+    private Long id;
+    private String name;
+    private int category;
+    private int weighting;
 
     public Type() {
     }

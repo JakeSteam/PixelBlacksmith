@@ -26,7 +26,7 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
 public class MarketActivity extends Activity {
     public final static String TRADER_TO_LOAD = "uk.co.jakelee.blacksmith.tradertoload";
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MarketActivity extends Activity {
         populateTraderList();
     }
 
-    public void populateTraderList() {
+    private void populateTraderList() {
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
         marketLayout.removeAllViews();
 
@@ -83,7 +83,7 @@ public class MarketActivity extends Activity {
         noTradersMessage.setVisibility(traders.size() > 0 ? View.GONE : View.VISIBLE);
     }
 
-    public void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
+    private void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
         List<Trader_Stock> traderOfferings = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId())).list();
 

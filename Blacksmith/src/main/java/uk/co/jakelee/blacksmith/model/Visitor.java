@@ -7,8 +7,8 @@ import com.orm.query.Select;
 import java.util.List;
 
 public class Visitor extends SugarRecord {
-    Long arrivalTime;
-    Long type;
+    private Long arrivalTime;
+    private Long type;
 
     public Visitor() {
     }

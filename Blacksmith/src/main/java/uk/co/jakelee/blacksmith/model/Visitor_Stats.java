@@ -3,13 +3,13 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Visitor_Stats extends SugarRecord {
-    Long visitorType;
-    int visits;
-    Long bestItem;
-    Long bestItemState;
-    int bestItemValue;
-    Long firstSeen;
-    Long trophyAchieved;
+    private Long visitorType;
+    private int visits;
+    private Long bestItem;
+    private Long bestItemState;
+    private int bestItemValue;
+    private Long firstSeen;
+    private Long trophyAchieved;
 
     public Visitor_Stats() {
     }

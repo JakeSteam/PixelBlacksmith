@@ -31,8 +31,8 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class FurnaceActivity extends Activity {
-    public static DisplayHelper dh;
-    public static GestureHelper gh;
+    private static DisplayHelper dh;
+    private static GestureHelper gh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
     private int numberOfItems;
@@ -71,7 +71,7 @@ public class FurnaceActivity extends Activity {
         th.start(this);
     }
 
-    public void createFurnaceInterface() {
+    private void createFurnaceInterface() {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
         numberOfItems = items.size();
@@ -100,7 +100,7 @@ public class FurnaceActivity extends Activity {
         smelt(itemID, Constants.MAX_CRAFTS);
     }
 
-    public void smelt(Long itemID, int maxCrafts) {
+    private void smelt(Long itemID, int maxCrafts) {
         boolean successful = true;
         int quantitySmelted = 0;
 
@@ -132,7 +132,7 @@ public class FurnaceActivity extends Activity {
         finish();
     }
 
-    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {

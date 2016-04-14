@@ -6,19 +6,19 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 
 public class Visitor_Type extends SugarRecord {
-    Long visitorID;
-    String name;
-    String desc;
-    Long tierPreferred;
-    Long typePreferred;
-    Long statePreferred;
-    double tierMultiplier;
-    double typeMultiplier;
-    double stateMultiplier;
-    boolean tierDiscovered;
-    boolean typeDiscovered;
-    boolean stateDiscovered;
-    int weighting;
+    private Long visitorID;
+    private String name;
+    private String desc;
+    private Long tierPreferred;
+    private Long typePreferred;
+    private Long statePreferred;
+    private double tierMultiplier;
+    private double typeMultiplier;
+    private double stateMultiplier;
+    private boolean tierDiscovered;
+    private boolean typeDiscovered;
+    private boolean stateDiscovered;
+    private int weighting;
 
     public Visitor_Type() {
     }
@@ -116,7 +116,7 @@ public class Visitor_Type extends SugarRecord {
         return tierDiscovered;
     }
 
-    public void setTierDiscovered(boolean tierDiscovered) {
+    private void setTierDiscovered(boolean tierDiscovered) {
         this.tierDiscovered = tierDiscovered;
     }
 
@@ -124,7 +124,7 @@ public class Visitor_Type extends SugarRecord {
         return typeDiscovered;
     }
 
-    public void setTypeDiscovered(boolean typeDiscovered) {
+    private void setTypeDiscovered(boolean typeDiscovered) {
         this.typeDiscovered = typeDiscovered;
     }
 
@@ -132,7 +132,7 @@ public class Visitor_Type extends SugarRecord {
         return stateDiscovered;
     }
 
-    public void setStateDiscovered(boolean stateDiscovered) {
+    private void setStateDiscovered(boolean stateDiscovered) {
         this.stateDiscovered = stateDiscovered;
     }
 

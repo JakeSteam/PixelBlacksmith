@@ -89,7 +89,7 @@
                 android:alpha="0.6"
                 android:background="@color/black"
                 android:gravity="center"
-                android:text="Visits: ???"
+                android:text="@string/trophyVisitsUnknown"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -124,7 +124,7 @@
                 android:layout_alignLeft="@id/visitorPicture"
                 android:layout_below="@id/visitorPicture"
                 android:singleLine="false"
-                android:text="First seen: ???"
+                android:text="@string/trophyFirstSeenUnknown"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_marginTopPercent="2%"  />
@@ -136,7 +136,7 @@
                 android:layout_alignLeft="@id/visitorFirstSeen"
                 android:layout_below="@id/visitorFirstSeen"
                 android:singleLine="false"
-                android:text="100th visit: ???"
+                android:text="@string/trophy100thVisitUnknown"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_marginTopPercent="2%"  />
@@ -148,7 +148,7 @@
                 android:layout_alignLeft="@id/visitor100thVisit"
                 android:layout_below="@id/visitor100thVisit"
                 android:singleLine="false"
-                android:text="Best item: ???"
+                android:text="@string/trophyBestItemUnknown"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_marginTopPercent="2%"  />

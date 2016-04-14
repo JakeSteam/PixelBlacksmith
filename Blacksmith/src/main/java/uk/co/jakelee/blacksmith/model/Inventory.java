@@ -10,9 +10,9 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Inventory extends SugarRecord implements Serializable {
-    Long item;
-    int quantity;
-    long state;
+    private Long item;
+    private int quantity;
+    private long state;
 
     public Inventory() {
     }
@@ -46,7 +46,7 @@ public class Inventory extends SugarRecord implements Serializable {
         Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getModifiedValue(state));
     }
 
-    public static int canCreateItem(Long itemID, long state) {
+    private static int canCreateItem(Long itemID, long state) {
         Item item = Item.findById(Item.class, itemID);
         if (item.getLevel() > Player_Info.getPlayerLevel()) {
             return Constants.ERROR_PLAYER_LEVEL;
@@ -69,7 +69,7 @@ public class Inventory extends SugarRecord implements Serializable {
         return Constants.SUCCESS;
     }
 
-    public static void removeItemIngredients(Long itemId, long state) {
+    private static void removeItemIngredients(Long itemId, long state) {
         List<Recipe> ingredients = Recipe.getIngredients(itemId, state);
         for (Recipe ingredient : ingredients) {
             Inventory ownedItems = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
@@ -141,7 +141,7 @@ public class Inventory extends SugarRecord implements Serializable {
         return itemFound > 0L;
     }
 
-    public static boolean canSellItem(Long itemId, long state, int quantity) {
+    private static boolean canSellItem(Long itemId, long state, int quantity) {
         Inventory foundInventory = getInventory(itemId, state);
 
         return (foundInventory.getQuantity() - quantity) >= 0;
@@ -172,7 +172,7 @@ public class Inventory extends SugarRecord implements Serializable {
         return Constants.SUCCESS;
     }
 
-    public static int canBuyItem(Trader_Stock itemStock) {
+    private static int canBuyItem(Trader_Stock itemStock) {
         Inventory coins = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
 

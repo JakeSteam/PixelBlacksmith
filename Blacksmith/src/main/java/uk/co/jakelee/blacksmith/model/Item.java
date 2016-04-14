@@ -5,13 +5,13 @@ import com.orm.SugarRecord;
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Item extends SugarRecord {
-    Long id;
-    String name;
-    String description;
-    int type;
-    int tier;
-    int value;
-    int level;
+    private Long id;
+    private String name;
+    private String description;
+    private int type;
+    private int tier;
+    private int value;
+    private int level;
 
     public Item() {
     }

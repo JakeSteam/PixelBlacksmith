@@ -18,7 +18,7 @@ import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 
 public class StatisticsActivity extends Activity {
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class StatisticsActivity extends Activity {
         displayStatistics();
     }
 
-    public void displayStatistics() {
+    private void displayStatistics() {
         int currentXP = Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
 

@@ -22,7 +22,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class UpgradeActivity extends Activity {
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class UpgradeActivity extends Activity {
         startActivity(intent);
     }
 
-    public void createUpgradeInterface() {
+    private void createUpgradeInterface() {
         List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
         TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
         upgradeTable.removeAllViews();

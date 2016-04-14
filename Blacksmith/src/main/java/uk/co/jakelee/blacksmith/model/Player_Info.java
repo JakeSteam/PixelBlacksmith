@@ -8,11 +8,11 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
 public class Player_Info extends SugarRecord {
-    String name;
-    String textValue;
-    int intValue;
-    Long longValue;
-    int lastSentValue;
+    private String name;
+    private String textValue;
+    private int intValue;
+    private Long longValue;
+    private int lastSentValue;
 
     public Player_Info() {
 
@@ -61,7 +61,7 @@ public class Player_Info extends SugarRecord {
         }
     }
 
-    public static int convertXpToLevel(int xp) {
+    private static int convertXpToLevel(int xp) {
         // Level = 0.15 * sqrt(xp)
         return (int) (Constants.LEVEL_MODIFIER * Math.sqrt(xp));
     }

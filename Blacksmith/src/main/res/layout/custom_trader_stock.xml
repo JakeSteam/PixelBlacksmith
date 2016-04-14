@@ -35,7 +35,7 @@
         android:layout_height="40dp"
         android:background="@drawable/button"
         android:gravity="center"
-        android:text="Buy"
+        android:text="@string/buy"
         android:textColor="@color/black"
         android:textSize="32sp" />
 </TableRow>

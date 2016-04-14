@@ -76,7 +76,6 @@
 
 
     <string name="marketText">Market</string>
-    <string name="menuText">Menu</string>
     <string name="furnaceText">Furnace</string>
     <string name="anvilText">Anvil</string>
     <string name="inventoryText">Inventory</string>
@@ -86,9 +85,6 @@
     <string name="tradeText">Trade</string>
     <string name="enchantingText">Gem Table</string>
     <string name="settingsText">Settings</string>
-    <string name="achievementsText">Achievements</string>
-    <string name="leaderboardsText">Leaderboards</string>
-    <string name="savedGamesText">Cloud Save</string>
     <string name="creditsText">Credits</string>
     <string name="trophyText">Trophies</string>
     <string name="statisticsText">Statistics</string>
@@ -168,10 +164,6 @@
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
 
-    <string name="cloudLoadQuestion">Are you sure you wish to overwrite your local save with your cloud save? This CANNOT be undone!</string>
-    <string name="cloudLoadConfirm">Overwrite</string>
-    <string name="cloudLoadCancel">Cancel</string>
-
     <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
     <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
     <string name="cloudSuccess">Cloud %s successful!</string>
@@ -197,8 +189,6 @@
     <string name="soldItem">Sold %1$sx %2$s for %3$s coin(s)</string>
 
     <string name="noTraders">The marketplace is empty!\n\nThe traders should return when they have restocked.</string>
-    <string name="craftFailure">You cannot craft this.</string>
-    <string name="craftAdd">Item added to craft queue.</string>
     <string name="enchantAdd">Item added to enchanting queue.</string>
     <string name="powderAdd">Item added to powder queue.</string>
 
@@ -236,6 +226,10 @@
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
+
+    <string name="complete">Complete</string>
+    <string name="close">X</string>
+    <string name="buy">Buy</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>

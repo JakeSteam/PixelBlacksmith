@@ -20,11 +20,11 @@ import uk.co.jakelee.blacksmith.model.Message;
 public class TutorialHelper {
 
     public static boolean currentlyInTutorial = false;
-    private List<ChainTourGuide> tourGuides = new ArrayList<>();
+    private final List<ChainTourGuide> tourGuides = new ArrayList<>();
     public static ChainTourGuide chainTourGuide;
     public static int currentStage;
 
-    Animation enterAnimation = new AlphaAnimation(0f, 1f);
+    private final Animation enterAnimation = new AlphaAnimation(0f, 1f);
 
     public TutorialHelper(int stage) {
         currentStage = stage;
@@ -57,7 +57,7 @@ public class TutorialHelper {
         addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Rectangle, clickable, Gravity.CENTER);
     }
 
-    public void addTutorial(Activity activity, View view, String title, String body, Overlay.Style style, boolean clickable, int gravity) {
+    private void addTutorial(Activity activity, View view, String title, String body, Overlay.Style style, boolean clickable, int gravity) {
         if (view == null) {
             return;
         }

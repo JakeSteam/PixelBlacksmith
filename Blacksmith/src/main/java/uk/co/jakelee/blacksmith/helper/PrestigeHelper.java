@@ -12,7 +12,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
-public class PrestigeHelper {
+class PrestigeHelper {
     public static void prestigeAccount() {
         increasePrestige();
 

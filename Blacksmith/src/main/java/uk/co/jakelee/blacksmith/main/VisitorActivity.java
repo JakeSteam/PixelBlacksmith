@@ -43,10 +43,10 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorActivity extends Activity {
-    public static DisplayHelper dh;
-    public static Visitor visitor;
-    public static Visitor_Type visitorType;
-    public static Visitor_Stats visitorStats;
+    private static DisplayHelper dh;
+    private static Visitor visitor;
+    private static Visitor_Type visitorType;
+    private static Visitor_Stats visitorStats;
 
     private static boolean identifyFirstDemand = false;
 
@@ -89,7 +89,7 @@ public class VisitorActivity extends Activity {
         }
     }
 
-    public void createVisitorInterface() {
+    private void createVisitorInterface() {
         displayVisitorInfo();
         displayVisitorStats();
         displayVisitorDemands();
@@ -110,7 +110,7 @@ public class VisitorActivity extends Activity {
         th.start(this);
     }
 
-    public void displayVisitorInfo() {
+    private void displayVisitorInfo() {
         int drawableId = getApplicationContext().getResources().getIdentifier("visitor" + visitorType.getVisitorID(), "drawable", getApplicationContext().getPackageName());
         ImageView visitorPicture = (ImageView) findViewById(R.id.visitorPicture);
         visitorPicture.setImageResource(drawableId);
@@ -126,7 +126,7 @@ public class VisitorActivity extends Activity {
                 visitorStats.getVisits()));
     }
 
-    public void displayVisitorStats() {
+    private void displayVisitorStats() {
         if (visitorType.isTypeDiscovered()) {
             ImageView typePic = (ImageView) findViewById(R.id.typeImage);
             TextViewPixel typeMultiplier = (TextViewPixel) findViewById(R.id.typeMultiplier);
@@ -164,7 +164,7 @@ public class VisitorActivity extends Activity {
         bestItemValue.setText(String.format("%d", visitorStats.getBestItemValue()));
     }
 
-    public void displayVisitorDemands() {
+    private void displayVisitorDemands() {
         TableLayout demandsTable = (TableLayout) findViewById(R.id.demandsTable);
         demandsTable.removeAllViews();
 
@@ -251,7 +251,7 @@ public class VisitorActivity extends Activity {
         AlertDialogHelper.confirmVisitorDismiss(getApplicationContext(), visitor, this);
     }
 
-    public void createVisitorReward() {
+    private void createVisitorReward() {
         int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
         int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
@@ -277,7 +277,7 @@ public class VisitorActivity extends Activity {
         }
     }
 
-    public void createVisitorTrophyReward(Visitor visitor) {
+    private void createVisitorTrophyReward(Visitor visitor) {
         Visitor_Type visitorType = Select.from(Visitor_Type.class).where(
                 Condition.prop("visitor_id").eq(visitor.getType())).first();
 

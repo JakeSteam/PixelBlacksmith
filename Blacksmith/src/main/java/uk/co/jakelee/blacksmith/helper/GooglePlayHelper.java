@@ -35,15 +35,15 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class GooglePlayHelper {
-    public static final int RESULT_OK = -1;
-    public static int RC_SIGN_IN = 9001;
-    public static int RC_ACHIEVEMENTS = 9002;
-    public static int RC_LEADERBOARDS = 9003;
-    public static int RC_SAVED_GAMES = 9004;
-    public static String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
+    private static final int RESULT_OK = -1;
+    private static final int RC_SIGN_IN = 9001;
+    public static final int RC_ACHIEVEMENTS = 9002;
+    public static final int RC_LEADERBOARDS = 9003;
+    public static final int RC_SAVED_GAMES = 9004;
+    private static final String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
     public static GoogleApiClient mGoogleApiClient;
     private static boolean mResolvingConnectionFailure = false;
-    private static String mCurrentSaveName = "blacksmithCloudSave";
+    private static final String mCurrentSaveName = "blacksmithCloudSave";
 
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
         if (mResolvingConnectionFailure) {
@@ -97,7 +97,7 @@ public class GooglePlayHelper {
         }
     }
 
-    public static void UpdateAchievement(Achievement achievement, int currentValue, int lastSentValue) {
+    private static void UpdateAchievement(Achievement achievement, int currentValue, int lastSentValue) {
         boolean hasChanged = (currentValue > lastSentValue);
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
         if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
@@ -110,7 +110,7 @@ public class GooglePlayHelper {
         }
     }
 
-    public static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
+    private static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
         if (currentValue > lastSentValue && mGoogleApiClient.isConnected()) {
             statistic.setLastSentValue(currentValue);
             statistic.save();
@@ -196,7 +196,7 @@ public class GooglePlayHelper {
         return GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected();
     }
 
-    public static byte[] createBackup() {
+    private static byte[] createBackup() {
         Gson gson = new Gson();
         String backupString = "";
 
@@ -222,7 +222,7 @@ public class GooglePlayHelper {
 
     }
 
-    public static boolean applyBackup(String backupData) {
+    private static void applyBackup(String backupData) {
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(backupData);
@@ -275,7 +275,6 @@ public class GooglePlayHelper {
             visitor_type.save();
         }
 
-        return true;
     }
 
     private static String[] splitBackupData(String backupData) {

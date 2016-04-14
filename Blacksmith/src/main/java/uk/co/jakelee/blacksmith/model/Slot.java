@@ -9,9 +9,9 @@ import java.util.List;
  * Created by Jake on 01/12/2015.
  */
 public class Slot extends SugarRecord {
-    int location;
-    int level;
-    boolean premium;
+    private int location;
+    private int level;
+    private boolean premium;
 
     public Slot() {
 

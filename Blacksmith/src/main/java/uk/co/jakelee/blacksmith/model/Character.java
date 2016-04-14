@@ -3,9 +3,9 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Character extends SugarRecord {
-    Long id;
-    String name;
-    String intro;
+    private Long id;
+    private String name;
+    private String intro;
 
     public Character() {
     }

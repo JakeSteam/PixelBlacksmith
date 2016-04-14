@@ -5,12 +5,12 @@ import com.orm.SugarRecord;
 import java.util.List;
 
 public class Visitor_Demand extends SugarRecord {
-    Long visitorID;
-    Long criteriaType;
-    Long criteriaValue;
-    int quantityProvided;
-    int quantity;
-    boolean required;
+    private Long visitorID;
+    private Long criteriaType;
+    private Long criteriaValue;
+    private int quantityProvided;
+    private int quantity;
+    private boolean required;
 
     public Visitor_Demand() {
     }
@@ -56,7 +56,7 @@ public class Visitor_Demand extends SugarRecord {
         this.criteriaType = criteriaType;
     }
 
-    public Long getCriteriaValue() {
+    private Long getCriteriaValue() {
         return criteriaValue;
     }
 

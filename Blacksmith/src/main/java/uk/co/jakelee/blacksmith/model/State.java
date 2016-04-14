@@ -3,12 +3,12 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class State extends SugarRecord {
-    Long id;
-    String name;
+    private Long id;
+    private String name;
     String prefix;
-    Long initiatingItem;
-    int minimumLevel;
-    int weighting;
+    private Long initiatingItem;
+    private int minimumLevel;
+    private int weighting;
 
     public State() {
     }

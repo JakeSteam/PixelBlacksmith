@@ -24,7 +24,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SettingsActivity extends Activity {
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class SettingsActivity extends Activity {
         signIn.save();
     }
 
-    public void updateSignInVisibility() {
+    private void updateSignInVisibility() {
         RelativeLayout signInButton = (RelativeLayout) findViewById(R.id.signInButton);
         RelativeLayout signOutButton = (RelativeLayout) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
@@ -90,7 +90,7 @@ public class SettingsActivity extends Activity {
 
     }
 
-    public void displaySettingsList() {
+    private void displaySettingsList() {
         Drawable tick = dh.createDrawable(R.drawable.tick, 50, 50);
         Drawable cross = dh.createDrawable(R.drawable.cross, 50, 50);
 

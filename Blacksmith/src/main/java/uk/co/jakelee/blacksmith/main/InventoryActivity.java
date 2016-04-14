@@ -31,7 +31,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class InventoryActivity extends Activity {
-    public static DisplayHelper dh;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class InventoryActivity extends Activity {
         updateInventoryTable();
     }
 
-    public void updateInventoryTable() {
+    private void updateInventoryTable() {
         List<Inventory> allInventoryItems = Select.from(Inventory.class).where(
                 Condition.prop("quantity").gt(0),
                 Condition.prop("item").notEq(Constants.ITEM_COINS))
@@ -91,7 +91,7 @@ public class InventoryActivity extends Activity {
         }
     }
 
-    public void clickSellButton(View view) {
+    private void clickSellButton(View view) {
         int quantity = 1;
         Long itemID = (Long) view.getTag(R.id.itemID);
         Long itemState = (Long) view.getTag(R.id.itemState);

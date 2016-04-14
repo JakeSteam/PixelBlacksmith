@@ -32,9 +32,9 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class EnchantingActivity extends Activity {
-    public static DisplayHelper dh;
-    public static GestureHelper gh;
-    public int displayedTier = Constants.TIER_MIN;
+    private static DisplayHelper dh;
+    private static GestureHelper gh;
+    private int displayedTier = Constants.TIER_MIN;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
@@ -60,7 +60,7 @@ public class EnchantingActivity extends Activity {
         return super.onTouchEvent(event);
     }
 
-    public void createEnchantingInterface(boolean clearExisting) {
+    private void createEnchantingInterface(boolean clearExisting) {
         // Get all items that are of the correct tier
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
@@ -102,7 +102,7 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    public void createGemsTable(final LinearLayout gemsTable) {
+    private void createGemsTable(final LinearLayout gemsTable) {
         gemsTable.removeAllViews();
         List<Item> allGems = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_GEM)).list();
@@ -119,7 +119,7 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    public LinearLayout createEnchantingButton(Item item) {
+    private LinearLayout createEnchantingButton(Item item) {
         boolean haveSeen = Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL);
 
         LinearLayout itemButton = new LinearLayout(getApplicationContext());
@@ -162,7 +162,7 @@ public class EnchantingActivity extends Activity {
         return itemButton;
     }
 
-    public void clickPowderButton(View v) {
+    private void clickPowderButton(View v) {
 
         Long powderID = (Long) v.getTag();
 
@@ -177,7 +177,7 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    public void clickEnchantButton(View v) {
+    private void clickEnchantButton(View v) {
         View enchantingItemInfo = findViewById(R.id.enchanting);
 
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
@@ -206,7 +206,7 @@ public class EnchantingActivity extends Activity {
         finish();
     }
 
-    class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onFling(MotionEvent startXY, MotionEvent finishXY, float velocityX, float velocityY) {

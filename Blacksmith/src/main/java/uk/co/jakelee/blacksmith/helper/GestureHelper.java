@@ -9,11 +9,11 @@ import android.widget.ViewFlipper;
 import uk.co.jakelee.blacksmith.R;
 
 public class GestureHelper {
-    private Context context;
-    private Animation slide_in_left;
-    private Animation slide_out_right;
-    private Animation slide_in_right;
-    private Animation slide_out_left;
+    private final Context context;
+    private final Animation slide_in_left;
+    private final Animation slide_out_right;
+    private final Animation slide_in_right;
+    private final Animation slide_out_left;
 
     public GestureHelper(Context context) {
         this.context = context;

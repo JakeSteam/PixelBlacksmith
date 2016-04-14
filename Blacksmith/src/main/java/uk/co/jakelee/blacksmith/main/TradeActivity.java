@@ -39,11 +39,11 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class TradeActivity extends Activity {
-    public static Visitor_Demand demand;
-    public static Visitor visitor;
-    public static Visitor_Type visitorType;
-    public static Visitor_Stats visitorStats;
-    public static DisplayHelper dh;
+    private static Visitor_Demand demand;
+    private static Visitor visitor;
+    private static Visitor_Type visitorType;
+    private static Visitor_Stats visitorStats;
+    private static DisplayHelper dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,18 +83,18 @@ public class TradeActivity extends Activity {
         th.start(this);
     }
 
-    public void createTradeInterface() {
+    private void createTradeInterface() {
         displayVisitorInfo();
         displayDemandInfo();
         displayItemsTable();
     }
 
-    public void displayVisitorInfo() {
+    private void displayVisitorInfo() {
         TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
         visitorName.setText(visitorType.getName());
     }
 
-    public void displayDemandInfo() {
+    private void displayDemandInfo() {
         Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
 
         TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
@@ -110,7 +110,7 @@ public class TradeActivity extends Activity {
         demandProgress.setProgress(demand.getQuantityProvided());
     }
 
-    public void displayItemsTable() {
+    private void displayItemsTable() {
         TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
         itemsTable.removeAllViews();
 
@@ -171,7 +171,7 @@ public class TradeActivity extends Activity {
         }
     }
 
-    public void clickSellButton(View v) {
+    private void clickSellButton(View v) {
         Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
         State itemState = State.findById(State.class, (long) v.getTag(R.id.itemState));
         Inventory itemInventory = Select.from(Inventory.class).where(
