@@ -117,6 +117,24 @@ public class MainActivity extends AppCompatActivity implements
         th.start(mainActivity);
     }
 
+    private void startThirdTutorial() {
+        // mainScroller.scrollTo(X, 0);
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_7_MAIN);
+        th.addTutorial(mainActivity, findViewById(R.id.slots_furnace), R.string.tutorialMainAnvil, R.string.tutorialMainAnvilText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.open_furnace), R.string.tutorialMainFurther, R.string.tutorialMainFurtherText, false);
+        th.start(mainActivity);
+    }
+
+    private void startFourthTutorial() {
+        // mainScroller.scrollTo(X, 0);
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_9_MAIN);
+        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, false);
+        th.start(mainActivity);
+        TutorialHelper.currentlyInTutorial = false;
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -176,6 +194,10 @@ public class MainActivity extends AppCompatActivity implements
                 startFirstTutorial();
             } else if (TutorialHelper.currentStage <= Constants.STAGE_5_MAIN) {
                 startSecondTutorial();
+            } else if (TutorialHelper.currentStage <= Constants.STAGE_7_MAIN) {
+                startThirdTutorial();
+            } else if (TutorialHelper.currentStage <= Constants.STAGE_9_MAIN) {
+                startFourthTutorial();
             }
         }
     }

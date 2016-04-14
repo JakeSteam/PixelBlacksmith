@@ -49,6 +49,10 @@
     <string name="tutorialFurnaceSmeltText">Craft a few bronze bars, we\'ll need some extra for the unfinished items.</string>
 
     <!-- Stage 7 -->
+    <string name="tutorialMainAnvil">Anvil</string>
+    <string name="tutorialMainAnvilText">To make the bronze bars into the unfinished dagger, we only need to visit the anvil. As before, notice there\'s only 1 slot available for now.</string>
+    <string name="tutorialMainFurther">Further Crafting</string>
+    <string name="tutorialMainFurtherText">Later, making finished items will require the use of the Crafting Table, and enchanting items will require visiting the Enchanting Table.</string>
 
     <!-- Stage 8 -->
     <string name="tutorialAnvil">Items</string>
@@ -61,16 +65,13 @@
     <string name="tutorialAnvilCraftText">Make a bronze dagger or two, but make sure to leave at least 1 bronze bar spare for trading.</string>
 
     <!-- Stage 9 -->
+    <string name="tutorialMainInfo">Last Thing</string>
+    <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his unfinished bronze dagger, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainSettings">Settings</string>
+    <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here. A message history is also available, along with optional google play achievements, leaderboard, and cloud saves.</string>
+    <string name="tutorialMainHelp">Help</string>
+    <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
 
-    <!-- Stage 10 -->
-    <string name="tutorialSettingsToggle">Settings</string>
-    <string name="tutorialSettingsToggleText">There\'s plenty of sound and notification options here, changes will take effect when the settings menu is closed.</string>
-    <string name="tutorialSettingsMessages">Messages</string>
-    <string name="tutorialSettingsMessagesText">A history of all messages, errors, and tutorial information can be found here. Keep in mind only the last 100 will be saved.</string>
-    <string name="tutorialSettingsGooglePlay">Google Play</string>
-    <string name="tutorialSettingsGooglePlayText">Google Play Signin is optional, but provides leaderboards, achievements, and even cloud saves.</string>
-    <string name="tutorialSettingsHelp">Help</string>
-    <string name="tutorialSettingsHelpText">Finally, clicking the help icon at any time will provide more detailed information about the current screen.</string>
 
     <string name="marketText">Market</string>
     <string name="menuText">Menu</string>
