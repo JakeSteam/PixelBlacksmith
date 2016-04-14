@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
@@ -36,13 +37,15 @@ public class MessagesActivity extends Activity {
         List<Message> messages = Select.from(Message.class).orderBy("added DESC").list();
         for (Message message : messages) {
             LinearLayout messageRow = new LinearLayout(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0, 0, 10);
 
             String timeText = DateHelper.displayTime(message.getAdded(), DateHelper.time);
             TextViewPixel timeTextView = dh.createTextView(timeText + " ", 22, Color.DKGRAY);
             TextViewPixel messageTextView = dh.createTextView(message.getMessage(), 18);
 
             messageRow.addView(timeTextView);
-            messageRow.addView(messageTextView);
+            messageRow.addView(messageTextView, params);
             messageScroller.addView(messageRow);
         }
     }

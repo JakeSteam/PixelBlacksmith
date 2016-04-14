@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity implements
         if (prefs.getBoolean("firstrun", true)) {
             DatabaseHelper.initialSQL();
             prefs.edit().putBoolean("firstrun", false).apply();
-        }
 
-        TutorialHelper.currentlyInTutorial = true;
+            TutorialHelper.currentlyInTutorial = true;
+        }
     }
 
     public static void startFirstTutorial() {
