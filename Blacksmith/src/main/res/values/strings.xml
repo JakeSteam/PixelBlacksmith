@@ -67,6 +67,8 @@
     <!-- Stage 9 -->
     <string name="tutorialMainInfo">Last Thing</string>
     <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his unfinished bronze dagger, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainMarket">Market</string>
+    <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from traders on the market.</string>
     <string name="tutorialMainSettings">Settings</string>
     <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here. A message history is also available, along with optional google play achievements, leaderboard, and cloud saves.</string>
     <string name="tutorialMainHelp">Help</string>

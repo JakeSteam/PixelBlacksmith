@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public static void startFirstTutorial() {
         mainScroller.scrollTo(0, 0);
+
         TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
         th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
         th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
@@ -109,29 +111,43 @@ public class MainActivity extends AppCompatActivity implements
         th.start(mainActivity);
     }
 
-    private void startSecondTutorial() {
-        // mainScroller.scrollTo(X, 0);
+    public void startSecondTutorial(View v) {
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(400), 0);
+
         TutorialHelper th = new TutorialHelper(Constants.STAGE_5_MAIN);
-        th.addTutorial(mainActivity, findViewById(R.id.slots_furnace), R.string.tutorialFurnaceSlots, R.string.tutorialFurnaceSlotsText, false);
-        th.addTutorial(mainActivity, findViewById(R.id.open_furnace), R.string.tutorialFurnace, R.string.tutorialFurnaceText, false);
+        th.addTutorialRectangle(mainActivity, findViewById(R.id.slots_furnace), R.string.tutorialFurnaceSlots, R.string.tutorialFurnaceSlotsText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.open_furnace), R.string.tutorialFurnace, R.string.tutorialFurnaceText, true);
         th.start(mainActivity);
     }
 
     private void startThirdTutorial() {
-        // mainScroller.scrollTo(X, 0);
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(680), 0);
+
         TutorialHelper th = new TutorialHelper(Constants.STAGE_7_MAIN);
-        th.addTutorial(mainActivity, findViewById(R.id.slots_furnace), R.string.tutorialMainAnvil, R.string.tutorialMainAnvilText, false);
-        th.addTutorial(mainActivity, findViewById(R.id.open_furnace), R.string.tutorialMainFurther, R.string.tutorialMainFurtherText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.slots_anvil), R.string.tutorialMainAnvil, R.string.tutorialMainAnvilText, false);
+        th.addTutorial(mainActivity, findViewById(R.id.open_anvil), R.string.tutorialMainFurther, R.string.tutorialMainFurtherText, true);
         th.start(mainActivity);
     }
 
     private void startFourthTutorial() {
-        // mainScroller.scrollTo(X, 0);
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(230), 0);
+
         TutorialHelper th = new TutorialHelper(Constants.STAGE_9_MAIN);
-        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false);
-        th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false);
-        th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, false);
+        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, false, Gravity.TOP);
         th.start(mainActivity);
+
+        TutorialHelper.currentStage = Constants.STAGE_10_MAIN;
+    }
+
+    private void startFifthTutorial() {
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(860), 0);
+
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_9_MAIN);
+        th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, true, Gravity.TOP);
+        th.start(mainActivity);
+
         TutorialHelper.currentlyInTutorial = false;
     }
 
@@ -193,11 +209,13 @@ public class MainActivity extends AppCompatActivity implements
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
             } else if (TutorialHelper.currentStage <= Constants.STAGE_5_MAIN) {
-                startSecondTutorial();
+                startSecondTutorial(new View(this));
             } else if (TutorialHelper.currentStage <= Constants.STAGE_7_MAIN) {
                 startThirdTutorial();
             } else if (TutorialHelper.currentStage <= Constants.STAGE_9_MAIN) {
                 startFourthTutorial();
+            } else if (TutorialHelper.currentStage <= Constants.STAGE_10_MAIN) {
+                startFifthTutorial();
             }
         }
     }
