@@ -19,6 +19,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -31,6 +33,7 @@ import uk.co.jakelee.blacksmith.helper.PremiumHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -85,6 +88,26 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         dh.createAllSlots(this);
+        ratingPrompt();
+    }
+
+    private void ratingPrompt() {
+        AppRate.with(this)
+                .setInstallDays(5)
+                .setLaunchTimes(4)
+                .setRemindInterval(3)
+                .setShowLaterButton(true)
+                .setOnClickButtonListener(new OnClickButtonListener() {
+                    @Override
+                    public void onClickButton(int which) {
+                        if (which == -1) {
+                            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 500);
+                        }
+                    }
+                })
+                .monitor();
+
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
     private void assignUIElements() {

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Blacksmith</string>
 
+    <string name="rate_dialog_title">Rate Blacksmith</string>
+    <string name="rate_dialog_message">If you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec, and you\'ll receive 500 gold!</string>
+    <string name="rate_dialog_ok">Rate</string>
+    <string name="rate_dialog_cancel">Later</string>
+    <string name="rate_dialog_no">Cancel</string>
+
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>
     <string name="tutorialIntro">Blacksmith</string>
@@ -86,6 +92,7 @@
     <string name="enchantingText">Gem Table</string>
     <string name="settingsText">Settings</string>
     <string name="creditsText">Credits</string>
+    <string name="rateText">Rate App</string>
     <string name="trophyText">Trophies</string>
     <string name="statisticsText">Statistics</string>
     <string name="helpText">Help</string>
@@ -238,6 +245,7 @@
     <string name="creditsGraphicsDetails">Significant contributions by <a href='https://twitter.com/7souldesign'>7Soul</a>, <a href='https://twitter.com/TeaGadd'>EGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.</string>
     <string name="creditsTechnology">Technology</string>
     <string name="creditsTechnologyDetails"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
 \n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a>.
