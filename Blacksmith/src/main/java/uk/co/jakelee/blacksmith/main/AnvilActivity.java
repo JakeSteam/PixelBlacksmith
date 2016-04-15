@@ -82,7 +82,8 @@ public class AnvilActivity extends Activity {
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
-                items);
+                items,
+                Constants.STATE_UNFINISHED);
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.anvil),

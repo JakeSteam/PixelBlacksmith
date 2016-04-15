@@ -66,7 +66,8 @@ public class TableActivity extends Activity {
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
-                items);
+                items,
+                Constants.STATE_NORMAL);
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.table),

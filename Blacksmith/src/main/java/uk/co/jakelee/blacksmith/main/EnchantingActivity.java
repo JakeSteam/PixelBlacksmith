@@ -70,7 +70,8 @@ public class EnchantingActivity extends Activity {
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
-                items);
+                items,
+                Constants.STATE_NORMAL);
 
         // Horizontal selector
         int currentItemPosition = mViewFlipper.getDisplayedChild();

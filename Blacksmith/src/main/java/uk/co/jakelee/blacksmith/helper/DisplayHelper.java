@@ -481,13 +481,13 @@ public class DisplayHelper {
         }
     }
 
-    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items) {
+    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state) {
         if (clearExisting) {
             itemSelector.removeAllViews();
         }
 
         for (Item item : items) {
-            itemSelector.addView(createItemSelectorElement(item.getId(), Constants.STATE_NORMAL));
+            itemSelector.addView(createItemSelectorElement(item.getId(), state));
         }
     }
 

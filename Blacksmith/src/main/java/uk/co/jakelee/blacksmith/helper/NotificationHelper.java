@@ -75,7 +75,7 @@ public class NotificationHelper extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         Notification notification = builder.setContentTitle(context.getString(R.string.app_name))
                 .setContentText(notificationText)
-                .setSmallIcon(R.drawable.item35)
+                .setSmallIcon(R.drawable.notification)
                 .setContentIntent(pendingIntent)
                 .build();
 

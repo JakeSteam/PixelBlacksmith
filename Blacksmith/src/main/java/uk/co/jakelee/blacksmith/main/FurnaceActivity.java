@@ -79,7 +79,8 @@ public class FurnaceActivity extends Activity {
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 false,
-                items);
+                items,
+                Constants.STATE_NORMAL);
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.furnace),
