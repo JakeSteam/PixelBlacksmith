@@ -277,7 +277,7 @@ public class VisitorActivity extends Activity {
         }
     }
 
-    private void createVisitorTrophyReward(Visitor visitor) {
+    private Item createVisitorTrophyReward(Visitor visitor) {
         Visitor_Type visitorType = Select.from(Visitor_Type.class).where(
                 Condition.prop("visitor_id").eq(visitor.getType())).first();
 
@@ -296,6 +296,7 @@ public class VisitorActivity extends Activity {
 
         Inventory.addItem(preferredItem.getId(), preferredState, Constants.TROPHY_ITEM_REWARDS);
 
+        return preferredItem;
     }
 
     public void openHelp(View view) {

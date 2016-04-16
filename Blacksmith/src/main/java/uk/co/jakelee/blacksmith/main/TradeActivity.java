@@ -190,7 +190,10 @@ public class TradeActivity extends Activity {
         int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (long) v.getTag(R.id.itemState), quantity, value);
         if (tradeResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.soldItem), quantity, itemToSell.getName(), value));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.tradedItem),
+                    quantity,
+                    itemToSell.getName(),
+                    value));
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsTraded);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value);
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);

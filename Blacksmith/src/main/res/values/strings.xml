@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Blacksmith</string>
+    <string name="app_name" translatable="false">Blacksmith</string>
 
     <string name="rate_dialog_title">Rate Blacksmith</string>
     <string name="rate_dialog_message">If you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec, and you\'ll receive 500 gold!</string>
@@ -10,7 +10,7 @@
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>
     <string name="tutorialIntro">Blacksmith</string>
-    <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be smithing in no time.</string>
+    <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying&#8230; well, everything. They are earned by trading away items.</string>
     <string name="tutorialLevel">Level</string>
@@ -80,7 +80,6 @@
     <string name="tutorialMainHelp">Help</string>
     <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
 
-
     <string name="marketText">Market</string>
     <string name="furnaceText">Furnace</string>
     <string name="anvilText">Anvil</string>
@@ -127,7 +126,7 @@
     <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$d coin(s), or up to %3$d for %4$d coin(s) each?</string>
     <string name="itemBuy1Confirm">Buy 1</string>
     <string name="itemBuyAllConfirm">Buy All</string>
-    <string name="itemBuyComplete">Added %1$sx %2$s to pending buying for %3$s coin(s)</string>
+    <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
     <string name="itemBuyCancel">Cancel</string>
 
     <string name="trophyVisits">Visits: %d</string>
@@ -139,15 +138,15 @@
     <string name="trophy100thVisitUnknown">100th visit: ???</string>
     <string name="trophyBestItemUnknown">Best item: ???</string>
 
-    <string name="craftSuccess">Successfully added %s item(s) to craft queue.</string>
-    <string name="sellSuccess">Added %1$sx %2$s to pending selling for %3$s coin(s)</string>
+    <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
+    <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s).</string>
 
     <string name="enchantingButtonText">%1$s (x %2$s)</string>
 
     <string name="horizontalDotsSelected">x</string>
     <string name="horizontalDotsUnselected">o</string>
 
-    <string name="demandText">%1$s: %2$s (%3$d/%4$d)</string>
+    <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
 
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
@@ -179,7 +178,6 @@
     <string name="restockTextWithPremium">All traders have been restocked, and have paid a tax of %s!</string>
     <string name="restockTextNoPremium">All traders have been restocked!</string>
 
-    <string name="notificationTrader">All traders have been restocked!</string>
     <string name="notificationVisitor">A new visitor has arrived!</string>
 
     <string name="tableQuantity">Qty</string>
@@ -193,11 +191,11 @@
 \n%2$d / %3$d %4$s
 \n+%5$d: %6$s coins</string>
 
-    <string name="soldItem">Sold %1$sx %2$s for %3$s coin(s)</string>
+    <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
     <string name="noTraders">The marketplace is empty!\n\nThe traders should return when they have restocked.</string>
-    <string name="enchantAdd">Item added to enchanting queue.</string>
-    <string name="powderAdd">Item added to powder queue.</string>
+    <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
+    <string name="powderAdd">Began crushing the %s into a fine powder.</string>
 
     <string name="traderArrived">The %s trader has arrived.</string>
 
@@ -226,7 +224,6 @@
     <string name="statisticsUpgradesBought">Upgrades Bought:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
-
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
@@ -235,21 +232,19 @@
     <string name="signOut">Sign Out</string>
 
     <string name="complete">Complete</string>
-    <string name="close">X</string>
+    <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
 
     <string name="creditsMusic">Music</string>
-    <string name="creditsMusicDetails">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
-    <string name="creditsCCBY">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
+    <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
+    <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
     <string name="creditsGraphics">Graphics</string>
-    <string name="creditsGraphicsDetails">Significant contributions by <a href='https://twitter.com/7souldesign'>7Soul</a>, <a href='https://twitter.com/TeaGadd'>EGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.</string>
+    <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>7Soul</a>, <a href='https://twitter.com/TeaGadd'>EGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.</string>
     <string name="creditsTechnology">Technology</string>
-    <string name="creditsTechnologyDetails"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
 \n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a>.
     </string>
-
-
 </resources>

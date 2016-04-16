@@ -166,11 +166,12 @@ public class EnchantingActivity extends Activity {
     private void clickPowderButton(View v) {
 
         Long powderID = (Long) v.getTag();
+        Item powder = Item.findById(Item.class, powderID);
 
         int powderResponse = Inventory.tryCreateItem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.powderAdd);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder));
 
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
@@ -184,10 +185,15 @@ public class EnchantingActivity extends Activity {
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
         Long gemId = (Long) v.getTag();
 
+        Item item = Item.findById(Item.class, itemId);
+        Item gem = Item.findById(Item.class, gemId);
+
         int enchantResponse = Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.enchantAdd);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.enchantAdd),
+                    item.getName(),
+                    gem.getName()));
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);

@@ -105,8 +105,9 @@ public class TableActivity extends Activity {
         }
 
         if (quantityCrafted > 0) {
+            Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)));
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             createTableInterface(false);
         }

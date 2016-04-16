@@ -116,8 +116,9 @@ public class FurnaceActivity extends Activity {
         }
 
         if (quantitySmelted > 0) {
+            Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)));
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             createFurnaceInterface();
         }
