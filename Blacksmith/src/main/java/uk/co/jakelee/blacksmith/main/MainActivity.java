@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onPause();
 
         if (TutorialHelper.currentlyInTutorial) {
-            TutorialHelper.chainTourGuide.next();
+            TutorialHelper.chainTourGuide.cleanUp();
         }
     }
 
