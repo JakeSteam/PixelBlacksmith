@@ -22,7 +22,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorHelper {
-    private static final List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
+    private static List<Pair<Long, Long>> existingCriteria = new ArrayList<>();
 
     public static boolean tryCreateVisitor() {
         if (Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
@@ -73,6 +73,7 @@ public class VisitorHelper {
     }
 
     private static void createNewVisitor() {
+        existingCriteria = new ArrayList<>();
         Long currentMillis = System.currentTimeMillis();
 
         // Select the visitor type to be used
