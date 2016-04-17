@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.IabUtils.IabHelper;
 import uk.co.jakelee.blacksmith.helper.IabUtils.IabResult;
@@ -32,6 +33,8 @@ public class PremiumActivity extends Activity {
         setContentView(R.layout.activity_premium);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
+        updatePremiumStatus();
+
         // Create query listener
         final IabHelper.QueryInventoryFinishedListener mQueryFinishedListener = new IabHelper.QueryInventoryFinishedListener() {
             public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
@@ -46,7 +49,7 @@ public class PremiumActivity extends Activity {
         // Define Iab Helper
         String publicKey = getPublicKey();
         ih = new IabHelper(this, publicKey);
-        ih.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+        /*ih.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             public void onIabSetupFinished(IabResult result) {
                 if (!result.isSuccess()) {
                     Log.d("IAB", "Problem setting up In-app Billing: " + result);
@@ -54,7 +57,27 @@ public class PremiumActivity extends Activity {
                     ih.queryInventoryAsync(true, SKUs, mQueryFinishedListener);
                 }
             }
-        });
+        });*/
+    }
+
+    private void updatePremiumStatus() {
+        TextViewPixel premiumIndicator = (TextViewPixel) findViewById(R.id.premiumStatusResult);
+        TextViewPixel premiumButton = (TextViewPixel) findViewById(R.id.buyPremiumButton);
+        boolean isPremium = Player_Info.isPremium();
+
+        String premiumText = getString(isPremium ? R.string.premiumStatusActive : R.string.premiumStatusInactive);
+        int premiumColour = getResources().getColor(isPremium ? R.color.holo_green_dark : R.color.holo_red_dark);
+        int visibility = (isPremium ? View.GONE : View.VISIBLE);
+
+        premiumIndicator.setText(premiumText);
+        premiumIndicator.setTextColor(premiumColour);
+        premiumButton.setVisibility(visibility);
+
+    }
+
+    public void buyPremium(View v) {
+        Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(),
+                sku, "inapp", "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
     }
 
     @Override
@@ -86,13 +109,13 @@ public class PremiumActivity extends Activity {
         // Add upgrades, and max upgrades
         Upgrade goldBonus = Select.from(Upgrade.class).where(
                 Condition.prop("name").eq("Gold Bonus")).first();
-        goldBonus.setCurrent(goldBonus.getCurrent() + 5);
-        goldBonus.setMaximum(goldBonus.getMaximum() + 10);
+        goldBonus.setCurrent(goldBonus.getCurrent() + 20);
+        goldBonus.setMaximum(goldBonus.getMaximum() + 50);
 
         Upgrade xpBonus = Select.from(Upgrade.class).where(
                 Condition.prop("name").eq("XP Bonus")).first();
-        xpBonus.setCurrent(xpBonus.getCurrent() + 5);
-        xpBonus.setMaximum(xpBonus.getMaximum() + 10);
+        xpBonus.setCurrent(xpBonus.getCurrent() + 20);
+        xpBonus.setMaximum(xpBonus.getMaximum() + 50);
     }
 
     @Override

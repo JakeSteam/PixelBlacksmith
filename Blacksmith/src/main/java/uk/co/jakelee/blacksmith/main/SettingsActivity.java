@@ -151,7 +151,12 @@ public class SettingsActivity extends Activity {
     }
 
     public void prestigeClick(View view) {
-        AlertDialogHelper.confirmPrestige(getApplicationContext(), this);
+        if (Player_Info.isPremium()) {
+            AlertDialogHelper.confirmPrestige(getApplicationContext(), this);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), PremiumActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void openMessages(View view) {

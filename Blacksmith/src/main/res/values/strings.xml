@@ -103,6 +103,19 @@
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
 
+    <string name="buyPremium">Go Premium!</string>
+    <string name="premiumStatusActive">Currently premium!</string>
+    <string name="premiumStatusInactive">Not currently premium.</string>
+    <string name="premiumFeatures">Premium benefits:
+\n- +50% maximum gold bonus.
+\n- +20% current gold bonus.
+\n- +50% maximum XP bonus.
+\n- +20% current XP bonus.
+\n- Access to 17 new extremely valuable legendary items.
+\n- Extra crafting slot for all areas.
+\n- Gold tax paid by all traders on restock.
+\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.</string>
+
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), and %4$d slot(s).</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
