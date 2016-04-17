@@ -105,6 +105,9 @@
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much! &lt;3</string>
+    <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
+    <string name="cannotBuyPremium">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
+    <string name="buyingPremiumError">An error occurred whilst trying to purchase premium. Please try again later, hopefully it\'ll work!</string>
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:
@@ -257,8 +260,9 @@
     <string name="creditsTechnology">Technology</string>
     <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+\n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
-\n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a>.
+\n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a> and <a href='http://reddit.com/r/androiddev'>/r/AndroidDev</a>.
     </string>
 </resources>
