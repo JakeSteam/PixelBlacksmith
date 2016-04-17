@@ -104,6 +104,7 @@
     <string name="slotSeconds">%ds</string>
 
     <string name="buyPremium">Go Premium!</string>
+    <string name="boughtPremium">You\'ve bought premium! Thank you so much! &lt;3</string>
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:

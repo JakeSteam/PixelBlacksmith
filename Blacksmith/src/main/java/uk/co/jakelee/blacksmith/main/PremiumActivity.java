@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -14,50 +15,51 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
-import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.IabUtils.IabHelper;
 import uk.co.jakelee.blacksmith.helper.IabUtils.IabResult;
-import uk.co.jakelee.blacksmith.helper.IabUtils.Inventory;
+import uk.co.jakelee.blacksmith.helper.IabUtils.Purchase;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity {
     private static final String SKU_PREMIUM = "premium";
     private static final List<String> SKUs = Collections.singletonList(SKU_PREMIUM);
-    private static DisplayHelper dh;
     private static IabHelper ih;
+    private Activity premiumActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_premium);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        premiumActivity = this;
 
         updatePremiumStatus();
 
-        // Create query listener
-        final IabHelper.QueryInventoryFinishedListener mQueryFinishedListener = new IabHelper.QueryInventoryFinishedListener() {
-            public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-                if (result.isFailure()) {
-                    return;
-                } else {
-                    String premiumPrice = inventory.getSkuDetails(SKU_PREMIUM).getPrice();
-                }
-            }
-        };
-
-        // Define Iab Helper
-        String publicKey = getPublicKey();
-        ih = new IabHelper(this, publicKey);
-        /*ih.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+        ih = new IabHelper(this, getPublicKey());
+        ih.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             public void onIabSetupFinished(IabResult result) {
                 if (!result.isSuccess()) {
                     Log.d("IAB", "Problem setting up In-app Billing: " + result);
-                } else {
-                    ih.queryInventoryAsync(true, SKUs, mQueryFinishedListener);
                 }
             }
-        });*/
+        });
+    }
+
+    private IabHelper.OnIabPurchaseFinishedListener getPurchaseListener() {
+        return new IabHelper.OnIabPurchaseFinishedListener() {
+            public void onIabPurchaseFinished(IabResult result, Purchase purchase)
+            {
+                if (result.isFailure()) {
+                    Log.d("Blacksmith", "Error purchasing: " + result);
+                } else if (purchase.getSku().equals(SKU_PREMIUM)) {
+                    Log.d("Blacksmith", "Success purchasing: " + result);
+                    addPremiumFeatures();
+                    ToastHelper.showToast(premiumActivity, Toast.LENGTH_LONG, R.string.boughtPremium);
+                    updatePremiumStatus();
+                }
+            }
+        };
     }
 
     private void updatePremiumStatus() {
@@ -76,8 +78,11 @@ public class PremiumActivity extends Activity {
     }
 
     public void buyPremium(View v) {
-        Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(),
-                sku, "inapp", "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
+        ih.launchPurchaseFlow(premiumActivity,
+                SKU_PREMIUM,
+                10001,
+                getPurchaseListener(),
+                "uniqueidentifyingstring");
     }
 
     @Override
