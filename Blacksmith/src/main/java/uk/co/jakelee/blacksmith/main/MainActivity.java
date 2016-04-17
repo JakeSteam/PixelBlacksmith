@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements
     private void startFifthTutorial() {
         findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(860), 0);
 
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_9_MAIN);
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_10_MAIN);
         th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);
         th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, true, Gravity.TOP);
         th.start(mainActivity);

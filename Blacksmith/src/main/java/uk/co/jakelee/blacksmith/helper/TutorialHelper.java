@@ -67,6 +67,7 @@ public class TutorialHelper {
                         .setDescription(body)
                         .setGravity(gravity)
                         .setBackgroundColor(Color.parseColor("#AAae6c37"))
+                        .setShadow(true)
                         .setEnterAnimation(enterAnimation))
                 .setOverlay(new Overlay()
                         .disableClick(true)
