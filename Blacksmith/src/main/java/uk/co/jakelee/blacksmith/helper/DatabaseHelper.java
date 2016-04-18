@@ -78,7 +78,7 @@ public class DatabaseHelper {
         new Achievement("Mastery Of Jewellery", "Reach level 45", 45, 14, "CgkI6tnE2Y4OEAIQHQ");
         new Achievement("Mastery Of Rune", "Reach level 50", 50, 14, "CgkI6tnE2Y4OEAIQHg");
         new Achievement("Mastery Of Dragon", "Reach level 60", 60, 14, "CgkI6tnE2Y4OEAIQHw");
-        new Achievement("The Fun Never Stops", "Prestige", 2, 17, "CgkI6tnE2Y4OEAIQIA");
+        new Achievement("The Fun Never Stops", "Prestige", 1, 17, "CgkI6tnE2Y4OEAIQIA");
     }
 
     private static void createCategory() {
@@ -364,7 +364,7 @@ public class DatabaseHelper {
         new Player_Info("SavedLevel", 1, 0);
         new Player_Info("UpgradesBought", 0);
         new Player_Info("Premium", 0);
-        new Player_Info("Prestige", 1, 0);
+        new Player_Info("Prestige", 0, 0);
         new Player_Info("DateLastPrestiged", 0L);
     }
 
