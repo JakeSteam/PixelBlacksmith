@@ -20,7 +20,6 @@ public class State extends SugarRecord {
         this.initiatingItem = initiatingItem;
         this.minimumLevel = minimumLevel;
         this.weighting = weighting;
-        this.save();
     }
 
     public Long getId() {

@@ -21,7 +21,6 @@ public class Slot extends SugarRecord {
         this.location = location;
         this.level = level;
         this.premium = premium;
-        this.save();
     }
 
     public static boolean hasAvailableSlot(Long locationID) {

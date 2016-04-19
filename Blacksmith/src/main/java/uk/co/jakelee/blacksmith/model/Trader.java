@@ -36,7 +36,6 @@ public class Trader extends SugarRecord {
         this.status = status;
         this.purchases = purchases;
         this.weighting = weighting;
-        this.save();
     }
 
     public static void checkTraderStatus(Context context, long location) {

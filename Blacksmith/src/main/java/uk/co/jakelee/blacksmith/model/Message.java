@@ -15,11 +15,11 @@ public class Message extends SugarRecord {
     public Message(long added, String message) {
         this.added = added;
         this.message = message;
-        this.save();
     }
 
     public static void add(String text) {
-        new Message(System.currentTimeMillis(), text);
+        Message message = new Message(System.currentTimeMillis(), text);
+        message.save();
 
         if (Message.count(Message.class) >= Constants.MESSAGE_LOG_LIMIT) {
             Message oldestMessage = Select.from(Message.class).orderBy("added ASC").first();

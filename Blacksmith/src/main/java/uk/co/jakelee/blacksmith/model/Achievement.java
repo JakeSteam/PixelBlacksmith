@@ -18,7 +18,6 @@ public class Achievement extends SugarRecord {
         this.maximumValue = maximumValue;
         this.playerInfoID = playerInfoID;
         this.remoteID = remoteID;
-        this.save();
     }
 
     public String getName() {

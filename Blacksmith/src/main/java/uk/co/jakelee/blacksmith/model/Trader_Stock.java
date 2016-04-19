@@ -28,7 +28,6 @@ public class Trader_Stock extends SugarRecord {
         this.requiredPurchases = requiredPurchases;
         this.stock = stock;
         this.defaultStock = stock;
-        this.save();
     }
 
     public static boolean shouldRestock() {

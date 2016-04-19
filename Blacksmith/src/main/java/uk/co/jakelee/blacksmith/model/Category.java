@@ -13,7 +13,6 @@ public class Category extends SugarRecord {
     public Category(String name, String description) {
         this.name = name;
         this.description = description;
-        this.save();
     }
 
     public Long getId() {

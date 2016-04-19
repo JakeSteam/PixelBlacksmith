@@ -24,7 +24,6 @@ public class Item extends SugarRecord {
         this.tier = tier;
         this.value = value;
         this.level = level;
-        this.save();
     }
 
     public Long getId() {

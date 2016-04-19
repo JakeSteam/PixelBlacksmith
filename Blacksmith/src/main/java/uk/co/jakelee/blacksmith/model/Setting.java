@@ -16,21 +16,18 @@ public class Setting extends SugarRecord {
         this.settingId = settingId;
         this.settingName = settingName;
         this.boolValue = boolValue;
-        this.save();
     }
 
     public Setting(long settingId, String settingName, int intValue) {
         this.settingId = settingId;
         this.settingName = settingName;
         this.intValue = intValue;
-        this.save();
     }
 
     public Setting(long settingId, String settingName, String strValue) {
         this.settingId = settingId;
         this.settingName = settingName;
         this.strValue = strValue;
-        this.save();
     }
 
     public long getSettingId() {

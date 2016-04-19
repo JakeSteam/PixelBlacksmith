@@ -22,7 +22,6 @@ public class Visitor_Demand extends SugarRecord {
         this.quantityProvided = quantityProvided;
         this.quantity = quantity;
         this.required = required;
-        this.save();
     }
 
     public static String getCriteriaName(Visitor_Demand demand) {

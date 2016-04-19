@@ -37,7 +37,6 @@ public class Visitor_Type extends SugarRecord {
         this.typeDiscovered = typeDiscovered;
         this.stateDiscovered = stateDiscovered;
         this.weighting = weighting;
-        this.save();
     }
 
     public Long getVisitorID() {

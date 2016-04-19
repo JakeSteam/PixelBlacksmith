@@ -26,7 +26,6 @@ public class Upgrade extends SugarRecord {
         this.minimum = minimum;
         this.maximum = maximum;
         this.current = current;
-        this.save();
     }
 
     public static int getValue(String name) {

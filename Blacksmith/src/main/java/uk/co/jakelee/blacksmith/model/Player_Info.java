@@ -22,28 +22,24 @@ public class Player_Info extends SugarRecord {
         this.name = name;
         this.longValue = longValue;
         this.lastSentValue = -1;
-        this.save();
     }
 
     public Player_Info(String name, String textValue) {
         this.name = name;
         this.textValue = textValue;
         this.lastSentValue = -1;
-        this.save();
     }
 
     public Player_Info(String name, int intValue) {
         this.name = name;
         this.intValue = intValue;
         this.lastSentValue = -1;
-        this.save();
     }
 
     public Player_Info(String name, int intValue, int lastSentValue) {
         this.name = name;
         this.intValue = intValue;
         this.lastSentValue = lastSentValue;
-        this.save();
     }
 
     public static int getPlayerLevel() {
