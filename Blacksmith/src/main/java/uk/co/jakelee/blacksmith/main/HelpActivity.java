@@ -175,7 +175,7 @@ public class HelpActivity extends Activity {
     private void displayHelpStatistics(LinearLayout layout) {
         layout.addView(dh.createTextView("Statistics\n", 26));
         layout.addView(dh.createTextView("Useful statistics such as time until next restock / visitor are available here.\n", 22));
-        layout.addView(dh.createTextView("Additionally, progress towards various achievements can be tracked using the miscellaneous statistics displayed.\n", 22));
+        layout.addView(dh.createTextView("Additionally, progress towards various achievements can be tracked using the statistics displayed.\n", 22));
     }
 
     private void displayHelpTable(LinearLayout layout) {
@@ -191,14 +191,14 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("This screen is where you'll make all of your money!\n", 22));
         layout.addView(dh.createTextView("The discovered bonus is displayed next to the sell price of each item. It's entirely possible the item will sell for more than this, if all of the visitor's preferences have not yet been discovered.\n", 22));
         layout.addView(dh.createTextView("The progress bar will let you see your progress at a glance, and the item criteria and visitor are also visible.\n", 22));
-        layout.addView(dh.createTextView("The finish button will close this criteria trade for now.\n", 22));
+        layout.addView(dh.createTextView("The finish button will close this trade for now.\n", 22));
     }
 
     private void displayHelpTrophy(LinearLayout layout) {
         layout.addView(dh.createTextView("Trophy\n", 26));
         layout.addView(dh.createTextView("The trophy screen is where notes about all of the seen visitors can be looked at.\n", 22));
         layout.addView(dh.createTextView("Unseen visitors will have no information available about them.\n", 22));
-        layout.addView(dh.createTextView("Seen visitors will have a lighter silhouette the more you see them. Additionally, basic information will be available.\n", 22));
+        layout.addView(dh.createTextView("Seen visitors will have a lighter silhouette the more you see them. Additionally, basic information will become available.\n", 22));
         layout.addView(dh.createTextView("Once a visitor has been seen 100 times, they will provide you with a gift, and become fully visible.\n", 22));
     }
 
@@ -209,7 +209,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Additionally, the highest value trade with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed.\n", 22));
-        layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of uncompleted demands (required + optional).\n", 22));
+        layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of incomplete demands (required + optional).\n", 22));
     }
 
     private void displayHelpUpgrade(LinearLayout layout) {
@@ -221,10 +221,12 @@ public class HelpActivity extends Activity {
 
     private void displayHelpPremium(LinearLayout layout) {
         layout.addView(dh.createTextView("Premium\n", 26));
+        layout.addView(dh.createTextView("Buying premium provides a ton of new features, and also helps further development on the game!\n", 22));
     }
 
     private void displayHelpMessages(LinearLayout layout) {
         layout.addView(dh.createTextView("Messages\n", 26));
+        layout.addView(dh.createTextView("The last 100 messages are displayed here. This includes success messages, failure messages, level ups, etc.\n", 22));
     }
 
     public void openHelp(View view) {
