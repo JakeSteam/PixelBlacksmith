@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,9 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class DatabaseHelper {
+    public final static int DB_EMPTY = 0;
+    public final static int DB_V1_0_0 = 1;
+    public final static int DB_V1_0_1 = 2;
 
     public static void initialSQL() {
         createAchievement();
@@ -50,6 +55,10 @@ public class DatabaseHelper {
         createVisitorDemand();
         createVisitorStats();
         createVisitorType();
+    }
+
+    public static void patch100to101() {
+        Log.d("BlacksmithDB", "Updating database version from V1.0.0 to V1.0.1");
     }
 
     private static void createAchievement() {
@@ -383,7 +392,7 @@ public class DatabaseHelper {
         List<Player_Info> player_infos = new ArrayList<>();
         
         player_infos.add(new Player_Info("XP", 45));
-        player_infos.add(new Player_Info("DatabaseVersion", 1));
+        player_infos.add(new Player_Info("", 0));
         player_infos.add(new Player_Info("ItemsSmelted", 0, 0));
         player_infos.add(new Player_Info("ItemsCrafted", 0));
         player_infos.add(new Player_Info("ItemsTraded", 0, 0));

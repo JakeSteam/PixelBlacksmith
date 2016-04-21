@@ -125,12 +125,17 @@ public class MainActivity extends AppCompatActivity implements
 
     private void checkFirstRun() {
         SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
-        if (prefs.getBoolean("firstrun", true)) {
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_EMPTY) {
             DatabaseHelper.initialSQL();
-            prefs.edit().putBoolean("firstrun", false).apply();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
 
             TutorialHelper.currentlyInTutorial = true;
         }
+
+        /*if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
+            DatabaseHelper.patch100to101();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
+        }*/
     }
 
     private void startSecondTutorial(View v) {
