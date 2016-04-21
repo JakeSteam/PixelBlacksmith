@@ -1179,7 +1179,24 @@ public class DatabaseHelper {
         visitorStatses.add(new Visitor_Stats(31L, 0, 52L, 1L, 0, 0L, 0L));
         visitorStatses.add(new Visitor_Stats(32L, 0, 52L, 1L, 0, 0L, 0L));
         visitorStatses.add(new Visitor_Stats(33L, 1, 52L, 1L, 0, System.currentTimeMillis(), 0L));
-        
+        visitorStatses.add(new Visitor_Stats(34L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(35L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(36L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(37L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(38L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(39L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(40L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(41L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(42L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(43L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(44L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(45L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(46L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(47L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(48L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(49L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStatses.add(new Visitor_Stats(50L, 0, 52L, 1L, 0, 0L, 0L));
+
         Visitor_Stats.saveInTx(visitorStatses);
     }
 
@@ -1219,7 +1236,24 @@ public class DatabaseHelper {
         visitor_types.add(new Visitor_Type(31L, "Steve", "Gotta dig deeper and deeper and deeper and...", 6L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 6));
         visitor_types.add(new Visitor_Type(32L, "Whippersnapper", "Don't tell Steve, but his secret fish pond isn't so secret.", 11L, 17L, 4L, 1.05, 1.20, 1.02, false, false, false, 6));
         visitor_types.add(new Visitor_Type(33L, "Mr T Utorial", "Need a hand?", 1L, 3L, 4L, 1.05, 1.05, 1.05, true, false, false, 1));
-        
+        visitor_types.add(new Visitor_Type(34L, "Sammy the Snake", "Ssscared of sssnakesss?", 3L, 6L, 1L, 1.10, 1.15, 1.05, false, false, false, 9));
+        visitor_types.add(new Visitor_Type(35L, "Power Orb", "I am all powerful. Okay, apart from equipment. Shh.", 6L, 1L, 4L, 1.03, 1.12, 1.09, false, false, false, 7));
+        visitor_types.add(new Visitor_Type(36L, "Frankie Fire", "Is it hot in here?", 10L, 23L, 3L, 1.08, 1.15, 1.20, false, false, false, 7));
+        visitor_types.add(new Visitor_Type(37L, "Emerald Giant", "I.. can.. barely.. move.", 5L, 4L, 5L, 1.16, 1.08, 1.16, false, false, false, 6));
+        visitor_types.add(new Visitor_Type(38L, "PURPLEBOT9000", "BZZ.. GIVE SILVER. PLZ.", 8L, 24L, 1L, 1.19, 1.11, 1.01, false, false, false, 5));
+        visitor_types.add(new Visitor_Type(39L, "Whirling Dervish", "I'm a little bit dizzy. Actually, very dizzy.", 6L, 2L, 4L, 1.10, 1.02, 1.12, false, false, false, 5));
+        visitor_types.add(new Visitor_Type(40L, "Stumps", "Sure is cold up there.", 11L, 13L, 1L, 1.04, 1.12, 1.03, false, false, false, 9));
+        visitor_types.add(new Visitor_Type(41L, "Octomum", "I am a completely normal human. Completely normal.", 4L, 14L, 4L, 1.18, 1.13, 1.08, false, false, false, 3));
+        visitor_types.add(new Visitor_Type(42L, "Battletoad", "Make it quick, I've got somewhere to be.", 5L, 17L, 5L, 1.08, 1.20, 1.07, false, false, false, 1));
+        visitor_types.add(new Visitor_Type(43L, "Casper", "I hope I'm not scaring you. I'm so sorry if I am. Sorry.", 8L, 22L, 6L, 1.08, 1.11, 1.09, false, false, false, 4));
+        visitor_types.add(new Visitor_Type(44L, "Mummioso", "I am more than a mere mummy, I am Mummioso!", 11L, 10L, 6L, 1.02, 1.12, 1.04, false, false, false, 4));
+        visitor_types.add(new Visitor_Type(45L, "The Black Knight", "It's not even a scratch!", 2L, 5L, 7L, 1.10, 1.14, 1.15, false, false, false, 4));
+        visitor_types.add(new Visitor_Type(46L, "Mrs BRAINS", "Hello! Oh, also BRAINS.", 1L, 12L, 5L, 1.11, 1.16, 1.16, false, false, false, 1));
+        visitor_types.add(new Visitor_Type(47L, "Sir Stumps", "My bark is as good as my bite.", 11L, 13L, 1L, 1.05, 1.13, 1.04, false, false, false, 1));
+        visitor_types.add(new Visitor_Type(48L, "The Great Bread Menace", "You there! Got any of the yeasty stuff?", 11L, 21L, 1L, 1.05, 1.55, 1.05, false, false, false, 1));
+        visitor_types.add(new Visitor_Type(49L, "Bloody Mary", "Bloody Mary, Bloody Mary, Bloody Mary!", 8L, 22L, 6L, 1.08, 1.11, 1.09, false, false, false, 1));
+        visitor_types.add(new Visitor_Type(50L, "COLDBOT5000", "It's freezerin' time!", 6L, 18L, 4L, 1.13, 1.15, 1.09, false, false, false, 6));
+
         Visitor_Type.saveInTx(visitor_types);
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Blacksmith</string>
+    <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
     <string name="rate_dialog_title">Rate Blacksmith</string>
     <string name="rate_dialog_message">If you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec, and you\'ll receive 500 gold!</string>
