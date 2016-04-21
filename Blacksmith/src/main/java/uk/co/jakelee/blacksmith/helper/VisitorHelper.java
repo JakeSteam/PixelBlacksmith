@@ -212,7 +212,8 @@ public class VisitorHelper {
         Type selectedType = new Type();
 
         // Work out the total probability for the visitors.
-        List<Type> types = Type.listAll(Type.class);
+        List<Type> types = Select.from(Type.class).where(
+                Condition.prop("minimum_level").lt(Player_Info.getPlayerLevel() + 2)).list();
         double totalWeighting = 0.0;
         for (Type type : types) {
             totalWeighting += type.getWeighting();

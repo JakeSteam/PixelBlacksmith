@@ -1091,31 +1091,31 @@ public class DatabaseHelper {
     private static void createType() {
         List<Type> types = new ArrayList<>();
         
-        types.add(new Type(1L, "Ore", 1, 30));
-        types.add(new Type(2L, "Bar", 1, 30));
-        types.add(new Type(3L, "Dagger", 2, 25));
-        types.add(new Type(4L, "Sword", 2, 25));
-        types.add(new Type(5L, "Longsword", 2, 25));
-        types.add(new Type(6L, "Bow", 2, 20));
-        types.add(new Type(7L, "Half Shield", 3, 20));
-        types.add(new Type(8L, "Full Shield", 3, 20));
-        types.add(new Type(9L, "Chainmail", 3, 20));
-        types.add(new Type(10L, "Platebody", 3, 15));
-        types.add(new Type(11L, "Half Helmet", 3, 15));
-        types.add(new Type(12L, "Full Helmet", 3, 15));
-        types.add(new Type(13L, "Boot", 3, 15));
-        types.add(new Type(14L, "Glove", 3, 10));
-        types.add(new Type(15L, "Pickaxe", 4, 10));
-        types.add(new Type(16L, "Hatchet", 4, 10));
-        types.add(new Type(17L, "Fishing Rod", 4, 10));
-        types.add(new Type(18L, "Hammer", 4, 10));
-        types.add(new Type(19L, "Secondary", 1, 30));
-        types.add(new Type(20L, "Gem", 1, 5));
-        types.add(new Type(21L, "Food", 2, 30));
-        types.add(new Type(22L, "Powder", 1, 1));
-        types.add(new Type(23L, "Rare", 6, 0));
-        types.add(new Type(24L, "Ring", 4, 1));
-        types.add(new Type(100L, "Internal", 0, 0));
+        types.add(new Type(1L, "Ore", 1, 1, 30));
+        types.add(new Type(2L, "Bar", 1, 1, 30));
+        types.add(new Type(3L, "Dagger", 2, 1, 25));
+        types.add(new Type(4L, "Sword", 2, 1, 25));
+        types.add(new Type(5L, "Longsword", 2, 1, 25));
+        types.add(new Type(6L, "Bow", 2, 1, 20));
+        types.add(new Type(7L, "Half Shield", 3, 2, 20));
+        types.add(new Type(8L, "Full Shield", 3, 2, 20));
+        types.add(new Type(9L, "Chainmail", 3, 2, 20));
+        types.add(new Type(10L, "Platebody", 3, 3, 15));
+        types.add(new Type(11L, "Half Helmet", 3, 3, 15));
+        types.add(new Type(12L, "Full Helmet", 3, 4, 15));
+        types.add(new Type(13L, "Boot", 3, 4, 15));
+        types.add(new Type(14L, "Glove", 3, 4, 10));
+        types.add(new Type(15L, "Pickaxe", 4, 4, 10));
+        types.add(new Type(16L, "Hatchet", 4, 4, 10));
+        types.add(new Type(17L, "Fishing Rod", 4, 4, 10));
+        types.add(new Type(18L, "Hammer", 4, 4, 10));
+        types.add(new Type(19L, "Secondary", 1, 5, 30));
+        types.add(new Type(20L, "Gem", 1, 10, 5));
+        types.add(new Type(21L, "Food", 2, 1, 30));
+        types.add(new Type(22L, "Powder", 1, 15, 1));
+        types.add(new Type(23L, "Rare", 6, 1, 0));
+        types.add(new Type(24L, "Ring", 4, 35, 1));
+        types.add(new Type(100L, "Internal", 0, 0, 0));
         
         Type.saveInTx(types);
     }
