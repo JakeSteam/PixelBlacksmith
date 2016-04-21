@@ -154,8 +154,9 @@ public class DatabaseHelper {
         inventories.add(new Inventory(78L, Constants.STATE_NORMAL, 5));
 
         // 0 bronze bars + daggers, so that they are visible
-        inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 1));
-        inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 2));
+        inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 0));
+        inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 0));
+        inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
 
         Inventory.saveInTx(inventories);
 
