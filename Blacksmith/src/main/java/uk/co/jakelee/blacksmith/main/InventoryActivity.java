@@ -98,7 +98,7 @@ public class InventoryActivity extends Activity {
         Item itemToSell = Item.findById(Item.class, itemID);
         int itemValue = itemToSell.getModifiedValue(itemState);
 
-        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus")) * Player_Info.getPrestige();
+        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus")) * (Player_Info.getPrestige() + 1);
         double modifiedPrice = coinMultiplier * itemValue;
 
         int sellResponse = Inventory.sellItem(itemID, itemState, quantity, (int) modifiedPrice);

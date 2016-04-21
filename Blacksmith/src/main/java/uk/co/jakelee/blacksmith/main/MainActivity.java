@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_9_MAIN);
         th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.TOP);
-        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, true, Gravity.TOP);
         th.start(mainActivity);
 
         TutorialHelper.currentStage = Constants.STAGE_10_MAIN;
