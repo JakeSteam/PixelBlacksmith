@@ -13,12 +13,12 @@ import uk.co.jakelee.blacksmith.model.Message;
 public class ToastHelper {
     private static Toast internalToast;
 
-    public static void showToast(Context context, int length, int textID) {
+    public static void showToast(Context context, int length, int textID, boolean saveToLog) {
         String string = context.getResources().getString(textID);
-        showToast(context, length, string);
+        showToast(context, length, string, saveToLog);
     }
 
-    public static void showToast(Context context, int length, String text) {
+    public static void showToast(Context context, int length, String text, boolean saveToLog) {
         cancelCurrentToast();
 
         LayoutInflater inflater = LayoutInflater.from(context.getApplicationContext());
@@ -36,7 +36,9 @@ public class ToastHelper {
         internalToast = toast;
         internalToast.show();
 
-        Message.add(text);
+        if (saveToLog) {
+            Message.add(text);
+        }
     }
 
     private static void cancelCurrentToast() {

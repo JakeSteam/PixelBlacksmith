@@ -171,11 +171,11 @@ public class EnchantingActivity extends Activity {
         int powderResponse = Inventory.tryCreateItem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder), false);
 
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
@@ -193,13 +193,13 @@ public class EnchantingActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.enchantAdd),
                     item.getName(),
-                    gem.getName()));
+                    gem.getName()), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
         }
     }
 

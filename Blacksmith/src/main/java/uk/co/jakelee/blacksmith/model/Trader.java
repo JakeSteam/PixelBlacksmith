@@ -68,7 +68,7 @@ public class Trader extends SugarRecord {
         if (traderToArrive.getName() != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()));
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
         }
     }
 

@@ -25,7 +25,7 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 PrestigeHelper.prestigeAccount();
-                ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete), Player_Info.getPrestige()));
+                ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete), Player_Info.getPrestige()), false);
             }
         });
 
@@ -52,10 +52,10 @@ public class AlertDialogHelper {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
                     coinStock.save();
                     if (VisitorHelper.tryCreateVisitor()) {
-                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost));
+                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
                     }
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.bribeFailure));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.bribeFailure), true);
                 }
             }
         });
@@ -85,10 +85,10 @@ public class AlertDialogHelper {
 
                     VisitorHelper.removeVisitor(visitor);
                     SoundHelper.playSound(context, SoundHelper.walkingSounds);
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissComplete));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissComplete), true);
                     activity.finish();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure), true);
                 }
             }
         });
@@ -118,12 +118,12 @@ public class AlertDialogHelper {
 
                 int buyResponse = Inventory.buyItem(itemStock);
                 if (buyResponse == Constants.SUCCESS) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
                 activity.alertDialogCallback();
             }
@@ -145,12 +145,12 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse));
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
                 activity.alertDialogCallback();
             }

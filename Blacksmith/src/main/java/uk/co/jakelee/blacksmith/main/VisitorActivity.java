@@ -234,7 +234,7 @@ public class VisitorActivity extends Activity {
 
             if (visitorStats.getVisits() == Constants.VISITS_TROPHY) {
                 createVisitorTrophyReward(visitor);
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned);
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned, true);
             }
             createVisitorReward();
 
@@ -243,7 +243,7 @@ public class VisitorActivity extends Activity {
 
             closeVisitor(view);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure, false);
         }
     }
 
@@ -269,11 +269,11 @@ public class VisitorActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeavesPremium),
                     numRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED)));
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), false);
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL)));
+                    selectedItem.getFullName(Constants.STATE_NORMAL)), false);
         }
     }
 

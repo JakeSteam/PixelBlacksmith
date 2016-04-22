@@ -87,11 +87,11 @@ public class UpgradeActivity extends Activity {
         Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
         int upgradeResponse = selectedUpgrade.tryUpgrade();
         if (upgradeResponse == Constants.SUCCESS) {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.upgradeSuccess), upgrade.getName()));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.upgradeSuccess), upgrade.getName()), true);
             Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
             createUpgradeInterface();
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
         }
     }
 

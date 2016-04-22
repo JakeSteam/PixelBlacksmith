@@ -97,7 +97,7 @@ public class TableActivity extends Activity {
         while (successful && quantityCrafted < maxCrafts) {
             int craftResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_TABLE);
             if (craftResponse != Constants.SUCCESS) {
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse));
+                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse), false);
                 successful = false;
             } else {
                 quantityCrafted++;
@@ -107,7 +107,7 @@ public class TableActivity extends Activity {
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             createTableInterface(false);
         }

@@ -193,13 +193,13 @@ public class TradeActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.tradedItem),
                     quantity,
                     itemToSell.getName(),
-                    value));
+                    value), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsTraded);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value);
             demand.setQuantityProvided(demand.getQuantityProvided() + quantity);
             demand.save();
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse), false);
         }
 
         dh.updateCoins(Inventory.getCoins());

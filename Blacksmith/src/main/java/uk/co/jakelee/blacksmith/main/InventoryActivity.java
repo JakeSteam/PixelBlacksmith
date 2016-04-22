@@ -104,11 +104,11 @@ public class InventoryActivity extends Activity {
         int sellResponse = Inventory.sellItem(itemID, itemState, quantity, (int) modifiedPrice);
         if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), (int) modifiedPrice));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), (int) modifiedPrice), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse));
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse), false);
         }
         updateInventoryTable();
         dh.updateCoins(Inventory.getCoins());

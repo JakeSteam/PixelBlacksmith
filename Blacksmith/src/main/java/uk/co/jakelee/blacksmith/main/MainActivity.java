@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
 
         if (newVisitors > 0) {
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors));
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
             newVisitors = 0;
         }
 
@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorArriving), newVisitors));
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorArriving), newVisitors), true);
                 }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     Trader_Stock.restockTraders();
                     boolean taxPaid = PremiumHelper.payOutTax();
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid));
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);

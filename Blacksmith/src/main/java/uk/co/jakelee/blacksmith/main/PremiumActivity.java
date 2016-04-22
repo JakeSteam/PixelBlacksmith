@@ -41,7 +41,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             addPremiumFeatures();
             updatePremiumStatus();
 
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.restoredPremium);
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.restoredPremium, true);
             Log.d("Blacksmith", "IAP Engine initialised.");
         }
     }
@@ -52,14 +52,14 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             addPremiumFeatures();
             updatePremiumStatus();
 
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtPremium);
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtPremium, true);
             Log.d("Blacksmith", "Purchased premium!");
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingPremiumError);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingPremiumError, true);
         Log.d("Blacksmith", "Error occurred, code: " + errorCode);
     }
 
@@ -93,7 +93,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp.purchase(this, SKU_PREMIUM);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyPremium);
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyPremium, true);
         }
     }
 
