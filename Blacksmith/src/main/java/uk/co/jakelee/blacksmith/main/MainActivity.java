@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -203,8 +204,12 @@ public class MainActivity extends AppCompatActivity implements
     public void onPause() {
         super.onPause();
 
-        if (TutorialHelper.currentlyInTutorial) {
-            TutorialHelper.chainTourGuide.cleanUp();
+        if (TutorialHelper.currentlyInTutorial && TutorialHelper.chainTourGuide != null) {
+            try {
+                TutorialHelper.chainTourGuide.cleanUp();
+            } catch (NullPointerException e) {
+                Log.d("Blacksmith", "Failed to pause tutorial");
+            }
         }
     }
 
@@ -235,13 +240,13 @@ public class MainActivity extends AppCompatActivity implements
         if (TutorialHelper.currentlyInTutorial) {
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
-            } else if (TutorialHelper.currentStage <= Constants.STAGE_5_MAIN) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_4_VISITOR) {
                 startSecondTutorial(new View(this));
-            } else if (TutorialHelper.currentStage <= Constants.STAGE_7_MAIN) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_6_FURNACE) {
                 startThirdTutorial();
-            } else if (TutorialHelper.currentStage <= Constants.STAGE_9_MAIN) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_8_ANVIL) {
                 startFourthTutorial();
-            } else if (TutorialHelper.currentStage <= Constants.STAGE_10_MAIN) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_9_MAIN) {
                 startFifthTutorial();
             }
         }

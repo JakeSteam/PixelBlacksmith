@@ -1134,7 +1134,7 @@ public class DatabaseHelper {
         List<Upgrade> upgrades = new ArrayList<>();
 
         upgrades.add(new Upgrade("Visitor Spawn Time", "mins", 1000, 1, 25, 10, 25));
-        upgrades.add(new Upgrade("Shop Restock Time", "hours", 250, 1, 24, 2, 24));
+        upgrades.add(new Upgrade("Market Restock Time", "hours", 250, 1, 24, 2, 24));
         upgrades.add(new Upgrade("Maximum Visitors", "visitors", 1000, 1, 2, 10, 2));
         upgrades.add(new Upgrade("Maximum Traders", "traders", 250, 1, 3, 10, 3));
         upgrades.add(new Upgrade("Gold Bonus", "%", 250, 5, 0, 50, 0));
