@@ -75,6 +75,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         traderItemsInfo.removeAllViews();
         List<Trader_Stock> itemsForSale = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),
+                Condition.prop("stock").gt(0),
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         for (Trader_Stock itemForSale : itemsForSale) {
