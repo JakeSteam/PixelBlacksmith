@@ -463,16 +463,12 @@ public class DisplayHelper {
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
-            String itemName = this.context.getString(R.string.unknownText);
-            boolean haveSeen = Inventory.haveSeen(ingredient.getIngredient(), ingredient.getIngredientState());
-            if (haveSeen) {
-                itemName = itemIngredient.getPrefix(ingredient.getIngredientState()) + itemIngredient.getName();
-            }
+            String itemName = itemIngredient.getPrefix(ingredient.getIngredientState()) + itemIngredient.getName();
             TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, haveSeen));
+            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));

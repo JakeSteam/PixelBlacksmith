@@ -142,9 +142,14 @@ public class DatabaseHelper {
         // 200 gold
         inventories.add(new Inventory(52L, Constants.STATE_NORMAL, 200));
 
-        // 15 copper & tin.
-        inventories.add(new Inventory(1L, Constants.STATE_NORMAL, 15));
-        inventories.add(new Inventory(2L, Constants.STATE_NORMAL, 15));
+        // 150 copper, tin, iron.
+        inventories.add(new Inventory(1L, Constants.STATE_NORMAL, 150));
+        inventories.add(new Inventory(2L, Constants.STATE_NORMAL, 150));
+        inventories.add(new Inventory(4L, Constants.STATE_NORMAL, 150));
+
+        // 20 silk, spidersilk
+        inventories.add(new Inventory(69L, Constants.STATE_NORMAL, 20));
+        inventories.add(new Inventory(70L, Constants.STATE_NORMAL, 20));
 
         // 2 sapphires
         inventories.add(new Inventory(73L, Constants.STATE_NORMAL, 2));
@@ -1139,7 +1144,7 @@ public class DatabaseHelper {
         upgrades.add(new Upgrade("Maximum Traders", "traders", 250, 1, 3, 10, 3));
         upgrades.add(new Upgrade("Gold Bonus", "%", 250, 5, 0, 50, 0));
         upgrades.add(new Upgrade("XP Bonus", "%", 250, 5, 0, 50, 0));
-        upgrades.add(new Upgrade("Craft Time", "ms per g", 1750, 50, 600, 50, 600));
+        upgrades.add(new Upgrade("Craft Time", "ms per g", 12, 50, 600, 50, 600));
         upgrades.add(new Upgrade("Legendary Chance", "%", 1250, 5, 5, 100, 5));
 
         Upgrade.saveInTx(upgrades);

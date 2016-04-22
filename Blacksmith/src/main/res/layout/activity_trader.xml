@@ -78,12 +78,12 @@
             android:layout_marginRight="10dp"
             app:layout_marginTopPercent="3%">
 
-        <TableLayout
-            android:id="@+id/traderItemsInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:shrinkColumns="1"
-            android:stretchColumns="1" />
+            <TableLayout
+                android:id="@+id/traderItemsInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="1"
+                android:stretchColumns="1" />
 
         </ScrollView>
 
