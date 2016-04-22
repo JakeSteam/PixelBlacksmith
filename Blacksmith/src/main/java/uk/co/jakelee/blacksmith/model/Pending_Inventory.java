@@ -6,8 +6,6 @@ import com.orm.query.Select;
 
 import java.util.List;
 
-import uk.co.jakelee.blacksmith.helper.Constants;
-
 public class Pending_Inventory extends SugarRecord {
     private Long item;
     private long state;
@@ -37,7 +35,7 @@ public class Pending_Inventory extends SugarRecord {
     public static void addItem(Long itemId, long state, int quantity, Long location) {
         Item item = Item.findById(Item.class, itemId);
         long time = System.currentTimeMillis();
-        int craftTimeMultiplier = Constants.CRAFT_TIME_MULTIPLIER;
+        int craftTimeMultiplier = Player_Info.getCraftTimeMultiplier();
         int craftTime = item.getModifiedValue(state) * craftTimeMultiplier;
 
         Pending_Inventory newItem = new Pending_Inventory(itemId, state, time, quantity, craftTime, location);

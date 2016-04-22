@@ -10,7 +10,6 @@ public class Constants {
     public static final Double LEVEL_MODIFIER = 0.15;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
-    public static final int CRAFT_TIME_MULTIPLIER = 200;
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;
     public static final int MAXIMUM_REWARDS = 3;

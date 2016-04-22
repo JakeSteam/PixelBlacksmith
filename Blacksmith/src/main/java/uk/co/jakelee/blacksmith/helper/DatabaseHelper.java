@@ -1139,6 +1139,7 @@ public class DatabaseHelper {
         upgrades.add(new Upgrade("Maximum Traders", "traders", 250, 1, 3, 10, 3));
         upgrades.add(new Upgrade("Gold Bonus", "%", 250, 5, 0, 50, 0));
         upgrades.add(new Upgrade("XP Bonus", "%", 250, 5, 0, 50, 0));
+        upgrades.add(new Upgrade("Craft Time", "ms per g", 1750, 50, 600, 50, 600));
         upgrades.add(new Upgrade("Legendary Chance", "%", 1250, 5, 5, 100, 5));
 
         Upgrade.saveInTx(upgrades);
