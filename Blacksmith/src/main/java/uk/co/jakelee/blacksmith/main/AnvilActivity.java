@@ -33,7 +33,7 @@ public class AnvilActivity extends Activity {
     private static DisplayHelper dh;
     private static GestureHelper gh;
 
-    private int displayedTier = Constants.TIER_MIN;
+    private int displayedTier;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
@@ -46,6 +46,8 @@ public class AnvilActivity extends Activity {
         gh = new GestureHelper(getApplicationContext());
 
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
+        mViewFlipper.setDisplayedChild(MainActivity.ANVIL_ITEM);
+        displayedTier = MainActivity.ANVIL_TIER;
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -57,6 +59,13 @@ public class AnvilActivity extends Activity {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        MainActivity.ANVIL_TIER = displayedTier;
+        MainActivity.ANVIL_ITEM = mViewFlipper.getDisplayedChild();
+    }
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
 

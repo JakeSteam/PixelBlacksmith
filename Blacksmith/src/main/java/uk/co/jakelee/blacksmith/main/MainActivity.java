@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
     private static DisplayHelper dh;
-    // UI Elements
     private static Activity mainActivity;
     private static HorizontalScrollView mainScroller;
     private static LinearLayout visitorContainer;
@@ -58,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
+
+    public static int ANVIL_TIER = Constants.TIER_MIN;
+    public static int ANVIL_ITEM = 0;
 
     public static void startFirstTutorial() {
         mainScroller.scrollTo(0, 0);
