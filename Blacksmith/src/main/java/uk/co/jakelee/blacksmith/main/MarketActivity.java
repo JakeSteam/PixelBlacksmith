@@ -85,7 +85,8 @@ public class MarketActivity extends Activity {
 
     private void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
         List<Trader_Stock> traderOfferings = Select.from(Trader_Stock.class).where(
-                Condition.prop("trader_type").eq(trader.getId())).list();
+                Condition.prop("trader_type").eq(trader.getId()))
+                .orderBy("required_purchases ASC").list();
 
         for (Trader_Stock stock : traderOfferings) {
             boolean isUnlocked = trader.getPurchases() >= stock.getRequiredPurchases();

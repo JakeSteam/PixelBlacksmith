@@ -966,13 +966,23 @@ public class DatabaseHelper {
         List<Trader> traders = new ArrayList<>();
         List<Trader_Stock> trader_stocks = new ArrayList<>();
         
-        traders.add(new Trader(1L, 4, "The Scraps", "I was gonna chuck this stuff out.. you interested?", 0, 0, 0, 60));
-        trader_stocks.add(new Trader_Stock(1L, 1L, 1, 0, 5));
+        traders.add(new Trader(1L, 4, "The Scraps", "I was gonna chuck this stuff out.. you interested?", 0, 1, 0, 60));
+        trader_stocks.add(new Trader_Stock(1L, 1L, 1, 0, 10));
         trader_stocks.add(new Trader_Stock(1L, 1L, 1, 40, 35));
-        trader_stocks.add(new Trader_Stock(1L, 2L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(1L, 2L, 1, 0, 10));
         trader_stocks.add(new Trader_Stock(1L, 2L, 1, 40, 35));
-        trader_stocks.add(new Trader_Stock(1L, 11L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(1L, 11L, 1, 0, 3));
         trader_stocks.add(new Trader_Stock(1L, 11L, 1, 20, 20));
+
+        traders.add(new Trader(1L, 4, "Lots More Ore", "Lots and and lots and lots of ore!", 0, 1, 0, 100));
+        trader_stocks.add(new Trader_Stock(1L, 1L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(1L, 1L, 1, 20, 30));
+        trader_stocks.add(new Trader_Stock(1L, 2L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(1L, 2L, 1, 20, 30));
+        trader_stocks.add(new Trader_Stock(1L, 3L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(1L, 3L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(1L, 4L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(1L, 4L, 1, 20, 20));
 
         traders.add(new Trader(1L, 4, "The Off Cuts", "This stuff isn't the best, but it'll do.", 5, 0, 0, 40));
         trader_stocks.add(new Trader_Stock(2L, 3L, 1, 0, 5));
