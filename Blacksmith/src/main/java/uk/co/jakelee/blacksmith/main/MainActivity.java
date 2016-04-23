@@ -289,7 +289,9 @@ public class MainActivity extends AppCompatActivity implements
                 dh.populateSlots(findViewById(R.id.mainScroller));
                 updateVisitors();
                 dh.updateCoinsGUI();
-                dh.updateLevelText(getApplicationContext());
+                if (dh.updateLevelText(getApplicationContext())) {
+                    dh.createAllSlots(activity);
+                }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };

@@ -79,6 +79,7 @@ public class UpgradeActivity extends Activity {
                 upgrade.getCurrent(),
                 upgrade.getMaximum(),
                 upgrade.getUnits(),
+                upgrade.increases() ? "+" : "-",
                 upgrade.getIncrement(),
                 upgrade.getUpgradeCost());
     }

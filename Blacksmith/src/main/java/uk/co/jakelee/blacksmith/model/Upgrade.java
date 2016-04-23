@@ -98,6 +98,10 @@ public class Upgrade extends SugarRecord {
         }
     }
 
+    public boolean increases() {
+        return maximum > minimum;
+    }
+
     public int tryUpgrade() {
         Inventory coins = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
 

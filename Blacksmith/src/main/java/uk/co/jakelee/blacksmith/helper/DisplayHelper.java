@@ -406,7 +406,7 @@ public class DisplayHelper {
         createItemIngredientsTable(currentItemID, state, ingredientsTable);
     }
 
-    public void updateLevelText(Context context) {
+    public boolean updateLevelText(Context context) {
         TextViewPixel levelCount = MainActivity.level;
         levelCount.setText(String.format("%d", Player_Info.getPlayerLevel()));
 
@@ -419,7 +419,9 @@ public class DisplayHelper {
         if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
             ToastHelper.showToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevelFromDB() + 1), true);
             Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
+            return true;
         }
+        return false;
     }
 
     public String getLevelUpText(int newLevel) {
