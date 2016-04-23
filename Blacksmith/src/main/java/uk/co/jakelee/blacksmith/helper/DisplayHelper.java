@@ -177,20 +177,19 @@ public class DisplayHelper {
     }
 
     public void populateVisitorsContainer(final Context context, final MainActivity activity, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
-        List<Visitor> visitors = Visitor.listAll(Visitor.class);
         int displayedVisitors = 0;
-
+        List<Visitor> visitors = Visitor.listAll(Visitor.class);
         if (visitors.size() == 0) {
             VisitorHelper.tryCreateVisitor();
         }
 
-        for (final Visitor visitor : visitors) {
+        int yPadding = convertDpToPixel(4);
+        int xPadding = convertDpToPixel(7);
 
+        for (final Visitor visitor : visitors) {
             // Creating visitor image
-            int visitorImageyPadding = convertDpToPixel(4);
-            int visitorImagexPadding = convertDpToPixel(7);
             ImageView visitorImage = createImageView("visitor", visitor.getType().toString(), 51, 51);
-            visitorImage.setPadding(visitorImagexPadding, visitorImageyPadding, visitorImagexPadding, visitorImageyPadding);
+            visitorImage.setPadding(xPadding, yPadding, xPadding, yPadding);
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -218,7 +217,8 @@ public class DisplayHelper {
         }
 
         if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
-            ImageView addVisitorButton = createImageView("add", "", 50, 50);
+            ImageView addVisitorButton = createImageView("add", "", 51, 51);
+            addVisitorButton.setPadding(xPadding, yPadding, xPadding, yPadding);
             addVisitorButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialogHelper.confirmVisitorAdd(context, activity);
