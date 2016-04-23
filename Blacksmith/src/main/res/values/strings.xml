@@ -204,6 +204,7 @@
     <string name="genericProgress">%1$d / %2$d</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
+    <string name="traderTrades">%s Trades</string>
 
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeDescription">%1$s

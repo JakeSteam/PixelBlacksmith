@@ -49,6 +49,18 @@
                 android:layout_height="100dp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/traderTrades"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_alignBottom="@id/traderImage"
+                android:layout_alignLeft="@id/traderImage"
+                android:alpha="0.6"
+                android:background="@color/black"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/traderName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -30,6 +30,7 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 public class TraderActivity extends Activity implements AlertDialogCallback {
     private static DisplayHelper dh;
     private static Trader trader;
+    private static Character traderCharacter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
         if (traderID > 0) {
             trader = Trader.findById(Trader.class, traderID);
+            traderCharacter = Character.findById(Character.class, trader.getShopkeeper());
             createTraderInterface();
         }
     }
@@ -59,8 +61,6 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
     }
 
     private void createTrader() {
-        Character traderCharacter = Character.findById(Character.class, trader.getShopkeeper());
-
         int drawableID = getApplicationContext().getResources().getIdentifier("character" + traderCharacter.getId(), "drawable", getApplicationContext().getPackageName());
         ImageView traderImage = (ImageView) findViewById(R.id.traderImage);
         traderImage.setImageResource(drawableID);
@@ -70,6 +70,9 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
         TextView traderGreeting = (TextView) findViewById(R.id.traderGreeting);
         traderGreeting.setText(traderCharacter.getIntro());
+
+        TextView traderTrades = (TextView) findViewById(R.id.traderTrades);
+        traderTrades.setText(String.format(getString(R.string.traderTrades), trader.getPurchases()));
     }
 
     private void createItemList() {
