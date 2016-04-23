@@ -88,16 +88,34 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/traderInfo"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="55dp"
             app:layout_marginTopPercent="3%">
 
             <TableLayout
                 android:id="@+id/traderItemsInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:shrinkColumns="1"
                 android:stretchColumns="1" />
 
         </ScrollView>
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_extra_wide"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="clickRestock"
+            android:text="@string/restockText"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
     </android.support.percent.PercentRelativeLayout>
 

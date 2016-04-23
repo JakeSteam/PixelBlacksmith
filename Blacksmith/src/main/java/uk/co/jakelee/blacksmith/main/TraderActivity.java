@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -21,9 +22,12 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.AlertDialogCallback;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -83,40 +87,64 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         for (Trader_Stock itemForSale : itemsForSale) {
-            Item item = Item.findById(Item.class, itemForSale.getItemID());
-            boolean outOfStock = itemForSale.getStock() <= 0;
-
-            LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-            View inflatedView = inflater.inflate(R.layout.custom_trader_stock, null);
-            TableRow itemRow = (TableRow) inflatedView.findViewById(R.id.itemRow);
-
-            ImageView itemImage = (ImageView) itemRow.findViewById(R.id.itemImage);
-            int itemImageDrawable = this.getResources().getIdentifier("item" + itemForSale.getItemID(), "drawable", this.getPackageName());
-            itemImage.setImageDrawable(dh.createDrawable(itemImageDrawable, 100, 100));
-
-            TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
-            itemStock.setText(String.format(getString(R.string.traderStock),
-                    item.getFullName(itemForSale.getState()),
-                    itemForSale.getStock(),
-                    itemForSale.getDefaultStock()));
-
-            TextView itemBuy = (TextView) itemRow.findViewById(R.id.itemBuy);
-
-            if (outOfStock) {
-                itemStock.setPaintFlags(itemStock.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                itemStock.setTextColor(Color.GRAY);
-                itemBuy.setVisibility(View.INVISIBLE);
-            } else {
-                itemBuy.setTag(itemForSale);
-                itemBuy.setOnClickListener(new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        clickBuy(v);
-                    }
-                });
-            }
-
-            traderItemsInfo.addView(inflatedView);
+            traderItemsInfo.addView(createItemRow(itemForSale));
         }
+    }
+
+    private View createItemRow(Trader_Stock itemForSale) {
+        Item item = Item.findById(Item.class, itemForSale.getItemID());
+        boolean outOfStock = itemForSale.getStock() <= 0;
+
+        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        View inflatedView = inflater.inflate(R.layout.custom_trader_stock, null);
+        TableRow itemRow = (TableRow) inflatedView.findViewById(R.id.itemRow);
+
+        ImageView itemImage = (ImageView) itemRow.findViewById(R.id.itemImage);
+        int itemImageDrawable = this.getResources().getIdentifier("item" + itemForSale.getItemID(), "drawable", this.getPackageName());
+        itemImage.setImageDrawable(dh.createDrawable(itemImageDrawable, 100, 100));
+
+        TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
+        itemStock.setText(String.format(getString(R.string.traderStock),
+                item.getFullName(itemForSale.getState()),
+                itemForSale.getStock(),
+                itemForSale.getDefaultStock()));
+
+        TextView itemBuy = (TextView) itemRow.findViewById(R.id.itemBuy);
+
+        if (outOfStock) {
+            itemStock.setPaintFlags(itemStock.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+            itemStock.setTextColor(Color.GRAY);
+            itemBuy.setVisibility(View.INVISIBLE);
+        } else {
+            itemBuy.setTag(itemForSale);
+            itemBuy.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    clickBuy(v);
+                }
+            });
+        }
+
+        return inflatedView;
+    }
+
+    public void clickRestock(View v) {
+        int restockCost = getRestockCost();
+
+        if (restockCost > 0) {
+            AlertDialogHelper.confirmVisitorRestock(getApplicationContext(), this, trader, restockCost);
+        } else {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.unnecessaryRestock, false);
+        }
+    }
+
+    private int getRestockCost() {
+        int itemsForSale = (int) Select.from(Trader_Stock.class).where(
+                Condition.prop("trader_type").eq(trader.getId()),
+                Condition.prop("required_purchases").lt(trader.getPurchases() + 1),
+                Condition.prop("stock").eq(0)).count();
+
+        int costPerStock = Player_Info.getPlayerLevel() * Constants.RESTOCK_COST_MULTIPLIER;
+        return costPerStock * itemsForSale;
     }
 
     private void clickBuy(View v) {

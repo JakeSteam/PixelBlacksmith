@@ -102,6 +102,32 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
+    public static void confirmVisitorRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton(context.getString(R.string.traderRestockConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int traderResponse = trader.restock(restockCost);
+                if (traderResponse == Constants.SUCCESS) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
+                }
+                activity.alertDialogCallback();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.traderRestockCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
     public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock) {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
         final int itemValue = item.getValue();

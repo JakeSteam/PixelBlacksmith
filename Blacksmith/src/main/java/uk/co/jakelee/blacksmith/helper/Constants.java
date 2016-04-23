@@ -17,6 +17,7 @@ public class Constants {
     public static final int STATISTIC_NOT_TRACKED = -1;
     public static final int TRADER_TAX_MULTIPLIER = 200;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
+    public static final int RESTOCK_COST_MULTIPLIER = 10;
 
     // Tutorial stages
     public static final int STAGE_1_MAIN = 1;

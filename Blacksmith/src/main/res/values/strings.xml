@@ -192,8 +192,14 @@
     <string name="cloudSuccess">Cloud %s successful!</string>
     <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
 
+    <string name="restockText">Restock</string>
+    <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>
     <string name="restockTextWithPremium">All traders have been restocked, and have paid a tax of %s!</string>
     <string name="restockTextNoPremium">All traders have been restocked!</string>
+    <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
+    <string name="traderRestockConfirm">Restock</string>
+    <string name="traderRestockComplete">Restocked trader for %d coins.</string>
+    <string name="traderRestockCancel">Cancel</string>
 
     <string name="notificationVisitor">A new visitor has arrived!</string>
 
