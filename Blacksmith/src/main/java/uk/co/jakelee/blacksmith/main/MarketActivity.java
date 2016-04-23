@@ -65,16 +65,14 @@ public class MarketActivity extends Activity {
             LinearLayout traderOfferingsContainer = (LinearLayout) traderRow.findViewById(R.id.traderOfferings);
             populateTraderOfferings(traderOfferingsContainer, trader);
 
-            ImageView traderButton = (ImageView) traderRow.findViewById(R.id.traderButton);
-            traderButton.setTag(trader.getId());
-            traderButton.setOnClickListener(new Button.OnClickListener() {
+            inflatedView.setTag(trader.getId());
+            inflatedView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), TraderActivity.class);
                     intent.putExtra(TRADER_TO_LOAD, v.getTag().toString());
                     startActivity(intent);
                 }
             });
-
             marketLayout.addView(inflatedView);
 
         }
