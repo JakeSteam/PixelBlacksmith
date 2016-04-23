@@ -28,7 +28,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 public class TableActivity extends Activity {
     private static DisplayHelper dh;
     private static GestureHelper gh;
-    private int displayedTier = Constants.TIER_MIN;
+    private int displayedTier;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
@@ -39,13 +39,20 @@ public class TableActivity extends Activity {
         setContentView(R.layout.activity_table);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-
-        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
+        displayedTier = MainActivity.TABLE_TIER;
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
+        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         createTableInterface(false);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        MainActivity.TABLE_TIER = displayedTier;
     }
 
     public boolean onTouchEvent(MotionEvent event) {

@@ -37,7 +37,6 @@ public class FurnaceActivity extends Activity {
     private GestureDetector mGestureDetector;
     private int numberOfItems;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +44,9 @@ public class FurnaceActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
 
-        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
-
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
+        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         createFurnaceInterface();
 

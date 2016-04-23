@@ -32,7 +32,6 @@ import uk.co.jakelee.blacksmith.model.Item;
 public class AnvilActivity extends Activity {
     private static DisplayHelper dh;
     private static GestureHelper gh;
-
     private int displayedTier;
     private int numberOfItems;
     private ViewFlipper mViewFlipper;
@@ -51,7 +50,6 @@ public class AnvilActivity extends Activity {
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         createAnvilInterface(false);
-        mViewFlipper.setDisplayedChild(MainActivity.ANVIL_ITEM);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
             startTutorial();
@@ -63,8 +61,8 @@ public class AnvilActivity extends Activity {
         super.onStop();
 
         MainActivity.ANVIL_TIER = displayedTier;
-        MainActivity.ANVIL_ITEM = mViewFlipper.getDisplayedChild();
     }
+
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
 
