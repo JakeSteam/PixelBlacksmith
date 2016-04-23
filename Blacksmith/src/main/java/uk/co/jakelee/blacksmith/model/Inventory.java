@@ -182,8 +182,6 @@ public class Inventory extends SugarRecord implements Serializable {
         int canBuyResponse = canBuyItem(itemStock);
         if (canBuyResponse != Constants.SUCCESS) {
             return canBuyResponse;
-        } else if (!Slot.hasAvailableSlot(Constants.LOCATION_MARKET)) {
-            return Constants.ERROR_NO_SPARE_SLOTS;
         } else {
             Item item = Item.findById(Item.class, itemStock.getItemID());
 
@@ -197,7 +195,11 @@ public class Inventory extends SugarRecord implements Serializable {
             itemStock.save();
 
             // Add item
-            Pending_Inventory.addItem(itemStock.getItemID(), itemStock.getState(), 1, Constants.LOCATION_MARKET);
+            if (Slot.hasAvailableSlot(Constants.LOCATION_MARKET)) {
+                Pending_Inventory.addItem(itemStock.getItemID(), itemStock.getState(), 1, Constants.LOCATION_MARKET);
+            } else {
+                Pending_Inventory.addScheduledItem(itemStock.getItemID(), itemStock.getState(), 1, Constants.LOCATION_MARKET);
+            }
 
             return Constants.SUCCESS;
         }
