@@ -12,7 +12,7 @@
     <string name="tutorialIntro">Blacksmith</string>
     <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
     <string name="tutorialCoins">Coins</string>
-    <string name="tutorialCoinsText">Your coins are used for buying&#8230; well, everything. They are earned by trading away items.</string>
+    <string name="tutorialCoinsText">Your coins are used for buying... well, everything. They are earned by trading away items.</string>
     <string name="tutorialLevel">Level</string>
     <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, and trading items.</string>
     <string name="tutorialVisitor">Visitor</string>
@@ -202,6 +202,8 @@
     <string name="tableSell">Sell</string>
 
     <string name="genericProgress">%1$d / %2$d</string>
+
+    <string name="traderStock">%1$s\n%2$d / %3$d</string>
 
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeDescription">%1$s

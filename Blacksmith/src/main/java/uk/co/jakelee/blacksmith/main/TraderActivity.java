@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,11 +77,11 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         traderItemsInfo.removeAllViews();
         List<Trader_Stock> itemsForSale = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),
-                Condition.prop("stock").gt(0),
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         for (Trader_Stock itemForSale : itemsForSale) {
             Item item = Item.findById(Item.class, itemForSale.getItemID());
+            boolean outOfStock = itemForSale.getStock() <= 0;
 
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
             View inflatedView = inflater.inflate(R.layout.custom_trader_stock, null);
@@ -89,21 +91,26 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
             int itemImageDrawable = this.getResources().getIdentifier("item" + itemForSale.getItemID(), "drawable", this.getPackageName());
             itemImage.setImageDrawable(dh.createDrawable(itemImageDrawable, 100, 100));
 
-            TextView itemName = (TextView) itemRow.findViewById(R.id.itemName);
-            itemName.setText(item.getName());
-
             TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
-            itemStock.setText(String.format(getString(R.string.genericProgress),
+            itemStock.setText(String.format(getString(R.string.traderStock),
+                    item.getFullName(itemForSale.getState()),
                     itemForSale.getStock(),
                     itemForSale.getDefaultStock()));
 
             TextView itemBuy = (TextView) itemRow.findViewById(R.id.itemBuy);
-            itemBuy.setTag(itemForSale);
-            itemBuy.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickBuy(v);
-                }
-            });
+
+            if (outOfStock) {
+                itemStock.setPaintFlags(itemStock.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                itemStock.setTextColor(Color.GRAY);
+                itemBuy.setVisibility(View.INVISIBLE);
+            } else {
+                itemBuy.setTag(itemForSale);
+                itemBuy.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        clickBuy(v);
+                    }
+                });
+            }
 
             traderItemsInfo.addView(inflatedView);
         }
