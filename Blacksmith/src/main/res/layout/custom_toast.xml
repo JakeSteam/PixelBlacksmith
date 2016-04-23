@@ -7,9 +7,10 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <TextView
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
 </LinearLayout>
