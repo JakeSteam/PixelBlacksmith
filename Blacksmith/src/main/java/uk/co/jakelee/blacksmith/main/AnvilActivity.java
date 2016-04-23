@@ -44,15 +44,14 @@ public class AnvilActivity extends Activity {
         setContentView(R.layout.activity_anvil);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-
-        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
-        mViewFlipper.setDisplayedChild(MainActivity.ANVIL_ITEM);
         displayedTier = MainActivity.ANVIL_TIER;
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
+        mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         createAnvilInterface(false);
+        mViewFlipper.setDisplayedChild(MainActivity.ANVIL_ITEM);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
             startTutorial();
