@@ -172,9 +172,9 @@
     <string name="finishText">Finish</string>
 
     <string name="smelt1Text">Smelt 1</string>
-    <string name="smeltMaxText">Smelt Max</string>
+    <string name="smelt10Text">Smelt 10</string>
     <string name="craft1Text">Craft 1</string>
-    <string name="craftMaxText">Craft Max</string>
+    <string name="craft10Text">Craft 10</string>
 
     <string name="soundSettingText">Enable sounds?</string>
     <string name="musicSettingText">Enable music?</string>

@@ -68,17 +68,19 @@ public class Inventory extends SugarRecord implements Serializable {
     }
 
     public static int tryCreateItem(Long itemId, long state, Long locationID) {
-        if (!Slot.hasAvailableSlot(locationID)) {
-            return Constants.ERROR_NO_SPARE_SLOTS;
-        }
-
         int canCreate = canCreateItem(itemId, state);
         if (canCreate != Constants.SUCCESS) {
             return canCreate;
         }
 
         removeItemIngredients(itemId, state);
-        Pending_Inventory.addItem(itemId, state, 1, locationID);
+
+        if (Slot.hasAvailableSlot(locationID)) {
+            Pending_Inventory.addItem(itemId, state, 1, locationID);
+        } else {
+            Pending_Inventory.addScheduledItem(itemId, state, 1, locationID);
+        }
+
         return Constants.SUCCESS;
     }
 

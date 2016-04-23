@@ -135,7 +135,7 @@ public class DisplayHelper {
     }
 
     private void populateSlot(long locationID, View parentView) {
-        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID);
+        List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
         emptySlotContainer(slotContainer);
 

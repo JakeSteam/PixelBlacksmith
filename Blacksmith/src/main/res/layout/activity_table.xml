@@ -140,7 +140,7 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="craftMax"
-                android:text="@string/craftMaxText"
+                android:text="@string/craft10Text"
                 android:textSize="25sp" />
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
