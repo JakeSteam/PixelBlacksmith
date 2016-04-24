@@ -65,7 +65,8 @@ public class FurnaceActivity extends Activity {
         th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, false);
         th.addTutorialRectangle(this, findViewById(R.id.horizontalIndicator), R.string.tutorialFurnaceScroll, R.string.tutorialFurnaceScrollText, false);
         th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialFurnaceIngredients, R.string.tutorialFurnaceIngredientsText, false);
-        th.addTutorial(this, findViewById(R.id.smelt1), R.string.tutorialFurnaceSmelt, R.string.tutorialFurnaceSmeltText, true, Gravity.TOP);
+        th.addTutorialRectangle(this, findViewById(R.id.smelt1), R.string.tutorialFurnaceSmelt, R.string.tutorialFurnaceSmeltText, true, Gravity.TOP);
+        th.addTutorialRectangle(this, findViewById(R.id.close), R.string.tutorialFurnaceClose, R.string.tutorialFurnaceCloseText, true, Gravity.TOP);
         th.start(this);
     }
 

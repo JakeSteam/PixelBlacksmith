@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -33,6 +34,17 @@ public class MarketActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         dh = DisplayHelper.getInstance(getApplicationContext());
+
+        if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_14_MARKET) {
+            startTutorial();
+        }
+    }
+
+    private void startTutorial() {
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_14_MARKET);
+        th.addTutorial(this, findViewById(R.id.marketTitle), R.string.tutorialMarket, R.string.tutorialMarketText, false);
+        th.addTutorial(this, findViewById(R.id.close), R.string.tutorialMarketClose, R.string.tutorialMarketCloseText, true);
+        th.start(this);
     }
 
     @Override

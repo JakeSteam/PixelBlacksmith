@@ -274,12 +274,12 @@
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/currentLevel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/levelBackground"
             android:layout_alignRight="@id/levelBackground"
             android:gravity="center_horizontal"
-            android:padding="5dp"
+            android:layout_marginTop="5dp"
             android:textColor="@color/white"
             android:textSize="28sp" />
     </RelativeLayout>

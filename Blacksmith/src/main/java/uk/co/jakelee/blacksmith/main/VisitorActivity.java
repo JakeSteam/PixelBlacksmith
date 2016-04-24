@@ -85,6 +85,8 @@ public class VisitorActivity extends Activity {
                 startFirstTutorial();
             } else if (TutorialHelper.currentStage <= Constants.STAGE_4_VISITOR) {
                 startSecondTutorial();
+            } else if (TutorialHelper.currentStage < Constants.STAGE_12_VISITOR) {
+                startThirdTutorial();
             }
         }
     }
@@ -96,6 +98,7 @@ public class VisitorActivity extends Activity {
     }
 
     private void startFirstTutorial() {
+        // Stage 2
         TutorialHelper th = new TutorialHelper(Constants.STAGE_2_VISITOR);
         th.addTutorial(this, findViewById(R.id.visitorPicture), R.string.tutorialVisitorPicture, R.string.tutorialVisitorPictureText, false);
         th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
@@ -104,9 +107,18 @@ public class VisitorActivity extends Activity {
     }
 
     private void startSecondTutorial() {
+        // Stage 4
         TutorialHelper th = new TutorialHelper(Constants.STAGE_4_VISITOR);
         th.addTutorialRectangle(this, findViewById(R.id.demandsTable), R.string.tutorialVisitorDemandsLeft, R.string.tutorialVisitorDemandsLeftText, false, Gravity.TOP);
         th.addTutorial(this, findViewById(R.id.close), R.string.tutorialVisitorClose, R.string.tutorialVisitorCloseText, true);
+        th.start(this);
+    }
+
+    private void startThirdTutorial() {
+        // Stage 12
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_12_VISITOR);
+        th.addTutorialNoOverlay(this, findViewById(R.id.completeButton), R.string.tutorialVisitorFinishBtn, R.string.tutorialVisitorFinishBtnText, true, Gravity.TOP);
+        th.addTutorialRectangle(this, findViewById(R.id.demandsTable), R.string.tutorialVisitorFinish, R.string.tutorialVisitorFinishText, true, Gravity.TOP);
         th.start(this);
     }
 
@@ -122,8 +134,7 @@ public class VisitorActivity extends Activity {
         visitorDesc.setText(visitorType.getDesc());
 
         TextViewPixel visitorVisits = (TextViewPixel) findViewById(R.id.visitorVisits);
-        visitorVisits.setText(String.format("Visits: %d",
-                visitorStats.getVisits()));
+        visitorVisits.setText(String.format("Visits: %d", visitorStats.getVisits()));
     }
 
     private void displayVisitorStats() {

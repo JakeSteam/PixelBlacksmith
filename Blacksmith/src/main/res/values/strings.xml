@@ -22,25 +22,25 @@
     <string name="tutorialVisitorPicture">Visitor</string>
     <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
     <string name="tutorialVisitorPrefs">Preferences</string>
-    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
     <string name="tutorialVisitorDemands">Demands</string>
     <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
 
     <!-- Stage 3 -->
     <string name="tutorialTradeItems">Tradeable Items</string>
-    <string name="tutorialTradeItemsText">Looks like you\'ve got 2 different ores to sell. How lucky! Sell them both, and you\'ll get more than the 2 coins listed due to the visitor\'s ore preference.</string>
+    <string name="tutorialTradeItemsText">Looks like you\'ve got 3 different ores to sell. How lucky! Sell any, and you\'ll get more than the coins listed due to the visitor\'s ore preference.</string>
     <string name="tutorialTradeFinish">Finish Trading</string>
     <string name="tutorialTradeFinishText">Once any 2 ores have been traded, tap finish to return to the visitor overview.</string>
 
     <!-- Stage 4 -->
     <string name="tutorialVisitorDemandsLeft">Demands</string>
-    <string name="tutorialVisitorDemandsLeftText">Hmm, looks like he wants some bars, and some unfinished items.. we haven\'t got those yet!</string>
+    <string name="tutorialVisitorDemandsLeftText">Hmm, looks like he also wants an unfinished item, and a finished item. We haven\'t got those yet!</string>
     <string name="tutorialVisitorClose">Close</string>
-    <string name="tutorialVisitorCloseText">Let\'s leave the visitor, and make our way to the furnace.</string>
+    <string name="tutorialVisitorCloseText">Let\'s leave the visitor, and make our way to the furnace to make some bronze bars.</string>
 
     <!-- Stage 5 -->
     <string name="tutorialFurnaceSlots">Slots</string>
-    <string name="tutorialFurnaceSlotsText">Any bars that are currently being smelted in the furnace will appear here. If there\'s no space, no more bars can be made.</string>
+    <string name="tutorialFurnaceSlotsText">Any bars that are currently being smelted in the furnace will appear here. If there\'s no space, bars will be queued up.</string>
     <string name="tutorialFurnace">Furnace</string>
     <string name="tutorialFurnaceText">Time to open up the furnace, and make a bar for Mr T Utorial.</string>
 
@@ -52,31 +52,61 @@
     <string name="tutorialFurnaceIngredients">Ingredients</string>
     <string name="tutorialFurnaceIngredientsText">Since this is a rather basic item, it only requires level 1. It also requires copper and tin ore, which we have plenty of.</string>
     <string name="tutorialFurnaceSmelt">Smelting</string>
-    <string name="tutorialFurnaceSmeltText">Craft a few bronze bars, we\'ll need some extra for the unfinished items.</string>
+    <string name="tutorialFurnaceSmeltText">Craft a few bronze bars, we\'ll need them for the unfinished items.</string>
+    <string name="tutorialFurnaceClose">Close</string>
+    <string name="tutorialFurnaceCloseText">Close the furnace, and we\'ll make our way to the anvil.</string>
 
     <!-- Stage 7 -->
     <string name="tutorialMainAnvil">Anvil</string>
     <string name="tutorialMainAnvilText">To make the bronze bars into the unfinished dagger, we only need to visit the anvil. As before, notice there\'s only 1 slot available for now.</string>
-    <string name="tutorialMainFurther">Further Crafting</string>
-    <string name="tutorialMainFurtherText">Later, making finished items will require the use of the Crafting Table, and enchanting items will require visiting the Enchanting Table.</string>
 
     <!-- Stage 8 -->
     <string name="tutorialAnvil">Items</string>
-    <string name="tutorialAnvilText">As in the furnace, all items are currently hidden apart from a basic bronze dagger. Luckily, that\'s what we need to make.</string>
+    <string name="tutorialAnvilText">As in the furnace, all items are currently hidden except a basic bronze dagger. Luckily, that\'s what we need to make.</string>
     <string name="tutorialAnvilUp">Tiers</string>
-    <string name="tutorialAnvilUpText">Unlike the furnace, there are different tiers of item in the anvil. Bronze is the lowest, then iron, all the way up to legendary items.</string>
+    <string name="tutorialAnvilUpText">Unlike the furnace, there are different tiers of item in the anvil. Bronze is the lowest, then iron, all the way up to dragon and legendary items.</string>
     <string name="tutorialAnvilIngredients">Ingredients</string>
     <string name="tutorialAnvilIngredientsText">Hopefully, you\'ve got plenty of bronze bars made from the furnace. If not, better go back and make them!</string>
     <string name="tutorialAnvilCraft">Crafting</string>
-    <string name="tutorialAnvilCraftText">Make a bronze dagger or two, but make sure to leave at least 1 bronze bar spare for trading.</string>
+    <string name="tutorialAnvilCraftText">Make a couple of unfinished bronze daggers. Notice that you gain XP for every crafted item.</string>
 
     <!-- Stage 9 -->
+    <string name="tutorialMainTable">Table</string>
+    <string name="tutorialMainTableText">To turn those unfinished daggers into finished daggers, we need to go to the table.</string>
+
+    <!-- Stage 10 -->
+    <string name="tutorialTable">Table</string>
+    <string name="tutorialTableText">The table is similar to the anvil, but combines unfinished items and secondary ingredients to make finished items.</string>
+    <string name="tutorialTableIngredients">Ingredients</string>
+    <string name="tutorialTableIngredientsText">To finish up the dagger, we need a spidersilk. Luckily, we have plenty!</string>
+    <string name="tutorialTableCraft">Craft</string>
+    <string name="tutorialTableCraftText">Craft one, and the dagger will be ready in a second or so.</string>
+
+    <!-- Stage 11 -->
+    <string name="tutorialMainVisitorFinish">Finishing</string>
+    <string name="tutorialMainVisitorFinishText">Now, let\'s go give the visitor all of his items.</string>
+
+    <!-- Stage 12 -->
+    <string name="tutorialVisitorFinishBtn">Complete</string>
+    <string name="tutorialVisitorFinishBtnText">Once all the items have been handed in, press the complete bonus. You\'ll get a tip from the visitor as a thank you!</string>
+    <string name="tutorialVisitorFinish">Demands</string>
+    <string name="tutorialVisitorFinishText">Now, give the visitor the rest of his items via the trade screens.</string>
+
+    <!-- Stage 13 -->
     <string name="tutorialMainInfo">Last Thing</string>
     <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his unfinished bronze dagger, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
     <string name="tutorialMainMarket">Market</string>
     <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.</string>
+
+    <!-- Stage 14 -->
+    <string name="tutorialMarket">Market</string>
+    <string name="tutorialMarketText">Traders will come and go from the market over time. Purchasing from traders will also unlock better / more items for sale.</string>
+    <string name="tutorialMarketClose">Close</string>
+    <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market for now.</string>
+
+    <!-- Stage 15 -->
     <string name="tutorialMainSettings">Settings</string>
-    <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here. A message history is also available, along with optional google play achievements, leaderboard, and cloud saves.</string>
+    <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
     <string name="tutorialMainHelp">Help</string>
     <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
 
@@ -219,7 +249,7 @@
 
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
-    <string name="noTraders">The marketplace is empty!\n\nThe traders should return when they have restocked.</string>
+    <string name="noTraders">The marketplace is empty!\n\nThe traders will return when they have restocked, check the statistics panel to see when this will be.</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
     <string name="powderAdd">Began crushing the %s into a fine powder.</string>
 

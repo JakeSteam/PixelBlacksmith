@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 
@@ -175,6 +176,7 @@ public class SettingsActivity extends Activity {
 
     public void openTutorial(View view) {
         this.finish();
+        TutorialHelper.currentlyInTutorial = true;
         MainActivity.startFirstTutorial();
     }
 

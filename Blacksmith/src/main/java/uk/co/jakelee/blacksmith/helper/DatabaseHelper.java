@@ -1419,10 +1419,10 @@ public class DatabaseHelper {
     public static void createVisitorDemand() {
         List<Visitor_Demand> visitor_demands = new ArrayList<>();
         
-        // Req: 2 ore, 1 bar, 1 unfinished
+        // Req: 2 ore, 1 bar, 1 unfinished, 1 finished
         visitor_demands.add(new Visitor_Demand(1L, 3L, 1L, 0, 2, true));
-        visitor_demands.add(new Visitor_Demand(1L, 3L, 2L, 0, 1, true));
         visitor_demands.add(new Visitor_Demand(1L, 1L, 2L, 0, 1, true));
+        visitor_demands.add(new Visitor_Demand(1L, 1L, 1L, 0, 1, true));
 
         // Opt: 1 cheese
         visitor_demands.add(new Visitor_Demand(1L, 3L, 21L, 0, 1, false));
@@ -1522,7 +1522,7 @@ public class DatabaseHelper {
         visitor_types.add(new Visitor_Type(30L, "Archer", "It's all about the bullseye.", 2L, 6L, 5L, 1.10, 1.25, 1.15, false, false, false, 2));
         visitor_types.add(new Visitor_Type(31L, "Steve", "Gotta dig deeper and deeper and deeper and...", 6L, 15L, 1L, 1.05, 1.15, 1.05, false, false, false, 6));
         visitor_types.add(new Visitor_Type(32L, "Whippersnapper", "Don't tell Steve, but his secret fish pond isn't so secret.", 11L, 17L, 4L, 1.05, 1.20, 1.02, false, false, false, 6));
-        visitor_types.add(new Visitor_Type(33L, "Mr T Utorial", "Need a hand?", 1L, 3L, 4L, 1.05, 1.05, 1.05, true, false, false, 1));
+        visitor_types.add(new Visitor_Type(33L, "Mr T Utorial", "Need a hand?", 1L, 1L, 4L, 1.05, 1.05, 1.05, true, true, false, 1));
         visitor_types.add(new Visitor_Type(34L, "Sammy the Snake", "Ssscared of sssnakesss?", 3L, 6L, 1L, 1.10, 1.15, 1.05, false, false, false, 9));
         visitor_types.add(new Visitor_Type(35L, "Power Orb", "I am all powerful. Okay, apart from equipment. Shh.", 6L, 1L, 4L, 1.03, 1.12, 1.09, false, false, false, 7));
         visitor_types.add(new Visitor_Type(36L, "Frankie Fire", "Is it hot in here?", 10L, 23L, 3L, 1.08, 1.15, 1.20, false, false, false, 7));

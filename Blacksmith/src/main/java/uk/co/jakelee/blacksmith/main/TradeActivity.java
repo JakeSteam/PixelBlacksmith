@@ -159,7 +159,7 @@ public class TradeActivity extends Activity {
             double bonus = visitorType.getDisplayedBonus(inventory);
             if (bonus > Constants.DEFAULT_BONUS) {
                 bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
-                bonusText.setTextColor(Color.GREEN);
+                bonusText.setTextColor(Color.parseColor("#267c18"));
             }
 
             itemRow.addView(quantity);

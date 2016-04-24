@@ -62,17 +62,6 @@ public class MainActivity extends AppCompatActivity implements
     public static int TABLE_TIER = Constants.TIER_MIN;
     public static int ENCHANTING_TIER = Constants.TIER_MIN;
 
-    public static void startFirstTutorial() {
-        mainScroller.scrollTo(0, 0);
-
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
-        th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
-        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
-        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
-        th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
-        th.start(mainActivity);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +132,20 @@ public class MainActivity extends AppCompatActivity implements
         }*/
     }
 
-    private void startSecondTutorial(View v) {
+    public static void startFirstTutorial() {
+        // Stage 1
+        mainScroller.scrollTo(0, 0);
+
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
+        th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
+        th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
+        th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
+        th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
+        th.start(mainActivity);
+    }
+
+    private void startSecondTutorial() {
+        // Stage 5
         findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(400), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_5_MAIN);
@@ -153,29 +155,50 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void startThirdTutorial() {
+        // Stage 7
         findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(680), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_7_MAIN);
-        th.addTutorial(mainActivity, findViewById(R.id.slots_anvil), R.string.tutorialMainAnvil, R.string.tutorialMainAnvilText, false);
-        th.addTutorial(mainActivity, findViewById(R.id.open_anvil), R.string.tutorialMainFurther, R.string.tutorialMainFurtherText, true);
+        th.addTutorial(mainActivity, findViewById(R.id.open_anvil), R.string.tutorialMainAnvil, R.string.tutorialMainAnvilText, true);
+        th.addTutorial(mainActivity, findViewById(R.id.open_anvil), R.string.tutorialMainAnvil, R.string.tutorialMainAnvilText, true);
         th.start(mainActivity);
     }
 
     private void startFourthTutorial() {
-        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(230), 0);
+        // Stage 9
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(400), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_9_MAIN);
-        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.TOP);
-        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, true, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_table), R.string.tutorialMainTable, R.string.tutorialMainTableText, true);
+        th.addTutorial(mainActivity, findViewById(R.id.open_table), R.string.tutorialMainTable, R.string.tutorialMainTableText, true);
         th.start(mainActivity);
-
-        TutorialHelper.currentStage = Constants.STAGE_10_MAIN;
     }
 
     private void startFifthTutorial() {
+        // Stage 11
+        findViewById(R.id.mainScroller).scrollTo(0, 0);
+
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_11_MAIN);
+        th.addTutorialRectangle(mainActivity, findViewById(R.id.visitors_container), R.string.tutorialMainVisitorFinish, R.string.tutorialMainVisitorFinishText, true);
+        th.addTutorialRectangle(mainActivity, findViewById(R.id.visitors_container), R.string.tutorialMainVisitorFinish, R.string.tutorialMainVisitorFinishText, true);
+        th.start(mainActivity);
+    }
+
+    private void startSixthTutorial() {
+        // Stage 13
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(150), 0);
+
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_13_MAIN);
+        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, true, Gravity.TOP);
+        th.start(mainActivity);
+    }
+
+    private void startSeventhTutorial() {
+        // Stage 15
         findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(860), 0);
 
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_10_MAIN);
+        TutorialHelper th = new TutorialHelper(Constants.STAGE_15_MAIN);
         th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);
         th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, true, Gravity.TOP);
         th.start(mainActivity);
@@ -245,13 +268,17 @@ public class MainActivity extends AppCompatActivity implements
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
             } else if (TutorialHelper.currentStage == Constants.STAGE_4_VISITOR) {
-                startSecondTutorial(new View(this));
+                startSecondTutorial();
             } else if (TutorialHelper.currentStage == Constants.STAGE_6_FURNACE) {
                 startThirdTutorial();
             } else if (TutorialHelper.currentStage == Constants.STAGE_8_ANVIL) {
                 startFourthTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_9_MAIN) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_10_TABLE) {
                 startFifthTutorial();
+            } else if (TutorialHelper.currentStage == Constants.STAGE_12_VISITOR) {
+                startSixthTutorial();
+            } else if (TutorialHelper.currentStage == Constants.STAGE_14_MARKET) {
+                startSeventhTutorial();
             }
         }
     }
