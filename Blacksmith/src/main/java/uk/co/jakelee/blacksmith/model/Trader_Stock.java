@@ -60,6 +60,18 @@ public class Trader_Stock extends SugarRecord {
         }).start();
     }
 
+    public static int getUnlockedCount() {
+        int stocksUnlocked = 0;
+        List<Trader> traders = Trader.listAll(Trader.class);
+        for (Trader trader : traders) {
+            stocksUnlocked += (int) Select.from(Trader_Stock.class).where(
+                    Condition.prop("trader_type").eq(trader.getId()),
+                    Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).count();
+        }
+
+        return stocksUnlocked;
+    }
+
     public Long getTraderType() {
         return traderType;
     }

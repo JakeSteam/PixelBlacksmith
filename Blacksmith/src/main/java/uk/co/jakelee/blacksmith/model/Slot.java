@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 
@@ -38,6 +40,23 @@ public class Slot extends SugarRecord {
         List<Slot> allSlots = Location.getSlots(locationID);
         for (Slot slot : allSlots) {
             if (slot.getLevel() <= playerLevel && (!slot.isPremium() || (slot.isPremium() && playerIsPremium))) {
+                availableSlots++;
+            }
+        }
+
+        return availableSlots;
+    }
+
+    public static int getUnlockedCount() {
+        int playerLevel = Player_Info.getPlayerLevel();
+        boolean playerIsPremium = Player_Info.isPremium();
+        int availableSlots = 0;
+
+        List<Slot> slots = Select.from(Slot.class).where(
+                Condition.prop("level").lt(playerLevel + 1)).list();
+
+        for (Slot slot : slots) {
+            if (!slot.isPremium() || (slot.isPremium() && playerIsPremium)) {
                 availableSlots++;
             }
         }

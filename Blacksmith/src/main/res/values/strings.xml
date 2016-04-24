@@ -233,6 +233,7 @@
     <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s in your inventory.</string>
     <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s and in the inventory, and a rare %3$s!</string>
 
+    <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
     <string name="statisticsNextLevel">Next Level In:</string>
     <string name="statisticsSmelted">Items Smelted:</string>
@@ -248,6 +249,10 @@
     <string name="statisticsNextVisitorCheck">Next Visitor:</string>
     <string name="statisticsBiggestTrade">Biggest Trade:</string>
     <string name="statisticsUpgradesBought">Upgrades Bought:</string>
+    <string name="statisticsTraders">Traders Unlocked:</string>
+    <string name="statisticsTraderStocks">Trader Stocks Unlocked:</string>
+    <string name="statisticsSlotsUnlocked">Slots Unlocked:</string>
+    <string name="statisticsItemsSeen">Items Seen:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>

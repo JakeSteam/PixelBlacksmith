@@ -110,6 +110,43 @@ public class Player_Info extends SugarRecord {
         }
     }
 
+    public static double getCompletionPercent() {
+        /*
+            Level * 100
+            Upgrades * 10
+            Traders * 10
+            Slots * 10
+            Trader Stocks * 1
+            Item * 1
+         */
+        int currentlyComplete = getCurrentCompletion();
+        int totalToComplete = getFullCompletion();
+
+        return ((double) currentlyComplete / (double) totalToComplete) * 100;
+    }
+
+    private static int getCurrentCompletion() {
+        int currentLevelPoints = (100 * Player_Info.getPlayerLevel());
+        int currentUpgradePoints = (10 * Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue());
+        int currentTraderPoints = (10 * (int) Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count());
+        int currentSlotPoints = (10 * Slot.getUnlockedCount());
+        int currentTraderStockPoints = Trader_Stock.getUnlockedCount();
+        int currentItemPoints = (int) Select.from(Inventory.class).groupBy("item").count();
+
+        return currentLevelPoints + currentUpgradePoints + currentTraderPoints + currentSlotPoints + currentTraderStockPoints + currentItemPoints;
+    }
+
+    private static int getFullCompletion() {
+        int maxLevelPoints = (100 * Constants.PRESTIGE_LEVEL_REQUIRED);
+        int maxUpgradePoints = (10 * Upgrade.getMaximumUpgrades());
+        int maxTraderPoints = (10 * (int) Trader.count(Trader.class));
+        int maxSlotPoints = (10 * (int) Slot.count(Slot.class));
+        int maxTraderStockPoints = (int) Trader_Stock.count(Trader_Stock.class);
+        int maxItemPoints = (int) Item.count(Item.class);
+
+        return maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints;
+    }
+
     public static int getXp() {
         Player_Info xpInfo = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("XP")).first();

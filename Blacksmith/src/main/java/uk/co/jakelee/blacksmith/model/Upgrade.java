@@ -4,6 +4,8 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class Upgrade extends SugarRecord {
@@ -96,6 +98,20 @@ public class Upgrade extends SugarRecord {
         } else {
             return ((current - minimum) + increment) * modifier;
         }
+    }
+
+    public static int getMaximumUpgrades() {
+        int possibleUpgrades = 0;
+        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
+        for (Upgrade upgrade : upgrades) {
+            if (upgrade.increases()) {
+                possibleUpgrades += ((upgrade.getMaximum() - upgrade.getMinimum()) / upgrade.getIncrement());
+            } else {
+                possibleUpgrades += ((upgrade.getMinimum() - upgrade.getMaximum()) / upgrade.getIncrement());
+            }
+        }
+
+        return possibleUpgrades;
     }
 
     public boolean increases() {

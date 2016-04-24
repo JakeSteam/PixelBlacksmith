@@ -13,7 +13,12 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 
@@ -30,6 +35,9 @@ public class StatisticsActivity extends Activity {
     }
 
     private void displayStatistics() {
+        double completionPercent = Player_Info.getCompletionPercent();
+        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", completionPercent));
+
         int currentXP = Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
 
@@ -84,6 +92,22 @@ public class StatisticsActivity extends Activity {
 
         int upgradesBought = Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.upgradesBought)).setText(String.format("%,d", upgradesBought));
+
+        int tradersUnlocked = (int) Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count();
+        int totalTraders = (int) Trader.count(Trader.class);
+        ((TextViewPixel) findViewById(R.id.traders)).setText(String.format(getString(R.string.genericProgress), tradersUnlocked, totalTraders));
+
+        int traderStocksUnlocked = Trader_Stock.getUnlockedCount();
+        int totalStocks = (int) Trader_Stock.count(Trader_Stock.class);
+        ((TextViewPixel) findViewById(R.id.traderStocks)).setText(String.format(getString(R.string.genericProgress), traderStocksUnlocked, totalStocks));
+
+        int slotsUnlocked = Slot.getUnlockedCount();
+        int totalSlots = (int) Slot.count(Slot.class);
+        ((TextViewPixel) findViewById(R.id.slotsUnlocked)).setText(String.format(getString(R.string.genericProgress), slotsUnlocked, totalSlots));
+
+        int itemsSeen = (int) Select.from(Inventory.class).groupBy("item").count();
+        int totalItems = (int) Item.count(Item.class);
+        ((TextViewPixel) findViewById(R.id.itemsSeen)).setText(String.format(getString(R.string.genericProgress), itemsSeen, totalItems));
 
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue), prestigeLevel + 1));
