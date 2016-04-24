@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
+                .setViewForPopups(findViewById(android.R.id.content))
                 .build();
 
         dh.createAllSlots(this);
@@ -270,7 +271,6 @@ public class MainActivity extends AppCompatActivity implements
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
-
 
         if (musicServiceIsStarted) {
             stopService(musicService);

@@ -49,7 +49,7 @@ public class MarketActivity extends Activity {
 
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
+                Condition.prop("status").eq(Constants.TRADER_PRESENT)).orderBy("name").list();
 
         for (Trader trader : traders) {
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
