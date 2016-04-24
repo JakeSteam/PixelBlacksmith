@@ -122,6 +122,17 @@ public class DatabaseHelper {
         characters.add(new Character(7L, "GemBot 5000", "Bzzt!"));
         characters.add(new Character(8L, "Farmer's Little Friend", "You'd better not have any weedkiller on you."));
         characters.add(new Character(9L, "Death Beetle", "I am an exclusive trader."));
+        characters.add(new Character(10L, "Miss Odds & Ends", "Hello dear! I hope you like my shop."));
+        characters.add(new Character(11L, "Deathly Ghoul", "Boo! Only joking, I'm not that scary."));
+        characters.add(new Character(12L, "Bleached Crab", "Maybe I've spent a little too long in the sun."));
+        characters.add(new Character(13L, "Goblin Warrior", "Orite matey, got any gold?"));
+        characters.add(new Character(14L, "Floating Tradesman", "It's rather hard carrying stock around y'know."));
+        characters.add(new Character(15L, "Goblin Businessman", "Hello there! Come, friend, trade away!"));
+        characters.add(new Character(16L, "Blobette", "Bloop bloop."));
+        characters.add(new Character(17L, "Ricky Stardust", "Floating in the stars forever."));
+        characters.add(new Character(18L, "Grumblestiltskin", "Fine, I'll trade if I have to. Hmph."));
+        characters.add(new Character(19L, "Oculus Lift", "Flippity flappity, my friend."));
+        characters.add(new Character(20L, "Blob King", "Also bloop. Even more so."));
 
         Character.saveInTx(characters);
     }
@@ -973,21 +984,21 @@ public class DatabaseHelper {
         
         traders.add(new Trader(1L, 4, "The Scraps", "I was gonna chuck this stuff out.. you interested?", 0, 0, 0, 60));
         trader_stocks.add(new Trader_Stock(1L, 1L, 1, 0, 10));
-        trader_stocks.add(new Trader_Stock(1L, 1L, 1, 40, 35));
+        trader_stocks.add(new Trader_Stock(1L, 1L, 1, 50, 35));
         trader_stocks.add(new Trader_Stock(1L, 2L, 1, 0, 10));
-        trader_stocks.add(new Trader_Stock(1L, 2L, 1, 40, 35));
+        trader_stocks.add(new Trader_Stock(1L, 2L, 1, 50, 35));
         trader_stocks.add(new Trader_Stock(1L, 11L, 1, 0, 3));
-        trader_stocks.add(new Trader_Stock(1L, 11L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(1L, 11L, 1, 30, 20));
 
         traders.add(new Trader(1L, 4, "Lots More Ore", "Lots and and lots and lots of ore!", 0, 0, 0, 100));
         trader_stocks.add(new Trader_Stock(2L, 1L, 1, 0, 5));
-        trader_stocks.add(new Trader_Stock(2L, 1L, 1, 20, 30));
+        trader_stocks.add(new Trader_Stock(2L, 1L, 1, 70, 30));
         trader_stocks.add(new Trader_Stock(2L, 2L, 1, 0, 5));
-        trader_stocks.add(new Trader_Stock(2L, 2L, 1, 20, 30));
+        trader_stocks.add(new Trader_Stock(2L, 2L, 1, 70, 30));
         trader_stocks.add(new Trader_Stock(2L, 3L, 1, 0, 5));
-        trader_stocks.add(new Trader_Stock(2L, 3L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(2L, 3L, 1, 120, 20));
         trader_stocks.add(new Trader_Stock(2L, 4L, 1, 0, 5));
-        trader_stocks.add(new Trader_Stock(2L, 4L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(2L, 4L, 1, 120, 20));
 
         traders.add(new Trader(1L, 4, "The Off Cuts", "This stuff isn't the best, but it'll do.", 5, 0, 0, 40));
         trader_stocks.add(new Trader_Stock(3L, 3L, 1, 0, 5));
@@ -1014,17 +1025,17 @@ public class DatabaseHelper {
 
         traders.add(new Trader(2L, 4, "The Iron Throne", "I rule my iron with an iron fist!", 0, 0, 0, 5));
         trader_stocks.add(new Trader_Stock(6L, 4L, 1, 0, 5));
-        trader_stocks.add(new Trader_Stock(6L, 4L, 1, 10, 25));
+        trader_stocks.add(new Trader_Stock(6L, 4L, 1, 11, 25));
         trader_stocks.add(new Trader_Stock(6L, 4L, 1, 130, 90));
         trader_stocks.add(new Trader_Stock(6L, 12L, 1, 0, 5));
-        trader_stocks.add(new Trader_Stock(6L, 12L, 1, 15, 10));
+        trader_stocks.add(new Trader_Stock(6L, 12L, 1, 85, 10));
 
         traders.add(new Trader(2L, 4, "The Iron Fist", "I rule my iron from an iron throne!", 25, 0, 0, 1));
         trader_stocks.add(new Trader_Stock(7L, 4L, 1, 0, 25));
-        trader_stocks.add(new Trader_Stock(7L, 4L, 1, 10, 90));
+        trader_stocks.add(new Trader_Stock(7L, 4L, 1, 70, 90));
         trader_stocks.add(new Trader_Stock(7L, 4L, 1, 130, 200));
         trader_stocks.add(new Trader_Stock(7L, 12L, 1, 0, 15));
-        trader_stocks.add(new Trader_Stock(7L, 12L, 1, 15, 100));
+        trader_stocks.add(new Trader_Stock(7L, 12L, 1, 60, 100));
 
         traders.add(new Trader(3L, 4, "The Nuggets", "Check out these lil shiners.", 5, 0, 0, 1));
         trader_stocks.add(new Trader_Stock(8L, 9L, 1, 0, 5));
@@ -1098,6 +1109,256 @@ public class DatabaseHelper {
 
         traders.add(new Trader(9L, 4, "The Exclusive Emporium", "You won't find any of this anywhere else!", 30, 0, 0, 1));
         trader_stocks.add(new Trader_Stock(20L, 148L, 1, 0, 1));
+
+        traders.add(new Trader(10L, 4, "The Little Ore Shop", "A little ore in store, you it is for!", 0, 0, 0, 50));
+        trader_stocks.add(new Trader_Stock(21L, 1L, 1, 0, 3));
+        trader_stocks.add(new Trader_Stock(21L, 1L, 1, 10, 10));
+        trader_stocks.add(new Trader_Stock(21L, 2L, 1, 0, 3));
+        trader_stocks.add(new Trader_Stock(21L, 2L, 1, 10, 10));
+        trader_stocks.add(new Trader_Stock(21L, 3L, 1, 0, 3));
+        trader_stocks.add(new Trader_Stock(21L, 3L, 1, 10, 10));
+
+        traders.add(new Trader(10L, 4, "The Little Bar Shop", "Some bars inside, no need to hide.", 0, 0, 0, 50));
+        trader_stocks.add(new Trader_Stock(22L, 11L, 1, 0, 3));
+        trader_stocks.add(new Trader_Stock(22L, 11L, 1, 10, 8));
+        trader_stocks.add(new Trader_Stock(22L, 12L, 1, 0, 3));
+        trader_stocks.add(new Trader_Stock(22L, 12L, 1, 10, 8));
+
+        traders.add(new Trader(10L, 4, "The Bigger Ore Shop", "Ore? A lot, that's what I've got.", 10, 0, 0, 25));
+        trader_stocks.add(new Trader_Stock(23L, 1L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(23L, 1L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(23L, 2L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(23L, 2L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(23L, 3L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(23L, 3L, 1, 20, 20));
+        trader_stocks.add(new Trader_Stock(23L, 4L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(23L, 4L, 1, 20, 20));
+
+        traders.add(new Trader(10L, 4, "The Bigger Bar Shop", "Lots more bars, don't go fars!", 10, 0, 0, 25));
+        trader_stocks.add(new Trader_Stock(24L, 11L, 1, 0, 8));
+        trader_stocks.add(new Trader_Stock(24L, 11L, 1, 16, 20));
+        trader_stocks.add(new Trader_Stock(24L, 12L, 1, 0, 8));
+        trader_stocks.add(new Trader_Stock(24L, 12L, 1, 16, 20));
+        trader_stocks.add(new Trader_Stock(24L, 13L, 1, 0, 8));
+        trader_stocks.add(new Trader_Stock(24L, 13L, 1, 16, 20));
+
+        traders.add(new Trader(10L, 4, "The Biggest Ore Shop", "Ore to the max, racks and racks.", 20, 0, 0, 8));
+        trader_stocks.add(new Trader_Stock(25L, 1L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(25L, 1L, 1, 40, 50));
+        trader_stocks.add(new Trader_Stock(25L, 2L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(25L, 2L, 1, 40, 50));
+        trader_stocks.add(new Trader_Stock(25L, 3L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(25L, 3L, 1, 40, 50));
+        trader_stocks.add(new Trader_Stock(25L, 4L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(25L, 4L, 1, 40, 50));
+        trader_stocks.add(new Trader_Stock(25L, 5L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(25L, 6L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(25L, 7L, 1, 0, 5));
+
+        traders.add(new Trader(10L, 4, "The Biggest Bar Shop", "So many bars, enough to fill Mars.", 20, 0, 0, 8));
+        trader_stocks.add(new Trader_Stock(26L, 11L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(26L, 11L, 1, 40, 30));
+        trader_stocks.add(new Trader_Stock(26L, 12L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(26L, 12L, 1, 40, 30));
+        trader_stocks.add(new Trader_Stock(26L, 13L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(26L, 13L, 1, 40, 30));
+        trader_stocks.add(new Trader_Stock(26L, 14L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(26L, 15L, 1, 0, 8));
+        trader_stocks.add(new Trader_Stock(26L, 16L, 1, 0, 6));
+        trader_stocks.add(new Trader_Stock(26L, 17L, 1, 0, 4));
+        trader_stocks.add(new Trader_Stock(26L, 18L, 1, 0, 4));
+        trader_stocks.add(new Trader_Stock(26L, 19L, 1, 0, 1));
+
+        traders.add(new Trader(11L, 4, "The Scary Silk Shop", "About as scary as regular silk.", 0, 0, 0, 80));
+        trader_stocks.add(new Trader_Stock(27L, 69L, 1, 0, 15));
+        trader_stocks.add(new Trader_Stock(27L, 69L, 1, 31, 35));
+        trader_stocks.add(new Trader_Stock(27L, 70L, 1, 0, 15));
+        trader_stocks.add(new Trader_Stock(27L, 70L, 1, 31, 35));
+
+        traders.add(new Trader(11L, 4, "The Lethal Log Lair", "About as lethal as any old log.", 5, 0, 0, 35));
+        trader_stocks.add(new Trader_Stock(28L, 71L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(28L, 71L, 1, 11, 25));
+        trader_stocks.add(new Trader_Stock(28L, 71L, 1, 51, 70));
+
+        traders.add(new Trader(11L, 4, "The Petrifying Powder Place", "Powder can be scary! Course it can!", 30, 0, 0, 12));
+        trader_stocks.add(new Trader_Stock(29L, 129L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(29L, 129L, 1, 11, 25));
+        trader_stocks.add(new Trader_Stock(29L, 130L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(29L, 130L, 1, 11, 25));
+        trader_stocks.add(new Trader_Stock(29L, 131L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(29L, 131L, 1, 11, 25));
+
+        traders.add(new Trader(12L, 4, "Surf and Steel", "Don't steal my steel.", 10, 0, 0, 50));
+        trader_stocks.add(new Trader_Stock(30L, 57L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(30L, 58L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(30L, 63L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(30L, 64L, 1, 0, 2));
+
+        traders.add(new Trader(12L, 4, "Manatees and Mithril", "I won't mith my mithril. I mean miss.", 20, 0, 0, 35));
+        trader_stocks.add(new Trader_Stock(31L, 93L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(31L, 84L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(31L, 96L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(31L, 95L, 1, 0, 2));
+
+        traders.add(new Trader(12L, 4, "Atolls and Adamant", "I'm adamant you'll like my adamant.", 30, 0, 0, 30));
+        trader_stocks.add(new Trader_Stock(32L, 110L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(32L, 99L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(32L, 105L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(32L, 106L, 1, 0, 2));
+
+        traders.add(new Trader(12L, 4, "Reefs and Rune", "Don't rune away!", 40, 0, 0, 30));
+        trader_stocks.add(new Trader_Stock(33L, 110L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(33L, 99L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(33L, 105L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(33L, 106L, 1, 0, 2));
+
+        traders.add(new Trader(12L, 4, "Dives and Dragon", "Forged from seadragon hide.", 50, 0, 0, 20));
+        trader_stocks.add(new Trader_Stock(34L, 146L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(34L, 145L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(34L, 135L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(34L, 137L, 1, 0, 2));
+
+        traders.add(new Trader(13L, 4, "Swords a'plenty!", "Get your swords here!", 0, 0, 0, 5));
+        trader_stocks.add(new Trader_Stock(35L, 21L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(35L, 37L, 1, 5, 2));
+        trader_stocks.add(new Trader_Stock(35L, 54L, 1, 12, 2));
+        trader_stocks.add(new Trader_Stock(35L, 82L, 1, 30, 2));
+        trader_stocks.add(new Trader_Stock(35L, 98L, 1, 55, 2));
+        trader_stocks.add(new Trader_Stock(35L, 114L, 1, 110, 2));
+        trader_stocks.add(new Trader_Stock(35L, 133L, 1, 300, 2));
+
+        traders.add(new Trader(13L, 4, "Shields a'plenty!", "Get your shields here!", 0, 0, 0, 5));
+        trader_stocks.add(new Trader_Stock(36L, 25L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(36L, 41L, 1, 5, 2));
+        trader_stocks.add(new Trader_Stock(36L, 58L, 1, 12, 2));
+        trader_stocks.add(new Trader_Stock(36L, 86L, 1, 30, 2));
+        trader_stocks.add(new Trader_Stock(36L, 102L, 1, 55, 2));
+        trader_stocks.add(new Trader_Stock(36L, 118L, 1, 110, 2));
+        trader_stocks.add(new Trader_Stock(36L, 137L, 1, 300, 2));
+
+        traders.add(new Trader(13L, 4, "Armour a'plenty!", "Get your armour here!", 0, 0, 0, 5));
+        trader_stocks.add(new Trader_Stock(37L, 27L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(37L, 43L, 1, 5, 2));
+        trader_stocks.add(new Trader_Stock(37L, 60L, 1, 12, 2));
+        trader_stocks.add(new Trader_Stock(37L, 88L, 1, 30, 2));
+        trader_stocks.add(new Trader_Stock(37L, 104L, 1, 55, 2));
+        trader_stocks.add(new Trader_Stock(37L, 120L, 1, 110, 2));
+        trader_stocks.add(new Trader_Stock(37L, 139L, 1, 300, 2));
+
+        traders.add(new Trader(14L, 4, "The Floating Fruitmonger", "It's all technically fruit!", 5, 0, 0, 20));
+        trader_stocks.add(new Trader_Stock(38L, 77L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(38L, 77L, 1, 12, 10));
+        trader_stocks.add(new Trader_Stock(38L, 77L, 1, 40, 25));
+        trader_stocks.add(new Trader_Stock(38L, 77L, 1, 100, 40));
+
+        traders.add(new Trader(14L, 4, "The Fromage Fermenter", "Finely fermented, frankly.", 5, 0, 0, 20));
+        trader_stocks.add(new Trader_Stock(39L, 78L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(39L, 78L, 1, 12, 10));
+        trader_stocks.add(new Trader_Stock(39L, 78L, 1, 40, 25));
+        trader_stocks.add(new Trader_Stock(39L, 78L, 1, 100, 40));
+
+        traders.add(new Trader(14L, 4, "Mill Hill", "Baker's dozens!", 5, 0, 0, 20));
+        trader_stocks.add(new Trader_Stock(40L, 79L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(40L, 79L, 1, 12, 10));
+        trader_stocks.add(new Trader_Stock(40L, 79L, 1, 40, 25));
+        trader_stocks.add(new Trader_Stock(40L, 79L, 1, 100, 40));
+
+        traders.add(new Trader(14L, 4, "Bloodsucker's Boxes", "Don't ask how I got this.", 5, 0, 0, 20));
+        trader_stocks.add(new Trader_Stock(41L, 80L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(41L, 80L, 1, 12, 10));
+        trader_stocks.add(new Trader_Stock(41L, 80L, 1, 40, 25));
+        trader_stocks.add(new Trader_Stock(41L, 80L, 1, 100, 40));
+
+        traders.add(new Trader(15L, 4, "Runic Remedies", "The finest rune resources in the land!", 40, 0, 0, 40));
+        trader_stocks.add(new Trader_Stock(42L, 3L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(42L, 7L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(42L, 16L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(42L, 3L, 1, 120, 80));
+        trader_stocks.add(new Trader_Stock(42L, 7L, 1, 120, 20));
+        trader_stocks.add(new Trader_Stock(42L, 16L, 1, 120, 20));
+
+        traders.add(new Trader(15L, 4, "Dragon Delights", "All 100% gen-u-ine dragon.", 50, 0, 0, 20));
+        trader_stocks.add(new Trader_Stock(43L, 3L, 1, 0, 30));
+        trader_stocks.add(new Trader_Stock(43L, 10L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(43L, 19L, 1, 0, 5));
+        trader_stocks.add(new Trader_Stock(43L, 3L, 1, 150, 120));
+        trader_stocks.add(new Trader_Stock(43L, 10L, 1, 150, 20));
+        trader_stocks.add(new Trader_Stock(43L, 19L, 1, 150, 20));
+
+        traders.add(new Trader(16L, 4, "Silver Waistbands", "For blobs only!", 10, 0, 0, 2));
+        trader_stocks.add(new Trader_Stock(44L, 149L, 1, 0, 1));
+        trader_stocks.add(new Trader_Stock(44L, 149L, 1, 5, 5));
+
+        traders.add(new Trader(16L, 4, "Gold Belts", "For fancy blobs only!", 15, 0, 0, 2));
+        trader_stocks.add(new Trader_Stock(45L, 155L, 1, 0, 1));
+        trader_stocks.add(new Trader_Stock(45L, 155L, 1, 5, 5));
+
+        traders.add(new Trader(17L, 4, "Space Ores", "Fresh off the asteroid.", 0, 0, 0, 75));
+        trader_stocks.add(new Trader_Stock(46L, 1L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(46L, 2L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(46L, 3L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(46L, 4L, 1, 0, 20));
+        trader_stocks.add(new Trader_Stock(46L, 5L, 1, 150, 20));
+        trader_stocks.add(new Trader_Stock(46L, 6L, 1, 250, 20));
+        trader_stocks.add(new Trader_Stock(46L, 7L, 1, 350, 20));
+        trader_stocks.add(new Trader_Stock(46L, 8L, 1, 150, 20));
+        trader_stocks.add(new Trader_Stock(46L, 9L, 1, 250, 20));
+        trader_stocks.add(new Trader_Stock(46L, 10L, 1, 500, 20));
+
+        traders.add(new Trader(17L, 4, "Space Bars", "From the slightly more advanced asteroids.", 0, 0, 0, 40));
+        trader_stocks.add(new Trader_Stock(47L, 11L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(47L, 12L, 1, 0, 10));
+        trader_stocks.add(new Trader_Stock(47L, 13L, 1, 40, 10));
+        trader_stocks.add(new Trader_Stock(47L, 14L, 1, 90, 10));
+        trader_stocks.add(new Trader_Stock(47L, 15L, 1, 150, 10));
+        trader_stocks.add(new Trader_Stock(47L, 16L, 1, 250, 10));
+        trader_stocks.add(new Trader_Stock(47L, 17L, 1, 60, 10));
+        trader_stocks.add(new Trader_Stock(47L, 18L, 1, 80, 10));
+        trader_stocks.add(new Trader_Stock(47L, 19L, 1, 450, 10));
+
+        traders.add(new Trader(17L, 4, "Space Gems", "Formed when a space rock meets high G-forces.", 10, 0, 0, 2));
+        trader_stocks.add(new Trader_Stock(48L, 72L, 1, 0, 1));
+        trader_stocks.add(new Trader_Stock(48L, 73L, 1, 3, 1));
+        trader_stocks.add(new Trader_Stock(48L, 74L, 1, 8, 1));
+        trader_stocks.add(new Trader_Stock(48L, 75L, 1, 15, 1));
+        trader_stocks.add(new Trader_Stock(48L, 76L, 1, 25, 1));
+
+        traders.add(new Trader(18L, 4, "My Stuff", "Not for sale. Go away.", 0, 0, 0, 15));
+        trader_stocks.add(new Trader_Stock(49L, 38L, 1, 0, 1));
+        trader_stocks.add(new Trader_Stock(49L, 41L, 1, 1, 1));
+        trader_stocks.add(new Trader_Stock(49L, 43L, 1, 2, 1));
+        trader_stocks.add(new Trader_Stock(49L, 45L, 1, 3, 1));
+        trader_stocks.add(new Trader_Stock(49L, 46L, 1, 4, 1));
+        trader_stocks.add(new Trader_Stock(49L, 47L, 1, 5, 1));
+
+        traders.add(new Trader(18L, 4, "Still My Stuff", "I'm hanging onto this. Shoo.", 30, 0, 0, 5));
+        trader_stocks.add(new Trader_Stock(50L, 99L, 1, 0, 1));
+        trader_stocks.add(new Trader_Stock(50L, 102L, 1, 1, 1));
+        trader_stocks.add(new Trader_Stock(50L, 103L, 1, 2, 1));
+        trader_stocks.add(new Trader_Stock(50L, 106L, 1, 3, 1));
+        trader_stocks.add(new Trader_Stock(50L, 107L, 1, 4, 1));
+        trader_stocks.add(new Trader_Stock(50L, 108L, 1, 5, 1));
+
+        traders.add(new Trader(19L, 4, "Opticians", "Well, they help protect your eyes at least.", 15, 0, 0, 25));
+        trader_stocks.add(new Trader_Stock(51L, 28L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(51L, 61L, 1, 9, 3));
+        trader_stocks.add(new Trader_Stock(51L, 62L, 1, 9, 3));
+        trader_stocks.add(new Trader_Stock(51L, 90L, 1, 20, 5));
+        trader_stocks.add(new Trader_Stock(51L, 105L, 1, 35, 8));
+        trader_stocks.add(new Trader_Stock(51L, 121L, 1, 60, 10));
+        trader_stocks.add(new Trader_Stock(51L, 122L, 1, 60, 10));
+
+        traders.add(new Trader(20L, 4, "The King's Armoury", "Buy the very best.", 50, 0, 0, 50));
+        trader_stocks.add(new Trader_Stock(52L, 140L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(52L, 141L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(52L, 138L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(52L, 139L, 1, 0, 2));
+
+        traders.add(new Trader(20L, 4, "The King's Weapon Rack", "Buy the very best.", 50, 0, 0, 50));
+        trader_stocks.add(new Trader_Stock(53L, 133L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(53L, 135L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(53L, 132L, 1, 0, 2));
+        trader_stocks.add(new Trader_Stock(53L, 145L, 1, 0, 2));
 
         Trader.saveInTx(traders);
         Trader_Stock.saveInTx(trader_stocks);
