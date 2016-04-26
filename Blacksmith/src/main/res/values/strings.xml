@@ -1,0 +1,313 @@
+<resources>
+    <string name="app_name" translatable="false">Pixel Blacksmith</string>
+
+    <string name="rate_dialog_title">Rate Blacksmith</string>
+    <string name="rate_dialog_message">If you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec, and you\'ll receive 500 gold!</string>
+    <string name="rate_dialog_ok">Rate</string>
+    <string name="rate_dialog_cancel">Later</string>
+    <string name="rate_dialog_no">Cancel</string>
+
+    <!-- Stage 1 -->
+    <string name="tutorialText">Tutorial</string>
+    <string name="tutorialIntro">Blacksmith</string>
+    <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
+    <string name="tutorialCoins">Coins</string>
+    <string name="tutorialCoinsText">Your coins are used for buying... well, everything. They are earned by trading away items.</string>
+    <string name="tutorialLevel">Level</string>
+    <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, and trading items.</string>
+    <string name="tutorialVisitor">Visitor</string>
+    <string name="tutorialVisitorText">Your first visitor has arrived! Tap him to continue.</string>
+
+    <!-- Stage 2 -->
+    <string name="tutorialVisitorPicture">Visitor</string>
+    <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
+    <string name="tutorialVisitorPrefs">Preferences</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorDemands">Demands</string>
+    <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
+
+    <!-- Stage 3 -->
+    <string name="tutorialTradeItems">Tradeable Items</string>
+    <string name="tutorialTradeItemsText">Looks like you\'ve got 3 different ores to sell. How lucky! Sell any, and you\'ll get more than the coins listed due to the visitor\'s ore preference.</string>
+    <string name="tutorialTradeFinish">Finish Trading</string>
+    <string name="tutorialTradeFinishText">Once any 2 ores have been traded, tap finish to return to the visitor overview.</string>
+
+    <!-- Stage 4 -->
+    <string name="tutorialVisitorDemandsLeft">Demands</string>
+    <string name="tutorialVisitorDemandsLeftText">Hmm, looks like he also wants an unfinished item, and a finished item. We haven\'t got those yet!</string>
+    <string name="tutorialVisitorClose">Close</string>
+    <string name="tutorialVisitorCloseText">Let\'s leave the visitor, and make our way to the furnace to make some bronze bars.</string>
+
+    <!-- Stage 5 -->
+    <string name="tutorialFurnaceSlots">Slots</string>
+    <string name="tutorialFurnaceSlotsText">Any bars that are currently being smelted in the furnace will appear here. If there\'s no space, bars will be queued up.</string>
+    <string name="tutorialFurnace">Furnace</string>
+    <string name="tutorialFurnaceText">Time to open up the furnace, and make a bar for Mr T Utorial.</string>
+
+    <!-- Stage 6 -->
+    <string name="tutorialFurnaceItems">Item</string>
+    <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, items can only be viewed after being created, but the bronze bar has been unlocked for you.</string>
+    <string name="tutorialFurnaceScroll">Changing Items</string>
+    <string name="tutorialFurnaceScrollText">Swiping left and right will change between available items. For now though, they\'ll all be hidden.</string>
+    <string name="tutorialFurnaceIngredients">Ingredients</string>
+    <string name="tutorialFurnaceIngredientsText">Since this is a rather basic item, it only requires level 1. It also requires copper and tin ore, which we have plenty of.</string>
+    <string name="tutorialFurnaceSmelt">Smelting</string>
+    <string name="tutorialFurnaceSmeltText">Craft a few bronze bars, we\'ll need them for the unfinished items.</string>
+    <string name="tutorialFurnaceClose">Close</string>
+    <string name="tutorialFurnaceCloseText">Close the furnace, and we\'ll make our way to the anvil.</string>
+
+    <!-- Stage 7 -->
+    <string name="tutorialMainAnvil">Anvil</string>
+    <string name="tutorialMainAnvilText">To make the bronze bars into the unfinished dagger, we only need to visit the anvil. As before, notice there\'s only 1 slot available for now.</string>
+
+    <!-- Stage 8 -->
+    <string name="tutorialAnvil">Items</string>
+    <string name="tutorialAnvilText">As in the furnace, all items are currently hidden except a basic bronze dagger. Luckily, that\'s what we need to make.</string>
+    <string name="tutorialAnvilUp">Tiers</string>
+    <string name="tutorialAnvilUpText">Unlike the furnace, there are different tiers of item in the anvil. Bronze is the lowest, then iron, all the way up to dragon and legendary items.</string>
+    <string name="tutorialAnvilIngredients">Ingredients</string>
+    <string name="tutorialAnvilIngredientsText">Hopefully, you\'ve got plenty of bronze bars made from the furnace. If not, better go back and make them!</string>
+    <string name="tutorialAnvilCraft">Crafting</string>
+    <string name="tutorialAnvilCraftText">Make a couple of unfinished bronze daggers. Notice that you gain XP for every crafted item.</string>
+
+    <!-- Stage 9 -->
+    <string name="tutorialMainTable">Table</string>
+    <string name="tutorialMainTableText">To turn those unfinished daggers into finished daggers, we need to go to the table.</string>
+
+    <!-- Stage 10 -->
+    <string name="tutorialTable">Table</string>
+    <string name="tutorialTableText">The table is similar to the anvil, but combines unfinished items and secondary ingredients to make finished items.</string>
+    <string name="tutorialTableIngredients">Ingredients</string>
+    <string name="tutorialTableIngredientsText">To finish up the dagger, we need a spidersilk. Luckily, we have plenty!</string>
+    <string name="tutorialTableCraft">Craft</string>
+    <string name="tutorialTableCraftText">Craft one, and the dagger will be ready in a second or so.</string>
+
+    <!-- Stage 11 -->
+    <string name="tutorialMainVisitorFinish">Finishing</string>
+    <string name="tutorialMainVisitorFinishText">Now, let\'s go give the visitor all of his items.</string>
+
+    <!-- Stage 12 -->
+    <string name="tutorialVisitorFinishBtn">Complete</string>
+    <string name="tutorialVisitorFinishBtnText">Once all the items have been handed in, press the complete button. You\'ll get a tip from the visitor as a thank you!</string>
+    <string name="tutorialVisitorFinish">Demands</string>
+    <string name="tutorialVisitorFinishText">Now, give the visitor the rest of his items via the trade screens.</string>
+
+    <!-- Stage 13 -->
+    <string name="tutorialMainInfo">Last Thing</string>
+    <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his items, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainMarket">Market</string>
+    <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.</string>
+
+    <!-- Stage 14 -->
+    <string name="tutorialMarket">Market</string>
+    <string name="tutorialMarketText">This is where your resources will come from! Traders will come and go over time, and purchasing from them will unlock better / more items for sale.</string>
+    <string name="tutorialMarketClose">Close</string>
+    <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market for now.</string>
+
+    <!-- Stage 15 -->
+    <string name="tutorialMainSettings">Settings</string>
+    <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
+    <string name="tutorialMainHelp">Help</string>
+    <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
+
+    <string name="marketText">Market</string>
+    <string name="furnaceText">Furnace</string>
+    <string name="anvilText">Anvil</string>
+    <string name="inventoryText">Inventory</string>
+    <string name="tableText">Table</string>
+    <string name="traderText">Trader</string>
+    <string name="visitorText">Visitor</string>
+    <string name="tradeText">Trade</string>
+    <string name="enchantingText">Gem Table</string>
+    <string name="settingsText">Settings</string>
+    <string name="creditsText">Credits</string>
+    <string name="rateText">Rate App</string>
+    <string name="trophyText">Trophies</string>
+    <string name="statisticsText">Statistics</string>
+    <string name="helpText">Help</string>
+    <string name="upgradeText">Upgrades</string>
+    <string name="premiumText">Premium</string>
+    <string name="messagesText">Messages</string>
+
+    <string name="slotLevel">Lv %d</string>
+    <string name="slotPremium">Prem</string>
+    <string name="slotSeconds">%ds</string>
+
+    <string name="buyPremium">Go Premium!</string>
+    <string name="boughtPremium">You\'ve bought premium! Thank you so much! &lt;3</string>
+    <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
+    <string name="cannotBuyPremium">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
+    <string name="buyingPremiumError">An error occurred whilst trying to purchase premium. Please try again later, hopefully it\'ll work!</string>
+    <string name="premiumStatusActive">Currently premium!</string>
+    <string name="premiumStatusInactive">Not currently premium.</string>
+    <string name="premiumFeatures">Premium benefits:
+\n- +50% maximum gold bonus.
+\n- +20% current gold bonus.
+\n- +50% maximum XP bonus.
+\n- +20% current XP bonus.
+\n- Access to 17 new extremely valuable legendary items.
+\n- Extra crafting slot for all areas.
+\n- Gold tax paid by all traders on restock.
+\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.</string>
+
+    <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), and %4$d slot(s).</string>
+
+    <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
+    <string name="bribeConfirm">Bribe</string>
+    <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
+    <string name="bribeFailure">Not enough money to bribe a visitor.</string>
+    <string name="bribeCancel">Cancel</string>
+
+    <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
+\n\nThis CANNOT be undone.</string>
+    <string name="prestigeConfirm">Prestige</string>
+    <string name="prestigeComplete">Prestige successful, all gold &amp; xp is now multiplied by %d! Good luck!</string>
+    <string name="prestigeCancel">Cancel</string>
+
+    <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
+    <string name="dismissConfirm">Dismiss</string>
+    <string name="dismissComplete">The visitor leaves, a little bit grumpily.</string>
+    <string name="dismissFailure">Not enough money to dismiss a visitor.</string>
+    <string name="dismissCancel">Cancel</string>
+
+    <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$d coin(s), or up to %3$d for %4$d coin(s) each?</string>
+    <string name="itemBuy1Confirm">Buy 1</string>
+    <string name="itemBuyAllConfirm">Buy All</string>
+    <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
+    <string name="itemBuyCancel">Cancel</string>
+
+    <string name="trophyVisits">Visits: %d</string>
+    <string name="trophyFirstSeen">First seen: %s</string>
+    <string name="trophy100thVisit">100th visit: %s</string>
+    <string name="trophyBestItem">Best item: %s</string>
+    <string name="trophyVisitsUnknown">Visits: ???</string>
+    <string name="trophyFirstSeenUnknown">First seen: ???</string>
+    <string name="trophy100thVisitUnknown">100th visit: ???</string>
+    <string name="trophyBestItemUnknown">Best item: ???</string>
+
+    <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
+    <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s).</string>
+
+    <string name="enchantingButtonText">%1$s (x %2$s)</string>
+
+    <string name="horizontalDotsSelected">x</string>
+    <string name="horizontalDotsUnselected">o</string>
+
+    <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
+
+    <string name="typeText">Type</string>
+    <string name="tierText">Tier</string>
+    <string name="stateText">State</string>
+    <string name="bestText">Best</string>
+    <string name="finishText">Finish</string>
+
+    <string name="smelt1Text">Smelt 1</string>
+    <string name="smelt10Text">Smelt 10</string>
+    <string name="craft1Text">Craft 1</string>
+    <string name="craft10Text">Craft 10</string>
+
+    <string name="soundSettingText">Enable sounds?</string>
+    <string name="musicSettingText">Enable music?</string>
+    <string name="restockNotificationSettingText">Restock notifications?</string>
+    <string name="visitorNotificationSettingText">Visitor notifications?</string>
+    <string name="notificationSoundSettingText">Enable notification sounds?</string>
+    <string name="prestigeSettingText">Prestige</string>
+
+    <string name="unknownText">\???</string>
+
+    <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
+
+    <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudSuccess">Cloud %s successful!</string>
+    <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
+
+    <string name="restockText">Restock</string>
+    <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>
+    <string name="restockTextWithPremium">All traders have been restocked, and have paid a tax of %s!</string>
+    <string name="restockTextNoPremium">All traders have been restocked!</string>
+    <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
+    <string name="traderRestockConfirm">Restock</string>
+    <string name="traderRestockComplete">Restocked trader for %d coins.</string>
+    <string name="traderRestockCancel">Cancel</string>
+
+    <string name="notificationVisitor">A new visitor has arrived!</string>
+
+    <string name="tableQuantity">Qty</string>
+    <string name="tableItem">Item </string>
+    <string name="tableSell">Sell</string>
+
+    <string name="genericProgress">%1$d / %2$d</string>
+
+    <string name="traderStock">%1$s\n%2$d / %3$d</string>
+    <string name="traderTrades">%s Trades</string>
+
+    <string name="upgradeSuccess">Upgraded %s!</string>
+    <string name="upgradeDescription">%1$s
+\n%2$d / %3$d %4$s
+\n%5$s%6$d: %7$s coins</string>
+
+    <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
+
+    <string name="noTraders">The marketplace is empty!\n\nThe traders will return when they have restocked, check the statistics panel to see when this will be.</string>
+    <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
+    <string name="powderAdd">Began crushing the %s into a fine powder.</string>
+
+    <string name="traderArrived">The %s trader has arrived.</string>
+
+    <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
+    <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item.</string>
+    <string name="visitorArrived">%d visitor(s) have arrived.</string>
+    <string name="visitorArriving">%d visitor(s) wander into the shop...</string>
+    <string name="visitorsFullRestockTime">Never!</string>
+    <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s in your inventory.</string>
+    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s and in the inventory, and a rare %3$s!</string>
+
+    <string name="statisticsCompletion">Completion:</string>
+    <string name="statisticsCurrentXP">Current XP:</string>
+    <string name="statisticsNextLevel">Next Level In:</string>
+    <string name="statisticsSmelted">Items Smelted:</string>
+    <string name="statisticsCrafted">Items Crafted:</string>
+    <string name="statisticsTraded">Items Traded:</string>
+    <string name="statisticsEnchanted">Items Enchanted:</string>
+    <string name="statisticsBought">Items Bought:</string>
+    <string name="statisticsSold">Items Sold:</string>
+    <string name="statisticsVisitors">Visitors Completed:</string>
+    <string name="statisticsCoins">Coins Earned:</string>
+    <string name="statisticsStarted">Date Started:</string>
+    <string name="statisticsRestock">Next Restock:</string>
+    <string name="statisticsNextVisitorCheck">Next Visitor:</string>
+    <string name="statisticsBiggestTrade">Biggest Trade:</string>
+    <string name="statisticsUpgradesBought">Upgrades Bought:</string>
+    <string name="statisticsTraders">Traders Unlocked:</string>
+    <string name="statisticsTraderStocks">Trader Stocks Unlocked:</string>
+    <string name="statisticsSlotsUnlocked">Slots Unlocked:</string>
+    <string name="statisticsItemsSeen">Items Seen:</string>
+    <string name="statisticsPrestige">Prestige Level:</string>
+    <string name="statisticsLastPrestiged">Last Prestige:</string>
+    <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
+    <string name="statisticsLastPrestigedNever">Never!</string>
+    <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
+
+    <string name="signIn">Sign In</string>
+    <string name="signOut">Sign Out</string>
+
+    <string name="complete">Complete</string>
+    <string name="close" translatable="false">X</string>
+    <string name="buy">Buy</string>
+
+    <string name="creditsMusic">Music</string>
+    <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
+    <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
+    <string name="creditsGraphics">Graphics</string>
+    <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a> and <a href="https://twitter.com/ansimuz">@Ansimuz</a>.</string>
+    <string name="creditsTechnology">Technology</string>
+    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+\n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
+\n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
+\n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
+\n\nVarious code snippets were also contributed by the fine folks at <a href='https://stackoverflow.com'>StackOverflow</a> and <a href='http://reddit.com/r/androiddev'>/r/AndroidDev</a>.
+    </string>
+</resources>

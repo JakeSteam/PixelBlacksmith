@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/enchanting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_3part"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.EnchantingActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/enchantingTitle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/enchantingText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="45sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
+
+        <Button
+            android:id="@+id/upButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/itemName"
+            android:background="@drawable/uparrow"
+            android:onClick="goUpTier" />
+
+        <Button
+            android:id="@+id/downButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@id/upButton"
+            android:layout_below="@id/upButton"
+            android:background="@drawable/downarrow"
+            android:onClick="goDownTier" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/enchantingTitle"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_marginTopPercent="6%" />
+
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/enchantingTitle"
+            android:layout_toRightOf="@id/upButton"
+            android:paddingLeft="2dp"
+            android:paddingRight="8dp"
+            app:layout_marginTopPercent="12%" />
+
+        <uk.co.jakelee.blacksmith.controls.HorizontalDots
+            android:id="@+id/horizontalIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/upButton"
+            android:layout_below="@id/enchantingTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="32%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemName"
+            android:layout_toRightOf="@id/viewFlipper"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/unknownText"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontalIndicator"
+            app:layout_marginBottomPercent="3%"
+            app:layout_marginTopPercent="5%">
+
+            <LinearLayout
+                android:id="@+id/gemsTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp" />
+        </ScrollView>
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+</RelativeLayout>

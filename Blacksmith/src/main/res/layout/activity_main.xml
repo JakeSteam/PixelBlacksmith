@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mainScroller"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/shapeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/wallpaper_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/wallpaper" />
+
+            <ImageView
+                android:id="@+id/open_furnace"
+                android:layout_width="125dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="515dp"
+                android:onClick="openFurnace"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="11%" />
+
+            <GridLayout
+                android:id="@+id/slots_furnace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_furnace"
+                android:layout_below="@id/open_furnace"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:onClick="openFurnace" />
+
+            <ImageView
+                android:id="@+id/open_market"
+                android:layout_width="190dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="260dp"
+                android:onClick="openMarket"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="90%" />
+
+            <GridLayout
+                android:id="@+id/slots_market"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/open_market"
+                android:layout_toRightOf="@id/open_market"
+                android:columnCount="6"
+                android:orientation="horizontal"
+                android:onClick="openMarket" />
+
+            <ImageView
+                android:id="@+id/open_anvil"
+                android:layout_width="125dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="770dp"
+                android:onClick="openAnvil"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="22%" />
+
+            <GridLayout
+                android:id="@+id/slots_anvil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_anvil"
+                android:layout_below="@id/open_anvil"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:onClick="openAnvil" />
+
+            <ImageView
+                android:id="@+id/open_inventory"
+                android:layout_width="125dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1090dp"
+                android:onClick="openInventory"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="22%" />
+
+            <GridLayout
+                android:id="@+id/slots_inventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_inventory"
+                android:layout_below="@id/open_inventory"
+                android:columnCount="3"
+                android:orientation="horizontal"
+                android:onClick="openInventory" />
+
+            <ImageView
+                android:id="@+id/open_table"
+                android:layout_width="190dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="512dp"
+                android:onClick="openTable"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="55%" />
+
+            <GridLayout
+                android:id="@+id/slots_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_table"
+                android:layout_below="@id/open_table"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:onClick="openTable" />
+
+            <ImageView
+                android:id="@+id/open_enchanting"
+                android:layout_width="125dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="770dp"
+                android:onClick="openEnchanting"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="55%" />
+
+            <GridLayout
+                android:id="@+id/slots_enchanting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_enchanting"
+                android:layout_below="@id/open_enchanting"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:onClick="openEnchanting" />
+
+            <ImageView
+                android:id="@+id/open_upgrades"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1030dp"
+                android:onClick="openUpgrades"
+                android:scaleType="centerCrop"
+                android:src="@drawable/uparrow"
+                app:layout_heightPercent="8%"
+                app:layout_marginTopPercent="68%" />
+
+            <ImageView
+                android:id="@+id/open_help"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1095dp"
+                android:onClick="openHelp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/help"
+                app:layout_heightPercent="8%"
+                app:layout_marginTopPercent="68%" />
+
+            <ImageView
+                android:id="@+id/open_statistics"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1160dp"
+                android:onClick="openStatistics"
+                android:scaleType="centerCrop"
+                android:src="@drawable/statistics"
+                app:layout_heightPercent="8%"
+                app:layout_marginTopPercent="68%" />
+
+            <ImageView
+                android:id="@+id/open_premium"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1030dp"
+                android:onClick="openPremium"
+                android:scaleType="centerCrop"
+                android:src="@drawable/item52"
+                app:layout_heightPercent="8%"
+                app:layout_marginTopPercent="80%" />
+
+            <ImageView
+                android:id="@+id/open_trophies"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1095dp"
+                android:onClick="openTrophies"
+                android:scaleType="centerCrop"
+                android:src="@drawable/trophies"
+                app:layout_heightPercent="8%"
+                app:layout_marginTopPercent="80%" />
+
+            <ImageView
+                android:id="@+id/open_settings"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1160dp"
+                android:onClick="openSettings"
+                android:scaleType="centerCrop"
+                android:src="@drawable/settings"
+                app:layout_heightPercent="8%"
+                app:layout_marginTopPercent="80%" />
+
+            <LinearLayout
+                android:id="@+id/visitors_container"
+                android:layout_width="315dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="65dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="56%" />
+
+            <LinearLayout
+                android:id="@+id/visitors_container_overflow"
+                android:layout_width="315dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="65dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="44%" />
+
+        </android.support.percent.PercentRelativeLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/coinImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/item52" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/coinCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/coinImage"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <ProgressBar
+            android:id="@+id/currentLevelProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/level_progress" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/currentLevelPercent"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/currentLevelProgress"
+            android:layout_alignRight="@id/currentLevelProgress"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/levelBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/currentLevelProgress"
+            android:src="@drawable/levelbackground" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/currentLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/levelBackground"
+            android:layout_alignRight="@id/levelBackground"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

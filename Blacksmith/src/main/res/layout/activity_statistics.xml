@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/statistics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_2part"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.StatisticsActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/statisticsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/statisticsText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="55sp"
+            app:layout_marginTopPercent="1%" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/statisticsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/statisticsTitle"
+            android:layout_marginBottom="10dp"
+            app:layout_marginTopPercent="8%">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="8dp"
+                android:columnCount="1">
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsCompletion"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/totalCompletion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsCurrentXP"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/currentXP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsNextLevel"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/nextLevelIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsSmelted"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsSmelted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsCrafted"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsCrafted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsTraded"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsTraded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsBought"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsBought"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsSold"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsSold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsEnchanted"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsEnchanted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsVisitors"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/visitorsCompleted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsCoins"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/coinsEarned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsStarted"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/dateStarted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsRestock"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/nextRestock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsNextVisitorCheck"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/nextVisitorCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsBiggestTrade"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/biggestTrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsUpgradesBought"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/upgradesBought"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsTraders"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/traders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsTraderStocks"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/traderStocks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsSlotsUnlocked"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/slotsUnlocked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsItemsSeen"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/itemsSeen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsPrestige"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/prestigeLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsLastPrestiged"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/lastPrestiged"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </GridLayout>
+        </ScrollView>
+
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+</RelativeLayout>

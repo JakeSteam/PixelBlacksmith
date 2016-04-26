@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/visitor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_3part_alt"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.VisitorActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/visitorTitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="@string/visitorText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="60sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
+
+        <ImageView
+            android:id="@+id/visitorPicture"
+            android:layout_below="@id/visitorTitle"
+            android:layout_marginLeft="5dp"
+            android:scaleType="fitCenter"
+            app:layout_heightPercent="20%"
+            app:layout_marginTopPercent="7%"
+            app:layout_widthPercent="30%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/visitorVisits"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/visitorPicture"
+            android:layout_alignLeft="@id/visitorPicture"
+            android:alpha="0.6"
+            android:background="@color/black"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_widthPercent="30%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/visitorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/visitorPicture"
+            android:layout_toRightOf="@id/visitorPicture"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_marginTopPercent="1%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/visitorDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/visitorName"
+            android:layout_below="@id/visitorName"
+            android:paddingLeft="5dp"
+            android:singleLine="false"
+            android:text="@string/unknownText"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_marginTopPercent="1%" />
+
+        <ImageView
+            android:id="@+id/typeImage"
+            android:layout_alignLeft="@id/visitorPicture"
+            android:layout_below="@id/visitorPicture"
+            android:background="@drawable/slot"
+            app:layout_heightPercent="12%"
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/typeMultiplier"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/typeImage"
+            android:layout_alignLeft="@id/typeImage"
+            android:alpha="0.6"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="@string/unknownText"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
+
+        <ImageView
+            android:id="@+id/tierImage"
+            android:layout_below="@id/visitorPicture"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/typeImage"
+            android:background="@drawable/slot"
+            app:layout_heightPercent="12%"
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/tierMultiplier"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tierImage"
+            android:layout_alignLeft="@id/tierImage"
+            android:alpha="0.6"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="@string/unknownText"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
+
+        <ImageView
+            android:id="@+id/stateImage"
+            android:layout_below="@id/visitorPicture"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tierImage"
+            android:background="@drawable/slot"
+            app:layout_heightPercent="12%"
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/stateMultiplier"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/stateImage"
+            android:layout_alignLeft="@id/stateImage"
+            android:alpha="0.6"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="@string/unknownText"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
+
+        <ImageView
+            android:id="@+id/bestItemImage"
+            android:layout_below="@id/visitorPicture"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/stateImage"
+            app:layout_heightPercent="12%"
+            app:layout_marginTopPercent="2%"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/bestItemValue"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/bestItemImage"
+            android:layout_alignLeft="@id/bestItemImage"
+            android:alpha="0.6"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="@string/unknownText"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/typeText"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/typeImage"
+            android:layout_below="@id/typeImage"
+            android:gravity="center"
+            android:text="@string/typeText"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/tierText"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tierImage"
+            android:layout_below="@id/tierImage"
+            android:gravity="center"
+            android:text="@string/tierText"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/stateText"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/stateImage"
+            android:layout_below="@id/stateImage"
+            android:gravity="center"
+            android:text="@string/stateText"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/bestItemText"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/bestItemImage"
+            android:layout_below="@id/bestItemImage"
+            android:gravity="center"
+            android:text="@string/bestText"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_widthPercent="18%" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/demandsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="60%">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:id="@+id/demandsTable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/completeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/demandsTable"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="completeVisitor"
+                    android:text="@string/complete"
+                    android:textSize="35sp"
+                    app:layout_marginTopPercent="5%" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/dismissButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/completeButton"
+                    android:layout_below="@id/demandsTable"
+                    android:layout_toRightOf="@id/completeButton"
+                    android:background="@drawable/button"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="dismissVisitor"
+                    android:text="@string/close"
+                    android:textSize="35sp" />
+            </RelativeLayout>
+
+        </ScrollView>
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/close"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closeVisitor"
+        android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+</RelativeLayout>

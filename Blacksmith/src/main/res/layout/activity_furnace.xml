@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/furnace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_3part"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="uk.co.jakelee.blacksmith.main.FurnaceActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/furnaceTitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="@string/furnaceText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="60sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/furnaceTitle"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_marginTopPercent="6%" />
+
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/furnaceTitle"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_heightPercent="19%"
+            app:layout_marginTopPercent="11%" />
+
+        <uk.co.jakelee.blacksmith.controls.HorizontalDots
+            android:id="@+id/horizontalIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/viewFlipper"
+            android:layout_below="@id/furnaceTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="32%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemName"
+            android:layout_toRightOf="@id/viewFlipper"
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TableLayout
+            android:id="@+id/ingredientsTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizontalIndicator"
+            android:padding="5dp"
+            android:shrinkColumns="1"
+            android:stretchColumns="1"
+            app:layout_marginTopPercent="3%" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/smelt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="smelt1"
+                android:text="@string/smelt1Text"
+                android:textSize="25sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/smeltMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/button"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="smeltMax"
+                android:text="@string/smelt10Text"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+</RelativeLayout>

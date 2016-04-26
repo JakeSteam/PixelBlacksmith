@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id" translatable="false">484982205674</string>
+
+    <item name="itemID" type="id" />
+    <item name="itemState" type="id" />
+    <item name="itemImage" type="id" />
+</resources>

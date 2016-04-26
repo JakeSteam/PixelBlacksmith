@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/trophy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_3part_alt"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.TrophyActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/trophyTitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="@string/trophyText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/trophySubtitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="15sp"
+            app:layout_heightPercent="3%"
+            app:layout_marginTopPercent="11%" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/visitorScroller"
+            android:layout_width="match_parent"
+            android:layout_below="@id/trophyTitle"
+            app:layout_heightPercent="35%"
+            app:layout_marginTopPercent="8%">
+
+            <GridLayout
+                android:id="@+id/visitorGrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:columnCount="4"
+                android:orientation="horizontal"
+                android:padding="5dp" />
+        </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/visitorInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/visitorScroller"
+            app:layout_marginTopPercent="6%">
+
+            <ImageView
+                android:id="@+id/visitorPicture"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@color/black" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitorVisits"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/visitorPicture"
+                android:layout_alignLeft="@id/visitorPicture"
+                android:alpha="0.6"
+                android:background="@color/black"
+                android:gravity="center"
+                android:text="@string/trophyVisitsUnknown"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/visitorPicture"
+                android:layout_toRightOf="@id/visitorPicture"
+                android:paddingLeft="5dp"
+                android:text="@string/unknownText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitorDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/visitorName"
+                android:layout_below="@id/visitorName"
+                android:paddingLeft="5dp"
+                android:singleLine="false"
+                android:text="@string/unknownText"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitorFirstSeen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/visitorPicture"
+                android:layout_below="@id/visitorPicture"
+                android:singleLine="false"
+                android:text="@string/trophyFirstSeenUnknown"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitor100thVisit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/visitorFirstSeen"
+                android:layout_below="@id/visitorFirstSeen"
+                android:singleLine="false"
+                android:text="@string/trophy100thVisitUnknown"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitorBestItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/visitor100thVisit"
+                android:layout_below="@id/visitor100thVisit"
+                android:singleLine="false"
+                android:text="@string/trophyBestItemUnknown"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%" />
+
+        </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+</RelativeLayout>

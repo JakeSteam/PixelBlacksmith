@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/inventory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_2part"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.MainActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/settingsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/settingsText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="55sp" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/settingsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settingsTitle"
+            android:layout_marginBottom="5dp">
+
+            <TableLayout
+                android:id="@+id/settingsTable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:shrinkColumns="0"
+                android:stretchColumns="0">
+
+                <TableRow>
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/soundToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/soundSettingText"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/soundToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting" />
+                </TableRow>
+
+                <TableRow>
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/musicToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/musicSettingText"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/musicToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting" />
+                </TableRow>
+
+                <TableRow>
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/restockNotificationToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/restockNotificationSettingText"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/restockNotificationToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting" />
+                </TableRow>
+
+                <TableRow>
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/visitorNotificationToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/visitorNotificationSettingText"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/visitorNotificationToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting" />
+                </TableRow>
+
+                <TableRow>
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/notificationSoundToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/notificationSoundSettingText"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/notificationSoundToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting" />
+                </TableRow>
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/prestigeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="prestigeClick"
+                    android:text="@string/prestigeSettingText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:visibility="gone" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/messages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="openMessages"
+                    android:text="@string/messagesText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="openTutorial"
+                    android:text="@string/tutorialText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="openCredits"
+                    android:text="@string/creditsText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="openRating"
+                    android:text="@string/rateText"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <RelativeLayout
+                    android:id="@+id/signInButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:onClick="signIn"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/playgames" />
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="@string/signIn"
+                            android:textColor="@color/black"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/signOutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:onClick="signOut"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/playgames" />
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="@string/signOut"
+                            android:textColor="@color/black"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/playShortcuts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/button"
+                        android:onClick="openSavedGames"
+                        android:padding="10dp"
+                        android:src="@drawable/playcloud" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/button"
+                        android:onClick="openAchievements"
+                        android:padding="10dp"
+                        android:src="@drawable/playachievements" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/button"
+                        android:onClick="openLeaderboards"
+                        android:padding="10dp"
+                        android:src="@drawable/playleaderboards" />
+                </LinearLayout>
+            </TableLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+</RelativeLayout>
