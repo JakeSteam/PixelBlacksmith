@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 5
-        versionName "1.0.0"
+        versionCode 6
+        versionName "0.9.0 (Alpha)"
     }
     buildTypes {
         release {
@@ -22,9 +22,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'com.android.support:percent:23.2.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:percent:23.3.0'
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.anjlab.android.iab.v3:library:1.0.+'
