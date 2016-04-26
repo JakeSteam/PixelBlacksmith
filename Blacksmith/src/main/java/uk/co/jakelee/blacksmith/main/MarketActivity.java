@@ -43,7 +43,7 @@ public class MarketActivity extends Activity {
 
     private void startTutorial() {
         TutorialHelper th = new TutorialHelper(Constants.STAGE_14_MARKET);
-        th.addTutorialRectangle(this, findViewById(R.id.marketList), R.string.tutorialMarket, R.string.tutorialMarketText, false, Gravity.TOP);
+        th.addTutorialRectangle(this, findViewById(R.id.marketList), R.string.tutorialMarket, R.string.tutorialMarketText, false, Gravity.BOTTOM);
         th.addTutorial(this, findViewById(R.id.close), R.string.tutorialMarketClose, R.string.tutorialMarketCloseText, true);
         th.start(this);
     }
