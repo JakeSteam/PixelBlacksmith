@@ -88,19 +88,19 @@
 
     <!-- Stage 12 -->
     <string name="tutorialVisitorFinishBtn">Complete</string>
-    <string name="tutorialVisitorFinishBtnText">Once all the items have been handed in, press the complete bonus. You\'ll get a tip from the visitor as a thank you!</string>
+    <string name="tutorialVisitorFinishBtnText">Once all the items have been handed in, press the complete button. You\'ll get a tip from the visitor as a thank you!</string>
     <string name="tutorialVisitorFinish">Demands</string>
     <string name="tutorialVisitorFinishText">Now, give the visitor the rest of his items via the trade screens.</string>
 
     <!-- Stage 13 -->
     <string name="tutorialMainInfo">Last Thing</string>
-    <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his unfinished bronze dagger, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his items, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
     <string name="tutorialMainMarket">Market</string>
     <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.</string>
 
     <!-- Stage 14 -->
     <string name="tutorialMarket">Market</string>
-    <string name="tutorialMarketText">Traders will come and go from the market over time. Purchasing from traders will also unlock better / more items for sale.</string>
+    <string name="tutorialMarketText">This is where your resources will come from! Traders will come and go over time, and purchasing from them will unlock better / more items for sale.</string>
     <string name="tutorialMarketClose">Close</string>
     <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market for now.</string>
 

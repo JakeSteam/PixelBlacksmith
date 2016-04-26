@@ -27,6 +27,7 @@ public class TutorialHelper {
 
     public TutorialHelper(int stage) {
         currentStage = stage;
+        tourGuides.clear();
 
         enterAnimation.setDuration(300);
         enterAnimation.setFillAfter(false);

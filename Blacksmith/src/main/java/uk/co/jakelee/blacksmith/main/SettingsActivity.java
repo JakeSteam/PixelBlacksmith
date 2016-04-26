@@ -177,7 +177,7 @@ public class SettingsActivity extends Activity {
     public void openTutorial(View view) {
         this.finish();
         TutorialHelper.currentlyInTutorial = true;
-        MainActivity.startFirstTutorial();
+        this.finish();
     }
 
     public void openCredits(View view) {

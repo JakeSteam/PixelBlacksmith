@@ -885,11 +885,11 @@ public class DatabaseHelper {
     private static void createSetting() {
         List<Setting> settings = new ArrayList<>();
         
-        settings.add(new Setting(1L, "Sounds", false));
-        settings.add(new Setting(2L, "Music", false));
-        settings.add(new Setting(3L, "RestockNotifications", false));
-        settings.add(new Setting(4L, "NotificationSounds", false));
-        settings.add(new Setting(5L, "VisitorNotifications", false));
+        settings.add(new Setting(1L, "Sounds", true));
+        settings.add(new Setting(2L, "Music", true));
+        settings.add(new Setting(3L, "RestockNotifications", true));
+        settings.add(new Setting(4L, "NotificationSounds", true));
+        settings.add(new Setting(5L, "VisitorNotifications", true));
         settings.add(new Setting(6L, "TrySignIn", true));
         
         Setting.saveInTx(settings);

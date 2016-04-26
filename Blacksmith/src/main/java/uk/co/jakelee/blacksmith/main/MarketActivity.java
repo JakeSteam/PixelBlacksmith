@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class MarketActivity extends Activity {
 
     private void startTutorial() {
         TutorialHelper th = new TutorialHelper(Constants.STAGE_14_MARKET);
-        th.addTutorial(this, findViewById(R.id.marketTitle), R.string.tutorialMarket, R.string.tutorialMarketText, false);
+        th.addTutorialRectangle(this, findViewById(R.id.marketList), R.string.tutorialMarket, R.string.tutorialMarketText, false, Gravity.TOP);
         th.addTutorial(this, findViewById(R.id.close), R.string.tutorialMarketClose, R.string.tutorialMarketCloseText, true);
         th.start(this);
     }
