@@ -408,7 +408,7 @@ public class DatabaseHelper {
     private static void createPlayerInfo() {
         List<Player_Info> player_infos = new ArrayList<>();
         
-        player_infos.add(new Player_Info("XP", 45));
+        player_infos.add(new Player_Info("XP", 100));
         player_infos.add(new Player_Info("", 0));
         player_infos.add(new Player_Info("ItemsSmelted", 0, 0));
         player_infos.add(new Player_Info("ItemsCrafted", 0));

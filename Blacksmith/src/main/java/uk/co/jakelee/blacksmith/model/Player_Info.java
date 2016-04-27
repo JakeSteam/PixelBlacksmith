@@ -58,12 +58,12 @@ public class Player_Info extends SugarRecord {
     }
 
     private static int convertXpToLevel(int xp) {
-        // Level = 0.15 * sqrt(xp)
+        // Level = 0.1 * sqrt(xp)
         return (int) (Constants.LEVEL_MODIFIER * Math.sqrt(xp));
     }
 
     public static int convertLevelToXp(int level) {
-        // XP = (Level / 0.15) ^ 2
+        // XP = (Level / 0.1) ^ 2
         return (int) Math.pow(level / Constants.LEVEL_MODIFIER, 2);
     }
 
