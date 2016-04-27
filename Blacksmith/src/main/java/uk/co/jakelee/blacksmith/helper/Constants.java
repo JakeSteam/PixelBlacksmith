@@ -12,7 +12,7 @@ public class Constants {
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;
-    public static final int MAXIMUM_REWARDS = 3;
+    public static final int MAXIMUM_REWARDS = 5;
     public static final double STATE_UNFINISHED_MODIFIER = 0.5;
     public static final int STATISTIC_NOT_TRACKED = -1;
     public static final int TRADER_TAX_MULTIPLIER = 200;
