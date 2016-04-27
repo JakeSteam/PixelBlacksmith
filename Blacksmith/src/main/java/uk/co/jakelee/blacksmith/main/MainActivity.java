@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
+    public static boolean needToRedrawVisitors = false;
 
     public static int ANVIL_TIER = Constants.TIER_MIN;
     public static int TABLE_TIER = Constants.TIER_MIN;
@@ -262,6 +263,10 @@ public class MainActivity extends AppCompatActivity implements
         if (newVisitors > 0) {
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
             newVisitors = 0;
+        }
+
+        if (needToRedrawVisitors) {
+            updateVisitors();
         }
 
         if (TutorialHelper.currentlyInTutorial) {
