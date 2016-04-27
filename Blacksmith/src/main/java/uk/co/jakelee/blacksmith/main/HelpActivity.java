@@ -114,7 +114,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Ore is generally bought from passing traders at the marketplace, but it can also be given as a reward by happy visitors.\n", 22));
         layout.addView(dh.createTextView("Ore you receive will have to be smelted into bars before any items can be created with it. Some bars will require a mixer, generally coal, to facilitate the creation of bars.\n", 22));
         layout.addView(dh.createTextView("Whilst bars can be sold, they'll generally be a lot more valuable if they are first hammered into an unfinished item via the anvil.\n", 22));
-        layout.addView(dh.createTextView("Swipe left and right to change items. Pressing 'Smelt Max' will create as many bars as possible with your current free slots and resources.\n", 22));
+        layout.addView(dh.createTextView("Swipe left and right to change items. Pressing 'Smelt 10' will add 10 bars to your smelting queue, if you have the resources.\n", 22));
     }
 
     private void displayHelpAnvil(LinearLayout layout) {
@@ -123,7 +123,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Most recipes only require bars, with more valuable / higher tier items requiring more bars.\n", 22));
         layout.addView(dh.createTextView("Of course, these unfinished items aren't quite done yet. They will still require an addition of a secondary ingredient, which is done at the crafting table.\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
-        layout.addView(dh.createTextView("Pressing 'Craft Max' will create as many of the selected item as possible with your current free slots and resources.\n", 22));
+        layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.\n", 22));
     }
 
     private void displayHelpInventory(LinearLayout layout) {
@@ -183,7 +183,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\n", 22));
         layout.addView(dh.createTextView("After this, items can be optionally embedded with gems at the gem table.\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
-        layout.addView(dh.createTextView("Pressing 'Craft Max' will create as many of the selected item as possible with your current free slots and resources.\n", 22));
+        layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.\n", 22));
     }
 
     private void displayHelpTrading(LinearLayout layout) {

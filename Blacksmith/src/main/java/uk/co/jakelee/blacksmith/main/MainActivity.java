@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
+    public static boolean needToRedrawVisitors = false;
+    public static boolean needToRedrawSlots = false;
 
     public static int ANVIL_TIER = Constants.TIER_MIN;
     public static int TABLE_TIER = Constants.TIER_MIN;
@@ -264,6 +266,10 @@ public class MainActivity extends AppCompatActivity implements
             newVisitors = 0;
         }
 
+        if (needToRedrawVisitors) {
+            updateVisitors();
+        }
+
         if (TutorialHelper.currentlyInTutorial) {
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
@@ -316,8 +322,9 @@ public class MainActivity extends AppCompatActivity implements
                 dh.populateSlots(findViewById(R.id.mainScroller));
                 updateVisitors();
                 dh.updateCoinsGUI();
-                if (dh.updateLevelText(getApplicationContext())) {
+                if (dh.updateLevelText(getApplicationContext()) || needToRedrawSlots) {
                     dh.createAllSlots(activity);
+                    needToRedrawSlots = false;
                 }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }

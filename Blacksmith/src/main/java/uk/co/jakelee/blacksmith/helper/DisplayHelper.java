@@ -96,8 +96,10 @@ public class DisplayHelper {
             GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
             slotContainer.removeAllViews();
 
+            // If user is premium, we want premium slots first so they can see them. Otherwise, at the very end.
+            String sortOrder = Player_Info.isPremium() ? "DESC" : "ASC";
             List<Slot> slots = Select.from(Slot.class).where(
-                    Condition.prop("location").eq(location.getId())).orderBy("premium ASC, level ASC").list();
+                    Condition.prop("location").eq(location.getId())).orderBy("premium " + sortOrder + ", level ASC").list();
 
             boolean displayedNextSlot = false;
             for (Slot slot : slots) {

@@ -32,6 +32,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
         }
+        
         updatePremiumStatus();
     }
 
@@ -149,6 +150,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
                 Condition.prop("name").eq("XP Bonus")).first();
         xpBonus.setCurrent(xpBonus.getCurrent() + 20);
         xpBonus.setMaximum(xpBonus.getMaximum() + 50);
+
+        MainActivity.needToRedrawSlots = true;
     }
 
     public void closePopup(View view) {
