@@ -32,8 +32,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
         }
-
-        addPremiumFeatures();
+        
         updatePremiumStatus();
     }
 
