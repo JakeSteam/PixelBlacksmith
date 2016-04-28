@@ -8,6 +8,7 @@ import android.view.View;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -122,7 +123,8 @@ public class StatisticsActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(String.format(getString(R.string.statisticsLastPrestigedLowLevel), Constants.PRESTIGE_LEVEL_REQUIRED));
         }
 
-
+        String version = String.format(getString(R.string.versionNumber), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
+        ((TextViewPixel) findViewById(R.id.version)).setText(version);
     }
 
     public void openHelp(View view) {
