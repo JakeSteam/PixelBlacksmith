@@ -248,7 +248,7 @@ public class VisitorActivity extends Activity {
                 createVisitorTrophyReward(visitor);
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned, true);
             }
-            createVisitorReward();
+            createVisitorReward(visitor.isVisitorFullyComplete());
 
             int numVisitors = Player_Info.getVisitorsCompleted();
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
@@ -263,8 +263,8 @@ public class VisitorActivity extends Activity {
         AlertDialogHelper.confirmVisitorDismiss(getApplicationContext(), visitor, this);
     }
 
-    private void createVisitorReward() {
-        int numRewards = VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
+    private void createVisitorReward(boolean isFullyComplete) {
+        int numRewards = (isFullyComplete ? 2 : 1) * VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
         int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
 

@@ -208,7 +208,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("If their preferred item type, tier, and state have been discovered, the associated bonus will be displayed.\n", 22));
         layout.addView(dh.createTextView("Additionally, the highest value trade with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
-        layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed.\n", 22));
+        layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed. If a visitor is fully completed, you'll received double the reward!\n", 22));
         layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of incomplete demands (required + optional).\n", 22));
     }
 
