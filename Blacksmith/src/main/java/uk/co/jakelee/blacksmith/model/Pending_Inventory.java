@@ -39,7 +39,7 @@ public class Pending_Inventory extends SugarRecord {
 
     public static void addItem(Long itemId, long state, int quantity, Long location) {
         Item item = Item.findById(Item.class, itemId);
-        int craftTimeMultiplier = Player_Info.getCraftTimeMultiplier();
+        int craftTimeMultiplier = Upgrade.getValue("Craft Time");
         int craftTime = item.getModifiedValue(state) * craftTimeMultiplier;
 
         long time = System.currentTimeMillis();
@@ -50,7 +50,7 @@ public class Pending_Inventory extends SugarRecord {
 
     public static void addScheduledItem(Long itemId, long state, int quantity, Long location) {
         Item item = Item.findById(Item.class, itemId);
-        int craftTimeMultiplier = Player_Info.getCraftTimeMultiplier();
+        int craftTimeMultiplier = Upgrade.getValue("Craft Time");
         int craftTime = item.getModifiedValue(state) * craftTimeMultiplier;
 
         long timeSlotAvailable = getTimeSlotAvailable(location);

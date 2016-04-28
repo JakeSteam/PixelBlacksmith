@@ -99,17 +99,6 @@ public class Player_Info extends SugarRecord {
         return prestige.getIntValue();
     }
 
-    public static int getCraftTimeMultiplier() {
-        Player_Info craftInfo = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("XP")).first();
-
-        if (craftInfo != null) {
-            return craftInfo.getIntValue();
-        } else {
-            return 0;
-        }
-    }
-
     public static double getCompletionPercent() {
         /*
             Level * 100
