@@ -197,6 +197,10 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    public void openSupportCode(View view) {
+        AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
+    }
+
     public void openSavedGames(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,

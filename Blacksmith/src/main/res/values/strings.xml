@@ -195,6 +195,8 @@
 
     <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
 
+    <string name="supportCode">Support Code</string>
+
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
     <string name="stateText">State</string>
@@ -235,6 +237,12 @@
     <string name="traderRestockAllConfirm">Restock All</string>
     <string name="traderRestockAllComplete">Restocked all traders for %d coins.</string>
     <string name="traderRestockAllCancel">Cancel</string>
+
+    <string name="supportCodeQuestion">Please enter your support code (copy &amp; paste recommended!)</string>
+    <string name="supportCodeConfirm">Enter</string>
+    <string name="supportCodeComplete">Applied support code successfully.</string>
+    <string name="supportCodeFailed">Error whilst applying code. Please contact support!</string>
+    <string name="supportCodeCancel">Cancel</string>
 
     <string name="notificationVisitor">A new visitor has arrived!</string>
 
@@ -311,7 +319,8 @@
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a> and <a href="https://twitter.com/ansimuz">@Ansimuz</a>.</string>
     <string name="creditsTechnology">Technology</string>
-    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
+    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
+\n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
