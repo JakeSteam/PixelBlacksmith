@@ -193,6 +193,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The discovered bonus is displayed next to the sell price of each item. It's entirely possible the item will sell for more than this, if all of the visitor's preferences have not yet been discovered.\n", 22));
         layout.addView(dh.createTextView("The progress bar will let you see your progress at a glance, and the item criteria and visitor are also visible.\n", 22));
         layout.addView(dh.createTextView("The finish button will close this trade for now.\n", 22));
+        layout.addView(dh.createTextView("The 'Max' button will, when checked, let you trade as many of an item as possible at once.\n", 22));
     }
 
     private void displayHelpTrophy(LinearLayout layout) {

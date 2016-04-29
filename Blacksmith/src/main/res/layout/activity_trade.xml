@@ -82,6 +82,39 @@
             app:layout_marginBottomPercent="2%"
             app:layout_marginTopPercent="2%" />
 
+        <LinearLayout
+            android:id="@+id/maxCheckboxArea"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:background="@drawable/sell"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/finishTrade"
+            android:onClick="toggleMax"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            app:layout_marginBottomPercent="2%"
+            app:layout_marginTopPercent="2%"
+            android:orientation="vertical">
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tradeMax"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="-5dp"/>
+
+            <ImageView
+                android:id="@+id/maxIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/cross"
+                android:layout_marginTop="-2dp"
+                android:layout_marginBottom="2dp"/>
+        </LinearLayout>
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/itemsScroller"
             android:layout_width="match_parent"

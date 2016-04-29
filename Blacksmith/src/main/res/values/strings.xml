@@ -311,6 +311,7 @@
     <string name="complete">Complete</string>
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
+    <string name="tradeMax">Max?</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>

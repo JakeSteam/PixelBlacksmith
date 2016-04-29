@@ -2,7 +2,9 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -44,12 +46,15 @@ public class TradeActivity extends Activity {
     private static Visitor_Type visitorType;
     private static Visitor_Stats visitorStats;
     private static DisplayHelper dh;
+    private static SharedPreferences prefs;
+    private static boolean tradeMax = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
         Intent intent = getIntent();
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
@@ -87,6 +92,7 @@ public class TradeActivity extends Activity {
         displayVisitorInfo();
         displayDemandInfo();
         displayItemsTable();
+        updateMax();
     }
 
     private void displayVisitorInfo() {
@@ -174,29 +180,47 @@ public class TradeActivity extends Activity {
     private void clickSellButton(View v) {
         Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
         State itemState = State.findById(State.class, (long) v.getTag(R.id.itemState));
+
+        int quantity = 1;
+        if (prefs.getBoolean("tradeMax", false)) {
+            quantity = demand.getQuantity() - demand.getQuantityProvided();
+        }
+        tradeItem(quantity, itemToSell, itemState);
+    }
+
+    private void tradeItem(int quantity, Item itemToSell, State itemState) {
         Inventory itemInventory = Select.from(Inventory.class).where(
                 Condition.prop("item").eq(itemToSell.getId()),
                 Condition.prop("state").eq(itemState.getId())).first();
-
-        int quantity = 1;
 
         // Calculate the item sell value, rounded up
         double bonus = visitorType.getBonus(itemInventory);
         double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus")) * (Player_Info.getPrestige() + 1);
         double modifiedBonus = coinMultiplier * bonus;
-
         int value = (int) (itemToSell.getModifiedValue(itemState.getId()) * modifiedBonus);
 
-        int tradeResponse = Inventory.tradeItem(itemToSell.getId(), (long) v.getTag(R.id.itemState), quantity, value);
-        if (tradeResponse == Constants.SUCCESS) {
+        int itemsTraded = 0;
+        int tradeResponse = Constants.ERROR_NOT_ENOUGH_ITEMS;
+        boolean successful = true;
+
+        while (successful && itemsTraded < quantity) {
+            tradeResponse = Inventory.tradeItem(itemToSell.getId(), itemState.getId(), value);
+            if (tradeResponse == Constants.SUCCESS) {
+                itemsTraded++;
+            } else {
+                successful = false;
+            }
+        }
+
+        if (itemsTraded > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.tradedItem),
-                    quantity,
+                    itemsTraded,
                     itemToSell.getName(),
-                    value), false);
-            Player_Info.increaseByOne(Player_Info.Statistic.ItemsTraded);
-            Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value);
-            demand.setQuantityProvided(demand.getQuantityProvided() + quantity);
+                    value * itemsTraded), false);
+            Player_Info.increaseByX(Player_Info.Statistic.ItemsTraded, itemsTraded);
+            Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value * itemsTraded);
+            demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse), false);
@@ -204,8 +228,8 @@ public class TradeActivity extends Activity {
 
         dh.updateCoins(Inventory.getCoins());
         displayDemandInfo();
-        visitorType.updateUnlockedPreferences(itemToSell, (long) v.getTag(R.id.itemState));
-        visitorType.updateBestItem(itemToSell, (long) v.getTag(R.id.itemState), value);
+        visitorType.updateUnlockedPreferences(itemToSell, itemState.getId());
+        visitorType.updateBestItem(itemToSell, itemState.getId(), value);
 
         if (demand.isDemandFulfilled()) {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
@@ -213,6 +237,21 @@ public class TradeActivity extends Activity {
         } else {
             displayItemsTable();
         }
+    }
+
+    public void toggleMax(View view) {
+        tradeMax = !prefs.getBoolean("tradeMax", false);
+        prefs.edit().putBoolean("tradeMax", tradeMax).apply();
+        updateMax();
+    }
+
+    private void updateMax() {
+        Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
+        Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
+
+        ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
+        tradeMax = prefs.getBoolean("tradeMax", false);
+        maxIndicator.setImageDrawable(tradeMax ? tick : cross);
     }
 
     public void openHelp(View view) {
