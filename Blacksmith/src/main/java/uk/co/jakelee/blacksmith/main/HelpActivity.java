@@ -158,6 +158,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Only visitors with stock will be displayed, so buying all stock from more common traders is a good way to get rarer traders.\n", 22));
         layout.addView(dh.createTextView("If a lot of trades are conducted with a visitor, more items will unlock for sale.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to see the full list of traders.\n", 22));
+        layout.addView(dh.createTextView("If all traders are out of stock, you'll have to wait for the market to restock, or pay a bribe to get them all to come back immediately.\n", 22));
     }
 
     private void displayHelpSettings(LinearLayout layout) {
@@ -224,6 +225,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("XP Bonus\nUpgrading XP bonus will increase the % of bonus XP received for every in-game action.", 22));
         layout.addView(dh.createTextView("Craft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.", 22));
         layout.addView(dh.createTextView("Legendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.", 22));
+        layout.addView(dh.createTextView("Restock All Cost\nUpgrading the restock all cost will reduce the cost of restocking the entire marketplace.", 22));
     }
 
     private void displayHelpPremium(LinearLayout layout) {

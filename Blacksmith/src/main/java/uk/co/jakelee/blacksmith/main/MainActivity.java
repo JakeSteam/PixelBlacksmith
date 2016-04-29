@@ -128,10 +128,10 @@ public class MainActivity extends AppCompatActivity implements
             TutorialHelper.currentlyInTutorial = true;
         }
 
-        /*if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
             DatabaseHelper.patch100to101();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
-        }*/
+        }
     }
 
     public static void startFirstTutorial() {

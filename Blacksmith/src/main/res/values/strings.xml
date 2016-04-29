@@ -231,6 +231,11 @@
     <string name="traderRestockComplete">Restocked trader for %d coins.</string>
     <string name="traderRestockCancel">Cancel</string>
 
+    <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>
+    <string name="traderRestockAllConfirm">Restock All</string>
+    <string name="traderRestockAllComplete">Restocked all traders for %d coins.</string>
+    <string name="traderRestockAllCancel">Cancel</string>
+
     <string name="notificationVisitor">A new visitor has arrived!</string>
 
     <string name="tableQuantity">Qty</string>
@@ -249,7 +254,8 @@
 
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
-    <string name="noTraders">The marketplace is empty!\n\nThe traders will return when they have restocked, check the statistics panel to see when this will be.</string>
+    <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
+    <string name="restockMarketButton">Restock</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
     <string name="powderAdd">Began crushing the %s into a fine powder.</string>
 
@@ -310,6 +316,6 @@
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
-\n\nFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar!) for alpha testing.
+\n\nFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for alpha testing.
     </string>
 </resources>

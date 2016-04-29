@@ -52,15 +52,42 @@
                 android:stretchColumns="0" />
         </ScrollView>
 
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/noTradersMessage"
-            android:layout_width="wrap_content"
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/emptyMarket"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/marketScroller"
-            android:text="@string/noTraders"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:visibility="gone" />
+            android:layout_below="@id/marketTitle"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:layout_marginTopPercent="10%"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/restockText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:layout_marginBottom="10dp"/>
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/restockButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="clickRestockAll"
+                    android:text="@string/restockMarketButton"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"/>
+            </LinearLayout>
+        </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

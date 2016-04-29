@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -102,7 +103,33 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
-    public static void confirmVisitorRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
+    public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.traderRestockAllQuestion), restockCost));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton(context.getString(R.string.traderRestockAllConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int traderResponse = Trader.restockAll(restockCost);
+                if (traderResponse == Constants.SUCCESS) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
+                }
+                activity.alertDialogCallback();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.traderRestockAllCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
         alertDialog.setIcon(R.drawable.item52);
