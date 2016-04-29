@@ -7,12 +7,12 @@ public class Constants {
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";
 
     // Information about game mechanics
-    public static final Double LEVEL_MODIFIER = 0.1;
+    public static final Double LEVEL_MODIFIER = 0.05;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final int MAX_CRAFTS = 10;
     public static final int MINIMUM_REWARDS = 1;
-    public static final int MAXIMUM_REWARDS = 5;
+    public static final int MAXIMUM_REWARDS = 1;
     public static final double STATE_UNFINISHED_MODIFIER = 0.5;
     public static final int STATISTIC_NOT_TRACKED = -1;
     public static final int TRADER_TAX_MULTIPLIER = 200;

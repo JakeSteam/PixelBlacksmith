@@ -298,6 +298,7 @@
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
 
+    <string name="creditsPirate">Thanks to you, pirate, for pirating this game! There\'s no ads, and the IAP is optional, so pirating it is completely pointless! Still, hope you enjoy it, look for us on Twitter on Facebook if you have any comments!</string>
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>

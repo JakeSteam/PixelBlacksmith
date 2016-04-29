@@ -84,7 +84,7 @@ public class DatabaseHelper {
         achievements.add(new Achievement("Mr Moneybags 2", "Earn 1000 coins", 1000, 12, "CgkI6tnE2Y4OEAIQFQ"));
         achievements.add(new Achievement("Mr Moneybags 3", "Earn 3000 coins", 3000, 12, "CgkI6tnE2Y4OEAIQFg"));
         achievements.add(new Achievement("Mr Moneybags 4", "Earn 10000 coins", 10000, 12, "CgkI6tnE2Y4OEAIQFw"));
-        achievements.add(new Achievement("Mastery Of Bronze", "Reach level 5", 5, 14, "CgkI6tnE2Y4OEAIQGA"));
+        achievements.add(new Achievement("Mastery Of Piratium", "Reach level 5", 5, 14, "CgkI6tnE2Y4OEAIQGA"));
         achievements.add(new Achievement("Mastery Of Iron", "Reach level 10", 10, 14, "CgkI6tnE2Y4OEAIQGQ"));
         achievements.add(new Achievement("Mastery Of Steel", "Reach level 20", 20, 14, "CgkI6tnE2Y4OEAIQGg"));
         achievements.add(new Achievement("Mastery Of Mithril", "Reach level 30", 30, 14, "CgkI6tnE2Y4OEAIQGw"));
@@ -169,7 +169,7 @@ public class DatabaseHelper {
         inventories.add(new Inventory(77L, Constants.STATE_NORMAL, 5));
         inventories.add(new Inventory(78L, Constants.STATE_NORMAL, 5));
 
-        // 0 bronze bars + daggers, so that they are visible
+        // 0 Piratium bars + daggers, so that they are visible
         inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 0));
         inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 0));
         inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
@@ -217,7 +217,7 @@ public class DatabaseHelper {
         items.add(new Item(8L, "Gold nugget", "A golden nugget.", 1, 11, 30, 0));
         items.add(new Item(9L, "Silver nugget", "A silver nugget.", 1, 11, 20, 0));
         items.add(new Item(10L, "Dragonite ore", "A piece of dragonite ore.", 1, 11, 100, 0));
-        items.add(new Item(11L, "Bronze bar", "A fresh bar of bronze.", 2, 11, 7, 1));
+        items.add(new Item(11L, "Piratium bar", "A fresh bar of Piratium.", 2, 11, 7, 1));
         items.add(new Item(12L, "Iron bar", "A fresh bar of iron.", 2, 11, 15, 5));
         items.add(new Item(13L, "Steel bar", "A fresh bar of steel.", 2, 11, 20, 10));
         items.add(new Item(14L, "Mithril bar", "A fresh bar of mithril.", 2, 11, 24, 20));
@@ -226,22 +226,22 @@ public class DatabaseHelper {
         items.add(new Item(17L, "Silver bar", "A fresh bar of silver.", 2, 11, 22, 35));
         items.add(new Item(18L, "Gold bar", "A fresh bar of gold.", 2, 11, 35, 45));
         items.add(new Item(19L, "Dragon bar", "A fresh bar of dragon.", 2, 11, 175, 50));
-        items.add(new Item(20L, "Bronze dagger", "A blunt bronze dagger.", 3, 1, 8, 1));
-        items.add(new Item(21L, "Bronze sword", "A fairly blunt bronze sword.", 4, 1, 15, 1));
-        items.add(new Item(22L, "Bronze longsword", "A longer bronze sword.", 5, 1, 15, 1));
-        items.add(new Item(23L, "Bronze bow", "A bow with bronze elements.", 6, 1, 15, 1));
-        items.add(new Item(24L, "Bronze half shield", "A fairly weak bronze shield.", 7, 1, 15, 2));
-        items.add(new Item(25L, "Bronze full shield", "A slightly stronger bronze shield.", 8, 1, 15, 2));
-        items.add(new Item(26L, "Bronze chainmail", "A light set of bronze body armour.", 9, 1, 15, 2));
-        items.add(new Item(27L, "Bronze platebody", "A heavy set of bronze body armour.", 10, 1, 29, 3));
-        items.add(new Item(28L, "Bronze half helmet", "A no-frills approach to protection.", 11, 1, 15, 3));
-        items.add(new Item(29L, "Bronze full helmet", "A frills approach to protection.", 12, 1, 22, 4));
-        items.add(new Item(30L, "Bronze boots", "A set of boots for those that like the muddy look.", 13, 1, 15, 4));
-        items.add(new Item(31L, "Bronze gloves", "A set of gloves for those that like the muddy look.", 14, 1, 15, 4));
-        items.add(new Item(32L, "Bronze pickaxe", "A weak pickaxe for mining rocks.", 15, 1, 15, 4));
-        items.add(new Item(33L, "Bronze hatchet", "A weak axe for cutting down trees.", 16, 1, 15, 4));
-        items.add(new Item(34L, "Bronze fishing rod", "A weak rod for catching fish.", 17, 1, 15, 4));
-        items.add(new Item(35L, "Bronze hammer", "A weak hammer who misses his anvil.", 18, 1, 8, 4));
+        items.add(new Item(20L, "Piratium dagger", "A blunt Piratium dagger.", 3, 1, 8, 1));
+        items.add(new Item(21L, "Piratium sword", "A fairly blunt Piratium sword.", 4, 1, 15, 1));
+        items.add(new Item(22L, "Piratium longsword", "A longer Piratium sword.", 5, 1, 15, 1));
+        items.add(new Item(23L, "Piratium bow", "A bow with Piratium elements.", 6, 1, 15, 1));
+        items.add(new Item(24L, "Piratium half shield", "A fairly weak Piratium shield.", 7, 1, 15, 2));
+        items.add(new Item(25L, "Piratium full shield", "A slightly stronger Piratium shield.", 8, 1, 15, 2));
+        items.add(new Item(26L, "Piratium chainmail", "A light set of Piratium body armour.", 9, 1, 15, 2));
+        items.add(new Item(27L, "Piratium platebody", "A heavy set of Piratium body armour.", 10, 1, 29, 3));
+        items.add(new Item(28L, "Piratium half helmet", "A no-frills approach to protection.", 11, 1, 15, 3));
+        items.add(new Item(29L, "Piratium full helmet", "A frills approach to protection.", 12, 1, 22, 4));
+        items.add(new Item(30L, "Piratium boots", "A set of boots for those that like the muddy look.", 13, 1, 15, 4));
+        items.add(new Item(31L, "Piratium gloves", "A set of gloves for those that like the muddy look.", 14, 1, 15, 4));
+        items.add(new Item(32L, "Piratium pickaxe", "A weak pickaxe for mining rocks.", 15, 1, 15, 4));
+        items.add(new Item(33L, "Piratium hatchet", "A weak axe for cutting down trees.", 16, 1, 15, 4));
+        items.add(new Item(34L, "Piratium fishing rod", "A weak rod for catching fish.", 17, 1, 15, 4));
+        items.add(new Item(35L, "Piratium hammer", "A weak hammer who misses his anvil.", 18, 1, 8, 4));
         items.add(new Item(36L, "Iron dagger", "A blunt iron dagger.", 3, 2, 17, 5));
         items.add(new Item(37L, "Iron sword", "A bluntish iron sword.", 4, 2, 32, 5));
         items.add(new Item(38L, "Iron longsword", "A longer iron sword.", 5, 2, 32, 5));
@@ -481,7 +481,7 @@ public class DatabaseHelper {
         recipes.add(new Recipe(19L, 1L, 10L, 1L, 1));
         recipes.add(new Recipe(19L, 1L, 3L, 1L, 12));
 
-        // Bronze unfinished
+        // Piratium unfinished
         recipes.add(new Recipe(20L, 2L, 11L, 1L, 1));
         recipes.add(new Recipe(21L, 2L, 11L, 1L, 2));
         recipes.add(new Recipe(22L, 2L, 11L, 1L, 2));
@@ -607,7 +607,7 @@ public class DatabaseHelper {
         recipes.add(new Recipe(146L, 2L, 19L, 1L, 2));
         recipes.add(new Recipe(147L, 2L, 19L, 1L, 1));
 
-        // Bronze finished
+        // Piratium finished
         recipes.add(new Recipe(20L, 1L, 20L, 2L, 1));
         recipes.add(new Recipe(20L, 1L, 69L, 1L, 1));
         recipes.add(new Recipe(21L, 1L, 21L, 2L, 1));
@@ -963,7 +963,7 @@ public class DatabaseHelper {
     private static void createTier() {
         List<Tier> tiers = new ArrayList<>();
         
-        tiers.add(new Tier(1L, "Bronze", 1, 30));
+        tiers.add(new Tier(1L, "Piratium", 1, 30));
         tiers.add(new Tier(2L, "Iron", 5, 25));
         tiers.add(new Tier(3L, "Steel", 10, 15));
         tiers.add(new Tier(4L, "Mithril", 20, 10));
