@@ -305,9 +305,9 @@
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a> and <a href="https://twitter.com/ansimuz">@Ansimuz</a>.</string>
     <string name="creditsTechnology">Technology</string>
-    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
-\n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
+\n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
 \n\nFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar!) for alpha testing.
