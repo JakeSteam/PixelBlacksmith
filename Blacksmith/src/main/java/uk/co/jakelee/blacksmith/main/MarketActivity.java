@@ -104,7 +104,7 @@ public class MarketActivity extends Activity {
 
             TextView restockText = (TextView) findViewById(R.id.restockText);
             restockText.setText(String.format(getString(R.string.restockMarketText),
-                    Trader.getRestockTimeLeft(),
+                    Trader_Stock.getRestockTimeLeft(),
                     Trader.getRestockAllCost()));
         }
     }

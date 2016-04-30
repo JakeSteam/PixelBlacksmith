@@ -12,7 +12,6 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
-import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 
 public class Trader extends SugarRecord {
@@ -137,14 +136,6 @@ public class Trader extends SugarRecord {
 
             return Constants.SUCCESS;
         }
-    }
-
-    public static String getRestockTimeLeft() {
-        long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
-        long unixNextRestock = unixRestocked + DateHelper.hoursToMilliseconds(Upgrade.getValue("Market Restock Time"));
-        long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
-
-        return DateHelper.getHoursMinsRemaining(unixRestockDifference);
     }
 
     public static int getRestockAllCost() {

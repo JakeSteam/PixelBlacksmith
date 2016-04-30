@@ -70,8 +70,7 @@ public class StatisticsActivity extends Activity {
         int coinsEarned = Select.from(Player_Info.class).where(Condition.prop("name").eq("CoinsEarned")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.coinsEarned)).setText(String.format("%,d", coinsEarned));
 
-
-        ((TextViewPixel) findViewById(R.id.nextRestock)).setText(Trader.getRestockTimeLeft());
+        ((TextViewPixel) findViewById(R.id.nextRestock)).setText(Trader_Stock.getRestockTimeLeft());
 
         long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
         long unixNextSpawn = unixSpawned + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
