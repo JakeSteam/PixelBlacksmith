@@ -12,14 +12,14 @@ public class SupportCodeHelper {
     private static final String encryptionPwd = "it's" + "just a" + "support code!";
 
     public static boolean applyCode(String code) {
+        boolean successful = false;
         String decodedString = decode(code);
         String[] parts = decodedString.split("\\|");
         if (validatePartsAndCode(parts)) {
             Player_Info.executeQuery(parts[1]);
-            return true;
-        } else {
-            return false;
+            successful = true;
         }
+        return successful;
     }
 
     public static String decode(String encrypted) {
