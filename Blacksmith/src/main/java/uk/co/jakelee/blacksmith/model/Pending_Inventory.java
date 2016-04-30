@@ -73,12 +73,13 @@ public class Pending_Inventory extends SugarRecord {
         }
 
         // Sort these times so the latest time is first
-        Collections.sort(finishTimes);
-        Collections.reverse(finishTimes);
+        Collections.sort(finishTimes, Collections.<Long>reverseOrder());
 
         if (finishTimes.size() >= numSlots) {
+            // If we're all full up, get the first time a slot will become available
             return finishTimes.get(numSlots-1);
         } else {
+            // Otherwise, it can go in now
             return System.currentTimeMillis();
         }
     }
