@@ -481,7 +481,7 @@ public class DisplayHelper {
         }
     }
 
-    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state) {
+    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state, int selectedPosition) {
         if (clearExisting) {
             itemSelector.removeAllViews();
         }
@@ -489,6 +489,7 @@ public class DisplayHelper {
         for (Item item : items) {
             itemSelector.addView(createItemSelectorElement(item.getId(), state));
         }
+        itemSelector.setDisplayedChild(selectedPosition);
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {

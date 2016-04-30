@@ -55,6 +55,12 @@ public class FurnaceActivity extends Activity {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        MainActivity.prefs.edit().putInt("furnacePosition", mViewFlipper.getDisplayedChild()).apply();
+    }
+
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
@@ -79,7 +85,8 @@ public class FurnaceActivity extends Activity {
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 false,
                 items,
-                Constants.STATE_NORMAL);
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("furnacePosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.furnace),

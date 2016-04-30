@@ -119,11 +119,12 @@ public class TradeActivity extends Activity {
 
     private void displayItemsTable() {
         List<Inventory> matchingItems = demand.getMatchingInventory();
-
+        TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
         if (matchingItems.size() == 0) {
-            TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
             noItemsMessage.setVisibility(View.VISIBLE);
         } else {
+            noItemsMessage.setVisibility(View.GONE);
+
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
             itemsTable.removeAllViews();
 

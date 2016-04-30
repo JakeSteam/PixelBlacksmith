@@ -41,7 +41,7 @@ public class TableActivity extends Activity {
         setContentView(R.layout.activity_table);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.TABLE_TIER;
+        displayedTier = MainActivity.prefs.getInt("tableTier", Constants.TIER_MIN);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -58,7 +58,8 @@ public class TableActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        MainActivity.TABLE_TIER = displayedTier;
+        MainActivity.prefs.edit().putInt("tableTier", displayedTier).apply();
+        MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -88,7 +89,8 @@ public class TableActivity extends Activity {
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
                 items,
-                Constants.STATE_NORMAL);
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("tablePosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.table),
