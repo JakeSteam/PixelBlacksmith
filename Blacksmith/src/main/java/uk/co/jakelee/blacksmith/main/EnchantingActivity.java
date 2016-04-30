@@ -51,7 +51,7 @@ public class EnchantingActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createEnchantingInterface(false);
+        createEnchantingInterface(true);
     }
 
     @Override
