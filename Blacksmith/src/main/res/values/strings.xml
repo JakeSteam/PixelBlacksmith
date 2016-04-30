@@ -134,7 +134,7 @@
     <string name="slotSeconds">%ds</string>
 
     <string name="buyPremium">Go Premium!</string>
-    <string name="boughtPremium">You\'ve bought premium! Thank you so much! &lt;3</string>
+    <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
     <string name="cannotBuyPremium">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
     <string name="buyingPremiumError">An error occurred whilst trying to purchase premium. Please try again later, hopefully it\'ll work!</string>
@@ -148,7 +148,8 @@
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Gold tax paid by all traders on restock.
-\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.</string>
+\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.
+\n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), and %4$d slot(s).</string>
 
