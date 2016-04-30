@@ -6,6 +6,8 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Pending_Inventory extends SugarRecord {
@@ -61,18 +63,24 @@ public class Pending_Inventory extends SugarRecord {
 
     public static long getTimeSlotAvailable(Long location) {
         List<Pending_Inventory> pendingItems = getPendingItems(location, true);
-        int locationSlots = Slot.getUnlockedSlots(location);
-        long timeAvailable = System.currentTimeMillis();
+        int numSlots = Slot.getUnlockedSlots(location);
 
-        // This should work for single slots, not for multi though. Needs to consider slot count.
+        // Add all of the times a slot will become available to a list
+        List<Long> finishTimes = new ArrayList<>();
         for (Pending_Inventory pending_inventory : pendingItems) {
             long finishTime = pending_inventory.getTimeCreated() + pending_inventory.getCraftTime();
-            if (finishTime > timeAvailable) {
-                timeAvailable = finishTime;
-            }
+             finishTimes.add(finishTime);
         }
 
-        return timeAvailable;
+        // Sort these times so the latest time is first
+        Collections.sort(finishTimes);
+        Collections.reverse(finishTimes);
+
+        if (finishTimes.size() >= numSlots) {
+            return finishTimes.get(numSlots-1);
+        } else {
+            return System.currentTimeMillis();
+        }
     }
 
     public Long getItem() {
