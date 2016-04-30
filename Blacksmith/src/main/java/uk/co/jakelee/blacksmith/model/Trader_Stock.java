@@ -45,7 +45,7 @@ public class Trader_Stock extends SugarRecord {
         return DateHelper.getHoursMinsRemaining(getMillisecondsUntilRestock());
     }
 
-    private static long getMillisecondsUntilRestock() {
+    public static long getMillisecondsUntilRestock() {
         long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
         long unixNextRestock = unixRestocked + DateHelper.hoursToMilliseconds(Upgrade.getValue("Market Restock Time"));
         long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
