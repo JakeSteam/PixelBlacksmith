@@ -312,6 +312,7 @@
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
     <string name="tradeMax">Max?</string>
+    <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or enchanting area to make some.</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>

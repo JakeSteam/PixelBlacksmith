@@ -130,6 +130,15 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/noItemsMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    android:text="@string/noItemsMessage"/>
+
                 <TableLayout
                     android:id="@+id/itemsTable"
                     android:layout_width="wrap_content"

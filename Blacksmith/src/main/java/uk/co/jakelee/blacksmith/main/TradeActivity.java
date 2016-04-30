@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orm.query.Condition;
@@ -117,63 +118,68 @@ public class TradeActivity extends Activity {
     }
 
     private void displayItemsTable() {
-        TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
-        itemsTable.removeAllViews();
-
-        // Create header row
-        TableRow headerRow = new TableRow(getApplicationContext());
-        headerRow.addView(dh.createTextView(getString(R.string.tableQuantity), 22, Color.BLACK));
-        headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
-        headerRow.addView(dh.createTextView(getString(R.string.tableItem), 22, Color.BLACK));
-        headerRow.addView(dh.createTextView(getString(R.string.tableSell), 22, Color.BLACK));
-        headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
-        itemsTable.addView(headerRow);
-
         List<Inventory> matchingItems = demand.getMatchingInventory();
 
-        for (Inventory inventory : matchingItems) {
-            TableRow itemRow = new TableRow(getApplicationContext());
+        if (matchingItems.size() == 0) {
+            TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
+            noItemsMessage.setVisibility(View.VISIBLE);
+        } else {
+            TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
+            itemsTable.removeAllViews();
 
-            Item item = Item.findById(Item.class, inventory.getItem());
+            // Create header row
+            TableRow headerRow = new TableRow(getApplicationContext());
+            headerRow.addView(dh.createTextView(getString(R.string.tableQuantity), 22, Color.BLACK));
+            headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
+            headerRow.addView(dh.createTextView(getString(R.string.tableItem), 22, Color.BLACK));
+            headerRow.addView(dh.createTextView(getString(R.string.tableSell), 22, Color.BLACK));
+            headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
+            itemsTable.addView(headerRow);
 
-            TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
+            for (Inventory inventory : matchingItems) {
+                TableRow itemRow = new TableRow(getApplicationContext());
 
-            ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, inventory.haveSeen());
+                Item item = Item.findById(Item.class, inventory.getItem());
 
-            String itemName = item.getPrefix(inventory.getState()) + item.getName();
-            TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
-            name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            name.setPadding(0, 0, 0, 17);
-            name.setSingleLine(false);
+                TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
 
-            // Create a sell button for that item
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
-            sell.setWidth(dh.convertDpToPixel(40));
-            sell.setShadowLayer(10, 0, 0, Color.WHITE);
-            sell.setGravity(Gravity.CENTER);
-            sell.setBackgroundResource(R.drawable.sell_small);
-            sell.setTag(R.id.itemID, item.getId());
-            sell.setTag(R.id.itemState, inventory.getState());
-            sell.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickSellButton(v);
+                ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, inventory.haveSeen());
+
+                String itemName = item.getPrefix(inventory.getState()) + item.getName();
+                TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
+                name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                name.setPadding(0, 0, 0, 17);
+                name.setSingleLine(false);
+
+                // Create a sell button for that item
+                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
+                sell.setWidth(dh.convertDpToPixel(40));
+                sell.setShadowLayer(10, 0, 0, Color.WHITE);
+                sell.setGravity(Gravity.CENTER);
+                sell.setBackgroundResource(R.drawable.sell_small);
+                sell.setTag(R.id.itemID, item.getId());
+                sell.setTag(R.id.itemState, inventory.getState());
+                sell.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        clickSellButton(v);
+                    }
+                });
+
+                // Work out the multiplier that the player can see
+                TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
+                double bonus = visitorType.getDisplayedBonus(inventory);
+                if (bonus > Constants.DEFAULT_BONUS) {
+                    bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
+                    bonusText.setTextColor(Color.parseColor("#267c18"));
                 }
-            });
 
-            // Work out the multiplier that the player can see
-            TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
-            double bonus = visitorType.getDisplayedBonus(inventory);
-            if (bonus > Constants.DEFAULT_BONUS) {
-                bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
-                bonusText.setTextColor(Color.parseColor("#267c18"));
+                itemRow.addView(quantity);
+                itemRow.addView(image);
+                itemRow.addView(name);
+                itemRow.addView(sell);
+                itemRow.addView(bonusText);
+                itemsTable.addView(itemRow);
             }
-
-            itemRow.addView(quantity);
-            itemRow.addView(image);
-            itemRow.addView(name);
-            itemRow.addView(sell);
-            itemRow.addView(bonusText);
-            itemsTable.addView(itemRow);
         }
     }
 
