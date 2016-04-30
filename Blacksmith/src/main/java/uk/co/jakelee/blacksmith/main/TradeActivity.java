@@ -119,14 +119,14 @@ public class TradeActivity extends Activity {
 
     private void displayItemsTable() {
         List<Inventory> matchingItems = demand.getMatchingInventory();
+        TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
+        itemsTable.removeAllViews();
+
         TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
         if (matchingItems.size() == 0) {
             noItemsMessage.setVisibility(View.VISIBLE);
         } else {
             noItemsMessage.setVisibility(View.GONE);
-
-            TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
-            itemsTable.removeAllViews();
 
             // Create header row
             TableRow headerRow = new TableRow(getApplicationContext());
