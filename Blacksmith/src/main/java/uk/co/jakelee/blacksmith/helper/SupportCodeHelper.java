@@ -13,8 +13,9 @@ public class SupportCodeHelper {
 
     public static boolean applyCode(String code) {
         String decodedString = decode(code);
-        if (!decodedString.equals("")) {
-            Player_Info.executeQuery(decodedString);
+        String[] parts = decodedString.split("\\|");
+        if (validatePartsAndCode(parts)) {
+            Player_Info.executeQuery(parts[1]);
             return true;
         } else {
             return false;
@@ -39,5 +40,20 @@ public class SupportCodeHelper {
             Log.d("Blacksmith", e.toString());
         }
         return encrypted;
+    }
+
+    private static boolean validatePartsAndCode(String[] parts) {
+        if (parts.length != 2 || parts[0].equals("") || parts[1].equals("")) {
+            return false;
+        }
+
+        long codedTime = 0L;
+        try {
+            codedTime = Long.parseLong(parts[0]);
+        } catch (NumberFormatException e){
+            return false;
+        }
+
+        return codedTime >= System.currentTimeMillis();
     }
 }

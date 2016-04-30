@@ -28,7 +28,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("UPDATE inventory SET quantity = 123456 WHERE item = 52");
+                //String supportCode = SupportCodeHelper.encode("1400000474606|UPDATE inventory SET quantity = 654321 WHERE item = 52");
                 String supportCode = supportCodeBox.getText().toString();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
