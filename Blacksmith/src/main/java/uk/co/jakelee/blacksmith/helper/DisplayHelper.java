@@ -511,7 +511,10 @@ public class DisplayHelper {
         for (Item item : items) {
             itemSelector.addView(createItemSelectorElement(item.getId(), state));
         }
-        itemSelector.setDisplayedChild(selectedPosition);
+
+        if (clearExisting) {
+            itemSelector.setDisplayedChild(selectedPosition);
+        }
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {
