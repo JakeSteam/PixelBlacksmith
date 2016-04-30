@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
-        handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 60);
+        handler.post(everyMinute);
     }
 
     private String getRestockText(boolean taxPaid) {
