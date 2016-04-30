@@ -128,7 +128,13 @@ public class Trader extends SugarRecord {
             coinStock.save();
 
             // Restock
-            List<Trader_Stock> trader_stocks = Select.from(Trader_Stock.class).list();
+            List<Trader> traders = Trader.listAll(Trader.class);
+            for (Trader trader : traders) {
+                trader.setStatus(Constants.TRADER_NOT_PRESENT);
+                trader.save();
+            }
+
+            List<Trader_Stock> trader_stocks = Trader_Stock.listAll(Trader_Stock.class);
             for (Trader_Stock trader_stock : trader_stocks) {
                 trader_stock.setStock(trader_stock.getDefaultStock());
                 trader_stock.save();
