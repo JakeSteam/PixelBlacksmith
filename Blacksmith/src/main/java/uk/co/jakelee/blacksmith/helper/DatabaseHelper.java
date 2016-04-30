@@ -1,7 +1,5 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +56,8 @@ public class DatabaseHelper {
     }
 
     public static void patch100to101() {
-        Log.d("BlacksmithDB", "Updating database version from V1.0.0 to V1.0.1");
+        Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
+        restockAllCost.save();
     }
 
     private static void createAchievement() {

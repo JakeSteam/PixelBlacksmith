@@ -108,6 +108,7 @@ public class DisplayHelper {
                 ImageView slotBackground = (ImageView) slotRoot.findViewById(R.id.slot_background);
                 ImageView slotForeground = (ImageView) slotRoot.findViewById(R.id.slot_foreground);
                 TextViewPixel slotCount = (TextViewPixel) slotRoot.findViewById(R.id.slot_count);
+                TextViewPixel slotOverflow = (TextViewPixel) slotRoot.findViewById(R.id.slot_overflow);
 
                 if (!displayedNextSlot) {
                     slotBackground.setBackgroundResource(R.drawable.slot);
@@ -115,10 +116,12 @@ public class DisplayHelper {
                     if (slot.getLevel() > playerLevel) {
                         slotForeground.setBackgroundResource(R.drawable.close);
                         slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        slotOverflow.setVisibility(View.VISIBLE);
                         displayedNextSlot = true;
                     } else if (slot.isPremium() && !Player_Info.isPremium()) {
                         slotForeground.setBackgroundResource(R.drawable.item52);
                         slotCount.setText(activity.getString(R.string.slotPremium));
+                        slotOverflow.setVisibility(View.VISIBLE);
                         displayedNextSlot = true;
                     } else {
                         slotRoot.setTag(true);
@@ -138,10 +141,14 @@ public class DisplayHelper {
 
     private void populateSlot(long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
+        int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
+        int numSlots = Slot.getUnlockedSlots(locationID);
+
         GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
         emptySlotContainer(slotContainer);
 
         int slotIndex = 0;
+        int finishedItems = 0;
         for (Pending_Inventory pendingItem : pendingItems) {
             RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
             ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
@@ -153,6 +160,7 @@ public class DisplayHelper {
             if (itemFinishTime <= currentTime) {
                 Inventory.addItem(pendingItem);
                 Pending_Inventory.delete(pendingItem);
+                finishedItems++;
             } else {
                 int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
@@ -161,6 +169,20 @@ public class DisplayHelper {
                 slotIndex++;
             }
         }
+
+        RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
+        displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
+    }
+
+    private void displayOverflow(RelativeLayout lockedSlot, int numItems, int numSlots, int finishedItems) {
+        TextViewPixel overflowDisplay = (TextViewPixel) lockedSlot.findViewById(R.id.slot_overflow);
+        int overflow = (numItems - numSlots) - finishedItems;
+        if (overflow > 0) {
+            overflowDisplay.setText(String.format(getString(R.string.overflowText), overflow));
+        } else {
+            overflowDisplay.setText("");
+        }
+
     }
 
     private void emptySlotContainer(GridLayout slotContainer) {
@@ -481,13 +503,17 @@ public class DisplayHelper {
         }
     }
 
-    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state) {
+    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state, int selectedPosition) {
         if (clearExisting) {
             itemSelector.removeAllViews();
         }
 
         for (Item item : items) {
             itemSelector.addView(createItemSelectorElement(item.getId(), state));
+        }
+
+        if (clearExisting) {
+            itemSelector.setDisplayedChild(selectedPosition);
         }
     }
 

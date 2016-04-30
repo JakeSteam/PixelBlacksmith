@@ -59,10 +59,7 @@ public class MainActivity extends AppCompatActivity implements
     private boolean musicServiceIsStarted = false;
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
-
-    public static int ANVIL_TIER = Constants.TIER_MIN;
-    public static int TABLE_TIER = Constants.TIER_MIN;
-    public static int ENCHANTING_TIER = Constants.TIER_MIN;
+    public static SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         musicService = new Intent(this, MusicService.class);
+        prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
         assignUIElements();
         checkFirstRun();
@@ -120,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void checkFirstRun() {
-        SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_EMPTY) {
             DatabaseHelper.initialSQL();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
@@ -128,10 +125,10 @@ public class MainActivity extends AppCompatActivity implements
             TutorialHelper.currentlyInTutorial = true;
         }
 
-        /*if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
             DatabaseHelper.patch100to101();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
-        }*/
+        }
     }
 
     public static void startFirstTutorial() {
@@ -356,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
-        handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 60);
+        handler.post(everyMinute);
     }
 
     private String getRestockText(boolean taxPaid) {

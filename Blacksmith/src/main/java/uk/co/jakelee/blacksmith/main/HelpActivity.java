@@ -158,6 +158,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Only visitors with stock will be displayed, so buying all stock from more common traders is a good way to get rarer traders.\n", 22));
         layout.addView(dh.createTextView("If a lot of trades are conducted with a visitor, more items will unlock for sale.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to see the full list of traders.\n", 22));
+        layout.addView(dh.createTextView("If all traders are out of stock, you'll have to wait for the market to restock, or pay a bribe to get them all to come back immediately.\n", 22));
     }
 
     private void displayHelpSettings(LinearLayout layout) {
@@ -192,6 +193,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The discovered bonus is displayed next to the sell price of each item. It's entirely possible the item will sell for more than this, if all of the visitor's preferences have not yet been discovered.\n", 22));
         layout.addView(dh.createTextView("The progress bar will let you see your progress at a glance, and the item criteria and visitor are also visible.\n", 22));
         layout.addView(dh.createTextView("The finish button will close this trade for now.\n", 22));
+        layout.addView(dh.createTextView("The 'Max' button will, when checked, let you trade as many of an item as possible at once.\n", 22));
     }
 
     private void displayHelpTrophy(LinearLayout layout) {
@@ -206,6 +208,9 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Visitor\n", 26));
         layout.addView(dh.createTextView("This screen provides an overview of the currently selected visitor.\n", 22));
         layout.addView(dh.createTextView("If their preferred item type, tier, and state have been discovered, the associated bonus will be displayed.\n", 22));
+        layout.addView(dh.createTextView("Item type: This is the item's category. For example dagger, sword, or hatchet.'\n", 22));
+        layout.addView(dh.createTextView("Item tier: This is the quality of the item's material. For example bronze, iron, or steel.'\n", 22));
+        layout.addView(dh.createTextView("Item state: This is the condition of the item. For example unfinished (shattered vial icon), normal (vial icon), or blue (sapphire icon).'\n", 22));
         layout.addView(dh.createTextView("Additionally, the highest value trade with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed. If a visitor is fully completed, you'll received double the reward!\n", 22));
@@ -224,6 +229,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("XP Bonus\nUpgrading XP bonus will increase the % of bonus XP received for every in-game action.", 22));
         layout.addView(dh.createTextView("Craft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.", 22));
         layout.addView(dh.createTextView("Legendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.", 22));
+        layout.addView(dh.createTextView("Restock All Cost\nUpgrading the restock all cost will reduce the cost of restocking the entire marketplace.", 22));
     }
 
     private void displayHelpPremium(LinearLayout layout) {

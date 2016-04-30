@@ -131,7 +131,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         int restockCost = getRestockCost();
 
         if (restockCost > 0) {
-            AlertDialogHelper.confirmVisitorRestock(getApplicationContext(), this, trader, restockCost);
+            AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
         } else {
             ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.unnecessaryRestock, false);
         }

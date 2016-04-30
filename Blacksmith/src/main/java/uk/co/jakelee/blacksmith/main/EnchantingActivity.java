@@ -45,20 +45,21 @@ public class EnchantingActivity extends Activity {
         setContentView(R.layout.activity_enchanting);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.ENCHANTING_TIER;
+        displayedTier = MainActivity.prefs.getInt("enchantingTier", Constants.TIER_MIN);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createEnchantingInterface(false);
+        createEnchantingInterface(true);
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        MainActivity.ENCHANTING_TIER = displayedTier;
+        MainActivity.prefs.edit().putInt("enchantingTier", displayedTier).apply();
+        MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -73,12 +74,15 @@ public class EnchantingActivity extends Activity {
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
                 Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
+
         numberOfItems = items.size();
+
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
                 items,
-                Constants.STATE_NORMAL);
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("enchantingPosition", 0));
 
         // Horizontal selector
         int currentItemPosition = mViewFlipper.getDisplayedChild();

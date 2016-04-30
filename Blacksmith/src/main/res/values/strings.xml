@@ -134,7 +134,7 @@
     <string name="slotSeconds">%ds</string>
 
     <string name="buyPremium">Go Premium!</string>
-    <string name="boughtPremium">You\'ve bought premium! Thank you so much! &lt;3</string>
+    <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
     <string name="cannotBuyPremium">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
     <string name="buyingPremiumError">An error occurred whilst trying to purchase premium. Please try again later, hopefully it\'ll work!</string>
@@ -148,9 +148,11 @@
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Gold tax paid by all traders on restock.
-\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.</string>
+\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.
+\n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), and %4$d slot(s).</string>
+    <string name="overflowText">+ %d</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
     <string name="bribeConfirm">Bribe</string>
@@ -195,6 +197,8 @@
 
     <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
 
+    <string name="supportCode">Support Code</string>
+
     <string name="typeText">Type</string>
     <string name="tierText">Tier</string>
     <string name="stateText">State</string>
@@ -231,6 +235,17 @@
     <string name="traderRestockComplete">Restocked trader for %d coins.</string>
     <string name="traderRestockCancel">Cancel</string>
 
+    <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>
+    <string name="traderRestockAllConfirm">Restock All</string>
+    <string name="traderRestockAllComplete">Restocked all traders for %d coins.</string>
+    <string name="traderRestockAllCancel">Cancel</string>
+
+    <string name="supportCodeQuestion">Please enter your support code (copy &amp; paste recommended!)</string>
+    <string name="supportCodeConfirm">Enter</string>
+    <string name="supportCodeComplete">Applied support code successfully.</string>
+    <string name="supportCodeFailed">Error whilst applying code. Please contact support!</string>
+    <string name="supportCodeCancel">Cancel</string>
+
     <string name="notificationVisitor">A new visitor has arrived!</string>
 
     <string name="tableQuantity">Qty</string>
@@ -249,7 +264,8 @@
 
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
-    <string name="noTraders">The marketplace is empty!\n\nThe traders will return when they have restocked, check the statistics panel to see when this will be.</string>
+    <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
+    <string name="restockMarketButton">Restock</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
     <string name="powderAdd">Began crushing the %s into a fine powder.</string>
 
@@ -297,6 +313,8 @@
     <string name="complete">Complete</string>
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
+    <string name="tradeMax">Max?</string>
+    <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or enchanting area to make some.</string>
 
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
@@ -305,11 +323,12 @@
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a> and <a href="https://twitter.com/ansimuz">@Ansimuz</a>.</string>
     <string name="creditsTechnology">Technology</string>
-    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
-\n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
+\n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+\n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
-\n\nFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar!) for alpha testing.
+\n\nFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for alpha testing.
     </string>
 </resources>

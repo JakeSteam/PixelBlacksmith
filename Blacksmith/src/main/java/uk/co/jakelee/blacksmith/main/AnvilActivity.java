@@ -43,13 +43,13 @@ public class AnvilActivity extends Activity {
         setContentView(R.layout.activity_anvil);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.ANVIL_TIER;
+        displayedTier = MainActivity.prefs.getInt("anvilTier", Constants.TIER_MIN);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createAnvilInterface(false);
+        createAnvilInterface(true);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
             startTutorial();
@@ -60,7 +60,8 @@ public class AnvilActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        MainActivity.ANVIL_TIER = displayedTier;
+        MainActivity.prefs.edit().putInt("anvilTier", displayedTier).apply();
+        MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -89,7 +90,8 @@ public class AnvilActivity extends Activity {
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
                 items,
-                Constants.STATE_UNFINISHED);
+                Constants.STATE_UNFINISHED,
+                MainActivity.prefs.getInt("anvilPosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.anvil),

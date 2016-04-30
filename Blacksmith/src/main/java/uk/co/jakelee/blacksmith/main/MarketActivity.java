@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -90,8 +91,22 @@ public class MarketActivity extends Activity {
 
         }
 
-        TextViewPixel noTradersMessage = (TextViewPixel) findViewById(R.id.noTradersMessage);
-        noTradersMessage.setVisibility(traders.size() > 0 ? View.GONE : View.VISIBLE);
+        checkIfOutOfStock(traders.size());
+
+    }
+
+    private void checkIfOutOfStock(int traders) {
+        ScrollView emptyContainer = (ScrollView) findViewById(R.id.emptyMarket);
+        if (traders > 0) {
+            emptyContainer.setVisibility(View.GONE);
+        } else {
+            emptyContainer.setVisibility(View.VISIBLE);
+
+            TextView restockText = (TextView) findViewById(R.id.restockText);
+            restockText.setText(String.format(getString(R.string.restockMarketText),
+                    Trader_Stock.getRestockTimeLeft(),
+                    Trader.getRestockAllCost()));
+        }
     }
 
     private void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
@@ -104,6 +119,16 @@ public class MarketActivity extends Activity {
             ImageView itemImage = dh.createItemImage(stock.getItemID(), 20, 20, isUnlocked);
             offeringsContainer.addView(itemImage);
         }
+    }
+
+    public void alertDialogCallback() {
+        populateTraderList();
+    }
+
+    public void clickRestockAll(View view) {
+        int restockCost = Trader.getRestockAllCost();
+
+        AlertDialogHelper.confirmTraderRestockAll(getApplicationContext(), this, restockCost);
     }
 
     public void openHelp(View view) {

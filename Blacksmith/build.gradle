@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 8
-        versionName "1.0.0"
+        versionCode 9
+        versionName "1.1.0"
     }
     buildTypes {
         release {
@@ -28,6 +28,7 @@ dependencies {
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.anjlab.android.iab.v3:library:1.0.+'
+    compile 'com.scottyab:aescrypt:0.0.1'
     compile('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar') {
         transitive = true
     }

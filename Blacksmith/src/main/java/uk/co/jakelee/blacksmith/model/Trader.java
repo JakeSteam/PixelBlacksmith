@@ -118,6 +118,30 @@ public class Trader extends SugarRecord {
         }
     }
 
+    public static int restockAll(int restockCost) {
+        if (Inventory.getCoins() < restockCost) {
+            return Constants.ERROR_NOT_ENOUGH_COINS;
+        } else {
+            // Remove coins
+            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+            coinStock.setQuantity(coinStock.getQuantity() - restockCost);
+            coinStock.save();
+
+            // Restock
+            List<Trader_Stock> trader_stocks = Select.from(Trader_Stock.class).list();
+            for (Trader_Stock trader_stock : trader_stocks) {
+                trader_stock.setStock(trader_stock.getDefaultStock());
+                trader_stock.save();
+            }
+
+            return Constants.SUCCESS;
+        }
+    }
+
+    public static int getRestockAllCost() {
+        return Upgrade.getValue("Restock All Cost");
+    }
+
     public long getShopkeeper() {
         return shopkeeper;
     }

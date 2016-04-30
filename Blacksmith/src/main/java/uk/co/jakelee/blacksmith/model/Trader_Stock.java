@@ -30,11 +30,27 @@ public class Trader_Stock extends SugarRecord {
         this.defaultStock = stock;
     }
 
-    public static boolean shouldRestock() {
-        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("DateRestocked")).first();
+    /*
+        Restocked 00:00
+        Restock time 10:00
+        FIRST line is same
+        SECOND line is same
+     */
 
-        return (dateRefreshed.getLongValue() + DateHelper.hoursToMilliseconds(Upgrade.getValue("Market Restock Time"))) < System.currentTimeMillis();
+    public static boolean shouldRestock() {
+        return getMillisecondsUntilRestock() <= 0;
+    }
+
+    public static String getRestockTimeLeft() {
+        return DateHelper.getHoursMinsRemaining(getMillisecondsUntilRestock());
+    }
+
+    public static long getMillisecondsUntilRestock() {
+        long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
+        long unixNextRestock = unixRestocked + DateHelper.hoursToMilliseconds(Upgrade.getValue("Market Restock Time"));
+        long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
+
+        return unixRestockDifference;
     }
 
     public static void restockTraders() {

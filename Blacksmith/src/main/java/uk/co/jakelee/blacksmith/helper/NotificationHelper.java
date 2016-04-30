@@ -17,6 +17,7 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class NotificationHelper extends BroadcastReceiver {
@@ -26,7 +27,7 @@ public class NotificationHelper extends BroadcastReceiver {
     public static void addRestockNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;
 
-        long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue() + DateHelper.hoursToMilliseconds(Upgrade.getValue("Market Restock Time"));
+        long restockTime = System.currentTimeMillis() + Trader_Stock.getMillisecondsUntilRestock();
         NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_RESTOCK);
     }
 
