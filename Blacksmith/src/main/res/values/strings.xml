@@ -152,6 +152,7 @@
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), and %4$d slot(s).</string>
+    <string name="overflowText">+ %d</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
     <string name="bribeConfirm">Bribe</string>

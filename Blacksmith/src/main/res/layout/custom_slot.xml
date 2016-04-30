@@ -27,4 +27,16 @@
         android:textSize="20sp"
         android:visibility="invisible" />
 
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/slot_overflow"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/slot_count"
+        android:alpha="0.6"
+        android:background="@color/black"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
 </RelativeLayout>
