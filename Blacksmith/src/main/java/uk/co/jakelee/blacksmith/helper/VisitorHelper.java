@@ -117,7 +117,8 @@ public class VisitorHelper {
                 break;
         }
 
-        int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, Constants.MAXIMUM_QUANTITY);
+        int maxQuantity = (criteria.getName().equals("State") ? Constants.MAXIMUM_QUANTITY_STATE : Constants.MAXIMUM_QUANTITY);
+        int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, maxQuantity);
         boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE));
 
         // Check if the current criteria already exists. If it does, try again.
