@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
@@ -32,6 +34,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class EnchantingActivity extends Activity {
+    private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private static GestureHelper gh;
     private int displayedTier;
@@ -51,6 +54,16 @@ public class EnchantingActivity extends Activity {
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         createEnchantingInterface(true);
+
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                View enchanting = findViewById(R.id.enchanting);
+                dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
     }
 
     @Override
@@ -95,9 +108,6 @@ public class EnchantingActivity extends Activity {
         createGemsTable(gemsTable);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
-
-        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void goUpTier(View view) {
