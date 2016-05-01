@@ -44,6 +44,7 @@ import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -461,8 +462,10 @@ public class DisplayHelper {
                 Condition.prop("level").eq(newLevel)).count();
         Long numSlots = Select.from(Slot.class).where(
                 Condition.prop("level").eq(newLevel)).count();
+        Long numStates = Select.from(State.class).where(
+                Condition.prop("level").eq(newLevel)).count();
 
-        return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots);
+        return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
 
     public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
