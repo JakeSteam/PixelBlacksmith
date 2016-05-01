@@ -84,6 +84,23 @@ public class Inventory extends SugarRecord implements Serializable {
         return Constants.SUCCESS;
     }
 
+    public static int tryPowderGem(Long itemId, long state, Long locationID) {
+        int canCreate = canCreateItem(itemId, state);
+        if (canCreate != Constants.SUCCESS) {
+            return canCreate;
+        }
+
+        removeItemIngredients(itemId, state);
+
+        if (Slot.hasAvailableSlot(locationID)) {
+            Pending_Inventory.addItem(itemId, state, 5, locationID);
+        } else {
+            Pending_Inventory.addScheduledItem(itemId, state, 5, locationID);
+        }
+
+        return Constants.SUCCESS;
+    }
+
     public static int enchantItem(Long itemId, Long gemId, Long locationID) {
         Inventory itemInventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         Inventory gemInventory = Inventory.getInventory(gemId, Constants.STATE_NORMAL);
@@ -101,7 +118,7 @@ public class Inventory extends SugarRecord implements Serializable {
 
             State enchantedItemState = Select.from(State.class).where(
                     Condition.prop("initiating_item").eq(gemId)).first();
-            
+
             if (Slot.hasAvailableSlot(locationID)) {
                 Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
             } else {

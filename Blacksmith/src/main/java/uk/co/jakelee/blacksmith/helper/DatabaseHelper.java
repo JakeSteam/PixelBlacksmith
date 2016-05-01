@@ -364,9 +364,9 @@ public class DatabaseHelper {
         items.add(new Item(126L, "Rune hatchet", "An extremely sharp axe, for the mightiest of trees.", 16, 6, 210, 48));
         items.add(new Item(127L, "Rune fishing rod", "The fish won't rune away from this rod!", 17, 6, 210, 48));
         items.add(new Item(128L, "Rune hammer", "The mightiest of hammers! Or at least a very mighty one.", 18, 6, 110, 48));
-        items.add(new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 11, 20, 20));
-        items.add(new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 11, 30, 20));
-        items.add(new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 11, 40, 20));
+        items.add(new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 11, 20, 0));
+        items.add(new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 11, 30, 0));
+        items.add(new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 11, 40, 0));
         items.add(new Item(132L, "Dragon dagger", "The deadliest dragon dagger!", 3, 7, 200, 50));
         items.add(new Item(133L, "Dragon sword", "Sharp as a dragon's wit.", 4, 7, 375, 50));
         items.add(new Item(134L, "Dragon longsword", "A very long, and very sharp, sword.", 5, 7, 375, 50));
