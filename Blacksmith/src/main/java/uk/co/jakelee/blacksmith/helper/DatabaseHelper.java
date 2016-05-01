@@ -30,6 +30,7 @@ public class DatabaseHelper {
     public final static int DB_EMPTY = 0;
     public final static int DB_V1_0_0 = 1;
     public final static int DB_V1_0_1 = 2;
+    public final static int DB_V1_2_0 = 3;
 
     public static void initialSQL() {
         createAchievement();
@@ -58,6 +59,14 @@ public class DatabaseHelper {
     public static void patch100to101() {
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
         restockAllCost.save();
+    }
+
+    public static void patch101to120() {
+        Item mithrilLongsword = Item.findById(Item.class, 83L);
+        if (mithrilLongsword != null) {
+            mithrilLongsword.setDescription("This is a sword? No, longer!");
+            mithrilLongsword.save();
+        }
     }
 
     private static void createAchievement() {

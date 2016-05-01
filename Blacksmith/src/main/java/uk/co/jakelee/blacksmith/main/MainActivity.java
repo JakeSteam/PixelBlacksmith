@@ -129,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements
             DatabaseHelper.patch100to101();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
         }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_1) {
+            DatabaseHelper.patch101to120();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
+        }
     }
 
     public static void startFirstTutorial() {
