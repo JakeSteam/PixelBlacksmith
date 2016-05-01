@@ -142,7 +142,6 @@ public class FurnaceActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
-            createFurnaceInterface(false);
         }
     }
 

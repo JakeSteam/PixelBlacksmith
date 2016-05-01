@@ -148,7 +148,6 @@ public class TableActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
-            createTableInterface(false);
         }
     }
 

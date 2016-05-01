@@ -152,7 +152,6 @@ public class AnvilActivity extends Activity {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_UNFINISHED)), false);
-            createAnvilInterface(false);
         }
     }
 
