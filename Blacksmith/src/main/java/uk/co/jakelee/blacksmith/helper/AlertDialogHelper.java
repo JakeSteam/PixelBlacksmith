@@ -7,6 +7,11 @@ import android.content.DialogInterface;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
@@ -239,6 +244,69 @@ public class AlertDialogHelper {
         });
 
         alertDialog.setNeutralButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void confirmItemBuyAll(final Context context, final TraderActivity activity, final Trader trader) {
+        final List<Trader_Stock> itemStocks = Select.from(Trader_Stock.class).where(
+                Condition.prop("trader_type").eq(trader.getId()),
+                Condition.prop("stock").gt(0),
+                Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
+
+        if (itemStocks.size() == 0) {
+            ToastHelper.showToast(context, Toast.LENGTH_SHORT, R.string.itemBuyAllNoItems, false);
+        }
+
+        int totalValue = 0;
+        int itemCount = 0;
+        for (Trader_Stock itemStock : itemStocks) {
+            Item item = Item.findById(Item.class, itemStock.getItemID());
+            totalValue += (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+            itemCount += itemStock.getStock();
+        }
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int itemsBought = 0;
+                int buyResponse = Constants.ERROR_NO_ITEMS;
+                boolean successful = true;
+
+                for (Trader_Stock itemStock : itemStocks) {
+                    boolean traderHasStock = true;
+                    while (successful && traderHasStock) {
+                        buyResponse = Inventory.buyItem(itemStock);
+                        if (buyResponse == Constants.SUCCESS) {
+                            itemsBought++;
+                        } else if (buyResponse == Constants.ERROR_TRADER_RUN_OUT) {
+                            traderHasStock = false;
+                        } else {
+                            successful = false;
+                        }
+                    }
+                }
+
+                if (itemsBought > 0) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
+                    Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
+                    trader.setPurchases(trader.getPurchases() + itemsBought);
+                    trader.save();
+                } else {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                }
+                activity.alertDialogCallback();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

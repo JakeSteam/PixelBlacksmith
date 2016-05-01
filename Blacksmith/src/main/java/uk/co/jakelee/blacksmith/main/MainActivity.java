@@ -363,10 +363,10 @@ public class MainActivity extends AppCompatActivity implements
 
     private String getRestockText(boolean taxPaid) {
         if (taxPaid) {
-            return String.format(getString(R.string.restockTextWithPremium),
+            return String.format(getString(R.string.restockTextWithTax),
                     PremiumHelper.getTaxAmount());
         } else {
-            return getString(R.string.restockTextNoPremium);
+            return getString(R.string.restockTextNoTax);
         }
     }
 
