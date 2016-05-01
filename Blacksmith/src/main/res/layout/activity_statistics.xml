@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/statisticsTitle"
             android:layout_marginBottom="10dp"
-            app:layout_marginTopPercent="8%">
+            app:layout_marginTopPercent="8%"
+            android:fadeScrollbars="false">
 
             <GridLayout
                 android:layout_width="match_parent"

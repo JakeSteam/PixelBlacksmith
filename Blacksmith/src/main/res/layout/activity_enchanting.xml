@@ -105,7 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/horizontalIndicator"
             app:layout_marginBottomPercent="3%"
-            app:layout_marginTopPercent="5%">
+            app:layout_marginTopPercent="5%"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:id="@+id/gemsTable"

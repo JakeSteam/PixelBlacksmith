@@ -218,7 +218,8 @@
             android:id="@+id/demandsScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_marginTopPercent="60%">
+            app:layout_marginTopPercent="60%"
+            android:fadeScrollbars="false">
 
             <RelativeLayout
                 android:layout_width="match_parent"

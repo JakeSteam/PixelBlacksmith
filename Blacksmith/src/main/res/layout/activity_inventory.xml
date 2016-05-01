@@ -39,7 +39,8 @@
             android:id="@+id/inventoryScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/inventoryTitle">
+            android:layout_below="@id/inventoryTitle"
+            android:fadeScrollbars="false">
 
             <TableLayout
                 android:id="@+id/inventoryTable"

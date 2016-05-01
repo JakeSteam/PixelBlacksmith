@@ -40,7 +40,8 @@
             android:id="@+id/helpScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/helpTitle">
+            android:layout_below="@id/helpTitle"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:id="@+id/helpLayout"

@@ -89,7 +89,8 @@
             android:layout_below="@id/traderInfo"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="55dp"
-            app:layout_marginTopPercent="3%">
+            app:layout_marginTopPercent="3%"
+            android:fadeScrollbars="false">
 
             <TableLayout
                 android:id="@+id/traderItemsInfo"

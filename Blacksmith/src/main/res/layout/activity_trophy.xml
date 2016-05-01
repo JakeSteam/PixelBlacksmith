@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_below="@id/trophyTitle"
             app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="8%">
+            app:layout_marginTopPercent="8%"
+            android:fadeScrollbars="false">
 
             <GridLayout
                 android:id="@+id/visitorGrid"

@@ -121,7 +121,8 @@
             android:layout_height="match_parent"
             android:layout_above="@id/finishTrade"
             android:layout_below="@id/demandProgress"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -39,7 +39,8 @@
             android:id="@+id/premiumScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/premiumTitle">
+            android:layout_below="@id/premiumTitle"
+            android:fadeScrollbars="false">
 
             <RelativeLayout
                 android:layout_width="wrap_content"

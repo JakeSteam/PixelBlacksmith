@@ -40,7 +40,8 @@
             android:id="@+id/upgradeScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/upgradeTitle">
+            android:layout_below="@id/upgradeTitle"
+            android:fadeScrollbars="false">
 
             <TableLayout
                 android:id="@+id/upgradeTable"
