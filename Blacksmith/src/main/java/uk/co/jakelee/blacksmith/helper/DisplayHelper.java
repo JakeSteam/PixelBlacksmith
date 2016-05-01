@@ -30,6 +30,7 @@ import android.widget.ViewFlipper;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -133,7 +134,7 @@ public class DisplayHelper {
     }
 
     public void populateSlots(View parentView) {
-        List<Location> locations = Select.from(Location.class).list();
+        List<Location> locations = Location.listAll(Location.class);
         for (Location location : locations) {
             populateSlot(location.getId(), parentView);
         }
@@ -149,6 +150,7 @@ public class DisplayHelper {
 
         int slotIndex = 0;
         int finishedItems = 0;
+        final List<Pending_Inventory> completedItems = new ArrayList<>();
         for (Pending_Inventory pendingItem : pendingItems) {
             RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
             ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
@@ -158,8 +160,7 @@ public class DisplayHelper {
             long currentTime = System.currentTimeMillis();
 
             if (itemFinishTime <= currentTime) {
-                Inventory.addItem(pendingItem);
-                Pending_Inventory.delete(pendingItem);
+                completedItems.add(pendingItem);
                 finishedItems++;
             } else {
                 int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
@@ -169,9 +170,17 @@ public class DisplayHelper {
                 slotIndex++;
             }
         }
-
         RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
         displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
+
+        new Thread(new Runnable() {
+            public void run() {
+                for (Pending_Inventory item : completedItems) {
+                    Inventory.addItem(item);
+                }
+                Pending_Inventory.deleteInTx(completedItems);
+            }
+        }).start();
     }
 
     private void displayOverflow(RelativeLayout lockedSlot, int numItems, int numSlots, int finishedItems) {
