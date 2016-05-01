@@ -268,7 +268,7 @@
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
     <string name="restockMarketButton">Restock</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
-    <string name="powderAdd">Began crushing the %s into a fine powder.</string>
+    <string name="powderAdd">Began crushing the gem into %s.</string>
 
     <string name="traderArrived">The %s trader has arrived.</string>
 

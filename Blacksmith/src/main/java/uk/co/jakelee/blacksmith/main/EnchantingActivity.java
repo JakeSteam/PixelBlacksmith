@@ -142,19 +142,19 @@ public class EnchantingActivity extends Activity {
     }
 
     private LinearLayout createEnchantingButton(Item item) {
-        boolean haveSeen = Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL);
+        boolean displayInfo = Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL) || item.getType() == Constants.TYPE_POWDERS;
 
         LinearLayout itemButton = new LinearLayout(getApplicationContext());
         itemButton.setBackgroundResource(R.drawable.button_extra_wide);
         itemButton.setGravity(Gravity.CENTER);
 
-        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, haveSeen);
+        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, displayInfo);
         itemImage.setPadding(0, 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 
         int quantityOwned = 0;
         String itemName = getString(R.string.unknownText);
-        if (haveSeen || item.getType() == Constants.TYPE_POWDERS) {
+        if (displayInfo) {
             quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
             itemName = item.getName();
         }
@@ -192,7 +192,7 @@ public class EnchantingActivity extends Activity {
         int powderResponse = Inventory.tryCreateItem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder), false);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
 
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {

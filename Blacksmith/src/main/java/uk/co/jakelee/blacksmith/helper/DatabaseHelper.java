@@ -1,5 +1,8 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,16 +60,34 @@ public class DatabaseHelper {
     }
 
     public static void patch100to101() {
+        // Add upgradeable restock cost
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
         restockAllCost.save();
     }
 
     public static void patch101to120() {
+        // Updated mithril sword description
         Item mithrilLongsword = Item.findById(Item.class, 83L);
         if (mithrilLongsword != null) {
             mithrilLongsword.setDescription("This is a sword? No, longer!");
             mithrilLongsword.save();
         }
+
+        // Set enchanting to be L20+
+        Slot firstEnchantingSlot = Select.from(Slot.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_ENCHANTING),
+                Condition.prop("level").eq(1)).first();
+        if (firstEnchantingSlot != null) {
+            firstEnchantingSlot.setLevel(25);
+            firstEnchantingSlot.save();
+        }
+
+        List<Item> powders = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_POWDERS)).list();
+        for (Item powder : powders) {
+            powder.setLevel(20);
+        }
+        Item.saveInTx(powders);
+
     }
 
     private static void createAchievement() {
@@ -343,9 +364,9 @@ public class DatabaseHelper {
         items.add(new Item(126L, "Rune hatchet", "An extremely sharp axe, for the mightiest of trees.", 16, 6, 210, 48));
         items.add(new Item(127L, "Rune fishing rod", "The fish won't rune away from this rod!", 17, 6, 210, 48));
         items.add(new Item(128L, "Rune hammer", "The mightiest of hammers! Or at least a very mighty one.", 18, 6, 110, 48));
-        items.add(new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 11, 20, 0));
-        items.add(new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 11, 30, 0));
-        items.add(new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 11, 40, 0));
+        items.add(new Item(129L, "Powdered Sapphire", "This sapphire is in tiny shards.", 22, 11, 20, 20));
+        items.add(new Item(130L, "Powdered Emerald", "This emerald is in tiny shards.", 22, 11, 30, 20));
+        items.add(new Item(131L, "Powdered Diamond", "This diamond is in tiny shards.", 22, 11, 40, 20));
         items.add(new Item(132L, "Dragon dagger", "The deadliest dragon dagger!", 3, 7, 200, 50));
         items.add(new Item(133L, "Dragon sword", "Sharp as a dragon's wit.", 4, 7, 375, 50));
         items.add(new Item(134L, "Dragon longsword", "A very long, and very sharp, sword.", 5, 7, 375, 50));
