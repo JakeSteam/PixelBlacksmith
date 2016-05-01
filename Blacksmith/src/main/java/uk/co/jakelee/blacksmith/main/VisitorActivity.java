@@ -253,7 +253,7 @@ public class VisitorActivity extends Activity {
             int numVisitors = Player_Info.getVisitorsCompleted();
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
             MainActivity.needToRedrawVisitors = true;
-            closeVisitor(view);
+            closePopup(view);
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure, false);
         }
@@ -319,7 +319,7 @@ public class VisitorActivity extends Activity {
         startActivity(intent);
     }
 
-    public void closeVisitor(View view) {
+    public void closePopup(View view) {
         finish();
     }
 }

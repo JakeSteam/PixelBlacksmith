@@ -162,7 +162,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         createItemList();
     }
 
-    public void closeTrader(View view) {
+    public void closePopup(View view) {
         finish();
     }
 }

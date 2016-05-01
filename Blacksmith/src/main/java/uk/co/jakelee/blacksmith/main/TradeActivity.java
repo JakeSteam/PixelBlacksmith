@@ -267,7 +267,7 @@ public class TradeActivity extends Activity {
         startActivity(intent);
     }
 
-    public void closeTrade(View view) {
+    public void closePopup(View view) {
         finish();
     }
 
