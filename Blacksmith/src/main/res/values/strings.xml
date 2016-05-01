@@ -196,6 +196,7 @@
     <string name="horizontalDotsUnselected">o</string>
 
     <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
+    <string name="visitorDemand" translatable="false">%1$dx %2$s: %3$s</string>
 
     <string name="supportCode">Support Code</string>
 

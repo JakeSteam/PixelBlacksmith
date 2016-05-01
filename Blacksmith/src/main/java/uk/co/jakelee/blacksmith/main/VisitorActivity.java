@@ -207,7 +207,10 @@ public class VisitorActivity extends Activity {
             ImageView criteriaStatus = new ImageView(getApplicationContext());
             criteriaStatus.setImageDrawable(statusDrawable);
 
-            String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
+            String criteriaText = String.format(getString(R.string.visitorDemand),
+                    demand.getQuantity() - demand.getQuantityProvided(),
+                    demandCriteria.getName(),
+                    Visitor_Demand.getCriteriaName(demand));
             TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
             criteriaValue.setHeight(dh.convertDpToPixel(35));
             criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
