@@ -95,12 +95,13 @@ public class TableActivity extends Activity {
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.table),
                 (TableLayout) findViewById(R.id.ingredientsTable),
-                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 mViewFlipper,
-                numberOfItems,
                 Constants.STATE_NORMAL);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_TABLE_MIN, Constants.TIER_TABLE_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void craft1(View v) {
@@ -169,10 +170,11 @@ public class TableActivity extends Activity {
             dh.createCraftingInterface(
                     (RelativeLayout) findViewById(R.id.table),
                     (TableLayout) findViewById(R.id.ingredientsTable),
-                    (HorizontalDots) findViewById(R.id.horizontalIndicator),
                     mViewFlipper,
-                    numberOfItems,
                     Constants.STATE_NORMAL);
+
+            HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }

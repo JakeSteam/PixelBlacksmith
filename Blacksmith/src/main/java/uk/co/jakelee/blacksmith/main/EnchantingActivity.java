@@ -98,6 +98,9 @@ public class EnchantingActivity extends Activity {
         createGemsTable(gemsTable);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void goUpTier(View view) {

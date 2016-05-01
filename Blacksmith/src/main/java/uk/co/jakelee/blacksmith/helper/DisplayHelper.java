@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
@@ -431,9 +430,7 @@ public class DisplayHelper {
         MainActivity.coins.setText(coinCountString);
     }
 
-    public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, HorizontalDots horizontalIndicator, ViewFlipper viewFlipper, int numberOfItems, long state) {
-        horizontalIndicator.addDots(this, numberOfItems, viewFlipper.getDisplayedChild());
-
+    public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, ViewFlipper viewFlipper, long state) {
         long currentItemID = (long) viewFlipper.getCurrentView().getTag();
         displayItemInfo(currentItemID, state, main);
         createItemIngredientsTable(currentItemID, state, ingredientsTable);

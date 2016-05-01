@@ -79,7 +79,6 @@ public class FurnaceActivity extends Activity {
     private void createFurnaceInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
-        numberOfItems = items.size();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
@@ -91,10 +90,11 @@ public class FurnaceActivity extends Activity {
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.furnace),
                 (TableLayout) findViewById(R.id.ingredientsTable),
-                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 mViewFlipper,
-                numberOfItems,
                 Constants.STATE_NORMAL);
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void smelt1(View v) {
@@ -149,10 +149,11 @@ public class FurnaceActivity extends Activity {
             dh.createCraftingInterface(
                     (RelativeLayout) findViewById(R.id.furnace),
                     (TableLayout) findViewById(R.id.ingredientsTable),
-                    (HorizontalDots) findViewById(R.id.horizontalIndicator),
                     mViewFlipper,
-                    numberOfItems,
                     Constants.STATE_NORMAL);
+
+            HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }

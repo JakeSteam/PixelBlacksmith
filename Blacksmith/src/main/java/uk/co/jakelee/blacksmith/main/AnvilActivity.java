@@ -96,12 +96,13 @@ public class AnvilActivity extends Activity {
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.anvil),
                 (TableLayout) findViewById(R.id.ingredientsTable),
-                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 mViewFlipper,
-                numberOfItems,
                 Constants.STATE_UNFINISHED);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void closePopup(View view) {
@@ -169,10 +170,11 @@ public class AnvilActivity extends Activity {
             dh.createCraftingInterface(
                     (RelativeLayout) findViewById(R.id.anvil),
                     (TableLayout) findViewById(R.id.ingredientsTable),
-                    (HorizontalDots) findViewById(R.id.horizontalIndicator),
                     mViewFlipper,
-                    numberOfItems,
                     Constants.STATE_UNFINISHED);
+
+            HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
