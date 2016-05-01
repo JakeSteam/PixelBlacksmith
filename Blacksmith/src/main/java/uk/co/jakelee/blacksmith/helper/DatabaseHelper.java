@@ -84,7 +84,7 @@ public class DatabaseHelper {
 
         List<Item> powders = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_POWDERS)).list();
         for (Item powder : powders) {
-            powder.setLevel(20);
+            powder.setLevel(10);
         }
         Item.saveInTx(powders);
 
