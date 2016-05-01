@@ -76,7 +76,7 @@
             android:background="@drawable/button_wide"
             android:clickable="true"
             android:gravity="center"
-            android:onClick="closeTrade"
+            android:onClick="closePopup"
             android:text="@string/finishText"
             android:textSize="35sp"
             app:layout_marginBottomPercent="2%"

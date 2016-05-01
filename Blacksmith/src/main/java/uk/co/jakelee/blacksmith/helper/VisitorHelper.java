@@ -263,9 +263,9 @@ public class VisitorHelper {
     public static String multiplierToPercent(double multiplier) {
         double difference = multiplier - 1.00;
         double percent = difference * 100;
-        int roundedPercent = (int) percent;
+        int roundedPercent = (int) Math.ceil(percent);
 
-        if (percent >= 0) {
+        if (roundedPercent >= 0) {
             return "+" + String.valueOf(roundedPercent) + "%";
         } else {
             return "-" + String.valueOf(roundedPercent) + "%";

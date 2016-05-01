@@ -145,7 +145,7 @@ public class Visitor_Type extends SugarRecord {
 
     public double getDisplayedBonus(Inventory invent) {
         Item item = Item.findById(Item.class, invent.getItem());
-        int bonus = 100;
+        double bonus = 100;
 
         if (invent.getState() == getStatePreferred() && isStateDiscovered()) {
             bonus *= getStateMultiplier();
@@ -157,7 +157,7 @@ public class Visitor_Type extends SugarRecord {
             bonus *= getTypeMultiplier();
         }
 
-        return (double) bonus / (double) 100;
+        return bonus / (double) 100;
     }
 
     public double getBonus(Inventory invent) {
