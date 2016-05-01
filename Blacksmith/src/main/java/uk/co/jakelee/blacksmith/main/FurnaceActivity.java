@@ -48,7 +48,7 @@ public class FurnaceActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createFurnaceInterface();
+        createFurnaceInterface(true);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_6_FURNACE) {
             startTutorial();
@@ -76,14 +76,14 @@ public class FurnaceActivity extends Activity {
         th.start(this);
     }
 
-    private void createFurnaceInterface() {
+    private void createFurnaceInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
         numberOfItems = items.size();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
-                false,
+                clearExisting,
                 items,
                 Constants.STATE_NORMAL,
                 MainActivity.prefs.getInt("furnacePosition", 0));
@@ -126,7 +126,7 @@ public class FurnaceActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
-            createFurnaceInterface();
+            createFurnaceInterface(false);
         }
     }
 
