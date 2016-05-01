@@ -276,8 +276,8 @@
     <string name="visitorArrived">%d visitor(s) have arrived.</string>
     <string name="visitorArriving">%d visitor(s) wander into the shop...</string>
     <string name="visitorsFullRestockTime">Never!</string>
-    <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s in your inventory.</string>
-    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s and in the inventory, and a rare %3$s!</string>
+    <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s %3$sin your inventory.</string>
+    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s %3$sand in the inventory, and a rare %4$s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>

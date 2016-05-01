@@ -208,9 +208,9 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Visitor\n", 26));
         layout.addView(dh.createTextView("This screen provides an overview of the currently selected visitor.\n", 22));
         layout.addView(dh.createTextView("If their preferred item type, tier, and state have been discovered, the associated bonus will be displayed.\n", 22));
-        layout.addView(dh.createTextView("Item type: This is the item's category. For example dagger, sword, or hatchet.'\n", 22));
-        layout.addView(dh.createTextView("Item tier: This is the quality of the item's material. For example bronze, iron, or steel.'\n", 22));
-        layout.addView(dh.createTextView("Item state: This is the condition of the item. For example unfinished (shattered vial icon), normal (vial icon), or blue (sapphire icon).'\n", 22));
+        layout.addView(dh.createTextView("Item type: This is the item's category. For example dagger, sword, or hatchet.\n", 22));
+        layout.addView(dh.createTextView("Item tier: This is the quality of the item's material. For example bronze, iron, or steel.\n", 22));
+        layout.addView(dh.createTextView("Item state: This is the condition of the item. For example unfinished (shattered vial icon), normal (vial icon), or blue (sapphire icon).\n", 22));
         layout.addView(dh.createTextView("Additionally, the highest value trade with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed. If a visitor is fully completed, you'll received double the reward!\n", 22));

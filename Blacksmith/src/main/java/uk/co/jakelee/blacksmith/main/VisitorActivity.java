@@ -281,11 +281,13 @@ public class VisitorActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeavesPremium),
                     numRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), false);
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED),
+                    isFullyComplete ? "(doubled!) " : ""), false);
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL)), false);
+                    selectedItem.getFullName(Constants.STATE_NORMAL),
+                    isFullyComplete ? "(doubled!) " : ""), false);
         }
     }
 

@@ -198,7 +198,7 @@ public class GooglePlayHelper {
 
     private static byte[] createBackup() {
         Gson gson = new Gson();
-        String backupString = "";
+        String backupString;
 
         List<Inventory> inventories = Inventory.listAll(Inventory.class);
         List<Player_Info> player_infos = Player_Info.listAll(Player_Info.class);
