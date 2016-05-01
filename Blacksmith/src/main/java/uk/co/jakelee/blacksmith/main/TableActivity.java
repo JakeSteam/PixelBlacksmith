@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
@@ -28,10 +30,10 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class TableActivity extends Activity {
+    private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private static GestureHelper gh;
     private int displayedTier;
-    private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -52,6 +54,19 @@ public class TableActivity extends Activity {
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_10_TABLE) {
             startTutorial();
         }
+
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                dh.createCraftingInterface(
+                        (RelativeLayout) findViewById(R.id.table),
+                        (TableLayout) findViewById(R.id.ingredientsTable),
+                        mViewFlipper,
+                        Constants.STATE_NORMAL);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
     }
 
     @Override
@@ -60,6 +75,7 @@ public class TableActivity extends Activity {
 
         MainActivity.prefs.edit().putInt("tableTier", displayedTier).apply();
         MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+        handler.removeCallbacksAndMessages(null);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -84,7 +100,6 @@ public class TableActivity extends Activity {
                 String.valueOf(displayedTier)};
         List<Item> items = Item.find(Item.class, "(type BETWEEN ? AND ? OR type = ?) AND tier = ?", parameters, "", "level ASC", "");
 
-        numberOfItems = items.size();
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,

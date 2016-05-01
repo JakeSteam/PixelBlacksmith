@@ -35,7 +35,6 @@ public class EnchantingActivity extends Activity {
     private static DisplayHelper dh;
     private static GestureHelper gh;
     private int displayedTier;
-    private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -75,8 +74,6 @@ public class EnchantingActivity extends Activity {
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
                 Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
 
-        numberOfItems = items.size();
-
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
@@ -87,7 +84,7 @@ public class EnchantingActivity extends Activity {
         // Horizontal selector
         int currentItemPosition = mViewFlipper.getDisplayedChild();
         HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-        horizontalBar.addDots(dh, numberOfItems, currentItemPosition);
+        horizontalBar.addDots(dh, mViewFlipper.getChildCount(), currentItemPosition);
 
         // Display item name and description
         View enchanting = findViewById(R.id.enchanting);
@@ -237,7 +234,7 @@ public class EnchantingActivity extends Activity {
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
 
             HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
+            horizontalBar.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }
