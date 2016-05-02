@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     Trader_Stock.restockTraders();
                     boolean taxPaid = PremiumHelper.payOutTax();
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
+                    ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);

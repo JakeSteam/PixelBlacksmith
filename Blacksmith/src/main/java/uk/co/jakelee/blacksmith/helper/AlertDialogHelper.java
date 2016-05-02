@@ -90,7 +90,7 @@ public class AlertDialogHelper {
                         ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
                     }
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.bribeFailure), true);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.bribeFailure), true);
                 }
             }
         });
@@ -123,7 +123,7 @@ public class AlertDialogHelper {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissComplete), true);
                     activity.finish();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure), true);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure), true);
                 }
             }
         });
@@ -148,7 +148,7 @@ public class AlertDialogHelper {
                 if (traderResponse == Constants.SUCCESS) {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -174,7 +174,7 @@ public class AlertDialogHelper {
                 if (traderResponse == Constants.SUCCESS) {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -210,7 +210,7 @@ public class AlertDialogHelper {
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
                 activity.alertDialogCallback();
             }
@@ -237,7 +237,7 @@ public class AlertDialogHelper {
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
                 activity.alertDialogCallback();
             }
@@ -300,7 +300,7 @@ public class AlertDialogHelper {
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
                 activity.alertDialogCallback();
             }

@@ -108,7 +108,7 @@ public class InventoryActivity extends Activity {
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse), false);
         }
         updateInventoryTable();
         dh.updateCoins(Inventory.getCoins());

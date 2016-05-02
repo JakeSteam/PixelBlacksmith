@@ -196,7 +196,7 @@ public class EnchantingActivity extends Activity {
 
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
@@ -220,7 +220,7 @@ public class EnchantingActivity extends Activity {
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
         }
     }
 

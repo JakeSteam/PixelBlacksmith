@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +20,24 @@ public class ToastHelper {
     }
 
     public static void showToast(Context context, int length, String text, boolean saveToLog) {
+        showToast(context, length, text, saveToLog, R.color.lightBrown);
+    }
+
+    public static void showErrorToast(Context context, int length, String text, boolean saveToLog) {
+        showToast(context, length, text, saveToLog, R.color.holo_red_dark);
+    }
+
+    public static void showPositiveToast(Context context, int length, String text, boolean saveToLog) {
+        showToast(context, length, text, saveToLog, R.color.holo_green_dark);
+    }
+
+    public static void showToast(Context context, int length, String text, boolean saveToLog, int color) {
         cancelCurrentToast();
 
         LayoutInflater inflater = LayoutInflater.from(context.getApplicationContext());
         View inflatedView = inflater.inflate(R.layout.custom_toast, null);
-        View toastLayout = inflatedView.findViewById(R.id.toast);
+        LinearLayout toastLayout = (LinearLayout) inflatedView.findViewById(R.id.toast);
+        toastLayout.setBackgroundResource(color);
 
         TextView textView = (TextView) toastLayout.findViewById(R.id.text);
         textView.setText(text);

@@ -130,7 +130,7 @@ public class FurnaceActivity extends Activity {
         while (successful && quantitySmelted < maxCrafts) {
             int smeltResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_FURNACE);
             if (smeltResponse != Constants.SUCCESS) {
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse), false);
+                ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse), false);
                 successful = false;
             } else {
                 quantitySmelted++;

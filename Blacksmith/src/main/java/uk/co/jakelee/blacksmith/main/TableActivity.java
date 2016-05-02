@@ -136,7 +136,7 @@ public class TableActivity extends Activity {
         while (successful && quantityCrafted < maxCrafts) {
             int craftResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_TABLE);
             if (craftResponse != Constants.SUCCESS) {
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse), false);
+                ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse), false);
                 successful = false;
             } else {
                 quantityCrafted++;

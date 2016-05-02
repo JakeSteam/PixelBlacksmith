@@ -140,10 +140,10 @@ public class GooglePlayHelper {
                             currentTask = "saving";
                         }
                     } catch (IOException e) {
-                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
+                        ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
                     }
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
                 }
 
                 return result.getStatus().getStatusCode();
@@ -151,7 +151,7 @@ public class GooglePlayHelper {
 
             @Override
             protected void onPostExecute(Integer status) {
-                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask), true);
+                ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask), true);
             }
         };
 
