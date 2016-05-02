@@ -134,53 +134,59 @@ public class DisplayHelper {
     }
 
     public void populateSlots(View parentView) {
-        List<Location> locations = Location.listAll(Location.class);
-        for (Location location : locations) {
-            populateSlot(location.getId(), parentView);
+        if (Pending_Inventory.count(Pending_Inventory.class) > 0) {
+            List<Location> locations = Location.listAll(Location.class);
+            for (Location location : locations) {
+                populateSlot(location.getId(), parentView);
+            }
         }
     }
 
     private void populateSlot(long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
-        int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
-        int numSlots = Slot.getUnlockedSlots(locationID);
+        if (pendingItems.size() > 0) {
+            int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
+            int numSlots = Slot.getUnlockedSlots(locationID);
 
-        GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
-        emptySlotContainer(slotContainer);
+            GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
+            emptySlotContainer(slotContainer);
 
-        int slotIndex = 0;
-        int finishedItems = 0;
-        final List<Pending_Inventory> completedItems = new ArrayList<>();
-        for (Pending_Inventory pendingItem : pendingItems) {
-            RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
-            ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
-            TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
+            int slotIndex = 0;
+            int finishedItems = 0;
+            final List<Pending_Inventory> completedItems = new ArrayList<>();
+            for (Pending_Inventory pendingItem : pendingItems) {
+                RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
+                ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
+                TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
 
-            long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
-            long currentTime = System.currentTimeMillis();
+                long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
+                long currentTime = System.currentTimeMillis();
 
-            if (itemFinishTime <= currentTime) {
-                completedItems.add(pendingItem);
-                finishedItems++;
-            } else {
-                int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
+                if (itemFinishTime <= currentTime) {
+                    completedItems.add(pendingItem);
+                    finishedItems++;
+                } else {
+                    int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
-                slotIndex++;
+                    slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                    slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                    slotIndex++;
+                }
+            }
+            RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
+            displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
+
+            if (completedItems.size() > 0) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        for (Pending_Inventory item : completedItems) {
+                            Inventory.addItem(item);
+                        }
+                        Pending_Inventory.deleteInTx(completedItems);
+                    }
+                }).start();
             }
         }
-        RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
-        displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
-
-        new Thread(new Runnable() {
-            public void run() {
-                for (Pending_Inventory item : completedItems) {
-                    Inventory.addItem(item);
-                }
-                Pending_Inventory.deleteInTx(completedItems);
-            }
-        }).start();
     }
 
     private void displayOverflow(RelativeLayout lockedSlot, int numItems, int numSlots, int finishedItems) {
