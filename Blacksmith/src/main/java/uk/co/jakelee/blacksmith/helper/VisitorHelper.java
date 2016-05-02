@@ -301,4 +301,10 @@ public class VisitorHelper {
                 multiplier,
                 preferred), false);
     }
+
+    public static long getTimeUntilSpawn() {
+        long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
+        long unixNextSpawn = unixSpawned + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
+        return unixNextSpawn - System.currentTimeMillis();
+    }
 }

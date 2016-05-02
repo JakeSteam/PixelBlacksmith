@@ -77,7 +77,9 @@ public class AlertDialogHelper {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
-        alertDialog.setMessage(String.format(context.getString(R.string.bribeQuestion), visitorCost));
+        alertDialog.setMessage(String.format(context.getString(R.string.bribeQuestion),
+                visitorCost,
+                DateHelper.getMinsSecsRemaining(VisitorHelper.getTimeUntilSpawn())));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.bribeConfirm), new DialogInterface.OnClickListener() {

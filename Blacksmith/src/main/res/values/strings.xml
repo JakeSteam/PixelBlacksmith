@@ -159,7 +159,7 @@
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
     <string name="overflowText">+ %d</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
