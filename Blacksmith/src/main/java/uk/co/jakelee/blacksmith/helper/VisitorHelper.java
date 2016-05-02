@@ -1,6 +1,9 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.content.Context;
 import android.util.Pair;
+import android.view.View;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -288,5 +292,13 @@ public class VisitorHelper {
 
         int playerLevel = Player_Info.getPlayerLevel();
         return playerLevel * 10 * unfulfilledDemands;
+    }
+
+    public static void displayPreference(Context context, View view, int string, String preferred) {
+        String multiplier = (String) view.getTag(R.id.multiplier);
+
+        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(string),
+                multiplier,
+                preferred), false);
     }
 }

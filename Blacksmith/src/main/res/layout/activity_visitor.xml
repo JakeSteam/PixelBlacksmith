@@ -87,7 +87,8 @@
             android:background="@drawable/slot"
             app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%" />
+            app:layout_widthPercent="18%"
+            android:onClick="typeClick"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/typeMultiplier"
@@ -110,7 +111,8 @@
             android:background="@drawable/slot"
             app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%" />
+            app:layout_widthPercent="18%"
+            android:onClick="tierClick" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tierMultiplier"
@@ -133,7 +135,8 @@
             android:background="@drawable/slot"
             app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%" />
+            app:layout_widthPercent="18%"
+            android:onClick="stateClick" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/stateMultiplier"

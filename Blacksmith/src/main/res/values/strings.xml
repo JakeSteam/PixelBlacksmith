@@ -133,6 +133,11 @@
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
 
+    <string name="tierPreference">This customer gives a %1$s bonus for items made out of %2$s.</string>
+    <string name="typePreference">This customer gives a %1$s bonus for %2$ss.</string>
+    <string name="statePreference">This customer gives a %1$s bonus for items in a %2$s condition.</string>
+    <string name="undiscoveredPreference">You haven\'t discovered this preference yet! Try selling different items to discover them.</string>
+
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>

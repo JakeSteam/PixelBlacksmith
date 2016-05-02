@@ -36,6 +36,9 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Tier;
+import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -144,6 +147,8 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("type" + visitorType.getTypePreferred(), "drawable", getApplicationContext().getPackageName());
             typePic.setImageResource(typeDrawableId);
+            typePic.setTag(R.id.preferred, visitorType.getTypePreferred());
+            typePic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
             typeMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
         }
 
@@ -153,6 +158,8 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("tier" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
             tierPic.setImageResource(typeDrawableId);
+            tierPic.setTag(R.id.preferred, visitorType.getTierPreferred());
+            tierPic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
             tierMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
         }
 
@@ -162,6 +169,8 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getStatePreferred(), "drawable", getApplicationContext().getPackageName());
             statePic.setImageResource(typeDrawableId);
+            statePic.setTag(R.id.preferred, visitorType.getStatePreferred());
+            statePic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
             stateMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
         }
 
@@ -314,6 +323,33 @@ public class VisitorActivity extends Activity {
         Inventory.addItem(preferredItem.getId(), preferredState, Constants.TROPHY_ITEM_REWARDS);
 
         return preferredItem;
+    }
+
+    public void tierClick(View view) {
+        if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.undiscoveredPreference, false);
+        } else {
+            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
+        }
+    }
+
+    public void typeClick(View view) {
+        if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.undiscoveredPreference, false);
+        } else {
+            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
+        }
+    }
+
+    public void stateClick(View view) {
+        if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.undiscoveredPreference, false);
+        } else {
+            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+        }
     }
 
     public void openHelp(View view) {
