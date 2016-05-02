@@ -184,14 +184,15 @@ public class DisplayHelper {
     }
 
     private void displayOverflow(RelativeLayout lockedSlot, int numItems, int numSlots, int finishedItems) {
-        TextViewPixel overflowDisplay = (TextViewPixel) lockedSlot.findViewById(R.id.slot_overflow);
-        int overflow = (numItems - numSlots) - finishedItems;
-        if (overflow > 0) {
-            overflowDisplay.setText(String.format(getString(R.string.overflowText), overflow));
-        } else {
-            overflowDisplay.setText("");
+        if (lockedSlot != null) {
+            TextViewPixel overflowDisplay = (TextViewPixel) lockedSlot.findViewById(R.id.slot_overflow);
+            int overflow = (numItems - numSlots) - finishedItems;
+            if (overflow > 0) {
+                overflowDisplay.setText(String.format(getString(R.string.overflowText), overflow));
+            } else {
+                overflowDisplay.setText("");
+            }
         }
-
     }
 
     private void emptySlotContainer(GridLayout slotContainer) {
@@ -379,11 +380,16 @@ public class DisplayHelper {
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {
-        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        int adjustedWidth = convertDpToPixel(width);
-        int adjustedHeight = convertDpToPixel(height);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
-        return new BitmapDrawable(context.getResources(), resizedImage);
+        try {
+            Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+            int adjustedWidth = convertDpToPixel(width);
+            int adjustedHeight = convertDpToPixel(height);
+            Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
+            return new BitmapDrawable(context.getResources(), resizedImage);
+        } catch (OutOfMemoryError e) {
+            ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.lowMemory), false);
+            return new BitmapDrawable();
+        }
     }
 
     public int convertDpToPixel(int dp) {

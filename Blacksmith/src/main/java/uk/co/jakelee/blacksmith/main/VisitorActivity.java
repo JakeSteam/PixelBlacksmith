@@ -78,9 +78,14 @@ public class VisitorActivity extends Activity {
 
         if (visitorId > 0) {
             visitor = Visitor.findById(Visitor.class, visitorId);
-            visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
-            visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
-            createVisitorInterface();
+            if (visitor != null) {
+                visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
+                visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
+            }
+
+            if (visitorType != null && visitorStats != null) {
+                createVisitorInterface();
+            }
         }
 
         if (TutorialHelper.currentlyInTutorial) {
@@ -267,7 +272,7 @@ public class VisitorActivity extends Activity {
             MainActivity.needToRedrawVisitors = true;
             closePopup(view);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure, false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, getString(R.string.visitorCompleteFailure), false);
         }
     }
 
