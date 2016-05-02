@@ -103,7 +103,7 @@ public class StatisticsActivity extends Activity {
         int totalSlots = (int) Slot.count(Slot.class);
         ((TextViewPixel) findViewById(R.id.slotsUnlocked)).setText(String.format(getString(R.string.genericProgress), slotsUnlocked, totalSlots));
 
-        int itemsSeen = (int) Select.from(Inventory.class).groupBy("item").count();
+        int itemsSeen = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
         int totalItems = (int) Item.count(Item.class);
         ((TextViewPixel) findViewById(R.id.itemsSeen)).setText(String.format(getString(R.string.genericProgress), itemsSeen, totalItems));
 
