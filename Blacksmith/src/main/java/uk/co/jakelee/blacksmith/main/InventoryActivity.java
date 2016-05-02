@@ -71,7 +71,9 @@ public class InventoryActivity extends Activity {
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
 
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
+            sell.setClickable(true);
+            sell.setTextColor(getResources().getColorStateList(R.color.text_color));
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell_small);
 
