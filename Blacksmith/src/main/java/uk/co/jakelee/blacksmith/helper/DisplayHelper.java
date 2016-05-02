@@ -463,7 +463,7 @@ public class DisplayHelper {
         Long numSlots = Select.from(Slot.class).where(
                 Condition.prop("level").eq(newLevel)).count();
         Long numStates = Select.from(State.class).where(
-                Condition.prop("level").eq(newLevel)).count();
+                Condition.prop("minimum_level").eq(newLevel)).count();
 
         return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
