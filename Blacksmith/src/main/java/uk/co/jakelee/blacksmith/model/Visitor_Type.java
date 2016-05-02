@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 
@@ -201,6 +203,25 @@ public class Visitor_Type extends SugarRecord {
 
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_ITEM_VALUE, value);
         }
+    }
+
+    public static int getPreferencesDiscovered() {
+        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
+        int preferencesDiscovered = 0;
+
+        for (Visitor_Type visitor : visitors) {
+            if (visitor.isTierDiscovered()) {
+                preferencesDiscovered++;
+            }
+            if (visitor.isTypeDiscovered()) {
+                preferencesDiscovered++;
+            }
+            if (visitor.isStateDiscovered()) {
+                preferencesDiscovered++;
+            }
+        }
+
+        return preferencesDiscovered;
     }
 }
 

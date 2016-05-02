@@ -308,6 +308,8 @@
     <string name="statisticsTraderStocks">Trader Stocks Unlocked:</string>
     <string name="statisticsSlotsUnlocked">Slots Unlocked:</string>
     <string name="statisticsItemsSeen">Items Seen:</string>
+    <string name="statisticsPreferencesDiscovered">Preferences Discovered:</string>
+    <string name="statisticsTrophies">Trophies:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
