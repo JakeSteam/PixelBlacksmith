@@ -36,6 +36,9 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Tier;
+import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -75,9 +78,14 @@ public class VisitorActivity extends Activity {
 
         if (visitorId > 0) {
             visitor = Visitor.findById(Visitor.class, visitorId);
-            visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
-            visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
-            createVisitorInterface();
+            if (visitor != null) {
+                visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
+                visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
+            }
+
+            if (visitorType != null && visitorStats != null) {
+                createVisitorInterface();
+            }
         }
 
         if (TutorialHelper.currentlyInTutorial) {
@@ -144,6 +152,8 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("type" + visitorType.getTypePreferred(), "drawable", getApplicationContext().getPackageName());
             typePic.setImageResource(typeDrawableId);
+            typePic.setTag(R.id.preferred, visitorType.getTypePreferred());
+            typePic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
             typeMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
         }
 
@@ -153,6 +163,8 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("tier" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
             tierPic.setImageResource(typeDrawableId);
+            tierPic.setTag(R.id.preferred, visitorType.getTierPreferred());
+            tierPic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
             tierMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
         }
 
@@ -162,6 +174,8 @@ public class VisitorActivity extends Activity {
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getStatePreferred(), "drawable", getApplicationContext().getPackageName());
             statePic.setImageResource(typeDrawableId);
+            statePic.setTag(R.id.preferred, visitorType.getStatePreferred());
+            statePic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
             stateMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
         }
 
@@ -207,7 +221,10 @@ public class VisitorActivity extends Activity {
             ImageView criteriaStatus = new ImageView(getApplicationContext());
             criteriaStatus.setImageDrawable(statusDrawable);
 
-            String criteriaText = demandCriteria.getName() + ": " + Visitor_Demand.getCriteriaName(demand);
+            String criteriaText = String.format(getString(R.string.visitorDemand),
+                    demand.getQuantity() - demand.getQuantityProvided(),
+                    demandCriteria.getName(),
+                    Visitor_Demand.getCriteriaName(demand));
             TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
             criteriaValue.setHeight(dh.convertDpToPixel(35));
             criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
@@ -253,9 +270,9 @@ public class VisitorActivity extends Activity {
             int numVisitors = Player_Info.getVisitorsCompleted();
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
             MainActivity.needToRedrawVisitors = true;
-            closeVisitor(view);
+            closePopup(view);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorCompleteFailure, false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, getString(R.string.visitorCompleteFailure), false);
         }
     }
 
@@ -281,11 +298,13 @@ public class VisitorActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeavesPremium),
                     numRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), false);
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED),
+                    isFullyComplete ? "(doubled!) " : ""), false);
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL)), false);
+                    selectedItem.getFullName(Constants.STATE_NORMAL),
+                    isFullyComplete ? "(doubled!) " : ""), false);
         }
     }
 
@@ -311,13 +330,40 @@ public class VisitorActivity extends Activity {
         return preferredItem;
     }
 
+    public void tierClick(View view) {
+        if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.undiscoveredPreference, false);
+        } else {
+            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
+        }
+    }
+
+    public void typeClick(View view) {
+        if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.undiscoveredPreference, false);
+        } else {
+            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
+        }
+    }
+
+    public void stateClick(View view) {
+        if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.undiscoveredPreference, false);
+        } else {
+            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+        }
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Visitor);
         startActivity(intent);
     }
 
-    public void closeVisitor(View view) {
+    public void closePopup(View view) {
         finish();
     }
 }

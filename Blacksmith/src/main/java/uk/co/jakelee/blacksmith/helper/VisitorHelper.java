@@ -1,6 +1,9 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.content.Context;
 import android.util.Pair;
+import android.view.View;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -117,7 +121,8 @@ public class VisitorHelper {
                 break;
         }
 
-        int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, Constants.MAXIMUM_QUANTITY);
+        int maxQuantity = (criteria.getName().equals("State") ? Constants.MAXIMUM_QUANTITY_STATE : Constants.MAXIMUM_QUANTITY);
+        int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, maxQuantity);
         boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE));
 
         // Check if the current criteria already exists. If it does, try again.
@@ -263,9 +268,9 @@ public class VisitorHelper {
     public static String multiplierToPercent(double multiplier) {
         double difference = multiplier - 1.00;
         double percent = difference * 100;
-        int roundedPercent = (int) percent;
+        int roundedPercent = (int) Math.ceil(percent);
 
-        if (percent >= 0) {
+        if (roundedPercent >= 0) {
             return "+" + String.valueOf(roundedPercent) + "%";
         } else {
             return "-" + String.valueOf(roundedPercent) + "%";
@@ -287,5 +292,20 @@ public class VisitorHelper {
 
         int playerLevel = Player_Info.getPlayerLevel();
         return playerLevel * 10 * unfulfilledDemands;
+    }
+
+    public static void displayPreference(Context context, View view, int string, String preferred) {
+        String multiplier = (String) view.getTag(R.id.multiplier);
+
+        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(string),
+                multiplier,
+                preferred), false);
+    }
+
+    public static long getTimeUntilSpawn() {
+        long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
+        long unixNextSpawn = unixSpawned + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
+        long timeLeft = unixNextSpawn - System.currentTimeMillis();
+        return (timeLeft > 0 ? timeLeft : 0);
     }
 }

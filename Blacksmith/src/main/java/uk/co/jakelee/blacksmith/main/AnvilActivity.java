@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
@@ -30,10 +32,10 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class AnvilActivity extends Activity {
+    private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private static GestureHelper gh;
     private int displayedTier;
-    private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -54,6 +56,19 @@ public class AnvilActivity extends Activity {
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
             startTutorial();
         }
+
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                dh.createCraftingInterface(
+                        (RelativeLayout) findViewById(R.id.anvil),
+                        (TableLayout) findViewById(R.id.ingredientsTable),
+                        mViewFlipper,
+                        Constants.STATE_UNFINISHED);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
     }
 
     @Override
@@ -62,6 +77,7 @@ public class AnvilActivity extends Activity {
 
         MainActivity.prefs.edit().putInt("anvilTier", displayedTier).apply();
         MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
+        handler.removeCallbacksAndMessages(null);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -84,7 +100,6 @@ public class AnvilActivity extends Activity {
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
                 Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
-        numberOfItems = items.size();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
@@ -96,12 +111,13 @@ public class AnvilActivity extends Activity {
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.anvil),
                 (TableLayout) findViewById(R.id.ingredientsTable),
-                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 mViewFlipper,
-                numberOfItems,
                 Constants.STATE_UNFINISHED);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void closePopup(View view) {
@@ -125,7 +141,7 @@ public class AnvilActivity extends Activity {
         while (successful && quantityCrafted < maxCrafts) {
             int craftResponse = Inventory.tryCreateItem(itemID, Constants.STATE_UNFINISHED, Constants.LOCATION_ANVIL);
             if (craftResponse != Constants.SUCCESS) {
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse), false);
+                ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse), false);
                 successful = false;
             } else {
                 quantityCrafted++;
@@ -136,7 +152,6 @@ public class AnvilActivity extends Activity {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_UNFINISHED)), false);
-            createAnvilInterface(false);
         }
     }
 
@@ -169,10 +184,11 @@ public class AnvilActivity extends Activity {
             dh.createCraftingInterface(
                     (RelativeLayout) findViewById(R.id.anvil),
                     (TableLayout) findViewById(R.id.ingredientsTable),
-                    (HorizontalDots) findViewById(R.id.horizontalIndicator),
                     mViewFlipper,
-                    numberOfItems,
                     Constants.STATE_UNFINISHED);
+
+            HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+            horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }

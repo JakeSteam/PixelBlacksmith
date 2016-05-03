@@ -92,7 +92,7 @@ public class UpgradeActivity extends Activity {
             Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
             createUpgradeInterface();
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
         }
     }
 

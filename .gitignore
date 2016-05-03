@@ -6,3 +6,6 @@
 /build
 /captures
 sh.exe.stackdump
+Blacksmith/Blacksmith.iml
+BaseGameUtils/BaseGameUtils.iml
+.idea/misc.xml

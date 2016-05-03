@@ -140,10 +140,10 @@ public class GooglePlayHelper {
                             currentTask = "saving";
                         }
                     } catch (IOException e) {
-                        ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
+                        ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
                     }
                 } else {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
                 }
 
                 return result.getStatus().getStatusCode();
@@ -151,7 +151,7 @@ public class GooglePlayHelper {
 
             @Override
             protected void onPostExecute(Integer status) {
-                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask), true);
+                ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask), true);
             }
         };
 
@@ -198,7 +198,7 @@ public class GooglePlayHelper {
 
     private static byte[] createBackup() {
         Gson gson = new Gson();
-        String backupString = "";
+        String backupString;
 
         List<Inventory> inventories = Inventory.listAll(Inventory.class);
         List<Player_Info> player_infos = Player_Info.listAll(Player_Info.class);

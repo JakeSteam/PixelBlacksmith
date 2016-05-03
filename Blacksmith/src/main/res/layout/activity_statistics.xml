@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/statisticsTitle"
             android:layout_marginBottom="10dp"
-            app:layout_marginTopPercent="8%">
+            app:layout_marginTopPercent="8%"
+            android:fadeScrollbars="false">
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -374,6 +375,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
+                    android:text="@string/statisticsPreferencesDiscovered"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/preferencesDiscovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsTrophies"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/trophies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
                     android:text="@string/statisticsPrestige"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -424,20 +457,22 @@
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/help"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="closePopup"
-        android:src="@drawable/close" />
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/close"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="openHelp"
-        android:src="@drawable/help" />
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
 </RelativeLayout>

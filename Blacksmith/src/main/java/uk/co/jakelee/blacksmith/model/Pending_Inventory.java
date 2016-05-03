@@ -39,26 +39,23 @@ public class Pending_Inventory extends SugarRecord {
                 .orderBy("time_created ASC").list();
     }
 
-    public static void addItem(Long itemId, long state, int quantity, Long location) {
-        Item item = Item.findById(Item.class, itemId);
-        int craftTimeMultiplier = Upgrade.getValue("Craft Time");
-        int craftTime = item.getModifiedValue(state) * craftTimeMultiplier;
-
+    public static void addItem(Long itemID, long state, int quantity, Long location) {
         long time = System.currentTimeMillis();
-
-        Pending_Inventory newItem = new Pending_Inventory(itemId, state, time, quantity, craftTime, location);
-        newItem.save();
+        addPendingInventory(itemID, state, quantity, location, time);
     }
 
-    public static void addScheduledItem(Long itemId, long state, int quantity, Long location) {
-        Item item = Item.findById(Item.class, itemId);
-        int craftTimeMultiplier = Upgrade.getValue("Craft Time");
-        int craftTime = item.getModifiedValue(state) * craftTimeMultiplier;
-
+    public static void addScheduledItem(Long itemID, long state, int quantity, Long location) {
         long timeSlotAvailable = getTimeSlotAvailable(location);
+        addPendingInventory(itemID, state, quantity, location, timeSlotAvailable);
+    }
 
-        Pending_Inventory newScheduledItem = new Pending_Inventory(itemId, state, timeSlotAvailable, quantity, craftTime, location);
-        newScheduledItem.save();
+    private static void addPendingInventory(Long itemID, long state, int quantity, Long location, long startTime) {
+        Item item = Item.findById(Item.class, itemID);
+        int craftTimeMultiplier = Upgrade.getValue("Craft Time");
+        int craftTime = item.getModifiedValue(state) * quantity * craftTimeMultiplier;
+
+        Pending_Inventory newItem = new Pending_Inventory(itemID, state, startTime, quantity, craftTime, location);
+        newItem.save();
     }
 
     public static long getTimeSlotAvailable(Long location) {

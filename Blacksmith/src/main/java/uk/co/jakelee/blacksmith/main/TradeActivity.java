@@ -230,7 +230,7 @@ public class TradeActivity extends Activity {
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse), false);
         }
 
         dh.updateCoins(Inventory.getCoins());
@@ -267,7 +267,7 @@ public class TradeActivity extends Activity {
         startActivity(intent);
     }
 
-    public void closeTrade(View view) {
+    public void closePopup(View view) {
         finish();
     }
 

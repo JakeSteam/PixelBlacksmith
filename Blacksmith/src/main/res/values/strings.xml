@@ -133,6 +133,11 @@
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
 
+    <string name="tierPreference">This customer gives a %1$s bonus for items made out of %2$s.</string>
+    <string name="typePreference">This customer gives a %1$s bonus for %2$ss.</string>
+    <string name="statePreference">This customer gives a %1$s bonus for items in a %2$s condition.</string>
+    <string name="undiscoveredPreference">You haven\'t discovered this preference yet! Try selling different items to discover them.</string>
+
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
@@ -147,14 +152,14 @@
 \n- +20% current XP bonus.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
-\n- Gold tax paid by all traders on restock.
+\n- Gold tax paid by all traders on automatic restock.
 \n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.
 \n- A big thank you from the developer!</string>
 
-    <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), and %4$d slot(s).</string>
+    <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
     <string name="overflowText">+ %d</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %d coins to come in immediately?</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
@@ -174,9 +179,12 @@
 
     <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$d coin(s), or up to %3$d for %4$d coin(s) each?</string>
     <string name="itemBuy1Confirm">Buy 1</string>
-    <string name="itemBuyAllConfirm">Buy All</string>
     <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
     <string name="itemBuyCancel">Cancel</string>
+    <string name="itemBuyAllConfirm">Buy All</string>
+    <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$d coins?</string>
+    <string name="itemBuyAllComplete">Successfully bought %d items!</string>
+    <string name="itemBuyAllNoItems">You can\'t buy all of nothing!</string>
 
     <string name="trophyVisits">Visits: %d</string>
     <string name="trophyFirstSeen">First seen: %s</string>
@@ -196,6 +204,7 @@
     <string name="horizontalDotsUnselected">o</string>
 
     <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
+    <string name="visitorDemand" translatable="false">%1$dx %2$s: %3$s</string>
 
     <string name="supportCode">Support Code</string>
 
@@ -228,8 +237,8 @@
 
     <string name="restockText">Restock</string>
     <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>
-    <string name="restockTextWithPremium">All traders have been restocked, and have paid a tax of %s!</string>
-    <string name="restockTextNoPremium">All traders have been restocked!</string>
+    <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %s!</string>
+    <string name="restockTextNoTax">All traders have been restocked!</string>
     <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
     <string name="traderRestockConfirm">Restock</string>
     <string name="traderRestockComplete">Restocked trader for %d coins.</string>
@@ -267,7 +276,7 @@
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
     <string name="restockMarketButton">Restock</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
-    <string name="powderAdd">Began crushing the %s into a fine powder.</string>
+    <string name="powderAdd">Began crushing the gem into %s.</string>
 
     <string name="traderArrived">The %s trader has arrived.</string>
 
@@ -276,8 +285,8 @@
     <string name="visitorArrived">%d visitor(s) have arrived.</string>
     <string name="visitorArriving">%d visitor(s) wander into the shop...</string>
     <string name="visitorsFullRestockTime">Never!</string>
-    <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s in your inventory.</string>
-    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s and in the inventory, and a rare %3$s!</string>
+    <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s %3$sin your inventory.</string>
+    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s %3$sand in the inventory, and a rare %4$s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
@@ -299,6 +308,8 @@
     <string name="statisticsTraderStocks">Trader Stocks Unlocked:</string>
     <string name="statisticsSlotsUnlocked">Slots Unlocked:</string>
     <string name="statisticsItemsSeen">Items Seen:</string>
+    <string name="statisticsPreferencesDiscovered">Preferences Discovered:</string>
+    <string name="statisticsTrophies">Trophies:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
@@ -309,6 +320,7 @@
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
     <string name="versionNumber">%1$s (%2$d)</string>
+    <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
 
     <string name="complete">Complete</string>
     <string name="close" translatable="false">X</string>
@@ -321,7 +333,7 @@
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
     <string name="creditsGraphics">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
-\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a> and <a href="https://twitter.com/ansimuz">@Ansimuz</a>.</string>
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, and <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>.</string>
     <string name="creditsTechnology">Technology</string>
     <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.

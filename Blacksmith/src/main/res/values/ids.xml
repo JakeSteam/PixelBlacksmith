@@ -5,4 +5,7 @@
     <item name="itemID" type="id" />
     <item name="itemState" type="id" />
     <item name="itemImage" type="id" />
+
+    <item name="preferred" type="id" />
+    <item name="multiplier" type="id" />
 </resources>

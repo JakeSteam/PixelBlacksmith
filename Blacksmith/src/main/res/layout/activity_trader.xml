@@ -89,7 +89,8 @@
             android:layout_below="@id/traderInfo"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="55dp"
-            app:layout_marginTopPercent="3%">
+            app:layout_marginTopPercent="3%"
+            android:fadeScrollbars="false">
 
             <TableLayout
                 android:id="@+id/traderItemsInfo"
@@ -101,40 +102,61 @@
 
         </ScrollView>
 
-        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/button_extra_wide"
-            android:clickable="true"
-            android:gravity="center"
-            android:onClick="clickRestock"
-            android:text="@string/restockText"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="clickRestock"
+                android:text="@string/restockText"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="clickBuyAll"
+                android:text="@string/itemBuyAllConfirm"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </LinearLayout>
 
     </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/help"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="closeTrader"
-        android:src="@drawable/close" />
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/close"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="openHelp"
-        android:src="@drawable/help" />
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
 </RelativeLayout>

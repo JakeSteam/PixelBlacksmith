@@ -68,7 +68,7 @@ public class NotificationHelper extends BroadcastReceiver {
         int notificationType = intent.getExtras().getInt(NOTIFICATION_TYPE);
         String notificationText = "";
         if (notificationType == Constants.NOTIFICATION_RESTOCK) {
-            notificationText = context.getString(R.string.restockTextNoPremium);
+            notificationText = context.getString(R.string.restockTextNoTax);
         } else if (notificationType == Constants.NOTIFICATION_VISITOR) {
             notificationText = context.getString(R.string.notificationVisitor);
         }

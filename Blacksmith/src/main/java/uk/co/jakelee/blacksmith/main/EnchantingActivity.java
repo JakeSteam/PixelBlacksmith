@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
@@ -32,10 +34,10 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class EnchantingActivity extends Activity {
+    private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private static GestureHelper gh;
     private int displayedTier;
-    private int numberOfItems;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
 
@@ -52,6 +54,16 @@ public class EnchantingActivity extends Activity {
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
         createEnchantingInterface(true);
+
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                View enchanting = findViewById(R.id.enchanting);
+                dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
     }
 
     @Override
@@ -75,8 +87,6 @@ public class EnchantingActivity extends Activity {
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
                 Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
 
-        numberOfItems = items.size();
-
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
                 clearExisting,
@@ -87,7 +97,7 @@ public class EnchantingActivity extends Activity {
         // Horizontal selector
         int currentItemPosition = mViewFlipper.getDisplayedChild();
         HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-        horizontalBar.addDots(dh, numberOfItems, currentItemPosition);
+        horizontalBar.addDots(dh, mViewFlipper.getChildCount(), currentItemPosition);
 
         // Display item name and description
         View enchanting = findViewById(R.id.enchanting);
@@ -132,19 +142,19 @@ public class EnchantingActivity extends Activity {
     }
 
     private LinearLayout createEnchantingButton(Item item) {
-        boolean haveSeen = Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL);
+        boolean displayInfo = Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL) || item.getType() == Constants.TYPE_POWDERS;
 
         LinearLayout itemButton = new LinearLayout(getApplicationContext());
         itemButton.setBackgroundResource(R.drawable.button_extra_wide);
         itemButton.setGravity(Gravity.CENTER);
 
-        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, haveSeen);
+        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, displayInfo);
         itemImage.setPadding(0, 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 
         int quantityOwned = 0;
         String itemName = getString(R.string.unknownText);
-        if (haveSeen || item.getType() == Constants.TYPE_POWDERS) {
+        if (displayInfo) {
             quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
             itemName = item.getName();
         }
@@ -179,14 +189,14 @@ public class EnchantingActivity extends Activity {
         Long powderID = (Long) v.getTag();
         Item powder = Item.findById(Item.class, powderID);
 
-        int powderResponse = Inventory.tryCreateItem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
+        int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder), false);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
 
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
@@ -210,7 +220,7 @@ public class EnchantingActivity extends Activity {
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
         }
     }
 
@@ -234,7 +244,7 @@ public class EnchantingActivity extends Activity {
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
 
             HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
-            horizontalBar.addDots(dh, numberOfItems, mViewFlipper.getDisplayedChild());
+            horizontalBar.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
             return super.onFling(startXY, finishXY, velocityX, velocityY);
         }

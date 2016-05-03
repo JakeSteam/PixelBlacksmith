@@ -30,10 +30,10 @@ import android.widget.ViewFlipper;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
@@ -44,6 +44,7 @@ import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -114,7 +115,7 @@ public class DisplayHelper {
                     slotBackground.setBackgroundResource(R.drawable.slot);
                     slotCount.setVisibility(View.VISIBLE);
                     if (slot.getLevel() > playerLevel) {
-                        slotForeground.setBackgroundResource(R.drawable.close);
+                        slotForeground.setBackgroundResource(R.drawable.lock);
                         slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
                         slotOverflow.setVisibility(View.VISIBLE);
                         displayedNextSlot = true;
@@ -133,56 +134,71 @@ public class DisplayHelper {
     }
 
     public void populateSlots(View parentView) {
-        List<Location> locations = Select.from(Location.class).list();
-        for (Location location : locations) {
-            populateSlot(location.getId(), parentView);
+        if (Pending_Inventory.count(Pending_Inventory.class) > 0) {
+            List<Location> locations = Location.listAll(Location.class);
+            for (Location location : locations) {
+                populateSlot(location.getId(), parentView);
+            }
         }
     }
 
     private void populateSlot(long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
-        int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
-        int numSlots = Slot.getUnlockedSlots(locationID);
+        if (pendingItems.size() > 0) {
+            int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
+            int numSlots = Slot.getUnlockedSlots(locationID);
 
-        GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
-        emptySlotContainer(slotContainer);
+            GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
+            emptySlotContainer(slotContainer);
 
-        int slotIndex = 0;
-        int finishedItems = 0;
-        for (Pending_Inventory pendingItem : pendingItems) {
-            RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
-            ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
-            TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
+            int slotIndex = 0;
+            int finishedItems = 0;
+            final List<Pending_Inventory> completedItems = new ArrayList<>();
+            for (Pending_Inventory pendingItem : pendingItems) {
+                RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
+                ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
+                TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
 
-            long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
-            long currentTime = System.currentTimeMillis();
+                long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
+                long currentTime = System.currentTimeMillis();
 
-            if (itemFinishTime <= currentTime) {
-                Inventory.addItem(pendingItem);
-                Pending_Inventory.delete(pendingItem);
-                finishedItems++;
-            } else {
-                int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
+                if (itemFinishTime <= currentTime) {
+                    completedItems.add(pendingItem);
+                    finishedItems++;
+                } else {
+                    int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
-                slotIndex++;
+                    slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                    slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                    slotIndex++;
+                }
+            }
+            RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
+            displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
+
+            if (completedItems.size() > 0) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        for (Pending_Inventory item : completedItems) {
+                            Inventory.addItem(item);
+                        }
+                        Pending_Inventory.deleteInTx(completedItems);
+                    }
+                }).start();
             }
         }
-
-        RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
-        displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
     }
 
     private void displayOverflow(RelativeLayout lockedSlot, int numItems, int numSlots, int finishedItems) {
-        TextViewPixel overflowDisplay = (TextViewPixel) lockedSlot.findViewById(R.id.slot_overflow);
-        int overflow = (numItems - numSlots) - finishedItems;
-        if (overflow > 0) {
-            overflowDisplay.setText(String.format(getString(R.string.overflowText), overflow));
-        } else {
-            overflowDisplay.setText("");
+        if (lockedSlot != null) {
+            TextViewPixel overflowDisplay = (TextViewPixel) lockedSlot.findViewById(R.id.slot_overflow);
+            int overflow = (numItems - numSlots) - finishedItems;
+            if (overflow > 0) {
+                overflowDisplay.setText(String.format(getString(R.string.overflowText), overflow));
+            } else {
+                overflowDisplay.setText("");
+            }
         }
-
     }
 
     private void emptySlotContainer(GridLayout slotContainer) {
@@ -370,11 +386,16 @@ public class DisplayHelper {
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {
-        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        int adjustedWidth = convertDpToPixel(width);
-        int adjustedHeight = convertDpToPixel(height);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
-        return new BitmapDrawable(context.getResources(), resizedImage);
+        try {
+            Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+            int adjustedWidth = convertDpToPixel(width);
+            int adjustedHeight = convertDpToPixel(height);
+            Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
+            return new BitmapDrawable(context.getResources(), resizedImage);
+        } catch (OutOfMemoryError e) {
+            ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.lowMemory), false);
+            return new BitmapDrawable();
+        }
     }
 
     public int convertDpToPixel(int dp) {
@@ -422,9 +443,7 @@ public class DisplayHelper {
         MainActivity.coins.setText(coinCountString);
     }
 
-    public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, HorizontalDots horizontalIndicator, ViewFlipper viewFlipper, int numberOfItems, long state) {
-        horizontalIndicator.addDots(this, numberOfItems, viewFlipper.getDisplayedChild());
-
+    public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, ViewFlipper viewFlipper, long state) {
         long currentItemID = (long) viewFlipper.getCurrentView().getTag();
         displayItemInfo(currentItemID, state, main);
         createItemIngredientsTable(currentItemID, state, ingredientsTable);
@@ -441,7 +460,7 @@ public class DisplayHelper {
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
         if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevelFromDB() + 1), true);
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevelFromDB() + 1), true);
             Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
             return true;
         }
@@ -455,8 +474,10 @@ public class DisplayHelper {
                 Condition.prop("level").eq(newLevel)).count();
         Long numSlots = Select.from(Slot.class).where(
                 Condition.prop("level").eq(newLevel)).count();
+        Long numStates = Select.from(State.class).where(
+                Condition.prop("minimum_level").eq(newLevel)).count();
 
-        return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots);
+        return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
 
     public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {

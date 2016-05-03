@@ -1,5 +1,8 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class DatabaseHelper {
     public final static int DB_EMPTY = 0;
     public final static int DB_V1_0_0 = 1;
     public final static int DB_V1_0_1 = 2;
+    public final static int DB_V1_2_0 = 3;
 
     public static void initialSQL() {
         createAchievement();
@@ -56,8 +60,34 @@ public class DatabaseHelper {
     }
 
     public static void patch100to101() {
+        // Add upgradeable restock cost
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
         restockAllCost.save();
+    }
+
+    public static void patch101to120() {
+        // Updated mithril sword description
+        Item mithrilLongsword = Item.findById(Item.class, 83L);
+        if (mithrilLongsword != null) {
+            mithrilLongsword.setDescription("This is a sword? No, longer!");
+            mithrilLongsword.save();
+        }
+
+        // Set enchanting to be L20+
+        Slot firstEnchantingSlot = Select.from(Slot.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_ENCHANTING),
+                Condition.prop("level").eq(1)).first();
+        if (firstEnchantingSlot != null) {
+            firstEnchantingSlot.setLevel(25);
+            firstEnchantingSlot.save();
+        }
+
+        List<Item> powders = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_POWDERS)).list();
+        for (Item powder : powders) {
+            powder.setLevel(10);
+        }
+        Item.saveInTx(powders);
+
     }
 
     private static void createAchievement() {

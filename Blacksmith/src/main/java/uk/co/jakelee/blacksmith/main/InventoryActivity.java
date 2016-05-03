@@ -71,7 +71,9 @@ public class InventoryActivity extends Activity {
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
 
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20, Color.BLACK);
+            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
+            sell.setClickable(true);
+            sell.setTextColor(getResources().getColorStateList(R.color.text_color));
             sell.setGravity(Gravity.CENTER);
             sell.setBackgroundResource(R.drawable.sell_small);
 
@@ -108,7 +110,7 @@ public class InventoryActivity extends Activity {
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse), false);
         }
         updateInventoryTable();
         dh.updateCoins(Inventory.getCoins());

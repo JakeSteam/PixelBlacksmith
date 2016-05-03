@@ -76,7 +76,7 @@
             android:background="@drawable/button_wide"
             android:clickable="true"
             android:gravity="center"
-            android:onClick="closeTrade"
+            android:onClick="closePopup"
             android:text="@string/finishText"
             android:textSize="35sp"
             app:layout_marginBottomPercent="2%"
@@ -121,7 +121,8 @@
             android:layout_height="match_parent"
             android:layout_above="@id/finishTrade"
             android:layout_below="@id/demandProgress"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,23 +150,24 @@
         </ScrollView>
 
     </android.support.percent.PercentRelativeLayout>
-
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/help"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="closeTrade"
-        android:src="@drawable/close" />
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/close"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:layout_marginTop="35dp"
-        android:onClick="openHelp"
-        android:src="@drawable/help" />
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
 </RelativeLayout>

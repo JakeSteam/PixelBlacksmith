@@ -111,6 +111,7 @@ public class Constants {
     public final static int MAXIMUM_DEMANDS = 7;
     public final static int MINIMUM_QUANTITY = 1;
     public final static int MAXIMUM_QUANTITY = 10;
+    public final static int MAXIMUM_QUANTITY_STATE = 3;
     public final static int MINIMUM_CRITERIA = 1;
     public final static int MAXIMUM_CRITERIA = 3;
     public final static int DEMAND_REQUIRED_PERCENTAGE = 70;

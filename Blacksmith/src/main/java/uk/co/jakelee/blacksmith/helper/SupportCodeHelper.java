@@ -47,7 +47,7 @@ public class SupportCodeHelper {
             return false;
         }
 
-        long codedTime = 0L;
+        long codedTime;
         try {
             codedTime = Long.parseLong(parts[0]);
         } catch (NumberFormatException e){

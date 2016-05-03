@@ -14,14 +14,15 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
-import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class StatisticsActivity extends Activity {
     private static DisplayHelper dh;
@@ -37,7 +38,8 @@ public class StatisticsActivity extends Activity {
 
     private void displayStatistics() {
         double completionPercent = Player_Info.getCompletionPercent();
-        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", completionPercent));
+        double modifiedCompletionPercent = completionPercent + (Player_Info.getPrestige() * 100);
+        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", modifiedCompletionPercent));
 
         int currentXP = Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
@@ -72,11 +74,9 @@ public class StatisticsActivity extends Activity {
 
         ((TextViewPixel) findViewById(R.id.nextRestock)).setText(Trader_Stock.getRestockTimeLeft());
 
-        long unixSpawned = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
-        long unixNextSpawn = unixSpawned + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
-        long unixVisitorDifference = unixNextSpawn - System.currentTimeMillis();
-        if (unixVisitorDifference > 0) {
-            ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(unixVisitorDifference));
+        long millisecondsUntilVisitor = VisitorHelper.getTimeUntilSpawn();
+        if (millisecondsUntilVisitor > 0) {
+            ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(DateHelper.getMinsSecsRemaining(millisecondsUntilVisitor));
         } else {
             ((TextViewPixel) findViewById(R.id.nextVisitorCheck)).setText(getString(R.string.visitorsFullRestockTime));
         }
@@ -103,9 +103,17 @@ public class StatisticsActivity extends Activity {
         int totalSlots = (int) Slot.count(Slot.class);
         ((TextViewPixel) findViewById(R.id.slotsUnlocked)).setText(String.format(getString(R.string.genericProgress), slotsUnlocked, totalSlots));
 
-        int itemsSeen = (int) Select.from(Inventory.class).groupBy("item").count();
+        int itemsSeen = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
         int totalItems = (int) Item.count(Item.class);
         ((TextViewPixel) findViewById(R.id.itemsSeen)).setText(String.format(getString(R.string.genericProgress), itemsSeen, totalItems));
+
+        int preferencesUnlocked = Visitor_Type.getPreferencesDiscovered();
+        int totalPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;
+        ((TextViewPixel) findViewById(R.id.preferencesDiscovered)).setText(String.format(getString(R.string.genericProgress), preferencesUnlocked, totalPreferences));
+
+        int trophiesEarned = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
+        int totalTrophies = (int) Visitor_Stats.count(Visitor_Stats.class);
+        ((TextViewPixel) findViewById(R.id.trophies)).setText(String.format(getString(R.string.genericProgress), trophiesEarned, totalTrophies));
 
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue), prestigeLevel + 1));

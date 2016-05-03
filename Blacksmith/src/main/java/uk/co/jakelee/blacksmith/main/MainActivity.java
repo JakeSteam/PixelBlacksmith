@@ -129,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements
             DatabaseHelper.patch100to101();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
         }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_1) {
+            DatabaseHelper.patch101to120();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
+        }
     }
 
     public static void startFirstTutorial() {
@@ -347,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     Trader_Stock.restockTraders();
                     boolean taxPaid = PremiumHelper.payOutTax();
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
+                    ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
@@ -358,10 +363,10 @@ public class MainActivity extends AppCompatActivity implements
 
     private String getRestockText(boolean taxPaid) {
         if (taxPaid) {
-            return String.format(getString(R.string.restockTextWithPremium),
+            return String.format(getString(R.string.restockTextWithTax),
                     PremiumHelper.getTaxAmount());
         } else {
-            return getString(R.string.restockTextNoPremium);
+            return getString(R.string.restockTextNoTax);
         }
     }
 

@@ -137,6 +137,10 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         }
     }
 
+    public void clickBuyAll(View v) {
+        AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
+    }
+
     private int getRestockCost() {
         int itemsForSale = (int) Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),
@@ -162,7 +166,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         createItemList();
     }
 
-    public void closeTrader(View view) {
+    public void closePopup(View view) {
         finish();
     }
 }

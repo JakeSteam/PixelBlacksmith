@@ -107,6 +107,8 @@ public class Player_Info extends SugarRecord {
             Slots * 10
             Trader Stocks * 1
             Item * 1
+            Visitor Preferences * 1
+            Trophies * 1
          */
         int currentlyComplete = getCurrentCompletion();
         int totalToComplete = getFullCompletion();
@@ -120,9 +122,11 @@ public class Player_Info extends SugarRecord {
         int currentTraderPoints = (10 * (int) Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count());
         int currentSlotPoints = (10 * Slot.getUnlockedCount());
         int currentTraderStockPoints = Trader_Stock.getUnlockedCount();
-        int currentItemPoints = (int) Select.from(Inventory.class).groupBy("item").count();
+        int currentItemPoints = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
+        int currentPreferences = Visitor_Type.getPreferencesDiscovered();
+        int currentTrophies = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
 
-        return currentLevelPoints + currentUpgradePoints + currentTraderPoints + currentSlotPoints + currentTraderStockPoints + currentItemPoints;
+        return currentLevelPoints + currentUpgradePoints + currentTraderPoints + currentSlotPoints + currentTraderStockPoints + currentItemPoints + currentPreferences + currentTrophies;
     }
 
     private static int getFullCompletion() {
@@ -132,8 +136,10 @@ public class Player_Info extends SugarRecord {
         int maxSlotPoints = (10 * (int) Slot.count(Slot.class));
         int maxTraderStockPoints = (int) Trader_Stock.count(Trader_Stock.class);
         int maxItemPoints = (int) Item.count(Item.class);
+        int maxPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;
+        int maxTrophies = (int) Visitor_Stats.count(Visitor_Stats.class);
 
-        return maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints;
+        return maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferences + maxTrophies;
     }
 
     public static int getXp() {
