@@ -109,6 +109,8 @@ public class Inventory extends SugarRecord implements Serializable {
             return Constants.ERROR_NO_ITEMS;
         } else if (gemInventory.getQuantity() <= 0) {
             return Constants.ERROR_NO_GEMS;
+        } else if (Slot.getUnlockedSlots(locationID) == 0) {
+            return Constants.ERROR_NO_SLOTS_ENCHANTING;
         } else {
             itemInventory.setQuantity(itemInventory.getQuantity() - 1);
             itemInventory.save();
