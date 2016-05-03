@@ -50,11 +50,12 @@ public class Visitor extends SugarRecord {
         List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
                 Condition.prop("visitor_id").eq(this.getId())).list();
 
+        boolean fullyComplete = true;
         for (Visitor_Demand demand : visitorDemands) {
             if (!demand.isDemandFulfilled()) {
-                return false;
+                fullyComplete = false;
             }
         }
-        return true;
+        return fullyComplete;
     }
 }

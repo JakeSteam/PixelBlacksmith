@@ -65,6 +65,7 @@ public class Constants {
     public static final int ERROR_NOT_ENOUGH_COINS = 9;
     public static final int ERROR_TRADER_RUN_OUT = 10;
     public static final int ERROR_MAXIMUM_UPGRADE = 11;
+    public static final int ERROR_NO_SLOTS_ENCHANTING = 12;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;

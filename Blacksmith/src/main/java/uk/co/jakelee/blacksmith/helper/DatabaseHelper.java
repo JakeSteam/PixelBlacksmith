@@ -34,6 +34,7 @@ public class DatabaseHelper {
     public final static int DB_V1_0_0 = 1;
     public final static int DB_V1_0_1 = 2;
     public final static int DB_V1_2_0 = 3;
+    public final static int DB_V1_2_1 = 4;
 
     public static void initialSQL() {
         createAchievement();
@@ -88,6 +89,16 @@ public class DatabaseHelper {
         }
         Item.saveInTx(powders);
 
+    }
+
+    public static void patch120to121() {
+        Slot firstEnchantingSlot = Select.from(Slot.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_ENCHANTING),
+                Condition.prop("level").eq(25)).first();
+        if (firstEnchantingSlot != null) {
+            firstEnchantingSlot.setLevel(10);
+            firstEnchantingSlot.save();
+        }
     }
 
     private static void createAchievement() {

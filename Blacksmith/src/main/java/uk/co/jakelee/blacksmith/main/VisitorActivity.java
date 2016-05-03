@@ -257,6 +257,7 @@ public class VisitorActivity extends Activity {
 
     public void completeVisitor(View view) {
         if (visitor.isVisitorComplete()) {
+            createVisitorReward(visitor.isVisitorFullyComplete());
             VisitorHelper.removeVisitor(visitor);
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
@@ -265,7 +266,6 @@ public class VisitorActivity extends Activity {
                 createVisitorTrophyReward(visitor);
                 ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned, true);
             }
-            createVisitorReward(visitor.isVisitorFullyComplete());
 
             int numVisitors = Player_Info.getVisitorsCompleted();
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
