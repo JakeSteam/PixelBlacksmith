@@ -165,6 +165,11 @@
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
 
+    <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$s coins?</string>
+    <string name="upgradeConfirm">Upgrade</string>
+    <string name="upgradeComplete">Upgraded %s!</string>
+    <string name="upgradeCancel">Cancel</string>
+
     <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
