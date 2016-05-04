@@ -112,6 +112,7 @@ public class EnchantingActivity extends Activity {
 
     public void goUpTier(View view) {
         if (displayedTier < Constants.TIER_MAX) {
+            MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
             createEnchantingInterface(true);
         }
@@ -119,6 +120,7 @@ public class EnchantingActivity extends Activity {
 
     public void goDownTier(View view) {
         if (displayedTier > Constants.TIER_MIN) {
+            MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
             createEnchantingInterface(true);
         }
