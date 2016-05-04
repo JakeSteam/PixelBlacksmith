@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -79,6 +81,34 @@ public class AlertDialogHelper {
         alertDialog.setNegativeButton(context.getString(R.string.upgradeCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void openSocialMedia(final Context context, final Activity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(context.getString(R.string.socialMediaQuestion));
+
+        alertDialog.setNeutralButton(context.getString(R.string.socialMediaReddit), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.reddit.com/r/PixelBlacksmith"));
+                activity.startActivity(browserIntent);
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.socialMediaTwitter), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/PixelBlacksmith"));
+                activity.startActivity(browserIntent);
+            }
+        });
+
+        alertDialog.setPositiveButton(context.getString(R.string.socialMediaFacebook), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/PixelBlacksmith"));
+                activity.startActivity(browserIntent);
             }
         });
 

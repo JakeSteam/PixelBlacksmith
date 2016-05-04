@@ -128,10 +128,16 @@
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
     <string name="messagesText">Messages</string>
+    <string name="socialMediaText">Social Media</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
+
+    <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!</string>
+    <string name="socialMediaFacebook">Facebook</string>
+    <string name="socialMediaTwitter">Twitter</string>
+    <string name="socialMediaReddit">Reddit</string>
 
     <string name="tierPreference">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>
