@@ -169,8 +169,11 @@
 
     <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$s coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
-    <string name="upgradeComplete">Upgraded %s!</string>
     <string name="upgradeCancel">Cancel</string>
+    <string name="upgradeSuccess">Upgraded %s!</string>
+    <string name="upgradeDescription">%1$s
+\n%2$d / %3$d %4$s
+\n%5$s%6$d: %7$s coins</string>
 
     <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
 \n\nThis CANNOT be undone.</string>
@@ -272,11 +275,6 @@
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%s Trades</string>
-
-    <string name="upgradeSuccess">Upgraded %s!</string>
-    <string name="upgradeDescription">%1$s
-\n%2$d / %3$d %4$s
-\n%5$s%6$d: %7$s coins</string>
 
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 

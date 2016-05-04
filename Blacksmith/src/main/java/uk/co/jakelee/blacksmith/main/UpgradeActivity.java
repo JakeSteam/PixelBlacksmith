@@ -8,13 +8,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
@@ -83,7 +87,11 @@ public class UpgradeActivity extends Activity {
 
     private void upgradeOnClick(View v) {
         Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
-        AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
+        if (selectedUpgrade.getCurrent() != selectedUpgrade.getMaximum()){
+            AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
+        } else {
+            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
+        }
     }
 
     public void alertDialogCallback() {

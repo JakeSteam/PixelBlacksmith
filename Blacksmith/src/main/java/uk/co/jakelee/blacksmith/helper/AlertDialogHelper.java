@@ -73,7 +73,6 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
                 }
-                ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.upgradeComplete), upgrade.getName()), false);
             }
         });
 
