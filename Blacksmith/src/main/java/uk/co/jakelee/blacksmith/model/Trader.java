@@ -226,4 +226,15 @@ public class Trader extends SugarRecord {
 
         return !hasStock;
     }
+
+    public static int outOfStockTraders() {
+        List<Trader> traders = Trader.listAll(Trader.class);
+        int outOfStock = 0;
+        for (Trader trader : traders) {
+            if (trader.isOutOfStock()) {
+                outOfStock++;
+            }
+        }
+        return outOfStock;
+    }
 }

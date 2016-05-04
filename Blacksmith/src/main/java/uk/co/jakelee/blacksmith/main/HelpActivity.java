@@ -245,6 +245,7 @@ public class HelpActivity extends Activity {
     private void displayHelpPremium(LinearLayout layout) {
         layout.addView(dh.createTextView("Premium\n", 26));
         layout.addView(dh.createTextView("Buying premium provides a ton of new features, and also helps further development on the game!\n", 22));
+        layout.addView(dh.createTextView("Among the benefits is a tax paid by all out of stock traders when an automatic restock happens. Think of it as a reward for being a loyal customer!\n", 22));
         layout.addView(dh.createTextView("Note that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.", 22));
     }
 
