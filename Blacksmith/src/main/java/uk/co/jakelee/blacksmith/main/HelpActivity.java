@@ -217,13 +217,13 @@ public class HelpActivity extends Activity {
     private void displayHelpVisitor(LinearLayout layout) {
         layout.addView(dh.createTextView("Visitor\n", 26));
         layout.addView(dh.createTextView("This screen provides an overview of the currently selected visitor.\n", 22));
-        layout.addView(dh.createTextView("If their preferred item type, tier, and state have been discovered, the associated bonus will be displayed.\n", 22));
+        layout.addView(dh.createTextView("Once a visitor's preferred item type, tier, or state have been discovered through trading, this will be displayed underneath the visitor's picture. Also shown is how much extra a visitor will pay for these preferences. Combine all three to achieve the biggest profits!\n", 22));
         layout.addView(dh.createTextView("Item type: This is the item's category. For example dagger, sword, or hatchet.\n", 22));
         layout.addView(dh.createTextView("Item tier: This is the quality of the item's material. For example bronze, iron, or steel.\n", 22));
         layout.addView(dh.createTextView("Item state: This is the condition of the item. For example unfinished (shattered vial icon) or normal (vial icon). At higher levels, this can be an enchantment such as red (ruby icon) or blue (sapphire icon).\n", 22));
-        layout.addView(dh.createTextView("Additionally, the highest value trade with the visitor is displayed.\n", 22));
+        layout.addView(dh.createTextView("Additionally, the highest value item previously traded with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
-        layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed. If a visitor is fully completed, you'll received double the reward!\n", 22));
+        layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed and you will receive a reward. If all of the visitor's optional demands have also been completed, you'll receive double the reward!\n", 22));
         layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of incomplete demands (required + optional).", 22));
     }
 
