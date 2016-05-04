@@ -158,7 +158,8 @@
             android:layout_toRightOf="@id/stateImage"
             app:layout_heightPercent="12%"
             app:layout_marginTopPercent="2%"
-            app:layout_widthPercent="18%" />
+            app:layout_widthPercent="18%"
+            android:onClick="bestItemClick"/>
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/bestItemValue"

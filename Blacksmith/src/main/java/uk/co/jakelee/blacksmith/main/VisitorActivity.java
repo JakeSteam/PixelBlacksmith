@@ -183,10 +183,13 @@ public class VisitorActivity extends Activity {
             ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
             int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
             bestItem.setImageResource(bestItemDrawableId);
-        }
+            bestItem.setTag(R.id.bestItemID, visitorStats.getBestItem());
+            bestItem.setTag(R.id.bestItemValue, visitorStats.getBestItemValue());
+            bestItem.setTag(R.id.bestItemState, visitorStats.getBestItemState());
 
-        TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
-        bestItemValue.setText(String.format("%d", visitorStats.getBestItemValue()));
+            TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
+            bestItemValue.setText(String.format("%d", visitorStats.getBestItemValue()));
+        }
     }
 
     private void displayVisitorDemands() {
@@ -354,6 +357,22 @@ public class VisitorActivity extends Activity {
         } else {
             String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
             VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+        }
+    }
+
+    public void bestItemClick(View view) {
+        if (view.getTag(R.id.bestItemID) == null || view.getTag(R.id.bestItemValue) == null || view.getTag(R.id.bestItemState) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.noBestItem, false);
+        } else {
+            long bestItemID = (long) view.getTag(R.id.bestItemID);
+            long bestItemState = (long) view.getTag(R.id.bestItemState);
+            int bestItemValue = (int) view.getTag(R.id.bestItemValue);
+
+            String bestItemName = Item.findById(Item.class, bestItemID).getFullName(bestItemState);
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bestItemMessage),
+                    visitorType.getName(),
+                    bestItemName,
+                    bestItemValue), false);
         }
     }
 

@@ -137,6 +137,8 @@
     <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>
     <string name="statePreference">This customer will pay %1$s extra for items in a %2$s condition.</string>
     <string name="undiscoveredPreference">You haven\'t discovered this preference yet! Try selling different items to discover them.</string>
+    <string name="noBestItem">You haven\'t sold this visitor anything yet!</string>
+    <string name="bestItemMessage">The highest value item sold to %1$s is a %2$s for %3$d coins.</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
