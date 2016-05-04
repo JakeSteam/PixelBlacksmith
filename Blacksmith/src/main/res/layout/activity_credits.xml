@@ -53,6 +53,22 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/creditsOverall"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:text="@string/creditsOverallDetails"
+                    android:textColor="@color/black"
+                    android:paddingBottom="20dp"
+                    android:textSize="22sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/creditsMusic"
                     android:textColor="@color/black"
                     android:textSize="35sp" />
