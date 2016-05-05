@@ -305,11 +305,11 @@ public class VisitorActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), false);
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), true);
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL)), false);
+                    selectedItem.getFullName(Constants.STATE_NORMAL)), true);
         }
     }
 

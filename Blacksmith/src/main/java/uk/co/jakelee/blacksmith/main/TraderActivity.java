@@ -163,7 +163,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
     }
 
     public void alertDialogCallback() {
-        createItemList();
+        createTraderInterface();
     }
 
     public void closePopup(View view) {
