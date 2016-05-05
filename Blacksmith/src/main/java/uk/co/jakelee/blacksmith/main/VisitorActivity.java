@@ -306,8 +306,8 @@ public class VisitorActivity extends Activity {
         } else {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL),
-                    isFullyComplete ? "(doubled!) " : ""), false);
+                    isFullyComplete ? "(doubled!) " : "",
+                    selectedItem.getFullName(Constants.STATE_NORMAL)), false);
         }
     }
 
