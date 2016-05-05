@@ -248,13 +248,15 @@ public class VisitorActivity extends Activity {
             demandRow.addView(tradeBtn);
 
             demandRow.setTag(demand.getId());
-            demandRow.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
-                    intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
-                    startActivity(intent);
-                }
-            });
+            if (!demand.isDemandFulfilled()) {
+                demandRow.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
+                        intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
+                        startActivity(intent);
+                    }
+                });
+            }
             demandsTable.addView(demandRow);
         }
     }
