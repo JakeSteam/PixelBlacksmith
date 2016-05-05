@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -292,23 +293,45 @@ public class VisitorActivity extends Activity {
         List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
         Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
         Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
+        String rewardString = getRewardString(rewardLegendary, isFullyComplete);
 
         // Get legendary reward
         if (rewardLegendary) {
             List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
             Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeavesPremium),
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED),
-                    isFullyComplete ? "(doubled!) " : ""), false);
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), false);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
-                    isFullyComplete ? "(doubled!) " : "",
                     selectedItem.getFullName(Constants.STATE_NORMAL)), false);
         }
+    }
+
+    private String getRewardString(boolean rewardLegendary, boolean isFullyComplete) {
+        List<String> strings = new ArrayList<>();
+        if (rewardLegendary && isFullyComplete) {
+            strings.add(getString(R.string.visitorLeavesCompletePremium1));
+            strings.add(getString(R.string.visitorLeavesCompletePremium2));
+            strings.add(getString(R.string.visitorLeavesCompletePremium3));
+        } else if (rewardLegendary && !isFullyComplete) {
+            strings.add(getString(R.string.visitorLeavesPremium1));
+            strings.add(getString(R.string.visitorLeavesPremium2));
+            strings.add(getString(R.string.visitorLeavesPremium3));
+        }else if (!rewardLegendary && isFullyComplete) {
+            strings.add(getString(R.string.visitorLeavesComplete1));
+            strings.add(getString(R.string.visitorLeavesComplete2));
+            strings.add(getString(R.string.visitorLeavesComplete3));
+        }else if (!rewardLegendary && !isFullyComplete) {
+            strings.add(getString(R.string.visitorLeaves1));
+            strings.add(getString(R.string.visitorLeaves2));
+            strings.add(getString(R.string.visitorLeaves3));
+        }
+        int position = VisitorHelper.getRandomNumber(0, strings.size() - 1);
+        return strings.get(position);
     }
 
     private Item createVisitorTrophyReward(Visitor visitor) {
