@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
@@ -85,22 +86,26 @@ public class VisitorHelper {
 
         // Update the selected visitor type's statistics
         Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorType.getVisitorID());
-        if (visitorStats.getFirstSeen() == 0) {
-            visitorStats.setFirstSeen(currentMillis);
-        }
-        visitorStats.setVisits(visitorStats.getVisits() + 1);
-        visitorStats.save();
+        try {
+            if (visitorStats.getFirstSeen() == 0) {
+                visitorStats.setFirstSeen(currentMillis);
+            }
+            visitorStats.setVisits(visitorStats.getVisits() + 1);
+            visitorStats.save();
 
-        // Make a visitor of the selected type
-        Visitor visitor = new Visitor(currentMillis, visitorType.getVisitorID());
-        visitor.save();
+            // Make a visitor of the selected type
+            Visitor visitor = new Visitor(currentMillis, visitorType.getVisitorID());
+            visitor.save();
 
-        // Work out how many demands need to be generated
-        int numDemands = getRandomNumber(Constants.MINIMUM_DEMANDS, Constants.MAXIMUM_DEMANDS);
+            // Work out how many demands need to be generated
+            int numDemands = getRandomNumber(Constants.MINIMUM_DEMANDS, Constants.MAXIMUM_DEMANDS);
 
-        // Generate the demands
-        for (int i = 1; i <= numDemands; i++) {
-            generateDemand(i, visitor.getId());
+            // Generate the demands
+            for (int i = 1; i <= numDemands; i++) {
+                generateDemand(i, visitor.getId());
+            }
+        } catch (Exception e) {
+            Log.d("Blacksmith", "Failure loading new visitor.");
         }
     }
 
