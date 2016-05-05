@@ -36,7 +36,7 @@ public class Constants {
     public static final int STAGE_14_MARKET = 14;
     public static final int STAGE_15_MAIN = 15;
 
-    public static final int STARTING_XP = 45;
+    public static final int STARTING_XP = 100;
     public static final int MESSAGE_LOG_LIMIT = 100;
 
     public static final int TRADER_OUT_OF_STOCK = -1;

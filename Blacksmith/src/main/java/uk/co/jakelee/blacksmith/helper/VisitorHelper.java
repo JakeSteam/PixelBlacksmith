@@ -288,7 +288,7 @@ public class VisitorHelper {
     }
 
     public static int getVisitorDismissCost(long visitorID) {
-        int unfulfilledDemands = Visitor_Demand.find(Visitor_Demand.class, "quantity_provided <= quantity AND visitor_id = " + visitorID).size();
+        int unfulfilledDemands = Visitor_Demand.find(Visitor_Demand.class, "quantity_provided < quantity AND visitor_id = " + visitorID).size();
 
         int playerLevel = Player_Info.getPlayerLevel();
         return playerLevel * 10 * unfulfilledDemands;

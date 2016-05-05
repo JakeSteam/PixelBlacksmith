@@ -342,7 +342,7 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int itemsBought = 0;
-                int buyResponse = Constants.ERROR_NO_ITEMS;
+                int buyResponse = Constants.ERROR_TRADER_RUN_OUT;
                 boolean successful = true;
 
                 for (Trader_Stock itemStock : itemStocks) {
