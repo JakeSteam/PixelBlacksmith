@@ -303,7 +303,7 @@ public class DisplayHelper {
 
         RelativeLayout itemBox = new RelativeLayout(context);
 
-        ImageView image = createItemImage(itemID, 80, 80, Inventory.haveSeen(itemID, state));
+        ImageView image = createItemImage(itemID, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
         TextView count = createItemCount(itemID, state, Color.WHITE, Color.BLACK);
         count.setWidth(convertDpToPixel(80));
 
@@ -366,14 +366,15 @@ public class DisplayHelper {
         }
     }
 
-    public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen) {
+    public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
-
         int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
 
         if (haveSeen) {
             imageResource.clearColorFilter();
+        } else if (canCreate) {
+            imageResource.setColorFilter(Color.LTGRAY, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         }
@@ -517,7 +518,7 @@ public class DisplayHelper {
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
 
-            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true));
+            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
             row.addView(itemNameView);
             row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));

@@ -116,7 +116,7 @@ public class MarketActivity extends Activity {
 
         for (Trader_Stock stock : traderOfferings) {
             boolean isUnlocked = trader.getPurchases() >= stock.getRequiredPurchases();
-            ImageView itemImage = dh.createItemImage(stock.getItemID(), 20, 20, isUnlocked);
+            ImageView itemImage = dh.createItemImage(stock.getItemID(), 20, 20, isUnlocked, false);
             offeringsContainer.addView(itemImage);
         }
     }
