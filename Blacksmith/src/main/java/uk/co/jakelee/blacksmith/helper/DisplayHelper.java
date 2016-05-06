@@ -374,7 +374,7 @@ public class DisplayHelper {
         if (haveSeen) {
             imageResource.clearColorFilter();
         } else if (canCreate) {
-            imageResource.setColorFilter(Color.LTGRAY, PorterDuff.Mode.MULTIPLY);
+            imageResource.setColorFilter(Color.DKGRAY, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         }

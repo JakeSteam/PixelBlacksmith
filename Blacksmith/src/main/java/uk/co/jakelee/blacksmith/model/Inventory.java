@@ -37,7 +37,7 @@ public class Inventory extends SugarRecord implements Serializable {
 
     public static boolean haveLevelFor(Long itemID) {
         Item item = Item.findById(Item.class, itemID);
-        return item.getLevel() > Player_Info.getPlayerLevel();
+        return Player_Info.getPlayerLevel() >= item.getLevel();
     }
 
     private static int canCreateItem(Long itemID, long state) {
