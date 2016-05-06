@@ -35,6 +35,7 @@ public class DatabaseHelper {
     public final static int DB_V1_0_1 = 2;
     public final static int DB_V1_2_0 = 3;
     public final static int DB_V1_2_1 = 4;
+    public final static int DB_V1_3_0 = 5;
 
     public static void initialSQL() {
         createAchievement();
@@ -99,6 +100,26 @@ public class DatabaseHelper {
             firstEnchantingSlot.setLevel(10);
             firstEnchantingSlot.save();
         }
+    }
+
+    public static void patch121to130() {
+        List<Slot> slots = new ArrayList<>();
+
+        slots.add(new Slot(1, 9999, false));
+        slots.add(new Slot(2, 9999, false));
+        slots.add(new Slot(3, 9999, false));
+        slots.add(new Slot(4, 9999, false));
+        slots.add(new Slot(5, 9999, false));
+        slots.add(new Slot(6, 9999, false));
+
+        slots.add(new Slot(1, 70, false));
+        slots.add(new Slot(2, 70, false));
+        slots.add(new Slot(3, 70, false));
+        slots.add(new Slot(3, 45, false));
+        slots.add(new Slot(5, 70, false));
+        slots.add(new Slot(6, 25, false));
+
+        Slot.saveInTx(slots);
     }
 
     private static void createAchievement() {
@@ -199,8 +220,8 @@ public class DatabaseHelper {
         inventories.add(new Inventory(4L, Constants.STATE_NORMAL, 150));
 
         // 20 silk, spidersilk
-        inventories.add(new Inventory(69L, Constants.STATE_NORMAL, 20));
-        inventories.add(new Inventory(70L, Constants.STATE_NORMAL, 20));
+        inventories.add(new Inventory(69L, Constants.STATE_NORMAL, 30));
+        inventories.add(new Inventory(70L, Constants.STATE_NORMAL, 30));
 
         // 2 sapphires
         inventories.add(new Inventory(73L, Constants.STATE_NORMAL, 2));

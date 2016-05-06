@@ -116,7 +116,9 @@ public class DisplayHelper {
                     slotCount.setVisibility(View.VISIBLE);
                     if (slot.getLevel() > playerLevel) {
                         slotForeground.setBackgroundResource(R.drawable.lock);
-                        slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        if (slot.getLevel() < 999) {
+                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        }
                         slotOverflow.setVisibility(View.VISIBLE);
                         displayedNextSlot = true;
                     } else if (slot.isPremium() && !Player_Info.isPremium()) {

@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/open_furnace"
                 android:layout_below="@id/open_furnace"
-                android:columnCount="4"
+                android:columnCount="5"
                 android:orientation="horizontal"
                 android:onClick="openFurnace" />
 
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/open_market"
                 android:layout_toRightOf="@id/open_market"
-                android:columnCount="6"
+                android:columnCount="7"
                 android:orientation="horizontal"
                 android:onClick="openMarket" />
 
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/open_anvil"
                 android:layout_below="@id/open_anvil"
-                android:columnCount="4"
+                android:columnCount="5"
                 android:orientation="horizontal"
                 android:onClick="openAnvil" />
 
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/open_table"
                 android:layout_below="@id/open_table"
-                android:columnCount="4"
+                android:columnCount="5"
                 android:orientation="horizontal"
                 android:onClick="openTable" />
 
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/open_enchanting"
                 android:layout_below="@id/open_enchanting"
-                android:columnCount="4"
+                android:columnCount="5"
                 android:orientation="horizontal"
                 android:onClick="openEnchanting" />
 
