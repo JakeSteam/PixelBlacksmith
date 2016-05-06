@@ -180,6 +180,8 @@
     <string name="upgradeDescription">%1$s
 \n%2$d / %3$d %4$s
 \n%5$s%6$d: %7$s coins</string>
+    <string name="upgradeCompletedDescription">%1$s
+\n%2$d / %3$d %4$s</string>
 
     <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
 \n\nThis CANNOT be undone.</string>
@@ -289,7 +291,7 @@
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
     <string name="powderAdd">Began crushing the gem into %s.</string>
 
-    <string name="traderArrived">The %s trader has arrived.</string>
+    <string name="traderArrived">Trader \"%s\" has arrived.</string>
 
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
     <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item.</string>
@@ -358,13 +360,17 @@
     <string name="creditsGraphics">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, and <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>.</string>
-    <string name="creditsTechnology">Technology</string>
-    <string name="creditsTechnologyDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
+    <string name="creditsLibraries">Libraries</string>
+    <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
-\n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.
-\n\nFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for alpha testing.
-    </string>
+\n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
+    <string name="creditsSoftware">Software</string>
+    <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
+\n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
+\n<a href='https://trello.com/'>Trello</a> - Project management.</string>
+    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for all the testing / suggestions.
+</string>
 </resources>

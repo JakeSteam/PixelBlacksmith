@@ -109,7 +109,7 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/creditsTechnology"
+                    android:text="@string/creditsLibraries"
                     android:textColor="@color/black"
                     android:textSize="35sp" />
 
@@ -118,7 +118,32 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
                     android:singleLine="false"
-                    android:text="@string/creditsTechnologyDetails"
+                    android:text="@string/creditsLibrariesDetails"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/creditsSoftware"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:singleLine="false"
+                    android:text="@string/creditsSoftwareDetails"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:singleLine="false"
+                    android:text="@string/creditsMiscDetails"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
             </LinearLayout>

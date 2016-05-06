@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +52,7 @@ public class UpgradeActivity extends Activity {
             }
 
             TableRow upgradeRow = new TableRow(this);
-            TextViewPixel upgradeDescription = dh.createTextView(getUpgradeText(upgrade), 20);
+            TextViewPixel upgradeDescription = dh.createTextView(getUpgradeText(upgrade), 20, upgrade.isAtMaximum() ? Color.parseColor("#267c18") : Color.BLACK);
             ImageView upgradeButton = getUpgradeButton(upgrade);
 
             upgradeRow.addView(upgradeDescription);
@@ -62,7 +63,7 @@ public class UpgradeActivity extends Activity {
     }
 
     private ImageView getUpgradeButton(final Upgrade upgrade) {
-        ImageView upgradeButton = dh.createImageView("", "uparrow", 50, 50);
+        ImageView upgradeButton = dh.createImageView("", upgrade.isAtMaximum() ? "tick" : "uparrow", 50, 50);
         upgradeButton.setTag(upgrade.getId());
         upgradeButton.setPadding(0, 0, 0, dh.convertDpToPixel(15));
         upgradeButton.setOnClickListener(new Button.OnClickListener() {
@@ -75,19 +76,27 @@ public class UpgradeActivity extends Activity {
     }
 
     private String getUpgradeText(Upgrade upgrade) {
-        return String.format(getString(R.string.upgradeDescription),
-                upgrade.getName(),
-                upgrade.getCurrent(),
-                upgrade.getMaximum(),
-                upgrade.getUnits(),
-                upgrade.increases() ? "+" : "-",
-                upgrade.getIncrement(),
-                upgrade.getUpgradeCost());
+        if (!upgrade.isAtMaximum()) {
+            return String.format(getString(R.string.upgradeDescription),
+                    upgrade.getName(),
+                    upgrade.getCurrent(),
+                    upgrade.getMaximum(),
+                    upgrade.getUnits(),
+                    upgrade.increases() ? "+" : "-",
+                    upgrade.getIncrement(),
+                    upgrade.getUpgradeCost());
+        } else {
+            return String.format(getString(R.string.upgradeCompletedDescription),
+                    upgrade.getName(),
+                    upgrade.getCurrent(),
+                    upgrade.getMaximum(),
+                    upgrade.getUnits());
+        }
     }
 
     private void upgradeOnClick(View v) {
         Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
-        if (selectedUpgrade.getCurrent() != selectedUpgrade.getMaximum()){
+        if (!selectedUpgrade.isAtMaximum()){
             AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
