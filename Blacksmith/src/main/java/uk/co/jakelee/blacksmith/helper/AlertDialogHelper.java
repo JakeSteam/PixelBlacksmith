@@ -37,7 +37,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1400000474606|UPDATE inventory SET quantity = 654321 WHERE item = 52");
+                //String supportCode = SupportCodeHelper.encode("1462726800000|UPDATE playerinfo SET int_value = 1 WHERE name = 'Prestige'");
                 String supportCode = supportCodeBox.getText().toString();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
@@ -123,7 +123,7 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 PrestigeHelper.prestigeAccount();
-                ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete), Player_Info.getPrestige()), false);
+                ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete), Player_Info.getPrestige() + 1), false);
             }
         });
 

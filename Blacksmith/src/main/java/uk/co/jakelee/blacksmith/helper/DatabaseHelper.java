@@ -36,12 +36,6 @@ public class DatabaseHelper {
     public final static int DB_V1_2_0 = 3;
     public final static int DB_V1_2_1 = 4;
 
-    public static void checkRequiredFixes() {
-        if (Player_Info.getXp() < Constants.STARTING_XP) {
-            Player_Info.addXp(Constants.STARTING_XP);
-        }
-    }
-
     public static void initialSQL() {
         createAchievement();
         createCategory();
