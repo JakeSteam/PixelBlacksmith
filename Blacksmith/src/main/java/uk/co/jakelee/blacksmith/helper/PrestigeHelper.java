@@ -11,7 +11,6 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
-import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 class PrestigeHelper {
@@ -56,10 +55,7 @@ class PrestigeHelper {
 
     private static void resetAllVisitors() {
         Visitor.deleteAll(Visitor.class);
-        DatabaseHelper.createVisitor();
-
         Visitor_Demand.deleteAll(Visitor_Demand.class);
-        DatabaseHelper.createVisitorDemand();
 
         List<Visitor_Type> types = Visitor_Type.listAll(Visitor_Type.class);
         for (Visitor_Type type : types) {
