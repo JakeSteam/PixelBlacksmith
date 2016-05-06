@@ -8,6 +8,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -21,6 +22,7 @@ class PrestigeHelper {
         resetUpgrades();
         resetXP();
         resetAllVisitors();
+        resetTraders();
     }
 
     private static void increasePrestige() {
@@ -64,5 +66,9 @@ class PrestigeHelper {
             type.setTierDiscovered(false);
             type.save();
         }
+    }
+
+    private static void resetTraders() {
+        Trader.executeQuery("UPDATE trader SET purchases = 0");
     }
 }
