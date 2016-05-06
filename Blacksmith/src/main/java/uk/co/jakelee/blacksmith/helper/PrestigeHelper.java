@@ -9,6 +9,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
@@ -70,5 +71,6 @@ class PrestigeHelper {
 
     private static void resetTraders() {
         Trader.executeQuery("UPDATE trader SET purchases = 0");
+        Trader_Stock.restockTraders();
     }
 }

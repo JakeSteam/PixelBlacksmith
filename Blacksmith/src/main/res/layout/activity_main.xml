@@ -278,6 +278,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/levelBackground"
             android:layout_alignRight="@id/levelBackground"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-5dp"
             android:gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:textColor="@color/white"
