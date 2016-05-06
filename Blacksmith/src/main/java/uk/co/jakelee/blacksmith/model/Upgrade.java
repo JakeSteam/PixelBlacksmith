@@ -131,7 +131,7 @@ public class Upgrade extends SugarRecord {
         }
     }
 
-    private boolean isAtMaximum() {
+    public boolean isAtMaximum() {
         return (minimum > maximum && current <= maximum) || (maximum > minimum && current >= maximum);
     }
 
