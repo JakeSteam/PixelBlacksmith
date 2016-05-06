@@ -117,7 +117,7 @@ public class Visitor_Type extends SugarRecord {
         return tierDiscovered;
     }
 
-    private void setTierDiscovered(boolean tierDiscovered) {
+    public void setTierDiscovered(boolean tierDiscovered) {
         this.tierDiscovered = tierDiscovered;
     }
 
@@ -125,7 +125,7 @@ public class Visitor_Type extends SugarRecord {
         return typeDiscovered;
     }
 
-    private void setTypeDiscovered(boolean typeDiscovered) {
+    public void setTypeDiscovered(boolean typeDiscovered) {
         this.typeDiscovered = typeDiscovered;
     }
 
@@ -133,7 +133,7 @@ public class Visitor_Type extends SugarRecord {
         return stateDiscovered;
     }
 
-    private void setStateDiscovered(boolean stateDiscovered) {
+    public void setStateDiscovered(boolean stateDiscovered) {
         this.stateDiscovered = stateDiscovered;
     }
 
