@@ -113,11 +113,12 @@ public class Player_Info extends SugarRecord {
         int currentlyComplete = getCurrentCompletion();
         int totalToComplete = getFullCompletion();
 
-        return ((double) currentlyComplete / (double) totalToComplete) * 100;
+        double completionPercentage = (((double) currentlyComplete / (double) totalToComplete) * 100);
+        return completionPercentage > 100 ? 100 : completionPercentage;
     }
 
     private static int getCurrentCompletion() {
-        int currentLevelPoints = (100 * Player_Info.getPlayerLevel());
+        int currentLevelPoints = 100 * (Player_Info.getPlayerLevel() > 70 ? 70 : Player_Info.getPlayerLevel());
         int currentUpgradePoints = (10 * Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue());
         int currentTraderPoints = (10 * (int) Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count());
         int currentSlotPoints = (10 * Slot.getUnlockedCount());
