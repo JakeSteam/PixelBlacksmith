@@ -61,7 +61,7 @@ public class InventoryActivity extends Activity {
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            ImageView image = dh.createItemImage(item.getId(), 35, 35, inventoryItem.haveSeen());
+            ImageView image = dh.createItemImage(item.getId(), 35, 35, inventoryItem.haveSeen(), true);
 
             String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);

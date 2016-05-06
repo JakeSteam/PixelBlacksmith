@@ -36,7 +36,7 @@ public class TrophyActivity extends Activity {
 
         populateVisitorGrid();
 
-        Long allVisitors = Visitor_Stats.count(Visitor_Stats.class);
+        long allVisitors = Visitor_Stats.count(Visitor_Stats.class);
         Long seenVisitors = Select.from(Visitor_Stats.class).where(
                 Condition.prop("visits").gt(Constants.VISITS_TROPHY - 1)).count();
         ((TextViewPixel) findViewById(R.id.trophySubtitle)).setText(String.format(getString(R.string.genericProgress),

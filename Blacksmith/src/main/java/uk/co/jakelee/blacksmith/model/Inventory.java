@@ -35,6 +35,11 @@ public class Inventory extends SugarRecord implements Serializable {
         Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getModifiedValue(state));
     }
 
+    public static boolean haveLevelFor(Long itemID) {
+        Item item = Item.findById(Item.class, itemID);
+        return item.getLevel() > Player_Info.getPlayerLevel();
+    }
+
     private static int canCreateItem(Long itemID, long state) {
         Item item = Item.findById(Item.class, itemID);
         if (item.getLevel() > Player_Info.getPlayerLevel()) {
