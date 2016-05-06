@@ -3,13 +3,14 @@ package uk.co.jakelee.blacksmith.helper;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
-import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 class PrestigeHelper {
@@ -39,8 +40,10 @@ class PrestigeHelper {
     }
 
     private static void resetUpgrades() {
-        Upgrade.deleteAll(Upgrade.class);
-        DatabaseHelper.createUpgrade();
+        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
+        for (Upgrade upgrade : upgrades) {
+            upgrade.setCurrent(upgrade.increases() ? upgrade.getMinimum() : upgrade.getMaximum());
+        }
     }
 
     private static void resetXP() {
@@ -53,12 +56,13 @@ class PrestigeHelper {
     private static void resetAllVisitors() {
         Visitor.deleteAll(Visitor.class);
         Visitor_Demand.deleteAll(Visitor_Demand.class);
-        Visitor_Stats.deleteAll(Visitor_Stats.class);
-        Visitor_Type.deleteAll(Visitor_Type.class);
 
-        DatabaseHelper.createVisitor();
-        DatabaseHelper.createVisitorDemand();
-        DatabaseHelper.createVisitorStats();
-        DatabaseHelper.createVisitorType();
+        List<Visitor_Type> types = Visitor_Type.listAll(Visitor_Type.class);
+        for (Visitor_Type type : types) {
+            type.setStateDiscovered(false);
+            type.setTypeDiscovered(false);
+            type.setTierDiscovered(false);
+            type.save();
+        }
     }
 }
