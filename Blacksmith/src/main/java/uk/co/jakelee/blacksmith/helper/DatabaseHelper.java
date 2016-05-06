@@ -120,6 +120,16 @@ public class DatabaseHelper {
         slots.add(new Slot(6, 25, false));
 
         Slot.saveInTx(slots);
+
+        Trader trader = Select.from(Trader.class).where(
+                Condition.prop("name").eq("The Exclusive Emporium")).first();
+        trader.setWeighting(15);
+        trader.save();
+
+        Trader_Stock traderStock = Select.from(Trader_Stock.class).where(
+                Condition.prop("trader_type").eq(20L)).first();
+        traderStock.setDefaultStock(5);
+        traderStock.save();
     }
 
     private static void createAchievement() {
