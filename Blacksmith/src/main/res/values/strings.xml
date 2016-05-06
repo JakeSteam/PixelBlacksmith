@@ -128,15 +128,23 @@
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
     <string name="messagesText">Messages</string>
+    <string name="socialMediaText">Social Media</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
 
-    <string name="tierPreference">This customer gives a %1$s bonus for items made out of %2$s.</string>
-    <string name="typePreference">This customer gives a %1$s bonus for %2$ss.</string>
-    <string name="statePreference">This customer gives a %1$s bonus for items in a %2$s condition.</string>
+    <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!</string>
+    <string name="socialMediaFacebook">Facebook</string>
+    <string name="socialMediaTwitter">Twitter</string>
+    <string name="socialMediaReddit">Reddit</string>
+
+    <string name="tierPreference">This customer will pay %1$s extra for items made out of %2$s.</string>
+    <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>
+    <string name="statePreference">This customer will pay %1$s extra for items in a %2$s condition.</string>
     <string name="undiscoveredPreference">You haven\'t discovered this preference yet! Try selling different items to discover them.</string>
+    <string name="noBestItem">You haven\'t sold this visitor anything yet!</string>
+    <string name="bestItemMessage">The highest value item sold to %1$s is a %2$s for %3$d coins.</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
@@ -164,6 +172,14 @@
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
+
+    <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$s coins?</string>
+    <string name="upgradeConfirm">Upgrade</string>
+    <string name="upgradeCancel">Cancel</string>
+    <string name="upgradeSuccess">Upgraded %s!</string>
+    <string name="upgradeDescription">%1$s
+\n%2$d / %3$d %4$s
+\n%5$s%6$d: %7$s coins</string>
 
     <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
 \n\nThis CANNOT be undone.</string>
@@ -266,11 +282,6 @@
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%s Trades</string>
 
-    <string name="upgradeSuccess">Upgraded %s!</string>
-    <string name="upgradeDescription">%1$s
-\n%2$d / %3$d %4$s
-\n%5$s%6$d: %7$s coins</string>
-
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
@@ -285,8 +296,19 @@
     <string name="visitorArrived">%d visitor(s) have arrived.</string>
     <string name="visitorArriving">%d visitor(s) wander into the shop...</string>
     <string name="visitorsFullRestockTime">Never!</string>
-    <string name="visitorLeaves">As the visitor leaves, you notice %1$dx %2$s %3$sin your inventory.</string>
-    <string name="visitorLeavesPremium">As the visitor leaves, you notice %1$dx %2$s %3$sand in the inventory, and a rare %4$s!</string>
+
+    <string name="visitorLeaves1">The visitor waves good bye, and slips %1$dx %2$s under the counter.</string>
+    <string name="visitorLeaves2">The visitor leaves, and drops %1$dx %2$s on the floor. Finders keepers!</string>
+    <string name="visitorLeaves3">The visitor gratefully passes you %1$dx %2$s.</string>
+    <string name="visitorLeavesPremium1">The visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
+    <string name="visitorLeavesPremium2">The visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
+    <string name="visitorLeavesPremium3">As the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
+    <string name="visitorLeavesComplete1">The visitor reward you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
+    <string name="visitorLeavesComplete2">The visitor\'s tip has been doubled to %1$dx %2$s!</string>
+    <string name="visitorLeavesComplete3">The very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
+    <string name="visitorLeavesCompletePremium1">The visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
+    <string name="visitorLeavesCompletePremium2">Hey, what\'s this.. %1$dx %2$s and a rare %3$s? I\'ll hang onto these.</string>
+    <string name="visitorLeavesCompletePremium3">AThe visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
@@ -328,6 +350,8 @@
     <string name="tradeMax">Max?</string>
     <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or enchanting area to make some.</string>
 
+    <string name="creditsOverall">Overall</string>
+    <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>

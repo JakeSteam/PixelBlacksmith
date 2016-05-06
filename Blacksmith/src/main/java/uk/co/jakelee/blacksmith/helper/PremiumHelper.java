@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.helper;
 
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Trader;
 
 public class PremiumHelper {
     public static boolean payOutTax() {
@@ -15,6 +16,6 @@ public class PremiumHelper {
     }
 
     public static int getTaxAmount() {
-        return Player_Info.getPlayerLevelFromDB() * Constants.TRADER_TAX_MULTIPLIER;
+        return Player_Info.getPlayerLevelFromDB() * Trader.outOfStockTraders() * Constants.TRADER_TAX_MULTIPLIER;
     }
 }

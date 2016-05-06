@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -183,10 +184,13 @@ public class VisitorActivity extends Activity {
             ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
             int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
             bestItem.setImageResource(bestItemDrawableId);
-        }
+            bestItem.setTag(R.id.bestItemID, visitorStats.getBestItem());
+            bestItem.setTag(R.id.bestItemValue, visitorStats.getBestItemValue());
+            bestItem.setTag(R.id.bestItemState, visitorStats.getBestItemState());
 
-        TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
-        bestItemValue.setText(String.format("%d", visitorStats.getBestItemValue()));
+            TextView bestItemValue = (TextView) findViewById(R.id.bestItemValue);
+            bestItemValue.setText(String.format("%d", visitorStats.getBestItemValue()));
+        }
     }
 
     private void displayVisitorDemands() {
@@ -244,13 +248,15 @@ public class VisitorActivity extends Activity {
             demandRow.addView(tradeBtn);
 
             demandRow.setTag(demand.getId());
-            demandRow.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
-                    intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
-                    startActivity(intent);
-                }
-            });
+            if (!demand.isDemandFulfilled()) {
+                demandRow.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
+                        intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
+                        startActivity(intent);
+                    }
+                });
+            }
             demandsTable.addView(demandRow);
         }
     }
@@ -289,23 +295,45 @@ public class VisitorActivity extends Activity {
         List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
         Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
         Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
+        String rewardString = getRewardString(rewardLegendary, isFullyComplete);
 
         // Get legendary reward
         if (rewardLegendary) {
             List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
             Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeavesPremium),
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED),
-                    isFullyComplete ? "(doubled!) " : ""), false);
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), true);
         } else {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorLeaves),
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL),
-                    isFullyComplete ? "(doubled!) " : ""), false);
+                    selectedItem.getFullName(Constants.STATE_NORMAL)), true);
         }
+    }
+
+    private String getRewardString(boolean rewardLegendary, boolean isFullyComplete) {
+        List<String> strings = new ArrayList<>();
+        if (rewardLegendary && isFullyComplete) {
+            strings.add(getString(R.string.visitorLeavesCompletePremium1));
+            strings.add(getString(R.string.visitorLeavesCompletePremium2));
+            strings.add(getString(R.string.visitorLeavesCompletePremium3));
+        } else if (rewardLegendary && !isFullyComplete) {
+            strings.add(getString(R.string.visitorLeavesPremium1));
+            strings.add(getString(R.string.visitorLeavesPremium2));
+            strings.add(getString(R.string.visitorLeavesPremium3));
+        }else if (!rewardLegendary && isFullyComplete) {
+            strings.add(getString(R.string.visitorLeavesComplete1));
+            strings.add(getString(R.string.visitorLeavesComplete2));
+            strings.add(getString(R.string.visitorLeavesComplete3));
+        }else if (!rewardLegendary && !isFullyComplete) {
+            strings.add(getString(R.string.visitorLeaves1));
+            strings.add(getString(R.string.visitorLeaves2));
+            strings.add(getString(R.string.visitorLeaves3));
+        }
+        int position = VisitorHelper.getRandomNumber(0, strings.size() - 1);
+        return strings.get(position);
     }
 
     private Item createVisitorTrophyReward(Visitor visitor) {
@@ -354,6 +382,22 @@ public class VisitorActivity extends Activity {
         } else {
             String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
             VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+        }
+    }
+
+    public void bestItemClick(View view) {
+        if (view.getTag(R.id.bestItemID) == null || view.getTag(R.id.bestItemValue) == null || view.getTag(R.id.bestItemState) == null) {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.noBestItem, false);
+        } else {
+            long bestItemID = (long) view.getTag(R.id.bestItemID);
+            long bestItemState = (long) view.getTag(R.id.bestItemState);
+            int bestItemValue = (int) view.getTag(R.id.bestItemValue);
+
+            String bestItemName = Item.findById(Item.class, bestItemID).getFullName(bestItemState);
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bestItemMessage),
+                    visitorType.getName(),
+                    bestItemName,
+                    bestItemValue), false);
         }
     }
 

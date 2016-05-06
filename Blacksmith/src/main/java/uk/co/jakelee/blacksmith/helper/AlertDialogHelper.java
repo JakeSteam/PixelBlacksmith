@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,12 +17,14 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
+import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 
 public class AlertDialogHelper {
@@ -46,6 +50,65 @@ public class AlertDialogHelper {
         alertDialog.setNegativeButton(context.getString(R.string.supportCodeCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void confirmUpgrade(final Context context, final UpgradeActivity activity, final Upgrade upgrade) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.upgradeQuestion),
+                upgrade.getName(),
+                (upgrade.increases() ? upgrade.getCurrent() + upgrade.getIncrement() : upgrade.getCurrent() - upgrade.getIncrement()),
+                upgrade.getMaximum(),
+                upgrade.getUpgradeCost()));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton(context.getString(R.string.upgradeConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int upgradeResponse = upgrade.tryUpgrade();
+                if (upgradeResponse == Constants.SUCCESS) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName()), true);
+                    Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
+                    activity.alertDialogCallback();
+                } else {
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.upgradeCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void openSocialMedia(final Context context, final Activity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(context.getString(R.string.socialMediaQuestion));
+
+        alertDialog.setNeutralButton(context.getString(R.string.socialMediaReddit), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.reddit.com/r/PixelBlacksmith"));
+                activity.startActivity(browserIntent);
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.socialMediaTwitter), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.twitter.com/PixelBlacksmith"));
+                activity.startActivity(browserIntent);
+            }
+        });
+
+        alertDialog.setPositiveButton(context.getString(R.string.socialMediaFacebook), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/PixelBlacksmith"));
+                activity.startActivity(browserIntent);
             }
         });
 
@@ -279,7 +342,7 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int itemsBought = 0;
-                int buyResponse = Constants.ERROR_NO_ITEMS;
+                int buyResponse = Constants.ERROR_TRADER_RUN_OUT;
                 boolean successful = true;
 
                 for (Trader_Stock itemStock : itemStocks) {

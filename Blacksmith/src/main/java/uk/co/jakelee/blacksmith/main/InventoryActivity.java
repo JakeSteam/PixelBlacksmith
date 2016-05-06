@@ -12,9 +12,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -43,10 +40,11 @@ public class InventoryActivity extends Activity {
     }
 
     private void updateInventoryTable() {
-        List<Inventory> allInventoryItems = Select.from(Inventory.class).where(
+        /*List<Inventory> allInventoryItems = Select.from(Inventory.class).where(
                 Condition.prop("quantity").gt(0),
                 Condition.prop("item").notEq(Constants.ITEM_COINS))
-                .orderBy("state ASC").list();
+                .orderBy("state ASC").list();*/
+        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY item.name ASC");
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 

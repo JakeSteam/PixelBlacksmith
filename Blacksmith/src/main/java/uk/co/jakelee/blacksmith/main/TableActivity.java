@@ -153,6 +153,7 @@ public class TableActivity extends Activity {
 
     public void goUpTier(View view) {
         if (displayedTier < Constants.TIER_TABLE_MAX) {
+            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
             createTableInterface(true);
         }
@@ -160,6 +161,7 @@ public class TableActivity extends Activity {
 
     public void goDownTier(View view) {
         if (displayedTier > Constants.TIER_TABLE_MIN) {
+            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
             createTableInterface(true);
         }

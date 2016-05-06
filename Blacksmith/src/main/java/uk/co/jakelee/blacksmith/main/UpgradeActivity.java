@@ -14,6 +14,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
@@ -66,7 +67,7 @@ public class UpgradeActivity extends Activity {
         upgradeButton.setPadding(0, 0, 0, dh.convertDpToPixel(15));
         upgradeButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                upgradeOnClick(v, upgrade);
+                upgradeOnClick(v);
             }
         });
 
@@ -84,16 +85,17 @@ public class UpgradeActivity extends Activity {
                 upgrade.getUpgradeCost());
     }
 
-    private void upgradeOnClick(View v, Upgrade upgrade) {
+    private void upgradeOnClick(View v) {
         Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
-        int upgradeResponse = selectedUpgrade.tryUpgrade();
-        if (upgradeResponse == Constants.SUCCESS) {
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.upgradeSuccess), upgrade.getName()), true);
-            Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
-            createUpgradeInterface();
+        if (selectedUpgrade.getCurrent() != selectedUpgrade.getMaximum()){
+            AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
+            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
         }
+    }
+
+    public void alertDialogCallback() {
+        createUpgradeInterface();
     }
 
     public void closePopup(View view) {

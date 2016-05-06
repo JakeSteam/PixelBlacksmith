@@ -8,4 +8,7 @@
 
     <item name="preferred" type="id" />
     <item name="multiplier" type="id" />
+
+    <item name="bestItemID" type="id" />
+    <item name="bestItemState" type="id" />
 </resources>

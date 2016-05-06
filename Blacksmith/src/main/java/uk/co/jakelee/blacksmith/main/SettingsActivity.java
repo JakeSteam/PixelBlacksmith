@@ -220,6 +220,10 @@ public class SettingsActivity extends Activity {
         startActivity(intent);
     }
 
+    public void openSocialMedia(View view) {
+        AlertDialogHelper.openSocialMedia(getApplicationContext(), this);
+    }
+
     public void closePopup(View view) {
         finish();
     }
