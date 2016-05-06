@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements
 
         assignUIElements();
         checkFirstRun();
+        DatabaseHelper.checkRequiredFixes();
 
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
