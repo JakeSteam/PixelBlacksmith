@@ -33,7 +33,11 @@ public class Upgrade extends SugarRecord {
     public static int getValue(String name) {
         Upgrade upgrade = Select.from(Upgrade.class).where(
                 Condition.prop("name").eq(name)).first();
-        return upgrade.getCurrent();
+        if (upgrade != null) {
+            return upgrade.getCurrent();
+        } else {
+            return 0;
+        }
     }
 
     public String getName() {
