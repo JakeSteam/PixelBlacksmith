@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -103,6 +104,9 @@ public class DatabaseHelper {
     }
 
     public static void patch121to130() {
+        SugarRecord.executeQuery("DROP TABLE Worker");
+        SugarRecord.executeQuery("CREATE TABLE Worker (id INTEGER, worker_id INTEGER, character_id INTEGER, level_unlocked INTEGER, time_started INTEGER, times_completed INTEGER)");
+
         List<Slot> slots = new ArrayList<>();
 
         slots.add(new Slot(1, 9999, false));

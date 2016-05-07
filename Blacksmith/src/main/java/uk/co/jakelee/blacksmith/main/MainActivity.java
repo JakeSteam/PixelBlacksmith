@@ -446,6 +446,11 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void openWorkers(View view) {
+        Intent intent = new Intent(this, WorkerActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
     }

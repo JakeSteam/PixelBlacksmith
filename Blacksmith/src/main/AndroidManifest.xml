@@ -92,7 +92,9 @@
         <activity
             android:name=".main.PremiumActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
+        <activity
+            android:name=".main.WorkerActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />

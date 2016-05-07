@@ -87,6 +87,8 @@ public class HelpActivity extends Activity {
             displayHelpUpgrade(layout);
         } else if (topic == TOPICS.Premium) {
             displayHelpPremium(layout);
+        } else if (topic == TOPICS.Worker) {
+            displayHelpWorker(layout);
         }
     }
 
@@ -254,6 +256,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The last 100 messages are displayed here. This includes success messages, failure messages, level ups, etc.", 22));
     }
 
+    private void displayHelpWorker(LinearLayout layout) {
+        layout.addView(dh.createTextView("Worker\n", 26));
+        layout.addView(dh.createTextView("Workers help gather resources.", 22));
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
@@ -265,5 +272,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
 }

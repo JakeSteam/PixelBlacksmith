@@ -129,6 +129,7 @@
     <string name="premiumText">Premium</string>
     <string name="messagesText">Messages</string>
     <string name="socialMediaText">Social Media</string>
+    <string name="workerText">Workers</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
