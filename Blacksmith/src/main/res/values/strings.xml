@@ -168,6 +168,12 @@
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
     <string name="overflowText">+ %d</string>
 
+    <string name="workerLocked">Locked</string>
+    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %d coins?</string>
+    <string name="buyWorkerConfirm">Hire</string>
+    <string name="buyWorkerComplete">Successfully hired worker!</string>
+    <string name="buyWorkerCancel">Cancel</string>
+
     <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
@@ -306,7 +312,7 @@
     <string name="visitorLeavesPremium1">The visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
     <string name="visitorLeavesPremium2">The visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
     <string name="visitorLeavesPremium3">As the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
-    <string name="visitorLeavesComplete1">The visitor reward you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
+    <string name="visitorLeavesComplete1">The visitor rewards you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
     <string name="visitorLeavesComplete2">The visitor\'s tip has been doubled to %1$dx %2$s!</string>
     <string name="visitorLeavesComplete3">The very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
     <string name="visitorLeavesCompletePremium1">The visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>

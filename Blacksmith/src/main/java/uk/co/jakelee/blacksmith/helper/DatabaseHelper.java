@@ -117,7 +117,8 @@ public class DatabaseHelper {
 
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(32, 1, 1, 3));
-        workerResources.add(new Worker_Resource(32, 1, 1, 3));
+        workerResources.add(new Worker_Resource(32, 2, 1, 3));
+        workerResources.add(new Worker_Resource(32, 3, 1, 3));
         Worker_Resource.saveInTx(workerResources);
 
         List<Slot> slots = new ArrayList<>();
