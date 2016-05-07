@@ -33,6 +33,14 @@ public class DateHelper {
         return minutes + "min " + seconds + "s";
     }
 
+    public static String getHoursMinsSecsRemaining(Long timestamp) {
+        int hours = timestampPartHours(timestamp);
+        int minutes = timestampPartMinutes(timestamp) - (hours * MINUTES_IN_HOUR);
+        int seconds = timestampPartSeconds(timestamp) - (minutes * SECONDS_IN_MINUTE);
+
+        return hours + "hr " + minutes + "min " + seconds + "s";
+    }
+
     private static int timestampPartSeconds(Long timestamp) {
         double seconds = timestamp / (MILLISECONDS_IN_SECOND);
         return (int) seconds;

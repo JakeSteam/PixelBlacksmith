@@ -80,6 +80,13 @@ public class WorkerActivity extends Activity {
 
         if (worker.isPurchased()) {
             workerCharacter.setImageResource(DisplayHelper.getCharacterDrawableID(this, worker.getCharacterID()));
+            workerCharacter.setTag(worker);
+            workerCharacter.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    String workerTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Worker) v.getTag());
+                    ToastHelper.showToast(activity, Toast.LENGTH_SHORT, workerTimesCompleted, false);
+                }
+            });
             workerCharacterText.setText(WorkerHelper.isReady(worker) ? "Ready" : "Busy");
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));
             workerToolText.setText(tool.getName());
@@ -88,15 +95,20 @@ public class WorkerActivity extends Activity {
             workerButton.setTag(worker);
             workerButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    if (WorkerHelper.sendOutWorker((Worker) v.getTag())) {
+                    Worker worker = (Worker) v.getTag();
+                    if (WorkerHelper.sendOutWorker(worker)) {
                         scheduledTask();
+                    } else {
+                        String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, worker);
+                        ToastHelper.showToast(activity, Toast.LENGTH_SHORT, exactTimeLeft, false);
                     }
                 }
             });
         } else if (worker.getLevelUnlocked() <= Player_Info.getPlayerLevel()) {
             workerCharacter.setImageResource(R.drawable.item52);
-            workerCharacterText.setText(WorkerHelper.getBuyCost(worker) + " coins");
-            workerButton.setText("Purchase Worker");
+            workerCharacterText.setText(String.format(getString(R.string.workerCoins),
+                    WorkerHelper.getBuyCost(worker)));
+            workerButton.setText(R.string.buyWorker);
             workerButton.setTag(worker);
             workerButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -105,7 +117,7 @@ public class WorkerActivity extends Activity {
             });
         } else {
             workerCharacter.setImageResource(R.drawable.lock);
-            workerCharacterText.setText("Lev " + worker.getLevelUnlocked());
+            workerCharacterText.setText(String.format(getString(R.string.slotLevel), worker.getLevelUnlocked()));
         }
 
         return traderRoot;
@@ -114,8 +126,6 @@ public class WorkerActivity extends Activity {
     public void scheduledTask() {
         WorkerHelper.checkForFinishedWorkers(this);
         populateWorkers();
-
-        ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.valueOf(System.currentTimeMillis()), false);
     }
 
     private RelativeLayout createTraderRoot() {

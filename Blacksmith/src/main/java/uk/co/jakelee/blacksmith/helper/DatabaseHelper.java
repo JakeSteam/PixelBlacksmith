@@ -107,12 +107,13 @@ public class DatabaseHelper {
     public static void patch121to130() {
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker(1, 1, 1, 32L, 0L, 0, false)); // Change me to 10!
-        workers.add(new Worker(2, 2, 20, 32L, 0L, 0, false));
-        workers.add(new Worker(3, 3, 30, 32L, 0L, 0, false));
-        workers.add(new Worker(4, 4, 40, 32L, 0L, 0, false));
-        workers.add(new Worker(5, 5, 50, 32L, 0L, 0, false));
-        workers.add(new Worker(6, 6, 60, 32L, 0L, 0, false));
-        workers.add(new Worker(7, 7, 1, 32L, 0L, 0, true)); // Delete me!
+        workers.add(new Worker(2, 2, 10, 32L, 0L, 0, false));
+        workers.add(new Worker(3, 3, 20, 32L, 0L, 0, false));
+        workers.add(new Worker(4, 4, 30, 32L, 0L, 0, false));
+        workers.add(new Worker(5, 5, 40, 32L, 0L, 0, false));
+        workers.add(new Worker(6, 6, 50, 32L, 0L, 0, false));
+        workers.add(new Worker(7, 7, 60, 32L, 0L, 0, false));
+        workers.add(new Worker(8, 8, 1, 32L, 0L, 0, true)); // Delete me!
         Worker.saveInTx(workers);
 
         List<Worker_Resource> workerResources = new ArrayList<>();

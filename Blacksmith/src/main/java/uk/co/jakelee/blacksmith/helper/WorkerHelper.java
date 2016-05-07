@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Worker;
@@ -63,9 +65,9 @@ public class WorkerHelper {
 
     public static String getButtonText(Worker worker) {
         if (isReady(worker)) {
-            return "Send Out Gathering";
+            return "Start gathering";
         } else {
-            return "Returns In " + WorkerHelper.getTimeRemainingString(worker);
+            return "Returns in " + WorkerHelper.getTimeRemainingString(worker);
         }
     }
 
@@ -127,5 +129,20 @@ public class WorkerHelper {
             result.append(String.format("%dx %s, ", value, key));
         }
         return String.format("A worker has returned, along with: %s.", result.substring(0, result.length() - 2));
+    }
+
+    public static String getTimesCompletedString(Context context, Worker worker) {
+        Character character = Character.findById(Character.class, worker.getCharacterID());
+        return String.format(context.getString(R.string.workerTimesCompleted),
+                character.getName(),
+                worker.getTimesCompleted());
+    }
+
+    public static String getTimeLeftString(Context context, Worker worker) {
+        Character character = Character.findById(Character.class, worker.getCharacterID());
+        String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(worker));
+        return String.format(context.getString(R.string.workerReturnTime),
+                character.getName(),
+                timeRemaining);
     }
 }

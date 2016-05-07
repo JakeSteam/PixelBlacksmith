@@ -174,6 +174,12 @@
     <string name="buyWorkerComplete">Successfully hired worker!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
+    <string name="buyWorker">Purchase Worker</string>
+    <string name="workerCoins">%d coins</string>
+    <string name="workerLevel">Lev %d</string>
+    <string name="workerReturnTime">%1$s will return in %2$s.</string>
+    <string name="workerTimesCompleted">%1$s has completed %2$d trips.</string>
+
     <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
