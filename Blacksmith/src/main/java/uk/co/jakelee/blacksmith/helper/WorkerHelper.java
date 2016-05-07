@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.main.WorkerActivity;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -21,6 +20,7 @@ import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
 public class WorkerHelper {
+    public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
 
     public static List<Worker_Resource> getResourcesByTool(long toolID) {
         return getResourcesByTool((int) toolID);
@@ -149,9 +149,24 @@ public class WorkerHelper {
                 timeRemaining);
     }
 
-    public static void changeTool(WorkerActivity activity, Worker worker) {
+    public static List<Inventory> getTools(String selection) {
+        String whereClause = "item_id = 52";
+        if (selection.equals("Pickaxe (Ore)")) {
+            whereClause = "type = 1"; // 15
+        } else if (selection.equals("Hammer (Bar)")) {
+            whereClause = "type = 2"; // 18
+        }
+        List<Item> items = Item.find(Item.class, whereClause);
 
+        return Inventory.find(Inventory.class, getStringFromMatchingItems(items));
+    }
 
-        activity.scheduledTask();
+    private static String getStringFromMatchingItems(List<Item> items) {
+        StringBuilder itemString = new StringBuilder();
+        for (Item item : items) {
+            itemString.append(item.getId().toString());
+            itemString.append(",");
+        }
+        return "item IN (" + itemString.substring(0, itemString.length() - 1) + ")";
     }
 }

@@ -89,6 +89,8 @@ public class HelpActivity extends Activity {
             displayHelpPremium(layout);
         } else if (topic == TOPICS.Worker) {
             displayHelpWorker(layout);
+        } else if (topic == TOPICS.Tool) {
+            displayHelpTools(layout);
         }
     }
 
@@ -261,6 +263,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Workers help gather resources.", 22));
     }
 
+    private void displayHelpTools(LinearLayout layout) {
+        layout.addView(dh.createTextView("Tools\n", 26));
+        layout.addView(dh.createTextView("Select the tool a worker will use.", 22));
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
@@ -272,5 +279,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
+    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
 }

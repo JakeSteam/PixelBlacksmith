@@ -46,12 +46,18 @@ public class WorkerActivity extends Activity {
             }
         };
         handler.post(everyFiveSeconds);
-        populateWorkers();
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    public void onResume() {
+        super.onResume();
+
+        scheduledTask();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
 
         handler.removeCallbacksAndMessages(null);
     }
@@ -92,7 +98,12 @@ public class WorkerActivity extends Activity {
             workerTool.setTag(worker);
             workerTool.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    WorkerHelper.changeTool(activity, (Worker) v.getTag());
+                    Worker worker = (Worker) v.getTag();
+                    //if (WorkerHelper.isReady(worker)) {
+                        Intent intent = new Intent(activity, ToolActivity.class);
+                        intent.putExtra(WorkerHelper.INTENT_ID, worker.getWorkerID());
+                        startActivity(intent);
+                    //}
                 }
             });
             workerToolText.setText(tool.getName());

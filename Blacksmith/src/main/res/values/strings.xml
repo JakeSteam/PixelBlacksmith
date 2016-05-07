@@ -130,6 +130,7 @@
     <string name="messagesText">Messages</string>
     <string name="socialMediaText">Social Media</string>
     <string name="workerText">Workers</string>
+    <string name="toolText">Tools</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -389,4 +390,15 @@
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
     <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for all the testing / suggestions.
 </string>
+
+    <string-array name="toolsArray">
+        <item>Pickaxe (Ore)</item>
+        <item>Hammer (Bar)</item>
+        <item>Fishing Rod (Food)</item>
+        <item>Hatchet (Wood)</item>
+        <item>Gloves (Silk)</item>
+        <item>Gem (Powder)</item>
+        <item>Gold Ring (Gold)</item>
+        <item>Silver Ring (Silver)</item>
+    </string-array>
 </resources>
