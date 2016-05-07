@@ -14,11 +14,14 @@ import android.support.v4.app.TaskStackBuilder;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
+import uk.co.jakelee.blacksmith.model.Worker;
 
 public class NotificationHelper extends BroadcastReceiver {
     private static final String NOTIFICATION_TYPE = "uk.co.jakelee.notification_type";
@@ -36,6 +39,18 @@ public class NotificationHelper extends BroadcastReceiver {
 
         long restockTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue() + DateHelper.minutesToMilliseconds(Upgrade.getValue("Visitor Spawn Time"));
         NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_VISITOR);
+    }
+
+    public static void addWorkerNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
+        List<Worker> workers = Worker.listAll(Worker.class);
+        for (Worker worker : workers) {
+            if (worker.isPurchased() && !WorkerHelper.isReady(worker)) {
+                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(worker);
+                NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
+            }
+        }
     }
 
     private static void addNotification(Context context, long notificationTime, int notificationType) {
@@ -71,6 +86,8 @@ public class NotificationHelper extends BroadcastReceiver {
             notificationText = context.getString(R.string.restockTextNoTax);
         } else if (notificationType == Constants.NOTIFICATION_VISITOR) {
             notificationText = context.getString(R.string.notificationVisitor);
+        } else if (notificationType == Constants.NOTIFICATION_WORKER) {
+            notificationText = context.getString(R.string.notificationWorker);
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

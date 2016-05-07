@@ -313,6 +313,11 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addRestockNotification(getApplicationContext(), notificationSound);
         }
 
+        if (Setting.findById(Setting.class, Constants.SETTING_WORKER_NOTIFICATIONS).getBoolValue()) {
+            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+            NotificationHelper.addWorkerNotification(getApplicationContext(), notificationSound);
+        }
+
         if (Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue() && Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);

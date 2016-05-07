@@ -108,6 +108,9 @@ public class DatabaseHelper {
         Upgrade upgrade = new Upgrade("Worker Time", "mins", 50, 30, 180, 30, 180);
         upgrade.save();
 
+        Setting setting = new Setting(7L, "WorkerNotifications", true);
+        setting.save();
+
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker(1, 1, 1, 32L, 0L, 0, false)); // Change me to 10!
         workers.add(new Worker(2, 2, 10, 32L, 0L, 0, false));

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.WorkerActivity;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -146,5 +147,11 @@ public class WorkerHelper {
         return String.format(context.getString(R.string.workerReturnTime),
                 character.getName(),
                 timeRemaining);
+    }
+
+    public static void changeTool(WorkerActivity activity, Worker worker) {
+
+
+        activity.scheduledTask();
     }
 }

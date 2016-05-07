@@ -89,6 +89,12 @@ public class WorkerActivity extends Activity {
             });
             workerCharacterText.setText(WorkerHelper.isReady(worker) ? "Ready" : "Busy");
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));
+            workerTool.setTag(worker);
+            workerTool.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    WorkerHelper.changeTool(activity, (Worker) v.getTag());
+                }
+            });
             workerToolText.setText(tool.getName());
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
             workerButton.setText(WorkerHelper.getButtonText(worker));
