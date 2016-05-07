@@ -105,6 +105,9 @@ public class DatabaseHelper {
     }
 
     public static void patch121to130() {
+        Upgrade upgrade = new Upgrade("Worker Time", "mins", 50, 30, 180, 30, 180);
+        upgrade.save();
+
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker(1, 1, 1, 32L, 0L, 0, false)); // Change me to 10!
         workers.add(new Worker(2, 2, 10, 32L, 0L, 0, false));

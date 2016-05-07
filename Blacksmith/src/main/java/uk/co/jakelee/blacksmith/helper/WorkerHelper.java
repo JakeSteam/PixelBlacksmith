@@ -15,6 +15,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
@@ -54,7 +55,8 @@ public class WorkerHelper {
 
     public static long getTimeRemaining(Worker worker) {
         long timeStarted = worker.getTimeStarted();
-        long timeForCompletion = DateHelper.minutesToMilliseconds(Constants.WORKER_MINUTES);
+        int minutesForCompletion = Upgrade.getValue("Worker Time");
+        long timeForCompletion = DateHelper.minutesToMilliseconds(minutesForCompletion);
         return (timeStarted + timeForCompletion) - System.currentTimeMillis();
 
     }
