@@ -150,7 +150,7 @@ public class WorkerHelper {
     }
 
     public static List<Inventory> getTools(String selection) {
-        String whereClause = "item_id = 52";
+        String whereClause = "1 > 2";
         if (selection.equals("Pickaxe (Ore)")) {
             whereClause = "type = 1"; // 15
         } else if (selection.equals("Hammer (Bar)")) {

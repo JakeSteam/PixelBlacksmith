@@ -10,6 +10,7 @@ public class Worker extends SugarRecord {
     private long characterID;
     private int levelUnlocked;
     private long toolUsed;
+    private long toolState;
     private long timeStarted;
     private int timesCompleted;
     private boolean purchased;
@@ -17,11 +18,12 @@ public class Worker extends SugarRecord {
     public Worker() {
     }
 
-    public Worker(long workerID, long characterID, int levelUnlocked, long toolUsed, long timeStarted, int timesCompleted, boolean purchased) {
+    public Worker(long workerID, long characterID, int levelUnlocked, long toolUsed, long toolState, long timeStarted, int timesCompleted, boolean purchased) {
         this.workerID = workerID;
         this.characterID = characterID;
         this.levelUnlocked = levelUnlocked;
         this.toolUsed = toolUsed;
+        this.toolState = toolState;
         this.timeStarted = timeStarted;
         this.timesCompleted = timesCompleted;
         this.purchased = purchased;
@@ -57,6 +59,14 @@ public class Worker extends SugarRecord {
 
     public void setToolUsed(long toolUsed) {
         this.toolUsed = toolUsed;
+    }
+
+    public long getToolState() {
+        return toolState;
+    }
+
+    public void setToolState(long toolState) {
+        this.toolState = toolState;
     }
 
     public long getTimeStarted() {
