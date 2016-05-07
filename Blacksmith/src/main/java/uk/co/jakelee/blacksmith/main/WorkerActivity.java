@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Select;
 
@@ -17,7 +19,9 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -25,6 +29,7 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class WorkerActivity extends Activity {
     private static DisplayHelper dh;
+    private static final Handler handler = new Handler();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,22 @@ public class WorkerActivity extends Activity {
 
         dh = DisplayHelper.getInstance(getApplicationContext());
 
+        final Runnable everyFiveSeconds = new Runnable() {
+            @Override
+            public void run() {
+                scheduledTask();
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 5);
+            }
+        };
+        handler.post(everyFiveSeconds);
         populateWorkers();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        handler.removeCallbacksAndMessages(null);
     }
 
     private void populateWorkers() {
@@ -65,6 +85,14 @@ public class WorkerActivity extends Activity {
             workerToolText.setText(tool.getName());
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
             workerButton.setText(WorkerHelper.getButtonText(worker));
+            workerButton.setTag(worker);
+            workerButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    if (WorkerHelper.sendOutWorker((Worker) v.getTag())) {
+                        scheduledTask();
+                    }
+                }
+            });
         } else if (worker.getLevelUnlocked() <= Player_Info.getPlayerLevel()) {
             workerCharacter.setImageResource(R.drawable.item52);
             workerCharacterText.setText(WorkerHelper.getBuyCost(worker) + " coins");
@@ -83,8 +111,11 @@ public class WorkerActivity extends Activity {
         return traderRoot;
     }
 
-    public void alertDialogCallback() {
+    public void scheduledTask() {
+        WorkerHelper.checkForFinishedWorkers(this);
         populateWorkers();
+
+        ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.valueOf(System.currentTimeMillis()), false);
     }
 
     private RelativeLayout createTraderRoot() {

@@ -18,7 +18,7 @@ public class Constants {
     public static final int TRADER_TAX_MULTIPLIER = 10;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
-    public static final int WORKER_MINUTES = 10;
+    public static final int WORKER_MINUTES = 20;
     public static final int WORKER_COST_MULTIPLIER = 1000;
 
 

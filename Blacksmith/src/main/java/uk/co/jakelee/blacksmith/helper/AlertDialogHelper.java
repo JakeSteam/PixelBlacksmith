@@ -39,7 +39,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1462726800000|UPDATE playerinfo SET int_value = 1 WHERE name = 'Prestige'");
+                //String supportCode = SupportCodeHelper.encode("1462827600000|UPDATE upgrade SET current = 20, maximum = 100 WHERE name IN ('Gold Bonus', 'XP Bonus')");
                 String supportCode = supportCodeBox.getText().toString();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
@@ -132,7 +132,7 @@ public class AlertDialogHelper {
                     worker.setPurchased(true);
                     worker.save();
                     ToastHelper.showToast(context, Toast.LENGTH_LONG, context.getString(R.string.buyWorkerComplete), true);
-                    activity.alertDialogCallback();
+                    activity.scheduledTask();
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
                 }

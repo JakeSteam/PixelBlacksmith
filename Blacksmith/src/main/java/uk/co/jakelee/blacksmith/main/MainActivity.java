@@ -34,6 +34,7 @@ import uk.co.jakelee.blacksmith.helper.PremiumHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
+import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -365,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements
                     ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
+                WorkerHelper.checkForFinishedWorkers(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
