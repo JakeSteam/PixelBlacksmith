@@ -1,6 +1,5 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -29,6 +28,8 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
+import uk.co.jakelee.blacksmith.model.Worker;
+import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
 public class DatabaseHelper {
     public final static int DB_EMPTY = 0;
@@ -104,25 +105,34 @@ public class DatabaseHelper {
     }
 
     public static void patch121to130() {
-        SugarRecord.executeQuery("DROP TABLE Worker");
-        SugarRecord.executeQuery("CREATE TABLE Worker (id INTEGER, worker_id INTEGER, character_id INTEGER, level_unlocked INTEGER, time_started INTEGER, times_completed INTEGER)");
+        List<Worker> workers = new ArrayList<>();
+        workers.add(new Worker(1, 1, 1, 32L, 0L, 0, false)); // Change me to 10!
+        workers.add(new Worker(2, 2, 20, 32L, 0L, 0, false));
+        workers.add(new Worker(3, 3, 30, 32L, 0L, 0, false));
+        workers.add(new Worker(4, 4, 40, 32L, 0L, 0, false));
+        workers.add(new Worker(5, 5, 50, 32L, 0L, 0, false));
+        workers.add(new Worker(6, 6, 60, 32L, 0L, 0, false));
+        workers.add(new Worker(7, 7, 1, 32L, 0L, 0, true)); // Delete me!
+        Worker.saveInTx(workers);
+
+        List<Worker_Resource> workerResources = new ArrayList<>();
+        workerResources.add(new Worker_Resource(32, 1, 1, 3));
+        workerResources.add(new Worker_Resource(32, 1, 1, 3));
+        Worker_Resource.saveInTx(workerResources);
 
         List<Slot> slots = new ArrayList<>();
-
-        slots.add(new Slot(1, 9999, false));
-        slots.add(new Slot(2, 9999, false));
-        slots.add(new Slot(3, 9999, false));
-        slots.add(new Slot(4, 9999, false));
-        slots.add(new Slot(5, 9999, false));
-        slots.add(new Slot(6, 9999, false));
-
         slots.add(new Slot(1, 70, false));
         slots.add(new Slot(2, 70, false));
         slots.add(new Slot(3, 70, false));
         slots.add(new Slot(3, 45, false));
         slots.add(new Slot(5, 70, false));
         slots.add(new Slot(6, 25, false));
-
+        slots.add(new Slot(1, 9999, false));
+        slots.add(new Slot(2, 9999, false));
+        slots.add(new Slot(3, 9999, false));
+        slots.add(new Slot(4, 9999, false));
+        slots.add(new Slot(5, 9999, false));
+        slots.add(new Slot(6, 9999, false));
         Slot.saveInTx(slots);
 
         Trader trader = Select.from(Trader.class).where(

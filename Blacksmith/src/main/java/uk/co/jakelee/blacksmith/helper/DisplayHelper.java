@@ -75,8 +75,12 @@ public class DisplayHelper {
         return dhInstance;
     }
 
-    private static int getItemDrawableID(Context context, long item) {
+    public static int getItemDrawableID(Context context, long item) {
         return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
+    }
+
+    public static int getCharacterDrawableID(Context context, long character) {
+        return context.getResources().getIdentifier("character" + character, "drawable", context.getPackageName());
     }
 
     private static RelativeLayout createSlotRoot(Context context) {

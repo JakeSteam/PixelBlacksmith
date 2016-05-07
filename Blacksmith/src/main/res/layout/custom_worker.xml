@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/traderRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+    <ImageView
+        android:id="@+id/workerCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@drawable/slot"
+        android:layout_margin="5dp"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="35%" />
+
+    <ImageView
+        android:id="@+id/workerTool"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/workerCharacter"
+        android:background="@drawable/slot"
+        android:layout_margin="5dp"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="35%" />
+
+    <ImageView
+        android:id="@+id/workerResource"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/workerTool"
+        android:background="@drawable/slot"
+        android:layout_margin="5dp"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="20%" />
+
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/workerTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/workerCharacter"
+        android:layout_below="@id/workerCharacter"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"/>
+
+</android.support.percent.PercentRelativeLayout>

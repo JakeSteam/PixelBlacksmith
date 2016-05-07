@@ -174,7 +174,7 @@
                 android:layout_width="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="1030dp"
-                android:onClick="openPremium"
+                android:onClick="openWorkers"
                 android:scaleType="centerCrop"
                 android:src="@drawable/item52"
                 app:layout_heightPercent="8%"
