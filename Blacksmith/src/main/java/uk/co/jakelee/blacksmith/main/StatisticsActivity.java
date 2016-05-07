@@ -23,6 +23,7 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
+import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
     private static DisplayHelper dh;
@@ -114,6 +115,14 @@ public class StatisticsActivity extends Activity {
         int trophiesEarned = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
         int totalTrophies = (int) Visitor_Stats.count(Visitor_Stats.class);
         ((TextViewPixel) findViewById(R.id.trophies)).setText(String.format(getString(R.string.genericProgress), trophiesEarned, totalTrophies));
+
+        int workersOwned = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
+        ((TextViewPixel) findViewById(R.id.workersOwned)).setText(String.format(getString(R.string.genericProgress),
+                workersOwned,
+                Worker.listAll(Worker.class).size()));
+
+        int workersTrips = Worker.getTotalTrips();
+        ((TextViewPixel) findViewById(R.id.workersTrips)).setText(String.format("%,d", workersTrips));
 
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue), prestigeLevel + 1));

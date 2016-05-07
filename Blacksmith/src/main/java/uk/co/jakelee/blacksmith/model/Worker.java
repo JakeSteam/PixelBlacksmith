@@ -3,6 +3,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 public class Worker extends SugarRecord {
     private long workerID;
     private long characterID;
@@ -79,5 +81,17 @@ public class Worker extends SugarRecord {
 
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
+    }
+
+    public static int getTotalTrips() {
+        int trips = 0;
+        List<Worker> workers = Worker.listAll(Worker.class);
+
+        for (Worker worker : workers) {
+            trips += worker.getTimesCompleted();
+        }
+
+        return trips;
+
     }
 }

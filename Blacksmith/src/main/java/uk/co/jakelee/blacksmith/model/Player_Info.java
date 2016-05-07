@@ -109,6 +109,7 @@ public class Player_Info extends SugarRecord {
             Item * 1
             Visitor Preferences * 1
             Trophies * 1
+            Workers * 100
          */
         int currentlyComplete = getCurrentCompletion();
         int totalToComplete = getFullCompletion();
@@ -126,8 +127,9 @@ public class Player_Info extends SugarRecord {
         int currentItemPoints = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
         int currentPreferences = Visitor_Type.getPreferencesDiscovered();
         int currentTrophies = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
+        int currentWorkers = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
 
-        return currentLevelPoints + currentUpgradePoints + currentTraderPoints + currentSlotPoints + currentTraderStockPoints + currentItemPoints + currentPreferences + currentTrophies;
+        return currentLevelPoints + currentUpgradePoints + currentTraderPoints + currentSlotPoints + currentTraderStockPoints + currentItemPoints + currentPreferences + currentTrophies + currentWorkers;
     }
 
     private static int getFullCompletion() {
@@ -139,8 +141,9 @@ public class Player_Info extends SugarRecord {
         int maxItemPoints = (int) Item.count(Item.class);
         int maxPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;
         int maxTrophies = (int) Visitor_Stats.count(Visitor_Stats.class);
+        int maxWorkers = Worker.listAll(Worker.class).size();
 
-        return maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferences + maxTrophies;
+        return maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferences + maxTrophies + maxWorkers;
     }
 
     public static int getXp() {
