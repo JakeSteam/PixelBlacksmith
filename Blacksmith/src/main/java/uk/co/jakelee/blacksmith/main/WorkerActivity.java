@@ -100,11 +100,11 @@ public class WorkerActivity extends Activity {
             workerTool.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Worker worker = (Worker) v.getTag();
-                    //if (WorkerHelper.isReady(worker)) {
+                    if (WorkerHelper.isReady(worker)) {
                         Intent intent = new Intent(activity, ToolActivity.class);
                         intent.putExtra(WorkerHelper.INTENT_ID, worker.getWorkerID());
                         startActivity(intent);
-                    //}
+                    }
                 }
             });
             workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
