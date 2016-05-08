@@ -167,14 +167,21 @@ public class HelpActivity extends Activity {
 
     private void displayHelpSettings(LinearLayout layout) {
         layout.addView(dh.createTextView("Settings\n", 26));
-        layout.addView(dh.createTextView("Here, game settings such as music / sound and notifications can be enabled and disabled.\n", 22));
-        layout.addView(dh.createTextView("Changes take place as soon as the settings interface is closed.", 22));
+        layout.addView(dh.createTextView("Game settings can be changed here, changes take place as soon as the settings interface is closed.\n", 22));
+        layout.addView(dh.createTextView("The messages button displays the last 100 important messages (e.g. level ups) received.\n", 22));
+        layout.addView(dh.createTextView("The tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\n", 22));
+        layout.addView(dh.createTextView("The rate app button will link you to the game's Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\n", 22));
+        layout.addView(dh.createTextView("Google Play Games services can also be accessed here, and any codes given by customer support can be entered.\n", 22));
+        layout.addView(dh.createTextView("If you're over level 70, a prestige button will also be visible.\n", 22));
+        layout.addView(dh.createTextView("Prestiging resets all items, XP, coins, upgrades, visitor, and trader progress, but keeps statistics and premium bonuses. In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
     }
 
     private void displayHelpTrader(LinearLayout layout) {
         layout.addView(dh.createTextView("Trader\n", 26));
-        layout.addView(dh.createTextView("Traders will drift in and out of the marketplace throughout the day, with some offering steep discounts.\n", 22));
-        layout.addView(dh.createTextView("They have a limited amount of stock, restocking happens every few hours (time until next restock is available on the statistics interface, or receive a notification via the settings interface).", 22));
+        layout.addView(dh.createTextView("Traders will drift in and out of the marketplace throughout the day, each offering different items. Making many purchases from a trader will usually unlock more items for sale.\n", 22));
+        layout.addView(dh.createTextView("Many traders require a minimum level before they will appear, especially those selling higher level equipment and rarer traders.\n", 22));
+        layout.addView(dh.createTextView("They each have a limited amount of stock and restocking happens every few hours. Time until next restock is available on the statistics interface, and a notification is also sent.\n", 22));
+        layout.addView(dh.createTextView("A trader can also be restocked for a cost. The buy all button will also buy every item the trader is currently selling.", 22));
     }
 
     private void displayHelpStatistics(LinearLayout layout) {
