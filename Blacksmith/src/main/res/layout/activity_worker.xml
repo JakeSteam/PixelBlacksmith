@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/credits"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/background_2part"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="2"
+        tools:context="uk.co.jakelee.blacksmith.main.WorkerActivity">
+
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/workerTitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="@string/workerText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="1%" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/workerScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/workerTitle"
+            app:layout_marginTopPercent="10%"
+            android:fadeScrollbars="false">
+
+            <LinearLayout
+                android:id="@+id/workerContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.percent.PercentRelativeLayout>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/help"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="openHelp"
+        android:src="@drawable/help" />
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/close"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:onClick="closePopup"
+        android:src="@drawable/close" />
+</RelativeLayout>

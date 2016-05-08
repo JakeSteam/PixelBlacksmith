@@ -131,6 +131,25 @@
                 <TableRow>
 
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/workerNotificationToggleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/workerNotificationSettingText"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/workerNotificationToggleButton"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:onClick="toggleSetting" />
+                </TableRow>
+
+                <TableRow>
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/notificationSoundToggleText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

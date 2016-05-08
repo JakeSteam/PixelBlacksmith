@@ -31,8 +31,10 @@ import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
+import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
+import uk.co.jakelee.blacksmith.model.Worker;
 
 public class GooglePlayHelper {
     public static final int RC_ACHIEVEMENTS = 9002;
@@ -208,6 +210,8 @@ public class GooglePlayHelper {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
         List<Visitor_Stats> visitor_stats = Visitor_Stats.listAll(Visitor_Stats.class);
         List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
+        List<Visitor_Demand> visitor_demands = Visitor_Demand.listAll(Visitor_Demand.class);
+        List<Worker> workers = Worker.listAll(Worker.class);
 
         backupString = gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
@@ -216,10 +220,11 @@ public class GooglePlayHelper {
         backupString += gson.toJson(upgrades) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitors) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_types);
+        backupString += gson.toJson(visitor_types) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(visitor_demands) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(workers);
 
         return backupString.getBytes();
-
     }
 
     private static void applyBackup(String backupData) {
@@ -275,6 +280,25 @@ public class GooglePlayHelper {
             visitor_type.save();
         }
 
+        if (splitData.length >= 8) {
+            Visitor_Demand[] visitor_demands = gson.fromJson(splitData[8], Visitor_Demand[].class);
+            if (visitor_demands.length > 0) {
+                Visitor_Demand.deleteAll(Visitor_Demand.class);
+                for (Visitor_Demand visitor_demand : visitor_demands) {
+                    visitor_demand.save();
+                }
+            }
+        }
+
+        if (splitData.length >= 9) {
+            Worker[] workers = gson.fromJson(splitData[9], Worker[].class);
+            if (workers.length > 0) {
+                Worker.deleteAll(Worker.class);
+                for (Worker worker : workers) {
+                    worker.save();
+                }
+            }
+        }
     }
 
     private static String[] splitBackupData(String backupData) {

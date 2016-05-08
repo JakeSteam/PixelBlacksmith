@@ -8,7 +8,9 @@ import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Pending_Inventory extends SugarRecord {
     private Long item;
@@ -78,6 +80,37 @@ public class Pending_Inventory extends SugarRecord {
         } else {
             // Otherwise, it can go in now
             return System.currentTimeMillis();
+        }
+    }
+
+    public static String getPendingItemsText(long locationID) {
+        List<Pending_Inventory> pendingItems = Select.from(Pending_Inventory.class).where(
+                Condition.prop("location_id").eq(locationID)).list();
+        HashMap<String, Integer> data = new HashMap<>();
+
+        for (Pending_Inventory pendingItem : pendingItems) {
+            Item item = Item.findById(Item.class, pendingItem.getItem());
+            Integer temp;
+            if(data.containsKey(item.getName())) {
+                temp = data.get(item.getName())+pendingItem.getQuantity();
+                data.put(item.getName(),temp);
+            }
+            else {
+                data.put(item.getName(),pendingItem.getQuantity());
+            }
+        }
+
+        if (data.size() == 0) {
+            return "No pending items.";
+        } else {
+            StringBuilder result = new StringBuilder();
+            for (Map.Entry<String, Integer> entry : data.entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+
+                result.append(String.format("%dx %s, ", value, key));
+            }
+            return String.format("Pending items: %s.", result.substring(0, result.length() - 2));
         }
     }
 

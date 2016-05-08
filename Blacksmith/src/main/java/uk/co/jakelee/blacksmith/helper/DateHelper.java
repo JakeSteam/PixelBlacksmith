@@ -19,33 +19,25 @@ public class DateHelper {
     }
 
     public static String getHoursMinsRemaining(Long timestamp) {
-        int hours = timestampPartHours(timestamp);
-        int minutes = timestampPartMinutes(timestamp) - (hours * MINUTES_IN_HOUR);
+        int minutes = (int) ((timestamp / (1000*60)) % 60);
+        int hours   = (int) ((timestamp / (1000*60*60)) % 24);
 
         return hours + "hr " + minutes + "min";
     }
 
     public static String getMinsSecsRemaining(Long timestamp) {
-        int hours = timestampPartHours(timestamp);
-        int minutes = timestampPartMinutes(timestamp) - (hours * MINUTES_IN_HOUR);
-        int seconds = timestampPartSeconds(timestamp) - (minutes * SECONDS_IN_MINUTE);
+        int seconds = (int) (timestamp / 1000) % 60 ;
+        int minutes = (int) ((timestamp / (1000*60)) % 60);
 
         return minutes + "min " + seconds + "s";
     }
 
-    private static int timestampPartSeconds(Long timestamp) {
-        double seconds = timestamp / (MILLISECONDS_IN_SECOND);
-        return (int) seconds;
-    }
+    public static String getHoursMinsSecsRemaining(Long timestamp) {
+        int seconds = (int) (timestamp / 1000) % 60 ;
+        int minutes = (int) ((timestamp / (1000*60)) % 60);
+        int hours   = (int) ((timestamp / (1000*60*60)) % 24);
 
-    private static int timestampPartMinutes(Long timestamp) {
-        double minutes = timestamp / (MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE);
-        return (int) minutes;
-    }
-
-    private static int timestampPartHours(Long timestamp) {
-        double hours = timestamp / (MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR);
-        return (int) hours;
+        return hours + "hr " + minutes + "min " + seconds + "s";
     }
 
     public static int minutesToMilliseconds(int minutes) {

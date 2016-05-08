@@ -75,8 +75,12 @@ public class DisplayHelper {
         return dhInstance;
     }
 
-    private static int getItemDrawableID(Context context, long item) {
+    public static int getItemDrawableID(Context context, long item) {
         return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
+    }
+
+    public static int getCharacterDrawableID(Context context, long character) {
+        return context.getResources().getIdentifier("character" + character, "drawable", context.getPackageName());
     }
 
     private static RelativeLayout createSlotRoot(Context context) {
@@ -89,11 +93,11 @@ public class DisplayHelper {
         return this.context.getString(ID);
     }
 
-    public void createAllSlots(Activity activity) {
+    public void createAllSlots(final Activity activity) {
         List<Location> locations = Select.from(Location.class).list();
         int playerLevel = Player_Info.getPlayerLevel();
 
-        for (Location location : locations) {
+        for (final Location location : locations) {
             GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
             slotContainer.removeAllViews();
 
@@ -115,14 +119,26 @@ public class DisplayHelper {
                     slotBackground.setBackgroundResource(R.drawable.slot);
                     slotCount.setVisibility(View.VISIBLE);
                     if (slot.getLevel() > playerLevel) {
-                        slotForeground.setBackgroundResource(R.drawable.lock);
-                        slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        if (slot.getLevel() < 999) {
+                            slotForeground.setBackgroundResource(R.drawable.lock);
+                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        }
                         slotOverflow.setVisibility(View.VISIBLE);
+                        slotBackground.setOnClickListener(new Button.OnClickListener() {
+                            public void onClick(View v) {
+                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                            }
+                        });
                         displayedNextSlot = true;
                     } else if (slot.isPremium() && !Player_Info.isPremium()) {
                         slotForeground.setBackgroundResource(R.drawable.item52);
                         slotCount.setText(activity.getString(R.string.slotPremium));
                         slotOverflow.setVisibility(View.VISIBLE);
+                        slotBackground.setOnClickListener(new Button.OnClickListener() {
+                            public void onClick(View v) {
+                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, "TEST MESSAGE", false);
+                            }
+                        });
                         displayedNextSlot = true;
                     } else {
                         slotRoot.setTag(true);
@@ -374,7 +390,7 @@ public class DisplayHelper {
         if (haveSeen) {
             imageResource.clearColorFilter();
         } else if (canCreate) {
-            imageResource.setColorFilter(Color.LTGRAY, PorterDuff.Mode.MULTIPLY);
+            imageResource.setColorFilter(Color.DKGRAY, PorterDuff.Mode.MULTIPLY);
         } else {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         }

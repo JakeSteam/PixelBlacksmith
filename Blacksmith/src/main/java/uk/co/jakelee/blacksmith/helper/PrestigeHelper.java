@@ -8,10 +8,13 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Trader;
+import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
+import uk.co.jakelee.blacksmith.model.Worker;
 
 class PrestigeHelper {
     public static void prestigeAccount() {
@@ -21,6 +24,8 @@ class PrestigeHelper {
         resetUpgrades();
         resetXP();
         resetAllVisitors();
+        resetTraders();
+        resetWorkers();
     }
 
     private static void increasePrestige() {
@@ -42,7 +47,16 @@ class PrestigeHelper {
     private static void resetUpgrades() {
         List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
         for (Upgrade upgrade : upgrades) {
-            upgrade.setCurrent(upgrade.increases() ? upgrade.getMinimum() : upgrade.getMaximum());
+            if (upgrade.getName().equals("Gold Bonus") || upgrade.getName().equals("XP Bonus")) {
+                if (Player_Info.isPremium()) {
+                    upgrade.setCurrent(20);
+                } else {
+                    upgrade.setCurrent(0);
+                }
+            } else {
+                upgrade.setCurrent(upgrade.getMinimum());
+            }
+            upgrade.save();
         }
     }
 
@@ -64,5 +78,14 @@ class PrestigeHelper {
             type.setTierDiscovered(false);
             type.save();
         }
+    }
+
+    private static void resetTraders() {
+        Trader.executeQuery("UPDATE trader SET purchases = 0");
+        Trader_Stock.restockTraders();
+    }
+
+    private static void resetWorkers() {
+        Worker.executeQuery("UPDATE worker SET purchased = 0");
     }
 }

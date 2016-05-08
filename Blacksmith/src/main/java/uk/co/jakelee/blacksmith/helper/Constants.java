@@ -18,6 +18,9 @@ public class Constants {
     public static final int TRADER_TAX_MULTIPLIER = 10;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
+    public static final int WORKER_MINUTES = 20;
+    public static final int WORKER_COST_MULTIPLIER = 1000;
+
 
     // Tutorial stages
     public static final int STAGE_1_MAIN = 1;
@@ -45,6 +48,7 @@ public class Constants {
 
     public static final int NOTIFICATION_VISITOR = 1;
     public static final int NOTIFICATION_RESTOCK = 2;
+    public static final int NOTIFICATION_WORKER = 3;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
@@ -83,6 +87,7 @@ public class Constants {
     public static final Long SETTING_NOTIFICATION_SOUNDS = 4L;
     public static final Long SETTING_VISITOR_NOTIFICATIONS = 5L;
     public static final Long SETTING_SIGN_IN = 6L;
+    public static final Long SETTING_WORKER_NOTIFICATIONS = 7L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/traderRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+    <ImageView
+        android:id="@+id/workerCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@drawable/slot"
+        android:layout_margin="5dp"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="35%" />
+
+    <ImageView
+        android:id="@+id/workerTool"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/workerCharacter"
+        android:background="@drawable/slot"
+        android:layout_margin="5dp"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="35%" />
+
+    <LinearLayout
+        android:id="@+id/workerResource"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/workerTool"
+        android:background="@drawable/slot"
+        android:layout_margin="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="20%" />
+
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/workerCharacterText"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/workerCharacter"
+        android:layout_alignLeft="@id/workerCharacter"
+        android:alpha="0.6"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="@string/workerLocked"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_widthPercent="35%" />
+
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/workerToolText"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/workerTool"
+        android:layout_alignLeft="@id/workerTool"
+        android:alpha="0.6"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="@string/workerLocked"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_widthPercent="35%" />
+
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/workerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/workerCharacter"
+        android:layout_below="@id/workerCharacter"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@drawable/button_extra_wide"
+        android:clickable="true"
+        android:textSize="25sp"
+        />
+
+</android.support.percent.PercentRelativeLayout>

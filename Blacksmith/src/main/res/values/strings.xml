@@ -95,14 +95,16 @@
     <!-- Stage 13 -->
     <string name="tutorialMainInfo">Last Thing</string>
     <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his items, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainWorker">Worker</string>
+    <string name="tutorialMainWorkerText">Later on in the game, workers can be hired to find resources for you. For now though...</string>
     <string name="tutorialMainMarket">Market</string>
-    <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.</string>
+    <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.\nTap to enter.</string>
 
     <!-- Stage 14 -->
     <string name="tutorialMarket">Market</string>
     <string name="tutorialMarketText">This is where your resources will come from! Traders will come and go over time, and purchasing from them will unlock better / more items for sale.</string>
     <string name="tutorialMarketClose">Close</string>
-    <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market for now.</string>
+    <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market, and we\'ll take a look at the last few areas.</string>
 
     <!-- Stage 15 -->
     <string name="tutorialMainSettings">Settings</string>
@@ -129,6 +131,8 @@
     <string name="premiumText">Premium</string>
     <string name="messagesText">Messages</string>
     <string name="socialMediaText">Social Media</string>
+    <string name="workerText">Workers</string>
+    <string name="toolText">Tools</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -154,10 +158,10 @@
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:
-\n- +50% maximum gold bonus.
-\n- +20% current gold bonus.
-\n- +50% maximum XP bonus.
-\n- +20% current XP bonus.
+\n- +50% maximum extra gold.
+\n- +20% current extra gold.
+\n- +50% maximum extra XP.
+\n- +20% current extra XP.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Gold tax paid by all traders on automatic restock.
@@ -166,6 +170,23 @@
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
     <string name="overflowText">+ %d</string>
+
+    <string name="workerLocked">Locked</string>
+    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %d coins?</string>
+    <string name="buyWorkerConfirm">Hire</string>
+    <string name="buyWorkerComplete">Successfully hired worker!</string>
+    <string name="buyWorkerCancel">Cancel</string>
+
+    <string name="buyWorker">Purchase Worker</string>
+    <string name="workerCoins">%d coins</string>
+    <string name="workerLevel">Lev %d</string>
+    <string name="workerReturnTime">%1$s will return in %2$s.</string>
+    <string name="workerTimesCompleted">%1$s has completed %2$d trips.</string>
+    <string name="workerStatusReady">Status:\nReady</string>
+    <string name="workerStatusBusy">Status:\nBusy</string>
+    <string name="workerTool">Tool:\n%s</string>
+    <string name="workerReturned">A worker has returned, along with: %s.</string>
+    <string name="workerResources">Resources: %s.</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
@@ -241,6 +262,7 @@
     <string name="musicSettingText">Enable music?</string>
     <string name="restockNotificationSettingText">Restock notifications?</string>
     <string name="visitorNotificationSettingText">Visitor notifications?</string>
+    <string name="workerNotificationSettingText">Worker notifications?</string>
     <string name="notificationSoundSettingText">Enable notification sounds?</string>
     <string name="prestigeSettingText">Prestige</string>
 
@@ -274,6 +296,7 @@
     <string name="supportCodeCancel">Cancel</string>
 
     <string name="notificationVisitor">A new visitor has arrived!</string>
+    <string name="notificationWorker">A worker has returned!</string>
 
     <string name="tableQuantity">Qty</string>
     <string name="tableItem">Item </string>
@@ -305,7 +328,7 @@
     <string name="visitorLeavesPremium1">The visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
     <string name="visitorLeavesPremium2">The visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
     <string name="visitorLeavesPremium3">As the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
-    <string name="visitorLeavesComplete1">The visitor reward you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
+    <string name="visitorLeavesComplete1">The visitor rewards you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
     <string name="visitorLeavesComplete2">The visitor\'s tip has been doubled to %1$dx %2$s!</string>
     <string name="visitorLeavesComplete3">The very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
     <string name="visitorLeavesCompletePremium1">The visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
@@ -334,6 +357,8 @@
     <string name="statisticsItemsSeen">Items Seen:</string>
     <string name="statisticsPreferencesDiscovered">Preferences Discovered:</string>
     <string name="statisticsTrophies">Trophies:</string>
+    <string name="statisticsWorkersOwned">Workers Owned:</string>
+    <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
@@ -373,4 +398,16 @@
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
     <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for all the testing / suggestions.
 </string>
+
+    <string-array name="toolsArray">
+        <item>Pickaxe (Ore)</item>
+        <item>Hammer (Bar)</item>
+        <item>Fishing Rod (Food)</item>
+        <item>Hatchet (Wood)</item>
+        <item>Gloves (Silk)</item>
+        <item>Gem (Powder)</item>
+        <item>Silver Ring (Silver + Gems)</item>
+        <item>Gold Ring (Gold + Gems)</item>
+        <item>Visage (Coins)</item>
+    </string-array>
 </resources>

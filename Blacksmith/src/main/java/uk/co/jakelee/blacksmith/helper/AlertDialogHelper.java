@@ -19,6 +19,7 @@ import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
+import uk.co.jakelee.blacksmith.main.WorkerActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -26,6 +27,7 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
+import uk.co.jakelee.blacksmith.model.Worker;
 
 public class AlertDialogHelper {
     public static void enterSupportCode(final Context context, Activity activity) {
@@ -37,7 +39,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1462726800000|UPDATE playerinfo SET int_value = 1 WHERE name = 'Prestige'");
+                //String supportCode = SupportCodeHelper.encode("1462827600000|UPDATE upgrade SET current = 20, maximum = 100 WHERE name IN ('Gold Bonus', 'XP Bonus')");
                 String supportCode = supportCodeBox.getText().toString();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
@@ -109,6 +111,37 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/PixelBlacksmith"));
                 activity.startActivity(browserIntent);
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void confirmBuyWorker(final Context context, final WorkerActivity activity, final Worker worker) {
+        final int buyCost = WorkerHelper.getBuyCost(worker);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.buyWorkerQuestion), buyCost));
+
+        alertDialog.setPositiveButton(context.getString(R.string.buyWorkerConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                if (coinStock.getQuantity() >= buyCost) {
+                    coinStock.setQuantity(coinStock.getQuantity() - buyCost);
+                    coinStock.save();
+
+                    worker.setPurchased(true);
+                    worker.save();
+                    ToastHelper.showToast(context, Toast.LENGTH_LONG, context.getString(R.string.buyWorkerComplete), true);
+                    activity.scheduledTask();
+                } else {
+                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.buyWorkerCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
 
