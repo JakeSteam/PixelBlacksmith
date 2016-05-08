@@ -7,7 +7,7 @@
 
     <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/mainScroller"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.percent.PercentRelativeLayout
@@ -20,7 +20,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/wallpaper" />
+                android:src="@drawable/wallpaper1"/>
+
+            <ImageView
+                android:id="@+id/wallpaper_id2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/wallpaper_id"
+                android:scaleType="fitXY"
+                android:src="@drawable/wallpaper2"/>
+
+            <ImageView
+                android:id="@+id/wallpaper_id3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/wallpaper_id2"
+                android:scaleType="fitXY"
+                android:src="@drawable/wallpaper3"/>
 
             <ImageView
                 android:id="@+id/open_furnace"
@@ -40,25 +56,6 @@
                 android:columnCount="5"
                 android:orientation="horizontal"
                 android:onClick="openFurnace" />
-
-            <ImageView
-                android:id="@+id/open_market"
-                android:layout_width="190dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="260dp"
-                android:onClick="openMarket"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="90%" />
-
-            <GridLayout
-                android:id="@+id/slots_market"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/open_market"
-                android:layout_toRightOf="@id/open_market"
-                android:columnCount="7"
-                android:orientation="horizontal"
-                android:onClick="openMarket" />
 
             <ImageView
                 android:id="@+id/open_anvil"
@@ -137,6 +134,44 @@
                 android:onClick="openEnchanting" />
 
             <ImageView
+                android:id="@+id/open_market"
+                android:layout_width="190dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1285dp"
+                android:onClick="openMarket"
+                app:layout_heightPercent="25%"
+                app:layout_marginTopPercent="0%"/>
+
+            <GridLayout
+                android:id="@+id/slots_market"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_market"
+                android:layout_below="@id/open_market"
+                android:columnCount="5"
+                android:orientation="horizontal"
+                android:onClick="openMarket" />
+
+            <ImageView
+                android:id="@+id/open_workers"
+                android:layout_width="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1345dp"
+                android:onClick="openWorkers"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="55%"/>
+
+            <GridLayout
+                android:id="@+id/slots_workers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/open_workers"
+                android:layout_below="@id/open_workers"
+                android:columnCount="5"
+                android:orientation="horizontal"
+                android:onClick="openWorkers" />
+
+            <ImageView
                 android:id="@+id/open_upgrades"
                 android:layout_width="50dp"
                 android:layout_alignParentTop="true"
@@ -174,7 +209,7 @@
                 android:layout_width="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="1030dp"
-                android:onClick="openWorkers"
+                android:onClick="openPremium"
                 android:scaleType="centerCrop"
                 android:src="@drawable/item52"
                 app:layout_heightPercent="8%"

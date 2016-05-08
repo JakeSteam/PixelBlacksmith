@@ -95,14 +95,16 @@
     <!-- Stage 13 -->
     <string name="tutorialMainInfo">Last Thing</string>
     <string name="tutorialMainInfoText">Almost finished. Before you give Mr T his items, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainWorker">Worker</string>
+    <string name="tutorialMainWorkerText">Later on in the game, workers can be hired to find resources for you. For now though...</string>
     <string name="tutorialMainMarket">Market</string>
-    <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.</string>
+    <string name="tutorialMainMarketText">Whilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.\nTap to enter.</string>
 
     <!-- Stage 14 -->
     <string name="tutorialMarket">Market</string>
     <string name="tutorialMarketText">This is where your resources will come from! Traders will come and go over time, and purchasing from them will unlock better / more items for sale.</string>
     <string name="tutorialMarketClose">Close</string>
-    <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market for now.</string>
+    <string name="tutorialMarketCloseText">The tutorial is almost over! Close the market, and we\'ll take a look at the last few areas.</string>
 
     <!-- Stage 15 -->
     <string name="tutorialMainSettings">Settings</string>
@@ -260,6 +262,7 @@
     <string name="musicSettingText">Enable music?</string>
     <string name="restockNotificationSettingText">Restock notifications?</string>
     <string name="visitorNotificationSettingText">Visitor notifications?</string>
+    <string name="workerNotificationSettingText">Worker notifications?</string>
     <string name="notificationSoundSettingText">Enable notification sounds?</string>
     <string name="prestigeSettingText">Prestige</string>
 

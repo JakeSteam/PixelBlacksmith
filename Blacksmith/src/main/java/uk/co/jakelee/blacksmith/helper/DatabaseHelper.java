@@ -254,7 +254,7 @@ public class DatabaseHelper {
         inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 0));
         inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 0));
         inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
-        
+
         Inventory.saveInTx(inventories);
 
         /*new Inventory(1L, 1, 101);
@@ -1627,14 +1627,14 @@ public class DatabaseHelper {
 
     public static void createWorkers() {
         List<Worker> workers = new ArrayList<>();
-        workers.add(new Worker(1, 1, 1, 32L, 1, 0L, 0, false)); // Change me to 10!
-        workers.add(new Worker(2, 2, 10, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(3, 3, 20, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(4, 4, 30, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(5, 5, 40, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(6, 6, 50, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(1, 16, 1, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(2, 14, 10, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(3, 8, 20, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(4, 7, 30, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(5, 4, 40, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(6, 17, 50, 32L, 1, 0L, 0, false));
         workers.add(new Worker(7, 7, 60, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(8, 8, 1, 32L, 1, 0L, 0, true)); // Delete me!
+        workers.add(new Worker(8, 11, 1, 32L, 1, 0L, 0, true)); // Delete me!
         Worker.saveInTx(workers);
     }
 

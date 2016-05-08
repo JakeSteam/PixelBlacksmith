@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void startSecondTutorial() {
         // Stage 5
-        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(400), 0);
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(420), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_5_MAIN);
         th.addTutorialRectangle(mainActivity, findViewById(R.id.slots_furnace), R.string.tutorialFurnaceSlots, R.string.tutorialFurnaceSlotsText, false);
@@ -201,17 +201,18 @@ public class MainActivity extends AppCompatActivity implements
 
     private void startSixthTutorial() {
         // Stage 13
-        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(150), 0);
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(1160), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_13_MAIN);
-        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.TOP);
+        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.BOTTOM);
+        th.addTutorial(mainActivity, findViewById(R.id.open_workers), R.string.tutorialMainWorker, R.string.tutorialMainWorkerText, false, Gravity.BOTTOM);
         th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, true, Gravity.TOP);
         th.start(mainActivity);
     }
 
     private void startSeventhTutorial() {
         // Stage 15
-        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(860), 0);
+        findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(900), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_15_MAIN);
         th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);

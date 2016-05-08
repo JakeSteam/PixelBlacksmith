@@ -112,6 +112,10 @@ public class SettingsActivity extends Activity {
         boolean visitorNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue();
         visitorNotificationToggle.setImageDrawable(visitorNotificationToggleValue ? tick : cross);
 
+        ImageView workerNotificationToggle = (ImageView) findViewById(R.id.workerNotificationToggleButton);
+        boolean workerNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_WORKER_NOTIFICATIONS).getBoolValue();
+        workerNotificationToggle.setImageDrawable(workerNotificationToggleValue ? tick : cross);
+
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
         boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
@@ -133,6 +137,9 @@ public class SettingsActivity extends Activity {
                 break;
             case R.id.restockNotificationToggleButton:
                 settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
+                break;
+            case R.id.workerNotificationToggleButton:
+                settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
                 break;
             case R.id.notificationSoundToggleButton:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
