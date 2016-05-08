@@ -111,22 +111,8 @@ public class DatabaseHelper {
         Setting setting = new Setting(7L, "WorkerNotifications", true);
         setting.save();
 
-        List<Worker> workers = new ArrayList<>();
-        workers.add(new Worker(1, 1, 1, 32L, 1, 0L, 0, false)); // Change me to 10!
-        workers.add(new Worker(2, 2, 10, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(3, 3, 20, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(4, 4, 30, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(5, 5, 40, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(6, 6, 50, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(7, 7, 60, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(8, 8, 1, 32L, 1, 0L, 0, true)); // Delete me!
-        Worker.saveInTx(workers);
-
-        List<Worker_Resource> workerResources = new ArrayList<>();
-        workerResources.add(new Worker_Resource(32, 1, 1, 3));
-        workerResources.add(new Worker_Resource(32, 2, 1, 3));
-        workerResources.add(new Worker_Resource(32, 3, 1, 3));
-        Worker_Resource.saveInTx(workerResources);
+        createWorkers();
+        createWorkerResources();
 
         List<Slot> slots = new ArrayList<>();
         slots.add(new Slot(1, 70, false));
@@ -268,7 +254,7 @@ public class DatabaseHelper {
         inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 0));
         inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 0));
         inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
-
+        
         Inventory.saveInTx(inventories);
 
         /*new Inventory(1L, 1, 101);
@@ -1637,6 +1623,137 @@ public class DatabaseHelper {
         visitor_types.add(new Visitor_Type(50L, "COLDBOT5000", "It's freezerin' time!", 6L, 18L, 4L, 1.13, 1.15, 1.09, false, false, false, 6));
 
         Visitor_Type.saveInTx(visitor_types);
+    }
+
+    public static void createWorkers() {
+        List<Worker> workers = new ArrayList<>();
+        workers.add(new Worker(1, 1, 1, 32L, 1, 0L, 0, false)); // Change me to 10!
+        workers.add(new Worker(2, 2, 10, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(3, 3, 20, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(4, 4, 30, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(5, 5, 40, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(6, 6, 50, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(7, 7, 60, 32L, 1, 0L, 0, false));
+        workers.add(new Worker(8, 8, 1, 32L, 1, 0L, 0, true)); // Delete me!
+        Worker.saveInTx(workers);
+    }
+
+    public static void createWorkerResources() {
+        List<Worker_Resource> workerResources = new ArrayList<>();
+        workerResources.add(new Worker_Resource(32, 1, 1, 10)); // Bronze pickaxe
+        workerResources.add(new Worker_Resource(32, 2, 1, 10)); // Bronze pickaxe
+        workerResources.add(new Worker_Resource(48, 4, 1, 25)); // Iron pickaxe
+        workerResources.add(new Worker_Resource(48, 1, 1, 5)); // Iron pickaxe
+        workerResources.add(new Worker_Resource(48, 2, 1, 5)); // Iron pickaxe
+        workerResources.add(new Worker_Resource(65, 4, 1, 25)); // Steel pickaxe
+        workerResources.add(new Worker_Resource(65, 3, 1, 5)); // Steel pickaxe
+        workerResources.add(new Worker_Resource(93, 5, 1, 10)); // Mithril pickaxe
+        workerResources.add(new Worker_Resource(93, 3, 1, 15)); // Mithril pickaxe
+        workerResources.add(new Worker_Resource(109, 6, 1, 8)); // Adamant pickaxe
+        workerResources.add(new Worker_Resource(109, 3, 1, 32)); // Adamant pickaxe
+        workerResources.add(new Worker_Resource(125, 7, 1, 8)); // Rune pickaxe
+        workerResources.add(new Worker_Resource(125, 3, 1, 64)); // Rune pickaxe
+        workerResources.add(new Worker_Resource(125, 9, 1, 20)); // Rune pickaxe
+        workerResources.add(new Worker_Resource(144, 10, 1, 8)); // Dragon pickaxe
+        workerResources.add(new Worker_Resource(144, 3, 1, 80)); // Dragon pickaxe
+        workerResources.add(new Worker_Resource(144, 8, 1, 20)); // Dragon pickaxe
+        workerResources.add(new Worker_Resource(173, 10, 1, 15)); // Legendary pickaxe
+        workerResources.add(new Worker_Resource(173, 3, 1, 100)); // Legendary pickaxe
+        workerResources.add(new Worker_Resource(173, 7, 1, 12)); // Legendary pickaxe
+
+        workerResources.add(new Worker_Resource(35, 11, 1, 10)); // Bronze hammer
+        workerResources.add(new Worker_Resource(51, 12, 1, 13)); // Iron hammer
+        workerResources.add(new Worker_Resource(51, 11, 1, 4)); // Iron hammer
+        workerResources.add(new Worker_Resource(68, 13, 1, 8)); // Steel hammer
+        workerResources.add(new Worker_Resource(96, 14, 1, 10)); // Mithril hammer
+        workerResources.add(new Worker_Resource(112, 15, 1, 10)); // Adamant hammer
+        workerResources.add(new Worker_Resource(128, 16, 1, 10)); // Rune hammer
+        workerResources.add(new Worker_Resource(128, 17, 1, 5)); // Rune hammer
+        workerResources.add(new Worker_Resource(147, 19, 1, 10)); // Dragon hammer
+        workerResources.add(new Worker_Resource(147, 18, 1, 5)); // Dragon hammer
+        workerResources.add(new Worker_Resource(176, 19, 1, 20)); // Legendary hammer
+        workerResources.add(new Worker_Resource(176, 18, 1, 5)); // Legendary hammer
+        workerResources.add(new Worker_Resource(176, 16, 1, 10)); // Legendary hammer
+
+        workerResources.add(new Worker_Resource(34, 77, 1, 5)); // Bronze fishing rod
+        workerResources.add(new Worker_Resource(50, 78, 1, 5)); // Iron fishing rod
+        workerResources.add(new Worker_Resource(67, 79, 1, 5)); // Steel fishing rod
+        workerResources.add(new Worker_Resource(95, 80, 1, 5)); // Mithril fishing rod
+        workerResources.add(new Worker_Resource(111, 77, 1, 10)); // Adamant fishing rod
+        workerResources.add(new Worker_Resource(111, 78, 1, 10)); // Adamant fishing rod
+        workerResources.add(new Worker_Resource(127, 79, 1, 10)); // Rune fishing rod
+        workerResources.add(new Worker_Resource(127, 80, 1, 10)); // Rune fishing rod
+        workerResources.add(new Worker_Resource(146, 80, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(146, 79, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(146, 78, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(175, 77, 1, 20)); // Legendary fishing rod
+        workerResources.add(new Worker_Resource(175, 78, 1, 20)); // Legendary fishing rod
+        workerResources.add(new Worker_Resource(175, 79, 1, 20)); // Legendary fishing rod
+
+        workerResources.add(new Worker_Resource(33, 71, 1, 5)); // Bronze hatchet
+        workerResources.add(new Worker_Resource(49, 71, 1, 10)); // Iron hatchet
+        workerResources.add(new Worker_Resource(66, 71, 1, 15)); // Steel hatchet
+        workerResources.add(new Worker_Resource(94, 71, 1, 20)); // Mithril hatchet
+        workerResources.add(new Worker_Resource(110, 71, 1, 25)); // Adamant hatchet
+        workerResources.add(new Worker_Resource(126, 71, 1, 30)); // Rune hatchet
+        workerResources.add(new Worker_Resource(145, 71, 1, 35)); // Dragon hatchet
+        workerResources.add(new Worker_Resource(174, 71, 1, 40)); // Legendary hatchet
+
+        workerResources.add(new Worker_Resource(31, 69, 1, 5)); // Bronze gloves
+        workerResources.add(new Worker_Resource(47, 70, 1, 5)); // Iron gloves
+        workerResources.add(new Worker_Resource(64, 69, 1, 13)); // Steel gloves
+        workerResources.add(new Worker_Resource(92, 70, 1, 13)); // Mithril gloves
+        workerResources.add(new Worker_Resource(108, 69, 1, 25)); // Adamant gloves
+        workerResources.add(new Worker_Resource(124, 70, 1, 25)); // Rune gloves
+        workerResources.add(new Worker_Resource(143, 69, 1, 20)); // Dragon gloves
+        workerResources.add(new Worker_Resource(143, 70, 1, 20)); // Dragon gloves
+        workerResources.add(new Worker_Resource(172, 69, 1, 30)); // Legendary gloves
+        workerResources.add(new Worker_Resource(172, 70, 1, 30)); // Legendary gloves
+
+        workerResources.add(new Worker_Resource(72, 129, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(73, 129, 1, 5)); // Sapphire
+        workerResources.add(new Worker_Resource(74, 130, 1, 5)); // Emerald
+        workerResources.add(new Worker_Resource(75, 131, 1, 5)); // Diamond
+        workerResources.add(new Worker_Resource(76, 129, 1, 5)); // Onyx
+
+        workerResources.add(new Worker_Resource(149, 9, 1, 5)); // Silver Ring
+        workerResources.add(new Worker_Resource(149, 17, 1, 5)); // Silver Ring
+        workerResources.add(new Worker_Resource(150, 9, 1, 5)); // Silver Sapphire Ring
+        workerResources.add(new Worker_Resource(150, 17, 1, 5)); // Silver Sapphire Ring
+        workerResources.add(new Worker_Resource(150, 73, 1, 1)); // Silver Sapphire Ring
+        workerResources.add(new Worker_Resource(151, 9, 1, 5)); // Silver Emerald Ring
+        workerResources.add(new Worker_Resource(151, 17, 1, 5)); // Silver Emerald Ring
+        workerResources.add(new Worker_Resource(151, 74, 1, 1)); // Silver Emerald Ring
+        workerResources.add(new Worker_Resource(152, 9, 1, 5)); // Silver Ruby Ring
+        workerResources.add(new Worker_Resource(152, 17, 1, 5)); // Silver Ruby Ring
+        workerResources.add(new Worker_Resource(152, 72, 1, 1)); // Silver Ruby Ring
+        workerResources.add(new Worker_Resource(153, 9, 1, 5)); // Silver Diamond Ring
+        workerResources.add(new Worker_Resource(153, 17, 1, 5)); // Silver Diamond Ring
+        workerResources.add(new Worker_Resource(153, 75, 1, 1)); // Silver Diamond Ring
+        workerResources.add(new Worker_Resource(154, 9, 1, 5)); // Silver Onyx Ring
+        workerResources.add(new Worker_Resource(154, 17, 1, 5)); // Silver Onyx Ring
+        workerResources.add(new Worker_Resource(154, 76, 1, 1)); // Silver Onyx Ring
+
+        workerResources.add(new Worker_Resource(155, 8, 1, 5)); // Gold Ring
+        workerResources.add(new Worker_Resource(155, 18, 1, 5)); // Gold Ring
+        workerResources.add(new Worker_Resource(156, 8, 1, 5)); // Gold Sapphire Ring
+        workerResources.add(new Worker_Resource(156, 18, 1, 5)); // Gold Sapphire Ring
+        workerResources.add(new Worker_Resource(156, 73, 1, 1)); // Gold Sapphire Ring
+        workerResources.add(new Worker_Resource(157, 8, 1, 5)); // Gold Emerald Ring
+        workerResources.add(new Worker_Resource(157, 18, 1, 5)); // Gold Emerald Ring
+        workerResources.add(new Worker_Resource(157, 74, 1, 1)); // Gold Emerald Ring
+        workerResources.add(new Worker_Resource(158, 8, 1, 5)); // Gold Ruby Ring
+        workerResources.add(new Worker_Resource(158, 18, 1, 5)); // Gold Ruby Ring
+        workerResources.add(new Worker_Resource(158, 72, 1, 1)); // Gold Ruby Ring
+        workerResources.add(new Worker_Resource(159, 8, 1, 5)); // Gold Diamond Ring
+        workerResources.add(new Worker_Resource(159, 18, 1, 5)); // Gold Diamond Ring
+        workerResources.add(new Worker_Resource(159, 75, 1, 1)); // Gold Diamond Ring
+        workerResources.add(new Worker_Resource(160, 8, 1, 5)); // Gold Onyx Ring
+        workerResources.add(new Worker_Resource(160, 18, 1, 5)); // Gold Onyx Ring
+        workerResources.add(new Worker_Resource(160, 76, 1, 1)); // Gold Onyx Ring
+        
+        workerResources.add(new Worker_Resource(148, 52, 1, 300)); // Visage
+        Worker_Resource.saveInTx(workerResources);
     }
 }
 

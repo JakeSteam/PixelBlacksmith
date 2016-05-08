@@ -403,8 +403,8 @@
         <item>Hatchet (Wood)</item>
         <item>Gloves (Silk)</item>
         <item>Gem (Powder)</item>
-        <item>Silver Ring (Silver)</item>
-        <item>Gold Ring (Gold)</item>
+        <item>Silver Ring (Silver + Gems)</item>
+        <item>Gold Ring (Gold + Gems)</item>
         <item>Visage (Coins)</item>
     </string-array>
 </resources>

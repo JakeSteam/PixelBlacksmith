@@ -164,12 +164,12 @@ public class WorkerHelper {
             whereClause = "type = 14";
         } else if (selection.equals("Gem (Powder)")) {
             whereClause = "type = 20";
-        } else if (selection.equals("Silver Ring (Silver)")) {
+        } else if (selection.equals("Silver Ring (Silver + Gems)")) {
             whereClause = "type = 24 AND tier = 8";
-        } else if (selection.equals("Gold Ring (Gold)")) {
+        } else if (selection.equals("Gold Ring (Gold + Gems)")) {
             whereClause = "type = 24 AND tier = 9";
         } else if (selection.equals("Visage (Coins)")) {
-            whereClause = "item_id = 148";
+            whereClause = "id = 148";
         }
         List<Item> items = Item.find(Item.class, whereClause);
 
