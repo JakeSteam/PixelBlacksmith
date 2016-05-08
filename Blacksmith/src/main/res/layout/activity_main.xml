@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/open_inventory"
                 android:layout_below="@id/open_inventory"
-                android:columnCount="3"
+                android:columnCount="4"
                 android:orientation="horizontal"
                 android:onClick="openInventory" />
 
