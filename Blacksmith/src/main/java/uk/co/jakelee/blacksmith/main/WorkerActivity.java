@@ -93,7 +93,7 @@ public class WorkerActivity extends Activity {
                     ToastHelper.showToast(activity, Toast.LENGTH_SHORT, workerTimesCompleted, false);
                 }
             });
-            workerCharacterText.setText(WorkerHelper.isReady(worker) ? "Ready" : "Busy");
+            workerCharacterText.setText(WorkerHelper.isReady(worker) ? R.string.workerStatusReady : R.string.workerStatusBusy);
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));
             workerTool.setTag(worker);
             workerTool.setOnClickListener(new Button.OnClickListener() {
@@ -106,7 +106,7 @@ public class WorkerActivity extends Activity {
                     //}
                 }
             });
-            workerToolText.setText(tool.getName());
+            workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
             workerButton.setText(WorkerHelper.getButtonText(worker));
             workerButton.setTag(worker);

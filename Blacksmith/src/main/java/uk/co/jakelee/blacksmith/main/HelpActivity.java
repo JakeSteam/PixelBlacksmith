@@ -255,17 +255,25 @@ public class HelpActivity extends Activity {
 
     private void displayHelpMessages(LinearLayout layout) {
         layout.addView(dh.createTextView("Messages\n", 26));
-        layout.addView(dh.createTextView("The last 100 messages are displayed here. This includes success messages, failure messages, level ups, etc.", 22));
+        layout.addView(dh.createTextView("The last 100 important messages are displayed here.", 22));
+        layout.addView(dh.createTextView("Common messages, such as crafting beginning will not be displayed, but rarer ones like levelling up will.", 22));
+        layout.addView(dh.createTextView("This way, if a message is missed, it can be reviewed here.", 22));
     }
 
     private void displayHelpWorker(LinearLayout layout) {
         layout.addView(dh.createTextView("Worker\n", 26));
-        layout.addView(dh.createTextView("Workers help gather resources.", 22));
+        layout.addView(dh.createTextView("Workers help gather resources. Every worker has a minimum level, and a hire cost based on that level.\n", 22));
+        layout.addView(dh.createTextView("Once a worker has been hired, they will gather resources for you over time.\n", 22));
+        layout.addView(dh.createTextView("The resources gained depends on the tool used. Higher tier tools will gather more / better resources.\n", 22));
+        layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name and total trips.\n", 22));
+        layout.addView(dh.createTextView("Tapping the tool will allow you to choose another, based on items you currently own.\n", 22));
+        layout.addView(dh.createTextView("A single button performs most worker actions. Additionally, tapping the button whilst the worker is busy will display the exact time until they return.", 22));
     }
 
     private void displayHelpTools(LinearLayout layout) {
         layout.addView(dh.createTextView("Tools\n", 26));
-        layout.addView(dh.createTextView("Select the tool a worker will use.", 22));
+        layout.addView(dh.createTextView("Select a tool for a worker to use by first selecting a category, then an item.\n", 22));
+        layout.addView(dh.createTextView("Only currently owned items will be displayed.", 22));
     }
 
     public void openHelp(View view) {

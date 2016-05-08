@@ -152,9 +152,23 @@ public class WorkerHelper {
     public static List<Inventory> getTools(String selection) {
         String whereClause = "1 > 2";
         if (selection.equals("Pickaxe (Ore)")) {
-            whereClause = "type = 1"; // 15
+            whereClause = "type = 15";
         } else if (selection.equals("Hammer (Bar)")) {
-            whereClause = "type = 2"; // 18
+            whereClause = "type = 18";
+        } else if (selection.equals("Fishing Rod (Food)")) {
+            whereClause = "type = 17";
+        } else if (selection.equals("Hatchet (Wood)")) {
+            whereClause = "type = 16";
+        } else if (selection.equals("Gloves (Silk)")) {
+            whereClause = "type = 14";
+        } else if (selection.equals("Gem (Powder)")) {
+            whereClause = "type = 20";
+        } else if (selection.equals("Silver Ring (Silver)")) {
+            whereClause = "type = 24 AND tier = 8";
+        } else if (selection.equals("Gold Ring (Gold)")) {
+            whereClause = "type = 24 AND tier = 9";
+        } else if (selection.equals("Visage (Coins)")) {
+            whereClause = "item_id = 148";
         }
         List<Item> items = Item.find(Item.class, whereClause);
 

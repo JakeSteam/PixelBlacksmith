@@ -156,10 +156,10 @@
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:
-\n- +50% maximum gold bonus.
-\n- +20% current gold bonus.
-\n- +50% maximum XP bonus.
-\n- +20% current XP bonus.
+\n- +50% maximum extra gold.
+\n- +20% current extra gold.
+\n- +50% maximum extra XP.
+\n- +20% current extra XP.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Gold tax paid by all traders on automatic restock.
@@ -180,6 +180,9 @@
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips.</string>
+    <string name="workerStatusReady">Status:\nReady</string>
+    <string name="workerStatusBusy">Status:\nBusy</string>
+    <string name="workerTool">Tool:\n%s</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
@@ -398,7 +401,8 @@
         <item>Hatchet (Wood)</item>
         <item>Gloves (Silk)</item>
         <item>Gem (Powder)</item>
-        <item>Gold Ring (Gold)</item>
         <item>Silver Ring (Silver)</item>
+        <item>Gold Ring (Gold)</item>
+        <item>Visage (Coins)</item>
     </string-array>
 </resources>
