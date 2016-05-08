@@ -14,6 +14,7 @@ import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
+import uk.co.jakelee.blacksmith.model.Worker;
 
 class PrestigeHelper {
     public static void prestigeAccount() {
@@ -24,6 +25,7 @@ class PrestigeHelper {
         resetXP();
         resetAllVisitors();
         resetTraders();
+        resetWorkers();
     }
 
     private static void increasePrestige() {
@@ -81,5 +83,9 @@ class PrestigeHelper {
     private static void resetTraders() {
         Trader.executeQuery("UPDATE trader SET purchases = 0");
         Trader_Stock.restockTraders();
+    }
+
+    private static void resetWorkers() {
+        Worker.executeQuery("UPDATE worker SET purchased = 0");
     }
 }

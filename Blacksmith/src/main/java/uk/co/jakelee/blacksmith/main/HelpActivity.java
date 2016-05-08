@@ -281,7 +281,7 @@ public class HelpActivity extends Activity {
     private void displayHelpTools(LinearLayout layout) {
         layout.addView(dh.createTextView("Tools\n", 26));
         layout.addView(dh.createTextView("Select a tool for a worker to use by first selecting a category, then an item.\n", 22));
-        layout.addView(dh.createTextView("Only currently owned items will be displayed.", 22));
+        layout.addView(dh.createTextView("Only currently owned items will be displayed. Note that higher tier tools will provide better / more resources.", 22));
     }
 
     public void openHelp(View view) {
