@@ -26,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Worker;
+import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
 public class WorkerActivity extends Activity {
     private static DisplayHelper dh;
@@ -107,6 +108,17 @@ public class WorkerActivity extends Activity {
                 }
             });
             workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
+            workerResourceContainer.setTag(worker);
+            workerResourceContainer.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Worker worker = (Worker) v.getTag();
+                    if (worker.isPurchased()) {
+                        List<Worker_Resource> resources = WorkerHelper.getResourcesByTool(worker.getToolUsed());
+                        ToastHelper.showToast(activity, Toast.LENGTH_LONG, String.format(getString(R.string.workerResources),
+                                WorkerHelper.getRewardResourcesText(resources)), false);
+                    }
+                }
+            });
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
             workerButton.setText(WorkerHelper.getButtonText(worker));
             workerButton.setTag(worker);

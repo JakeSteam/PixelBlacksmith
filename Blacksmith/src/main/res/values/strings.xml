@@ -183,6 +183,8 @@
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
+    <string name="workerReturned">A worker has returned, along with: %s.</string>
+    <string name="workerResources">Resources: %s.</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>

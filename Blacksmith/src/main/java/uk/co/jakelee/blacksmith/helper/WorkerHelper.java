@@ -102,10 +102,11 @@ public class WorkerHelper {
 
     public static void rewardResources(Context context, Worker worker) {
         List<Worker_Resource> resources = getResourcesByTool(worker.getToolUsed());
-        ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getRewardResourcesText(resources), true);
+        ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.workerReturned),
+                getRewardResourcesText(resources)), true);
     }
 
-    private static String getRewardResourcesText(List<Worker_Resource> resources) {
+    public static String getRewardResourcesText(List<Worker_Resource> resources) {
         HashMap<String, Integer> data = new HashMap<>();
 
         for (Worker_Resource resource : resources) {
@@ -131,7 +132,7 @@ public class WorkerHelper {
 
             result.append(String.format("%dx %s, ", value, key));
         }
-        return String.format("A worker has returned, along with: %s.", result.substring(0, result.length() - 2));
+        return result.substring(0, result.length() - 2);
     }
 
     public static String getTimesCompletedString(Context context, Worker worker) {

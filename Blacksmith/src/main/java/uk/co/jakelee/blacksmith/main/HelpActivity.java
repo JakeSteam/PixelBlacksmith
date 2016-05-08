@@ -267,6 +267,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The resources gained depends on the tool used. Higher tier tools will gather more / better resources.\n", 22));
         layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name and total trips.\n", 22));
         layout.addView(dh.createTextView("Tapping the tool will allow you to choose another, based on items you currently own.\n", 22));
+        layout.addView(dh.createTextView("Tapping the resource indicator will provide information on the resources currently being gathered.\n", 22));
         layout.addView(dh.createTextView("A single button performs most worker actions. Additionally, tapping the button whilst the worker is busy will display the exact time until they return.", 22));
     }
 
