@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity implements
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
+        if (prefs.getInt("tutorialStage", 0) > 0) {
+            TutorialHelper.currentlyInTutorial = true;
+            TutorialHelper.currentStage = prefs.getInt("tutorialStage", 0);
+        }
+
         assignUIElements();
         checkFirstRun();
 
@@ -204,9 +209,9 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.mainScroller).scrollTo(dh.convertDpToPixel(1160), 0);
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_13_MAIN);
-        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.BOTTOM);
+        th.addTutorialNoOverlay(mainActivity, findViewById(R.id.open_workers), R.string.tutorialMainInfo, R.string.tutorialMainInfoText, false, Gravity.BOTTOM);
         th.addTutorial(mainActivity, findViewById(R.id.open_workers), R.string.tutorialMainWorker, R.string.tutorialMainWorkerText, false, Gravity.BOTTOM);
-        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, true, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_market), R.string.tutorialMainMarket, R.string.tutorialMainMarketText, true, Gravity.BOTTOM);
         th.start(mainActivity);
     }
 
@@ -220,6 +225,8 @@ public class MainActivity extends AppCompatActivity implements
         th.start(mainActivity);
 
         TutorialHelper.currentlyInTutorial = false;
+        TutorialHelper.currentStage = 0;
+        prefs.edit().putInt("tutorialStage", TutorialHelper.currentStage).apply();
     }
 
     @Override
@@ -287,17 +294,17 @@ public class MainActivity extends AppCompatActivity implements
         if (TutorialHelper.currentlyInTutorial) {
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_4_VISITOR) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_4_VISITOR || TutorialHelper.currentStage == Constants.STAGE_5_MAIN) {
                 startSecondTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_6_FURNACE) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_6_FURNACE || TutorialHelper.currentStage == Constants.STAGE_7_MAIN) {
                 startThirdTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_8_ANVIL) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_8_ANVIL || TutorialHelper.currentStage == Constants.STAGE_9_MAIN) {
                 startFourthTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_10_TABLE) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_10_TABLE || TutorialHelper.currentStage == Constants.STAGE_11_MAIN) {
                 startFifthTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_12_VISITOR) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_12_VISITOR || TutorialHelper.currentStage == Constants.STAGE_13_MAIN) {
                 startSixthTutorial();
-            } else if (TutorialHelper.currentStage == Constants.STAGE_14_MARKET) {
+            } else if (TutorialHelper.currentStage == Constants.STAGE_14_MARKET || TutorialHelper.currentStage == Constants.STAGE_15_MAIN) {
                 startSeventhTutorial();
             }
         }
@@ -330,6 +337,8 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         GooglePlayHelper.mGoogleApiClient.disconnect();
+
+        prefs.edit().putInt("tutorialStage", (TutorialHelper.currentStage > 0 ? TutorialHelper.currentStage : 0)).apply();
     }
 
     private void setupRecurringEvents() {
