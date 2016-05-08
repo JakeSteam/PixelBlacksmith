@@ -239,7 +239,7 @@ public class DatabaseHelper {
         inventories.add(new Inventory(2L, Constants.STATE_NORMAL, 150));
         inventories.add(new Inventory(4L, Constants.STATE_NORMAL, 150));
 
-        // 20 silk, spidersilk
+        // 30 silk, spidersilk
         inventories.add(new Inventory(69L, Constants.STATE_NORMAL, 30));
         inventories.add(new Inventory(70L, Constants.STATE_NORMAL, 30));
 
