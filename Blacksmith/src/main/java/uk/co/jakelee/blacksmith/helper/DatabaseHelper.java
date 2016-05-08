@@ -256,33 +256,6 @@ public class DatabaseHelper {
         inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
 
         Inventory.saveInTx(inventories);
-
-        /*new Inventory(1L, 1, 101);
-        new Inventory(2L, 1, 102);
-        new Inventory(3L, 1, 303);
-        new Inventory(4L, 1, 104);
-        new Inventory(5L, 1, 105);
-        new Inventory(6L, 1, 106);
-        new Inventory(7L, 1, 107);
-        new Inventory(8L, 1, 108);
-        new Inventory(9L, 1, 109);
-        new Inventory(10L, 1, 110);
-        new Inventory(52L, 1, 999999);
-        new Inventory(69L, 1, 10);
-        new Inventory(70L, 1, 10);
-        new Inventory(72L, 1, 25);
-        new Inventory(73L, 1, 18);
-        new Inventory(74L, 1, 6);
-        new Inventory(20L, 1, 50);
-        new Inventory(30L, 5, 10);
-        new Inventory(77L, 1, 10);
-        new Inventory(78L, 1, 10);
-        new Inventory(79L, 1, 10);
-        new Inventory(80L, 1, 10);
-        new Inventory(129L, 1, 100);
-        new Inventory(130L, 1, 100);
-        new Inventory(131L, 1, 100);
-        new Inventory(148L, 1, 100);*/
     }
 
     private static void createItem() {
@@ -1634,7 +1607,6 @@ public class DatabaseHelper {
         workers.add(new Worker(5, 4, 40, 32L, 1, 0L, 0, false));
         workers.add(new Worker(6, 17, 50, 32L, 1, 0L, 0, false));
         workers.add(new Worker(7, 7, 60, 32L, 1, 0L, 0, false));
-        workers.add(new Worker(8, 11, 1, 32L, 1, 0L, 0, true)); // Delete me!
         Worker.saveInTx(workers);
     }
 
