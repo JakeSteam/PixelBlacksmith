@@ -133,7 +133,7 @@ public class HelpActivity extends Activity {
     private void displayHelpInventory(LinearLayout layout) {
         layout.addView(dh.createTextView("Inventory\n", 26));
         layout.addView(dh.createTextView("All of your current stock can be viewed here.\n", 22));
-        layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended.\n", 22));
+        layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / gold bonuses will not apply here.\n", 22));
         layout.addView(dh.createTextView("Instead, try and create items that will sell for a large bonus with visitors.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to view all items.", 22));
     }

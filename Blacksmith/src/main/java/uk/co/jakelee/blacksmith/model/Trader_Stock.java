@@ -30,13 +30,6 @@ public class Trader_Stock extends SugarRecord {
         this.defaultStock = stock;
     }
 
-    /*
-        Restocked 00:00
-        Restock time 10:00
-        FIRST line is same
-        SECOND line is same
-     */
-
     public static boolean shouldRestock() {
         return getMillisecondsUntilRestock() <= 0;
     }
