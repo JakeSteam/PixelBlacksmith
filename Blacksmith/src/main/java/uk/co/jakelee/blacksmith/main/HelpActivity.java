@@ -235,7 +235,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Additionally, the highest value item previously traded with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed and you will receive a reward. If all of the visitor's optional demands have also been completed, you'll receive double the reward!\n", 22));
-        layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of incomplete demands (required + optional).", 22));
+        layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, how long the visitor has been waiting, and the number of incomplete demands (required + optional).", 22));
     }
 
     private void displayHelpUpgrade(LinearLayout layout) {

@@ -52,4 +52,8 @@ public class DateHelper {
         double secondsLeft = (double) milliseconds / MILLISECONDS_IN_SECOND;
         return (int) Math.ceil(secondsLeft);
     }
+
+    public static int getMinutesInMilliseconds(long milliseconds) {
+        return (int) (milliseconds / (1000*60));
+    }
 }

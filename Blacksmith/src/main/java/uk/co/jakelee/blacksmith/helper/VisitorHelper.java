@@ -293,10 +293,27 @@ public class VisitorHelper {
     }
 
     public static int getVisitorDismissCost(long visitorID) {
+        Visitor visitor = Visitor.findById(Visitor.class, visitorID);
         int unfulfilledDemands = Visitor_Demand.find(Visitor_Demand.class, "quantity_provided < quantity AND visitor_id = " + visitorID).size();
 
         int playerLevel = Player_Info.getPlayerLevel();
-        return playerLevel * 10 * unfulfilledDemands;
+        int maxCost = playerLevel * 10 * unfulfilledDemands;
+
+        int minutesSinceArrival = DateHelper.getMinutesInMilliseconds(System.currentTimeMillis() - visitor.getArrivalTime());
+        return getAdjustedDismissCost(maxCost, minutesSinceArrival);
+    }
+
+    public static int getAdjustedDismissCost(int maxCost, int minutes) {
+        int MAX_DISCOUNT = 90;
+        // E.g. 1000 coins.
+        // 6 mins = 1% = 990
+        // 18 mins = 3% = 970
+        // 60 mins = 10% = 900
+        // 300 mins = 50% = 500
+        // 600 mins = 90% = 100 (100% capped)
+        int reductionPercent = (minutes > MAX_DISCOUNT * 6 ? MAX_DISCOUNT : minutes / 6);
+        int discount = (maxCost * reductionPercent) / 100;
+        return maxCost - discount;
     }
 
     public static void displayPreference(Context context, View view, int string, String preferred) {
