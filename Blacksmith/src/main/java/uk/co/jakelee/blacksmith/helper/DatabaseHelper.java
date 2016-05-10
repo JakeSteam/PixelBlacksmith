@@ -38,6 +38,7 @@ public class DatabaseHelper {
     public final static int DB_V1_2_0 = 3;
     public final static int DB_V1_2_1 = 4;
     public final static int DB_V1_3_0 = 5;
+    public final static int DB_V1_4_0 = 6;
 
     public static void initialSQL() {
         createAchievement();
@@ -140,6 +141,11 @@ public class DatabaseHelper {
         traderStock.save();
 
         Item.executeQuery("UPDATE item SET value = value - 1 WHERE tier = 1 OR id = 11");
+    }
+
+    public static void patch130to140() {
+        Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
+        Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
     }
 
     private static void createAchievement() {
