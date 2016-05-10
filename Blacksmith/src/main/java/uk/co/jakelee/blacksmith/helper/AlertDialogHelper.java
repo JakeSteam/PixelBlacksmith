@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Pair;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -22,6 +24,7 @@ import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.main.WorkerActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -375,20 +378,30 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int itemsBought = 0;
-                int buyResponse = Constants.ERROR_TRADER_RUN_OUT;
+                int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 boolean successful = true;
+                List<Pair<Long, Integer>> items = new ArrayList<>();
 
                 for (Trader_Stock itemStock : itemStocks) {
-                    boolean traderHasStock = true;
-                    while (successful && traderHasStock) {
-                        buyResponse = Inventory.buyItem(itemStock);
-                        if (buyResponse == Constants.SUCCESS) {
-                            itemsBought++;
-                        } else if (buyResponse == Constants.ERROR_TRADER_RUN_OUT) {
-                            traderHasStock = false;
-                        } else {
-                            successful = false;
+                    Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                    Item item = Item.findById(Item.class, itemStock.getItemID());
+                    int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                    if (totalCost <= coinStock.getQuantity() && successful) {
+                        // Remove the stock
+                        int itemsToBuy = itemStock.getStock();
+                        itemsBought += itemsToBuy;
+                        itemStock.setStock(0);
+                        itemStock.save();
+
+                        // Remove the coins
+                        coinStock.setQuantity(coinStock.getQuantity() - totalCost);
+                        coinStock.save();
+
+                        for (int i = 1; i <= itemsToBuy; i++) {
+                            items.add(new Pair<>(itemStock.getItemID(), itemStock.getState()));
                         }
+                    } else {
+                        successful = false;
                     }
                 }
 
@@ -400,6 +413,16 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
+
+                final List<Pair<Long, Integer>> itemsList = items;
+                new Thread(new Runnable() {
+                    public void run() {
+                        for (Pair item : itemsList) {
+                            Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, Constants.LOCATION_MARKET);
+                        }
+                    }
+                }).start();
+
                 activity.alertDialogCallback();
             }
         });

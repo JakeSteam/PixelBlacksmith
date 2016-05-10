@@ -68,7 +68,7 @@ public class Pending_Inventory extends SugarRecord {
         List<Long> finishTimes = new ArrayList<>();
         for (Pending_Inventory pending_inventory : pendingItems) {
             long finishTime = pending_inventory.getTimeCreated() + pending_inventory.getCraftTime();
-             finishTimes.add(finishTime);
+            finishTimes.add(finishTime);
         }
 
         // Sort these times so the latest time is first
