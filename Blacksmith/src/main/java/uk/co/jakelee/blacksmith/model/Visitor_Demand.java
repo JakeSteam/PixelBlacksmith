@@ -101,6 +101,7 @@ public class Visitor_Demand extends SugarRecord {
         } else if (this.getCriteriaType() == 3L) {
             searchText += "AND type = " + this.getCriteriaValue();
         }
+        searchText += " ORDER BY Inventory.state, Item.name";
 
         return Inventory.findWithQuery(Inventory.class, searchText);
     }
