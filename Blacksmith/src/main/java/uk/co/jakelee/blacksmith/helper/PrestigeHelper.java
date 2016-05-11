@@ -86,6 +86,6 @@ class PrestigeHelper {
     }
 
     private static void resetWorkers() {
-        Worker.executeQuery("UPDATE worker SET purchased = 0");
+        Worker.executeQuery("UPDATE worker SET purchased = 0, tool_used = 32, tool_state = 1, time_started = 0");
     }
 }
