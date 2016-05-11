@@ -133,7 +133,7 @@ public class HelpActivity extends Activity {
     private void displayHelpInventory(LinearLayout layout) {
         layout.addView(dh.createTextView("Inventory\n", 26));
         layout.addView(dh.createTextView("All of your current stock can be viewed here.\n", 22));
-        layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended.\n", 22));
+        layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / gold bonuses will not apply here.\n", 22));
         layout.addView(dh.createTextView("Instead, try and create items that will sell for a large bonus with visitors.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to view all items.", 22));
     }
@@ -235,7 +235,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Additionally, the highest value item previously traded with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed and you will receive a reward. If all of the visitor's optional demands have also been completed, you'll receive double the reward!\n", 22));
-        layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, and the number of incomplete demands (required + optional).", 22));
+        layout.addView(dh.createTextView("Alternatively, they can be shooed away for a fee. This fee is based on your current level, how long the visitor has been waiting, and the number of incomplete demands (required + optional).", 22));
     }
 
     private void displayHelpUpgrade(LinearLayout layout) {

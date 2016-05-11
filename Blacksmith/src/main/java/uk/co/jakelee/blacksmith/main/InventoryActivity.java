@@ -21,11 +21,9 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
-import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
-import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class InventoryActivity extends Activity {
     private static DisplayHelper dh;
@@ -40,10 +38,6 @@ public class InventoryActivity extends Activity {
     }
 
     private void updateInventoryTable() {
-        /*List<Inventory> allInventoryItems = Select.from(Inventory.class).where(
-                Condition.prop("quantity").gt(0),
-                Condition.prop("item").notEq(Constants.ITEM_COINS))
-                .orderBy("state ASC").list();*/
         List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY item.name ASC");
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
@@ -98,13 +92,10 @@ public class InventoryActivity extends Activity {
         Item itemToSell = Item.findById(Item.class, itemID);
         int itemValue = itemToSell.getModifiedValue(itemState);
 
-        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus")) * (Player_Info.getPrestige() + 1);
-        double modifiedPrice = coinMultiplier * itemValue;
-
-        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, (int) modifiedPrice);
+        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, itemValue);
         if (sellResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), (int) modifiedPrice), false);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
         } else {

@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
 import android.text.format.DateUtils;
+import android.util.Pair;
 
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -41,6 +42,16 @@ public class Pending_Inventory extends SugarRecord {
                 .orderBy("time_created ASC").list();
     }
 
+    public static void addScheduledItems(final long location, final List<Pair<Long, Integer>> items) {
+        new Thread(new Runnable() {
+            public void run() {
+                for (Pair item : items) {
+                    Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
+                }
+            }
+        }).start();
+    }
+
     public static void addItem(Long itemID, long state, int quantity, Long location) {
         long time = System.currentTimeMillis();
         addPendingInventory(itemID, state, quantity, location, time);
@@ -68,7 +79,7 @@ public class Pending_Inventory extends SugarRecord {
         List<Long> finishTimes = new ArrayList<>();
         for (Pending_Inventory pending_inventory : pendingItems) {
             long finishTime = pending_inventory.getTimeCreated() + pending_inventory.getCraftTime();
-             finishTimes.add(finishTime);
+            finishTimes.add(finishTime);
         }
 
         // Sort these times so the latest time is first

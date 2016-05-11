@@ -375,6 +375,12 @@ public class DisplayHelper {
                     item.getName()));
             itemDesc.setText(item.getDescription());
             itemCount.setText(String.format("%d", numberOwned));
+        } else if (Inventory.haveLevelFor(itemID)) {
+            itemName.setText(String.format("%s%s",
+                    item.getPrefix(state),
+                    item.getName()));
+            itemDesc.setText(R.string.unknownText);
+            itemCount.setText(R.string.unknownText);
         } else {
             itemName.setText(R.string.unknownText);
             itemDesc.setText(R.string.unknownText);
