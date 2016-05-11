@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
@@ -26,6 +28,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class InventoryActivity extends Activity {
+    private static final Handler handler = new Handler();
     private static DisplayHelper dh;
 
     @Override
@@ -34,7 +37,14 @@ public class InventoryActivity extends Activity {
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
-        updateInventoryTable();
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                updateInventoryTable();
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
     }
 
     private void updateInventoryTable() {

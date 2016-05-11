@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
@@ -38,14 +40,13 @@ import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
-import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class TradeActivity extends Activity {
+    private static final Handler handler = new Handler();
     private static Visitor_Demand demand;
     private static Visitor visitor;
     private static Visitor_Type visitorType;
-    private static Visitor_Stats visitorStats;
     private static DisplayHelper dh;
     private static SharedPreferences prefs;
     private static boolean tradeMax = false;
@@ -64,13 +65,21 @@ public class TradeActivity extends Activity {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
             visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
             visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
-            visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getType());
             createTradeInterface();
         }
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_3_TRADE) {
             startTutorial();
         }
+
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                displayItemsTable();
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
     }
 
     @Override
