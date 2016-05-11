@@ -185,14 +185,20 @@ public class TradeActivity extends Activity {
     }
 
     private void clickSellButton(View v) {
-        Item itemToSell = Item.findById(Item.class, (Long) v.getTag(R.id.itemID));
-        State itemState = State.findById(State.class, (long) v.getTag(R.id.itemState));
+        Long itemID = (Long) v.getTag(R.id.itemID);
+        Long itemState = (Long) v.getTag(R.id.itemState);
 
-        int quantity = 1;
-        if (prefs.getBoolean("tradeMax", false)) {
-            quantity = demand.getQuantity() - demand.getQuantityProvided();
+        Inventory inventoryOfItem = Inventory.getInventory(itemID, itemState);
+        Item itemObject = Item.findById(Item.class, itemID);
+        State itemStateObject = State.findById(State.class, itemState);
+
+        if (inventoryOfItem.getQuantity() > 0) {
+            int quantity = 1;
+            if (prefs.getBoolean("tradeMax", false)) {
+                quantity = demand.getQuantity() - demand.getQuantityProvided();
+            }
+            tradeItem(quantity, itemObject, itemStateObject);
         }
-        tradeItem(quantity, itemToSell, itemState);
     }
 
     private void tradeItem(int quantity, Item itemToSell, State itemState) {
