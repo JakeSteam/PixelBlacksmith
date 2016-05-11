@@ -172,13 +172,13 @@
     <string name="overflowText">+ %d</string>
 
     <string name="workerLocked">Locked</string>
-    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %d coins?</string>
+    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %,d coins?</string>
     <string name="buyWorkerConfirm">Hire</string>
     <string name="buyWorkerComplete">Successfully hired worker!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
     <string name="buyWorker">Purchase Worker</string>
-    <string name="workerCoins">%d coins</string>
+    <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips.</string>
@@ -194,13 +194,13 @@
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
 
-    <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$s coins?</string>
+    <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
     <string name="upgradeCancel">Cancel</string>
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeDescription">%1$s
 \n%2$d / %3$d %4$s
-\n%5$s%6$d %7$s: %8$d coins</string>
+\n%5$s%6$d %7$s: %8$,d coins</string>
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
@@ -216,12 +216,12 @@
     <string name="dismissFailure">Not enough money to dismiss a visitor.</string>
     <string name="dismissCancel">Cancel</string>
 
-    <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$d coin(s), or up to %3$d for %4$d coin(s) each?</string>
+    <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$,d coin(s), or up to %3$d for %4$d coin(s) each?</string>
     <string name="itemBuy1Confirm">Buy 1</string>
     <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
     <string name="itemBuyCancel">Cancel</string>
     <string name="itemBuyAllConfirm">Buy All</string>
-    <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$d coins?</string>
+    <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$,d coins?</string>
     <string name="itemBuyAllComplete">Successfully bought %d items!</string>
     <string name="itemBuyAllNoItems">You can\'t buy all of nothing!</string>
 
