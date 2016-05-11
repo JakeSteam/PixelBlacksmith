@@ -172,6 +172,8 @@ public class TradeActivity extends Activity {
                 if (bonus > Constants.DEFAULT_BONUS) {
                     bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
                     bonusText.setTextColor(Color.parseColor("#267c18"));
+                } else if (bonus == Constants.DEFAULT_BONUS && visitorType.isStateDiscovered() && visitorType.isTierDiscovered() && visitorType.isTypeDiscovered()) {
+                    bonusText.setText("+0%");
                 }
 
                 itemRow.addView(quantity);
