@@ -387,13 +387,11 @@ public class AlertDialogHelper {
                     Item item = Item.findById(Item.class, itemStock.getItemID());
                     int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
                     if (totalCost <= coinStock.getQuantity() && successful) {
-                        // Remove the stock
                         int itemsToBuy = itemStock.getStock();
                         itemsBought += itemsToBuy;
                         itemStock.setStock(0);
                         itemStock.save();
 
-                        // Remove the coins
                         coinStock.setQuantity(coinStock.getQuantity() - totalCost);
                         coinStock.save();
 
@@ -414,14 +412,7 @@ public class AlertDialogHelper {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
-                final List<Pair<Long, Integer>> itemsList = items;
-                new Thread(new Runnable() {
-                    public void run() {
-                        for (Pair item : itemsList) {
-                            Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, Constants.LOCATION_MARKET);
-                        }
-                    }
-                }).start();
+                Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
 
                 activity.alertDialogCallback();
             }
