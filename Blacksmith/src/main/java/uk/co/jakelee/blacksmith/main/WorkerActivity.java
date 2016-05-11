@@ -115,7 +115,7 @@ public class WorkerActivity extends Activity {
                     if (worker.isPurchased()) {
                         List<Worker_Resource> resources = WorkerHelper.getResourcesByTool(worker.getToolUsed());
                         ToastHelper.showToast(activity, Toast.LENGTH_LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(resources)), false);
+                                WorkerHelper.getRewardResourcesText(resources, false)), false);
                     }
                 }
             });
