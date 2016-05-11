@@ -103,16 +103,18 @@ public class WorkerHelper {
     public static void rewardResources(Context context, Worker worker) {
         List<Worker_Resource> resources = getResourcesByTool(worker.getToolUsed());
         ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.workerReturned),
-                getRewardResourcesText(resources)), true);
+                getRewardResourcesText(resources, true)), true);
     }
 
-    public static String getRewardResourcesText(List<Worker_Resource> resources) {
+    public static String getRewardResourcesText(List<Worker_Resource> resources, boolean addItems) {
         HashMap<String, Integer> data = new HashMap<>();
 
         for (Worker_Resource resource : resources) {
-            Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
-            resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
-            resourceInventory.save();
+            if (addItems) {
+                Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
+                resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
+                resourceInventory.save();
+            }
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
