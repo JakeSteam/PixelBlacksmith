@@ -84,6 +84,7 @@ public class UpgradeActivity extends Activity {
                     upgrade.getUnits(),
                     upgrade.increases() ? "+" : "-",
                     upgrade.getIncrement(),
+                    upgrade.getUnits(),
                     upgrade.getUpgradeCost());
         } else {
             return String.format(getString(R.string.upgradeCompletedDescription),

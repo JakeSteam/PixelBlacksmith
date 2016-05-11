@@ -200,7 +200,7 @@
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeDescription">%1$s
 \n%2$d / %3$d %4$s
-\n%5$s%6$d: %7$s coins</string>
+\n%5$s%6$d %7$s: %8$d coins</string>
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
