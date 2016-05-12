@@ -18,6 +18,7 @@ public class ErrorHelper {
         errors.put(Constants.ERROR_NO_GEMS, "You cannot enchant an item using non-existent gems!");
         errors.put(Constants.ERROR_MAXIMUM_UPGRADE, "There's no further upgrades to purchase!");
         errors.put(Constants.ERROR_NO_SLOTS_ENCHANTING, "There's no enchanting slots unlocked! The first one unlocks at level 10.");
+        errors.put(Constants.ERROR_BUSY, "Currently calculating... please try again!");
 
         return errors;
     }

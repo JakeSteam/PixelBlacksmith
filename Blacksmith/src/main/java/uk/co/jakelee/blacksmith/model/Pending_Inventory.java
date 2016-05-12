@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.main.FurnaceActivity;
+
 public class Pending_Inventory extends SugarRecord {
     private Long item;
     private long state;
@@ -40,6 +42,17 @@ public class Pending_Inventory extends SugarRecord {
                 Condition.prop("location_id").eq(locationID),
                 Condition.prop("time_created").lt(maxTime))
                 .orderBy("time_created ASC").list();
+    }
+
+    public static void addScheduledItems(final FurnaceActivity activity, final long location, final List<Pair<Long, Integer>> items) {
+        new Thread(new Runnable() {
+            public void run() {
+                for (Pair item : items) {
+                    Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
+                }
+                activity.calculatingComplete();
+            }
+        }).start();
     }
 
     public static void addScheduledItems(final long location, final List<Pair<Long, Integer>> items) {

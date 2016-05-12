@@ -41,6 +41,7 @@ public class FurnaceActivity extends Activity {
     private static GestureHelper gh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
+    private static boolean currentlyCalculating = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -132,28 +133,35 @@ public class FurnaceActivity extends Activity {
     }
 
     private void smelt(Long itemID, int quantity) {
-        int quantitySmelted = 0;
+        int quantityToSmelt = 0;
         List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
 
         int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
-        if (canCreate == Constants.SUCCESS) {
-            quantitySmelted = quantity;
+        if (currentlyCalculating) {
+            canCreate = Constants.ERROR_BUSY;
+        } else if (canCreate == Constants.SUCCESS) {
+            quantityToSmelt = quantity;
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
         }
 
-        if (quantitySmelted > 0) {
+        if (quantityToSmelt > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
-            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityToSmelt, item.getFullName(Constants.STATE_NORMAL)), false);
+            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantityToSmelt);
+
+            Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
+            currentlyCalculating = true;
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
         }
+    }
 
-        Pending_Inventory.addScheduledItems(Constants.LOCATION_FURNACE, itemsToAdd);
+    public void calculatingComplete() {
+        currentlyCalculating = false;
     }
 
     public void openHelp(View view) {
