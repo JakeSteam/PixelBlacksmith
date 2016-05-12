@@ -169,6 +169,7 @@
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
+    <string name="levelUpPrestigeText">Levelled up to %d! You can now prestige, take a look at the settings menu!</string>
     <string name="overflowText">+ %d</string>
 
     <string name="workerLocked">Locked</string>
