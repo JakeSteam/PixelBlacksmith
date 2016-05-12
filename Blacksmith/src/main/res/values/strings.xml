@@ -255,7 +255,8 @@
     <string name="finishText">Finish</string>
 
     <string name="smelt1Text">Smelt 1</string>
-    <string name="smelt10Text">Smelt 10</string>
+    <string name="smelt10Text">10</string>
+    <string name="smelt100Text">100</string>
     <string name="craft1Text">Craft 1</string>
     <string name="craft10Text">Craft 10</string>
 

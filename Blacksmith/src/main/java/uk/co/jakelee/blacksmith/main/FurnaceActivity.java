@@ -126,6 +126,11 @@ public class FurnaceActivity extends Activity {
         smelt(itemID, 10);
     }
 
+    public void smelt100(View v) {
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        smelt(itemID, 100);
+    }
+
     private void smelt(Long itemID, int quantity) {
         int quantitySmelted = 0;
         List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
