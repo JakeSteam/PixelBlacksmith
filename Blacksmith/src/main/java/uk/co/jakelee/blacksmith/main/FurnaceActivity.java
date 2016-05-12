@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -42,6 +43,9 @@ public class FurnaceActivity extends Activity {
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
     private static boolean currentlyCalculating = false;
+    private TextView smelt1;
+    private TextView smelt10;
+    private TextView smelt100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,10 @@ public class FurnaceActivity extends Activity {
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_6_FURNACE) {
             startTutorial();
         }
+
+        smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt10 = (TextView) findViewById(R.id.smelt10);
+        smelt100 = (TextView) findViewById(R.id.smelt100);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -155,13 +163,27 @@ public class FurnaceActivity extends Activity {
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
             currentlyCalculating = true;
+            dimButtons();
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
         }
     }
 
+    public void brightenButtons() {
+        smelt1.setAlpha(1);
+        smelt10.setAlpha(1);
+        smelt100.setAlpha(1);
+    }
+
+    public void dimButtons() {
+        smelt1.setAlpha(0.3f);
+        smelt10.setAlpha(0.3f);
+        smelt100.setAlpha(0.3f);
+    }
+
     public void calculatingComplete() {
         currentlyCalculating = false;
+        brightenButtons();
     }
 
     public void openHelp(View view) {
