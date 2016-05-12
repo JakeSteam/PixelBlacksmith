@@ -158,7 +158,7 @@ public class DisplayHelper {
         }
     }
 
-    private void populateSlot(long locationID, View parentView) {
+    private void populateSlot(final long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         if (pendingItems.size() > 0) {
             int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
@@ -195,10 +195,11 @@ public class DisplayHelper {
             displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
 
             if (completedItems.size() > 0) {
+                final boolean shouldGiveXP = (locationID != Constants.LOCATION_MARKET) && (locationID != Constants.LOCATION_SELLING);
                 new Thread(new Runnable() {
                     public void run() {
                         for (Pending_Inventory item : completedItems) {
-                            Inventory.addItem(item);
+                                Inventory.addItem(item, shouldGiveXP); // if location = market or inventory, false boolean
                         }
                         Pending_Inventory.deleteInTx(completedItems);
                     }

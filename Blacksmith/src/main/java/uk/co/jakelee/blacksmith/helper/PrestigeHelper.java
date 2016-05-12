@@ -5,6 +5,7 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -26,6 +27,7 @@ class PrestigeHelper {
         resetAllVisitors();
         resetTraders();
         resetWorkers();
+        resetCraftingInterface();
     }
 
     private static void increasePrestige() {
@@ -87,5 +89,15 @@ class PrestigeHelper {
 
     private static void resetWorkers() {
         Worker.executeQuery("UPDATE worker SET purchased = 0, tool_used = 32, tool_state = 1, time_started = 0");
+    }
+
+    private static void resetCraftingInterface() {
+        MainActivity.prefs.edit().putInt("furnacePosition", 0).apply();
+        MainActivity.prefs.edit().putInt("anvilTier", 0).apply();
+        MainActivity.prefs.edit().putInt("anvilPosition", 0).apply();
+        MainActivity.prefs.edit().putInt("tableTier", 0).apply();
+        MainActivity.prefs.edit().putInt("tablePosition", 0).apply();
+        MainActivity.prefs.edit().putInt("enchantingTier", 0).apply();
+        MainActivity.prefs.edit().putInt("enchantingPosition", 0).apply();
     }
 }

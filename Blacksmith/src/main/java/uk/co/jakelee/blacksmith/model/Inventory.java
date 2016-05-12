@@ -27,12 +27,22 @@ public class Inventory extends SugarRecord implements Serializable {
         addItem(item.getItem(), item.getState(), item.getQuantity());
     }
 
+    public static void addItem(Pending_Inventory item, boolean rewardXp) {
+        addItem(item.getItem(), item.getState(), item.getQuantity(), rewardXp);
+    }
+
     public static void addItem(Long itemId, long state, int quantity) {
+        addItem(itemId, state, quantity, true);
+    }
+
+    public static void addItem(Long itemId, long state, int quantity, boolean rewardXp) {
         Inventory craftedItem = getInventory(itemId, state);
         craftedItem.setQuantity(craftedItem.getQuantity() + quantity);
         craftedItem.save();
 
-        Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getModifiedValue(state));
+        if (rewardXp) {
+            Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getModifiedValue(state));
+        }
     }
 
     public static boolean haveLevelFor(Long itemID) {
