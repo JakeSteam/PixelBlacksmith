@@ -37,14 +37,14 @@ public class InventoryActivity extends Activity {
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
-        final Runnable everySecond = new Runnable() {
+        final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
                 updateInventoryTable();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
-        handler.post(everySecond);
+        handler.post(every2Seconds);
     }
 
     private void updateInventoryTable() {

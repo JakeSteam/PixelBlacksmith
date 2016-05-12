@@ -146,6 +146,11 @@ public class DatabaseHelper {
     public static void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
+
+        List<Upgrade> upgrades = new ArrayList<>();
+        upgrades.add(new Upgrade("Minimum Visitor Rewards", "", 350, 1, 1, 5, 1));
+        upgrades.add(new Upgrade("Maximum Visitor Rewards", "", 350, 1, 5, 15, 5));
+        Upgrade.saveInTx(upgrades);
     }
 
     private static void createAchievement() {
