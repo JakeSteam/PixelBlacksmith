@@ -197,7 +197,8 @@ public class HelpActivity extends Activity {
                 "- Items seen\n" +
                 "- Visitor preferences discovered\n" +
                 "- Trophies unlocked\n", 22));
-        layout.addView(dh.createTextView("Note that every prestige (Level 70+) counts as an additional 100%.", 22));
+        layout.addView(dh.createTextView("Note that every prestige (Level 70+) counts as an additional 100%.\n", 22));
+        layout.addView(dh.createTextView("Total gold and xp bonus is calculated as 100% per prestige, plus the increase from the upgrades screen.", 22));
     }
 
     private void displayHelpTable(LinearLayout layout) {
