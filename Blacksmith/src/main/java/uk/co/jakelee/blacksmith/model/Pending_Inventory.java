@@ -15,6 +15,7 @@ import java.util.Map;
 
 import uk.co.jakelee.blacksmith.main.AnvilActivity;
 import uk.co.jakelee.blacksmith.main.FurnaceActivity;
+import uk.co.jakelee.blacksmith.main.TableActivity;
 
 public class Pending_Inventory extends SugarRecord {
     private Long item;
@@ -57,6 +58,17 @@ public class Pending_Inventory extends SugarRecord {
     }
 
     public static void addScheduledItems(final AnvilActivity activity, final long location, final List<Pair<Long, Integer>> items) {
+        new Thread(new Runnable() {
+            public void run() {
+                for (Pair item : items) {
+                    Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
+                }
+                activity.calculatingComplete();
+            }
+        }).start();
+    }
+
+    public static void addScheduledItems(final TableActivity activity, final long location, final List<Pair<Long, Integer>> items) {
         new Thread(new Runnable() {
             public void run() {
                 for (Pair item : items) {
