@@ -123,7 +123,7 @@
                 android:id="@+id/craft1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="3dp"
                 android:background="@drawable/button"
                 android:clickable="true"
                 android:gravity="center"
@@ -132,15 +132,27 @@
                 android:textSize="25sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                android:id="@+id/craftMax"
+                android:id="@+id/craft10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/button"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
                 android:clickable="true"
                 android:gravity="center"
-                android:onClick="craftMax"
+                android:onClick="craft10"
                 android:text="@string/craft10Text"
+                android:textSize="25sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/craft100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="craft100"
+                android:text="@string/craft100Text"
                 android:textSize="25sp" />
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
