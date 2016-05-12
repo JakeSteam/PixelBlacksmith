@@ -50,6 +50,29 @@ public class Inventory extends SugarRecord implements Serializable {
         return Player_Info.getPlayerLevel() >= item.getLevel();
     }
 
+    public static int canCreateBulkItem(Long itemID, long state, int quantity) {
+        Item item = Item.findById(Item.class, itemID);
+        if (item.getLevel() > Player_Info.getPlayerLevel()) {
+            return Constants.ERROR_PLAYER_LEVEL;
+        }
+
+        List<Recipe> ingredients = Select.from(Recipe.class).where(
+                Condition.prop("item_state").eq(state),
+                Condition.prop("item").eq(item)).list();
+
+        for (Recipe recipe : ingredients) {
+            Inventory ingredientInventory = Select.from(Inventory.class).where(
+                    Condition.prop("item").eq(recipe.getIngredient()),
+                    Condition.prop("state").eq(recipe.getIngredientState())).first();
+
+            if (ingredientInventory == null || (recipe.getQuantity() * quantity) > ingredientInventory.getQuantity()) {
+                return Constants.ERROR_NOT_ENOUGH_INGREDIENTS;
+            }
+        }
+
+        return Constants.SUCCESS;
+    }
+
     private static int canCreateItem(Long itemID, long state) {
         Item item = Item.findById(Item.class, itemID);
         if (item.getLevel() > Player_Info.getPlayerLevel()) {
@@ -71,6 +94,15 @@ public class Inventory extends SugarRecord implements Serializable {
         }
 
         return Constants.SUCCESS;
+    }
+
+    public static void removeItemIngredients(Long itemID, long state, int quantity) {
+        List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
+        for (Recipe ingredient : ingredients) {
+            Inventory ownedItems = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
+            ownedItems.setQuantity(ownedItems.getQuantity() - (ingredient.getQuantity() * quantity));
+            ownedItems.save();
+        }
     }
 
     private static void removeItemIngredients(Long itemId, long state) {

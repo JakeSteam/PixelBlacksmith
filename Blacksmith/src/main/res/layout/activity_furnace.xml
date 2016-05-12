@@ -109,14 +109,14 @@
                 android:textSize="25sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                android:id="@+id/smeltMax"
+                android:id="@+id/smelt10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/button"
                 android:clickable="true"
                 android:gravity="center"
-                android:onClick="smeltMax"
+                android:onClick="smelt10"
                 android:text="@string/smelt10Text"
                 android:textSize="25sp" />
         </LinearLayout>

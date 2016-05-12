@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import android.widget.ViewFlipper;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -30,6 +32,7 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class FurnaceActivity extends Activity {
@@ -118,22 +121,21 @@ public class FurnaceActivity extends Activity {
         smelt(itemID, 1);
     }
 
-    public void smeltMax(View v) {
+    public void smelt10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        smelt(itemID, Constants.MAX_CRAFTS);
+        smelt(itemID, 10);
     }
 
-    private void smelt(Long itemID, int maxCrafts) {
-        boolean successful = true;
+    private void smelt(Long itemID, int quantity) {
         int quantitySmelted = 0;
+        List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
 
-        while (successful && quantitySmelted < maxCrafts) {
-            int smeltResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_FURNACE);
-            if (smeltResponse != Constants.SUCCESS) {
-                ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse), false);
-                successful = false;
-            } else {
-                quantitySmelted++;
+        int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
+        if (canCreate == Constants.SUCCESS) {
+            quantitySmelted = quantity;
+            Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
+            for (int i = 1; i <= quantity; i++) {
+                itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
         }
 
@@ -142,7 +144,11 @@ public class FurnaceActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
+        } else {
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
         }
+
+        Pending_Inventory.addScheduledItems(Constants.LOCATION_FURNACE, itemsToAdd);
     }
 
     public void openHelp(View view) {
