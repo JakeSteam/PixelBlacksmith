@@ -49,9 +49,7 @@ public class Pending_Inventory extends SugarRecord {
     public static void addScheduledItems(final FurnaceActivity activity, final long location, final List<Pair<Long, Integer>> items) {
         new Thread(new Runnable() {
             public void run() {
-                for (Pair item : items) {
-                    Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
-                }
+                processScheduledItems(items, location);
                 activity.calculatingComplete();
             }
         }).start();
@@ -60,9 +58,7 @@ public class Pending_Inventory extends SugarRecord {
     public static void addScheduledItems(final AnvilActivity activity, final long location, final List<Pair<Long, Integer>> items) {
         new Thread(new Runnable() {
             public void run() {
-                for (Pair item : items) {
-                    Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
-                }
+                processScheduledItems(items, location);
                 activity.calculatingComplete();
             }
         }).start();
@@ -71,12 +67,16 @@ public class Pending_Inventory extends SugarRecord {
     public static void addScheduledItems(final TableActivity activity, final long location, final List<Pair<Long, Integer>> items) {
         new Thread(new Runnable() {
             public void run() {
-                for (Pair item : items) {
-                    Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
-                }
+                processScheduledItems(items, location);
                 activity.calculatingComplete();
             }
         }).start();
+    }
+
+    private static void processScheduledItems(final List<Pair<Long, Integer>> items, final long location) {
+        for (Pair item : items) {
+            Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
+        }
     }
 
     public static void addScheduledItems(final long location, final List<Pair<Long, Integer>> items) {

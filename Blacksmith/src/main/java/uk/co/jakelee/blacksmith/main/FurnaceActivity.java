@@ -42,7 +42,6 @@ public class FurnaceActivity extends Activity {
     private static GestureHelper gh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
-    private static boolean currentlyCalculating = false;
     private TextView smelt1;
     private TextView smelt10;
     private TextView smelt100;
@@ -145,7 +144,7 @@ public class FurnaceActivity extends Activity {
         List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
 
         int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
-        if (currentlyCalculating) {
+        if (MainActivity.vh.furnaceBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
             quantityToSmelt = quantity;
@@ -162,7 +161,7 @@ public class FurnaceActivity extends Activity {
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantityToSmelt);
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
-            currentlyCalculating = true;
+            MainActivity.vh.furnaceBusy = true;
             dimButtons();
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
@@ -182,7 +181,7 @@ public class FurnaceActivity extends Activity {
     }
 
     public void calculatingComplete() {
-        currentlyCalculating = false;
+        MainActivity.vh.furnaceBusy = false;
         brightenButtons();
     }
 

@@ -40,7 +40,6 @@ public class TableActivity extends Activity {
     private int displayedTier;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
-    private static boolean currentlyCalculating = false;
     private TextView craft1;
     private TextView craft10;
     private TextView craft100;
@@ -159,7 +158,7 @@ public class TableActivity extends Activity {
     }
 
     public void calculatingComplete() {
-        currentlyCalculating = false;
+        MainActivity.vh.tableBusy = false;
         brightenButtons();
     }
 
@@ -168,7 +167,7 @@ public class TableActivity extends Activity {
         List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
 
         int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
-        if (currentlyCalculating) {
+        if (MainActivity.vh.tableBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
             quantityCrafted = quantity;
@@ -185,7 +184,7 @@ public class TableActivity extends Activity {
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_TABLE, itemsToAdd);
-            currentlyCalculating = true;
+            MainActivity.vh.tableBusy = true;
             dimButtons();
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
