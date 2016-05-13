@@ -13,8 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.main.AnvilActivity;
 import uk.co.jakelee.blacksmith.main.FurnaceActivity;
+import uk.co.jakelee.blacksmith.main.InventoryActivity;
 import uk.co.jakelee.blacksmith.main.TableActivity;
 
 public class Pending_Inventory extends SugarRecord {
@@ -72,6 +74,22 @@ public class Pending_Inventory extends SugarRecord {
             }
         }).start();
     }
+
+    public static void addScheduledItems(final InventoryActivity activity, final List<Integer> values) {
+        new Thread(new Runnable() {
+            public void run() {
+                processSellingItems(values);
+                activity.calculatingComplete();
+            }
+        }).start();
+    }
+
+    private static void processSellingItems(final List<Integer> values) {
+        for (Integer value : values) {
+            Pending_Inventory.addScheduledItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, value, Constants.LOCATION_SELLING);
+        }
+    }
+
 
     private static void processScheduledItems(final List<Pair<Long, Integer>> items, final long location) {
         for (Pair item : items) {

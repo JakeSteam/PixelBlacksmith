@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -13,6 +14,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -25,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class InventoryActivity extends Activity {
@@ -45,6 +48,8 @@ public class InventoryActivity extends Activity {
             }
         };
         handler.post(every2Seconds);
+
+        updateQuantityUI();
     }
 
     private void updateInventoryTable() {
@@ -96,23 +101,71 @@ public class InventoryActivity extends Activity {
     }
 
     private void clickSellButton(View view) {
-        int quantity = 1;
+        int quantityToSell = 0;
+        List<Integer> itemPrices = new ArrayList<>();
+
+        int quantity = MainActivity.prefs.getInt("sellQuantity", 1);
         Long itemID = (Long) view.getTag(R.id.itemID);
-        Long itemState = (Long) view.getTag(R.id.itemState);
+        long itemState = (Long) view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
         int itemValue = itemToSell.getModifiedValue(itemState);
+        Inventory inventory = Inventory.getInventory(itemID, itemState);
 
-        int sellResponse = Inventory.sellItem(itemID, itemState, quantity, itemValue);
-        if (sellResponse == Constants.SUCCESS) {
+        int canSell = Constants.ERROR_NOT_ENOUGH_ITEMS;
+        if (MainActivity.vh.inventoryBusy) {
+            canSell = Constants.ERROR_BUSY;
+        } else if (inventory.getQuantity() >= quantity) {
+            quantityToSell = quantity;
+            inventory.setQuantity(inventory.getQuantity() - quantity);
+            inventory.save();
+
+            for (int i = 1; i <= quantity; i++) {
+                itemPrices.add(itemValue);
+            }
+        }
+
+        if (quantityToSell > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
-            Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue);
+            Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue * quantityToSell);
+
+            Pending_Inventory.addScheduledItems(this, itemPrices);
+            MainActivity.vh.inventoryBusy = true;
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(sellResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canSell), false);
         }
         updateInventoryTable();
         dh.updateCoins(Inventory.getCoins());
+    }
+
+    public void sell1Toggle(View view) {
+        MainActivity.prefs.edit().putInt("sellQuantity", 1).apply();
+        updateQuantityUI();
+    }
+
+    public void sell10Toggle(View view) {
+        MainActivity.prefs.edit().putInt("sellQuantity", 10).apply();
+        updateQuantityUI();
+    }
+
+    public void sell100Toggle(View view) {
+        MainActivity.prefs.edit().putInt("sellQuantity", 100).apply();
+        updateQuantityUI();
+    }
+
+    public void calculatingComplete() {
+        MainActivity.vh.inventoryBusy = false;
+    }
+
+    private void updateQuantityUI() {
+        Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
+        Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
+        int quantity = MainActivity.prefs.getInt("sellQuantity", 1);
+
+        ((ImageView) findViewById(R.id.sell1indicator)).setImageDrawable(quantity == 1 ? tick : cross);
+        ((ImageView) findViewById(R.id.sell10indicator)).setImageDrawable(quantity == 10 ? tick : cross);
+        ((ImageView) findViewById(R.id.sell100indicator)).setImageDrawable(quantity == 100 ? tick : cross);
     }
 
     public void openHelp(View view) {
