@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -33,6 +34,9 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 public class InventoryActivity extends Activity {
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
+    private LinearLayout sell1;
+    private LinearLayout sell10;
+    private LinearLayout sell100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,10 @@ public class InventoryActivity extends Activity {
             }
         };
         handler.post(every2Seconds);
+
+        sell1 = (LinearLayout) findViewById(R.id.sell1);
+        sell10 = (LinearLayout) findViewById(R.id.sell10);
+        sell100 = (LinearLayout) findViewById(R.id.sell100);
 
         updateQuantityUI();
     }
@@ -132,6 +140,7 @@ public class InventoryActivity extends Activity {
 
             Pending_Inventory.addScheduledItems(this, itemPrices);
             MainActivity.vh.inventoryBusy = true;
+            dimButtons();
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canSell), false);
         }
@@ -156,6 +165,7 @@ public class InventoryActivity extends Activity {
 
     public void calculatingComplete() {
         MainActivity.vh.inventoryBusy = false;
+        brightenButtons();
     }
 
     private void updateQuantityUI() {
@@ -166,6 +176,18 @@ public class InventoryActivity extends Activity {
         ((ImageView) findViewById(R.id.sell1indicator)).setImageDrawable(quantity == 1 ? tick : cross);
         ((ImageView) findViewById(R.id.sell10indicator)).setImageDrawable(quantity == 10 ? tick : cross);
         ((ImageView) findViewById(R.id.sell100indicator)).setImageDrawable(quantity == 100 ? tick : cross);
+    }
+
+    public void brightenButtons() {
+        sell1.setAlpha(1);
+        sell10.setAlpha(1);
+        sell100.setAlpha(1);
+    }
+
+    public void dimButtons() {
+        sell1.setAlpha(0.3f);
+        sell10.setAlpha(0.3f);
+        sell100.setAlpha(0.3f);
     }
 
     public void openHelp(View view) {

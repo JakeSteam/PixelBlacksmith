@@ -79,6 +79,7 @@ public class FurnaceActivity extends Activity {
             }
         };
         handler.post(everySecond);
+
     }
 
     @Override
