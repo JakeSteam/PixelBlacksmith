@@ -118,11 +118,9 @@ public class DisplayHelper {
                 if (!displayedNextSlot) {
                     slotBackground.setBackgroundResource(R.drawable.slot);
                     slotCount.setVisibility(View.VISIBLE);
-                    if (slot.getLevel() > playerLevel) {
-                        if (slot.getLevel() < 999) {
-                            slotForeground.setBackgroundResource(R.drawable.lock);
-                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
-                        }
+                    if (slot.isPremium() && !Player_Info.isPremium()) {
+                        slotForeground.setBackgroundResource(R.drawable.item52);
+                        slotCount.setText(activity.getString(R.string.slotPremium));
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
@@ -130,13 +128,15 @@ public class DisplayHelper {
                             }
                         });
                         displayedNextSlot = true;
-                    } else if (slot.isPremium() && !Player_Info.isPremium()) {
-                        slotForeground.setBackgroundResource(R.drawable.item52);
-                        slotCount.setText(activity.getString(R.string.slotPremium));
+                    } else if (slot.getLevel() > playerLevel) {
+                        if (slot.getLevel() < 9999) {
+                            slotForeground.setBackgroundResource(R.drawable.lock);
+                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        }
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, "TEST MESSAGE", false);
+                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;

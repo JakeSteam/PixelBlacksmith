@@ -152,6 +152,10 @@ public class DatabaseHelper {
         upgrades.add(new Upgrade("Minimum Visitor Rewards", "", 350, 1, 1, 5, 1));
         upgrades.add(new Upgrade("Maximum Visitor Rewards", "", 350, 1, 5, 15, 5));
         Upgrade.saveInTx(upgrades);
+
+        if (!Player_Info.isPremium()) {
+            Slot.executeQuery("UPDATE slot SET premium = 1 WHERE level = 9999");
+        }
     }
 
     private static void createAchievement() {
