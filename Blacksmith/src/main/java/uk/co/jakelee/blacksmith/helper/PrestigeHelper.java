@@ -14,7 +14,6 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
-import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 class PrestigeHelper {
@@ -72,14 +71,6 @@ class PrestigeHelper {
     private static void resetAllVisitors() {
         Visitor.deleteAll(Visitor.class);
         Visitor_Demand.deleteAll(Visitor_Demand.class);
-
-        List<Visitor_Type> types = Visitor_Type.listAll(Visitor_Type.class);
-        for (Visitor_Type type : types) {
-            type.setStateDiscovered(false);
-            type.setTypeDiscovered(false);
-            type.setTierDiscovered(false);
-            type.save();
-        }
     }
 
     private static void resetTraders() {

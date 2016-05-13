@@ -486,8 +486,8 @@ public class DisplayHelper {
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
         if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevelFromDB() + 1), true);
-            Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevel()), true);
+            Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, Player_Info.getPlayerLevel() - Player_Info.getPlayerLevelFromDB());
             return true;
         }
         return false;

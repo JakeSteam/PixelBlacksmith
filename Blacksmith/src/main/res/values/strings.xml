@@ -205,7 +205,7 @@
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
-    <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
+    <string name="prestigeQuestion">Prestiging trades all items / coins / upgrades / workers in return for +100% coins &amp; XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
     <string name="prestigeComplete">Prestige successful, all gold &amp; xp is now multiplied by %d! Good luck!</string>
