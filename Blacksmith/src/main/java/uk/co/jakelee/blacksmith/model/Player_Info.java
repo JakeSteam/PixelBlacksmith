@@ -136,7 +136,7 @@ public class Player_Info extends SugarRecord {
         int maxLevelPoints = (100 * Constants.PRESTIGE_LEVEL_REQUIRED);
         int maxUpgradePoints = (10 * Upgrade.getMaximumUpgrades());
         int maxTraderPoints = (10 * (int) Trader.count(Trader.class));
-        int maxSlotPoints = (10 * (int) Slot.count(Slot.class));
+        int maxSlotPoints = (10 * ((int) Slot.count(Slot.class) - (int)Location.count(Location.class))); // 1 overflow slot per location
         int maxTraderStockPoints = (int) Trader_Stock.count(Trader_Stock.class);
         int maxItemPoints = (int) Item.count(Item.class);
         int maxPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;

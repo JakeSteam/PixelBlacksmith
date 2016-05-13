@@ -17,6 +17,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Trader;
@@ -102,7 +103,7 @@ public class StatisticsActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.traderStocks)).setText(String.format(getString(R.string.genericProgress), traderStocksUnlocked, totalStocks));
 
         int slotsUnlocked = Slot.getUnlockedCount();
-        int totalSlots = (int) Slot.count(Slot.class);
+        int totalSlots = (int) Slot.count(Slot.class) - (int) Location.count(Location.class); // Exclude 1 slot per location, for overflow.
         ((TextViewPixel) findViewById(R.id.slotsUnlocked)).setText(String.format(getString(R.string.genericProgress), slotsUnlocked, totalSlots));
 
         int itemsSeen = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();

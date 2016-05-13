@@ -339,7 +339,7 @@
     <string name="visitorLeavesComplete3">The very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
     <string name="visitorLeavesCompletePremium1">The visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
     <string name="visitorLeavesCompletePremium2">Hey, what\'s this.. %1$dx %2$s and a rare %3$s? I\'ll hang onto these.</string>
-    <string name="visitorLeavesCompletePremium3">AThe visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
+    <string name="visitorLeavesCompletePremium3">The visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
