@@ -15,10 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.applovin.adview.AppLovinIncentivizedInterstitial;
-import com.applovin.sdk.AppLovinAd;
-import com.applovin.sdk.AppLovinAdDisplayListener;
-import com.applovin.sdk.AppLovinSdk;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
@@ -28,6 +24,7 @@ import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AdvertHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
     private static final Handler handler = new Handler();
-    private AppLovinIncentivizedInterstitial myIncent;
     public static TextViewPixel coins;
     public static TextViewPixel level;
     public static ProgressBar levelProgress;
@@ -68,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
+    private AdvertHelper ah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,27 +95,13 @@ public class MainActivity extends AppCompatActivity implements
         dh.createAllSlots(this);
         ratingPrompt();
 
-        AppLovinSdk.initializeSdk(this);
-        myIncent = AppLovinIncentivizedInterstitial.create(this);
-        myIncent.preload(null);
+        ah = new AdvertHelper(this);
     }
 
     public void playRewarded(View view){
         // Check to see if a rewarded video is available.
-        if(myIncent.isAdReadyToDisplay()){
-            // A rewarded video is available.  Call the show method with the listeners you want to use.
-            // We will use the display listener to preload the next rewarded video when this one finishes.
-            myIncent.show(this, null, null, new AppLovinAdDisplayListener() {
-                @Override
-                public void adDisplayed(AppLovinAd appLovinAd) {
-                    // A rewarded video is being displayed.
-                }
-                @Override
-                public void adHidden(AppLovinAd appLovinAd) {
-                    // A rewarded video was closed.  Preload the next video now.  We won't use a load listener.
-                    myIncent.preload(null);
-                }
-            });
+        if(ah.myIncent.isAdReadyToDisplay()){
+            ah.showAdvert(this);
         }
         else{
             // No ad is currently available.  Perform failover logic...
