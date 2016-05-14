@@ -14,7 +14,7 @@
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying... well, everything. They are earned by trading away items.</string>
     <string name="tutorialLevel">Level</string>
-    <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, and trading items.</string>
+    <string name="tutorialLevelText">This is your current level. XP is earned by crafting and trading items.</string>
     <string name="tutorialVisitor">Visitor</string>
     <string name="tutorialVisitorText">Your first visitor has arrived! Tap him to continue.</string>
 
