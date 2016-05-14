@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -14,6 +16,8 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -147,6 +151,14 @@ public class StatisticsActivity extends Activity {
 
         String version = String.format(getString(R.string.versionNumber), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
         ((TextViewPixel) findViewById(R.id.version)).setText(version);
+    }
+
+    public void openLeaderboards(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+        } else {
+            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);
+        }
     }
 
     public void openHelp(View view) {

@@ -195,13 +195,23 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text="@string/statisticsVisitors"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
+                <LinearLayout>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/statisticsVisitors"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/button_narrow"
+                        android:src="@drawable/playleaderboards"
+                        android:padding="2dp"
+                        android:tag="visitors"
+                        android:onClick="openLeaderboards"/>
+                </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/visitorsCompleted"
@@ -275,13 +285,23 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text="@string/statisticsBiggestTrade"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
+                <LinearLayout>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/statisticsBiggestTrade"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/button_narrow"
+                        android:src="@drawable/playleaderboards"
+                        android:padding="2dp"
+                        android:tag="bestitem"
+                        android:onClick="openLeaderboards"/>
+                </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/biggestTrade"
