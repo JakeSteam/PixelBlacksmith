@@ -46,7 +46,7 @@ public class TutorialHelper {
     }
 
     public void addTutorialNoOverlay(Activity activity, View view, int titleID, int bodyID, boolean clickable, int gravity) {
-        addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.Rectangle, clickable, gravity);
+        addTutorial(activity, view, activity.getString(titleID), activity.getString(bodyID), Overlay.Style.NoHole, clickable, gravity);
     }
 
     public void addTutorialRectangle(Activity activity, View view, int titleID, int bodyID, boolean clickable, int gravity) {
