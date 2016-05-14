@@ -5,6 +5,9 @@ public class Constants {
 
     public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";
+    public static final String LEADERBOARD_TROPHIES = "CgkI6tnE2Y4OEAIQIQ";
+    public static final String LEADERBOARD_TIMES_PRESTIGED = "CgkI6tnE2Y4OEAIQIg";
+    public static final String LEADERBOARD_COMPLETION = "CgkI6tnE2Y4OEAIQIw";
 
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;

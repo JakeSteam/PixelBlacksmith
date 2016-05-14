@@ -161,6 +161,12 @@ public class StatisticsActivity extends Activity {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_ITEM_VALUE), GooglePlayHelper.RC_LEADERBOARDS);
             } else if (view.getTag().equals("visitors")) {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_VISITORS), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("trophies")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TROPHIES), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("prestiged")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TIMES_PRESTIGED), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("completionpercent")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COMPLETION), GooglePlayHelper.RC_LEADERBOARDS);
             }
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);
