@@ -146,6 +146,16 @@ public class DatabaseHelper {
     public static void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
+        Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE id = 11");
+
+        List<Upgrade> upgrades = new ArrayList<>();
+        upgrades.add(new Upgrade("Minimum Visitor Rewards", "", 350, 1, 1, 5, 1));
+        upgrades.add(new Upgrade("Maximum Visitor Rewards", "", 350, 1, 5, 15, 5));
+        Upgrade.saveInTx(upgrades);
+
+        if (!Player_Info.isPremium()) {
+            Slot.executeQuery("UPDATE slot SET premium = 1 WHERE level = 9999");
+        }
     }
 
     private static void createAchievement() {

@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -27,6 +30,7 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class TableActivity extends Activity {
@@ -36,6 +40,9 @@ public class TableActivity extends Activity {
     private int displayedTier;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
+    private TextView craft1;
+    private TextView craft10;
+    private TextView craft100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,10 @@ public class TableActivity extends Activity {
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_10_TABLE) {
             startTutorial();
         }
+
+        craft1 = (TextView) findViewById(R.id.craft1);
+        craft10 = (TextView) findViewById(R.id.craft10);
+        craft100 = (TextView) findViewById(R.id.craft100);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -124,22 +135,45 @@ public class TableActivity extends Activity {
         craft(itemID, 1);
     }
 
-    public void craftMax(View v) {
+    public void craft10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, Constants.MAX_CRAFTS);
+        craft(itemID, 10);
     }
 
-    private void craft(Long itemID, int maxCrafts) {
-        boolean successful = true;
-        int quantityCrafted = 0;
+    public void craft100(View v) {
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        craft(itemID, 100);
+    }
 
-        while (successful && quantityCrafted < maxCrafts) {
-            int craftResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_TABLE);
-            if (craftResponse != Constants.SUCCESS) {
-                ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(craftResponse), false);
-                successful = false;
-            } else {
-                quantityCrafted++;
+    public void brightenButtons() {
+        craft1.setAlpha(1);
+        craft10.setAlpha(1);
+        craft100.setAlpha(1);
+    }
+
+    public void dimButtons() {
+        craft1.setAlpha(0.3f);
+        craft10.setAlpha(0.3f);
+        craft100.setAlpha(0.3f);
+    }
+
+    public void calculatingComplete() {
+        MainActivity.vh.tableBusy = false;
+        brightenButtons();
+    }
+
+    private void craft(Long itemID, int quantity) {
+        int quantityCrafted = 0;
+        List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
+
+        int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
+        if (MainActivity.vh.tableBusy) {
+            canCreate = Constants.ERROR_BUSY;
+        } else if (canCreate == Constants.SUCCESS) {
+            quantityCrafted = quantity;
+            Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
+            for (int i = 1; i <= quantity; i++) {
+                itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
         }
 
@@ -148,7 +182,14 @@ public class TableActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
+
+            Pending_Inventory.addScheduledItems(this, Constants.LOCATION_TABLE, itemsToAdd);
+            MainActivity.vh.tableBusy = true;
+            dimButtons();
+        } else {
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
         }
+
     }
 
     public void goUpTier(View view) {

@@ -184,6 +184,6 @@ public class WorkerHelper {
             itemString.append(item.getId().toString());
             itemString.append(",");
         }
-        return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1";
+        return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1 AND quantity > 0";
     }
 }

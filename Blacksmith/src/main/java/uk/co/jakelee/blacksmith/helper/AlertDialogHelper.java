@@ -320,15 +320,23 @@ public class AlertDialogHelper {
         alertDialog.setNegativeButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int itemsBought = 0;
-                int buyResponse = Constants.ERROR_NO_ITEMS;
-                boolean successful = true;
+                int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
+                List<Pair<Long, Integer>> items = new ArrayList<>();
 
-                while (successful) {
-                    buyResponse = Inventory.buyItem(itemStock);
-                    if (buyResponse == Constants.SUCCESS) {
-                        itemsBought++;
-                    } else {
-                        successful = false;
+                Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                Item item = Item.findById(Item.class, itemStock.getItemID());
+                int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                if (totalCost <= coinStock.getQuantity()) {
+                    int itemsToBuy = itemStock.getStock();
+                    itemsBought += itemsToBuy;
+                    itemStock.setStock(0);
+                    itemStock.save();
+
+                    coinStock.setQuantity(coinStock.getQuantity() - totalCost);
+                    coinStock.save();
+
+                    for (int i = 1; i <= itemsToBuy; i++) {
+                        items.add(new Pair<>(itemStock.getItemID(), itemStock.getState()));
                     }
                 }
 
@@ -340,6 +348,9 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
+
+                Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
+
                 activity.alertDialogCallback();
             }
         });

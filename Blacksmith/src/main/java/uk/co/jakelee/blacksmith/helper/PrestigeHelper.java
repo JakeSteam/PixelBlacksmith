@@ -5,6 +5,7 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -13,7 +14,6 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
-import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 class PrestigeHelper {
@@ -26,6 +26,7 @@ class PrestigeHelper {
         resetAllVisitors();
         resetTraders();
         resetWorkers();
+        resetCraftingInterface();
     }
 
     private static void increasePrestige() {
@@ -70,14 +71,6 @@ class PrestigeHelper {
     private static void resetAllVisitors() {
         Visitor.deleteAll(Visitor.class);
         Visitor_Demand.deleteAll(Visitor_Demand.class);
-
-        List<Visitor_Type> types = Visitor_Type.listAll(Visitor_Type.class);
-        for (Visitor_Type type : types) {
-            type.setStateDiscovered(false);
-            type.setTypeDiscovered(false);
-            type.setTierDiscovered(false);
-            type.save();
-        }
     }
 
     private static void resetTraders() {
@@ -86,6 +79,16 @@ class PrestigeHelper {
     }
 
     private static void resetWorkers() {
-        Worker.executeQuery("UPDATE worker SET purchased = 0");
+        Worker.executeQuery("UPDATE worker SET purchased = 0, tool_used = 32, tool_state = 1, time_started = 0");
+    }
+
+    private static void resetCraftingInterface() {
+        MainActivity.prefs.edit().putInt("furnacePosition", 0).apply();
+        MainActivity.prefs.edit().putInt("anvilTier", 0).apply();
+        MainActivity.prefs.edit().putInt("anvilPosition", 0).apply();
+        MainActivity.prefs.edit().putInt("tableTier", 0).apply();
+        MainActivity.prefs.edit().putInt("tablePosition", 0).apply();
+        MainActivity.prefs.edit().putInt("enchantingTier", 0).apply();
+        MainActivity.prefs.edit().putInt("enchantingPosition", 0).apply();
     }
 }

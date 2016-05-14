@@ -33,6 +33,7 @@ import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
+import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
     private static DisplayHelper dh;
+    public static VariableHelper vh;
     private static Activity mainActivity;
     private static HorizontalScrollView mainScroller;
     private static LinearLayout visitorContainer;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         dh = DisplayHelper.getInstance(getApplicationContext());
+        vh = new VariableHelper();
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 

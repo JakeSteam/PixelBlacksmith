@@ -197,67 +197,71 @@ public class VisitorActivity extends Activity {
         TableLayout demandsTable = (TableLayout) findViewById(R.id.demandsTable);
         demandsTable.removeAllViews();
 
-        List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
-                Condition.prop("visitor_id").eq(visitor.getId())).list();
+        if (visitor == null) {
+            this.finish();
+        } else {
+            List<Visitor_Demand> visitorDemands = Select.from(Visitor_Demand.class).where(
+                    Condition.prop("visitor_id").eq(visitor.getId())).list();
 
-        // Backporting Boolean.Compare from API 19
-        Collections.sort(visitorDemands, new Comparator<Visitor_Demand>() {
-            @Override
-            public int compare(Visitor_Demand demand1, Visitor_Demand demand2) {
-                return demand2.isRequired() == demand1.isRequired() ? 0 : demand2.isRequired() ? 1 : -1;
-            }
-        });
+            // Backporting Boolean.Compare from API 19
+            Collections.sort(visitorDemands, new Comparator<Visitor_Demand>() {
+                @Override
+                public int compare(Visitor_Demand demand1, Visitor_Demand demand2) {
+                    return demand2.isRequired() == demand1.isRequired() ? 0 : demand2.isRequired() ? 1 : -1;
+                }
+            });
 
-        if (TutorialHelper.currentlyInTutorial) {
-            identifyFirstDemand = true;
-        }
-
-        for (Visitor_Demand demand : visitorDemands) {
-            Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
-            TableRow demandRow = new TableRow(getApplicationContext());
-            if (identifyFirstDemand) {
-                demandRow.setId(R.id.demandInfo);
-                identifyFirstDemand = false;
+            if (TutorialHelper.currentlyInTutorial) {
+                identifyFirstDemand = true;
             }
 
-            int statusDrawableID = (demand.isDemandFulfilled() ? R.drawable.tick : R.drawable.cross);
-            Drawable statusDrawable = dh.createDrawable(statusDrawableID, 25, 25);
-            ImageView criteriaStatus = new ImageView(getApplicationContext());
-            criteriaStatus.setImageDrawable(statusDrawable);
+            for (Visitor_Demand demand : visitorDemands) {
+                Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+                TableRow demandRow = new TableRow(getApplicationContext());
+                if (identifyFirstDemand) {
+                    demandRow.setId(R.id.demandInfo);
+                    identifyFirstDemand = false;
+                }
 
-            String criteriaText = String.format(getString(R.string.visitorDemand),
-                    demand.getQuantity() - demand.getQuantityProvided(),
-                    demandCriteria.getName(),
-                    Visitor_Demand.getCriteriaName(demand));
-            TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
-            criteriaValue.setHeight(dh.convertDpToPixel(35));
-            criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
-            criteriaValue.setSingleLine(false);
+                int statusDrawableID = (demand.isDemandFulfilled() ? R.drawable.tick : R.drawable.cross);
+                Drawable statusDrawable = dh.createDrawable(statusDrawableID, 25, 25);
+                ImageView criteriaStatus = new ImageView(getApplicationContext());
+                criteriaStatus.setImageDrawable(statusDrawable);
 
-            ImageView tradeBtn = new ImageView(getApplicationContext());
-            if (!demand.isDemandFulfilled()) {
-                tradeBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
-                int tradeBtnPadding = dh.convertDpToPixel(3);
-                tradeBtn.setPadding(tradeBtnPadding, tradeBtnPadding, tradeBtnPadding, tradeBtnPadding);
-            } else {
-                criteriaValue.setPaintFlags(criteriaValue.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                String criteriaText = String.format(getString(R.string.visitorDemand),
+                        demand.getQuantity() - demand.getQuantityProvided(),
+                        demandCriteria.getName(),
+                        Visitor_Demand.getCriteriaName(demand));
+                TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
+                criteriaValue.setHeight(dh.convertDpToPixel(35));
+                criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
+                criteriaValue.setSingleLine(false);
+
+                ImageView tradeBtn = new ImageView(getApplicationContext());
+                if (!demand.isDemandFulfilled()) {
+                    tradeBtn.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
+                    int tradeBtnPadding = dh.convertDpToPixel(3);
+                    tradeBtn.setPadding(tradeBtnPadding, tradeBtnPadding, tradeBtnPadding, tradeBtnPadding);
+                } else {
+                    criteriaValue.setPaintFlags(criteriaValue.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
+
+                demandRow.addView(criteriaStatus);
+                demandRow.addView(criteriaValue);
+                demandRow.addView(tradeBtn);
+
+                demandRow.setTag(demand.getId());
+                if (!demand.isDemandFulfilled()) {
+                    demandRow.setOnClickListener(new Button.OnClickListener() {
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
+                            intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
+                            startActivity(intent);
+                        }
+                    });
+                }
+                demandsTable.addView(demandRow);
             }
-
-            demandRow.addView(criteriaStatus);
-            demandRow.addView(criteriaValue);
-            demandRow.addView(tradeBtn);
-
-            demandRow.setTag(demand.getId());
-            if (!demand.isDemandFulfilled()) {
-                demandRow.setOnClickListener(new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
-                        intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
-                        startActivity(intent);
-                    }
-                });
-            }
-            demandsTable.addView(demandRow);
         }
     }
 
@@ -287,7 +291,9 @@ public class VisitorActivity extends Activity {
     }
 
     private void createVisitorReward(boolean isFullyComplete) {
-        int numRewards = (isFullyComplete ? 2 : 1) * VisitorHelper.getRandomNumber(Constants.MINIMUM_REWARDS, Constants.MAXIMUM_REWARDS);
+        int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
+        int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
+        int numRewards = (isFullyComplete ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
         int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
 

@@ -100,7 +100,7 @@
                 android:id="@+id/smelt1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="3dp"
                 android:background="@drawable/button"
                 android:clickable="true"
                 android:gravity="center"
@@ -109,15 +109,27 @@
                 android:textSize="25sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                android:id="@+id/smeltMax"
+                android:id="@+id/smelt10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/button"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
                 android:clickable="true"
                 android:gravity="center"
-                android:onClick="smeltMax"
+                android:onClick="smelt10"
                 android:text="@string/smelt10Text"
+                android:textSize="25sp" />
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/smelt100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="smelt100"
+                android:text="@string/smelt100Text"
                 android:textSize="25sp" />
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>

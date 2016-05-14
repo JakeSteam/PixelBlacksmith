@@ -169,16 +169,17 @@
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
+    <string name="levelUpPrestigeText">Levelled up to %d! You can now prestige, take a look at the settings menu!</string>
     <string name="overflowText">+ %d</string>
 
     <string name="workerLocked">Locked</string>
-    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %d coins?</string>
+    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %,d coins?</string>
     <string name="buyWorkerConfirm">Hire</string>
     <string name="buyWorkerComplete">Successfully hired worker!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
     <string name="buyWorker">Purchase Worker</string>
-    <string name="workerCoins">%d coins</string>
+    <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips.</string>
@@ -194,17 +195,17 @@
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
 
-    <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$s coins?</string>
+    <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
     <string name="upgradeCancel">Cancel</string>
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeDescription">%1$s
 \n%2$d / %3$d %4$s
-\n%5$s%6$d: %7$s coins</string>
+\n%5$s%6$d %7$s: %8$,d coins</string>
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
-    <string name="prestigeQuestion">Prestiging trades all items / gold / upgrades / visitor progress in return for +100% gold &amp; xp gains.
+    <string name="prestigeQuestion">Prestiging trades all items / coins / upgrades / workers in return for +100% coins &amp; XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
     <string name="prestigeComplete">Prestige successful, all gold &amp; xp is now multiplied by %d! Good luck!</string>
@@ -216,12 +217,12 @@
     <string name="dismissFailure">Not enough money to dismiss a visitor.</string>
     <string name="dismissCancel">Cancel</string>
 
-    <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$d coin(s), or up to %3$d for %4$d coin(s) each?</string>
+    <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$,d coin(s), or up to %3$d for %4$d coin(s) each?</string>
     <string name="itemBuy1Confirm">Buy 1</string>
     <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
     <string name="itemBuyCancel">Cancel</string>
     <string name="itemBuyAllConfirm">Buy All</string>
-    <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$d coins?</string>
+    <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$,d coins?</string>
     <string name="itemBuyAllComplete">Successfully bought %d items!</string>
     <string name="itemBuyAllNoItems">You can\'t buy all of nothing!</string>
 
@@ -235,7 +236,7 @@
     <string name="trophyBestItemUnknown">Best item: ???</string>
 
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
-    <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s).</string>
+    <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>
 
     <string name="enchantingButtonText">%1$s (x %2$s)</string>
 
@@ -254,9 +255,14 @@
     <string name="finishText">Finish</string>
 
     <string name="smelt1Text">Smelt 1</string>
-    <string name="smelt10Text">Smelt 10</string>
+    <string name="smelt10Text">10</string>
+    <string name="smelt100Text">100</string>
     <string name="craft1Text">Craft 1</string>
-    <string name="craft10Text">Craft 10</string>
+    <string name="craft10Text">10</string>
+    <string name="craft100Text">100</string>
+    <string name="sell1Text">Sell 1</string>
+    <string name="sell10Text">Sell 10</string>
+    <string name="sell100Text">Sell 100</string>
 
     <string name="soundSettingText">Enable sounds?</string>
     <string name="musicSettingText">Enable music?</string>
@@ -333,7 +339,7 @@
     <string name="visitorLeavesComplete3">The very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
     <string name="visitorLeavesCompletePremium1">The visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
     <string name="visitorLeavesCompletePremium2">Hey, what\'s this.. %1$dx %2$s and a rare %3$s? I\'ll hang onto these.</string>
-    <string name="visitorLeavesCompletePremium3">AThe visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
+    <string name="visitorLeavesCompletePremium3">The visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
@@ -359,6 +365,8 @@
     <string name="statisticsTrophies">Trophies:</string>
     <string name="statisticsWorkersOwned">Workers Owned:</string>
     <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
+    <string name="statisticsTotalBonusGold">Total Gold Bonus:</string>
+    <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
     <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
@@ -396,7 +404,7 @@
     <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
 \n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
-    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar + /u/Nekratal!) for all the testing / suggestions.
+    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing / suggestions.
 </string>
 
     <string-array name="toolsArray">

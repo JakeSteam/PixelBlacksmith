@@ -118,11 +118,9 @@ public class DisplayHelper {
                 if (!displayedNextSlot) {
                     slotBackground.setBackgroundResource(R.drawable.slot);
                     slotCount.setVisibility(View.VISIBLE);
-                    if (slot.getLevel() > playerLevel) {
-                        if (slot.getLevel() < 999) {
-                            slotForeground.setBackgroundResource(R.drawable.lock);
-                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
-                        }
+                    if (slot.isPremium() && !Player_Info.isPremium()) {
+                        slotForeground.setBackgroundResource(R.drawable.item52);
+                        slotCount.setText(activity.getString(R.string.slotPremium));
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
@@ -130,13 +128,15 @@ public class DisplayHelper {
                             }
                         });
                         displayedNextSlot = true;
-                    } else if (slot.isPremium() && !Player_Info.isPremium()) {
-                        slotForeground.setBackgroundResource(R.drawable.item52);
-                        slotCount.setText(activity.getString(R.string.slotPremium));
+                    } else if (slot.getLevel() > playerLevel) {
+                        if (slot.getLevel() < 9999) {
+                            slotForeground.setBackgroundResource(R.drawable.lock);
+                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                        }
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, "TEST MESSAGE", false);
+                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -158,7 +158,7 @@ public class DisplayHelper {
         }
     }
 
-    private void populateSlot(long locationID, View parentView) {
+    private void populateSlot(final long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         if (pendingItems.size() > 0) {
             int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
@@ -195,10 +195,11 @@ public class DisplayHelper {
             displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
 
             if (completedItems.size() > 0) {
+                final boolean shouldGiveXP = (locationID != Constants.LOCATION_MARKET) && (locationID != Constants.LOCATION_SELLING);
                 new Thread(new Runnable() {
                     public void run() {
                         for (Pending_Inventory item : completedItems) {
-                            Inventory.addItem(item);
+                                Inventory.addItem(item, shouldGiveXP); // if location = market or inventory, false boolean
                         }
                         Pending_Inventory.deleteInTx(completedItems);
                     }
@@ -485,8 +486,8 @@ public class DisplayHelper {
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
         if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevelFromDB() + 1), true);
-            Player_Info.increaseByOne(Player_Info.Statistic.SavedLevel);
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevel()), true);
+            Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, Player_Info.getPlayerLevel() - Player_Info.getPlayerLevelFromDB());
             return true;
         }
         return false;
@@ -502,6 +503,9 @@ public class DisplayHelper {
         Long numStates = Select.from(State.class).where(
                 Condition.prop("minimum_level").eq(newLevel)).count();
 
+        if (newLevel == Constants.PRESTIGE_LEVEL_REQUIRED) {
+            return String.format(this.context.getString(R.string.levelUpPrestigeText), newLevel);
+        }
         return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
 

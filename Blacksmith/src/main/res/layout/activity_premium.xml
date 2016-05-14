@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/premium"
         android:layout_width="match_parent"
@@ -26,8 +27,8 @@
             android:id="@+id/premiumTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="35dp"
-            android:layout_marginTop="10dp"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/premiumText"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -79,7 +80,7 @@
             </RelativeLayout>
 
         </ScrollView>
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -101,4 +102,4 @@
         android:layout_marginTop="35dp"
         android:onClick="closePopup"
         android:src="@drawable/close" />
-</RelativeLayout>
+</android.support.percent.PercentRelativeLayout>

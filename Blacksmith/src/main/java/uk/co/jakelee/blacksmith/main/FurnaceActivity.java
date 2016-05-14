@@ -4,18 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -30,6 +33,7 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class FurnaceActivity extends Activity {
@@ -38,6 +42,9 @@ public class FurnaceActivity extends Activity {
     private static GestureHelper gh;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
+    private TextView smelt1;
+    private TextView smelt10;
+    private TextView smelt100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,10 @@ public class FurnaceActivity extends Activity {
             startTutorial();
         }
 
+        smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt10 = (TextView) findViewById(R.id.smelt10);
+        smelt100 = (TextView) findViewById(R.id.smelt100);
+
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
@@ -68,6 +79,7 @@ public class FurnaceActivity extends Activity {
             }
         };
         handler.post(everySecond);
+
     }
 
     @Override
@@ -118,31 +130,60 @@ public class FurnaceActivity extends Activity {
         smelt(itemID, 1);
     }
 
-    public void smeltMax(View v) {
+    public void smelt10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        smelt(itemID, Constants.MAX_CRAFTS);
+        smelt(itemID, 10);
     }
 
-    private void smelt(Long itemID, int maxCrafts) {
-        boolean successful = true;
-        int quantitySmelted = 0;
+    public void smelt100(View v) {
+        Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
+        smelt(itemID, 100);
+    }
 
-        while (successful && quantitySmelted < maxCrafts) {
-            int smeltResponse = Inventory.tryCreateItem(itemID, Constants.STATE_NORMAL, Constants.LOCATION_FURNACE);
-            if (smeltResponse != Constants.SUCCESS) {
-                ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(smeltResponse), false);
-                successful = false;
-            } else {
-                quantitySmelted++;
+    private void smelt(Long itemID, int quantity) {
+        int quantityToSmelt = 0;
+        List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
+
+        int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
+        if (MainActivity.vh.furnaceBusy) {
+            canCreate = Constants.ERROR_BUSY;
+        } else if (canCreate == Constants.SUCCESS) {
+            quantityToSmelt = quantity;
+            Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
+            for (int i = 1; i <= quantity; i++) {
+                itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
         }
 
-        if (quantitySmelted > 0) {
+        if (quantityToSmelt > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
-            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityToSmelt, item.getFullName(Constants.STATE_NORMAL)), false);
+            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantityToSmelt);
+
+            Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
+            MainActivity.vh.furnaceBusy = true;
+            dimButtons();
+        } else {
+            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
         }
+    }
+
+    public void brightenButtons() {
+        smelt1.setAlpha(1);
+        smelt10.setAlpha(1);
+        smelt100.setAlpha(1);
+    }
+
+    public void dimButtons() {
+        smelt1.setAlpha(0.3f);
+        smelt10.setAlpha(0.3f);
+        smelt100.setAlpha(0.3f);
+    }
+
+    public void calculatingComplete() {
+        MainActivity.vh.furnaceBusy = false;
+        brightenButtons();
     }
 
     public void openHelp(View view) {

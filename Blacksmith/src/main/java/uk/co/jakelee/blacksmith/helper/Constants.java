@@ -10,15 +10,11 @@ public class Constants {
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
-    public static final int MAX_CRAFTS = 10;
-    public static final int MINIMUM_REWARDS = 1;
-    public static final int MAXIMUM_REWARDS = 5;
     public static final double STATE_UNFINISHED_MODIFIER = 0.5;
     public static final int STATISTIC_NOT_TRACKED = -1;
     public static final int TRADER_TAX_MULTIPLIER = 10;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
-    public static final int WORKER_MINUTES = 20;
     public static final int WORKER_COST_MULTIPLIER = 1000;
 
 
@@ -70,6 +66,7 @@ public class Constants {
     public static final int ERROR_TRADER_RUN_OUT = 10;
     public static final int ERROR_MAXIMUM_UPGRADE = 11;
     public static final int ERROR_NO_SLOTS_ENCHANTING = 12;
+    public static final int ERROR_BUSY = 13;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;

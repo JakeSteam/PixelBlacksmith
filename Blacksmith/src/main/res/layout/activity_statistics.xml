@@ -33,7 +33,8 @@
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="55sp"
-            app:layout_marginTopPercent="1%" />
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/statisticsScroller"
@@ -41,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/statisticsTitle"
             android:layout_marginBottom="10dp"
-            app:layout_marginTopPercent="8%"
             android:fadeScrollbars="false">
 
             <GridLayout
@@ -429,6 +429,38 @@
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/workersTrips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsTotalBonusGold"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/totalBonusGold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsTotalBonusXP"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/totalBonusXP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"

@@ -16,6 +16,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
@@ -150,6 +151,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
                 Condition.prop("name").eq("XP Bonus")).first();
         xpBonus.setCurrent(xpBonus.getCurrent() + 20);
         xpBonus.setMaximum(xpBonus.getMaximum() + 50);
+
+        Slot.executeQuery("UPDATE slot SET premium = false WHERE level = 9999");
 
         MainActivity.needToRedrawSlots = true;
     }
