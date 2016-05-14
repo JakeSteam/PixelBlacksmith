@@ -155,7 +155,13 @@ public class StatisticsActivity extends Activity {
 
     public void openLeaderboards(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+            if (view.getTag() == null) {
+                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("bestitem")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_ITEM_VALUE), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("visitors")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_VISITORS), GooglePlayHelper.RC_LEADERBOARDS);
+            }
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);
         }
