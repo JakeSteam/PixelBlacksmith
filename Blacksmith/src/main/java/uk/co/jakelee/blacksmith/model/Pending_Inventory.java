@@ -52,7 +52,12 @@ public class Pending_Inventory extends SugarRecord {
         new Thread(new Runnable() {
             public void run() {
                 processScheduledItems(items, location);
-                activity.calculatingComplete();
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.calculatingComplete();
+                    }
+                });
             }
         }).start();
     }
@@ -61,7 +66,12 @@ public class Pending_Inventory extends SugarRecord {
         new Thread(new Runnable() {
             public void run() {
                 processScheduledItems(items, location);
-                activity.calculatingComplete();
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.calculatingComplete();
+                    }
+                });
             }
         }).start();
     }
@@ -70,7 +80,12 @@ public class Pending_Inventory extends SugarRecord {
         new Thread(new Runnable() {
             public void run() {
                 processScheduledItems(items, location);
-                activity.calculatingComplete();
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.calculatingComplete();
+                    }
+                });
             }
         }).start();
     }
@@ -79,7 +94,12 @@ public class Pending_Inventory extends SugarRecord {
         new Thread(new Runnable() {
             public void run() {
                 processSellingItems(values);
-                activity.calculatingComplete();
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        activity.calculatingComplete();
+                    }
+                });
             }
         }).start();
     }
