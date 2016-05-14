@@ -15,7 +15,6 @@ public class Constants {
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final double STATE_UNFINISHED_MODIFIER = 0.5;
     public static final int STATISTIC_NOT_TRACKED = -1;
-    public static final int TRADER_TAX_MULTIPLIER = 10;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
