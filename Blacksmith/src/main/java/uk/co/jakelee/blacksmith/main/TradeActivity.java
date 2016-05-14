@@ -72,14 +72,14 @@ public class TradeActivity extends Activity {
             startTutorial();
         }
 
-        final Runnable every10Seconds = new Runnable() {
+        final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
                 displayItemsTable();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
-        handler.post(every10Seconds);
+        handler.post(every2Seconds);
     }
 
     @Override
@@ -89,6 +89,12 @@ public class TradeActivity extends Activity {
         if (TutorialHelper.currentlyInTutorial) {
             TutorialHelper.chainTourGuide.next();
         }
+    }
+
+    protected void onStop() {
+        super.onStop();
+
+        handler.removeCallbacksAndMessages(null);
     }
 
     private void startTutorial() {
