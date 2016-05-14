@@ -27,6 +27,8 @@ class PrestigeHelper {
         resetTraders();
         resetWorkers();
         resetCraftingInterface();
+
+        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TIMES_PRESTIGED, Player_Info.getPrestige() + 1);
     }
 
     private static void increasePrestige() {

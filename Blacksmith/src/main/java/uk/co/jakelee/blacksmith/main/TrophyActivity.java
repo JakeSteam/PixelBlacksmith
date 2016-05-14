@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
@@ -48,6 +49,7 @@ public class TrophyActivity extends Activity {
         List<Visitor_Type> visitorTypes = Visitor_Type.listAll(Visitor_Type.class);
         GridLayout visitorGrid = (GridLayout) findViewById(R.id.visitorGrid);
         visitorGrid.setRowCount((visitorTypes.size() / Constants.NUMBER_OF_TROPHY_COLUMNS) + 1);
+        int trophiesEarned = 0;
 
         for (Visitor_Type visitorType : visitorTypes) {
             Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorType.getVisitorID());
@@ -75,10 +77,14 @@ public class TrophyActivity extends Activity {
                 } else {
                     visitorImage.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
                 }
+            } else {
+                trophiesEarned++;
             }
 
             visitorGrid.addView(visitorImage);
         }
+
+        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TROPHIES, trophiesEarned);
     }
 
     private void loadVisitor(View v) {

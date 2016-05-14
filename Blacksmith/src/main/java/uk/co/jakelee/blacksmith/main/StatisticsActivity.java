@@ -15,7 +15,6 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
-import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
@@ -32,21 +31,21 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
-    private static DisplayHelper dh;
+    private double completionPercent = 0.00;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        dh = DisplayHelper.getInstance(getApplicationContext());
 
         displayStatistics();
+
+        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COMPLETION, (int) (completionPercent * 100));
     }
 
     private void displayStatistics() {
-        double completionPercent = Player_Info.getCompletionPercent();
-        double modifiedCompletionPercent = completionPercent + (Player_Info.getPrestige() * 100);
-        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", modifiedCompletionPercent));
+        completionPercent = (Player_Info.getPrestige() * 100) + Player_Info.getCompletionPercent();
+        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", completionPercent));
 
         int currentXP = Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
