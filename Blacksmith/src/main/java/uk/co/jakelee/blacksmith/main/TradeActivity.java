@@ -72,14 +72,14 @@ public class TradeActivity extends Activity {
             startTutorial();
         }
 
-        final Runnable every2Seconds = new Runnable() {
+        final Runnable every10Seconds = new Runnable() {
             @Override
             public void run() {
                 displayItemsTable();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
-        handler.post(every2Seconds);
+        handler.post(every10Seconds);
     }
 
     @Override

@@ -44,14 +44,14 @@ public class InventoryActivity extends Activity {
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
-        final Runnable every2Seconds = new Runnable() {
+        final Runnable every10Seconds = new Runnable() {
             @Override
             public void run() {
                 updateInventoryTable();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
-        handler.post(every2Seconds);
+        handler.post(every10Seconds);
 
         sell1 = (LinearLayout) findViewById(R.id.sell1);
         sell10 = (LinearLayout) findViewById(R.id.sell10);

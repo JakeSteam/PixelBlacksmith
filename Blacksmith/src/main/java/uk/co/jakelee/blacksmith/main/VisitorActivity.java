@@ -293,6 +293,11 @@ public class VisitorActivity extends Activity {
     private void createVisitorReward(boolean isFullyComplete) {
         int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
         int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
+        if (minimumRewards == 0 || maximumRewards == 0) {
+            minimumRewards = 1;
+            maximumRewards = 5;
+        }
+
         int numRewards = (isFullyComplete ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
         int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
