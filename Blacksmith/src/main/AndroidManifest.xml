@@ -41,83 +41,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
-            android:screenOrientation="portrait" />
+            android:name=".main.MainActivity"/>
         <activity
             android:name=".main.InventoryActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.MarketActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.FurnaceActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.AnvilActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.TableActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.TraderActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.VisitorActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.TradeActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.EnchantingActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.SettingsActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.CreditsActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.TrophyActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.StatisticsActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.HelpActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.UpgradeActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.MessagesActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.PremiumActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.WorkerActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".main.ToolActivity"
-            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
