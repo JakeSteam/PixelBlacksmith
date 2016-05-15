@@ -189,7 +189,8 @@
     <string name="workerReturned">A worker has returned, along with: %s.</string>
     <string name="workerResources">Resources: %s.</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s. You can also watch an ad to bribe the visitor.</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestionAdvert">Would you like to pay %1$d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeAdvert">Watch Ad</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
@@ -308,6 +309,8 @@
 
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
+
+    <string name="turnOffAdsText">Disable Adverts</string>
 
     <string name="tableQuantity">Qty</string>
     <string name="tableItem">Item </string>

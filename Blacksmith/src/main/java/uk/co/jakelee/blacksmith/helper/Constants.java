@@ -19,7 +19,6 @@ public class Constants {
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
-    public static final boolean SHOULD_DISPLAY_ADS = true;
 
 
     // Tutorial stages
@@ -89,6 +88,7 @@ public class Constants {
     public static final Long SETTING_VISITOR_NOTIFICATIONS = 5L;
     public static final Long SETTING_SIGN_IN = 6L;
     public static final Long SETTING_WORKER_NOTIFICATIONS = 7L;
+    public static final Long SETTING_DISABLE_ADS = 8L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

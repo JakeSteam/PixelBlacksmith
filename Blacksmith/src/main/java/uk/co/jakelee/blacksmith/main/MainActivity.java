@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         assignUIElements();
-        checkFirstRun();
+        DatabaseHelper.handlePatches();
 
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -128,40 +128,6 @@ public class MainActivity extends AppCompatActivity implements
         level = (TextViewPixel) findViewById(R.id.currentLevel);
         levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
         levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
-    }
-
-    private void checkFirstRun() {
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_EMPTY) {
-            DatabaseHelper.initialSQL();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
-
-            TutorialHelper.currentlyInTutorial = true;
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
-            DatabaseHelper.patch100to101();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_1) {
-            DatabaseHelper.patch101to120();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_0) {
-            DatabaseHelper.patch120to121();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_1) {
-            DatabaseHelper.patch121to130();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_3_0) {
-            DatabaseHelper.patch130to140();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
-        }
     }
 
     public static void startFirstTutorial() {
@@ -506,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackSpawn() {
         if (VisitorHelper.tryCreateVisitor()) {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeComplete, true);
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeAdvertComplete, true);
         }
     }
 }

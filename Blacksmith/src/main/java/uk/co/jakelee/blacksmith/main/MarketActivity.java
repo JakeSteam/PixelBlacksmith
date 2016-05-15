@@ -26,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -104,7 +105,7 @@ public class MarketActivity extends Activity {
             emptyContainer.setVisibility(View.VISIBLE);
 
             TextView restockText = (TextView) findViewById(R.id.restockText);
-            int stringID = Constants.SHOULD_DISPLAY_ADS ? R.string.restockMarketTextAdvert : R.string.restockMarketText;
+            int stringID = Player_Info.displayAds() ? R.string.restockMarketTextAdvert : R.string.restockMarketText;
             restockText.setText(String.format(getString(stringID),
                     Trader_Stock.getRestockTimeLeft(),
                     Trader.getRestockAllCost()));

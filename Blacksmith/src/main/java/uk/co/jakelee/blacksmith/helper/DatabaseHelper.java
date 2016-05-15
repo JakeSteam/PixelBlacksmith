@@ -6,6 +6,7 @@ import com.orm.query.Select;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -39,6 +40,46 @@ public class DatabaseHelper {
     public final static int DB_V1_2_1 = 4;
     public final static int DB_V1_3_0 = 5;
     public final static int DB_V1_4_0 = 6;
+    public final static int DB_V1_5_0 = 7;
+
+    public static void handlePatches() {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_EMPTY) {
+            DatabaseHelper.initialSQL();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
+
+            TutorialHelper.currentlyInTutorial = true;
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
+            DatabaseHelper.patch100to101();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_1) {
+            DatabaseHelper.patch101to120();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_0) {
+            DatabaseHelper.patch120to121();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_1) {
+            DatabaseHelper.patch121to130();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_3_0) {
+            DatabaseHelper.patch130to140();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_4_0) {
+            DatabaseHelper.patch140to150();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
+        }
+    }
 
     public static void initialSQL() {
         createAchievement();
@@ -156,6 +197,15 @@ public class DatabaseHelper {
         if (!Player_Info.isPremium()) {
             Slot.executeQuery("UPDATE slot SET premium = 1 WHERE level = 9999");
         }
+    }
+
+    public static void patch140to150() {
+        if (Upgrade.getValue("Minimum Visitor Rewards") == 0) {
+            patch130to140();
+        }
+
+        Setting setting = new Setting(8L, "HideAllAdverts", false);
+        setting.save();
     }
 
     private static void createAchievement() {

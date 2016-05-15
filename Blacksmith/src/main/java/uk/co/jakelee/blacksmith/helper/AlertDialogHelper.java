@@ -175,9 +175,10 @@ public class AlertDialogHelper {
 
     public static void confirmVisitorAdd(final Context context, final MainActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
+        int questionString = Player_Info.displayAds() ? R.string.bribeQuestionAdvert : R.string.bribeQuestion;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
-        alertDialog.setMessage(String.format(context.getString(R.string.bribeQuestion),
+        alertDialog.setMessage(String.format(context.getString(questionString),
                 visitorCost,
                 DateHelper.getMinsSecsRemaining(VisitorHelper.getTimeUntilSpawn())));
         alertDialog.setIcon(R.drawable.item52);
@@ -203,7 +204,7 @@ public class AlertDialogHelper {
             }
         });
 
-        if (Constants.SHOULD_DISPLAY_ADS) {
+        if (Player_Info.displayAds()) {
             alertDialog.setNegativeButton(context.getString(R.string.bribeAdvert), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvVisitorSpawn);
@@ -248,9 +249,9 @@ public class AlertDialogHelper {
 
     public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        String question = Constants.SHOULD_DISPLAY_ADS ?
-                String.format(context.getString(R.string.traderRestockAllQuestion), restockCost) :
-                context.getString(R.string.traderRestockAllQuestionAdvert);
+        String question = Player_Info.displayAds() ?
+                context.getString(R.string.traderRestockAllQuestionAdvert) :
+                String.format(context.getString(R.string.traderRestockAllQuestion), restockCost);
         alertDialog.setMessage(question);
         alertDialog.setIcon(R.drawable.item52);
 
@@ -272,7 +273,7 @@ public class AlertDialogHelper {
             }
         });
 
-        if (Constants.SHOULD_DISPLAY_ADS) {
+        if (Player_Info.displayAds()) {
             alertDialog.setNegativeButton(context.getString(R.string.traderRestockAllConfirmAdvert), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvMarketRestock);

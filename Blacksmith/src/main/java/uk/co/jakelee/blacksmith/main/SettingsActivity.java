@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
@@ -27,6 +28,7 @@ import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SettingsActivity extends Activity {
     private static DisplayHelper dh;
+    final Handler handler = new Handler();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,6 @@ public class SettingsActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-
-        final Handler handler = new Handler();
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
@@ -50,6 +50,15 @@ public class SettingsActivity extends Activity {
             }
         };
         handler.post(everySecond);
+
+        updateAdToggleVisibility();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        handler.removeCallbacksAndMessages(null);
     }
 
     public void signIn(View v) {
@@ -69,6 +78,11 @@ public class SettingsActivity extends Activity {
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBoolValue(false);
         signIn.save();
+    }
+
+    private void updateAdToggleVisibility() {
+        TableRow adRow = (TableRow) findViewById(R.id.adToggleLayout);
+        adRow.setVisibility(Player_Info.isPremium() ? View.VISIBLE : View.GONE);
     }
 
     private void updateSignInVisibility() {
@@ -120,6 +134,10 @@ public class SettingsActivity extends Activity {
         boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
 
+        ImageView adToggle = (ImageView) findViewById(R.id.turnOffAdsButton);
+        boolean adToggleValue = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS).getBoolValue();
+        adToggle.setImageDrawable(adToggleValue ? tick : cross);
+
         TextView prestigeButton = (TextViewPixel) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -147,6 +165,8 @@ public class SettingsActivity extends Activity {
             case R.id.visitorNotificationToggleButton:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
                 break;
+            case R.id.turnOffAdsButton:
+                settingID = Constants.SETTING_DISABLE_ADS;
         }
 
         if (settingID != null) {
