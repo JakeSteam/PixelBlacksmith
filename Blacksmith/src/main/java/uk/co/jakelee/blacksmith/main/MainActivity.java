@@ -31,6 +31,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
+import uk.co.jakelee.blacksmith.helper.PrestigeHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements
 
         assignUIElements();
         checkFirstRun();
+        hotfixTier(); // Remove me soon!
 
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -92,6 +94,12 @@ public class MainActivity extends AppCompatActivity implements
 
         dh.createAllSlots(this);
         ratingPrompt();
+    }
+
+    private void hotfixTier() {
+        if (prefs.getInt("tutorialStage", 0) == 0) {
+            PrestigeHelper.resetCraftingInterface();
+        }
     }
 
     private void ratingPrompt() {

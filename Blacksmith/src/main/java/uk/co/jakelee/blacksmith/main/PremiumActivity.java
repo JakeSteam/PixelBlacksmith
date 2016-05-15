@@ -146,13 +146,15 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
                 Condition.prop("name").eq("Gold Bonus")).first();
         goldBonus.setCurrent(goldBonus.getCurrent() + 20);
         goldBonus.setMaximum(goldBonus.getMaximum() + 50);
+        goldBonus.save();
 
         Upgrade xpBonus = Select.from(Upgrade.class).where(
                 Condition.prop("name").eq("XP Bonus")).first();
         xpBonus.setCurrent(xpBonus.getCurrent() + 20);
         xpBonus.setMaximum(xpBonus.getMaximum() + 50);
+        xpBonus.save();
 
-        Slot.executeQuery("UPDATE slot SET premium = false WHERE level = 9999");
+        Slot.executeQuery("UPDATE slot SET premium = 0 WHERE level = 9999");
 
         MainActivity.needToRedrawSlots = true;
     }

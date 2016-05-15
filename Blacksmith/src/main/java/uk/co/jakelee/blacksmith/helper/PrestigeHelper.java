@@ -16,7 +16,7 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Worker;
 
-class PrestigeHelper {
+public class PrestigeHelper {
     public static void prestigeAccount() {
         increasePrestige();
 
@@ -82,13 +82,13 @@ class PrestigeHelper {
         Worker.executeQuery("UPDATE worker SET purchased = 0, tool_used = 32, tool_state = 1, time_started = 0");
     }
 
-    private static void resetCraftingInterface() {
+    public static void resetCraftingInterface() {
         MainActivity.prefs.edit().putInt("furnacePosition", 0).apply();
-        MainActivity.prefs.edit().putInt("anvilTier", 0).apply();
+        MainActivity.prefs.edit().putInt("anvilTier", Constants.TIER_MIN).apply();
         MainActivity.prefs.edit().putInt("anvilPosition", 0).apply();
-        MainActivity.prefs.edit().putInt("tableTier", 0).apply();
+        MainActivity.prefs.edit().putInt("tableTier", Constants.TIER_MIN).apply();
         MainActivity.prefs.edit().putInt("tablePosition", 0).apply();
-        MainActivity.prefs.edit().putInt("enchantingTier", 0).apply();
+        MainActivity.prefs.edit().putInt("enchantingTier", Constants.TIER_MIN).apply();
         MainActivity.prefs.edit().putInt("enchantingPosition", 0).apply();
     }
 }
