@@ -12,6 +12,7 @@ import com.applovin.sdk.AppLovinSdk;
 
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
@@ -46,21 +47,36 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         verified = false;
         mainActivity = activity;
         currentPurpose = purpose;
-        advert.show(activity, this, this, this);
+
+        if (advert.isAdReadyToDisplay()) {
+            advert.show(activity, this, this, this);
+        } else {
+            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+        }
     }
 
     public void showAdvert(MarketActivity activity, advertPurpose purpose) {
         verified = false;
         marketActivity = activity;
         currentPurpose = purpose;
-        advert.show(activity, this, this, this);
+
+        if (advert.isAdReadyToDisplay()) {
+            advert.show(activity, this, this, this);
+        } else {
+            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+        }
     }
 
     public void showAdvert(VisitorActivity activity, advertPurpose purpose) {
         verified = false;
         visitorActivity = activity;
         currentPurpose = purpose;
-        advert.show(activity, this, this, this);
+
+        if (advert.isAdReadyToDisplay()) {
+            advert.show(activity, this, this, this);
+        } else {
+            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+        }
     }
 
     @Override

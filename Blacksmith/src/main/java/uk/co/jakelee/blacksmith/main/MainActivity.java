@@ -38,6 +38,7 @@ import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -95,7 +96,9 @@ public class MainActivity extends AppCompatActivity implements
         dh.createAllSlots(this);
         ratingPrompt();
 
-        ah = AdvertHelper.getInstance(this);
+        if (Player_Info.displayAds()) {
+            ah = AdvertHelper.getInstance(this);
+        }
     }
 
     private void ratingPrompt() {
@@ -437,14 +440,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openPremium(View view) {
-        /*Intent intent = new Intent(this, PremiumActivity.class);
-        startActivity(intent);*/
-        if(ah.advert.isAdReadyToDisplay()){
-            ah.showAdvert(this, AdvertHelper.advertPurpose.ConvVisitorSpawn);
-        }
-        else{
-            ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, "Something went wrong, and the ad couldn't be shown. Sorry!", false);
-        }
+        Intent intent = new Intent(this, PremiumActivity.class);
+        startActivity(intent);
     }
 
     public void openWorkers(View view) {
