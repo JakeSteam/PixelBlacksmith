@@ -205,6 +205,11 @@
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
 
+    <string name="bonusTimeLeft">The bonus chest will be ready to open in %s.</string>
+    <string name="bonusQuestion">The bonus chest is ready! Would you like to open it?</string>
+    <string name="bonusWatch">Watch Ad</string>
+    <string name="bonusCancel">Cancel</string>
+
     <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
     <string name="upgradeCancel">Cancel</string>

@@ -101,6 +101,24 @@ public class Player_Info extends SugarRecord {
         return !(premium.getIntValue() == 1 && hideAllAds.getBoolValue());
     }
 
+    public static boolean isBonusReady() {
+        return timeUntilBonusReady() <= 0;
+    }
+
+    public static long timeUntilBonusReady() {
+        long lastClaimedTime = System.currentTimeMillis();
+
+        Player_Info lastBonusClaim = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
+        if (lastBonusClaim != null) {
+            lastClaimedTime = lastBonusClaim.getLongValue();
+        }
+
+        long bonusRechargeTime = Player_Info.isPremium() ? Constants.BONUS_TIME_PREMIUM : Constants.BONUS_TIME_NON_PREMIUM;
+        long timeBonusReady = lastClaimedTime + bonusRechargeTime;
+
+        return timeBonusReady - System.currentTimeMillis();
+    }
+
     public static int getPrestige() {
         Player_Info prestige = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Prestige")).first();

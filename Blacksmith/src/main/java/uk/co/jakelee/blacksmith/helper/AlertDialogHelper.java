@@ -319,6 +319,25 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
+    public static void confirmBonusAdvert(final Context context, final MainActivity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(R.string.bonusQuestion);
+
+        alertDialog.setPositiveButton(context.getString(R.string.bonusWatch), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.BonusBox);
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.bonusCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
     public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock) {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
         final int itemValue = item.getValue();

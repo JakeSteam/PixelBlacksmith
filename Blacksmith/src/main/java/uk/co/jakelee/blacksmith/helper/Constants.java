@@ -20,6 +20,9 @@ public class Constants {
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
 
+    public static final long BONUS_TIME_PREMIUM = DateHelper.hoursToMilliseconds(2);
+    public static final long BONUS_TIME_NON_PREMIUM = DateHelper.hoursToMilliseconds(4);
+
 
     // Tutorial stages
     public static final int STAGE_1_MAIN = 1;

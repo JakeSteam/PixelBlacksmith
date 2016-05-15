@@ -18,7 +18,7 @@ import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
-    public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, ConvSkipTime, BonusBox};
+    public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox};
     public AppLovinIncentivizedInterstitial advert;
     private final Context context;
     private MainActivity mainActivity;
@@ -92,9 +92,8 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                 case ConvVisitorSpawn:
                     mainActivity.callbackSpawn();
                     break;
-                case ConvSkipTime:
-                    break;
                 case BonusBox:
+                    mainActivity.callbackBonus();
                     break;
             }
         } else {

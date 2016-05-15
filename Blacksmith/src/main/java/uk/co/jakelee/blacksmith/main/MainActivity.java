@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,12 +20,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AdvertHelper;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
@@ -349,6 +353,8 @@ public class MainActivity extends AppCompatActivity implements
                 } else if (newVisitors > 0) {
                     ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
+                DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
+
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
@@ -451,6 +457,15 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void clickBonusChest(View view) {
+        if (Player_Info.isBonusReady()) {
+            AlertDialogHelper.confirmBonusAdvert(this, this);
+        } else {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
+                    DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
+        }
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
     }
@@ -473,5 +488,20 @@ public class MainActivity extends AppCompatActivity implements
         if (VisitorHelper.tryCreateVisitor()) {
             ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeAdvertComplete, true);
         }
+    }
+
+    public void callbackBonus() {
+        // Needs to actually give a reward..!
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, "Reward", true);
+
+        Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
+        lastClaimed.setLongValue(System.currentTimeMillis());
+        lastClaimed.save();
+
+        Player_Info timesClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("BonusesClaimed")).first();
+        timesClaimed.setIntValue(timesClaimed.getIntValue() + 1);
+        timesClaimed.save();
+
+        DisplayHelper.updateBonusChest((ImageView) findViewById(R.id.bonus_chest));
     }
 }

@@ -206,7 +206,9 @@ public class DatabaseHelper {
 
         List<Player_Info> player_infos = new ArrayList<>();
         player_infos.add(new Player_Info("LastDonated", "never"));
-        player_infos.add(new Player_Info("TimesDonated", "0"));
+        player_infos.add(new Player_Info("TimesDonated", 0));
+        player_infos.add(new Player_Info("LastBonusClaimed", System.currentTimeMillis()));
+        player_infos.add(new Player_Info("BonusesClaimed", 0));
         Player_Info.saveInTx(player_infos);
 
         Setting setting = new Setting(8L, "HideAllAdverts", false);
