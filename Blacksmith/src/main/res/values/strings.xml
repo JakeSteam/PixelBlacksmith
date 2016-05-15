@@ -189,9 +189,11 @@
     <string name="workerReturned">A worker has returned, along with: %s.</string>
     <string name="workerResources">Resources: %s.</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s. You can also watch an ad to bribe the visitor.</string>
     <string name="bribeConfirm">Bribe</string>
+    <string name="bribeAdvert">Watch Ad</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
+    <string name="bribeAdvertComplete">A visitor walks in, looks like the advert worked!</string>
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
 

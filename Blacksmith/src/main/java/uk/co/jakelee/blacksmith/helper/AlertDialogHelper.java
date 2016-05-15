@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
@@ -172,7 +173,7 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
-    public static void confirmVisitorAdd(final Context context, Activity activity) {
+    public static void confirmVisitorAdd(final Context context, final MainActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
@@ -196,12 +197,19 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(context.getString(R.string.bribeCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(context.getString(R.string.bribeCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
 
+        if (Constants.SHOULD_DISPLAY_ADS) {
+            alertDialog.setNegativeButton(context.getString(R.string.bribeAdvert), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    activity.ah.showAdvert(activity, AdvertHelper.advertPurpose.ConvVisitorSpawn);
+                }
+            });
+        }
         alertDialog.show();
     }
 

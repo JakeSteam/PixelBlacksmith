@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
-    private AdvertHelper ah;
+    public AdvertHelper ah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -474,10 +474,10 @@ public class MainActivity extends AppCompatActivity implements
         /*Intent intent = new Intent(this, PremiumActivity.class);
         startActivity(intent);*/
         if(ah.advert.isAdReadyToDisplay()){
-            ah.showAdvert(this);
+            ah.showAdvert(this, AdvertHelper.advertPurpose.ConvVisitorSpawn);
         }
         else{
-            ToastHelper.showErrorToast(context, Toast.LENGTH_LONG, "Something went wrong, and the ad couldn't be shown. Sorry!", false);
+            ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, "Something went wrong, and the ad couldn't be shown. Sorry!", false);
         }
     }
 
@@ -502,5 +502,11 @@ public class MainActivity extends AppCompatActivity implements
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
+    }
+
+    public void callbackSpawn() {
+        if (VisitorHelper.tryCreateVisitor()) {
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeComplete, true);
+        }
     }
 }

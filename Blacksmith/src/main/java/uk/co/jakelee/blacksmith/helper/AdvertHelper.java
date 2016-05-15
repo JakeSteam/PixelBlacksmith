@@ -1,6 +1,5 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -13,10 +12,13 @@ import com.applovin.sdk.AppLovinSdk;
 
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.main.MainActivity;
+
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, ConvSkipTime, BonusBox};
     public AppLovinIncentivizedInterstitial advert;
     private Context context;
+    private MainActivity mainActivity;
     private boolean verified;
     private advertPurpose currentPurpose;
 
@@ -28,8 +30,9 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         advert.preload(null);
     }
 
-    public void showAdvert(Activity activity, advertPurpose purpose) {
+    public void showAdvert(MainActivity activity, advertPurpose purpose) {
         verified = false;
+        mainActivity = activity;
         currentPurpose = purpose;
         advert.show(activity, this, this, this);
     }
@@ -43,14 +46,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                 case ConvVisitorDismiss:
                     break;
                 case ConvVisitorSpawn:
+                    mainActivity.callbackSpawn();
                     break;
                 case ConvSkipTime:
                     break;
                 case BonusBox:
                     break;
             }
-
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, "Woo, you watched an ad!", false);
         } else {
             ToastHelper.showErrorToast(context, Toast.LENGTH_LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
         }
