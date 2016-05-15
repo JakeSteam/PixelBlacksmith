@@ -134,7 +134,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         startActivity(intent);
     }
 
-    private void addPremiumFeatures() {
+    private static void addPremiumFeatures() {
         // Update database, therefore slots + items
         Player_Info isPremium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
@@ -152,7 +152,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         xpBonus.setCurrent(xpBonus.getCurrent() + 20);
         xpBonus.setMaximum(xpBonus.getMaximum() + 50);
 
-        Slot.executeQuery("UPDATE slot SET premium = false WHERE level = 9999");
+        Slot.executeQuery("UPDATE slot SET premium = 0 WHERE level = 9999");
 
         MainActivity.needToRedrawSlots = true;
     }
