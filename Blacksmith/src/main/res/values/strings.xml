@@ -406,7 +406,7 @@
     <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
 \n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
-    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/AndroidGaming'>/r/AndroidGaming</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing / suggestions.
+    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing / suggestions.
 </string>
 
     <string-array name="toolsArray">
