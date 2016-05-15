@@ -3,7 +3,6 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,7 +13,10 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -46,7 +48,6 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             updatePremiumStatus();
 
             ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.restoredPremium, true);
-            Log.d("Blacksmith", "IAP Engine initialised.");
         }
     }
 
@@ -57,8 +58,9 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             updatePremiumStatus();
 
             ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtPremium, true);
-            Log.d("Blacksmith", "Purchased premium!");
         } else if (productId.equals(SKU_CONTRIBUTE)) {
+            bp.consumePurchase(SKU_CONTRIBUTE);
+            addContributeFeatures();
             ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtContribute, true);
         }
     }
@@ -66,18 +68,16 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     @Override
     public void onBillingError(int errorCode, Throwable error) {
         ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingIAPError, true);
-        Log.d("Blacksmith", "Error occurred, code: " + errorCode);
     }
 
     @Override
-    public void onPurchaseHistoryRestored() {
-        Log.d("IAB", "Purchases restored...");
-    }
+    public void onPurchaseHistoryRestored() {}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data))
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     private void updatePremiumStatus() {
@@ -174,19 +174,34 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         isPremium.save();
 
         // Add upgrades, and max upgrades
-        Upgrade goldBonus = Select.from(Upgrade.class).where(
-                Condition.prop("name").eq("Gold Bonus")).first();
+        Upgrade goldBonus = Select.from(Upgrade.class).where(Condition.prop("name").eq("Gold Bonus")).first();
         goldBonus.setCurrent(goldBonus.getCurrent() + 20);
         goldBonus.setMaximum(goldBonus.getMaximum() + 50);
+        goldBonus.save();
 
-        Upgrade xpBonus = Select.from(Upgrade.class).where(
-                Condition.prop("name").eq("XP Bonus")).first();
+        Upgrade xpBonus = Select.from(Upgrade.class).where(Condition.prop("name").eq("XP Bonus")).first();
         xpBonus.setCurrent(xpBonus.getCurrent() + 20);
         xpBonus.setMaximum(xpBonus.getMaximum() + 50);
+        xpBonus.save();
 
         Slot.executeQuery("UPDATE slot SET premium = false WHERE level = 9999");
 
         MainActivity.needToRedrawSlots = true;
+    }
+
+    private void addContributeFeatures() {
+        Player_Info timesDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("TimesDonated")).first();
+        Player_Info lastDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastDonated")).first();
+
+        if (timesDonated != null && lastDonated != null) {
+            timesDonated.setIntValue(timesDonated.getIntValue() + 1);
+            timesDonated.save();
+
+            lastDonated.setName(DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date));
+            lastDonated.save();
+
+            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 100, false);
+        }
     }
 
     public void closePopup(View view) {
