@@ -153,10 +153,10 @@
     <string name="cannotBuyIAP">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
     <string name="buyingIAPError">An error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
 
-    <string name="buyContribute">Donate</string>
-    <string name="boughtContribute">Donation thank you goes here.</string>
-    <string name="contributeDescription">Donation text goes here.</string>
-    <string name="contributeStatus">Donated %1$d times, the last time was %2$s.</string>
+    <string name="buyContribute">Contribute</string>
+    <string name="boughtContribute">Thank you for contributing! You\'re the best! Message me at /u/JakeSteam for a personalised thank you.</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 100 coin reward for contributing, but that\'s mostly so it doesn't classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
+    <string name="contributeStatus">You\'ve contributed %1$d times, the last time was %2$s.</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
