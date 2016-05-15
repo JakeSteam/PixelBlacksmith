@@ -14,6 +14,7 @@ import java.util.Map;
 
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
+import uk.co.jakelee.blacksmith.main.VisitorActivity;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, ConvSkipTime, BonusBox};
@@ -21,6 +22,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     private final Context context;
     private MainActivity mainActivity;
     private MarketActivity marketActivity;
+    private VisitorActivity visitorActivity;
     private boolean verified;
     private advertPurpose currentPurpose;
     private static AdvertHelper dhInstance = null;
@@ -54,6 +56,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         advert.show(activity, this, this, this);
     }
 
+    public void showAdvert(VisitorActivity activity, advertPurpose purpose) {
+        verified = false;
+        visitorActivity = activity;
+        currentPurpose = purpose;
+        advert.show(activity, this, this, this);
+    }
+
     @Override
     public void adHidden(AppLovinAd appLovinAd) {
         if (verified) {
@@ -62,6 +71,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     marketActivity.callbackRestock();
                     break;
                 case ConvVisitorDismiss:
+                    visitorActivity.callbackDismiss();
                     break;
                 case ConvVisitorSpawn:
                     mainActivity.callbackSpawn();

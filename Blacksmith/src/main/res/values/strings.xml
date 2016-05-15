@@ -216,7 +216,9 @@
     <string name="prestigeCancel">Cancel</string>
 
     <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
-    <string name="dismissConfirm">Dismiss</string>
+    <string name="dismissQuestionAdvert">Would you like to pay %d coins or watch an ad to make the visitor leave immediately?</string>
+    <string name="dismissConfirm">Pay</string>
+    <string name="dismissConfirmAdvert">Watch Ad</string>
     <string name="dismissComplete">The visitor leaves, a little bit grumpily.</string>
     <string name="dismissFailure">Not enough money to dismiss a visitor.</string>
     <string name="dismissCancel">Cancel</string>

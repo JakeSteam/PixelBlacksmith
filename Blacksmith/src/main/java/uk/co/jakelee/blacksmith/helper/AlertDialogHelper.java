@@ -216,12 +216,13 @@ public class AlertDialogHelper {
 
     public static void confirmVisitorDismiss(final Context context, final Visitor visitor, final VisitorActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorDismissCost(visitor.getId());
+        int questionID = Player_Info.displayAds() ? R.string.dismissQuestionAdvert : R.string.dismissQuestion;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.dismissQuestion), visitorCost));
+        alertDialog.setMessage(String.format(context.getString(questionID), visitorCost));
         alertDialog.setIcon(R.drawable.item52);
 
-        alertDialog.setPositiveButton(context.getString(R.string.dismissConfirm), new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(R.string.dismissConfirm, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                 if (coinStock.getQuantity() >= visitorCost) {
@@ -230,7 +231,7 @@ public class AlertDialogHelper {
 
                     VisitorHelper.removeVisitor(visitor);
                     SoundHelper.playSound(context, SoundHelper.walkingSounds);
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissComplete), true);
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, R.string.dismissComplete, true);
                     activity.finish();
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure), true);
@@ -238,11 +239,19 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(context.getString(R.string.dismissCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(context.getString(R.string.dismissCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
+
+        if (Player_Info.displayAds()) {
+            alertDialog.setNegativeButton(R.string.dismissConfirmAdvert, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvVisitorDismiss);
+                }
+            });
+        }
 
         alertDialog.show();
     }

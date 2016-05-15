@@ -412,6 +412,13 @@ public class VisitorActivity extends Activity {
         }
     }
 
+    public void callbackDismiss() {
+        VisitorHelper.removeVisitor(visitor);
+        SoundHelper.playSound(this, SoundHelper.walkingSounds);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.dismissComplete, true);
+        this.finish();
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Visitor);
