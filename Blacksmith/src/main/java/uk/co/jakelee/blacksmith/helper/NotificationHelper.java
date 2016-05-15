@@ -53,6 +53,13 @@ public class NotificationHelper extends BroadcastReceiver {
         }
     }
 
+    public static void addBonusNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
+        long bonusTime = System.currentTimeMillis() + Player_Info.timeUntilBonusReady();
+        NotificationHelper.addNotification(context, bonusTime, Constants.NOTIFICATION_BONUS);
+    }
+
     private static void addNotification(Context context, long notificationTime, int notificationType) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 

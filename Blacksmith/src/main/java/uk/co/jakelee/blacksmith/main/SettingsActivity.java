@@ -130,6 +130,10 @@ public class SettingsActivity extends Activity {
         boolean workerNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_WORKER_NOTIFICATIONS).getBoolValue();
         workerNotificationToggle.setImageDrawable(workerNotificationToggleValue ? tick : cross);
 
+        ImageView bonusNotificationToggle = (ImageView) findViewById(R.id.bonusNotificationToggleButton);
+        boolean bonusNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue();
+        bonusNotificationToggle.setImageDrawable(bonusNotificationToggleValue ? tick : cross);
+
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
         boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
@@ -159,11 +163,14 @@ public class SettingsActivity extends Activity {
             case R.id.workerNotificationToggleButton:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
                 break;
-            case R.id.notificationSoundToggleButton:
-                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
-                break;
             case R.id.visitorNotificationToggleButton:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
+                break;
+            case R.id.bonusNotificationToggleButton:
+                settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
+                break;
+            case R.id.notificationSoundToggleButton:
+                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
                 break;
             case R.id.turnOffAdsButton:
                 settingID = Constants.SETTING_DISABLE_ADS;

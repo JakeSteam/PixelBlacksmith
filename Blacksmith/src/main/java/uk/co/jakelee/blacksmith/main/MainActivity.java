@@ -316,6 +316,11 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
+        if (Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue() && !Player_Info.isBonusReady()) {
+            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+            NotificationHelper.addBonusNotification(getApplicationContext(), notificationSound);
+        }
+
         if (musicServiceIsStarted) {
             stopService(musicService);
             musicServiceIsStarted = false;

@@ -286,6 +286,7 @@
     <string name="restockNotificationSettingText">Restock notifications?</string>
     <string name="visitorNotificationSettingText">Visitor notifications?</string>
     <string name="workerNotificationSettingText">Worker notifications?</string>
+    <string name="bonusNotificationSettingText">Bonus notifications?</string>
     <string name="notificationSoundSettingText">Enable notification sounds?</string>
     <string name="prestigeSettingText">Prestige</string>
 

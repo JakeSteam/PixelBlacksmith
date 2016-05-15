@@ -175,12 +175,12 @@
                 android:id="@+id/bonus_chest"
                 android:layout_width="50dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="960dp"
+                android:layout_marginLeft="1482dp"
                 android:onClick="clickBonusChest"
                 android:scaleType="centerCrop"
                 android:src="@drawable/visitor17"
-                app:layout_heightPercent="8%"
-                app:layout_marginTopPercent="68%" />
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="46%" />
 
             <ImageView
                 android:id="@+id/open_upgrades"

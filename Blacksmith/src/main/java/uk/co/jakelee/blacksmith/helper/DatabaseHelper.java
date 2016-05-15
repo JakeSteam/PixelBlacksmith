@@ -211,8 +211,10 @@ public class DatabaseHelper {
         player_infos.add(new Player_Info("BonusesClaimed", 0));
         Player_Info.saveInTx(player_infos);
 
-        Setting setting = new Setting(8L, "HideAllAdverts", false);
-        setting.save();
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(8L, "HideAllAdverts", false));
+        settings.add(new Setting(9L, "BonusNotifications", true));
+        Setting.saveInTx(settings);
     }
 
     private static void createAchievement() {

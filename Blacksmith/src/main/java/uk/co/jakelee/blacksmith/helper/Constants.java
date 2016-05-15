@@ -51,6 +51,7 @@ public class Constants {
     public static final int NOTIFICATION_VISITOR = 1;
     public static final int NOTIFICATION_RESTOCK = 2;
     public static final int NOTIFICATION_WORKER = 3;
+    public static final int NOTIFICATION_BONUS = 4;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
@@ -92,6 +93,7 @@ public class Constants {
     public static final Long SETTING_SIGN_IN = 6L;
     public static final Long SETTING_WORKER_NOTIFICATIONS = 7L;
     public static final Long SETTING_DISABLE_ADS = 8L;
+    public static final Long SETTING_BONUS_NOTIFICATIONS = 9L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
