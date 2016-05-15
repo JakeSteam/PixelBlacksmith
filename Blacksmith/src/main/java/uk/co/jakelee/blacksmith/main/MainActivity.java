@@ -344,8 +344,10 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
-                if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorArriving), newVisitors), true);
+                if (newVisitors == 1) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, R.string.visitorArriving, true);
+                } else if (newVisitors > 0) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
