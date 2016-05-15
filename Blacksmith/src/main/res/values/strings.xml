@@ -155,7 +155,7 @@
 
     <string name="buyContribute">Contribute</string>
     <string name="boughtContribute">Thank you for contributing! You\'re the best! Message me at /u/JakeSteam for a personalised thank you.</string>
-    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 100 coin reward for contributing, but that\'s mostly so it doesn't classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 100 coin reward for contributing, but that\'s mostly so it doesn\'t classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
     <string name="contributeStatus">You\'ve contributed %1$d times, the last time was %2$s.</string>
 
     <string name="buyPremium">Go Premium!</string>

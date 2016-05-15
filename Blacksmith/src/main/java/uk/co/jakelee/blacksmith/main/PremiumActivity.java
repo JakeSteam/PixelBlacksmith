@@ -108,10 +108,12 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         Player_Info timesDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("TimesDonated")).first();
         Player_Info lastDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastDonated")).first();
 
-        if (timesDonated != null && lastDonated != null) {
+        if (timesDonated != null && lastDonated != null && timesDonated.getIntValue() > 0) {
             contributeStatus.setText(String.format(getString(R.string.contributeStatus),
                     timesDonated.getIntValue(),
                     lastDonated.getTextValue()));
+        } else {
+            contributeStatus.setText("");
         }
     }
 
