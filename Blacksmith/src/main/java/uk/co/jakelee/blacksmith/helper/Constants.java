@@ -5,6 +5,9 @@ public class Constants {
 
     public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";
+    public static final String LEADERBOARD_TROPHIES = "CgkI6tnE2Y4OEAIQIQ";
+    public static final String LEADERBOARD_TIMES_PRESTIGED = "CgkI6tnE2Y4OEAIQIg";
+    public static final String LEADERBOARD_COMPLETION = "CgkI6tnE2Y4OEAIQIw";
 
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;
@@ -12,7 +15,6 @@ public class Constants {
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
     public static final double STATE_UNFINISHED_MODIFIER = 0.5;
     public static final int STATISTIC_NOT_TRACKED = -1;
-    public static final int TRADER_TAX_MULTIPLIER = 10;
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;

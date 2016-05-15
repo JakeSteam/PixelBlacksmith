@@ -14,7 +14,7 @@
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying... well, everything. They are earned by trading away items.</string>
     <string name="tutorialLevel">Level</string>
-    <string name="tutorialLevelText">This is your current level. XP is earned by buying, selling, crafting, and trading items.</string>
+    <string name="tutorialLevelText">This is your current level. XP is earned by crafting and trading items.</string>
     <string name="tutorialVisitor">Visitor</string>
     <string name="tutorialVisitorText">Your first visitor has arrived! Tap him to continue.</string>
 
@@ -208,7 +208,7 @@
     <string name="prestigeQuestion">Prestiging trades all items / coins / upgrades / workers in return for +100% coins &amp; XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
-    <string name="prestigeComplete">Prestige successful, all gold &amp; xp is now multiplied by %d! Good luck!</string>
+    <string name="prestigeComplete">Prestige successful, all gold &amp; XP is now multiplied by %d! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
     <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
@@ -369,10 +369,12 @@
     <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
-    <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; xp)</string>
+    <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; XP)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
     <string name="statisticsVersion">Game Version:</string>
+
+    <string name="leaderboardsNoConnection">Viewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
@@ -418,4 +420,5 @@
         <item>Gold Ring (Gold + Gems)</item>
         <item>Visage (Coins)</item>
     </string-array>
+    <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
 </resources>

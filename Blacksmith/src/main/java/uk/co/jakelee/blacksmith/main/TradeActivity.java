@@ -50,6 +50,7 @@ public class TradeActivity extends Activity {
     private static DisplayHelper dh;
     private static SharedPreferences prefs;
     private static boolean tradeMax = false;
+    private boolean currentlySelling = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,12 +210,14 @@ public class TradeActivity extends Activity {
         Item itemObject = Item.findById(Item.class, itemID);
         State itemStateObject = State.findById(State.class, itemState);
 
-        if (inventoryOfItem.getQuantity() > 0) {
+        if (inventoryOfItem.getQuantity() > 0 && !currentlySelling) {
+            currentlySelling = true;
             int quantity = 1;
             if (prefs.getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();
             }
             tradeItem(quantity, itemObject, itemStateObject);
+            currentlySelling = false;
         }
     }
 

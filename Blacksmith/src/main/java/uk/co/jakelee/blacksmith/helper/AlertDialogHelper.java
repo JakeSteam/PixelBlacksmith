@@ -372,6 +372,7 @@ public class AlertDialogHelper {
 
         if (itemStocks.size() == 0) {
             ToastHelper.showToast(context, Toast.LENGTH_SHORT, R.string.itemBuyAllNoItems, false);
+            return;
         }
 
         int totalValue = 0;

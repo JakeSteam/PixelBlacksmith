@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -13,7 +15,8 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
-import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -28,21 +31,21 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
-    private static DisplayHelper dh;
+    private double completionPercent = 0.00;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        dh = DisplayHelper.getInstance(getApplicationContext());
 
         displayStatistics();
+
+        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COMPLETION, (int) (completionPercent * 100));
     }
 
     private void displayStatistics() {
-        double completionPercent = Player_Info.getCompletionPercent();
-        double modifiedCompletionPercent = completionPercent + (Player_Info.getPrestige() * 100);
-        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", modifiedCompletionPercent));
+        completionPercent = (Player_Info.getPrestige() * 100) + Player_Info.getCompletionPercent();
+        ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", completionPercent));
 
         int currentXP = Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
@@ -147,6 +150,26 @@ public class StatisticsActivity extends Activity {
 
         String version = String.format(getString(R.string.versionNumber), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
         ((TextViewPixel) findViewById(R.id.version)).setText(version);
+    }
+
+    public void openLeaderboards(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            if (view.getTag() == null) {
+                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("bestitem")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_ITEM_VALUE), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("visitors")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_VISITORS), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("trophies")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TROPHIES), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("prestiged")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TIMES_PRESTIGED), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("completionpercent")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COMPLETION), GooglePlayHelper.RC_LEADERBOARDS);
+            }
+        } else {
+            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);
+        }
     }
 
     public void openHelp(View view) {
