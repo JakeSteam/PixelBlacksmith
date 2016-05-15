@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements
         dh.createAllSlots(this);
         ratingPrompt();
 
-        ah = new AdvertHelper(this);
+        ah = AdvertHelper.getInstance(this);
     }
 
     private void ratingPrompt() {

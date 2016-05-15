@@ -293,8 +293,11 @@
     <string name="traderRestockCancel">Cancel</string>
 
     <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>
-    <string name="traderRestockAllConfirm">Restock All</string>
+    <string name="traderRestockAllQuestionAdvert">Restock all traders for %d coins / free with an advert?</string>
+    <string name="traderRestockAllConfirm">Pay Coins</string>
+    <string name="traderRestockAllConfirmAdvert">Watch Ad</string>
     <string name="traderRestockAllComplete">Restocked all traders for %d coins.</string>
+    <string name="traderRestockAllCompleteAdvert">Restocked all traders for free!</string>
     <string name="traderRestockAllCancel">Cancel</string>
 
     <string name="supportCodeQuestion">Please enter your support code (copy &amp; paste recommended!)</string>
@@ -318,6 +321,7 @@
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
+    <string name="restockMarketTextAdvert">The marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
     <string name="restockMarketButton">Restock</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
     <string name="powderAdd">Began crushing the gem into %s.</string>

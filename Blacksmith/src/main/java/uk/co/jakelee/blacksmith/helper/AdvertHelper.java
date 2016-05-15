@@ -13,14 +13,17 @@ import com.applovin.sdk.AppLovinSdk;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.main.MarketActivity;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, ConvSkipTime, BonusBox};
     public AppLovinIncentivizedInterstitial advert;
-    private Context context;
+    private final Context context;
     private MainActivity mainActivity;
+    private MarketActivity marketActivity;
     private boolean verified;
     private advertPurpose currentPurpose;
+    private static AdvertHelper dhInstance = null;
 
     public AdvertHelper(Context context) {
         this.context = context;
@@ -30,9 +33,23 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         advert.preload(null);
     }
 
+    public static AdvertHelper getInstance(Context ctx) {
+        if (dhInstance == null) {
+            dhInstance = new AdvertHelper(ctx.getApplicationContext());
+        }
+        return dhInstance;
+    }
+
     public void showAdvert(MainActivity activity, advertPurpose purpose) {
         verified = false;
         mainActivity = activity;
+        currentPurpose = purpose;
+        advert.show(activity, this, this, this);
+    }
+
+    public void showAdvert(MarketActivity activity, advertPurpose purpose) {
+        verified = false;
+        marketActivity = activity;
         currentPurpose = purpose;
         advert.show(activity, this, this, this);
     }
@@ -42,6 +59,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (verified) {
             switch (currentPurpose) {
                 case ConvMarketRestock:
+                    marketActivity.callbackRestock();
                     break;
                 case ConvVisitorDismiss:
                     break;

@@ -206,7 +206,7 @@ public class AlertDialogHelper {
         if (Constants.SHOULD_DISPLAY_ADS) {
             alertDialog.setNegativeButton(context.getString(R.string.bribeAdvert), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    activity.ah.showAdvert(activity, AdvertHelper.advertPurpose.ConvVisitorSpawn);
+                    AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvVisitorSpawn);
                 }
             });
         }
@@ -248,7 +248,10 @@ public class AlertDialogHelper {
 
     public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.traderRestockAllQuestion), restockCost));
+        String question = Constants.SHOULD_DISPLAY_ADS ?
+                String.format(context.getString(R.string.traderRestockAllQuestion), restockCost) :
+                context.getString(R.string.traderRestockAllQuestionAdvert);
+        alertDialog.setMessage(question);
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.traderRestockAllConfirm), new DialogInterface.OnClickListener() {
@@ -263,11 +266,19 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(context.getString(R.string.traderRestockAllCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(context.getString(R.string.traderRestockAllCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
+
+        if (Constants.SHOULD_DISPLAY_ADS) {
+            alertDialog.setNegativeButton(context.getString(R.string.traderRestockAllConfirmAdvert), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvMarketRestock);
+                }
+            });
+        }
 
         alertDialog.show();
     }
