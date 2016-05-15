@@ -14,30 +14,48 @@ import com.applovin.sdk.AppLovinSdk;
 import java.util.Map;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
+    public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, ConvSkipTime, BonusBox};
+    public AppLovinIncentivizedInterstitial advert;
     private Context context;
     private boolean verified;
-    public AppLovinIncentivizedInterstitial myIncent;
+    private advertPurpose currentPurpose;
 
     public AdvertHelper(Context context) {
         this.context = context;
 
         AppLovinSdk.initializeSdk(context);
-        myIncent = AppLovinIncentivizedInterstitial.create(context);
-        myIncent.preload(null);
+        advert = AppLovinIncentivizedInterstitial.create(context);
+        advert.preload(null);
     }
 
-    public void showAdvert(Activity activity) {
+    public void showAdvert(Activity activity, advertPurpose purpose) {
         verified = false;
-        myIncent.show(activity, this, this, this);
+        currentPurpose = purpose;
+        advert.show(activity, this, this, this);
     }
 
     @Override
     public void adHidden(AppLovinAd appLovinAd) {
         if (verified) {
-            // Display reward message / dialog / whatever
+            switch (currentPurpose) {
+                case ConvMarketRestock:
+                    break;
+                case ConvVisitorDismiss:
+                    break;
+                case ConvVisitorSpawn:
+                    break;
+                case ConvSkipTime:
+                    break;
+                case BonusBox:
+                    break;
+            }
+
             ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, "Woo, you watched an ad!", false);
+        } else {
+            ToastHelper.showErrorToast(context, Toast.LENGTH_LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
         }
-        myIncent.preload(null);
+        // Begin loading next advert.
+        advert.preload(null);
     }
 
     @Override

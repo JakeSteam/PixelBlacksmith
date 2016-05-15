@@ -98,16 +98,6 @@ public class MainActivity extends AppCompatActivity implements
         ah = new AdvertHelper(this);
     }
 
-    public void playRewarded(View view){
-        // Check to see if a rewarded video is available.
-        if(ah.myIncent.isAdReadyToDisplay()){
-            ah.showAdvert(this);
-        }
-        else{
-            // No ad is currently available.  Perform failover logic...
-        }
-    }
-
     private void ratingPrompt() {
         AppRate.with(this)
                 .setInstallDays(5)
@@ -483,7 +473,12 @@ public class MainActivity extends AppCompatActivity implements
     public void openPremium(View view) {
         /*Intent intent = new Intent(this, PremiumActivity.class);
         startActivity(intent);*/
-        playRewarded(view);
+        if(ah.advert.isAdReadyToDisplay()){
+            ah.showAdvert(this);
+        }
+        else{
+            ToastHelper.showErrorToast(context, Toast.LENGTH_LONG, "Something went wrong, and the ad couldn't be shown. Sorry!", false);
+        }
     }
 
     public void openWorkers(View view) {
