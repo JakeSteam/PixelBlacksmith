@@ -23,6 +23,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     BillingProcessor bp;
     boolean canBuyIAPs = false;
     private static final String SKU_PREMIUM = "premium";
+    private static final String SKU_CONTRIBUTE = "contribute";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         }
         
         updatePremiumStatus();
+        updateContributeStatus();
     }
 
     @Override
@@ -56,12 +58,14 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
 
             ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtPremium, true);
             Log.d("Blacksmith", "Purchased premium!");
+        } else if (productId.equals(SKU_CONTRIBUTE)) {
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtContribute, true);
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingPremiumError, true);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingIAPError, true);
         Log.d("Blacksmith", "Error occurred, code: " + errorCode);
     }
 
@@ -77,9 +81,9 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     private void updatePremiumStatus() {
+        boolean isPremium = Player_Info.isPremium();
         TextViewPixel premiumIndicator = (TextViewPixel) findViewById(R.id.premiumStatusResult);
         TextViewPixel premiumButton = (TextViewPixel) findViewById(R.id.buyPremiumButton);
-        boolean isPremium = Player_Info.isPremium();
 
         String premiumText = getString(isPremium ? R.string.premiumStatusActive : R.string.premiumStatusInactive);
         int premiumColour = getResources().getColor(isPremium ? R.color.holo_green_dark : R.color.holo_red_dark);
@@ -88,14 +92,42 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         premiumIndicator.setText(premiumText);
         premiumIndicator.setTextColor(premiumColour);
         premiumButton.setVisibility(visibility);
+    }
 
+    private void updateContributeStatus() {
+        boolean isPremium = Player_Info.isPremium();
+        int visibility = (isPremium ? View.VISIBLE : View.GONE);
+        TextViewPixel contributeDesc = (TextViewPixel) findViewById(R.id.contributeDescription);
+        TextViewPixel contributeStatus = (TextViewPixel) findViewById(R.id.contributeStatus);
+        TextViewPixel contributeButton = (TextViewPixel) findViewById(R.id.contributeButton);
+
+        contributeDesc.setVisibility(visibility);
+        contributeStatus.setVisibility(visibility);
+        contributeButton.setVisibility(visibility);
+
+        Player_Info timesDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("TimesDonated")).first();
+        Player_Info lastDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastDonated")).first();
+
+        if (timesDonated != null && lastDonated != null) {
+            contributeStatus.setText(String.format(getString(R.string.contributeStatus),
+                    timesDonated.getIntValue(),
+                    lastDonated.getTextValue()));
+        }
     }
 
     public void buyPremium(View v) {
         if (canBuyIAPs) {
             bp.purchase(this, SKU_PREMIUM);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyPremium, true);
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyIAP, true);
+        }
+    }
+
+    public void buyContribute(View v) {
+        if (canBuyIAPs) {
+            bp.purchase(this, SKU_CONTRIBUTE);
+        } else {
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyIAP, true);
         }
     }
 

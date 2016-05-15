@@ -150,11 +150,17 @@
     <string name="noBestItem">You haven\'t sold this visitor anything yet!</string>
     <string name="bestItemMessage">The highest value item sold to %1$s is a %2$s for %3$d coins.</string>
 
+    <string name="cannotBuyIAP">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
+    <string name="buyingIAPError">An error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
+
+    <string name="buyContribute">Donate</string>
+    <string name="boughtContribute">Donation thank you goes here.</string>
+    <string name="contributeDescription">Donation text goes here.</string>
+    <string name="contributeStatus">Donated %1$d times, the last time was %2$s.</string>
+
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
-    <string name="cannotBuyPremium">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
-    <string name="buyingPremiumError">An error occurred whilst trying to purchase premium. Please try again later, hopefully it\'ll work!</string>
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:

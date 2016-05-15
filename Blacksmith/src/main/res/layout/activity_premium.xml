@@ -47,10 +47,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/contributeDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contributeDescription"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/contributeStatus"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/contributeDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:visibility="gone" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/contributeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_below="@id/contributeStatus"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="buyContribute"
+                    android:text="@string/buyContribute"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:visibility="gone"/>
+
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/premiumFeatures"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/premiumFeatures"
+                    android:layout_below="@id/contributeButton"
                     android:textSize="20sp"
                     android:textColor="@color/black"/>
 

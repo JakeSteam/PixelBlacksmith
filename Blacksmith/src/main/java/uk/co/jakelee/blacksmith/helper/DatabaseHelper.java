@@ -204,6 +204,11 @@ public class DatabaseHelper {
             patch130to140();
         }
 
+        List<Player_Info> player_infos = new ArrayList<>();
+        player_infos.add(new Player_Info("LastDonated", "never"));
+        player_infos.add(new Player_Info("TimesDonated", "0"));
+        Player_Info.saveInTx(player_infos);
+
         Setting setting = new Setting(8L, "HideAllAdverts", false);
         setting.save();
     }
