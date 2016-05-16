@@ -178,7 +178,7 @@
                 android:layout_marginLeft="1482dp"
                 android:onClick="clickBonusChest"
                 android:scaleType="centerCrop"
-                android:src="@drawable/visitor17"
+                android:src="@drawable/bonus_chest_empty"
                 app:layout_heightPercent="9%"
                 app:layout_marginTopPercent="46%" />
 
