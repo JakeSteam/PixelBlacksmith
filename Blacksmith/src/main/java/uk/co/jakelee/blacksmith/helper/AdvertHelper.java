@@ -9,13 +9,20 @@ import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdRewardListener;
 import com.applovin.sdk.AppLovinAdVideoPlaybackListener;
 import com.applovin.sdk.AppLovinSdk;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
+import java.util.List;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
+import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox};
@@ -115,4 +122,39 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     @Override public void userRewardRejected(AppLovinAd appLovinAd, Map map) {}
     @Override public void validationRequestFailed(AppLovinAd appLovinAd, int i) {}
     @Override public void userDeclinedToViewAd(AppLovinAd appLovinAd) {}
+
+    public static String createAdvertReward(Context context) {
+        int minimumRewards = 4;
+        int maximumRewards = 8;
+        boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
+
+        // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
+        Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);
+        if (VisitorHelper.getRandomBoolean(75)) {
+            int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
+            List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
+            selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
+        } else {
+            minimumRewards = 100;
+            maximumRewards = 1100;
+        }
+
+        int numberRewards = (Player_Info.isPremium() ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
+        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numberRewards);
+        String rewardString = VisitorHelper.getRewardString(context, rewardLegendary, Player_Info.isPremium());
+
+        if (rewardLegendary) {
+            List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
+            Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
+            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
+            return String.format(rewardString,
+                    numberRewards,
+                    selectedItem.getName(),
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED));
+        } else {
+            return String.format(rewardString,
+                    numberRewards,
+                    selectedItem.getFullName(Constants.STATE_NORMAL));
+        }
+    }
 }

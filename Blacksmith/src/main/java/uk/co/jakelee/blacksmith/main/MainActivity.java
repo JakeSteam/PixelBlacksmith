@@ -497,7 +497,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackBonus() {
         // Needs to actually give a reward..!
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, "Reward", true);
+        String rewardText = AdvertHelper.createAdvertReward(this);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, rewardText, true);
 
         Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
         lastClaimed.setLongValue(System.currentTimeMillis());
