@@ -316,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
-        if (Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue() && !Player_Info.isBonusReady()) {
+        if (Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue() && !Player_Info.isBonusReady() && Player_Info.displayAds()) {
             boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
             NotificationHelper.addBonusNotification(getApplicationContext(), notificationSound);
         }
