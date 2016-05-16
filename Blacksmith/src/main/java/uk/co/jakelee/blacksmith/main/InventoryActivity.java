@@ -67,7 +67,7 @@ public class InventoryActivity extends Activity {
     }
 
     private void updateInventoryTable() {
-        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY item.name ASC");
+        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
         TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
         inventoryTable.removeAllViews();
 
