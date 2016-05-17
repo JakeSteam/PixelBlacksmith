@@ -61,6 +61,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         } else if (productId.equals(SKU_CONTRIBUTE)) {
             bp.consumePurchase(SKU_CONTRIBUTE);
             addContributeFeatures();
+            updateContributeStatus();
             ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtContribute, true);
         }
     }
@@ -168,7 +169,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         startActivity(intent);
     }
 
-    private static void addPremiumFeatures() {
+    private void addPremiumFeatures() {
         // Update database, therefore slots + items
         Player_Info isPremium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
@@ -199,7 +200,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             timesDonated.setIntValue(timesDonated.getIntValue() + 1);
             timesDonated.save();
 
-            lastDonated.setName(DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date));
+            lastDonated.setTextValue(DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date));
             lastDonated.save();
 
             Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 100, false);
