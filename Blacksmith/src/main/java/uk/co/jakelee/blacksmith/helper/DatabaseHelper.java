@@ -215,6 +215,8 @@ public class DatabaseHelper {
         settings.add(new Setting(8L, "HideAllAdverts", false));
         settings.add(new Setting(9L, "BonusNotifications", true));
         Setting.saveInTx(settings);
+
+        Item.executeQuery("UPDATE Item SET description = 'A sturdier rod for catching fish.' WHERE id = 67");
     }
 
     private static void createAchievement() {
