@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,11 +20,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AdvertHelper;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
@@ -31,13 +36,13 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
-import uk.co.jakelee.blacksmith.helper.PrestigeHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
+    public AdvertHelper ah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements
 
         assignUIElements();
         DatabaseHelper.handlePatches();
-        hotfixTier(); // Remove me soon!
 
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -94,11 +99,9 @@ public class MainActivity extends AppCompatActivity implements
 
         dh.createAllSlots(this);
         ratingPrompt();
-    }
 
-    private void hotfixTier() {
-        if (prefs.getInt("tutorialStage", 0) == 0) {
-            PrestigeHelper.resetCraftingInterface();
+        if (Player_Info.displayAds()) {
+            ah = AdvertHelper.getInstance(this);
         }
     }
 
@@ -313,6 +316,11 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
+        if (Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue() && !Player_Info.isBonusReady() && Player_Info.displayAds()) {
+            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+            NotificationHelper.addBonusNotification(getApplicationContext(), notificationSound);
+        }
+
         if (musicServiceIsStarted) {
             stopService(musicService);
             musicServiceIsStarted = false;
@@ -345,9 +353,13 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
-                if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorArriving), newVisitors), true);
+                if (newVisitors == 1) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, R.string.visitorArriving, true);
+                } else if (newVisitors > 1) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
+                DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
+
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
@@ -450,6 +462,15 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void clickBonusChest(View view) {
+        if (Player_Info.isBonusReady()) {
+            AlertDialogHelper.confirmBonusAdvert(this, this);
+        } else {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
+                    DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
+        }
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
     }
@@ -466,5 +487,27 @@ public class MainActivity extends AppCompatActivity implements
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
+    }
+
+    public void callbackSpawn() {
+        if (VisitorHelper.tryCreateVisitor()) {
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeAdvertComplete, true);
+        }
+    }
+
+    public void callbackBonus() {
+        // Needs to actually give a reward..!
+        String rewardText = AdvertHelper.createAdvertReward(this);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, rewardText, true);
+
+        Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
+        lastClaimed.setLongValue(System.currentTimeMillis());
+        lastClaimed.save();
+
+        Player_Info timesClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("BonusesClaimed")).first();
+        timesClaimed.setIntValue(timesClaimed.getIntValue() + 1);
+        timesClaimed.save();
+
+        DisplayHelper.updateBonusChest((ImageView) findViewById(R.id.bonus_chest));
     }
 }

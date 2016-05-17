@@ -40,6 +40,7 @@ public class DatabaseHelper {
     public final static int DB_V1_2_1 = 4;
     public final static int DB_V1_3_0 = 5;
     public final static int DB_V1_4_0 = 6;
+    public final static int DB_V1_5_0 = 7;
 
     public static void handlePatches() {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
@@ -72,6 +73,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_3_0) {
             DatabaseHelper.patch130to140();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
+            DatabaseHelper.patch140to150();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
     }
 
@@ -191,6 +197,24 @@ public class DatabaseHelper {
         if (!Player_Info.isPremium()) {
             Slot.executeQuery("UPDATE slot SET premium = 1 WHERE level = 9999");
         }
+    }
+
+    public static void patch140to150() {
+        if (Upgrade.getValue("Minimum Visitor Rewards") == 0) {
+            patch130to140();
+        }
+
+        List<Player_Info> player_infos = new ArrayList<>();
+        player_infos.add(new Player_Info("LastDonated", "never"));
+        player_infos.add(new Player_Info("TimesDonated", 0));
+        player_infos.add(new Player_Info("LastBonusClaimed", System.currentTimeMillis()));
+        player_infos.add(new Player_Info("BonusesClaimed", 0));
+        Player_Info.saveInTx(player_infos);
+
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(8L, "HideAllAdverts", false));
+        settings.add(new Setting(9L, "BonusNotifications", true));
+        Setting.saveInTx(settings);
     }
 
     private static void createAchievement() {

@@ -585,4 +585,16 @@ public class DisplayHelper {
         }
     }
 
+    public static void updateBonusChest(ImageView chest) {
+        if (Player_Info.displayAds()) {
+            if (Player_Info.isBonusReady()) {
+                chest.setImageResource(R.drawable.bonus_chest_full);
+            } else {
+                chest.setImageResource(R.drawable.bonus_chest_empty);
+            }
+        } else {
+            chest.setImageResource(R.drawable.transparent);
+        }
+    }
+
 }

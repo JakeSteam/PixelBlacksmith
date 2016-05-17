@@ -23,8 +23,18 @@ public class ToastHelper {
         showToast(context, length, text, saveToLog, R.color.lightBrown);
     }
 
+    public static void showErrorToast(Context context, int length, int textID, boolean saveToLog) {
+        String string = context.getResources().getString(textID);
+        showErrorToast(context, length, string, saveToLog);
+    }
+
     public static void showErrorToast(Context context, int length, String text, boolean saveToLog) {
         showToast(context, length, text, saveToLog, R.color.holo_red_dark);
+    }
+
+    public static void showPositiveToast(Context context, int length, int textID, boolean saveToLog) {
+        String string = context.getResources().getString(textID);
+        showPositiveToast(context, length, string, saveToLog);
     }
 
     public static void showPositiveToast(Context context, int length, String text, boolean saveToLog) {

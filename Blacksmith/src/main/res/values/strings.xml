@@ -150,11 +150,17 @@
     <string name="noBestItem">You haven\'t sold this visitor anything yet!</string>
     <string name="bestItemMessage">The highest value item sold to %1$s is a %2$s for %3$d coins.</string>
 
+    <string name="cannotBuyIAP">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
+    <string name="buyingIAPError">An error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
+
+    <string name="buyContribute">Contribute</string>
+    <string name="boughtContribute">Thank you for contributing! You\'re the best! Message me at /u/JakeSteam for a personalised thank you.</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 100 coin reward for contributing, but that\'s mostly so it doesn\'t classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
+    <string name="contributeStatus">You\'ve contributed %1$d times, the last time was %2$s.</string>
+
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
-    <string name="cannotBuyPremium">This account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
-    <string name="buyingPremiumError">An error occurred whilst trying to purchase premium. Please try again later, hopefully it\'ll work!</string>
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:
@@ -162,6 +168,7 @@
 \n- +20% current extra gold.
 \n- +50% maximum extra XP.
 \n- +20% current extra XP.
+\n- Ability to turn off all ads.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Gold tax paid by all traders on automatic restock.
@@ -189,11 +196,19 @@
     <string name="workerReturned">A worker has returned, along with: %s.</string>
     <string name="workerResources">Resources: %s.</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately? One will arrive for free in %2$s.</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestionAdvert">Would you like to pay %1$d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
+    <string name="bribeAdvert">Watch Ad</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
+    <string name="bribeAdvertComplete">A visitor walks in, looks like the advert worked!</string>
     <string name="bribeFailure">Not enough money to bribe a visitor.</string>
     <string name="bribeCancel">Cancel</string>
+
+    <string name="bonusTimeLeft">The bonus chest will be ready to open in %s.</string>
+    <string name="bonusQuestion">The bonus chest is ready! Would you like to open it?</string>
+    <string name="bonusWatch">Watch Ad</string>
+    <string name="bonusCancel">Cancel</string>
 
     <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
@@ -212,7 +227,9 @@
     <string name="prestigeCancel">Cancel</string>
 
     <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
-    <string name="dismissConfirm">Dismiss</string>
+    <string name="dismissQuestionAdvert">Would you like to pay %d coins or watch an ad to make the visitor leave immediately?</string>
+    <string name="dismissConfirm">Pay</string>
+    <string name="dismissConfirmAdvert">Watch Ad</string>
     <string name="dismissComplete">The visitor leaves, a little bit grumpily.</string>
     <string name="dismissFailure">Not enough money to dismiss a visitor.</string>
     <string name="dismissCancel">Cancel</string>
@@ -269,6 +286,7 @@
     <string name="restockNotificationSettingText">Restock notifications?</string>
     <string name="visitorNotificationSettingText">Visitor notifications?</string>
     <string name="workerNotificationSettingText">Worker notifications?</string>
+    <string name="bonusNotificationSettingText">Bonus notifications?</string>
     <string name="notificationSoundSettingText">Enable notification sounds?</string>
     <string name="prestigeSettingText">Prestige</string>
 
@@ -291,8 +309,11 @@
     <string name="traderRestockCancel">Cancel</string>
 
     <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>
-    <string name="traderRestockAllConfirm">Restock All</string>
+    <string name="traderRestockAllQuestionAdvert">Restock all traders for %d coins / free with an advert?</string>
+    <string name="traderRestockAllConfirm">Pay Coins</string>
+    <string name="traderRestockAllConfirmAdvert">Watch Ad</string>
     <string name="traderRestockAllComplete">Restocked all traders for %d coins.</string>
+    <string name="traderRestockAllCompleteAdvert">Restocked all traders for free!</string>
     <string name="traderRestockAllCancel">Cancel</string>
 
     <string name="supportCodeQuestion">Please enter your support code (copy &amp; paste recommended!)</string>
@@ -303,6 +324,9 @@
 
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
+
+    <string name="turnOffAdsText">Disable Adverts</string>
+    <string name="adFailedToLoad">No advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
 
     <string name="tableQuantity">Qty</string>
     <string name="tableItem">Item </string>
@@ -316,6 +340,7 @@
     <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
 
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
+    <string name="restockMarketTextAdvert">The marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
     <string name="restockMarketButton">Restock</string>
     <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
     <string name="powderAdd">Began crushing the gem into %s.</string>
@@ -325,7 +350,8 @@
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
     <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item.</string>
     <string name="visitorArrived">%d visitor(s) have arrived.</string>
-    <string name="visitorArriving">%d visitor(s) wander into the shop...</string>
+    <string name="visitorArriving">A visitor wanders into the shop...</string>
+    <string name="visitorsArriving">%d visitors wander into the shop...</string>
     <string name="visitorsFullRestockTime">Never!</string>
 
     <string name="visitorLeaves1">The visitor waves good bye, and slips %1$dx %2$s under the counter.</string>
@@ -399,6 +425,7 @@
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+\n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
