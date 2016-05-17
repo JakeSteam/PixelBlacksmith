@@ -43,39 +43,39 @@ public class DatabaseHelper {
     public final static int DB_V1_5_0 = 7;
 
     public static void handlePatches() {
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_EMPTY) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
             DatabaseHelper.initialSQL();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
 
             TutorialHelper.currentlyInTutorial = true;
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_0) {
             DatabaseHelper.patch100to101();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_1) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_1) {
             DatabaseHelper.patch101to120();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_0) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_0) {
             DatabaseHelper.patch120to121();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_1) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_1) {
             DatabaseHelper.patch121to130();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_3_0) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_3_0) {
             DatabaseHelper.patch130to140();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_4_0) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
             DatabaseHelper.patch140to150();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
