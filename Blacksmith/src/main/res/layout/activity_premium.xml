@@ -60,8 +60,7 @@
                     android:id="@+id/contributeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@id/contributeDescription"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
@@ -74,7 +73,8 @@
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/contributeStatus"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_below="@id/contributeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
