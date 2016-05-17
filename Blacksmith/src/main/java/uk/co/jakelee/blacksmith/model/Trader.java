@@ -13,6 +13,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 
 public class Trader extends SugarRecord {
     private long shopkeeper;
@@ -68,7 +69,9 @@ public class Trader extends SugarRecord {
         if (traderToArrive.getName() != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+            if (!TutorialHelper.currentlyInTutorial) {
+                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+            }
         }
     }
 
