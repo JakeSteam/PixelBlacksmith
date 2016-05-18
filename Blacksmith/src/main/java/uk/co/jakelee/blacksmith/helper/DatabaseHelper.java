@@ -187,7 +187,7 @@ public class DatabaseHelper {
     public static void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
-        Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE id = 11");
+        Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE visitor_id = 11");
 
         List<Upgrade> upgrades = new ArrayList<>();
         upgrades.add(new Upgrade("Minimum Visitor Rewards", "", 350, 1, 1, 5, 1));
@@ -217,6 +217,110 @@ public class DatabaseHelper {
         Setting.saveInTx(settings);
 
         Item.executeQuery("UPDATE Item SET description = 'A sturdier rod for catching fish.' WHERE id = 67");
+
+        List<Type> types = new ArrayList<>();
+        types.add(new Type(25L, "Page", 1, 30, 1));
+        types.add(new Type(26L, "Book", 1, 30, 1));
+        Type.saveInTx(types);
+
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(177L, "Red Page", "The page seems to glow with power.", 25, 11, 0, 1));
+        items.add(new Item(178L, "Red Page (dirty)", "The page seems to glow with dulled power.", 25, 11, 0, 1));
+        items.add(new Item(179L, "Yellow Page", "The page seems to vibrate.", 25, 11, 0, 1));
+        items.add(new Item(180L, "Yellow Page (dirty)", "The page seems to vibrate slightly.", 25, 11, 0, 1));
+        items.add(new Item(181L, "Green Page", "The page emits strong, leafy smell.", 25, 11, 0, 1));
+        items.add(new Item(182L, "Green Page (dirty)", "The page emits a faint flowery smell.", 25, 11, 0, 1));
+        items.add(new Item(183L, "Blue Page", "The page is rather soggy.", 25, 11, 0, 1));
+        items.add(new Item(184L, "Blue Page (dirty)", "The page is slightly damp", 25, 11, 0, 1));
+        items.add(new Item(185L, "Pink Page", "The page's appearance somehow cheers you up.", 25, 11, 0, 1));
+        items.add(new Item(186L, "Pink Page (dirty)", "The page makes you feel a little bit happier.", 25, 11, 0, 1));
+        items.add(new Item(187L, "Brown Page", "The page is a little muddy.", 25, 11, 0, 1));
+        items.add(new Item(188L, "Brown Page (dirty)", "The page is covered in rather messy mud.", 25, 11, 0, 1));
+        items.add(new Item(189L, "Black Page", "The page whispers stories of battles long ended to you.", 25, 11, 0, 1));
+        items.add(new Item(190L, "Black Page (dirty)", "The page's appearance makes you more irritable.", 25, 11, 0, 1));
+        items.add(new Item(191L, "White Page", "The page's leaves have petals sprouting from them.", 25, 11, 0, 1));
+        items.add(new Item(192L, "White Page (dirty)", "The page has bugs crawling all over.", 25, 11, 0, 1));
+        items.add(new Item(193L, "Book of Strength", "A powerful book, containing information on combat techniques.", 26, 11, 0, 1));
+        items.add(new Item(194L, "Book of Agility", "An agile book, containing information on dodging techniques.", 26, 11, 0, 1));
+        items.add(new Item(195L, "Book of Nature", "A natural book, containing information on gardening.", 26, 11, 0, 1));
+        items.add(new Item(196L, "Book of Water", "A wet book, containing information on ", 26, 11, 0, 1));
+        items.add(new Item(197L, "Book of Peace", "A relaxing book, helping to negotiate between others.", 26, 11, 0, 1));
+        items.add(new Item(198L, "Book of Earth", "A rather brown book, containing information about the world.", 26, 11, 0, 1));
+        items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 0, 1));
+        items.add(new Item(200L, "Book of Life", "A lively book, containing information on the world's species.", 26, 11, 0, 1));
+        Item.saveInTx(items);
+
+        List<Recipe> recipes = new ArrayList<>();
+        // Red book
+        recipes.add(new Recipe(193L, 1L, 177L, 1L, 5));
+        recipes.add(new Recipe(193L, 1L, 178L, 1L, 5));
+        recipes.add(new Recipe(193L, 1L, 132L, 1L, 2));
+        recipes.add(new Recipe(193L, 1L, 133L, 1L, 2));
+        recipes.add(new Recipe(193L, 1L, 134L, 1L, 2));
+        recipes.add(new Recipe(193L, 1L, 145L, 1L, 2));
+        recipes.add(new Recipe(193L, 1L, 146L, 1L, 2));
+        recipes.add(new Recipe(193L, 1L, 147L, 1L, 2));
+        recipes.add(new Recipe(193L, 1L, 10L, 1L, 250));
+        // Yellow book
+        recipes.add(new Recipe(194L, 1L, 179L, 1L, 5));
+        recipes.add(new Recipe(194L, 1L, 180L, 1L, 5));
+        recipes.add(new Recipe(194L, 1L, 156L, 1L, 1));
+        recipes.add(new Recipe(194L, 1L, 157L, 1L, 1));
+        recipes.add(new Recipe(194L, 1L, 158L, 1L, 1));
+        recipes.add(new Recipe(194L, 1L, 159L, 1L, 1));
+        recipes.add(new Recipe(194L, 1L, 160L, 1L, 1));
+        recipes.add(new Recipe(194L, 1L, 8L, 1L, 300));
+        recipes.add(new Recipe(194L, 1L, 52L, 1L, 5000));
+        // Green book
+        recipes.add(new Recipe(195L, 1L, 181L, 1L, 5));
+        recipes.add(new Recipe(195L, 1L, 182L, 1L, 5));
+        recipes.add(new Recipe(195L, 1L, 6L, 1L, 400));
+        recipes.add(new Recipe(195L, 1L, 100L, 5L, 20));
+        recipes.add(new Recipe(195L, 1L, 130L, 1L, 100));
+        // Blue book
+        recipes.add(new Recipe(196L, 1L, 183L, 1L, 5));
+        recipes.add(new Recipe(196L, 1L, 184L, 1L, 5));
+        recipes.add(new Recipe(196L, 1L, 129L, 1L, 120));
+        recipes.add(new Recipe(196L, 1L, 119L, 1L, 3));
+        recipes.add(new Recipe(196L, 1L, 120L, 1L, 3));
+        recipes.add(new Recipe(196L, 1L, 121L, 4L, 1));
+        recipes.add(new Recipe(196L, 1L, 122L, 4L, 1));
+        recipes.add(new Recipe(196L, 1L, 73L, 1L, 5));
+        // Pink book
+        recipes.add(new Recipe(197L, 1L, 185L, 1L, 5));
+        recipes.add(new Recipe(197L, 1L, 186L, 1L, 5));
+        recipes.add(new Recipe(197L, 1L, 148L, 1L, 8));
+        recipes.add(new Recipe(197L, 1L, 80L, 1L, 100));
+        // Brown book
+        recipes.add(new Recipe(198L, 1L, 187L, 1L, 5));
+        recipes.add(new Recipe(198L, 1L, 188L, 1L, 5));
+        recipes.add(new Recipe(198L, 1L, 79L, 1L, 100));
+        recipes.add(new Recipe(198L, 1L, 71L, 1L, 100));
+        recipes.add(new Recipe(198L, 1L, 32L, 1L, 5));
+        recipes.add(new Recipe(198L, 1L, 32L, 2L, 5));
+        recipes.add(new Recipe(198L, 1L, 32L, 3L, 5));
+        recipes.add(new Recipe(198L, 1L, 32L, 4L, 5));
+        recipes.add(new Recipe(198L, 1L, 32L, 5L, 5));
+        recipes.add(new Recipe(198L, 1L, 32L, 6L, 5));
+        recipes.add(new Recipe(198L, 1L, 32L, 7L, 5));
+        // Black book
+        recipes.add(new Recipe(199L, 1L, 189L, 1L, 5));
+        recipes.add(new Recipe(199L, 1L, 190L, 1L, 5));
+        // White book
+        recipes.add(new Recipe(200L, 1L, 191L, 1L, 5));
+        recipes.add(new Recipe(200L, 1L, 192L, 1L, 5));
+        recipes.add(new Recipe(200L, 1L, 3L, 1L, 200));
+        recipes.add(new Recipe(200L, 1L, 31L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 47L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 64L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 92L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 108L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 124L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 143L, 7L, 1));
+        Recipe.saveInTx(recipes);
+
+        Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 5 WHERE visitor_id = 8");
+        Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 4 WHERE visitor_id = 9");
     }
 
     private static void createAchievement() {
