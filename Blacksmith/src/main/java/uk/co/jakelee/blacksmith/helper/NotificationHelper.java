@@ -95,6 +95,8 @@ public class NotificationHelper extends BroadcastReceiver {
             notificationText = context.getString(R.string.notificationVisitor);
         } else if (notificationType == Constants.NOTIFICATION_WORKER) {
             notificationText = context.getString(R.string.notificationWorker);
+        } else if (notificationType == Constants.NOTIFICATION_BONUS) {
+            notificationText = context.getString(R.string.notificationBonus);
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

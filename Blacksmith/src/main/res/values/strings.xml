@@ -326,6 +326,7 @@
 
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
+    <string name="notificationBonus">A bonus is ready to claim!</string>
 
     <string name="turnOffAdsText">Disable Adverts</string>
     <string name="adFailedToLoad">No advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
