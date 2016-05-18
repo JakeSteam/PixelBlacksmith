@@ -247,10 +247,12 @@
     <string name="trophyFirstSeen">First seen: %s</string>
     <string name="trophy100thVisit">100th visit: %s</string>
     <string name="trophyBestItem">Best item: %s</string>
+    <string name="trophyRarity">Appear chance: %d</string>
     <string name="trophyVisitsUnknown">Visits: ???</string>
     <string name="trophyFirstSeenUnknown">First seen: ???</string>
     <string name="trophy100thVisitUnknown">100th visit: ???</string>
     <string name="trophyBestItemUnknown">Best item: ???</string>
+    <string name="trophyRarityUnknown">Appear chance: ???</string>
 
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
     <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>

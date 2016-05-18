@@ -224,6 +224,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Unseen visitors will have no information available about them.\n", 22));
         layout.addView(dh.createTextView("Seen visitors will have a lighter silhouette the more you see them. Additionally, basic information will become available.\n", 22));
         layout.addView(dh.createTextView("Once a visitor has been seen 100 times, they will provide you with a gift, and become fully visible.", 22));
+        layout.addView(dh.createTextView("The higher the 'Spawn chance', the more likely a visitor is to arrive.", 22));
     }
 
     private void displayHelpVisitor(LinearLayout layout) {
