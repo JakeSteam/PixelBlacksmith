@@ -321,6 +321,14 @@ public class DatabaseHelper {
 
         Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 5 WHERE visitor_id = 8");
         Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 4 WHERE visitor_id = 9");
+
+        List<Trader_Stock> trader_stocks = new ArrayList<>();
+        trader_stocks.add(new Trader_Stock(46L, 3L, 1, 350, 100));
+        trader_stocks.add(new Trader_Stock(25L, 3L, 1, 100, 200));
+        trader_stocks.add(new Trader_Stock(23L, 3L, 1, 40, 60));
+        trader_stocks.add(new Trader_Stock(21L, 3L, 1, 20, 30));
+        trader_stocks.add(new Trader_Stock(2L, 3L, 1, 250, 80));
+        Trader_Stock.saveInTx(trader_stocks);
     }
 
     private static void createAchievement() {
