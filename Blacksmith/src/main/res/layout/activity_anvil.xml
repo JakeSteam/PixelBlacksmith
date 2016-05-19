@@ -35,6 +35,40 @@
             app:layout_heightPercent="10%"
             app:layout_marginTopPercent="1%" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:layout_marginTopPercent="9%"
+            app:layout_marginBottomPercent="80%">
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/itemsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items"
+                android:layout_margin="3dp"
+                android:padding="2dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:background="@drawable/button"
+                android:clickable="true"
+                android:onClick="toggleTab"
+                android:gravity="center"/>
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/ringsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rings"
+                android:layout_margin="3dp"
+                android:padding="2dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:background="@drawable/button"
+                android:clickable="true"
+                android:onClick="toggleTab"
+                android:gravity="center"/>
+        </LinearLayout>
+
         <Button
             android:id="@+id/upButton"
             android:layout_width="40dp"

@@ -46,6 +46,7 @@ public class AnvilActivity extends Activity {
     private TextView craft1;
     private TextView craft10;
     private TextView craft100;
+    private boolean ringsSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,6 +109,15 @@ public class AnvilActivity extends Activity {
     }
 
     private void createAnvilInterface(boolean clearExisting) {
+        updateTabs();
+        if (ringsSelected) {
+            createRingsInterface(clearExisting);
+        } else {
+            createItemsInterface(clearExisting);
+        }
+    }
+
+    private void createItemsInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
@@ -130,6 +140,10 @@ public class AnvilActivity extends Activity {
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+    }
+
+    private void createRingsInterface(boolean clearExisting) {
+
     }
 
     public void closePopup(View view) {
@@ -210,6 +224,21 @@ public class AnvilActivity extends Activity {
             MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
             createAnvilInterface(true);
+        }
+    }
+
+    public void toggleTab(View view) {
+        ringsSelected = !ringsSelected;
+        updateTabs();
+    }
+
+    private void updateTabs() {
+        if (ringsSelected) {
+            ((TextView) findViewById(R.id.itemsTab)).setAlpha(0.3f);
+            ((TextView) findViewById(R.id.ringsTab)).setAlpha(1f);
+        } else {
+            ((TextView) findViewById(R.id.itemsTab)).setAlpha(1f);
+            ((TextView) findViewById(R.id.ringsTab)).setAlpha(0.3f);
         }
     }
 
