@@ -360,15 +360,24 @@
     <string name="visitorLeaves1">The visitor waves good bye, and slips %1$dx %2$s under the counter.</string>
     <string name="visitorLeaves2">The visitor leaves, and drops %1$dx %2$s on the floor. Finders keepers!</string>
     <string name="visitorLeaves3">The visitor gratefully passes you %1$dx %2$s.</string>
-    <string name="visitorLeavesPremium1">The visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
-    <string name="visitorLeavesPremium2">The visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
-    <string name="visitorLeavesPremium3">As the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
+    <string name="visitorLeavesLegendary1">The visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
+    <string name="visitorLeavesLegendary2">The visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
+    <string name="visitorLeavesLegendary3">As the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
     <string name="visitorLeavesComplete1">The visitor rewards you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
     <string name="visitorLeavesComplete2">The visitor\'s tip has been doubled to %1$dx %2$s!</string>
     <string name="visitorLeavesComplete3">The very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
     <string name="visitorLeavesCompletePremium1">The visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
     <string name="visitorLeavesCompletePremium2">Hey, what\'s this.. %1$dx %2$s and a rare %3$s? I\'ll hang onto these.</string>
     <string name="visitorLeavesCompletePremium3">The visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
+
+    <string name="advertWatched1">The chest disappears, leaving %1$dx %2$s behind!</string>
+    <string name="advertWatched2">The chest slowly opens, revealing %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">The chest snaps open, and contains %1$dx %2$s alongside a rare %3$s!</string>
+    <string name="advertWatchedLegendary2">The chest smokes slightly, then spits out %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedPremium1">The chest creaks open, and contains %1$dx %2$s. Twice as many as usual!</string>
+    <string name="advertWatchedPremium2">How strange, the chest\'s contents of %1$dx %2$s seem to be duplicated!</string>
+    <string name="advertWatchedLegendaryPremium1">The chest is stuffed full of %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">Hey, what\'s this in the corner of the chest... %1$dx %2$s and a rare %3$s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>

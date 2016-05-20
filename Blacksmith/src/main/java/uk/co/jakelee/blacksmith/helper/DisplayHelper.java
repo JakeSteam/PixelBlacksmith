@@ -291,7 +291,7 @@ public class DisplayHelper {
 
 
         ImageView addVisitorButton = null;
-        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) <= Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
+        if (targetContainer != null && !TutorialHelper.currentlyInTutorial) {
             addVisitorButton = createImageView("add", "", 51, 51);
             addVisitorButton.setPadding(xPadding, yPadding, xPadding, yPadding);
             addVisitorButton.setOnClickListener(new Button.OnClickListener() {
@@ -309,6 +309,11 @@ public class DisplayHelper {
             public void run() {
                 visitorsContainer.removeAllViews();
                 visitorsContainerOverflow.removeAllViews();
+                boolean shouldDrawAddButton = false;
+
+                if (finalVisitorImages.size() < Upgrade.getValue("Maximum Visitors")) {
+                    shouldDrawAddButton = true;
+                }
 
                 int displayedVisitors = 0;
                 for (ImageView visitorImage : finalVisitorImages) {
@@ -320,9 +325,8 @@ public class DisplayHelper {
                     displayedVisitors++;
                 }
 
-                if (finalImageView != null) {
+                if (shouldDrawAddButton && finalImageView != null) {
                     finalTargetContainer.addView(finalImageView);
-                } else {
                 }
             }
         });

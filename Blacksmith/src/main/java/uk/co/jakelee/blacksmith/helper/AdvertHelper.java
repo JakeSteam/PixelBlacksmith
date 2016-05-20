@@ -12,6 +12,7 @@ import com.applovin.sdk.AppLovinSdk;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -136,25 +137,45 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
         } else {
             minimumRewards = 100;
-            maximumRewards = 1100;
+            maximumRewards = 700;
         }
 
         int numberRewards = (Player_Info.isPremium() ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
         Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numberRewards);
-        String rewardString = VisitorHelper.getRewardString(context, rewardLegendary, Player_Info.isPremium());
+        String rewardString = getRewardString(context, rewardLegendary);
 
         if (rewardLegendary) {
-            List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
-            Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
-            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
+            List<Item> legendaryItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
+            Item legendaryItem = VisitorHelper.pickRandomItemFromList(legendaryItems);
+            Inventory.addItem(legendaryItem.getId(), Constants.STATE_UNFINISHED, 1);
             return String.format(rewardString,
                     numberRewards,
                     selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED));
+                    legendaryItem.getFullName(Constants.STATE_UNFINISHED));
         } else {
             return String.format(rewardString,
                     numberRewards,
                     selectedItem.getFullName(Constants.STATE_NORMAL));
         }
+    }
+
+    private static String getRewardString(Context context, boolean rewardLegendary) {
+        List<String> strings = new ArrayList<>();
+        boolean isPremium = Player_Info.isPremium();
+        if (rewardLegendary && isPremium) {
+            strings.add(context.getString(R.string.advertWatchedLegendaryPremium1));
+            strings.add(context.getString(R.string.advertWatchedLegendaryPremium2));
+        } else if (rewardLegendary && !isPremium) {
+            strings.add(context.getString(R.string.advertWatchedPremium1));
+            strings.add(context.getString(R.string.advertWatchedPremium2));
+        }else if (!rewardLegendary && isPremium) {
+            strings.add(context.getString(R.string.advertWatchedLegendary1));
+            strings.add(context.getString(R.string.advertWatchedLegendary2));
+        }else if (!rewardLegendary && !isPremium) {
+            strings.add(context.getString(R.string.advertWatched1));
+            strings.add(context.getString(R.string.advertWatched2));
+        }
+        int position = VisitorHelper.getRandomNumber(0, strings.size() - 1);
+        return strings.get(position);
     }
 }

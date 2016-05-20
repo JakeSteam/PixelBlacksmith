@@ -339,9 +339,9 @@ public class VisitorHelper {
             strings.add(context.getString(R.string.visitorLeavesCompletePremium2));
             strings.add(context.getString(R.string.visitorLeavesCompletePremium3));
         } else if (rewardLegendary && !isFullyComplete) {
-            strings.add(context.getString(R.string.visitorLeavesPremium1));
-            strings.add(context.getString(R.string.visitorLeavesPremium2));
-            strings.add(context.getString(R.string.visitorLeavesPremium3));
+            strings.add(context.getString(R.string.visitorLeavesLegendary1));
+            strings.add(context.getString(R.string.visitorLeavesLegendary2));
+            strings.add(context.getString(R.string.visitorLeavesLegendary3));
         }else if (!rewardLegendary && isFullyComplete) {
             strings.add(context.getString(R.string.visitorLeavesComplete1));
             strings.add(context.getString(R.string.visitorLeavesComplete2));
