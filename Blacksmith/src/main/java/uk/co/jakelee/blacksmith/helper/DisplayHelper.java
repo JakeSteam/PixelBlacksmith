@@ -286,6 +286,9 @@ public class DisplayHelper {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                visitorsContainer.removeAllViews();
+                visitorsContainerOverflow.removeAllViews();
+
                 int displayedVisitors = 0;
                 for (ImageView visitorImage : finalVisitorImages) {
                     if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {

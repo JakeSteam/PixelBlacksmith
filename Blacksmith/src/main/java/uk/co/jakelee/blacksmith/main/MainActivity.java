@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (needToRedrawVisitors) {
-            updateVisitors(this);
+            updateVisitors();
         }
 
         if (TutorialHelper.currentlyInTutorial) {
@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements
                 new Thread(new Runnable() {
                     public void run() {
                         dh.populateSlots(activity, findViewById(R.id.mainScroller));
-                        updateVisitors(activity);
+                        updateVisitors();
                     }
                 }).start();
                 dh.updateCoinsGUI();
@@ -396,15 +396,8 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void updateVisitors(Activity activity) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                visitorContainer.removeAllViews();
-                visitorContainerOverflow.removeAllViews();
-            }
-        });
-        dh.populateVisitorsContainer(getApplicationContext(), MainActivity.this, visitorContainer, visitorContainerOverflow);
+    private void updateVisitors() {
+        dh.populateVisitorsContainer(getApplicationContext(), this, visitorContainer, visitorContainerOverflow);
     }
 
     public void openMarket(View view) {
