@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (needToRedrawVisitors) {
-            updateVisitors();
+            updateVisitors(this);
         }
 
         if (TutorialHelper.currentlyInTutorial) {
@@ -341,10 +341,9 @@ public class MainActivity extends AppCompatActivity implements
                 new Thread(new Runnable() {
                     public void run() {
                         dh.populateSlots(activity, findViewById(R.id.mainScroller));
-
+                        updateVisitors(activity);
                     }
                 }).start();
-                updateVisitors();
                 dh.updateCoinsGUI();
                 if (dh.updateLevelText(getApplicationContext()) || needToRedrawSlots) {
                     dh.createAllSlots(activity);
@@ -397,9 +396,14 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void updateVisitors() {
-        visitorContainer.removeAllViews();
-        visitorContainerOverflow.removeAllViews();
+    private void updateVisitors(Activity activity) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visitorContainer.removeAllViews();
+                visitorContainerOverflow.removeAllViews();
+            }
+        });
         dh.populateVisitorsContainer(getApplicationContext(), MainActivity.this, visitorContainer, visitorContainerOverflow);
     }
 

@@ -255,9 +255,9 @@ public class DisplayHelper {
         }
     }
 
-    public void populateVisitorsContainer(final Context context, final MainActivity activity, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
-        int displayedVisitors = 0;
+    public void populateVisitorsContainer(final Context context, final MainActivity activity, final LinearLayout visitorsContainer, final LinearLayout visitorsContainerOverflow) {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
+        List<ImageView> visitorImages = new ArrayList<>();
         if (visitors.size() == 0) {
             VisitorHelper.tryCreateVisitor();
         }
@@ -279,14 +279,24 @@ public class DisplayHelper {
                 }
             });
 
-            // Adding to appropriate container
-            if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
-                visitorsContainer.addView(visitorImage);
-            } else {
-                visitorsContainerOverflow.addView(visitorImage);
-            }
-            displayedVisitors++;
+            visitorImages.add(visitorImage);
         }
+
+        final List<ImageView> finalVisitorImages = visitorImages;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                int displayedVisitors = 0;
+                for (ImageView visitorImage : finalVisitorImages) {
+                    if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
+                        visitorsContainer.addView(visitorImage);
+                    } else {
+                        visitorsContainerOverflow.addView(visitorImage);
+                    }
+                    displayedVisitors++;
+                }
+            }
+        });
 
         LinearLayout targetContainer = null;
         if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
@@ -295,6 +305,7 @@ public class DisplayHelper {
             targetContainer = visitorsContainerOverflow;
         }
 
+        final LinearLayout finalTargetContainer = targetContainer;
         if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
             ImageView addVisitorButton = createImageView("add", "", 51, 51);
             addVisitorButton.setPadding(xPadding, yPadding, xPadding, yPadding);
@@ -303,7 +314,14 @@ public class DisplayHelper {
                     AlertDialogHelper.confirmVisitorAdd(context, activity);
                 }
             });
-            targetContainer.addView(addVisitorButton);
+
+            final ImageView finalVisitorButton = addVisitorButton;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    finalTargetContainer.addView(finalVisitorButton);
+                }
+            });
         }
     }
 
