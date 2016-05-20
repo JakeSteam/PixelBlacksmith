@@ -104,6 +104,8 @@ public class Constants {
     public static final int TIER_TABLE_MIN = 1;
     public static final int TIER_TABLE_MAX = 10;
     public static final int TIER_PREMIUM = 10;
+    public static final int TIER_SILVER = 8;
+    public static final int TIER_GOLD = 9;
 
     public static final int TYPE_ANVIL_MIN = 3;
     public static final int TYPE_ANVIL_MAX = 18;
