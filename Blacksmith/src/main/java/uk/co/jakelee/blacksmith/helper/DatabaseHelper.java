@@ -329,6 +329,10 @@ public class DatabaseHelper {
         trader_stocks.add(new Trader_Stock(21L, 3L, 1, 20, 30));
         trader_stocks.add(new Trader_Stock(2L, 3L, 1, 250, 80));
         Trader_Stock.saveInTx(trader_stocks);
+
+        Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 3 * stock, default_stock = 3 * default_stock WHERE trader_type = 15");
+        Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 3 * stock, default_stock = 3 * default_stock WHERE trader_type = 16");
+        Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 5 * stock, default_stock = 5 * default_stock WHERE trader_type = 17");
     }
 
     private static void createAchievement() {
