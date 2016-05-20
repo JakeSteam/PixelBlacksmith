@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
         }
+
     }
 
     private void ratingPrompt() {
@@ -337,7 +338,12 @@ public class MainActivity extends AppCompatActivity implements
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
-                dh.populateSlots(findViewById(R.id.mainScroller));
+                new Thread(new Runnable() {
+                    public void run() {
+                        dh.populateSlots(activity, findViewById(R.id.mainScroller));
+
+                    }
+                }).start();
                 updateVisitors();
                 dh.updateCoinsGUI();
                 if (dh.updateLevelText(getApplicationContext()) || needToRedrawSlots) {

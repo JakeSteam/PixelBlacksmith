@@ -150,32 +150,37 @@ public class DisplayHelper {
         }
     }
 
-    public void populateSlots(View parentView) {
+    public void populateSlots(Activity activity, View parentView) {
         if (Pending_Inventory.count(Pending_Inventory.class) > 0) {
             List<Location> locations = Location.listAll(Location.class);
             for (Location location : locations) {
-                populateSlot(location.getId(), parentView);
+                populateSlot(activity, location.getId(), parentView);
             }
         }
     }
 
-    private void populateSlot(final long locationID, View parentView) {
+    private void populateSlot(final Activity activity, final long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         if (pendingItems.size() > 0 && !isProcessingPendingInventory) {
-            int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
-            int numSlots = Slot.getUnlockedSlots(locationID);
+            final int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
+            final int numSlots = Slot.getUnlockedSlots(locationID);
 
-            GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
-            emptySlotContainer(slotContainer);
+            final GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    emptySlotContainer(slotContainer);
+                }
+            });
 
             int slotIndex = 0;
             int finishedItems = 0;
             final List<Pending_Inventory> completedItems = new ArrayList<>();
-            for (Pending_Inventory pendingItem : pendingItems) {
+            for (final Pending_Inventory pendingItem : pendingItems) {
                 RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
                 if (slot != null) {
-                    ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
-                    TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
+                    final ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
+                    final TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
 
                     long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
                     long currentTime = System.currentTimeMillis();
@@ -184,16 +189,27 @@ public class DisplayHelper {
                         completedItems.add(pendingItem);
                         finishedItems++;
                     } else {
-                        int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
+                        final int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                        slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                        slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                            }
+                        });
                         slotIndex++;
                     }
                 }
             }
-            RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
-            displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
+            final RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
+            final int totalFinishedItems = finishedItems;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    displayOverflow(lockedSlot, numItems, numSlots, totalFinishedItems);
+                }
+            });
 
             if (completedItems.size() > 0) {
                 isProcessingPendingInventory = true;
