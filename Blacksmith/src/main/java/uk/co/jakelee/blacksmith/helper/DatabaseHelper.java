@@ -248,6 +248,7 @@ public class DatabaseHelper {
         items.add(new Item(198L, "Book of Earth", "A rather brown book, containing information about the world.", 26, 11, 0, 1));
         items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 0, 1));
         items.add(new Item(200L, "Book of Life", "A lively book, containing information on the world's species.", 26, 11, 0, 1));
+        items.add(new Item(201L, "The Collection", "A collection of all available books, only obtained by the most dedicated.", 26, 11, 0, 100));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();
@@ -324,6 +325,17 @@ public class DatabaseHelper {
         recipes.add(new Recipe(200L, 1L, 152L, 1L, 1));
         recipes.add(new Recipe(200L, 1L, 153L, 1L, 1));
         recipes.add(new Recipe(200L, 1L, 154L, 1L, 1));
+        // Collection
+        recipes.add(new Recipe(201L, 1L, 193L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 194L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 195L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 196L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 197L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 198L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 199L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 200L, 1L, 1));
+        recipes.add(new Recipe(201L, 1L, 52L, 1L, 10000));
+
         Recipe.saveInTx(recipes);
 
         Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 5 WHERE visitor_id = 8");
