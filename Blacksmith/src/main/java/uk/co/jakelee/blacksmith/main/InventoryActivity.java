@@ -44,10 +44,15 @@ public class InventoryActivity extends Activity {
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
+        final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
-                updateInventoryTable();
+                new Thread(new Runnable() {
+                    public void run() {
+                        updateInventoryTable(activity);
+                    }
+                }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
@@ -66,17 +71,17 @@ public class InventoryActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void updateInventoryTable() {
+    private void updateInventoryTable(Activity activity) {
+        List<TableRow> tableRows = new ArrayList<>();
         List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
-        TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
-        inventoryTable.removeAllViews();
+        final TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
 
         TableRow headerRow = new TableRow(getApplicationContext());
         headerRow.addView(dh.createTextView("Qty", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Name", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
-        inventoryTable.addView(headerRow);
+        tableRows.add(headerRow);
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
@@ -110,8 +115,19 @@ public class InventoryActivity extends Activity {
             itemRow.addView(image);
             itemRow.addView(name);
             itemRow.addView(sell);
-            inventoryTable.addView(itemRow);
+            tableRows.add(itemRow);
         }
+
+        final List<TableRow> finalRows = tableRows;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                inventoryTable.removeAllViews();
+                for (TableRow row : finalRows)
+                inventoryTable.addView(row);
+
+            }
+        });
     }
 
     private void clickSellButton(View view) {
@@ -150,7 +166,7 @@ public class InventoryActivity extends Activity {
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canSell), false);
         }
-        updateInventoryTable();
+        updateInventoryTable(this);
         dh.updateCoins(Inventory.getCoins());
     }
 

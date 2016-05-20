@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -61,7 +62,6 @@ public class TradeActivity extends Activity {
 
         Intent intent = getIntent();
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
-
         if (demandId > 0) {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
             visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
@@ -73,10 +73,15 @@ public class TradeActivity extends Activity {
             startTutorial();
         }
 
+        final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
-                displayItemsTable();
+                new Thread(new Runnable() {
+                    public void run() {
+                        displayItemsTable(activity);
+                    }
+                }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
@@ -108,7 +113,7 @@ public class TradeActivity extends Activity {
     private void createTradeInterface() {
         displayVisitorInfo();
         displayDemandInfo();
-        displayItemsTable();
+        displayItemsTable(this);
         updateMax();
     }
 
@@ -133,10 +138,10 @@ public class TradeActivity extends Activity {
         demandProgress.setProgress(demand.getQuantityProvided());
     }
 
-    private void displayItemsTable() {
+    private void displayItemsTable(Activity activity) {
+        List<TableRow> tableRows = new ArrayList<>();
         List<Inventory> matchingItems = demand.getMatchingInventory();
-        TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
-        itemsTable.removeAllViews();
+        final TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
 
         TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
         if (matchingItems.size() == 0) {
@@ -151,15 +156,12 @@ public class TradeActivity extends Activity {
             headerRow.addView(dh.createTextView(getString(R.string.tableItem), 22, Color.BLACK));
             headerRow.addView(dh.createTextView(getString(R.string.tableSell), 22, Color.BLACK));
             headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
-            itemsTable.addView(headerRow);
+            tableRows.add(headerRow);
 
             for (Inventory inventory : matchingItems) {
                 TableRow itemRow = new TableRow(getApplicationContext());
-
                 Item item = Item.findById(Item.class, inventory.getItem());
-
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
-
                 ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, true, true);
 
                 String itemName = item.getPrefix(inventory.getState()) + item.getName();
@@ -197,9 +199,19 @@ public class TradeActivity extends Activity {
                 itemRow.addView(name);
                 itemRow.addView(sell);
                 itemRow.addView(bonusText);
-                itemsTable.addView(itemRow);
+                tableRows.add(itemRow);
             }
         }
+
+        final List<TableRow> finalRows = tableRows;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                itemsTable.removeAllViews();
+                for (TableRow row : finalRows)
+                    itemsTable.addView(row);
+            }
+        });
     }
 
     private void clickSellButton(View v) {
@@ -268,7 +280,7 @@ public class TradeActivity extends Activity {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
             itemsTable.setVisibility(View.GONE);
         } else {
-            displayItemsTable();
+            displayItemsTable(this);
         }
     }
 
