@@ -282,6 +282,27 @@ public class DisplayHelper {
             visitorImages.add(visitorImage);
         }
 
+        LinearLayout targetContainer = null;
+        if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+            targetContainer = visitorsContainer;
+        } else if (visitorsContainerOverflow.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+            targetContainer = visitorsContainerOverflow;
+        }
+
+
+        ImageView addVisitorButton = null;
+        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) <= Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
+            addVisitorButton = createImageView("add", "", 51, 51);
+            addVisitorButton.setPadding(xPadding, yPadding, xPadding, yPadding);
+            addVisitorButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    AlertDialogHelper.confirmVisitorAdd(context, activity);
+                }
+            });
+        }
+
+        final LinearLayout finalTargetContainer = targetContainer;
+        final ImageView finalImageView = addVisitorButton;
         final List<ImageView> finalVisitorImages = visitorImages;
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -298,34 +319,13 @@ public class DisplayHelper {
                     }
                     displayedVisitors++;
                 }
+
+                if (finalImageView != null) {
+                    finalTargetContainer.addView(finalImageView);
+                } else {
+                }
             }
         });
-
-        LinearLayout targetContainer = null;
-        if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
-            targetContainer = visitorsContainer;
-        } else if (visitorsContainerOverflow.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
-            targetContainer = visitorsContainerOverflow;
-        }
-
-        final LinearLayout finalTargetContainer = targetContainer;
-        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
-            ImageView addVisitorButton = createImageView("add", "", 51, 51);
-            addVisitorButton.setPadding(xPadding, yPadding, xPadding, yPadding);
-            addVisitorButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    AlertDialogHelper.confirmVisitorAdd(context, activity);
-                }
-            });
-
-            final ImageView finalVisitorButton = addVisitorButton;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    finalTargetContainer.addView(finalVisitorButton);
-                }
-            });
-        }
     }
 
     public Space createSpace() {
