@@ -47,7 +47,6 @@
                 android:layout_height="wrap_content"
                 android:text="Items"
                 android:layout_margin="3dp"
-                android:padding="2dp"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:background="@drawable/button"
@@ -60,7 +59,6 @@
                 android:layout_height="wrap_content"
                 android:text="Rings"
                 android:layout_margin="3dp"
-                android:padding="2dp"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:background="@drawable/button"
@@ -133,19 +131,8 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <TableLayout
-            android:id="@+id/ingredientsTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/horizontalIndicator"
-            android:padding="5dp"
-            android:shrinkColumns="1"
-            android:stretchColumns="1"
-            app:layout_marginTopPercent="3%" />
-
         <LinearLayout
+            android:id="@+id/buttonContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -189,6 +176,27 @@
                 android:text="@string/craft100Text"
                 android:textSize="25sp" />
         </LinearLayout>
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ingredientsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/horizontalIndicator"
+            android:layout_above="@id/buttonContainer"
+            android:padding="3dp"
+            android:fadeScrollbars="false"
+            app:layout_marginTopPercent="3%">
+
+            <TableLayout
+                android:id="@+id/ingredientsTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:shrinkColumns="1"
+                android:stretchColumns="1" />
+        </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

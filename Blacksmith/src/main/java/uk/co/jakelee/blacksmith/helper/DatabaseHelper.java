@@ -306,17 +306,24 @@ public class DatabaseHelper {
         // Black book
         recipes.add(new Recipe(199L, 1L, 189L, 1L, 5));
         recipes.add(new Recipe(199L, 1L, 190L, 1L, 5));
+        recipes.add(new Recipe(199L, 1L, 3L, 1L, 200));
+        recipes.add(new Recipe(199L, 1L, 31L, 7L, 1));
+        recipes.add(new Recipe(199L, 1L, 47L, 7L, 1));
+        recipes.add(new Recipe(199L, 1L, 64L, 7L, 1));
+        recipes.add(new Recipe(199L, 1L, 92L, 7L, 1));
+        recipes.add(new Recipe(199L, 1L, 108L, 7L, 1));
+        recipes.add(new Recipe(199L, 1L, 124L, 7L, 1));
+        recipes.add(new Recipe(199L, 1L, 143L, 7L, 1));
         // White book
         recipes.add(new Recipe(200L, 1L, 191L, 1L, 5));
         recipes.add(new Recipe(200L, 1L, 192L, 1L, 5));
-        recipes.add(new Recipe(200L, 1L, 3L, 1L, 200));
-        recipes.add(new Recipe(200L, 1L, 31L, 7L, 1));
-        recipes.add(new Recipe(200L, 1L, 47L, 7L, 1));
-        recipes.add(new Recipe(200L, 1L, 64L, 7L, 1));
-        recipes.add(new Recipe(200L, 1L, 92L, 7L, 1));
-        recipes.add(new Recipe(200L, 1L, 108L, 7L, 1));
-        recipes.add(new Recipe(200L, 1L, 124L, 7L, 1));
-        recipes.add(new Recipe(200L, 1L, 143L, 7L, 1));
+        recipes.add(new Recipe(200L, 1L, 13L, 1L, 150));
+        recipes.add(new Recipe(200L, 1L, 17L, 1L, 150));
+        recipes.add(new Recipe(200L, 1L, 150L, 1L, 1));
+        recipes.add(new Recipe(200L, 1L, 151L, 1L, 1));
+        recipes.add(new Recipe(200L, 1L, 152L, 1L, 1));
+        recipes.add(new Recipe(200L, 1L, 153L, 1L, 1));
+        recipes.add(new Recipe(200L, 1L, 154L, 1L, 1));
         Recipe.saveInTx(recipes);
 
         Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 5 WHERE visitor_id = 8");

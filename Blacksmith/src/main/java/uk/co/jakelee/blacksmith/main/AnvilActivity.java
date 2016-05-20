@@ -54,7 +54,7 @@ public class AnvilActivity extends Activity {
         setContentView(R.layout.activity_anvil);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.prefs.getInt("anvilTier", Constants.TIER_MIN);
+        displayedTier = MainActivity.prefs.getInt("anvilTier", ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN);
         ringsSelected = MainActivity.prefs.getBoolean("anvilTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();

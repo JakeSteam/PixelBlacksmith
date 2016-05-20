@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,7 @@ public class TableActivity extends Activity {
     private TextView craft1;
     private TextView craft10;
     private TextView craft100;
+    private boolean booksSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,13 +54,14 @@ public class TableActivity extends Activity {
         setContentView(R.layout.activity_table);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.prefs.getInt("tableTier", Constants.TIER_MIN);
+        displayedTier = MainActivity.prefs.getInt("tableTier", booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN);
+        booksSelected = MainActivity.prefs.getBoolean("tableTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createTableInterface(true);
+        createTableInterface(true, false);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_10_TABLE) {
             startTutorial();
@@ -86,6 +91,7 @@ public class TableActivity extends Activity {
 
         MainActivity.prefs.edit().putInt("tableTier", displayedTier).apply();
         MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+        MainActivity.prefs.edit().putBoolean("tableTab", booksSelected).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -103,13 +109,25 @@ public class TableActivity extends Activity {
         th.start(this);
     }
 
-    private void createTableInterface(boolean clearExisting) {
-        String[] parameters = {
-                String.valueOf(Constants.TYPE_ANVIL_MIN),
-                String.valueOf(Constants.TYPE_ANVIL_MAX),
-                String.valueOf(Constants.TYPE_RING),
-                String.valueOf(displayedTier)};
-        List<Item> items = Item.find(Item.class, "(type BETWEEN ? AND ? OR type = ?) AND tier = ?", parameters, "", "level ASC", "");
+    private void createTableInterface(boolean clearExisting, boolean resetTier) {
+        updateTabs();
+
+        if (resetTier) {
+            displayedTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN;
+        }
+
+        if (booksSelected) {
+            createBooksInterface(clearExisting);
+        } else {
+            createItemsInterface(clearExisting);
+        }
+    }
+
+    private void createItemsInterface(boolean clearExisting) {
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
+                Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
+                Condition.prop("tier").eq(displayedTier)).list();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
@@ -125,6 +143,29 @@ public class TableActivity extends Activity {
                 Constants.STATE_NORMAL);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_TABLE_MIN, Constants.TIER_TABLE_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+    }
+
+    private void createBooksInterface(boolean clearExisting) {
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_BOOK)).orderBy("level").list();
+
+        dh.createItemSelector(
+                (ViewFlipper) findViewById(R.id.viewFlipper),
+                clearExisting,
+                items,
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("tablePosition", 0));
+
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.table),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
+
+        dh.drawArrows(this.displayedTier, Constants.TIER_NONE, Constants.TIER_NONE, findViewById(R.id.downButton), findViewById(R.id.upButton));
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
@@ -193,18 +234,37 @@ public class TableActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < Constants.TIER_TABLE_MAX) {
+        int maxTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_TABLE_MAX;
+        if (displayedTier < maxTier) {
             MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
-            createTableInterface(true);
+            createTableInterface(true, false);
         }
     }
 
     public void goDownTier(View view) {
-        if (displayedTier > Constants.TIER_TABLE_MIN) {
+        int minTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_TABLE_MIN;
+        if (displayedTier > minTier) {
             MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
-            createTableInterface(true);
+            createTableInterface(true, false);
+        }
+    }
+
+    public void toggleTab(View view) {
+        MainActivity.prefs.edit().putInt("tablePosition", 0).apply();
+        booksSelected = !booksSelected;
+        updateTabs();
+        createTableInterface(true, true);
+    }
+
+    private void updateTabs() {
+        if (booksSelected) {
+            (findViewById(R.id.itemsTab)).setAlpha(1f);
+            (findViewById(R.id.ringsTab)).setAlpha(0.3f);
+        } else {
+            (findViewById(R.id.itemsTab)).setAlpha(0.3f);
+            (findViewById(R.id.ringsTab)).setAlpha(1f);
         }
     }
 
