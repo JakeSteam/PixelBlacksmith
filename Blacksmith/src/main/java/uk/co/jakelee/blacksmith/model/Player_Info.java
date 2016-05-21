@@ -257,6 +257,6 @@ public class Player_Info extends SugarRecord {
     }
 
     public enum Statistic {
-        ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige
+        CollectionsCreated, ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige
     }
 }

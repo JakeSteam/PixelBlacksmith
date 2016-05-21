@@ -216,6 +216,10 @@ public class TableActivity extends Activity {
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
+
+            if (itemID.equals(Constants.ITEM_THE_COLLECTION)) {
+                Player_Info.increaseByOne(Player_Info.Statistic.CollectionsCreated);
+            }
         }
 
         if (quantityCrafted > 0) {

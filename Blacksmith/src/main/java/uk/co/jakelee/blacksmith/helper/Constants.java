@@ -76,6 +76,7 @@ public class Constants {
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
+    public static final Long ITEM_THE_COLLECTION = 201L;
 
     public static final Long LOCATION_ANVIL = 1L;
     public static final Long LOCATION_FURNACE = 2L;
