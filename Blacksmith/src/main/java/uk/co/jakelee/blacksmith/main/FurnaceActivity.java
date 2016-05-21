@@ -140,7 +140,7 @@ public class FurnaceActivity extends Activity {
 
     private void createFoodInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
-                Condition.prop("type").eq(Constants.TYPE_FOOD)).orderBy("level").list();
+                Condition.prop("type").eq(Constants.TYPE_PROCESSED_FOOD)).orderBy("level").list();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),

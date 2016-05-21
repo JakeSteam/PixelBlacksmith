@@ -122,6 +122,7 @@ public class Constants {
     public static final int TYPE_RING = 24;
     public static final int TYPE_PAGE = 25;
     public static final int TYPE_BOOK = 26;
+    public static final int TYPE_PROCESSED_FOOD = 27;
     public static final int[] VISITOR_REWARD_TYPES = {TYPE_ORE, TYPE_BAR, TYPE_SECONDARY, TYPE_GEM, TYPE_FOOD, TYPE_POWDERS};
 
     // Demands

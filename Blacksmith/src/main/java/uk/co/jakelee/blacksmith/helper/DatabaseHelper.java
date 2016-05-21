@@ -211,10 +211,13 @@ public class DatabaseHelper {
 
         Item.executeQuery("UPDATE Item SET description = 'A sturdier rod for catching fish.' WHERE id = 67");
         Item.executeQuery("UPDATE Item SET value = 410 WHERE id = 121");
+        Item.executeQuery("UPDATE Item SET type = 27, value = 10 WHERE id = 78"); //cheese
+        Item.executeQuery("UPDATE Item SET type = 27, value = 20 WHERE id = 79"); //bread
 
         List<Type> types = new ArrayList<>();
         types.add(new Type(25L, "Page", 1, 30, 1));
         types.add(new Type(26L, "Book", 1, 30, 1));
+        types.add(new Type(27L, "Processed Food", 1, 1, 12));
         Type.saveInTx(types);
 
         List<Item> items = new ArrayList<>();
@@ -234,6 +237,7 @@ public class DatabaseHelper {
         items.add(new Item(190L, "Black Page (dirty)", "The page's appearance makes you more irritable.", 25, 11, 0, 1));
         items.add(new Item(191L, "White Page", "The page's leaves have petals sprouting from them.", 25, 11, 0, 1));
         items.add(new Item(192L, "White Page (dirty)", "The page has bugs crawling all over.", 25, 11, 0, 1));
+
         items.add(new Item(193L, "Book of Strength", "A powerful book, containing information on combat techniques.", 26, 11, 15000, 1));
         items.add(new Item(194L, "Book of Agility", "An agile book, containing information on dodging techniques.", 26, 11, 15000, 1));
         items.add(new Item(195L, "Book of Nature", "A natural book, containing information on gardening.", 26, 11, 15000, 1));
@@ -243,6 +247,25 @@ public class DatabaseHelper {
         items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 15000, 1));
         items.add(new Item(200L, "Book of Life", "A lively book, containing information on the world's species.", 26, 11, 15000, 1));
         items.add(new Item(201L, "The Collection", "A collection of all available books, only obtained by the most dedicated.", 26, 11, 55000, 100));
+
+        items.add(new Item(202L, "Wheat", "The grain in game falls mainly in... here.", 21, 11, 5, 1));
+        items.add(new Item(203L, "Egg", "Egg-sactly what you need.", 21, 11, 5, 1));
+        items.add(new Item(204L, "Milk", "Freshly squeezed.", 21, 11, 5, 1));
+        items.add(new Item(205L, "Blueberry", "Like a blackberry, but bluer.", 21, 11, 5, 1));
+        items.add(new Item(206L, "Banana", "Not split. Yet.", 21, 11, 5, 1));
+        items.add(new Item(207L, "Orange", "Orange you glad you bought this?", 21, 11, 5, 1));
+        items.add(new Item(208L, "Cherry", "Cherish this cherry. Or use it.", 21, 11, 5, 1));
+        items.add(new Item(209L, "Candy", "Don't eat too many!", 21, 11, 5, 1));
+        items.add(new Item(210L, "Chocolate", "Don't eat too much!", 21, 11, 5, 1));
+        items.add(new Item(211L, "Raw Fish", "A very fishy dishy. Delishy!.", 21, 11, 5, 1));
+        items.add(new Item(212L, "Fruit Salad", "Fresh, not from a can.", 27, 11, 25, 1));
+        items.add(new Item(213L, "Cooked Fish", "A less fishy dishy, still delishy!.", 27, 11, 10, 1));
+        items.add(new Item(214L, "Cooked Meat", "Not dripping any more. Phew!", 27, 11, 10, 1));
+        items.add(new Item(215L, "Ham + Cheese S'wich", "A sandwich with all the insides inside(s).", 27, 11, 45, 1));
+        items.add(new Item(216L, "Ham Sandwich", "Ham, not spam!", 27, 11, 35, 1));
+        items.add(new Item(217L, "Cheese Sandwich", "Not grilled, unfortunately.", 27, 11, 35, 1));
+        items.add(new Item(218L, "Pie", "This pie isn't", 27, 11, 30, 1));
+        items.add(new Item(219L, "Cookie", "Look at the way it crumbles.", 27, 11, 30, 1));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();
@@ -330,6 +353,41 @@ public class DatabaseHelper {
         recipes.add(new Recipe(201L, 1L, 200L, 1L, 1));
         recipes.add(new Recipe(201L, 1L, 52L, 1L, 10000));
 
+        // Bread
+        recipes.add(new Recipe(79L, 1L, 202L, 1L, 1));
+        recipes.add(new Recipe(79L, 1L, 203L, 1L, 1));
+        recipes.add(new Recipe(79L, 1L, 204L, 1L, 1));
+        // Cheese
+        recipes.add(new Recipe(78L, 1L, 204L, 1L, 1));
+        // Fruit Salad
+        recipes.add(new Recipe(212L, 1L, 205L, 1L, 1));
+        recipes.add(new Recipe(212L, 1L, 206L, 1L, 1));
+        recipes.add(new Recipe(212L, 1L, 207L, 1L, 1));
+        recipes.add(new Recipe(212L, 1L, 208L, 1L, 1));
+        // Cooked Fish
+        recipes.add(new Recipe(213L, 1L, 211L, 1L, 1));
+        // Cooked Meat
+        recipes.add(new Recipe(214L, 1L, 80L, 1L, 1));
+        // Ham + Cheese S'wich
+        recipes.add(new Recipe(215L, 1L, 79L, 1L, 1));
+        recipes.add(new Recipe(215L, 1L, 78L, 1L, 1));
+        recipes.add(new Recipe(215L, 1L, 214L, 1L, 1));
+        // Ham S'wich
+        recipes.add(new Recipe(216L, 1L, 79L, 1L, 1));
+        recipes.add(new Recipe(216L, 1L, 214L, 1L, 1));
+        // Cheese S'wich
+        recipes.add(new Recipe(217L, 1L, 79L, 1L, 1));
+        recipes.add(new Recipe(217L, 1L, 78L, 1L, 1));
+        // Pie
+        recipes.add(new Recipe(218L, 1L, 202L, 1L, 1));
+        recipes.add(new Recipe(218L, 1L, 203L, 1L, 1));
+        recipes.add(new Recipe(218L, 1L, 204L, 1L, 1));
+        recipes.add(new Recipe(218L, 1L, 205L, 1L, 1));
+        // Cookie
+        recipes.add(new Recipe(219L, 1L, 202L, 1L, 1));
+        recipes.add(new Recipe(219L, 1L, 203L, 1L, 1));
+        recipes.add(new Recipe(219L, 1L, 204L, 1L, 1));
+        recipes.add(new Recipe(219L, 1L, 210L, 1L, 1));
         Recipe.saveInTx(recipes);
 
         Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 5 WHERE visitor_id = 8");
