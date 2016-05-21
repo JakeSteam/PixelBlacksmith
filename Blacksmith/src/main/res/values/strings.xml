@@ -133,6 +133,12 @@
     <string name="socialMediaText">Social Media</string>
     <string name="workerText">Workers</string>
     <string name="toolText">Tools</string>
+    <string name="foodText">Food</string>
+    <string name="itemsText">Items</string>
+    <string name="ringsText">Rings</string>
+    <string name="booksText">Books</string>
+    <string name="enchantText">Enchants</string>
+    <string name="powderText">Powders</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>

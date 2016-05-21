@@ -45,6 +45,7 @@ public class FurnaceActivity extends Activity {
     private TextView smelt1;
     private TextView smelt10;
     private TextView smelt100;
+    private boolean foodSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,12 +53,13 @@ public class FurnaceActivity extends Activity {
         setContentView(R.layout.activity_furnace);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
+        foodSelected = MainActivity.prefs.getBoolean("furnaceTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createFurnaceInterface(true);
+        createInterface(true);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_6_FURNACE) {
             startTutorial();
@@ -86,6 +88,7 @@ public class FurnaceActivity extends Activity {
     public void onStop() {
         super.onStop();
         MainActivity.prefs.edit().putInt("furnacePosition", mViewFlipper.getDisplayedChild()).apply();
+        MainActivity.prefs.edit().putBoolean("furnaceTab", foodSelected).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -104,9 +107,40 @@ public class FurnaceActivity extends Activity {
         th.start(this);
     }
 
+    private void createInterface(boolean clearExisting) {
+        updateTabs();
+
+        if (foodSelected) {
+            createFoodInterface(clearExisting);
+        } else {
+            createFurnaceInterface(clearExisting);
+        }
+    }
+
     private void createFurnaceInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_BAR)).list();
+
+        dh.createItemSelector(
+                (ViewFlipper) findViewById(R.id.viewFlipper),
+                clearExisting,
+                items,
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("furnacePosition", 0));
+
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.furnace),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+    }
+
+    private void createFoodInterface(boolean clearExisting) {
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_FOOD)).orderBy("level").list();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
@@ -184,6 +218,23 @@ public class FurnaceActivity extends Activity {
     public void calculatingComplete() {
         MainActivity.vh.furnaceBusy = false;
         brightenButtons();
+    }
+
+    public void toggleTab(View view) {
+        MainActivity.prefs.edit().putInt("furnacePosition", 0).apply();
+        foodSelected = !foodSelected;
+        updateTabs();
+        createInterface(true);
+    }
+
+    private void updateTabs() {
+        if (foodSelected) {
+            (findViewById(R.id.itemsTab)).setAlpha(1f);
+            (findViewById(R.id.foodTab)).setAlpha(0.3f);
+        } else {
+            (findViewById(R.id.itemsTab)).setAlpha(0.3f);
+            (findViewById(R.id.foodTab)).setAlpha(1f);
+        }
     }
 
     public void openHelp(View view) {

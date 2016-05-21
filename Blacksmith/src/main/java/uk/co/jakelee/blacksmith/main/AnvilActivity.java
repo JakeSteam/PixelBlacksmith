@@ -97,7 +97,6 @@ public class AnvilActivity extends Activity {
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
-
         return super.onTouchEvent(event);
     }
 
