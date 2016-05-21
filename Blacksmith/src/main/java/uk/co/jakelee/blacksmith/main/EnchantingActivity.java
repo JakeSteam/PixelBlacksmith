@@ -180,9 +180,11 @@ public class EnchantingActivity extends Activity {
         if (powderSelected) {
             (findViewById(R.id.enchantTab)).setAlpha(1f);
             (findViewById(R.id.powderTab)).setAlpha(0.3f);
+            (findViewById(R.id.crushGem)).setVisibility(View.VISIBLE);
         } else {
             (findViewById(R.id.enchantTab)).setAlpha(0.3f);
             (findViewById(R.id.powderTab)).setAlpha(1f);
+            (findViewById(R.id.crushGem)).setVisibility(View.GONE);
         }
     }
 
@@ -228,8 +230,8 @@ public class EnchantingActivity extends Activity {
         return itemButton;
     }
 
-    private void clickPowderButton(View v) {
-        Long powderID = (Long) v.getTag();
+    public void clickPowderButton(View v) {
+        Long powderID = (Long) mViewFlipper.getCurrentView().getTag();
         Item powder = Item.findById(Item.class, powderID);
 
         int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
@@ -237,13 +239,17 @@ public class EnchantingActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
 
-            createPowderInterface(false);
+            dh.createCraftingInterface(
+                    (RelativeLayout) findViewById(R.id.enchanting),
+                    (TableLayout) findViewById(R.id.itemsTable),
+                    mViewFlipper,
+                    Constants.STATE_NORMAL);
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
-    private void clickEnchantButton(View v) {
+    public void clickEnchantButton(View v) {
         View enchantingItemInfo = findViewById(R.id.enchanting);
 
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
@@ -285,6 +291,14 @@ public class EnchantingActivity extends Activity {
 
             View enchanting = findViewById(R.id.enchanting);
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
+
+            if (powderSelected) {
+                dh.createCraftingInterface(
+                        (RelativeLayout) findViewById(R.id.enchanting),
+                        (TableLayout) findViewById(R.id.itemsTable),
+                        mViewFlipper,
+                        Constants.STATE_NORMAL);
+            }
 
             HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
             horizontalBar.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());

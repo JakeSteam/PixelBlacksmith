@@ -151,6 +151,28 @@
                 android:shrinkColumns="1"
                 android:stretchColumns="1" />
         </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/crushGem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_extra_wide"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="clickPowderButton"
+                android:text="@string/crushGemText"
+                android:textSize="25sp" />
+        </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

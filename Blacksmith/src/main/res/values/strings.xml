@@ -282,6 +282,7 @@
     <string name="sell1Text">Sell 1</string>
     <string name="sell10Text">Sell 10</string>
     <string name="sell100Text">Sell 100</string>
+    <string name="crushGemText">Crush Gem</string>
 
     <string name="soundSettingText">Enable sounds?</string>
     <string name="musicSettingText">Enable music?</string>
