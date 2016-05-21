@@ -555,7 +555,7 @@ public class DisplayHelper {
     }
 
     public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
-        Context context = ingredientsTable.getContext();
+        final Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
         ingredientsTable.removeAllViews();
@@ -580,7 +580,7 @@ public class DisplayHelper {
 
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
-            Item itemIngredient = Item.findById(Item.class, ingredient.getIngredient());
+            final Item itemIngredient = Item.findById(Item.class, ingredient.getIngredient());
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
@@ -588,6 +588,11 @@ public class DisplayHelper {
             TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
+            itemNameView.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, itemIngredient.getDescription(), false);
+                }
+            });
 
             row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
             row.addView(itemNameView);

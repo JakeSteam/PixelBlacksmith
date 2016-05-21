@@ -244,7 +244,7 @@ public class DatabaseHelper {
         items.add(new Item(193L, "Book of Strength", "A powerful book, containing information on combat techniques.", 26, 11, 0, 1));
         items.add(new Item(194L, "Book of Agility", "An agile book, containing information on dodging techniques.", 26, 11, 0, 1));
         items.add(new Item(195L, "Book of Nature", "A natural book, containing information on gardening.", 26, 11, 0, 1));
-        items.add(new Item(196L, "Book of Water", "A wet book, containing information on ", 26, 11, 0, 1));
+        items.add(new Item(196L, "Book of Water", "A wet book, containing information on sea creatures.", 26, 11, 0, 1));
         items.add(new Item(197L, "Book of Peace", "A relaxing book, helping to negotiate between others.", 26, 11, 0, 1));
         items.add(new Item(198L, "Book of Earth", "A rather brown book, containing information about the world.", 26, 11, 0, 1));
         items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 0, 1));
