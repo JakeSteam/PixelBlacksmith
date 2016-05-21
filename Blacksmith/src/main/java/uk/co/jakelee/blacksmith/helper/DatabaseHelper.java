@@ -204,13 +204,6 @@ public class DatabaseHelper {
             patch130to140();
         }
 
-        List<Player_Info> player_infos = new ArrayList<>();
-        player_infos.add(new Player_Info("LastDonated", "never"));
-        player_infos.add(new Player_Info("TimesDonated", 0));
-        player_infos.add(new Player_Info("LastBonusClaimed", System.currentTimeMillis()));
-        player_infos.add(new Player_Info("BonusesClaimed", 0));
-        Player_Info.saveInTx(player_infos);
-
         List<Setting> settings = new ArrayList<>();
         settings.add(new Setting(8L, "HideAllAdverts", false));
         settings.add(new Setting(9L, "BonusNotifications", true));
@@ -354,8 +347,14 @@ public class DatabaseHelper {
         Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 3 * stock, default_stock = 3 * default_stock WHERE trader_type = 16");
         Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 5 * stock, default_stock = 5 * default_stock WHERE trader_type = 17");
 
-        Player_Info collection = new Player_Info("CollectionsCreated", 0, 0);
-        collection.save();
+        List<Player_Info> player_infos = new ArrayList<>();
+        player_infos.add(new Player_Info("LastDonated", "never"));
+        player_infos.add(new Player_Info("TimesDonated", 0));
+        player_infos.add(new Player_Info("LastBonusClaimed", System.currentTimeMillis()));
+        player_infos.add(new Player_Info("BonusesClaimed", 0));
+        player_infos.add(new Player_Info("CollectionsCreated", 0, 0));
+        Player_Info.saveInTx(player_infos);
+
         Achievement collectionAchiev = new Achievement("The Collector", "Completed The Collection", 1, 19, "CgkI6tnE2Y4OEAIQJA");
         collectionAchiev.save();
 

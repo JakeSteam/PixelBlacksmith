@@ -129,7 +129,7 @@ public class VisitorHelper {
 
         int maxQuantity = (criteria.getName().equals("State") ? Constants.MAXIMUM_QUANTITY_STATE : Constants.MAXIMUM_QUANTITY);
         int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, maxQuantity);
-        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE));
+        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE)); // 70% chance of demands optional
 
         // Check if the current criteria already exists. If it does, try again.
         Pair<Long, Long> currentCriteria = new Pair<>(criteriaType, criteriaValue);
@@ -162,8 +162,8 @@ public class VisitorHelper {
         return list.get(randomIndex);
     }
 
-    public static boolean getRandomBoolean(int truePercentage) {
-        return getRandomNumber(0, 100) > truePercentage;
+    public static boolean getRandomBoolean(int falsePercentage) {
+        return getRandomNumber(0, 100) > falsePercentage;
     }
 
     private static Visitor_Type selectVisitorType() {

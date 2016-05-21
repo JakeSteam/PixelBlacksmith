@@ -128,11 +128,11 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         int minimumRewards = 4;
         int maximumRewards = 8;
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
-        boolean rewardPage = VisitorHelper.getRandomBoolean(35);
+        boolean rewardPage = VisitorHelper.getRandomBoolean(65); // 35% chance to get page
 
         // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
         Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);
-        if (VisitorHelper.getRandomBoolean(75)) {
+        if (VisitorHelper.getRandomBoolean(25)) {
             int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
             List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
             selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
@@ -166,8 +166,8 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            rewardString += String.format(context.getString(R.string.advertWatchedPageSuffix),
-                rewardedPage.getName());
+            rewardString += (" " + String.format(context.getString(R.string.advertWatchedPageSuffix),
+                rewardedPage.getName()));
         }
 
         return rewardString;

@@ -379,7 +379,7 @@
     <string name="advertWatchedPremium2">How strange, the chest\'s contents of %1$dx %2$s seem to be duplicated!</string>
     <string name="advertWatchedLegendaryPremium1">The chest is stuffed full of %1$dx %2$s and a rare %3$s!</string>
     <string name="advertWatchedLegendaryPremium2">Hey, what\'s this in the corner of the chest... %1$dx %2$s and a rare %3$s!</string>
-    <string name="advertWatchedPageSuffix"> Oh, and a %s!</string>
+    <string name="advertWatchedPageSuffix">Oh, and a %s!</string>
 
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
