@@ -35,7 +35,8 @@ public class Trader_Stock extends SugarRecord {
     }
 
     public static String getRestockTimeLeft() {
-        return DateHelper.getHoursMinsRemaining(getMillisecondsUntilRestock());
+        long milliseconds = getMillisecondsUntilRestock();
+        return DateHelper.getHoursMinsRemaining(milliseconds > 0 ? milliseconds : 0);
     }
 
     public static long getMillisecondsUntilRestock() {

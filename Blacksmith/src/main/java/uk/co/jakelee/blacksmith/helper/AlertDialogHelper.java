@@ -367,6 +367,7 @@ public class AlertDialogHelper {
 
         alertDialog.setNegativeButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+                MainActivity.vh.traderBusy = true;
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 List<Pair<Long, Integer>> items = new ArrayList<>();
@@ -399,6 +400,7 @@ public class AlertDialogHelper {
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
 
+                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });
@@ -437,6 +439,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+                MainActivity.vh.traderBusy = true;
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 boolean successful = true;
@@ -474,6 +477,7 @@ public class AlertDialogHelper {
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
 
+                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });

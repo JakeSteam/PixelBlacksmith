@@ -5,4 +5,5 @@ public class VariableHelper {
     public boolean anvilBusy = false;
     public boolean tableBusy = false;
     public boolean inventoryBusy = false;
+    public boolean traderBusy = false;
 }
