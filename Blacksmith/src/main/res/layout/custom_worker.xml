@@ -15,6 +15,14 @@
         app:layout_widthPercent="35%" />
 
     <ImageView
+        android:id="@+id/workerFood"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignTop="@id/workerCharacter"
+        android:layout_alignRight="@id/workerCharacter"
+        app:layout_widthPercent="17%"/>
+
+    <ImageView
         android:id="@+id/workerTool"
         android:layout_width="wrap_content"
         android:layout_height="90dp"

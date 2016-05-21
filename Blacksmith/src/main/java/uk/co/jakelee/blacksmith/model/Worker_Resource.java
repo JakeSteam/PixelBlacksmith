@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
 
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
+
 public class Worker_Resource extends SugarRecord {
     private int toolID;
     private int resourceID;
@@ -49,4 +51,11 @@ public class Worker_Resource extends SugarRecord {
     public void setResourceQuantity(int resourceQuantity) {
         this.resourceQuantity = resourceQuantity;
     }
+
+    public void applyFoodBonus(Item foodItem, boolean favouriteFoodUsed) {
+        int bonusPercent = (favouriteFoodUsed ? 2 : 1) * foodItem.getValue();
+        int adjustedQuantity = (int) (this.getResourceQuantity() * VisitorHelper.percentToMultiplier(bonusPercent));
+        this.setResourceQuantity(adjustedQuantity);
+    }
+
 }

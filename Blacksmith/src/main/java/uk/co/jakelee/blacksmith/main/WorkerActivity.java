@@ -76,6 +76,7 @@ public class WorkerActivity extends Activity {
     private RelativeLayout createWorkerRow(Worker worker) {
         RelativeLayout traderRoot = createTraderRoot();
         ImageView workerCharacter = (ImageView) traderRoot.findViewById(R.id.workerCharacter);
+        ImageView workerFood = (ImageView) traderRoot.findViewById(R.id.workerFood);
         TextView workerCharacterText = (TextView) traderRoot.findViewById(R.id.workerCharacterText);
         ImageView workerTool = (ImageView) traderRoot.findViewById(R.id.workerTool);
         TextView workerToolText = (TextView) traderRoot.findViewById(R.id.workerToolText);
@@ -95,6 +96,13 @@ public class WorkerActivity extends Activity {
                 }
             });
             workerCharacterText.setText(WorkerHelper.isReady(worker) ? R.string.workerStatusReady : R.string.workerStatusBusy);
+
+            int resourceID = R.drawable.transparent;
+            if (worker.getFoodUsed() > 0) {
+                resourceID = DisplayHelper.getItemDrawableID(this, worker.getFoodUsed());
+            }
+            workerFood.setImageResource(resourceID);
+
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));
             workerTool.setTag(worker);
             workerTool.setOnClickListener(new Button.OnClickListener() {
@@ -108,18 +116,20 @@ public class WorkerActivity extends Activity {
                 }
             });
             workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
+
             workerResourceContainer.setTag(worker);
             workerResourceContainer.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Worker worker = (Worker) v.getTag();
                     if (worker.isPurchased()) {
-                        List<Worker_Resource> resources = WorkerHelper.getResourcesByTool(worker.getToolUsed());
+                        List<Worker_Resource> resources = WorkerHelper.getResourcesByTool((int) worker.getToolUsed());
                         ToastHelper.showToast(activity, Toast.LENGTH_LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(resources, false)), false);
+                                WorkerHelper.getRewardResourcesText(worker, resources, false)), false);
                     }
                 }
             });
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
+
             workerButton.setText(WorkerHelper.getButtonText(worker));
             workerButton.setTag(worker);
             workerButton.setOnClickListener(new Button.OnClickListener() {
