@@ -217,6 +217,7 @@ public class DatabaseHelper {
         Setting.saveInTx(settings);
 
         Item.executeQuery("UPDATE Item SET description = 'A sturdier rod for catching fish.' WHERE id = 67");
+        Item.executeQuery("UPDATE Item SET value = 410 WHERE id = 121");
 
         List<Type> types = new ArrayList<>();
         types.add(new Type(25L, "Page", 1, 30, 1));
