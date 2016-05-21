@@ -416,6 +416,35 @@ public class DatabaseHelper {
         Achievement collectionAchiev = new Achievement("The Collector", "Completed The Collection", 1, 19, "CgkI6tnE2Y4OEAIQJA");
         collectionAchiev.save();
 
+        Worker_Resource.deleteAll(Worker_Resource.class, "tool_id IN (34, 50, 67, 95, 111, 127, 146, 175)");
+        List<Worker_Resource> workerResources = new ArrayList<>();
+        workerResources.add(new Worker_Resource(34, 77, 1, 5)); // Bronze fishing rod
+        workerResources.add(new Worker_Resource(34, 80, 1, 5)); // Bronze fishing rod
+        workerResources.add(new Worker_Resource(50, 202, 1, 3)); // Iron fishing rod
+        workerResources.add(new Worker_Resource(50, 203, 1, 3)); // Iron fishing rod
+        workerResources.add(new Worker_Resource(50, 204, 1, 3)); // Iron fishing rod
+        workerResources.add(new Worker_Resource(67, 202, 1, 6)); // Steel fishing rod
+        workerResources.add(new Worker_Resource(67, 203, 1, 6)); // Steel fishing rod
+        workerResources.add(new Worker_Resource(67, 204, 1, 6)); // Steel fishing rod
+        workerResources.add(new Worker_Resource(95, 205, 1, 5)); // Mithril fishing rod
+        workerResources.add(new Worker_Resource(95, 206, 1, 5)); // Mithril fishing rod
+        workerResources.add(new Worker_Resource(95, 207, 1, 5)); // Mithril fishing rod
+        workerResources.add(new Worker_Resource(95, 208, 1, 5)); // Mithril fishing rod
+        workerResources.add(new Worker_Resource(111, 209, 1, 10)); // Adamant fishing rod
+        workerResources.add(new Worker_Resource(111, 210, 1, 10)); // Adamant fishing rod
+        workerResources.add(new Worker_Resource(127, 77, 1, 10)); // Rune fishing rod
+        workerResources.add(new Worker_Resource(127, 203, 1, 10)); // Rune fishing rod
+        workerResources.add(new Worker_Resource(127, 80, 1, 10)); // Rune fishing rod
+        workerResources.add(new Worker_Resource(127, 211, 1, 10)); // Rune fishing rod
+        workerResources.add(new Worker_Resource(146, 205, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(146, 206, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(146, 207, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(146, 208, 1, 15)); // Dragon fishing rod
+        workerResources.add(new Worker_Resource(175, 202, 1, 30)); // Legendary fishing rod
+        workerResources.add(new Worker_Resource(175, 203, 1, 30)); // Legendary fishing rod
+        workerResources.add(new Worker_Resource(175, 204, 1, 30)); // Legendary fishing rod
+        Worker_Resource.saveInTx(workerResources);
+
     }
 
     private static void createAchievement() {
