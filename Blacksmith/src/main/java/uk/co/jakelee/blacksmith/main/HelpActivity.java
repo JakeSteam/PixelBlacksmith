@@ -57,6 +57,8 @@ public class HelpActivity extends Activity {
             displayHelpOverview(layout);
         } else if (topic == TOPICS.Furnace) {
             displayHelpFurnace(layout);
+        } else if (topic == TOPICS.Advertising) {
+            displayHelpAdvertising(layout);
         } else if (topic == TOPICS.Anvil) {
             displayHelpAnvil(layout);
         } else if (topic == TOPICS.Inventory) {
@@ -100,12 +102,20 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Get out of here, there's money to make!", 22));
     }
 
+    private void displayHelpAdvertising(LinearLayout layout) {
+        layout.addView(dh.createTextView("Advertising\n", 26));
+        layout.addView(dh.createTextView("There are 2 types of advert in Pixel Blacksmith.\n", 22));
+        layout.addView(dh.createTextView("The first is a 'convenience' one, e.g. skipping a timer, getting a free restock. The other type is the 'bonus' advert, accessible via the bonus chest.\n", 22));
+        layout.addView(dh.createTextView("This chest can only be opened every few hours (premium members have a shorter timer).\n", 22));
+        layout.addView(dh.createTextView("Premium members can also disable adverts. If this option is selected, all mention of adverts will be removed.", 22));
+    }
+
     private void displayHelpOverview(LinearLayout layout) {
         layout.addView(dh.createTextView("Overview\n", 26));
         layout.addView(dh.createTextView("So, here's the deal: You're a blacksmith. A not very good one, to be honest.\n", 22));
         layout.addView(dh.createTextView("If you want to make a name for yourself, you're going to have to keep visitors happy, and keep an eye on your resources.\n", 22));
         layout.addView(dh.createTextView("Or, I guess you could ignore all the visitors and just work towards making the high end gear. But, y'know, don't do that.\n", 22));
-        layout.addView(dh.createTextView("Generally, ores come from the market and other ingredients come from visitors and certain traders.\n", 22));
+        layout.addView(dh.createTextView("Generally, ores come from the market and other ingredients come from visitors and certain traders. You can also hire workers to gather resources for you.\n", 22));
         layout.addView(dh.createTextView("These ores are smelted in the furnace, crafted at the anvil, finished at the table, and embedded with gems at the gem table, before being sold to a visitor.\n", 22));
         layout.addView(dh.createTextView("Visitors, like the rest of us, have preferences. Once a visitor has been sold one of their favourite types / tiers / states of item, their preference and associated bonus will be saved.\n", 22));
         layout.addView(dh.createTextView("Next time they visit, selling them preferred items will provide a nice healthy bonus tip for yourself.\n", 22));
@@ -126,6 +136,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("After the furnace creates bars, the anvil must be used to hammer them into shape.\n", 22));
         layout.addView(dh.createTextView("Most recipes only require bars, with more valuable / higher tier items requiring more bars.\n", 22));
         layout.addView(dh.createTextView("Of course, these unfinished items aren't quite done yet. They will still require an addition of a secondary ingredient, which is done at the crafting table.\n", 22));
+        layout.addView(dh.createTextView("Rings can also be crafted via the separate 'Rings' tab.\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
         layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.", 22));
     }
@@ -150,6 +161,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Gem Table\n", 26));
         layout.addView(dh.createTextView("Once an item is finished, its value can be greatly increased by putting a valuable gem inside.\n", 22));
         layout.addView(dh.createTextView("Use these wisely, as they are only available in limited quantities, and certain visitors will pay a very hefty bonus for items with their preferred gem in.\n", 22));
+        layout.addView(dh.createTextView("Gems can also be crushed into powders via the 'Powder' tab.\n", 22));
         layout.addView(dh.createTextView("As always, swipe left and right to change items, and use the up and down arrows to change tiers.\n", 22));
         layout.addView(dh.createTextView("Once the desired item is selected, tap the gem to be added.", 22));
     }
@@ -173,7 +185,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The rate app button will link you to the game's Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\n", 22));
         layout.addView(dh.createTextView("Google Play Games services can also be accessed here, and any codes given by customer support can be entered.\n", 22));
         layout.addView(dh.createTextView("If you're over level 70, a prestige button will also be visible.\n", 22));
-        layout.addView(dh.createTextView("Prestiging resets all items, XP, coins, upgrades, visitor, and trader progress, but keeps statistics and premium bonuses. In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
+        layout.addView(dh.createTextView("Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses. In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
     }
 
     private void displayHelpTrader(LinearLayout layout) {
@@ -205,6 +217,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Table\n", 26));
         layout.addView(dh.createTextView("The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\n", 22));
         layout.addView(dh.createTextView("After this, items can be optionally embedded with gems at the gem table.\n", 22));
+        layout.addView(dh.createTextView("Additionally, extremely rare pages can be crafted into books here.\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
         layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.", 22));
     }
@@ -297,5 +310,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
+    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
 }
