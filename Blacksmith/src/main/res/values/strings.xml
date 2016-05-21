@@ -352,7 +352,7 @@
     <string name="traderArrived">Trader \"%s\" has arrived.</string>
 
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
-    <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item (%1$s) and 3x the super rare %2$s!</string>
+    <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item %1$s and 3x the super rare %2$s!</string>
     <string name="visitorArrived">%d visitor(s) have arrived.</string>
     <string name="visitorArriving">A visitor wanders into the shop...</string>
     <string name="visitorsArriving">%d visitors wander into the shop...</string>
