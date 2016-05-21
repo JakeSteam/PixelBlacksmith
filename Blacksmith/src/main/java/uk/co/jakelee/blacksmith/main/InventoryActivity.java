@@ -97,24 +97,27 @@ public class InventoryActivity extends Activity {
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
 
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
-            sell.setClickable(true);
-            sell.setTextColor(getResources().getColorStateList(R.color.text_color));
-            sell.setGravity(Gravity.CENTER);
-            sell.setBackgroundResource(R.drawable.sell_small);
-
-            sell.setTag(R.id.itemID, item.getId());
-            sell.setTag(R.id.itemState, inventoryItem.getState());
-            sell.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickSellButton(v);
-                }
-            });
-
             itemRow.addView(count);
             itemRow.addView(image);
             itemRow.addView(name);
-            itemRow.addView(sell);
+
+            if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
+                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
+                sell.setClickable(true);
+                sell.setTextColor(getResources().getColorStateList(R.color.text_color));
+                sell.setGravity(Gravity.CENTER);
+                sell.setBackgroundResource(R.drawable.sell_small);
+
+                sell.setTag(R.id.itemID, item.getId());
+                sell.setTag(R.id.itemState, inventoryItem.getState());
+                sell.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        clickSellButton(v);
+                    }
+                });
+                itemRow.addView(sell);
+            }
+
             tableRows.add(itemRow);
         }
 

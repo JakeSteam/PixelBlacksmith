@@ -170,35 +170,38 @@ public class TradeActivity extends Activity {
                 name.setPadding(0, 0, 0, 17);
                 name.setSingleLine(false);
 
-                // Create a sell button for that item
-                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
-                sell.setWidth(dh.convertDpToPixel(40));
-                sell.setShadowLayer(10, 0, 0, Color.WHITE);
-                sell.setGravity(Gravity.CENTER);
-                sell.setBackgroundResource(R.drawable.sell_small);
-                sell.setTag(R.id.itemID, item.getId());
-                sell.setTag(R.id.itemState, inventory.getState());
-                sell.setOnClickListener(new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        clickSellButton(v);
-                    }
-                });
-
-                // Work out the multiplier that the player can see
-                TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
-                double bonus = visitorType.getDisplayedBonus(inventory);
-                if (bonus > Constants.DEFAULT_BONUS) {
-                    bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
-                    bonusText.setTextColor(Color.parseColor("#267c18"));
-                } else if (bonus == Constants.DEFAULT_BONUS && visitorType.isStateDiscovered() && visitorType.isTierDiscovered() && visitorType.isTypeDiscovered()) {
-                    bonusText.setText("+0%");
-                }
-
                 itemRow.addView(quantity);
                 itemRow.addView(image);
                 itemRow.addView(name);
-                itemRow.addView(sell);
-                itemRow.addView(bonusText);
+
+                // Create a sell button for that item
+                if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
+                    TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
+                    sell.setWidth(dh.convertDpToPixel(40));
+                    sell.setShadowLayer(10, 0, 0, Color.WHITE);
+                    sell.setGravity(Gravity.CENTER);
+                    sell.setBackgroundResource(R.drawable.sell_small);
+                    sell.setTag(R.id.itemID, item.getId());
+                    sell.setTag(R.id.itemState, inventory.getState());
+                    sell.setOnClickListener(new Button.OnClickListener() {
+                        public void onClick(View v) {
+                            clickSellButton(v);
+                        }
+                    });
+
+                    // Work out the multiplier that the player can see
+                    TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
+                    double bonus = visitorType.getDisplayedBonus(inventory);
+                    if (bonus > Constants.DEFAULT_BONUS) {
+                        bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
+                        bonusText.setTextColor(Color.parseColor("#267c18"));
+                    } else if (bonus == Constants.DEFAULT_BONUS && visitorType.isStateDiscovered() && visitorType.isTierDiscovered() && visitorType.isTypeDiscovered()) {
+                        bonusText.setText("+0%");
+                    }
+
+                    itemRow.addView(sell);
+                    itemRow.addView(bonusText);
+                }
                 tableRows.add(itemRow);
             }
         }

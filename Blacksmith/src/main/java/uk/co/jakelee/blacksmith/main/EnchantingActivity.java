@@ -209,7 +209,7 @@ public class EnchantingActivity extends Activity {
         itemButton.setGravity(Gravity.CENTER);
 
         ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, true, true);
-        itemImage.setPadding(0, 0, dh.convertDpToPixel(2), 0);
+        itemImage.setPadding(dh.convertDpToPixel(16), 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 
         int quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
