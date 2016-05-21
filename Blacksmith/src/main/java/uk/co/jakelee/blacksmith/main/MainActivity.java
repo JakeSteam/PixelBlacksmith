@@ -489,7 +489,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void callbackBonus() {
-        // Needs to actually give a reward..!
         String rewardText = AdvertHelper.createAdvertReward(this);
         ToastHelper.showToast(this, Toast.LENGTH_LONG, rewardText, true);
 

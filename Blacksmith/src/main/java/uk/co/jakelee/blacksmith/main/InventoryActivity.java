@@ -71,7 +71,7 @@ public class InventoryActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void updateInventoryTable(Activity activity) {
+    private void updateInventoryTable(final Activity activity) {
         List<TableRow> tableRows = new ArrayList<>();
         List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
         final TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
@@ -85,7 +85,7 @@ public class InventoryActivity extends Activity {
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
-            Item item = Item.findById(Item.class, inventoryItem.getItem());
+            final Item item = Item.findById(Item.class, inventoryItem.getItem());
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
@@ -96,6 +96,11 @@ public class InventoryActivity extends Activity {
             name.setSingleLine(false);
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
+            name.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
+                }
+            });
 
             itemRow.addView(count);
             itemRow.addView(image);

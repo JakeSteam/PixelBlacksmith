@@ -241,15 +241,15 @@ public class DatabaseHelper {
         items.add(new Item(190L, "Black Page (dirty)", "The page's appearance makes you more irritable.", 25, 11, 0, 1));
         items.add(new Item(191L, "White Page", "The page's leaves have petals sprouting from them.", 25, 11, 0, 1));
         items.add(new Item(192L, "White Page (dirty)", "The page has bugs crawling all over.", 25, 11, 0, 1));
-        items.add(new Item(193L, "Book of Strength", "A powerful book, containing information on combat techniques.", 26, 11, 0, 1));
-        items.add(new Item(194L, "Book of Agility", "An agile book, containing information on dodging techniques.", 26, 11, 0, 1));
-        items.add(new Item(195L, "Book of Nature", "A natural book, containing information on gardening.", 26, 11, 0, 1));
-        items.add(new Item(196L, "Book of Water", "A wet book, containing information on sea creatures.", 26, 11, 0, 1));
-        items.add(new Item(197L, "Book of Peace", "A relaxing book, helping to negotiate between others.", 26, 11, 0, 1));
-        items.add(new Item(198L, "Book of Earth", "A rather brown book, containing information about the world.", 26, 11, 0, 1));
-        items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 0, 1));
-        items.add(new Item(200L, "Book of Life", "A lively book, containing information on the world's species.", 26, 11, 0, 1));
-        items.add(new Item(201L, "The Collection", "A collection of all available books, only obtained by the most dedicated.", 26, 11, 0, 100));
+        items.add(new Item(193L, "Book of Strength", "A powerful book, containing information on combat techniques.", 26, 11, 5000, 1));
+        items.add(new Item(194L, "Book of Agility", "An agile book, containing information on dodging techniques.", 26, 11, 5000, 1));
+        items.add(new Item(195L, "Book of Nature", "A natural book, containing information on gardening.", 26, 11, 5000, 1));
+        items.add(new Item(196L, "Book of Water", "A wet book, containing information on sea creatures.", 26, 11, 5000, 1));
+        items.add(new Item(197L, "Book of Peace", "A relaxing book, helping to negotiate between others.", 26, 11, 5000, 1));
+        items.add(new Item(198L, "Book of Earth", "A rather brown book, containing information about the world.", 26, 11, 5000, 1));
+        items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 5000, 1));
+        items.add(new Item(200L, "Book of Life", "A lively book, containing information on the world's species.", 26, 11, 5000, 1));
+        items.add(new Item(201L, "The Collection", "A collection of all available books, only obtained by the most dedicated.", 26, 11, 25000, 100));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();

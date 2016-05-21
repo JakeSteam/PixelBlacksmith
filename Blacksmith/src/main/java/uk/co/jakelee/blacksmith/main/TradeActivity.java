@@ -138,7 +138,7 @@ public class TradeActivity extends Activity {
         demandProgress.setProgress(demand.getQuantityProvided());
     }
 
-    private void displayItemsTable(Activity activity) {
+    private void displayItemsTable(final Activity activity) {
         List<TableRow> tableRows = new ArrayList<>();
         List<Inventory> matchingItems = demand.getMatchingInventory();
         final TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
@@ -160,7 +160,7 @@ public class TradeActivity extends Activity {
 
             for (Inventory inventory : matchingItems) {
                 TableRow itemRow = new TableRow(getApplicationContext());
-                Item item = Item.findById(Item.class, inventory.getItem());
+                final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
                 ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, true, true);
 
@@ -169,6 +169,11 @@ public class TradeActivity extends Activity {
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 name.setPadding(0, 0, 0, 17);
                 name.setSingleLine(false);
+                name.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
+                    }
+                });
 
                 itemRow.addView(quantity);
                 itemRow.addView(image);
