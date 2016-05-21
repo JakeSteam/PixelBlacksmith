@@ -24,7 +24,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import hotchemi.android.rate.AppRate;
-import hotchemi.android.rate.OnClickButtonListener;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AdvertHelper;
@@ -41,7 +40,6 @@ import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
-import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -112,14 +110,6 @@ public class MainActivity extends AppCompatActivity implements
                 .setLaunchTimes(4)
                 .setRemindInterval(3)
                 .setShowLaterButton(true)
-                .setOnClickButtonListener(new OnClickButtonListener() {
-                    @Override
-                    public void onClickButton(int which) {
-                        if (which == -1) {
-                            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 500);
-                        }
-                    }
-                })
                 .monitor();
 
         AppRate.showRateDialogIfMeetsConditions(this);
