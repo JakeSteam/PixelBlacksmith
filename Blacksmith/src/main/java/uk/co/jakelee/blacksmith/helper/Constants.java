@@ -58,6 +58,7 @@ public class Constants {
     public static final int VISITS_STARTED = 33;
     public static final int VISITS_UNSTARTED = 0;
     public static final int TROPHY_ITEM_REWARDS = 10;
+    public static final int TROPHY_PAGE_REWARDS = 3;
 
     // Error codes
     public static final int SUCCESS = 1;

@@ -389,7 +389,21 @@ public class VisitorHelper {
         }
     }
 
-    public static Item createVisitorTrophyReward(Visitor visitor) {
+    public static List<Pair<Item, Integer>> createVisitorTrophyReward(Visitor visitor) {
+        List<Pair<Item, Integer>> rewards = new ArrayList<>();
+
+        Pair<Item, Integer> itemReward = createVisitorItemReward(visitor);
+        Pair<Item, Integer> pageReward = createVisitorPageReward();
+        rewards.add(itemReward);
+        rewards.add(pageReward);
+
+        Inventory.addItem(itemReward.first.getId(), itemReward.second, Constants.TROPHY_ITEM_REWARDS);
+        Inventory.addItem(pageReward.first.getId(), itemReward.second, Constants.TROPHY_PAGE_REWARDS);
+
+        return rewards;
+    }
+
+    private static Pair<Item, Integer> createVisitorItemReward(Visitor visitor) {
         Visitor_Type visitorType = Select.from(Visitor_Type.class).where(
                 Condition.prop("visitor_id").eq(visitor.getType())).first();
 
@@ -406,8 +420,14 @@ public class VisitorHelper {
                     Condition.prop("type").eq(preferredType)).orderBy("value DESC").first();
         }
 
-        Inventory.addItem(preferredItem.getId(), preferredState, Constants.TROPHY_ITEM_REWARDS);
-
-        return preferredItem;
+        return new Pair<>(preferredItem, (int) (long) preferredState);
     }
+
+    private static Pair<Item, Integer> createVisitorPageReward() {
+        List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+        Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+
+        return new Pair<>(rewardedPage, Constants.STATE_NORMAL);
+    }
+
 }

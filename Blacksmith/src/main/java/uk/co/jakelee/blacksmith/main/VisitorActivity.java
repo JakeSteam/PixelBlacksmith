@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -270,8 +271,12 @@ public class VisitorActivity extends Activity {
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
 
             if (visitorStats.getVisits() == Constants.VISITS_TROPHY) {
-                VisitorHelper.createVisitorTrophyReward(visitor);
-                ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, R.string.visitorTrophyEarned, true);
+                List<Pair<Item, Integer>> rewards = VisitorHelper.createVisitorTrophyReward(visitor);
+                Pair<Item, Integer> rewardedItem = rewards.get(0);
+                Pair<Item, Integer> rewardedPage = rewards.get(1);
+                ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorTrophyEarned),
+                        rewardedItem.first.getFullName(rewardedItem.second),
+                        rewardedPage.first.getFullName(rewardedPage.second)), true);
             }
 
             int numVisitors = Player_Info.getVisitorsCompleted();
@@ -279,7 +284,7 @@ public class VisitorActivity extends Activity {
             MainActivity.needToRedrawVisitors = true;
             closePopup(view);
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, getString(R.string.visitorCompleteFailure), false);
+            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.visitorCompleteFailure), false);
         }
     }
 

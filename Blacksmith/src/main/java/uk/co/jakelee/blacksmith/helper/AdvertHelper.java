@@ -128,6 +128,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         int minimumRewards = 4;
         int maximumRewards = 8;
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
+        boolean rewardPage = VisitorHelper.getRandomBoolean(35);
 
         // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
         Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);
@@ -144,19 +145,32 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numberRewards);
         String rewardString = getRewardString(context, rewardLegendary);
 
+        // Create reward string, and legendary if necessary.
         if (rewardLegendary) {
             List<Item> legendaryItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item legendaryItem = VisitorHelper.pickRandomItemFromList(legendaryItems);
             Inventory.addItem(legendaryItem.getId(), Constants.STATE_UNFINISHED, 1);
-            return String.format(rewardString,
+            rewardString = String.format(rewardString,
                     numberRewards,
                     selectedItem.getName(),
                     legendaryItem.getFullName(Constants.STATE_UNFINISHED));
         } else {
-            return String.format(rewardString,
+            rewardString = String.format(rewardString,
                     numberRewards,
                     selectedItem.getFullName(Constants.STATE_NORMAL));
         }
+
+        // Append page earned if possible.
+        if (rewardPage) {
+            List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+            Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+            Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
+
+            rewardString += String.format(context.getString(R.string.advertWatchedPageSuffix),
+                rewardedPage.getName());
+        }
+
+        return rewardString;
     }
 
     private static String getRewardString(Context context, boolean rewardLegendary) {
