@@ -59,7 +59,7 @@ public class FoodActivity extends Activity {
                 TextView itemName = dh.createTextView(foodItem.getName(), 30);
                 ImageView selectImage = new ImageView(this);
                 selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
-                TextView itemBonus = createBonusTextView(foodItem);
+                TextView itemBonus = createBonusTextView(foodItem, worker.isFavouriteFoodDiscovered());
 
                 TableRow row = new TableRow(this);
                 row.setTag(food.getItem());
@@ -79,11 +79,11 @@ public class FoodActivity extends Activity {
         }
     }
 
-    public TextView createBonusTextView(Item foodItem) {
-        boolean isFavourite = foodItem.getId() == favouriteFood;
+    public TextView createBonusTextView(Item foodItem, boolean favouriteDiscovered) {
+        boolean isFavourite = foodItem.getId() == favouriteFood && favouriteDiscovered;
         String bonusText = "+" + (isFavourite ? 2 : 1) * foodItem.getValue() + "%";
         int bonusColour = isFavourite ? Color.parseColor("#267c18") : Color.BLACK;
-        return dh.createTextView(bonusText, bonusColour);
+        return dh.createTextView(bonusText, 22, bonusColour);
     }
 
     public void selectFood(View v) {

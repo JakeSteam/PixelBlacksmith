@@ -146,7 +146,7 @@ public class WorkerHelper {
                 character.getName(),
                 worker.getTimesCompleted(),
                 foodUsed != null ? foodUsed.getName() : "nothing",
-                foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() ? 2 : 1) * foodUsed.getValue() : 0);
+                foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
     }
 
     public static String getTimeLeftString(Context context, Worker worker) {

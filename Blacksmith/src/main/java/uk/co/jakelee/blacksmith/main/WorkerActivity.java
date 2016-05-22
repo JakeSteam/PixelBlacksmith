@@ -38,6 +38,11 @@ public class WorkerActivity extends Activity {
         setContentView(R.layout.activity_worker);
 
         dh = DisplayHelper.getInstance(getApplicationContext());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         final Runnable everyFiveSeconds = new Runnable() {
             @Override
@@ -47,13 +52,6 @@ public class WorkerActivity extends Activity {
             }
         };
         handler.post(everyFiveSeconds);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        scheduledTask();
     }
 
     @Override
