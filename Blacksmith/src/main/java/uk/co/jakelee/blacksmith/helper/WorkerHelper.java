@@ -141,9 +141,12 @@ public class WorkerHelper {
 
     public static String getTimesCompletedString(Context context, Worker worker) {
         Character character = Character.findById(Character.class, worker.getCharacterID());
+        Item foodUsed = Item.findById(Item.class, worker.getFoodUsed());
         return String.format(context.getString(R.string.workerTimesCompleted),
                 character.getName(),
-                worker.getTimesCompleted());
+                worker.getTimesCompleted(),
+                foodUsed != null ? foodUsed.getName() : "nothing",
+                foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() ? 2 : 1) * foodUsed.getValue() : 0);
     }
 
     public static String getTimeLeftString(Context context, Worker worker) {

@@ -21,7 +21,8 @@
         android:layout_alignTop="@id/workerCharacter"
         android:layout_alignRight="@id/workerCharacter"
         android:background="@drawable/slot"
-        app:layout_widthPercent="17%"/>
+        app:layout_widthPercent="17%"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/workerTool"
@@ -31,7 +32,7 @@
         android:background="@drawable/slot"
         android:layout_margin="5dp"
         app:layout_marginTopPercent="2%"
-        app:layout_widthPercent="35%" />
+        app:layout_widthPercent="35%"/>
 
     <LinearLayout
         android:id="@+id/workerResource"

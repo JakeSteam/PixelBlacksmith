@@ -115,6 +115,7 @@ public class WorkerActivity extends Activity {
                 });
             }
             workerFood.setImageResource(resourceID);
+            workerFood.setVisibility(View.VISIBLE);
 
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));
             workerTool.setTag(worker);

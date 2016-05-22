@@ -195,7 +195,7 @@
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
-    <string name="workerTimesCompleted">%1$s has completed %2$d trips.</string>
+    <string name="workerTimesCompleted">%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
