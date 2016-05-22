@@ -67,6 +67,8 @@ public class HelpActivity extends Activity {
             displayHelpCredits(layout);
         } else if (topic == TOPICS.Enchanting) {
             displayHelpEnchanting(layout);
+        } else if (topic == TOPICS.Food) {
+            displayHelpFood(layout);
         } else if (topic == TOPICS.Market) {
             displayHelpMarket(layout);
         } else if (topic == TOPICS.Messages) {
@@ -147,6 +149,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / gold bonuses will not apply here.\n", 22));
         layout.addView(dh.createTextView("Instead, try and create items that will sell for a large bonus with visitors.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to view all items.", 22));
+    }
+
+    private void displayHelpFood(LinearLayout layout) {
+        layout.addView(dh.createTextView("Food Selection\n", 26));
+        layout.addView(dh.createTextView("Workers can be given food here. Favourite foods give a bonus boost!\n", 22));
     }
 
     private void displayHelpCredits(LinearLayout layout) {
@@ -310,5 +317,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
+    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Food, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
 }

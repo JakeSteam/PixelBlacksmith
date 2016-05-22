@@ -201,6 +201,7 @@
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">A worker has returned, along with: %s.</string>
     <string name="workerResources">Resources: %s.</string>
+    <string name="workerFoodBonus">+</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeQuestionAdvert">Would you like to pay %1$d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
@@ -468,4 +469,5 @@
         <item>Visage (Coins)</item>
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
+    <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
 </resources>

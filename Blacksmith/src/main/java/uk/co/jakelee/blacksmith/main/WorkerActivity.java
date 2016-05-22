@@ -101,6 +101,19 @@ public class WorkerActivity extends Activity {
             if (worker.getFoodUsed() > 0) {
                 resourceID = DisplayHelper.getItemDrawableID(this, worker.getFoodUsed());
             }
+            if (WorkerHelper.isReady(worker)) {
+                workerFood.setTag(worker);
+                workerFood.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Worker worker = (Worker) v.getTag();
+                        if (WorkerHelper.isReady(worker)) {
+                            Intent intent = new Intent(activity, FoodActivity.class);
+                            intent.putExtra(WorkerHelper.INTENT_ID, worker.getWorkerID());
+                            startActivity(intent);
+                        }
+                    }
+                });
+            }
             workerFood.setImageResource(resourceID);
 
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));

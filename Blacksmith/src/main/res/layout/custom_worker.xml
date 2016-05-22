@@ -20,6 +20,7 @@
         android:layout_height="45dp"
         android:layout_alignTop="@id/workerCharacter"
         android:layout_alignRight="@id/workerCharacter"
+        android:background="@drawable/slot"
         app:layout_widthPercent="17%"/>
 
     <ImageView
