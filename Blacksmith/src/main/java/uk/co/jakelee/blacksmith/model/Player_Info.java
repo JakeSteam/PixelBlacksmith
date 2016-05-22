@@ -126,6 +126,13 @@ public class Player_Info extends SugarRecord {
         return prestige.getIntValue();
     }
 
+    public static int getCollectionsCrafted() {
+        Player_Info collections = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("CollectionsCreated")).first();
+
+        return collections.getIntValue();
+    }
+
     public static double getCompletionPercent() {
         /*
             Level * 100

@@ -129,6 +129,9 @@ public class StatisticsActivity extends Activity {
         int workersTrips = Worker.getTotalTrips();
         ((TextViewPixel) findViewById(R.id.workersTrips)).setText(String.format("%,d", workersTrips));
 
+        int collectionsCrafted = Player_Info.getCollectionsCrafted();
+        ((TextViewPixel) findViewById(R.id.collectionsCrafted)).setText(String.format("%,d", collectionsCrafted));
+
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         int prestigePercent = (prestigeLevel > 0 ? prestigeLevel * 100 : 0);
         int bonusGoldPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("Gold Bonus")).first().getCurrent();
@@ -166,6 +169,8 @@ public class StatisticsActivity extends Activity {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TIMES_PRESTIGED), GooglePlayHelper.RC_LEADERBOARDS);
             } else if (view.getTag().equals("completionpercent")) {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COMPLETION), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("collectionscrafted")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COLLECTIONS), GooglePlayHelper.RC_LEADERBOARDS);
             }
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);

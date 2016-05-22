@@ -475,6 +475,32 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
+                <LinearLayout>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/statisticsCollectionsCrafted"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/button_narrow"
+                        android:src="@drawable/playleaderboards"
+                        android:padding="2dp"
+                        android:tag="collectionscrafted"
+                        android:onClick="openLeaderboards"/>
+                </LinearLayout>
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/collectionsCrafted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -219,6 +220,7 @@ public class TableActivity extends Activity {
 
             if (itemID.equals(Constants.ITEM_THE_COLLECTION)) {
                 Player_Info.increaseByOne(Player_Info.Statistic.CollectionsCreated);
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COLLECTIONS, Player_Info.getCollectionsCrafted());
             }
         }
 

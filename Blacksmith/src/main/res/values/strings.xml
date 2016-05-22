@@ -412,6 +412,7 @@
     <string name="statisticsTrophies">Trophies:</string>
     <string name="statisticsWorkersOwned">Workers Owned:</string>
     <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
+    <string name="statisticsCollectionsCrafted">Collections Crafted:</string>
     <string name="statisticsTotalBonusGold">Total Gold Bonus:</string>
     <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
