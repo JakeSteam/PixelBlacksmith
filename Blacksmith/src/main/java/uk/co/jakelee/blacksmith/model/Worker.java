@@ -21,6 +21,17 @@ public class Worker extends SugarRecord {
     public Worker() {
     }
 
+    public Worker(long workerID, long characterID, int levelUnlocked, long toolUsed, long toolState, long timeStarted, int timesCompleted, boolean purchased) {
+        this.workerID = workerID;
+        this.characterID = characterID;
+        this.levelUnlocked = levelUnlocked;
+        this.toolUsed = toolUsed;
+        this.toolState = toolState;
+        this.timeStarted = timeStarted;
+        this.timesCompleted = timesCompleted;
+        this.purchased = purchased;
+    }
+
     public Worker(long workerID, long characterID, int levelUnlocked, long toolUsed, long toolState, long timeStarted, int timesCompleted, boolean purchased, long foodUsed, long favouriteFood, boolean favouriteFoodDiscovered) {
         this.workerID = workerID;
         this.characterID = characterID;

@@ -444,6 +444,7 @@ public class DatabaseHelper {
         workerResources.add(new Worker_Resource(175, 203, 1, 30)); // Legendary fishing rod
         workerResources.add(new Worker_Resource(175, 204, 1, 30)); // Legendary fishing rod
         Worker_Resource.saveInTx(workerResources);
+        Worker.executeQuery("UPDATE worker SET favourite_food = worker_id + 211");
 
     }
 
