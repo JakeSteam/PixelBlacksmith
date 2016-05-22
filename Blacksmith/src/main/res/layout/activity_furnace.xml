@@ -48,7 +48,7 @@
                 android:layout_margin="3dp"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:background="@drawable/button"
+                android:background="@drawable/button_short"
                 android:clickable="true"
                 android:onClick="toggleTab"
                 android:gravity="center"/>
@@ -60,7 +60,7 @@
                 android:layout_margin="3dp"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:background="@drawable/button"
+                android:background="@drawable/button_short"
                 android:clickable="true"
                 android:onClick="toggleTab"
                 android:gravity="center"/>

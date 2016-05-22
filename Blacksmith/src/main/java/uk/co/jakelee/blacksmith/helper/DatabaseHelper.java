@@ -287,6 +287,7 @@ public class DatabaseHelper {
         recipes.add(new Recipe(194L, 1L, 158L, 1L, 1));
         recipes.add(new Recipe(194L, 1L, 159L, 1L, 1));
         recipes.add(new Recipe(194L, 1L, 160L, 1L, 1));
+        recipes.add(new Recipe(194L, 1L, 206L, 1L, 2));
         recipes.add(new Recipe(194L, 1L, 8L, 1L, 300));
         recipes.add(new Recipe(194L, 1L, 52L, 1L, 5000));
         // Green book
@@ -303,6 +304,7 @@ public class DatabaseHelper {
         recipes.add(new Recipe(196L, 1L, 120L, 1L, 3));
         recipes.add(new Recipe(196L, 1L, 121L, 4L, 1));
         recipes.add(new Recipe(196L, 1L, 122L, 4L, 1));
+        recipes.add(new Recipe(196L, 1L, 211, 1L, 5));
         recipes.add(new Recipe(196L, 1L, 73L, 1L, 5));
         // Pink book
         recipes.add(new Recipe(197L, 1L, 185L, 1L, 5));
