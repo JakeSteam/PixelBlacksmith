@@ -32,16 +32,12 @@ public class VisitorHelper {
 
     public static boolean tryCreateVisitor() {
         if (Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
-            new Thread(new Runnable() {
-                public void run() {
-                    createNewVisitor();
+            createNewVisitor();
 
-                    Player_Info lastVisitorSpawn = Select.from(Player_Info.class).where(
-                            Condition.prop("name").eq("DateVisitorSpawned")).first();
-                    lastVisitorSpawn.setLongValue(System.currentTimeMillis());
-                    lastVisitorSpawn.save();
-                }
-            }).start();
+            Player_Info lastVisitorSpawn = Select.from(Player_Info.class).where(
+                    Condition.prop("name").eq("DateVisitorSpawned")).first();
+            lastVisitorSpawn.setLongValue(System.currentTimeMillis());
+            lastVisitorSpawn.save();
             return true;
         } else {
             return false;

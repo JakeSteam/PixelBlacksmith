@@ -179,6 +179,7 @@ public class DatabaseHelper {
         Trader_Stock traderStock = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(20L)).first();
         traderStock.setDefaultStock(5);
+        traderStock.setStock(5);
         traderStock.save();
 
         Item.executeQuery("UPDATE item SET value = value - 1 WHERE tier = 1 OR id = 11");
