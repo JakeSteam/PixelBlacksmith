@@ -153,7 +153,9 @@ public class HelpActivity extends Activity {
 
     private void displayHelpFood(LinearLayout layout) {
         layout.addView(dh.createTextView("Food Selection\n", 26));
-        layout.addView(dh.createTextView("Workers can be given food here. Favourite foods give a bonus boost!\n", 22));
+        layout.addView(dh.createTextView("Workers can be given food here.\n", 22));
+        layout.addView(dh.createTextView("Each worker has a favourite food, and if it has been used in the past it will be highlighted here with green text and double the usual bonus.\n", 22));
+        layout.addView(dh.createTextView("Trying different foods with workers to find their favourite is a good way to maximise bonus resources.", 22));
     }
 
     private void displayHelpCredits(LinearLayout layout) {
@@ -224,9 +226,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Table\n", 26));
         layout.addView(dh.createTextView("The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\n", 22));
         layout.addView(dh.createTextView("After this, items can be optionally embedded with gems at the gem table.\n", 22));
-        layout.addView(dh.createTextView("Additionally, extremely rare pages can be crafted into books here.\n", 22));
+        layout.addView(dh.createTextView("Additionally, rare pages can be crafted into books here. Crafting a book will require 10 pages, and many additional ingredients. Pages are obtained from a variety of sources:\n" +
+                "- 3 pages are rewarded when a visitor trophy is unlocked.\n" +
+                "- 35% chance to receive one when opening the bonus chest.\n" +
+                "- 0-90% chance to receive one from a worker, depending on food used (see worker help for more info).\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
-        layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.", 22));
     }
 
     private void displayHelpTrading(LinearLayout layout) {
@@ -294,8 +298,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Workers help gather resources. Every worker has a minimum level, and a hire cost based on that level.\n", 22));
         layout.addView(dh.createTextView("Once a worker has been hired, they will gather resources for you over time.\n", 22));
         layout.addView(dh.createTextView("The resources gained depends on the tool used. Higher tier tools will gather more / better resources.\n", 22));
-        layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name and total trips.\n", 22));
-        layout.addView(dh.createTextView("Tapping the tool will allow you to choose another, based on items you currently own.\n", 22));
+        layout.addView(dh.createTextView("Providing a worker with food will provide bonus resources and provide a chance of finding a page.\n",22));
+        layout.addView(dh.createTextView("Each worker has a favourite food, which will provide twice the normal bonus if provided. Food is consumed on each trip.\n", 22));
+        layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name, total trips, and current food item.\n", 22));
+        layout.addView(dh.createTextView("Tapping the food item will let you pick another. Discovered favourite food(s) are highlighted in green, and provide double food bonuses + page chance.\n", 22));
+        layout.addView(dh.createTextView("Tapping the tool will let you to choose another, based on items you currently own.\n", 22));
         layout.addView(dh.createTextView("Tapping the resource indicator will provide information on the resources currently being gathered.\n", 22));
         layout.addView(dh.createTextView("A single button performs most worker actions. Additionally, tapping the button whilst the worker is busy will display the exact time until they return.", 22));
     }
