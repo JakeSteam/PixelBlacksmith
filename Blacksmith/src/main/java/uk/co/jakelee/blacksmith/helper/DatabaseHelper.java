@@ -215,9 +215,9 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE Item SET type = 27, value = 20 WHERE id = 79"); //bread
 
         List<Type> types = new ArrayList<>();
-        types.add(new Type(25L, "Page", 1, 30, 1));
-        types.add(new Type(26L, "Book", 1, 30, 1));
-        types.add(new Type(27L, "Processed Food", 1, 1, 12));
+        types.add(new Type(25L, "Page", 1, 30, 0));
+        types.add(new Type(26L, "Book", 1, 30, 0));
+        types.add(new Type(27L, "Processed Food", 1, 1, 15));
         Type.saveInTx(types);
 
         List<Item> items = new ArrayList<>();

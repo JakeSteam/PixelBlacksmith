@@ -54,7 +54,7 @@ public class Worker_Resource extends SugarRecord {
 
     public void applyFoodBonus(Item foodItem, boolean favouriteFoodUsed) {
         int bonusPercent = (favouriteFoodUsed ? 2 : 1) * foodItem.getValue();
-        int adjustedQuantity = (int) (this.getResourceQuantity() * VisitorHelper.percentToMultiplier(bonusPercent));
+        int adjustedQuantity = (int) Math.ceil(this.getResourceQuantity() * VisitorHelper.percentToMultiplier(bonusPercent));
         this.setResourceQuantity(adjustedQuantity);
     }
 

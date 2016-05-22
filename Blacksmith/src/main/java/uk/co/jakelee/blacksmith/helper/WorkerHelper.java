@@ -129,10 +129,21 @@ public class WorkerHelper {
             }
         }
 
-        if (addItems && foodItem != null) { // && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+        String bonusText = "";
+        if (addItems && foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+            // If rewarding resources, and have luckily got a page
             List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
+
+            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+        } else if (!addItems && foodItem != null) {
+            // If checking resources
+            if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
+                bonusText = ", and very possibly a rare page";
+            } else {
+                bonusText = ", and possibly a rare page";
+            }
         }
 
         StringBuilder result = new StringBuilder();
@@ -142,7 +153,7 @@ public class WorkerHelper {
 
             result.append(String.format("%dx %s, ", value, key));
         }
-        return result.substring(0, result.length() - 2);
+        return result.substring(0, result.length() - 2) + bonusText;
     }
 
     public static String getTimesCompletedString(Context context, Worker worker) {
