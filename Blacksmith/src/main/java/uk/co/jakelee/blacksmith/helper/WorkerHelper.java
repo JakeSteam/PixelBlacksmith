@@ -129,6 +129,12 @@ public class WorkerHelper {
             }
         }
 
+        if (addItems && foodItem != null) { // && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+            List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+            Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+            Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
+        }
+
         StringBuilder result = new StringBuilder();
         for (Map.Entry<String, Integer> entry : data.entrySet()) {
             String key = entry.getKey();
