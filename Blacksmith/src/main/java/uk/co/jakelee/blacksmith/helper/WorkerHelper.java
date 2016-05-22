@@ -39,7 +39,7 @@ public class WorkerHelper {
     }
 
     public static String getTimeRemainingString(Worker worker) {
-        return DateHelper.getHoursMinsRemaining(getTimeRemaining(worker));
+        return DateHelper.getHoursMinsRemaining(getTimeRemaining(worker) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
     }
 
     public static long getTimeRemaining(Worker worker) {
