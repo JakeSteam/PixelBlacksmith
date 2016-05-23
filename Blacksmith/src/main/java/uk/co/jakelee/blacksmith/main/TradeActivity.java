@@ -29,6 +29,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -273,6 +274,8 @@ public class TradeActivity extends Activity {
                     value * itemsTraded), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsTraded, itemsTraded);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value * itemsTraded);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_TRADE_ITEM, itemsTraded);
+
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {

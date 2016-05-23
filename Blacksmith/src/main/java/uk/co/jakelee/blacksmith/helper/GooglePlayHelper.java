@@ -83,11 +83,11 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         // Increase statistics
 
         String questName = quest.getName();
-        String questData = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
+        String questDifficulty = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
         String questReward = "An item";
         return String.format(mGoogleApiClient.getContext().getString(R.string.questComplete),
                 questName,
-                questData,
+                questDifficulty,
                 questReward);
     }
 
@@ -110,7 +110,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public void UpdateQuest() {
-        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, 0, false);
+        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
         quests.setResultCallback(this);
     }
 

@@ -13,10 +13,8 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
-import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
-import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -202,8 +200,6 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
 
             lastDonated.setTextValue(DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date));
             lastDonated.save();
-
-            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 100, false);
         }
     }
 

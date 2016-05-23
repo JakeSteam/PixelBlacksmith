@@ -229,6 +229,9 @@ public class TableActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
+            if (!booksSelected) {
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_FINISHED, quantityCrafted);
+            }
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_TABLE, itemsToAdd);
             MainActivity.vh.tableBusy = true;

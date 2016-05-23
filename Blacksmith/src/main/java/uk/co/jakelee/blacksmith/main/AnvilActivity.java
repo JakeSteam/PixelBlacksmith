@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -228,6 +229,9 @@ public class AnvilActivity extends Activity {
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_UNFINISHED)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
+            if (!ringsSelected) {
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
+            }
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_ANVIL, itemsToAdd);
             MainActivity.vh.anvilBusy = true;

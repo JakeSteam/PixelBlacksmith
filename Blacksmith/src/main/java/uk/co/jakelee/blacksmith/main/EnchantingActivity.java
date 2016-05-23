@@ -30,6 +30,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -238,6 +239,7 @@ public class EnchantingActivity extends Activity {
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_POWDER, 1);
 
             dh.createCraftingInterface(
                     (RelativeLayout) findViewById(R.id.enchanting),
@@ -265,6 +267,7 @@ public class EnchantingActivity extends Activity {
                     item.getName(),
                     gem.getName()), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((TableLayout) findViewById(R.id.itemsTable));

@@ -356,6 +356,7 @@ public class AlertDialogHelper {
                 if (buyResponse == Constants.SUCCESS) {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
@@ -392,6 +393,7 @@ public class AlertDialogHelper {
                 if (itemsBought > 0) {
                     ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
@@ -469,6 +471,8 @@ public class AlertDialogHelper {
                 if (itemsBought > 0) {
                     ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {

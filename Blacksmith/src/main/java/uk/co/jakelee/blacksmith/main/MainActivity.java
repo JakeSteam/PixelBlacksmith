@@ -526,6 +526,7 @@ public class MainActivity extends AppCompatActivity implements
         timesClaimed.setIntValue(timesClaimed.getIntValue() + 1);
         timesClaimed.save();
 
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_CLAIM_BONUS, 1);
         DisplayHelper.updateBonusChest((ImageView) findViewById(R.id.bonus_chest));
     }
 }

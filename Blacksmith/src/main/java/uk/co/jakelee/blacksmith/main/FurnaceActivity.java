@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -175,25 +176,26 @@ public class FurnaceActivity extends Activity {
     }
 
     private void smelt(Long itemID, int quantity) {
-        int quantityToSmelt = 0;
+        int quantitySmelted = 0;
         List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
 
         int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_NORMAL, quantity);
         if (MainActivity.vh.furnaceBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
-            quantityToSmelt = quantity;
+            quantitySmelted = quantity;
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
         }
 
-        if (quantityToSmelt > 0) {
+        if (quantitySmelted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityToSmelt, item.getFullName(Constants.STATE_NORMAL)), false);
-            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantityToSmelt);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
+            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
+            GooglePlayHelper.UpdateEvent(foodSelected ? Constants.EVENT_CREATE_FOOD : Constants.EVENT_CREATE_BAR, quantitySmelted);
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
             MainActivity.vh.furnaceBusy = true;

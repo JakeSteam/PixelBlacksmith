@@ -12,6 +12,18 @@ public class Constants {
 
     public static final String EVENT_VISITOR_FULLY_COMPLETED = "CgkI6tnE2Y4OEAIQJg";
     public static final String EVENT_VISITOR_COMPLETED = "CgkI6tnE2Y4OEAIQKA";
+    public static final String EVENT_BOUGHT_ITEM = "CgkI6tnE2Y4OEAIQKg";
+    public static final String EVENT_CREATE_BAR = "CgkI6tnE2Y4OEAIQKw";
+    public static final String EVENT_CREATE_UNFINISHED = "CgkI6tnE2Y4OEAIQLA";
+    public static final String EVENT_CREATE_FINISHED = "CgkI6tnE2Y4OEAIQLQ";
+    public static final String EVENT_CREATE_ENCHANTED = "CgkI6tnE2Y4OEAIQLg";
+    public static final String EVENT_CREATE_POWDER = "CgkI6tnE2Y4OEAIQLw";
+    public static final String EVENT_CREATE_FOOD = "CgkI6tnE2Y4OEAIQMA";
+    public static final String EVENT_SOLD_ITEM = "CgkI6tnE2Y4OEAIQMQ";
+    public static final String EVENT_TRADE_ITEM = "CgkI6tnE2Y4OEAIQMg";
+    public static final String EVENT_BUY_ALL_ITEM = "CgkI6tnE2Y4OEAIQMw";
+    public static final String EVENT_CONTRIBUTE = "CgkI6tnE2Y4OEAIQNA";
+    public static final String EVENT_CLAIM_BONUS = "CgkI6tnE2Y4OEAIQNQ";
 
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;

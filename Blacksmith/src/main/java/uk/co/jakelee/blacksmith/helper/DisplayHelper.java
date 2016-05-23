@@ -524,12 +524,37 @@ public class DisplayHelper {
     }
 
     private static int getEventDrawableID(String eventID) {
-        if (eventID.equals(Constants.EVENT_VISITOR_COMPLETED)) {
-            return R.drawable.item1;
-        } else if (eventID.equals(Constants.EVENT_VISITOR_FULLY_COMPLETED)) {
-            return R.drawable.character1;
-        } else {
-            return R.drawable.quests;
+        switch (eventID) {
+            case Constants.EVENT_VISITOR_COMPLETED :
+                return R.drawable.visitor26;
+            case Constants.EVENT_VISITOR_FULLY_COMPLETED :
+                return R.drawable.visitor20;
+            case Constants.EVENT_BOUGHT_ITEM :
+                return R.drawable.character8;
+            case Constants.EVENT_CREATE_BAR :
+                return R.drawable.item15;
+            case Constants.EVENT_CREATE_UNFINISHED :
+                return R.drawable.state2;
+            case Constants.EVENT_CREATE_FINISHED :
+                return R.drawable.item89;
+            case Constants.EVENT_CREATE_ENCHANTED :
+                return R.drawable.item72;
+            case Constants.EVENT_CREATE_POWDER :
+                return R.drawable.item129;
+            case Constants.EVENT_CREATE_FOOD :
+                return R.drawable.item218;
+            case Constants.EVENT_SOLD_ITEM :
+                return R.drawable.sell_small;
+            case Constants.EVENT_TRADE_ITEM :
+                return R.drawable.item52;
+            case Constants.EVENT_BUY_ALL_ITEM :
+                return R.drawable.character15;
+            case Constants.EVENT_CONTRIBUTE :
+                return R.drawable.uparrow;
+            case Constants.EVENT_CLAIM_BONUS :
+                return R.drawable.bonus_chest_full;
+            default :
+                return R.drawable.quests;
         }
     }
 

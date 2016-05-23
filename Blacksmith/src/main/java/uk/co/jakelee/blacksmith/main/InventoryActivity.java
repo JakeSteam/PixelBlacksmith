@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -167,6 +168,7 @@ public class InventoryActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue * quantityToSell);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_SOLD_ITEM, quantityToSell);
 
             Pending_Inventory.addScheduledItems(this, itemPrices);
             MainActivity.vh.inventoryBusy = true;
