@@ -132,6 +132,9 @@ public class StatisticsActivity extends Activity {
         int collectionsCrafted = Player_Info.getCollectionsCrafted();
         ((TextViewPixel) findViewById(R.id.collectionsCrafted)).setText(String.format("%,d", collectionsCrafted));
 
+        int questsCompleted = Select.from(Player_Info.class).where(Condition.prop("name").eq("QuestsCompleted")).first().getIntValue();
+        ((TextViewPixel) findViewById(R.id.questsCompleted)).setText(String.format("%,d", questsCompleted));
+
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         int prestigePercent = (prestigeLevel > 0 ? prestigeLevel * 100 : 0);
         int bonusGoldPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("Gold Bonus")).first().getCurrent();

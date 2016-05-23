@@ -467,13 +467,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openQuests(View view) {
-        Intent questsIntent = Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS);
-        startActivityForResult(questsIntent, 0);
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
+        } else {
+            ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
+        }
     }
 
     public void modifyQuests(View view) {
-        GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_FULLY_COMPLETED, 1);
-        //gph.UpdateQuest();
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
     }
 
     public void clickBonusChest(View view) {

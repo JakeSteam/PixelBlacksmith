@@ -45,6 +45,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     public static final int RC_ACHIEVEMENTS = 9002;
     public static final int RC_LEADERBOARDS = 9003;
     public static final int RC_SAVED_GAMES = 9004;
+    public static final int RC_QUESTS = 9005;
     private static final int RESULT_OK = -1;
     private static final int RC_SIGN_IN = 9001;
     private static final String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";

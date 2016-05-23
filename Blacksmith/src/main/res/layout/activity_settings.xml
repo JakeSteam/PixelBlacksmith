@@ -371,6 +371,14 @@
                         android:onClick="openLeaderboards"
                         android:padding="10dp"
                         android:src="@drawable/playleaderboards" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/button"
+                        android:onClick="openQuests"
+                        android:padding="10dp"
+                        android:src="@drawable/playquests" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"

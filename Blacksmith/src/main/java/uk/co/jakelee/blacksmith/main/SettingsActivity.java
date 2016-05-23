@@ -14,6 +14,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quests;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
@@ -231,16 +232,22 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    public void openSupportCode(View view) {
-        AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
-    }
-
     public void openSavedGames(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
                     "Cloud Saves", true, true, 1);
             startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
         }
+    }
+
+    public void openQuests(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
+        }
+    }
+
+    public void openSupportCode(View view) {
+        AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

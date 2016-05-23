@@ -369,7 +369,7 @@
                 android:layout_marginTop="24dp"
                 android:indeterminate="false"
                 android:progressDrawable="@drawable/level_progress"
-                android:progress="35"/>
+                android:progress="0"/>
 
         </RelativeLayout>
     </RelativeLayout>
