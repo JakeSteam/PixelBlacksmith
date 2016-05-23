@@ -475,7 +475,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void modifyQuests(View view) {
-        GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
     }
 
     public void clickBonusChest(View view) {

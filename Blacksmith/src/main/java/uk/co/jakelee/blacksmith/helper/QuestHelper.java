@@ -78,10 +78,11 @@ public class QuestHelper {
     }
 
     private static int getPagesRewarded(double pageChance) {
-        if (pageChance > 1) {
+        if ((int) pageChance >= 1) {
             return (int) pageChance;
         } else {
-            return VisitorHelper.getRandomBoolean(100 - (int) pageChance) ? 1 : 0;
+            int percentPageChance = (int) (pageChance * 100);
+            return VisitorHelper.getRandomBoolean(100 - percentPageChance) ? 1 : 0;
         }
     }
 }
