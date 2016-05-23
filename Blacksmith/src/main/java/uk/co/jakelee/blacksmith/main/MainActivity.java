@@ -54,7 +54,8 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener {
+        QuestUpdateListener,
+        com.google.android.gms.common.api.ResultCallback {
     private static final Handler handler = new Handler();
     public static TextViewPixel coins;
     public static TextViewPixel level;
@@ -73,28 +74,22 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
     public AdvertHelper ah;
-    private static QuestCallback qc;
 
-    class QuestCallback implements com.google.android.gms.common.api.ResultCallback {
-        MainActivity m_parent;
+    public void onResult(com.google.android.gms.common.api.Result result) {
+        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
+        QuestBuffer qb = r.getQuests();
 
-        public QuestCallback (MainActivity main){
-            m_parent = main;
+        String message = "";
+        if (qb.getCount() > 0) {
+            Quest q = qb.get(0);
+            int current = (int) q.getCurrentMilestone().getCurrentProgress();
+            int max = (int) q.getCurrentMilestone().getTargetProgress();
+            String event = q.getCurrentMilestone().getEventId();
+            message = String.format("%d / %d (%s)",
+                    current, max, event);
         }
 
-        public void onResult(com.google.android.gms.common.api.Result result) {
-            Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
-            QuestBuffer qb = r.getQuests();
-
-            String message = "Current quest details: \n";
-            String currentEvent = "";
-            for(int i=0; i < qb.getCount(); i++) {
-                message += "Quest: " + qb.get(i).getName() + " id: " + qb.get(i).getQuestId();
-            }
-            qb.close();
-
-            Toast.makeText(m_parent, message, Toast.LENGTH_LONG).show();
-        }
+        qb.close();
     }
 
     @Override
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
-        qc = new QuestCallback(this);
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
@@ -491,7 +485,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void modifyQuests(View view) {
         //GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_COMPLETED, 1);
-        GooglePlayHelper.GetQuest(qc);
+        GooglePlayHelper.GetQuest(this);
     }
 
     public void clickBonusChest(View view) {
