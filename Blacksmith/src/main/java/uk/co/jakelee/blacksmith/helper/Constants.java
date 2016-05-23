@@ -25,6 +25,26 @@ public class Constants {
     public static final String EVENT_CONTRIBUTE = "CgkI6tnE2Y4OEAIQNA";
     public static final String EVENT_CLAIM_BONUS = "CgkI6tnE2Y4OEAIQNQ";
 
+    public static final int QUEST_XP_MODIFIER_EASY = 9;
+    public static final int QUEST_XP_MODIFIER_MEDIUM = 15;
+    public static final int QUEST_XP_MODIFIER_HARD = 35;
+    public static final int QUEST_XP_MODIFIER_ELITE = 75;
+
+    public static final double QUEST_PAGE_CHANCE_EASY = 0.25;
+    public static final double QUEST_PAGE_CHANCE_MEDIUM = 0.50;
+    public static final double QUEST_PAGE_CHANCE_HARD = 1.00;
+    public static final double QUEST_PAGE_CHANCE_ELITE = 2.00;
+
+    public static final double QUEST_REWARD_MODIFIER_EASY = 0.50;
+    public static final double QUEST_REWARD_MODIFIER_MEDIUM = 1;
+    public static final double QUEST_REWARD_MODIFIER_HARD = 2;
+    public static final double QUEST_REWARD_MODIFIER_ELITE = 3;
+
+    public static final int MINIMUM_REWARDS = 4;
+    public static final int MAXIMUM_REWARDS = 8;
+    public static final int MINIMUM_COIN_REWARDS = 100;
+    public static final int MAXIMUM_COIN_REWARDS = 700;
+
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;

@@ -77,15 +77,14 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     public static String CompleteQuest(Quest quest) {
         Games.Quests.claim(mGoogleApiClient, quest.getQuestId(),
                 quest.getCurrentMilestone().getMilestoneId());
-
-        // Add rewards
-
-        // Increase statistics
+        Context context = mGoogleApiClient.getContext();
 
         String questName = quest.getName();
         String questDifficulty = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
-        String questReward = "An item";
-        return String.format(mGoogleApiClient.getContext().getString(R.string.questComplete),
+        String questReward = QuestHelper.getQuestReward(context, questDifficulty);
+
+        Player_Info.increaseByOne(Player_Info.Statistic.QuestsCompleted);
+        return String.format(context.getString(R.string.questComplete),
                 questName,
                 questDifficulty,
                 questReward);

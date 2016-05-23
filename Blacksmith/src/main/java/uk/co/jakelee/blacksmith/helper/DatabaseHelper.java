@@ -269,6 +269,7 @@ public class DatabaseHelper {
             player_infos.add(new Player_Info("LastBonusClaimed", System.currentTimeMillis()));
             player_infos.add(new Player_Info("BonusesClaimed", 0));
             player_infos.add(new Player_Info("CollectionsCreated", 0, 0));
+            player_infos.add(new Player_Info("QuestsCompleted", 0));
         Player_Info.saveInTx(player_infos);
 
         List<Recipe> recipes = new ArrayList<>();

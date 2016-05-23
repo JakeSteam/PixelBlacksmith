@@ -125,8 +125,8 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     @Override public void userDeclinedToViewAd(AppLovinAd appLovinAd) {}
 
     public static String createAdvertReward(Context context) {
-        int minimumRewards = 4;
-        int maximumRewards = 8;
+        int minimumRewards = Constants.MINIMUM_REWARDS;
+        int maximumRewards = Constants.MAXIMUM_REWARDS;
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
         boolean rewardPage = VisitorHelper.getRandomBoolean(65); // 35% chance to get page
 
@@ -137,8 +137,8 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
             selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
         } else {
-            minimumRewards = 100;
-            maximumRewards = 700;
+            minimumRewards = Constants.MINIMUM_COIN_REWARDS;
+            maximumRewards = Constants.MAXIMUM_COIN_REWARDS;
         }
 
         int numberRewards = (Player_Info.isPremium() ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);

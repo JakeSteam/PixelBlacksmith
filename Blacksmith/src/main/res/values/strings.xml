@@ -424,7 +424,9 @@
 
     <string name="leaderboardsNoConnection">Viewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
 
-    <string name="questComplete">Completed "%1$s" and received a %2$s Reward: %3$s.</string>
+    <string name="questComplete">Completed \"%1$s\" and received a %2$s Reward: %3$s.</string>
+    <string name="questRewardNoPage">%1$d XP and %2$dx %3$s</string>
+    <string name="questRewardPage">%1$d XP, %2$dx %3$s, and %4%dx %5$s</string>
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
