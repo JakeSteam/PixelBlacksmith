@@ -10,6 +10,9 @@ public class Constants {
     public static final String LEADERBOARD_COMPLETION = "CgkI6tnE2Y4OEAIQIw";
     public static final String LEADERBOARD_COLLECTIONS = "CgkI6tnE2Y4OEAIQJQ";
 
+    public static final String EVENT_VISITOR_FULLY_COMPLETED = "CgkI6tnE2Y4OEAIQJg";
+    public static final String EVENT_VISITOR_COMPLETED = "CgkI6tnE2Y4OEAIQKA";
+
     // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;

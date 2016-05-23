@@ -11,7 +11,11 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quest;
+import com.google.android.gms.games.quest.Quests;
 import com.google.android.gms.games.snapshot.Snapshot;
 import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
 import com.google.android.gms.games.snapshot.Snapshots;
@@ -21,6 +25,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -67,6 +72,32 @@ public class GooglePlayHelper {
                 signIn.save();
             }
         }
+    }
+
+    public static String CompleteQuest(Quest quest) {
+        Games.Quests.claim(mGoogleApiClient, quest.getQuestId(),
+                quest.getCurrentMilestone().getMilestoneId());
+
+        // Add rewards
+
+        // Increase statistics
+
+        String questName = quest.getName();
+        String questData = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
+        String questReward = "An item";
+        return String.format(mGoogleApiClient.getContext().getString(R.string.questComplete),
+                questName,
+                questData,
+                questReward);
+    }
+
+    public static void GetQuest(ResultCallback qc) {
+        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_OPEN}, 0, false);
+        quests.setResultCallback(qc);
+    }
+
+    public static void UpdateEvent(String eventId, int quantity) {
+        Games.Events.increment(mGoogleApiClient, eventId, quantity);
     }
 
     public static void UpdateLeaderboards(String leaderboardID, int value) {

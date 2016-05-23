@@ -20,6 +20,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quest;
+import com.google.android.gms.games.quest.QuestBuffer;
+import com.google.android.gms.games.quest.QuestUpdateListener;
+import com.google.android.gms.games.quest.Quests;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -49,7 +53,8 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener,
+        QuestUpdateListener {
     private static final Handler handler = new Handler();
     public static TextViewPixel coins;
     public static TextViewPixel level;
@@ -68,6 +73,29 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
     public AdvertHelper ah;
+    private static QuestCallback qc;
+
+    class QuestCallback implements com.google.android.gms.common.api.ResultCallback {
+        MainActivity m_parent;
+
+        public QuestCallback (MainActivity main){
+            m_parent = main;
+        }
+
+        public void onResult(com.google.android.gms.common.api.Result result) {
+            Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
+            QuestBuffer qb = r.getQuests();
+
+            String message = "Current quest details: \n";
+            String currentEvent = "";
+            for(int i=0; i < qb.getCount(); i++) {
+                message += "Quest: " + qb.get(i).getName() + " id: " + qb.get(i).getQuestId();
+            }
+            qb.close();
+
+            Toast.makeText(m_parent, message, Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
+        qc = new QuestCallback(this);
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
@@ -455,6 +484,16 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void openQuests(View view) {
+        Intent questsIntent = Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS);
+        startActivityForResult(questsIntent, 0);
+    }
+
+    public void modifyQuests(View view) {
+        //GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_COMPLETED, 1);
+        GooglePlayHelper.GetQuest(qc);
+    }
+
     public void clickBonusChest(View view) {
         if (Player_Info.isBonusReady()) {
             AlertDialogHelper.confirmBonusAdvert(this, this);
@@ -466,6 +505,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnected(Bundle connectionHint) {
+        Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
     }
 
     @Override
@@ -476,6 +516,10 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onConnectionSuspended(int i) {
         GooglePlayHelper.mGoogleApiClient.connect();
+    }
+
+    public void onQuestCompleted(Quest quest) {
+        ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, GooglePlayHelper.CompleteQuest(quest), true);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
