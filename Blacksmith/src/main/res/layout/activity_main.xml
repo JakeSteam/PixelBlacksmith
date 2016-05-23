@@ -205,17 +205,6 @@
                 app:layout_marginTopPercent="68%" />
 
             <ImageView
-                android:id="@+id/open_quests"
-                android:layout_width="50dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="795dp"
-                android:onClick="modifyQuests"
-                android:scaleType="centerCrop"
-                android:src="@drawable/item200"
-                app:layout_heightPercent="8%"
-                app:layout_marginTopPercent="68%" />
-
-            <ImageView
                 android:id="@+id/open_statistics"
                 android:layout_width="50dp"
                 android:layout_alignParentTop="true"
@@ -359,8 +348,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/quests" />
+                android:layout_marginLeft="5dp" />
             <ProgressBar
                 android:id="@+id/questProgress"
                 style="?android:attr/progressBarStyleHorizontal"

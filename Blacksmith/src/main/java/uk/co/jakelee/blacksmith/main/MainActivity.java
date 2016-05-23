@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements
             ah = AdvertHelper.getInstance(this);
         }
 
+        gph.UpdateQuest();
     }
 
     private void ratingPrompt() {
@@ -468,14 +469,10 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN}), GooglePlayHelper.RC_QUESTS);
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
         }
-    }
-
-    public void modifyQuests(View view) {
-        GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
     }
 
     public void clickBonusChest(View view) {
