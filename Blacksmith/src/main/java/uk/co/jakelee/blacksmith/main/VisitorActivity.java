@@ -280,12 +280,12 @@ public class VisitorActivity extends Activity {
             }
 
             if (visitor.isVisitorFullyComplete()) {
-                GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_COMPLETED, 1);
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_FULLY_COMPLETED, 1);
             }
 
             int numVisitors = Player_Info.getVisitorsCompleted();
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_VISITORS, numVisitors);
-            GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_FULLY_COMPLETED, 1);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_COMPLETED, 1);
             MainActivity.needToRedrawVisitors = true;
             closePopup(view);
         } else {

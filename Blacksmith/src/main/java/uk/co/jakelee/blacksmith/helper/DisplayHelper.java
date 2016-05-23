@@ -514,6 +514,25 @@ public class DisplayHelper {
         MainActivity.coins.setText(coinCountString);
     }
 
+    public static void updateQuest(int current, int max, String eventID) {
+        ImageView questIcon = (ImageView) MainActivity.questContainer.findViewById(R.id.questIcon);
+        ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
+
+        questIcon.setImageResource(getEventDrawableID(eventID));
+        questProgress.setProgress(current);
+        questProgress.setMax(max);
+    }
+
+    private static int getEventDrawableID(String eventID) {
+        if (eventID.equals(Constants.EVENT_VISITOR_COMPLETED)) {
+            return R.drawable.item1;
+        } else if (eventID.equals(Constants.EVENT_VISITOR_FULLY_COMPLETED)) {
+            return R.drawable.character1;
+        } else {
+            return R.drawable.quests;
+        }
+    }
+
     public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, ViewFlipper viewFlipper, long state) {
         long currentItemID = (long) viewFlipper.getCurrentView().getTag();
         displayItemInfo(currentItemID, state, main);

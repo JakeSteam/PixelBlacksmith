@@ -14,6 +14,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -21,7 +22,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
-import com.google.android.gms.games.quest.QuestBuffer;
 import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.google.android.gms.games.quest.Quests;
 import com.orm.query.Condition;
@@ -54,13 +54,13 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener,
-        com.google.android.gms.common.api.ResultCallback {
+        QuestUpdateListener {
     private static final Handler handler = new Handler();
     public static TextViewPixel coins;
     public static TextViewPixel level;
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
+    public static RelativeLayout questContainer;
     private static DisplayHelper dh;
     public static VariableHelper vh;
     private static Activity mainActivity;
@@ -74,23 +74,7 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
     public AdvertHelper ah;
-
-    public void onResult(com.google.android.gms.common.api.Result result) {
-        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
-        QuestBuffer qb = r.getQuests();
-
-        String message = "";
-        if (qb.getCount() > 0) {
-            Quest q = qb.get(0);
-            int current = (int) q.getCurrentMilestone().getCurrentProgress();
-            int max = (int) q.getCurrentMilestone().getTargetProgress();
-            String event = q.getCurrentMilestone().getEventId();
-            message = String.format("%d / %d (%s)",
-                    current, max, event);
-        }
-
-        qb.close();
-    }
+    private GooglePlayHelper gph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
+        gph = new GooglePlayHelper();
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
@@ -149,6 +134,8 @@ public class MainActivity extends AppCompatActivity implements
         level = (TextViewPixel) findViewById(R.id.currentLevel);
         levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
         levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
+
+        questContainer = (RelativeLayout) findViewById(R.id.questContainer);
     }
 
     public static void startFirstTutorial() {
@@ -377,6 +364,7 @@ public class MainActivity extends AppCompatActivity implements
                     ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
+                gph.UpdateQuest();
 
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
@@ -484,8 +472,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void modifyQuests(View view) {
-        //GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_COMPLETED, 1);
-        GooglePlayHelper.GetQuest(this);
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_FULLY_COMPLETED, 1);
+        //gph.UpdateQuest();
     }
 
     public void clickBonusChest(View view) {

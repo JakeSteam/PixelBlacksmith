@@ -12,9 +12,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
+import com.google.android.gms.games.quest.QuestBuffer;
 import com.google.android.gms.games.quest.Quests;
 import com.google.android.gms.games.snapshot.Snapshot;
 import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
@@ -41,7 +41,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
-public class GooglePlayHelper {
+public class GooglePlayHelper implements com.google.android.gms.common.api.ResultCallback {
     public static final int RC_ACHIEVEMENTS = 9002;
     public static final int RC_LEADERBOARDS = 9003;
     public static final int RC_SAVED_GAMES = 9004;
@@ -91,9 +91,27 @@ public class GooglePlayHelper {
                 questReward);
     }
 
-    public static void GetQuest(ResultCallback qc) {
-        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_OPEN}, 0, false);
-        quests.setResultCallback(qc);
+    public void onResult(com.google.android.gms.common.api.Result result) {
+        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
+        QuestBuffer qb = r.getQuests();
+
+        int current = 0;
+        int max = 1;
+        String event = "";
+        if (qb.getCount() > 0) {
+            Quest q = qb.get(0);
+            current = (int) q.getCurrentMilestone().getCurrentProgress();
+            max = (int) q.getCurrentMilestone().getTargetProgress();
+            event = q.getCurrentMilestone().getEventId();
+        }
+
+        DisplayHelper.updateQuest(current, max, event);
+        qb.close();
+    }
+
+    public void UpdateQuest() {
+        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, 0, false);
+        quests.setResultCallback(this);
     }
 
     public static void UpdateEvent(String eventId, int quantity) {
