@@ -150,32 +150,37 @@ public class DisplayHelper {
         }
     }
 
-    public void populateSlots(View parentView) {
+    public void populateSlots(Activity activity, View parentView) {
         if (Pending_Inventory.count(Pending_Inventory.class) > 0) {
             List<Location> locations = Location.listAll(Location.class);
             for (Location location : locations) {
-                populateSlot(location.getId(), parentView);
+                populateSlot(activity, location.getId(), parentView);
             }
         }
     }
 
-    private void populateSlot(final long locationID, View parentView) {
+    private void populateSlot(final Activity activity, final long locationID, View parentView) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         if (pendingItems.size() > 0 && !isProcessingPendingInventory) {
-            int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
-            int numSlots = Slot.getUnlockedSlots(locationID);
+            final int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
+            final int numSlots = Slot.getUnlockedSlots(locationID);
 
-            GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
-            emptySlotContainer(slotContainer);
+            final GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    emptySlotContainer(slotContainer);
+                }
+            });
 
             int slotIndex = 0;
             int finishedItems = 0;
             final List<Pending_Inventory> completedItems = new ArrayList<>();
-            for (Pending_Inventory pendingItem : pendingItems) {
+            for (final Pending_Inventory pendingItem : pendingItems) {
                 RelativeLayout slot = (RelativeLayout) slotContainer.getChildAt(slotIndex);
                 if (slot != null) {
-                    ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
-                    TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
+                    final ImageView slotItem = (ImageView) slot.findViewById(R.id.slot_foreground);
+                    final TextViewPixel slotCount = (TextViewPixel) slot.findViewById(R.id.slot_count);
 
                     long itemFinishTime = pendingItem.getTimeCreated() + pendingItem.getCraftTime();
                     long currentTime = System.currentTimeMillis();
@@ -184,16 +189,27 @@ public class DisplayHelper {
                         completedItems.add(pendingItem);
                         finishedItems++;
                     } else {
-                        int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
+                        final int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                        slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                        slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                            }
+                        });
                         slotIndex++;
                     }
                 }
             }
-            RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
-            displayOverflow(lockedSlot, numItems, numSlots, finishedItems);
+            final RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
+            final int totalFinishedItems = finishedItems;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    displayOverflow(lockedSlot, numItems, numSlots, totalFinishedItems);
+                }
+            });
 
             if (completedItems.size() > 0) {
                 isProcessingPendingInventory = true;
@@ -239,9 +255,9 @@ public class DisplayHelper {
         }
     }
 
-    public void populateVisitorsContainer(final Context context, final MainActivity activity, LinearLayout visitorsContainer, LinearLayout visitorsContainerOverflow) {
-        int displayedVisitors = 0;
+    public void populateVisitorsContainer(final Context context, final MainActivity activity, final LinearLayout visitorsContainer, final LinearLayout visitorsContainerOverflow) {
         List<Visitor> visitors = Visitor.listAll(Visitor.class);
+        List<ImageView> visitorImages = new ArrayList<>();
         if (visitors.size() == 0) {
             VisitorHelper.tryCreateVisitor();
         }
@@ -263,13 +279,7 @@ public class DisplayHelper {
                 }
             });
 
-            // Adding to appropriate container
-            if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
-                visitorsContainer.addView(visitorImage);
-            } else {
-                visitorsContainerOverflow.addView(visitorImage);
-            }
-            displayedVisitors++;
+            visitorImages.add(visitorImage);
         }
 
         LinearLayout targetContainer = null;
@@ -279,16 +289,47 @@ public class DisplayHelper {
             targetContainer = visitorsContainerOverflow;
         }
 
-        if (targetContainer != null && (visitorsContainer.getChildCount() + visitorsContainerOverflow.getChildCount()) < Upgrade.getValue("Maximum Visitors") && !TutorialHelper.currentlyInTutorial) {
-            ImageView addVisitorButton = createImageView("add", "", 51, 51);
+
+        ImageView addVisitorButton = null;
+        if (targetContainer != null && !TutorialHelper.currentlyInTutorial) {
+            addVisitorButton = createImageView("add", "", 51, 51);
             addVisitorButton.setPadding(xPadding, yPadding, xPadding, yPadding);
             addVisitorButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialogHelper.confirmVisitorAdd(context, activity);
                 }
             });
-            targetContainer.addView(addVisitorButton);
         }
+
+        final LinearLayout finalTargetContainer = targetContainer;
+        final ImageView finalImageView = addVisitorButton;
+        final List<ImageView> finalVisitorImages = visitorImages;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visitorsContainer.removeAllViews();
+                visitorsContainerOverflow.removeAllViews();
+                boolean shouldDrawAddButton = false;
+
+                if (finalVisitorImages.size() < Upgrade.getValue("Maximum Visitors")) {
+                    shouldDrawAddButton = true;
+                }
+
+                int displayedVisitors = 0;
+                for (ImageView visitorImage : finalVisitorImages) {
+                    if (displayedVisitors < Constants.MAXIMUM_VISITORS_PER_ROW) {
+                        visitorsContainer.addView(visitorImage);
+                    } else {
+                        visitorsContainerOverflow.addView(visitorImage);
+                    }
+                    displayedVisitors++;
+                }
+
+                if (shouldDrawAddButton && finalImageView != null) {
+                    finalTargetContainer.addView(finalImageView);
+                }
+            }
+        });
     }
 
     public Space createSpace() {
@@ -473,6 +514,50 @@ public class DisplayHelper {
         MainActivity.coins.setText(coinCountString);
     }
 
+    public static void updateQuest(int current, int max, String eventID) {
+        ImageView questIcon = (ImageView) MainActivity.questContainer.findViewById(R.id.questIcon);
+        ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
+
+        questIcon.setImageResource(getEventDrawableID(eventID));
+        questProgress.setProgress(current);
+        questProgress.setMax(max);
+    }
+
+    private static int getEventDrawableID(String eventID) {
+        switch (eventID) {
+            case Constants.EVENT_VISITOR_COMPLETED :
+                return R.drawable.visitor26;
+            case Constants.EVENT_VISITOR_FULLY_COMPLETED :
+                return R.drawable.visitor20;
+            case Constants.EVENT_BOUGHT_ITEM :
+                return R.drawable.character8;
+            case Constants.EVENT_CREATE_BAR :
+                return R.drawable.item15;
+            case Constants.EVENT_CREATE_UNFINISHED :
+                return R.drawable.state2;
+            case Constants.EVENT_CREATE_FINISHED :
+                return R.drawable.item89;
+            case Constants.EVENT_CREATE_ENCHANTED :
+                return R.drawable.item72;
+            case Constants.EVENT_CREATE_POWDER :
+                return R.drawable.item129;
+            case Constants.EVENT_CREATE_FOOD :
+                return R.drawable.item218;
+            case Constants.EVENT_SOLD_ITEM :
+                return R.drawable.sell_small;
+            case Constants.EVENT_TRADE_ITEM :
+                return R.drawable.item52;
+            case Constants.EVENT_BUY_ALL_ITEM :
+                return R.drawable.character15;
+            case Constants.EVENT_CONTRIBUTE :
+                return R.drawable.uparrow;
+            case Constants.EVENT_CLAIM_BONUS :
+                return R.drawable.bonus_chest_full;
+            default :
+                return R.drawable.quests;
+        }
+    }
+
     public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, ViewFlipper viewFlipper, long state) {
         long currentItemID = (long) viewFlipper.getCurrentView().getTag();
         displayItemInfo(currentItemID, state, main);
@@ -514,7 +599,7 @@ public class DisplayHelper {
     }
 
     public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
-        Context context = ingredientsTable.getContext();
+        final Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
         ingredientsTable.removeAllViews();
@@ -539,7 +624,7 @@ public class DisplayHelper {
 
         // Add a row for each ingredient
         for (Recipe ingredient : ingredients) {
-            Item itemIngredient = Item.findById(Item.class, ingredient.getIngredient());
+            final Item itemIngredient = Item.findById(Item.class, ingredient.getIngredient());
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
@@ -547,6 +632,11 @@ public class DisplayHelper {
             TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
+            itemNameView.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, itemIngredient.getDescription(), false);
+                }
+            });
 
             row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
             row.addView(itemNameView);
@@ -572,6 +662,14 @@ public class DisplayHelper {
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {
+        if (current < min) {
+            current = min;
+        }
+
+        if (current > max) {
+            current = max;
+        }
+
         if (current == max) {
             upArrow.setVisibility(View.INVISIBLE);
         } else {
@@ -582,6 +680,18 @@ public class DisplayHelper {
             downArrow.setVisibility(View.INVISIBLE);
         } else {
             downArrow.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public static void updateBonusChest(ImageView chest) {
+        if (Player_Info.displayAds()) {
+            if (Player_Info.isBonusReady()) {
+                chest.setImageResource(R.drawable.bonus_chest_full);
+            } else {
+                chest.setImageResource(R.drawable.bonus_chest_empty);
+            }
+        } else {
+            chest.setImageResource(R.drawable.transparent);
         }
     }
 

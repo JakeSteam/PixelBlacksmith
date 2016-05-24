@@ -57,6 +57,8 @@ public class HelpActivity extends Activity {
             displayHelpOverview(layout);
         } else if (topic == TOPICS.Furnace) {
             displayHelpFurnace(layout);
+        } else if (topic == TOPICS.Advertising) {
+            displayHelpAdvertising(layout);
         } else if (topic == TOPICS.Anvil) {
             displayHelpAnvil(layout);
         } else if (topic == TOPICS.Inventory) {
@@ -65,6 +67,8 @@ public class HelpActivity extends Activity {
             displayHelpCredits(layout);
         } else if (topic == TOPICS.Enchanting) {
             displayHelpEnchanting(layout);
+        } else if (topic == TOPICS.Food) {
+            displayHelpFood(layout);
         } else if (topic == TOPICS.Market) {
             displayHelpMarket(layout);
         } else if (topic == TOPICS.Messages) {
@@ -91,6 +95,8 @@ public class HelpActivity extends Activity {
             displayHelpWorker(layout);
         } else if (topic == TOPICS.Tool) {
             displayHelpTools(layout);
+        } else if (topic == TOPICS.Quests) {
+            displayHelpQuests(layout);
         }
     }
 
@@ -100,12 +106,20 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Get out of here, there's money to make!", 22));
     }
 
+    private void displayHelpAdvertising(LinearLayout layout) {
+        layout.addView(dh.createTextView("Advertising\n", 26));
+        layout.addView(dh.createTextView("There are 2 types of advert in Pixel Blacksmith.\n", 22));
+        layout.addView(dh.createTextView("The first is a 'convenience' one, e.g. skipping a timer, getting a free restock. The other type is the 'bonus' advert, accessible via the bonus chest.\n", 22));
+        layout.addView(dh.createTextView("This chest can only be opened every few hours (premium members have a shorter timer).\n", 22));
+        layout.addView(dh.createTextView("Premium members can also disable adverts. If this option is selected, all mention of adverts will be removed.", 22));
+    }
+
     private void displayHelpOverview(LinearLayout layout) {
         layout.addView(dh.createTextView("Overview\n", 26));
         layout.addView(dh.createTextView("So, here's the deal: You're a blacksmith. A not very good one, to be honest.\n", 22));
         layout.addView(dh.createTextView("If you want to make a name for yourself, you're going to have to keep visitors happy, and keep an eye on your resources.\n", 22));
         layout.addView(dh.createTextView("Or, I guess you could ignore all the visitors and just work towards making the high end gear. But, y'know, don't do that.\n", 22));
-        layout.addView(dh.createTextView("Generally, ores come from the market and other ingredients come from visitors and certain traders.\n", 22));
+        layout.addView(dh.createTextView("Generally, ores come from the market and other ingredients come from visitors and certain traders. You can also hire workers to gather resources for you.\n", 22));
         layout.addView(dh.createTextView("These ores are smelted in the furnace, crafted at the anvil, finished at the table, and embedded with gems at the gem table, before being sold to a visitor.\n", 22));
         layout.addView(dh.createTextView("Visitors, like the rest of us, have preferences. Once a visitor has been sold one of their favourite types / tiers / states of item, their preference and associated bonus will be saved.\n", 22));
         layout.addView(dh.createTextView("Next time they visit, selling them preferred items will provide a nice healthy bonus tip for yourself.\n", 22));
@@ -126,6 +140,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("After the furnace creates bars, the anvil must be used to hammer them into shape.\n", 22));
         layout.addView(dh.createTextView("Most recipes only require bars, with more valuable / higher tier items requiring more bars.\n", 22));
         layout.addView(dh.createTextView("Of course, these unfinished items aren't quite done yet. They will still require an addition of a secondary ingredient, which is done at the crafting table.\n", 22));
+        layout.addView(dh.createTextView("Rings can also be crafted via the separate 'Rings' tab.\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
         layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.", 22));
     }
@@ -136,6 +151,13 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / gold bonuses will not apply here.\n", 22));
         layout.addView(dh.createTextView("Instead, try and create items that will sell for a large bonus with visitors.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to view all items.", 22));
+    }
+
+    private void displayHelpFood(LinearLayout layout) {
+        layout.addView(dh.createTextView("Food Selection\n", 26));
+        layout.addView(dh.createTextView("Workers can be given food here.\n", 22));
+        layout.addView(dh.createTextView("Each worker has a favourite food, and if it has been used in the past it will be highlighted here with green text and double the usual bonus.\n", 22));
+        layout.addView(dh.createTextView("Trying different foods with workers to find their favourite is a good way to maximise bonus resources.", 22));
     }
 
     private void displayHelpCredits(LinearLayout layout) {
@@ -150,6 +172,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Gem Table\n", 26));
         layout.addView(dh.createTextView("Once an item is finished, its value can be greatly increased by putting a valuable gem inside.\n", 22));
         layout.addView(dh.createTextView("Use these wisely, as they are only available in limited quantities, and certain visitors will pay a very hefty bonus for items with their preferred gem in.\n", 22));
+        layout.addView(dh.createTextView("Gems can also be crushed into powders via the 'Powder' tab.\n", 22));
         layout.addView(dh.createTextView("As always, swipe left and right to change items, and use the up and down arrows to change tiers.\n", 22));
         layout.addView(dh.createTextView("Once the desired item is selected, tap the gem to be added.", 22));
     }
@@ -173,7 +196,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The rate app button will link you to the game's Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\n", 22));
         layout.addView(dh.createTextView("Google Play Games services can also be accessed here, and any codes given by customer support can be entered.\n", 22));
         layout.addView(dh.createTextView("If you're over level 70, a prestige button will also be visible.\n", 22));
-        layout.addView(dh.createTextView("Prestiging resets all items, XP, coins, upgrades, visitor, and trader progress, but keeps statistics and premium bonuses. In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
+        layout.addView(dh.createTextView("Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses. In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
     }
 
     private void displayHelpTrader(LinearLayout layout) {
@@ -205,8 +228,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Table\n", 26));
         layout.addView(dh.createTextView("The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\n", 22));
         layout.addView(dh.createTextView("After this, items can be optionally embedded with gems at the gem table.\n", 22));
+        layout.addView(dh.createTextView("Additionally, rare pages can be crafted into books here. Crafting a book will require 10 pages, and many additional ingredients. Pages are obtained from a variety of sources:\n" +
+                "- 3 pages are rewarded when a visitor trophy is unlocked.\n" +
+                "- 35% chance to receive one when opening the bonus chest.\n" +
+                "- 0-90% chance to receive one from a worker, depending on food used (see worker help for more info).\n", 22));
         layout.addView(dh.createTextView("Swipe left and right to change items. Use the up and down arrows to change tiers.\n", 22));
-        layout.addView(dh.createTextView("Pressing 'Craft 10' add 10 of the item to your crafting queue, if you have the resources.", 22));
     }
 
     private void displayHelpTrading(LinearLayout layout) {
@@ -224,6 +250,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Unseen visitors will have no information available about them.\n", 22));
         layout.addView(dh.createTextView("Seen visitors will have a lighter silhouette the more you see them. Additionally, basic information will become available.\n", 22));
         layout.addView(dh.createTextView("Once a visitor has been seen 100 times, they will provide you with a gift, and become fully visible.", 22));
+        layout.addView(dh.createTextView("The higher the 'Spawn chance', the more likely a visitor is to arrive.", 22));
     }
 
     private void displayHelpVisitor(LinearLayout layout) {
@@ -273,8 +300,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Workers help gather resources. Every worker has a minimum level, and a hire cost based on that level.\n", 22));
         layout.addView(dh.createTextView("Once a worker has been hired, they will gather resources for you over time.\n", 22));
         layout.addView(dh.createTextView("The resources gained depends on the tool used. Higher tier tools will gather more / better resources.\n", 22));
-        layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name and total trips.\n", 22));
-        layout.addView(dh.createTextView("Tapping the tool will allow you to choose another, based on items you currently own.\n", 22));
+        layout.addView(dh.createTextView("Providing a worker with food will provide bonus resources and provide a chance of finding a page.\n",22));
+        layout.addView(dh.createTextView("Each worker has a favourite food, which will provide twice the normal bonus if provided. Food is consumed on each trip.\n", 22));
+        layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name, total trips, and current food item.\n", 22));
+        layout.addView(dh.createTextView("Tapping the food item will let you pick another. Discovered favourite food(s) are highlighted in green, and provide double food bonuses + page chance.\n", 22));
+        layout.addView(dh.createTextView("Tapping the tool will let you to choose another, based on items you currently own.\n", 22));
         layout.addView(dh.createTextView("Tapping the resource indicator will provide information on the resources currently being gathered.\n", 22));
         layout.addView(dh.createTextView("A single button performs most worker actions. Additionally, tapping the button whilst the worker is busy will display the exact time until they return.", 22));
     }
@@ -283,6 +313,17 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Tools\n", 26));
         layout.addView(dh.createTextView("Select a tool for a worker to use by first selecting a category, then an item.\n", 22));
         layout.addView(dh.createTextView("Only currently owned items will be displayed. Note that higher tier tools will provide better / more resources.", 22));
+    }
+
+    private void displayHelpQuests(LinearLayout layout) {
+        layout.addView(dh.createTextView("Quests\n", 26));
+        layout.addView(dh.createTextView("Quests are an excellent way to gather additional rewards whilst playing.\n", 22));
+        layout.addView(dh.createTextView("Tapping the quest indicator at the top of the screen will display a list of ongoing quests that can currently be accepted.\n", 22));
+        layout.addView(dh.createTextView("Once a quest is accepted, the relevant icon and current progress will appear in the indicator. If multiple are selected, the next to end will be displayed.\n", 22));
+        layout.addView(dh.createTextView("All quests reward XP, 0-2 pages, and 2-24 items / 50-2100 coins.\n", 22));
+        layout.addView(dh.createTextView("XP is calculated by multiplier * current level. The values for the multiplier are: Easy 9, Medium 15, Hard 35, Elite 75.\n", 22));
+        layout.addView(dh.createTextView("Page chance is 25% for Easy, 50% for Medium, 100% for Hard, and 200% for Elite (2 pages!).\n", 22));
+        layout.addView(dh.createTextView("The number of items / coins rewarded is halved for Easy, unchanged for Medium, doubled for Hard, and tripled for Elite.", 22));
     }
 
     public void openHelp(View view) {
@@ -296,5 +337,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Anvil, Credits, Enchanting, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
+    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Food, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Quests, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
 }

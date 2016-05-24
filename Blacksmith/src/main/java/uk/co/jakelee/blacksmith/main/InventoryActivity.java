@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -44,10 +45,15 @@ public class InventoryActivity extends Activity {
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
 
+        final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
-                updateInventoryTable();
+                new Thread(new Runnable() {
+                    public void run() {
+                        updateInventoryTable(activity);
+                    }
+                }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
@@ -66,21 +72,21 @@ public class InventoryActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void updateInventoryTable() {
-        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY item.name ASC");
-        TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
-        inventoryTable.removeAllViews();
+    private void updateInventoryTable(final Activity activity) {
+        List<TableRow> tableRows = new ArrayList<>();
+        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
+        final TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
 
         TableRow headerRow = new TableRow(getApplicationContext());
         headerRow.addView(dh.createTextView("Qty", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Name", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
-        inventoryTable.addView(headerRow);
+        tableRows.add(headerRow);
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
-            Item item = Item.findById(Item.class, inventoryItem.getItem());
+            final Item item = Item.findById(Item.class, inventoryItem.getItem());
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
@@ -91,27 +97,46 @@ public class InventoryActivity extends Activity {
             name.setSingleLine(false);
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
-
-            TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
-            sell.setClickable(true);
-            sell.setTextColor(getResources().getColorStateList(R.color.text_color));
-            sell.setGravity(Gravity.CENTER);
-            sell.setBackgroundResource(R.drawable.sell_small);
-
-            sell.setTag(R.id.itemID, item.getId());
-            sell.setTag(R.id.itemState, inventoryItem.getState());
-            sell.setOnClickListener(new Button.OnClickListener() {
+            name.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    clickSellButton(v);
+                    ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
                 }
             });
 
             itemRow.addView(count);
             itemRow.addView(image);
             itemRow.addView(name);
-            itemRow.addView(sell);
-            inventoryTable.addView(itemRow);
+
+            if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
+                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
+                sell.setClickable(true);
+                sell.setTextColor(getResources().getColorStateList(R.color.text_color));
+                sell.setGravity(Gravity.CENTER);
+                sell.setBackgroundResource(R.drawable.sell_small);
+
+                sell.setTag(R.id.itemID, item.getId());
+                sell.setTag(R.id.itemState, inventoryItem.getState());
+                sell.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        clickSellButton(v);
+                    }
+                });
+                itemRow.addView(sell);
+            }
+
+            tableRows.add(itemRow);
         }
+
+        final List<TableRow> finalRows = tableRows;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                inventoryTable.removeAllViews();
+                for (TableRow row : finalRows)
+                inventoryTable.addView(row);
+
+            }
+        });
     }
 
     private void clickSellButton(View view) {
@@ -143,6 +168,7 @@ public class InventoryActivity extends Activity {
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue * quantityToSell);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_SOLD_ITEM, quantityToSell);
 
             Pending_Inventory.addScheduledItems(this, itemPrices);
             MainActivity.vh.inventoryBusy = true;
@@ -150,7 +176,7 @@ public class InventoryActivity extends Activity {
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canSell), false);
         }
-        updateInventoryTable();
+        updateInventoryTable(this);
         dh.updateCoins(Inventory.getCoins());
     }
 

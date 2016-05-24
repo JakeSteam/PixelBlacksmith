@@ -16,6 +16,6 @@ public class PremiumHelper {
     }
 
     public static int getTaxAmount() {
-        return Player_Info.getPlayerLevelFromDB() * Trader.outOfStockTraders() * Constants.TRADER_TAX_MULTIPLIER;
+        return Player_Info.getPlayerLevelFromDB() * Trader.outOfStockTraders();
     }
 }

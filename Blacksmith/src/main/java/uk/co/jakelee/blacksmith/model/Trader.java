@@ -13,6 +13,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 
 public class Trader extends SugarRecord {
     private long shopkeeper;
@@ -68,7 +69,9 @@ public class Trader extends SugarRecord {
         if (traderToArrive.getName() != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+            if (!TutorialHelper.currentlyInTutorial) {
+                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+            }
         }
     }
 
@@ -127,18 +130,8 @@ public class Trader extends SugarRecord {
             coinStock.setQuantity(coinStock.getQuantity() - restockCost);
             coinStock.save();
 
-            // Restock
-            List<Trader> traders = Trader.listAll(Trader.class);
-            for (Trader trader : traders) {
-                trader.setStatus(Constants.TRADER_NOT_PRESENT);
-                trader.save();
-            }
-
-            List<Trader_Stock> trader_stocks = Trader_Stock.listAll(Trader_Stock.class);
-            for (Trader_Stock trader_stock : trader_stocks) {
-                trader_stock.setStock(trader_stock.getDefaultStock());
-                trader_stock.save();
-            }
+            Trader.executeQuery("UPDATE trader SET status = " + Constants.TRADER_NOT_PRESENT);
+            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
 
             return Constants.SUCCESS;
         }

@@ -42,6 +42,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/toolTitle"/>
 
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/noTools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolTypes"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:text="@string/noToolsText"
+            android:visibility="gone" />
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

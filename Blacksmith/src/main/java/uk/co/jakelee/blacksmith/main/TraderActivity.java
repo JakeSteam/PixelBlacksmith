@@ -138,7 +138,9 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
     }
 
     public void clickBuyAll(View v) {
-        AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
+        if (!MainActivity.vh.traderBusy) {
+            AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
+        }
     }
 
     private int getRestockCost() {
@@ -153,7 +155,9 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     private void clickBuy(View v) {
         Trader_Stock itemStock = (Trader_Stock) v.getTag();
-        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
+        if (!MainActivity.vh.traderBusy) {
+            AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
+        }
     }
 
     public void openHelp(View view) {

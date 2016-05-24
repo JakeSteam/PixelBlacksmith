@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quests;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
@@ -27,6 +29,7 @@ import uk.co.jakelee.blacksmith.model.Setting;
 
 public class SettingsActivity extends Activity {
     private static DisplayHelper dh;
+    final Handler handler = new Handler();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,6 @@ public class SettingsActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-
-        final Handler handler = new Handler();
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
@@ -50,6 +51,15 @@ public class SettingsActivity extends Activity {
             }
         };
         handler.post(everySecond);
+
+        updateAdToggleVisibility();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        handler.removeCallbacksAndMessages(null);
     }
 
     public void signIn(View v) {
@@ -69,6 +79,11 @@ public class SettingsActivity extends Activity {
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBoolValue(false);
         signIn.save();
+    }
+
+    private void updateAdToggleVisibility() {
+        TableRow adRow = (TableRow) findViewById(R.id.adToggleLayout);
+        adRow.setVisibility(Player_Info.isPremium() ? View.VISIBLE : View.GONE);
     }
 
     private void updateSignInVisibility() {
@@ -116,9 +131,17 @@ public class SettingsActivity extends Activity {
         boolean workerNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_WORKER_NOTIFICATIONS).getBoolValue();
         workerNotificationToggle.setImageDrawable(workerNotificationToggleValue ? tick : cross);
 
+        ImageView bonusNotificationToggle = (ImageView) findViewById(R.id.bonusNotificationToggleButton);
+        boolean bonusNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue();
+        bonusNotificationToggle.setImageDrawable(bonusNotificationToggleValue ? tick : cross);
+
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
         boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
+
+        ImageView adToggle = (ImageView) findViewById(R.id.turnOffAdsButton);
+        boolean adToggleValue = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS).getBoolValue();
+        adToggle.setImageDrawable(adToggleValue ? tick : cross);
 
         TextView prestigeButton = (TextViewPixel) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
@@ -141,12 +164,17 @@ public class SettingsActivity extends Activity {
             case R.id.workerNotificationToggleButton:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
                 break;
-            case R.id.notificationSoundToggleButton:
-                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
-                break;
             case R.id.visitorNotificationToggleButton:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
                 break;
+            case R.id.bonusNotificationToggleButton:
+                settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
+                break;
+            case R.id.notificationSoundToggleButton:
+                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
+                break;
+            case R.id.turnOffAdsButton:
+                settingID = Constants.SETTING_DISABLE_ADS;
         }
 
         if (settingID != null) {
@@ -204,16 +232,22 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    public void openSupportCode(View view) {
-        AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
-    }
-
     public void openSavedGames(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
                     "Cloud Saves", true, true, 1);
             startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
         }
+    }
+
+    public void openQuests(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
+        }
+    }
+
+    public void openSupportCode(View view) {
+        AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

@@ -11,7 +11,11 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quest;
+import com.google.android.gms.games.quest.QuestBuffer;
+import com.google.android.gms.games.quest.Quests;
 import com.google.android.gms.games.snapshot.Snapshot;
 import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
 import com.google.android.gms.games.snapshot.Snapshots;
@@ -21,6 +25,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -36,10 +41,11 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
-public class GooglePlayHelper {
+public class GooglePlayHelper implements com.google.android.gms.common.api.ResultCallback {
     public static final int RC_ACHIEVEMENTS = 9002;
     public static final int RC_LEADERBOARDS = 9003;
     public static final int RC_SAVED_GAMES = 9004;
+    public static final int RC_QUESTS = 9005;
     private static final int RESULT_OK = -1;
     private static final int RC_SIGN_IN = 9001;
     private static final String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
@@ -67,6 +73,49 @@ public class GooglePlayHelper {
                 signIn.save();
             }
         }
+    }
+
+    public static String CompleteQuest(Quest quest) {
+        Games.Quests.claim(mGoogleApiClient, quest.getQuestId(),
+                quest.getCurrentMilestone().getMilestoneId());
+        Context context = mGoogleApiClient.getContext();
+
+        String questName = quest.getName();
+        String questDifficulty = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
+        String questReward = QuestHelper.getQuestReward(context, questDifficulty);
+
+        Player_Info.increaseByOne(Player_Info.Statistic.QuestsCompleted);
+        return String.format(context.getString(R.string.questComplete),
+                questName,
+                questDifficulty,
+                questReward);
+    }
+
+    public void onResult(com.google.android.gms.common.api.Result result) {
+        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
+        QuestBuffer qb = r.getQuests();
+
+        int current = 0;
+        int max = 1;
+        String event = "";
+        if (qb.getCount() > 0) {
+            Quest q = qb.get(0);
+            current = (int) q.getCurrentMilestone().getCurrentProgress();
+            max = (int) q.getCurrentMilestone().getTargetProgress();
+            event = q.getCurrentMilestone().getEventId();
+        }
+
+        DisplayHelper.updateQuest(current, max, event);
+        qb.close();
+    }
+
+    public void UpdateQuest() {
+        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
+        quests.setResultCallback(this);
+    }
+
+    public static void UpdateEvent(String eventId, int quantity) {
+        Games.Events.increment(mGoogleApiClient, eventId, quantity);
     }
 
     public static void UpdateLeaderboards(String leaderboardID, int value) {

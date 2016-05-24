@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
@@ -48,6 +49,7 @@ public class TrophyActivity extends Activity {
         List<Visitor_Type> visitorTypes = Visitor_Type.listAll(Visitor_Type.class);
         GridLayout visitorGrid = (GridLayout) findViewById(R.id.visitorGrid);
         visitorGrid.setRowCount((visitorTypes.size() / Constants.NUMBER_OF_TROPHY_COLUMNS) + 1);
+        int trophiesEarned = 0;
 
         for (Visitor_Type visitorType : visitorTypes) {
             Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, visitorType.getVisitorID());
@@ -75,10 +77,14 @@ public class TrophyActivity extends Activity {
                 } else {
                     visitorImage.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
                 }
+            } else {
+                trophiesEarned++;
             }
 
             visitorGrid.addView(visitorImage);
         }
+
+        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TROPHIES, trophiesEarned);
     }
 
     private void loadVisitor(View v) {
@@ -96,27 +102,23 @@ public class TrophyActivity extends Activity {
 
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 40, 40));
             ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
-            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(String.format(getString(R.string.trophyVisits),
-                    visitorStats.getVisits()));
+            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(String.format(getString(R.string.trophyVisits), visitorStats.getVisits()));
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc());
-            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(String.format(getString(R.string.trophyFirstSeen),
-                    firstSeenText));
-            ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(String.format(getString(R.string.trophy100thVisit),
-                    trophyAchievedText));
-            ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(String.format(getString(R.string.trophyBestItem),
-                    bestItemText));
+            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(String.format(getString(R.string.trophyFirstSeen), firstSeenText));
+            ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(String.format(getString(R.string.trophy100thVisit), trophyAchievedText));
+            ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(String.format(getString(R.string.trophyBestItem), bestItemText));
+            ((TextViewPixel) findViewById(R.id.visitorRarity)).setText(String.format(getString(R.string.trophyRarity), visitorType.getWeighting()));
         } else if (visitorStats.getVisits() > 0) {
             String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
 
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
             ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
-            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(String.format(getString(R.string.trophyVisits),
-                    visitorStats.getVisits()));
+            ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(String.format(getString(R.string.trophyVisits), visitorStats.getVisits()));
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(R.string.unknownText);
-            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(String.format(getString(R.string.trophyFirstSeen),
-                    firstSeenText));
+            ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(String.format(getString(R.string.trophyFirstSeen), firstSeenText));
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(R.string.trophy100thVisitUnknown);
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(R.string.trophyBestItemUnknown);
+            ((TextViewPixel) findViewById(R.id.visitorRarity)).setText(String.format(getString(R.string.trophyRarity), visitorType.getWeighting()));
         } else {
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
             ((TextViewPixel) findViewById(R.id.visitorName)).setText(R.string.unknownText);
@@ -125,6 +127,7 @@ public class TrophyActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(R.string.trophyFirstSeenUnknown);
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(R.string.trophy100thVisitUnknown);
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(R.string.trophyBestItemUnknown);
+            ((TextViewPixel) findViewById(R.id.visitorRarity)).setText(R.string.trophyRarityUnknown);
         }
     }
 

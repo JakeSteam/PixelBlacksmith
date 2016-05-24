@@ -11,19 +11,27 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quest;
+import com.google.android.gms.games.quest.QuestUpdateListener;
+import com.google.android.gms.games.quest.Quests;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import hotchemi.android.rate.AppRate;
-import hotchemi.android.rate.OnClickButtonListener;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AdvertHelper;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DatabaseHelper;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
@@ -31,13 +39,12 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
-import uk.co.jakelee.blacksmith.helper.PrestigeHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
-import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -46,12 +53,14 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener,
+        QuestUpdateListener {
     private static final Handler handler = new Handler();
     public static TextViewPixel coins;
     public static TextViewPixel level;
     public static ProgressBar levelProgress;
     public static TextViewPixel levelPercent;
+    public static RelativeLayout questContainer;
     private static DisplayHelper dh;
     public static VariableHelper vh;
     private static Activity mainActivity;
@@ -64,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
+    public AdvertHelper ah;
+    private GooglePlayHelper gph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
+        gph = new GooglePlayHelper();
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
@@ -81,8 +93,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         assignUIElements();
-        checkFirstRun();
-        hotfixTier(); // Remove me soon!
+        DatabaseHelper.handlePatches();
 
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -94,12 +105,12 @@ public class MainActivity extends AppCompatActivity implements
 
         dh.createAllSlots(this);
         ratingPrompt();
-    }
 
-    private void hotfixTier() {
-        if (prefs.getInt("tutorialStage", 0) == 0) {
-            PrestigeHelper.resetCraftingInterface();
+        if (Player_Info.displayAds()) {
+            ah = AdvertHelper.getInstance(this);
         }
+
+        gph.UpdateQuest();
     }
 
     private void ratingPrompt() {
@@ -108,14 +119,6 @@ public class MainActivity extends AppCompatActivity implements
                 .setLaunchTimes(4)
                 .setRemindInterval(3)
                 .setShowLaterButton(true)
-                .setOnClickButtonListener(new OnClickButtonListener() {
-                    @Override
-                    public void onClickButton(int which) {
-                        if (which == -1) {
-                            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 500);
-                        }
-                    }
-                })
                 .monitor();
 
         AppRate.showRateDialogIfMeetsConditions(this);
@@ -132,40 +135,8 @@ public class MainActivity extends AppCompatActivity implements
         level = (TextViewPixel) findViewById(R.id.currentLevel);
         levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
         levelPercent = (TextViewPixel) findViewById(R.id.currentLevelPercent);
-    }
 
-    private void checkFirstRun() {
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_EMPTY) {
-            DatabaseHelper.initialSQL();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
-
-            TutorialHelper.currentlyInTutorial = true;
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_0) {
-            DatabaseHelper.patch100to101();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_0_1) {
-            DatabaseHelper.patch101to120();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_0) {
-            DatabaseHelper.patch120to121();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_2_1) {
-            DatabaseHelper.patch121to130();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
-        }
-
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) == DatabaseHelper.DB_V1_3_0) {
-            DatabaseHelper.patch130to140();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
-        }
+        questContainer = (RelativeLayout) findViewById(R.id.questContainer);
     }
 
     public static void startFirstTutorial() {
@@ -347,6 +318,11 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
+        if (Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue() && !Player_Info.isBonusReady() && Player_Info.displayAds()) {
+            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+            NotificationHelper.addBonusNotification(getApplicationContext(), notificationSound);
+        }
+
         if (musicServiceIsStarted) {
             stopService(musicService);
             musicServiceIsStarted = false;
@@ -363,8 +339,12 @@ public class MainActivity extends AppCompatActivity implements
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
-                dh.populateSlots(findViewById(R.id.mainScroller));
-                updateVisitors();
+                new Thread(new Runnable() {
+                    public void run() {
+                        dh.populateSlots(activity, findViewById(R.id.mainScroller));
+                        updateVisitors();
+                    }
+                }).start();
                 dh.updateCoinsGUI();
                 if (dh.updateLevelText(getApplicationContext()) || needToRedrawSlots) {
                     dh.createAllSlots(activity);
@@ -379,9 +359,14 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
-                if (newVisitors > 0) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorArriving), newVisitors), true);
+                if (newVisitors == 1) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, R.string.visitorArriving, true);
+                } else if (newVisitors > 1) {
+                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
+                DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
+                gph.UpdateQuest();
+
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
@@ -414,9 +399,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void updateVisitors() {
-        visitorContainer.removeAllViews();
-        visitorContainerOverflow.removeAllViews();
-        dh.populateVisitorsContainer(getApplicationContext(), MainActivity.this, visitorContainer, visitorContainerOverflow);
+        dh.populateVisitorsContainer(getApplicationContext(), this, visitorContainer, visitorContainerOverflow);
     }
 
     public void openMarket(View view) {
@@ -484,8 +467,26 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void openQuests(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN}), GooglePlayHelper.RC_QUESTS);
+        } else {
+            ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
+        }
+    }
+
+    public void clickBonusChest(View view) {
+        if (Player_Info.isBonusReady()) {
+            AlertDialogHelper.confirmBonusAdvert(this, this);
+        } else {
+            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
+                    DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
+        }
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
+        Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
     }
 
     @Override
@@ -498,7 +499,33 @@ public class MainActivity extends AppCompatActivity implements
         GooglePlayHelper.mGoogleApiClient.connect();
     }
 
+    public void onQuestCompleted(Quest quest) {
+        ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, GooglePlayHelper.CompleteQuest(quest), true);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
+    }
+
+    public void callbackSpawn() {
+        if (VisitorHelper.tryCreateVisitor()) {
+            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeAdvertComplete, true);
+        }
+    }
+
+    public void callbackBonus() {
+        String rewardText = AdvertHelper.createAdvertReward(this);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, rewardText, true);
+
+        Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
+        lastClaimed.setLongValue(System.currentTimeMillis());
+        lastClaimed.save();
+
+        Player_Info timesClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("BonusesClaimed")).first();
+        timesClaimed.setIntValue(timesClaimed.getIntValue() + 1);
+        timesClaimed.save();
+
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_CLAIM_BONUS, 1);
+        DisplayHelper.updateBonusChest((ImageView) findViewById(R.id.bonus_chest));
     }
 }

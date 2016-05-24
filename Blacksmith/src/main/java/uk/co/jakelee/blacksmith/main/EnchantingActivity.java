@@ -10,7 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -18,6 +20,7 @@ import android.widget.ViewFlipper;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -27,6 +30,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -40,6 +44,7 @@ public class EnchantingActivity extends Activity {
     private int displayedTier;
     private ViewFlipper mViewFlipper;
     private GestureDetector mGestureDetector;
+    private boolean powderSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,12 +53,13 @@ public class EnchantingActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("enchantingTier", Constants.TIER_MIN);
+        powderSelected = MainActivity.prefs.getBoolean("enchantingTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createEnchantingInterface(true);
+        createInterface(true, false);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -72,12 +78,27 @@ public class EnchantingActivity extends Activity {
 
         MainActivity.prefs.edit().putInt("enchantingTier", displayedTier).apply();
         MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+        MainActivity.prefs.edit().putBoolean("enchantingTab", powderSelected).apply();
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
 
         return super.onTouchEvent(event);
+    }
+
+    private void createInterface(boolean clearExisting, boolean resetTier) {
+        updateTabs();
+
+        if (resetTier) {
+            displayedTier = powderSelected ? Constants.TIER_NONE : Constants.TIER_MIN;
+        }
+
+        if (powderSelected) {
+            createPowderInterface(clearExisting);
+        } else {
+            createEnchantingInterface(clearExisting);
+        }
     }
 
     private void createEnchantingInterface(boolean clearExisting) {
@@ -104,10 +125,33 @@ public class EnchantingActivity extends Activity {
         dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
 
         // Display gem buttons
-        LinearLayout gemsTable = (LinearLayout) findViewById(R.id.gemsTable);
+        TableLayout gemsTable = (TableLayout) findViewById(R.id.itemsTable);
         createGemsTable(gemsTable);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+    }
+
+    private void createPowderInterface(boolean clearExisting) {
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_POWDERS)).orderBy("level").list();
+
+        dh.createItemSelector(
+                (ViewFlipper) findViewById(R.id.viewFlipper),
+                clearExisting,
+                items,
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("enchantingPosition", 0));
+
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.enchanting),
+                (TableLayout) findViewById(R.id.itemsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
+
+        dh.drawArrows(this.displayedTier, Constants.TIER_NONE, Constants.TIER_NONE, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
     }
 
     public void goUpTier(View view) {
@@ -126,58 +170,59 @@ public class EnchantingActivity extends Activity {
         }
     }
 
-    private void createGemsTable(final LinearLayout gemsTable) {
+    public void toggleTab(View view) {
+        MainActivity.prefs.edit().putInt("enchantingPosition", 0).apply();
+        powderSelected = !powderSelected;
+        updateTabs();
+        createInterface(true, true);
+    }
+
+    private void updateTabs() {
+        if (powderSelected) {
+            (findViewById(R.id.enchantTab)).setAlpha(1f);
+            (findViewById(R.id.powderTab)).setAlpha(0.3f);
+            (findViewById(R.id.crushGem)).setVisibility(View.VISIBLE);
+        } else {
+            (findViewById(R.id.enchantTab)).setAlpha(0.3f);
+            (findViewById(R.id.powderTab)).setAlpha(1f);
+            (findViewById(R.id.crushGem)).setVisibility(View.GONE);
+        }
+    }
+
+    private void createGemsTable(final TableLayout gemsTable) {
         gemsTable.removeAllViews();
         List<Item> allGems = Select.from(Item.class).where(
                 Condition.prop("type").eq(Constants.TYPE_GEM)).list();
 
-        List<Item> allPowders = Select.from(Item.class).where(
-                Condition.prop("type").eq(Constants.TYPE_POWDERS)).list();
-
+        List<TableRow> rows = new ArrayList<>();
         for (Item gem : allGems) {
-            gemsTable.addView(createEnchantingButton(gem));
+            rows.add(createEnchantingButton(gem));
         }
 
-        for (Item powder : allPowders) {
-            gemsTable.addView(createEnchantingButton(powder));
+        for (TableRow row : rows) {
+            gemsTable.addView(row);
         }
     }
 
-    private LinearLayout createEnchantingButton(Item item) {
-        boolean displayInfo = Inventory.haveSeen(item.getId(), Constants.STATE_NORMAL) || item.getType() == Constants.TYPE_POWDERS;
-
-        LinearLayout itemButton = new LinearLayout(getApplicationContext());
+    private TableRow createEnchantingButton(Item item) {
+        TableRow itemButton = new TableRow(getApplicationContext());
         itemButton.setBackgroundResource(R.drawable.button_extra_wide);
         itemButton.setGravity(Gravity.CENTER);
 
-        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, displayInfo, true);
-        itemImage.setPadding(0, 0, dh.convertDpToPixel(2), 0);
+        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, true, true);
+        itemImage.setPadding(dh.convertDpToPixel(16), 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 
-        int quantityOwned = 0;
-        String itemName = getString(R.string.unknownText);
-        if (displayInfo) {
-            quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
-            itemName = item.getName();
-        }
+        int quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
+        String itemName = item.getName();
         String buttonText = String.format(getString(R.string.enchantingButtonText), itemName, quantityOwned);
 
-        int textSize = 18;
-        if (item.getType() == Constants.TYPE_GEM) {
-            itemButton.setOnClickListener(new Button.OnClickListener() {
+        int textSize = 30;
+        itemButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     clickEnchantButton(v);
                 }
             });
-            textSize = 30;
-        } else if (item.getType() == Constants.TYPE_POWDERS) {
-            itemButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickPowderButton(v);
-                }
-            });
-        }
-
         TextView buttonTextView = dh.createTextView(buttonText, textSize);
 
         itemButton.addView(buttonTextView);
@@ -186,23 +231,27 @@ public class EnchantingActivity extends Activity {
         return itemButton;
     }
 
-    private void clickPowderButton(View v) {
-
-        Long powderID = (Long) v.getTag();
+    public void clickPowderButton(View v) {
+        Long powderID = (Long) mViewFlipper.getCurrentView().getTag();
         Item powder = Item.findById(Item.class, powderID);
 
         int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_POWDER, 1);
 
-            createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
+            dh.createCraftingInterface(
+                    (RelativeLayout) findViewById(R.id.enchanting),
+                    (TableLayout) findViewById(R.id.itemsTable),
+                    mViewFlipper,
+                    Constants.STATE_NORMAL);
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
-    private void clickEnchantButton(View v) {
+    public void clickEnchantButton(View v) {
         View enchantingItemInfo = findViewById(R.id.enchanting);
 
         Long itemId = (Long) mViewFlipper.getCurrentView().getTag();
@@ -218,9 +267,10 @@ public class EnchantingActivity extends Activity {
                     item.getName(),
                     gem.getName()), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
-            createGemsTable((LinearLayout) findViewById(R.id.gemsTable));
+            createGemsTable((TableLayout) findViewById(R.id.itemsTable));
         } else {
             ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
         }
@@ -244,6 +294,14 @@ public class EnchantingActivity extends Activity {
 
             View enchanting = findViewById(R.id.enchanting);
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchanting);
+
+            if (powderSelected) {
+                dh.createCraftingInterface(
+                        (RelativeLayout) findViewById(R.id.enchanting),
+                        (TableLayout) findViewById(R.id.itemsTable),
+                        mViewFlipper,
+                        Constants.STATE_NORMAL);
+            }
 
             HorizontalDots horizontalBar = (HorizontalDots) findViewById(R.id.horizontalIndicator);
             horizontalBar.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());

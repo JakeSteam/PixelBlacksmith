@@ -6,6 +6,7 @@ import com.orm.query.Select;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -39,6 +40,46 @@ public class DatabaseHelper {
     public final static int DB_V1_2_1 = 4;
     public final static int DB_V1_3_0 = 5;
     public final static int DB_V1_4_0 = 6;
+    public final static int DB_V1_5_0 = 7;
+
+    public static void handlePatches() {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
+            DatabaseHelper.initialSQL();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
+
+            TutorialHelper.currentlyInTutorial = true;
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_0) {
+            DatabaseHelper.patch100to101();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_1) {
+            DatabaseHelper.patch101to120();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_0) {
+            DatabaseHelper.patch120to121();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_1) {
+            DatabaseHelper.patch121to130();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_3_0) {
+            DatabaseHelper.patch130to140();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
+            DatabaseHelper.patch140to150();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
+        }
+    }
 
     public static void initialSQL() {
         createAchievement();
@@ -138,6 +179,7 @@ public class DatabaseHelper {
         Trader_Stock traderStock = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(20L)).first();
         traderStock.setDefaultStock(5);
+        traderStock.setStock(5);
         traderStock.save();
 
         Item.executeQuery("UPDATE item SET value = value - 1 WHERE tier = 1 OR id = 11");
@@ -146,7 +188,7 @@ public class DatabaseHelper {
     public static void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
-        Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE id = 11");
+        Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE visitor_id = 11");
 
         List<Upgrade> upgrades = new ArrayList<>();
         upgrades.add(new Upgrade("Minimum Visitor Rewards", "", 350, 1, 1, 5, 1));
@@ -156,6 +198,283 @@ public class DatabaseHelper {
         if (!Player_Info.isPremium()) {
             Slot.executeQuery("UPDATE slot SET premium = 1 WHERE level = 9999");
         }
+    }
+
+    public static void patch140to150() {
+        if (Upgrade.getValue("Minimum Visitor Rewards") == 0) {
+            patch130to140();
+        }
+
+        Achievement collectionAchiev = new Achievement("The Collector", "Completed The Collection", 1, 19, "CgkI6tnE2Y4OEAIQJA");
+        collectionAchiev.save();
+
+        Character foodCharacter = new Character(21L, "Farmer's Evil Friend", "What do you think of my new paint job?");
+        foodCharacter.save();
+
+        Item.executeQuery("UPDATE Item SET description = 'A sturdier rod for catching fish.' WHERE id = 67"); // fishing rod
+        Item.executeQuery("UPDATE Item SET value = 410 WHERE id = 121"); // rune helm
+        Item.executeQuery("UPDATE Item SET type = 27, value = 10 WHERE id = 78"); //cheese
+        Item.executeQuery("UPDATE Item SET type = 27, value = 20 WHERE id = 79"); //bread
+        List<Item> items = new ArrayList<>();
+            items.add(new Item(177L, "Red Page", "The page seems to glow with power.", 25, 11, 0, 1));
+            items.add(new Item(178L, "Red Page (dirty)", "The page seems to glow with dulled power.", 25, 11, 0, 1));
+            items.add(new Item(179L, "Yellow Page", "The page seems to vibrate.", 25, 11, 0, 1));
+            items.add(new Item(180L, "Yellow Page (dirty)", "The page seems to vibrate slightly.", 25, 11, 0, 1));
+            items.add(new Item(181L, "Green Page", "The page emits strong, leafy smell.", 25, 11, 0, 1));
+            items.add(new Item(182L, "Green Page (dirty)", "The page emits a faint flowery smell.", 25, 11, 0, 1));
+            items.add(new Item(183L, "Blue Page", "The page is rather soggy.", 25, 11, 0, 1));
+            items.add(new Item(184L, "Blue Page (dirty)", "The page is slightly damp", 25, 11, 0, 1));
+            items.add(new Item(185L, "Pink Page", "The page's appearance somehow cheers you up.", 25, 11, 0, 1));
+            items.add(new Item(186L, "Pink Page (dirty)", "The page makes you feel a little bit happier.", 25, 11, 0, 1));
+            items.add(new Item(187L, "Brown Page", "The page is a little muddy.", 25, 11, 0, 1));
+            items.add(new Item(188L, "Brown Page (dirty)", "The page is covered in rather messy mud.", 25, 11, 0, 1));
+            items.add(new Item(189L, "Black Page", "The page whispers stories of battles long ended to you.", 25, 11, 0, 1));
+            items.add(new Item(190L, "Black Page (dirty)", "The page's appearance makes you more irritable.", 25, 11, 0, 1));
+            items.add(new Item(191L, "White Page", "The page's leaves have petals sprouting from them.", 25, 11, 0, 1));
+            items.add(new Item(192L, "White Page (dirty)", "The page has bugs crawling all over.", 25, 11, 0, 1));
+
+            items.add(new Item(193L, "Book of Strength", "A powerful book, with information on combat techniques.", 26, 11, 15000, 1));
+            items.add(new Item(194L, "Book of Agility", "An agile book, containing information on dodging techniques.", 26, 11, 15000, 1));
+            items.add(new Item(195L, "Book of Nature", "A natural book, containing information on gardening.", 26, 11, 15000, 1));
+            items.add(new Item(196L, "Book of Water", "A wet book, containing information on sea creatures.", 26, 11, 15000, 1));
+            items.add(new Item(197L, "Book of Peace", "A relaxing book, helping to negotiate between others.", 26, 11, 15000, 1));
+            items.add(new Item(198L, "Book of Earth", "A brown book, containing information about Earth.", 26, 11, 15000, 1));
+            items.add(new Item(199L, "Book of War", "A deadly book, containing information on poisons.", 26, 11, 15000, 1));
+            items.add(new Item(200L, "Book of Life", "A lively book, containing information on the world's species.", 26, 11, 15000, 1));
+            items.add(new Item(201L, "The Collection", "A collection of all books,the ultimate prize.", 26, 11, 55000, 100));
+
+            items.add(new Item(202L, "Wheat", "The grain in game falls mainly in... here.", 21, 11, 5, 1));
+            items.add(new Item(203L, "Egg", "Egg-sactly what you need.", 21, 11, 5, 1));
+            items.add(new Item(204L, "Milk", "Freshly squeezed.", 21, 11, 5, 1));
+            items.add(new Item(205L, "Blueberry", "Like a blackberry, but bluer.", 21, 11, 5, 1));
+            items.add(new Item(206L, "Banana", "Not split. Yet.", 21, 11, 5, 1));
+            items.add(new Item(207L, "Orange", "Orange you glad you bought this?", 21, 11, 5, 1));
+            items.add(new Item(208L, "Cherry", "Cherish this cherry. Or use it.", 21, 11, 5, 1));
+            items.add(new Item(209L, "Candy", "Don't eat too many!", 21, 11, 5, 1));
+            items.add(new Item(210L, "Chocolate", "Don't eat too much!", 21, 11, 5, 1));
+            items.add(new Item(211L, "Raw Fish", "A very fishy dishy. Delishy!.", 21, 11, 5, 1));
+            items.add(new Item(212L, "Fruit Salad", "Fresh, not from a can.", 27, 11, 30, 1));
+            items.add(new Item(213L, "Cooked Fish", "A less fishy dishy, still delishy!.", 27, 11, 10, 1));
+            items.add(new Item(214L, "Cooked Meat", "Not dripping any more. Phew!", 27, 11, 10, 1));
+            items.add(new Item(215L, "Ham + Cheese S'wich", "A sandwich with all the insides inside(s).", 27, 11, 45, 1));
+            items.add(new Item(216L, "Ham Sandwich", "Ham, not spam!", 27, 11, 35, 1));
+            items.add(new Item(217L, "Cheese Sandwich", "Not grilled, unfortunately.", 27, 11, 35, 1));
+            items.add(new Item(218L, "Pie", "This pie isn't", 27, 11, 30, 1));
+            items.add(new Item(219L, "Cookie", "Look at the way it crumbles.", 27, 11, 30, 1));
+        Item.saveInTx(items);
+
+        List<Player_Info> player_infos = new ArrayList<>();
+            player_infos.add(new Player_Info("LastDonated", "never"));
+            player_infos.add(new Player_Info("TimesDonated", 0));
+            player_infos.add(new Player_Info("LastBonusClaimed", System.currentTimeMillis()));
+            player_infos.add(new Player_Info("BonusesClaimed", 0));
+            player_infos.add(new Player_Info("CollectionsCreated", 0, 0));
+            player_infos.add(new Player_Info("QuestsCompleted", 0));
+        Player_Info.saveInTx(player_infos);
+
+        List<Recipe> recipes = new ArrayList<>();
+            // Red book
+            recipes.add(new Recipe(193L, 1L, 177L, 1L, 5));
+            recipes.add(new Recipe(193L, 1L, 178L, 1L, 5));
+            recipes.add(new Recipe(193L, 1L, 132L, 1L, 2));
+            recipes.add(new Recipe(193L, 1L, 133L, 1L, 2));
+            recipes.add(new Recipe(193L, 1L, 134L, 1L, 2));
+            recipes.add(new Recipe(193L, 1L, 145L, 1L, 2));
+            recipes.add(new Recipe(193L, 1L, 146L, 1L, 2));
+            recipes.add(new Recipe(193L, 1L, 147L, 1L, 2));
+            recipes.add(new Recipe(193L, 1L, 10L, 1L, 250));
+            // Yellow book
+            recipes.add(new Recipe(194L, 1L, 179L, 1L, 5));
+            recipes.add(new Recipe(194L, 1L, 180L, 1L, 5));
+            recipes.add(new Recipe(194L, 1L, 156L, 1L, 1));
+            recipes.add(new Recipe(194L, 1L, 157L, 1L, 1));
+            recipes.add(new Recipe(194L, 1L, 158L, 1L, 1));
+            recipes.add(new Recipe(194L, 1L, 159L, 1L, 1));
+            recipes.add(new Recipe(194L, 1L, 160L, 1L, 1));
+            recipes.add(new Recipe(194L, 1L, 206L, 1L, 2));
+            recipes.add(new Recipe(194L, 1L, 8L, 1L, 300));
+            recipes.add(new Recipe(194L, 1L, 52L, 1L, 5000));
+            // Green book
+            recipes.add(new Recipe(195L, 1L, 181L, 1L, 5));
+            recipes.add(new Recipe(195L, 1L, 182L, 1L, 5));
+            recipes.add(new Recipe(195L, 1L, 6L, 1L, 400));
+            recipes.add(new Recipe(195L, 1L, 100L, 5L, 20));
+            recipes.add(new Recipe(195L, 1L, 130L, 1L, 100));
+            // Blue book
+            recipes.add(new Recipe(196L, 1L, 183L, 1L, 5));
+            recipes.add(new Recipe(196L, 1L, 184L, 1L, 5));
+            recipes.add(new Recipe(196L, 1L, 129L, 1L, 120));
+            recipes.add(new Recipe(196L, 1L, 119L, 1L, 3));
+            recipes.add(new Recipe(196L, 1L, 120L, 1L, 3));
+            recipes.add(new Recipe(196L, 1L, 121L, 4L, 1));
+            recipes.add(new Recipe(196L, 1L, 122L, 4L, 1));
+            recipes.add(new Recipe(196L, 1L, 211, 1L, 5));
+            recipes.add(new Recipe(196L, 1L, 73L, 1L, 5));
+            // Pink book
+            recipes.add(new Recipe(197L, 1L, 185L, 1L, 5));
+            recipes.add(new Recipe(197L, 1L, 186L, 1L, 5));
+            recipes.add(new Recipe(197L, 1L, 148L, 1L, 8));
+            recipes.add(new Recipe(197L, 1L, 80L, 1L, 100));
+            // Brown book
+            recipes.add(new Recipe(198L, 1L, 187L, 1L, 5));
+            recipes.add(new Recipe(198L, 1L, 188L, 1L, 5));
+            recipes.add(new Recipe(198L, 1L, 79L, 1L, 100));
+            recipes.add(new Recipe(198L, 1L, 71L, 1L, 100));
+            recipes.add(new Recipe(198L, 1L, 32L, 1L, 5));
+            recipes.add(new Recipe(198L, 1L, 32L, 2L, 5));
+            recipes.add(new Recipe(198L, 1L, 32L, 3L, 5));
+            recipes.add(new Recipe(198L, 1L, 32L, 4L, 5));
+            recipes.add(new Recipe(198L, 1L, 32L, 5L, 5));
+            recipes.add(new Recipe(198L, 1L, 32L, 6L, 5));
+            recipes.add(new Recipe(198L, 1L, 32L, 7L, 5));
+            // Black book
+            recipes.add(new Recipe(199L, 1L, 189L, 1L, 5));
+            recipes.add(new Recipe(199L, 1L, 190L, 1L, 5));
+            recipes.add(new Recipe(199L, 1L, 3L, 1L, 200));
+            recipes.add(new Recipe(199L, 1L, 31L, 7L, 1));
+            recipes.add(new Recipe(199L, 1L, 47L, 7L, 1));
+            recipes.add(new Recipe(199L, 1L, 64L, 7L, 1));
+            recipes.add(new Recipe(199L, 1L, 92L, 7L, 1));
+            recipes.add(new Recipe(199L, 1L, 108L, 7L, 1));
+            recipes.add(new Recipe(199L, 1L, 124L, 7L, 1));
+            recipes.add(new Recipe(199L, 1L, 143L, 7L, 1));
+            // White book
+            recipes.add(new Recipe(200L, 1L, 191L, 1L, 5));
+            recipes.add(new Recipe(200L, 1L, 192L, 1L, 5));
+            recipes.add(new Recipe(200L, 1L, 13L, 1L, 150));
+            recipes.add(new Recipe(200L, 1L, 17L, 1L, 150));
+            recipes.add(new Recipe(200L, 1L, 150L, 1L, 1));
+            recipes.add(new Recipe(200L, 1L, 151L, 1L, 1));
+            recipes.add(new Recipe(200L, 1L, 152L, 1L, 1));
+            recipes.add(new Recipe(200L, 1L, 153L, 1L, 1));
+            recipes.add(new Recipe(200L, 1L, 154L, 1L, 1));
+            // Collection
+            recipes.add(new Recipe(201L, 1L, 193L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 194L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 195L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 196L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 197L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 198L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 199L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 200L, 1L, 1));
+            recipes.add(new Recipe(201L, 1L, 52L, 1L, 10000));
+
+            // Bread
+            recipes.add(new Recipe(79L, 1L, 202L, 1L, 1));
+            recipes.add(new Recipe(79L, 1L, 203L, 1L, 1));
+            recipes.add(new Recipe(79L, 1L, 204L, 1L, 1));
+            // Cheese
+            recipes.add(new Recipe(78L, 1L, 204L, 1L, 1));
+            // Fruit Salad
+            recipes.add(new Recipe(212L, 1L, 77L, 1L, 1));
+            recipes.add(new Recipe(212L, 1L, 205L, 1L, 1));
+            recipes.add(new Recipe(212L, 1L, 206L, 1L, 1));
+            recipes.add(new Recipe(212L, 1L, 207L, 1L, 1));
+            recipes.add(new Recipe(212L, 1L, 208L, 1L, 1));
+            // Cooked Fish
+            recipes.add(new Recipe(213L, 1L, 211L, 1L, 1));
+            // Cooked Meat
+            recipes.add(new Recipe(214L, 1L, 80L, 1L, 1));
+            // Ham + Cheese S'wich
+            recipes.add(new Recipe(215L, 1L, 79L, 1L, 1));
+            recipes.add(new Recipe(215L, 1L, 78L, 1L, 1));
+            recipes.add(new Recipe(215L, 1L, 214L, 1L, 1));
+            // Ham S'wich
+            recipes.add(new Recipe(216L, 1L, 79L, 1L, 1));
+            recipes.add(new Recipe(216L, 1L, 214L, 1L, 1));
+            // Cheese S'wich
+            recipes.add(new Recipe(217L, 1L, 79L, 1L, 1));
+            recipes.add(new Recipe(217L, 1L, 78L, 1L, 1));
+            // Pie
+            recipes.add(new Recipe(218L, 1L, 202L, 1L, 1));
+            recipes.add(new Recipe(218L, 1L, 203L, 1L, 1));
+            recipes.add(new Recipe(218L, 1L, 204L, 1L, 1));
+            recipes.add(new Recipe(218L, 1L, 205L, 1L, 1));
+            // Cookie
+            recipes.add(new Recipe(219L, 1L, 202L, 1L, 1));
+            recipes.add(new Recipe(219L, 1L, 203L, 1L, 1));
+            recipes.add(new Recipe(219L, 1L, 204L, 1L, 1));
+            recipes.add(new Recipe(219L, 1L, 210L, 1L, 1));
+        Recipe.saveInTx(recipes);
+
+        List<Setting> settings = new ArrayList<>();
+            settings.add(new Setting(8L, "HideAllAdverts", false));
+            settings.add(new Setting(9L, "BonusNotifications", true));
+        Setting.saveInTx(settings);
+
+        Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 3 * stock, default_stock = 3 * default_stock WHERE trader_type = 15"); // Increase coal amounts
+        Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 3 * stock, default_stock = 3 * default_stock WHERE trader_type = 16");
+        Trader_Stock.executeQuery("UPDATE TraderStock SET stock = 5 * stock, default_stock = 5 * default_stock WHERE trader_type = 17");
+        List<Trader> traders = new ArrayList<>();
+        List<Trader_Stock> trader_stocks = new ArrayList<>();
+            // Add extra coal to existing shops
+            trader_stocks.add(new Trader_Stock(46L, 3L, 1, 350, 100));
+            trader_stocks.add(new Trader_Stock(25L, 3L, 1, 100, 200));
+            trader_stocks.add(new Trader_Stock(23L, 3L, 1, 40, 60));
+            trader_stocks.add(new Trader_Stock(21L, 3L, 1, 20, 30));
+            trader_stocks.add(new Trader_Stock(2L, 3L, 1, 250, 80));
+
+            // Add fish to existing shop
+            trader_stocks.add(new Trader_Stock(41L, 211L, 1, 0, 20));
+
+            traders.add(new Trader(21L, 4, "The Pre-Bakery", "All the ingredients, none of the bread!", 5, 0, 0, 10));
+            trader_stocks.add(new Trader_Stock(54L, 202L, 1, 0, 10));
+            trader_stocks.add(new Trader_Stock(54L, 203L, 1, 0, 10));
+            trader_stocks.add(new Trader_Stock(54L, 204L, 1, 0, 10));
+
+            traders.add(new Trader(21L, 4, "Fruit Stand", "All of your five a day.", 10, 0, 0, 15));
+            trader_stocks.add(new Trader_Stock(55L, 77L, 1, 0, 6));
+            trader_stocks.add(new Trader_Stock(55L, 205L, 1, 0, 6));
+            trader_stocks.add(new Trader_Stock(55L, 206L, 1, 0, 6));
+            trader_stocks.add(new Trader_Stock(55L, 207L, 1, 0, 6));
+            trader_stocks.add(new Trader_Stock(55L, 208L, 1, 0, 6));
+
+            traders.add(new Trader(21L, 4, "The Sweet Spot", "Careful, they'll rot your teeth.", 15, 0, 0, 20));
+            trader_stocks.add(new Trader_Stock(56L, 209L, 1, 0, 10));
+            trader_stocks.add(new Trader_Stock(56L, 210L, 1, 0, 10));
+            trader_stocks.add(new Trader_Stock(56L, 209L, 1, 25, 20));
+            trader_stocks.add(new Trader_Stock(56L, 210L, 1, 25, 20));
+        Trader.saveInTx(traders);
+        Trader_Stock.saveInTx(trader_stocks);
+
+        List<Type> types = new ArrayList<>();
+            types.add(new Type(25L, "Page", 1, 30, 0));
+            types.add(new Type(26L, "Book", 1, 30, 0));
+            types.add(new Type(27L, "Processed Food", 1, 1, 15));
+        Type.saveInTx(types);
+
+        Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 5 WHERE visitor_id = 8");
+        Visitor_Type.executeQuery("UPDATE VisitorType SET type_preferred = 4 WHERE visitor_id = 9");
+
+        Worker.executeQuery("UPDATE worker SET food_used = 0, favourite_food_discovered = 0, favourite_food = worker_id + 211"); // add new field defaults
+        Worker_Resource.deleteAll(Worker_Resource.class, "tool_id IN (34, 50, 67, 95, 111, 127, 146, 175)"); // recreate fishing rods
+        List<Worker_Resource> workerResources = new ArrayList<>();
+            workerResources.add(new Worker_Resource(34, 77, 1, 5)); // Bronze fishing rod
+            workerResources.add(new Worker_Resource(34, 80, 1, 5)); // Bronze fishing rod
+            workerResources.add(new Worker_Resource(50, 202, 1, 3)); // Iron fishing rod
+            workerResources.add(new Worker_Resource(50, 203, 1, 3)); // Iron fishing rod
+            workerResources.add(new Worker_Resource(50, 204, 1, 3)); // Iron fishing rod
+            workerResources.add(new Worker_Resource(67, 202, 1, 6)); // Steel fishing rod
+            workerResources.add(new Worker_Resource(67, 203, 1, 6)); // Steel fishing rod
+            workerResources.add(new Worker_Resource(67, 204, 1, 6)); // Steel fishing rod
+            workerResources.add(new Worker_Resource(95, 205, 1, 5)); // Mithril fishing rod
+            workerResources.add(new Worker_Resource(95, 206, 1, 5)); // Mithril fishing rod
+            workerResources.add(new Worker_Resource(95, 207, 1, 5)); // Mithril fishing rod
+            workerResources.add(new Worker_Resource(95, 208, 1, 5)); // Mithril fishing rod
+            workerResources.add(new Worker_Resource(111, 209, 1, 10)); // Adamant fishing rod
+            workerResources.add(new Worker_Resource(111, 210, 1, 10)); // Adamant fishing rod
+            workerResources.add(new Worker_Resource(127, 77, 1, 10)); // Rune fishing rod
+            workerResources.add(new Worker_Resource(127, 203, 1, 10)); // Rune fishing rod
+            workerResources.add(new Worker_Resource(127, 80, 1, 10)); // Rune fishing rod
+            workerResources.add(new Worker_Resource(127, 211, 1, 10)); // Rune fishing rod
+            workerResources.add(new Worker_Resource(146, 205, 1, 15)); // Dragon fishing rod
+            workerResources.add(new Worker_Resource(146, 206, 1, 15)); // Dragon fishing rod
+            workerResources.add(new Worker_Resource(146, 207, 1, 15)); // Dragon fishing rod
+            workerResources.add(new Worker_Resource(146, 208, 1, 15)); // Dragon fishing rod
+            workerResources.add(new Worker_Resource(175, 202, 1, 30)); // Legendary fishing rod
+            workerResources.add(new Worker_Resource(175, 203, 1, 30)); // Legendary fishing rod
+            workerResources.add(new Worker_Resource(175, 204, 1, 30)); // Legendary fishing rod
+        Worker_Resource.saveInTx(workerResources);
     }
 
     private static void createAchievement() {

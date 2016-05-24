@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -28,6 +29,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -50,6 +52,7 @@ public class TradeActivity extends Activity {
     private static DisplayHelper dh;
     private static SharedPreferences prefs;
     private static boolean tradeMax = false;
+    private boolean currentlySelling = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,6 @@ public class TradeActivity extends Activity {
 
         Intent intent = getIntent();
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
-
         if (demandId > 0) {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
             visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
@@ -72,10 +74,15 @@ public class TradeActivity extends Activity {
             startTutorial();
         }
 
+        final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
-                displayItemsTable();
+                new Thread(new Runnable() {
+                    public void run() {
+                        displayItemsTable(activity);
+                    }
+                }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
@@ -107,7 +114,7 @@ public class TradeActivity extends Activity {
     private void createTradeInterface() {
         displayVisitorInfo();
         displayDemandInfo();
-        displayItemsTable();
+        displayItemsTable(this);
         updateMax();
     }
 
@@ -132,10 +139,10 @@ public class TradeActivity extends Activity {
         demandProgress.setProgress(demand.getQuantityProvided());
     }
 
-    private void displayItemsTable() {
+    private void displayItemsTable(final Activity activity) {
+        List<TableRow> tableRows = new ArrayList<>();
         List<Inventory> matchingItems = demand.getMatchingInventory();
-        TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
-        itemsTable.removeAllViews();
+        final TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
 
         TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
         if (matchingItems.size() == 0) {
@@ -150,15 +157,12 @@ public class TradeActivity extends Activity {
             headerRow.addView(dh.createTextView(getString(R.string.tableItem), 22, Color.BLACK));
             headerRow.addView(dh.createTextView(getString(R.string.tableSell), 22, Color.BLACK));
             headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
-            itemsTable.addView(headerRow);
+            tableRows.add(headerRow);
 
             for (Inventory inventory : matchingItems) {
                 TableRow itemRow = new TableRow(getApplicationContext());
-
-                Item item = Item.findById(Item.class, inventory.getItem());
-
+                final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
-
                 ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, true, true);
 
                 String itemName = item.getPrefix(inventory.getState()) + item.getName();
@@ -166,39 +170,57 @@ public class TradeActivity extends Activity {
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 name.setPadding(0, 0, 0, 17);
                 name.setSingleLine(false);
-
-                // Create a sell button for that item
-                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
-                sell.setWidth(dh.convertDpToPixel(40));
-                sell.setShadowLayer(10, 0, 0, Color.WHITE);
-                sell.setGravity(Gravity.CENTER);
-                sell.setBackgroundResource(R.drawable.sell_small);
-                sell.setTag(R.id.itemID, item.getId());
-                sell.setTag(R.id.itemState, inventory.getState());
-                sell.setOnClickListener(new Button.OnClickListener() {
+                name.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                        clickSellButton(v);
+                        ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
                     }
                 });
-
-                // Work out the multiplier that the player can see
-                TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
-                double bonus = visitorType.getDisplayedBonus(inventory);
-                if (bonus > Constants.DEFAULT_BONUS) {
-                    bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
-                    bonusText.setTextColor(Color.parseColor("#267c18"));
-                } else if (bonus == Constants.DEFAULT_BONUS && visitorType.isStateDiscovered() && visitorType.isTierDiscovered() && visitorType.isTypeDiscovered()) {
-                    bonusText.setText("+0%");
-                }
 
                 itemRow.addView(quantity);
                 itemRow.addView(image);
                 itemRow.addView(name);
-                itemRow.addView(sell);
-                itemRow.addView(bonusText);
-                itemsTable.addView(itemRow);
+
+                // Create a sell button for that item
+                if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
+                    TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
+                    sell.setWidth(dh.convertDpToPixel(40));
+                    sell.setShadowLayer(10, 0, 0, Color.WHITE);
+                    sell.setGravity(Gravity.CENTER);
+                    sell.setBackgroundResource(R.drawable.sell_small);
+                    sell.setTag(R.id.itemID, item.getId());
+                    sell.setTag(R.id.itemState, inventory.getState());
+                    sell.setOnClickListener(new Button.OnClickListener() {
+                        public void onClick(View v) {
+                            clickSellButton(v);
+                        }
+                    });
+
+                    // Work out the multiplier that the player can see
+                    TextViewPixel bonusText = dh.createTextView(getString(R.string.unknownText), 18, Color.BLACK);
+                    double bonus = visitorType.getDisplayedBonus(inventory);
+                    if (bonus > Constants.DEFAULT_BONUS) {
+                        bonusText.setText(VisitorHelper.multiplierToPercent(bonus));
+                        bonusText.setTextColor(Color.parseColor("#267c18"));
+                    } else if (bonus == Constants.DEFAULT_BONUS && visitorType.isStateDiscovered() && visitorType.isTierDiscovered() && visitorType.isTypeDiscovered()) {
+                        bonusText.setText("+0%");
+                    }
+
+                    itemRow.addView(sell);
+                    itemRow.addView(bonusText);
+                }
+                tableRows.add(itemRow);
             }
         }
+
+        final List<TableRow> finalRows = tableRows;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                itemsTable.removeAllViews();
+                for (TableRow row : finalRows)
+                    itemsTable.addView(row);
+            }
+        });
     }
 
     private void clickSellButton(View v) {
@@ -209,12 +231,14 @@ public class TradeActivity extends Activity {
         Item itemObject = Item.findById(Item.class, itemID);
         State itemStateObject = State.findById(State.class, itemState);
 
-        if (inventoryOfItem.getQuantity() > 0) {
+        if (inventoryOfItem.getQuantity() > 0 && !currentlySelling) {
+            currentlySelling = true;
             int quantity = 1;
             if (prefs.getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();
             }
             tradeItem(quantity, itemObject, itemStateObject);
+            currentlySelling = false;
         }
     }
 
@@ -250,6 +274,8 @@ public class TradeActivity extends Activity {
                     value * itemsTraded), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsTraded, itemsTraded);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value * itemsTraded);
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_TRADE_ITEM, itemsTraded);
+
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
@@ -265,7 +291,7 @@ public class TradeActivity extends Activity {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
             itemsTable.setVisibility(View.GONE);
         } else {
-            displayItemsTable();
+            displayItemsTable(this);
         }
     }
 

@@ -14,6 +14,9 @@ public class Worker extends SugarRecord {
     private long timeStarted;
     private int timesCompleted;
     private boolean purchased;
+    private long foodUsed;
+    private long favouriteFood;
+    private boolean favouriteFoodDiscovered;
 
     public Worker() {
     }
@@ -27,6 +30,20 @@ public class Worker extends SugarRecord {
         this.timeStarted = timeStarted;
         this.timesCompleted = timesCompleted;
         this.purchased = purchased;
+    }
+
+    public Worker(long workerID, long characterID, int levelUnlocked, long toolUsed, long toolState, long timeStarted, int timesCompleted, boolean purchased, long foodUsed, long favouriteFood, boolean favouriteFoodDiscovered) {
+        this.workerID = workerID;
+        this.characterID = characterID;
+        this.levelUnlocked = levelUnlocked;
+        this.toolUsed = toolUsed;
+        this.toolState = toolState;
+        this.timeStarted = timeStarted;
+        this.timesCompleted = timesCompleted;
+        this.purchased = purchased;
+        this.foodUsed = foodUsed;
+        this.favouriteFood = favouriteFood;
+        this.favouriteFoodDiscovered = favouriteFoodDiscovered;
     }
 
     public long getWorkerID() {
@@ -91,6 +108,30 @@ public class Worker extends SugarRecord {
 
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
+    }
+
+    public long getFoodUsed() {
+        return foodUsed;
+    }
+
+    public void setFoodUsed(long foodUsed) {
+        this.foodUsed = foodUsed;
+    }
+
+    public long getFavouriteFood() {
+        return favouriteFood;
+    }
+
+    public void setFavouriteFood(long favouriteFood) {
+        this.favouriteFood = favouriteFood;
+    }
+
+    public boolean isFavouriteFoodDiscovered() {
+        return favouriteFoodDiscovered;
+    }
+
+    public void setFavouriteFoodDiscovered(boolean favouriteFoodDiscovered) {
+        this.favouriteFoodDiscovered = favouriteFoodDiscovered;
     }
 
     public static int getTotalTrips() {

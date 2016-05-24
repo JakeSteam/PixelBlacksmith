@@ -15,6 +15,7 @@ import java.util.Random;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
@@ -31,16 +32,12 @@ public class VisitorHelper {
 
     public static boolean tryCreateVisitor() {
         if (Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
-            new Thread(new Runnable() {
-                public void run() {
-                    createNewVisitor();
+            createNewVisitor();
 
-                    Player_Info lastVisitorSpawn = Select.from(Player_Info.class).where(
-                            Condition.prop("name").eq("DateVisitorSpawned")).first();
-                    lastVisitorSpawn.setLongValue(System.currentTimeMillis());
-                    lastVisitorSpawn.save();
-                }
-            }).start();
+            Player_Info lastVisitorSpawn = Select.from(Player_Info.class).where(
+                    Condition.prop("name").eq("DateVisitorSpawned")).first();
+            lastVisitorSpawn.setLongValue(System.currentTimeMillis());
+            lastVisitorSpawn.save();
             return true;
         } else {
             return false;
@@ -128,7 +125,7 @@ public class VisitorHelper {
 
         int maxQuantity = (criteria.getName().equals("State") ? Constants.MAXIMUM_QUANTITY_STATE : Constants.MAXIMUM_QUANTITY);
         int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, maxQuantity);
-        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE));
+        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE)); // 70% chance of demands optional
 
         // Check if the current criteria already exists. If it does, try again.
         Pair<Long, Long> currentCriteria = new Pair<>(criteriaType, criteriaValue);
@@ -161,8 +158,8 @@ public class VisitorHelper {
         return list.get(randomIndex);
     }
 
-    public static boolean getRandomBoolean(int truePercentage) {
-        return getRandomNumber(0, 100) > truePercentage;
+    public static boolean getRandomBoolean(int falsePercentage) {
+        return getRandomNumber(0, 100) > falsePercentage;
     }
 
     private static Visitor_Type selectVisitorType() {
@@ -330,4 +327,103 @@ public class VisitorHelper {
         long timeLeft = unixNextSpawn - System.currentTimeMillis();
         return (timeLeft > 0 ? timeLeft : 0);
     }
+
+    public static String getRewardString(Context context, boolean rewardLegendary, boolean isFullyComplete) {
+        List<String> strings = new ArrayList<>();
+        if (rewardLegendary && isFullyComplete) {
+            strings.add(context.getString(R.string.visitorLeavesCompletePremium1));
+            strings.add(context.getString(R.string.visitorLeavesCompletePremium2));
+            strings.add(context.getString(R.string.visitorLeavesCompletePremium3));
+        } else if (rewardLegendary && !isFullyComplete) {
+            strings.add(context.getString(R.string.visitorLeavesLegendary1));
+            strings.add(context.getString(R.string.visitorLeavesLegendary2));
+            strings.add(context.getString(R.string.visitorLeavesLegendary3));
+        }else if (!rewardLegendary && isFullyComplete) {
+            strings.add(context.getString(R.string.visitorLeavesComplete1));
+            strings.add(context.getString(R.string.visitorLeavesComplete2));
+            strings.add(context.getString(R.string.visitorLeavesComplete3));
+        }else if (!rewardLegendary && !isFullyComplete) {
+            strings.add(context.getString(R.string.visitorLeaves1));
+            strings.add(context.getString(R.string.visitorLeaves2));
+            strings.add(context.getString(R.string.visitorLeaves3));
+        }
+        int position = VisitorHelper.getRandomNumber(0, strings.size() - 1);
+        return strings.get(position);
+    }
+
+    public static void createVisitorReward(Context context, boolean isFullyComplete) {
+        int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
+        int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
+        if (minimumRewards == 0 || maximumRewards == 0) {
+            minimumRewards = 1;
+            maximumRewards = 5;
+        }
+
+        int numRewards = (isFullyComplete ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
+        boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
+        int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
+
+        // Get normal reward
+        List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
+        Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
+        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
+        String rewardString = VisitorHelper.getRewardString(context, rewardLegendary, isFullyComplete);
+
+        // Get legendary reward
+        if (rewardLegendary) {
+            List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
+            Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
+            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
+            ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(rewardString,
+                    numRewards,
+                    selectedItem.getName(),
+                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), true);
+        } else {
+            ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(rewardString,
+                    numRewards,
+                    selectedItem.getFullName(Constants.STATE_NORMAL)), true);
+        }
+    }
+
+    public static List<Pair<Item, Integer>> createVisitorTrophyReward(Visitor visitor) {
+        List<Pair<Item, Integer>> rewards = new ArrayList<>();
+
+        Pair<Item, Integer> itemReward = createVisitorItemReward(visitor);
+        Pair<Item, Integer> pageReward = createVisitorPageReward();
+        rewards.add(itemReward);
+        rewards.add(pageReward);
+
+        Inventory.addItem(itemReward.first.getId(), itemReward.second, Constants.TROPHY_ITEM_REWARDS);
+        Inventory.addItem(pageReward.first.getId(), itemReward.second, Constants.TROPHY_PAGE_REWARDS);
+
+        return rewards;
+    }
+
+    private static Pair<Item, Integer> createVisitorItemReward(Visitor visitor) {
+        Visitor_Type visitorType = Select.from(Visitor_Type.class).where(
+                Condition.prop("visitor_id").eq(visitor.getType())).first();
+
+        Long preferredState = visitorType.getStatePreferred();
+        Long preferredTier = visitorType.getTierPreferred();
+        Long preferredType = visitorType.getTypePreferred();
+
+        Item preferredItem = Select.from(Item.class).where(
+                Condition.prop("tier").eq(preferredTier),
+                Condition.prop("type").eq(preferredType)).orderBy("value DESC").first();
+
+        if (preferredItem == null) {
+            preferredItem = Select.from(Item.class).where(
+                    Condition.prop("type").eq(preferredType)).orderBy("value DESC").first();
+        }
+
+        return new Pair<>(preferredItem, (int) (long) preferredState);
+    }
+
+    private static Pair<Item, Integer> createVisitorPageReward() {
+        List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+        Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+
+        return new Pair<>(rewardedPage, Constants.STATE_NORMAL);
+    }
+
 }

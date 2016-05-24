@@ -22,25 +22,13 @@ import uk.co.jakelee.blacksmith.model.Worker_Resource;
 public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
 
-    public static List<Worker_Resource> getResourcesByTool(long toolID) {
-        return getResourcesByTool((int) toolID);
-    }
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
                 Condition.prop("tool_id").eq(toolID)).list();
     }
 
-    public static boolean isValidTool(long toolID) {
-        return isValidTool((int) toolID);
-    }
-
-    public static boolean isValidTool(int toolID) {
-        return Select.from(Worker_Resource.class).where(
-                Condition.prop("tool_id").eq(toolID)).count() > 0;
-    }
-
     public static void populateResources(DisplayHelper dh, LinearLayout container, long toolID) {
-        List<Worker_Resource> resources = getResourcesByTool(toolID);
+        List<Worker_Resource> resources = getResourcesByTool((int) toolID);
         for (Worker_Resource resource : resources) {
             container.addView(dh.createImageView("item", String.valueOf(resource.getResourceID()), 22, 22));
         }
@@ -51,7 +39,7 @@ public class WorkerHelper {
     }
 
     public static String getTimeRemainingString(Worker worker) {
-        return DateHelper.getHoursMinsRemaining(getTimeRemaining(worker));
+        return DateHelper.getHoursMinsRemaining(getTimeRemaining(worker) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
     }
 
     public static long getTimeRemaining(Worker worker) {
@@ -91,25 +79,39 @@ public class WorkerHelper {
 
         for (Worker worker : workers) {
             if (getTimeRemaining(worker) <= 0) {
+                rewardResources(context, worker);
+
+                worker.setFoodUsed(0);
                 worker.setTimeStarted(0);
                 worker.setTimesCompleted(worker.getTimesCompleted() + 1);
                 worker.save();
-
-                rewardResources(context, worker);
             }
         }
     }
 
     public static void rewardResources(Context context, Worker worker) {
-        List<Worker_Resource> resources = getResourcesByTool(worker.getToolUsed());
+        List<Worker_Resource> resources = getResourcesByTool((int) worker.getToolUsed());
         ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.workerReturned),
-                getRewardResourcesText(resources, true)), true);
+                getRewardResourcesText(worker, resources, true)), true);
     }
 
-    public static String getRewardResourcesText(List<Worker_Resource> resources, boolean addItems) {
+    public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {
         HashMap<String, Integer> data = new HashMap<>();
+        Item foodItem = Item.findById(Item.class, worker.getFoodUsed());
+        boolean applyFoodBonus = worker.getFoodUsed() > 0 && (worker.getTimeStarted() > 0 || addItems);
+
+        boolean favouriteFoodUsed = false;
+        if (worker.getFoodUsed() == worker.getFavouriteFood()) {
+            favouriteFoodUsed = true;
+            worker.setFavouriteFoodDiscovered(true);
+            worker.save();
+        }
 
         for (Worker_Resource resource : resources) {
+            if (applyFoodBonus) {
+                resource.applyFoodBonus(foodItem, favouriteFoodUsed);
+            }
+
             if (addItems) {
                 Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
                 resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
@@ -127,6 +129,23 @@ public class WorkerHelper {
             }
         }
 
+        String bonusText = "";
+        if (addItems && foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+            // If rewarding resources, and have luckily got a page
+            List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+            Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+            Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
+
+            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+        } else if (!addItems && foodItem != null) {
+            // If checking resources
+            if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
+                bonusText = ", and very possibly a rare page";
+            } else {
+                bonusText = ", and possibly a rare page";
+            }
+        }
+
         StringBuilder result = new StringBuilder();
         for (Map.Entry<String, Integer> entry : data.entrySet()) {
             String key = entry.getKey();
@@ -134,14 +153,17 @@ public class WorkerHelper {
 
             result.append(String.format("%dx %s, ", value, key));
         }
-        return result.substring(0, result.length() - 2);
+        return result.substring(0, result.length() - 2) + bonusText;
     }
 
     public static String getTimesCompletedString(Context context, Worker worker) {
         Character character = Character.findById(Character.class, worker.getCharacterID());
+        Item foodUsed = Item.findById(Item.class, worker.getFoodUsed());
         return String.format(context.getString(R.string.workerTimesCompleted),
                 character.getName(),
-                worker.getTimesCompleted());
+                worker.getTimesCompleted(),
+                foodUsed != null ? foodUsed.getName() : "nothing",
+                foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
     }
 
     public static String getTimeLeftString(Context context, Worker worker) {

@@ -153,6 +153,18 @@
                 android:textSize="18sp"
                 app:layout_marginTopPercent="2%" />
 
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/visitorRarity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/visitorBestItem"
+                android:layout_below="@id/visitorBestItem"
+                android:singleLine="false"
+                android:text="@string/trophyRarityUnknown"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_marginTopPercent="2%" />
+
         </RelativeLayout>
     </android.support.percent.PercentRelativeLayout>
 

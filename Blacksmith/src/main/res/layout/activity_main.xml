@@ -172,6 +172,17 @@
                 android:onClick="openWorkers" />
 
             <ImageView
+                android:id="@+id/bonus_chest"
+                android:layout_width="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1482dp"
+                android:onClick="clickBonusChest"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bonus_chest_empty"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="46%" />
+
+            <ImageView
                 android:id="@+id/open_upgrades"
                 android:layout_width="50dp"
                 android:layout_alignParentTop="true"
@@ -319,6 +330,36 @@
             android:layout_marginTop="5dp"
             android:textColor="@color/white"
             android:textSize="28sp" />
+
+        <RelativeLayout
+            android:id="@+id/questContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/currentLevel"
+            android:layout_marginRight="10dp"
+            android:onClick="openQuests">
+            <ImageView
+                android:id="@+id/questBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/levelbackground" />
+            <ImageView
+                android:id="@+id/questIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp" />
+            <ProgressBar
+                android:id="@+id/questProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="32dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="24dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/level_progress"
+                android:progress="0"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>

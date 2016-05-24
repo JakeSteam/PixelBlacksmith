@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -23,7 +24,9 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -53,11 +56,11 @@ public class MarketActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        Trader.checkTraderStatus(this, Constants.LOCATION_MARKET);
         populateTraderList();
     }
 
     private void populateTraderList() {
+        Trader.checkTraderStatus(this, Constants.LOCATION_MARKET);
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
         marketLayout.removeAllViews();
 
@@ -90,7 +93,6 @@ public class MarketActivity extends Activity {
             marketLayout.addView(inflatedView);
 
         }
-
         checkIfOutOfStock(traders.size());
 
     }
@@ -103,7 +105,8 @@ public class MarketActivity extends Activity {
             emptyContainer.setVisibility(View.VISIBLE);
 
             TextView restockText = (TextView) findViewById(R.id.restockText);
-            restockText.setText(String.format(getString(R.string.restockMarketText),
+            int stringID = Player_Info.displayAds() ? R.string.restockMarketTextAdvert : R.string.restockMarketText;
+            restockText.setText(String.format(getString(stringID),
                     Trader_Stock.getRestockTimeLeft(),
                     Trader.getRestockAllCost()));
         }
@@ -122,6 +125,12 @@ public class MarketActivity extends Activity {
     }
 
     public void alertDialogCallback() {
+        populateTraderList();
+    }
+
+    public void callbackRestock() {
+        Trader.restockAll(0);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.traderRestockAllCompleteAdvert, true);
         populateTraderList();
     }
 

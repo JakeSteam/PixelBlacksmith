@@ -38,6 +38,11 @@ public class WorkerActivity extends Activity {
         setContentView(R.layout.activity_worker);
 
         dh = DisplayHelper.getInstance(getApplicationContext());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         final Runnable everyFiveSeconds = new Runnable() {
             @Override
@@ -47,13 +52,6 @@ public class WorkerActivity extends Activity {
             }
         };
         handler.post(everyFiveSeconds);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        scheduledTask();
     }
 
     @Override
@@ -76,6 +74,7 @@ public class WorkerActivity extends Activity {
     private RelativeLayout createWorkerRow(Worker worker) {
         RelativeLayout traderRoot = createTraderRoot();
         ImageView workerCharacter = (ImageView) traderRoot.findViewById(R.id.workerCharacter);
+        ImageView workerFood = (ImageView) traderRoot.findViewById(R.id.workerFood);
         TextView workerCharacterText = (TextView) traderRoot.findViewById(R.id.workerCharacterText);
         ImageView workerTool = (ImageView) traderRoot.findViewById(R.id.workerTool);
         TextView workerToolText = (TextView) traderRoot.findViewById(R.id.workerToolText);
@@ -95,6 +94,27 @@ public class WorkerActivity extends Activity {
                 }
             });
             workerCharacterText.setText(WorkerHelper.isReady(worker) ? R.string.workerStatusReady : R.string.workerStatusBusy);
+
+            int resourceID = R.drawable.transparent;
+            if (worker.getFoodUsed() > 0) {
+                resourceID = DisplayHelper.getItemDrawableID(this, worker.getFoodUsed());
+            }
+            if (WorkerHelper.isReady(worker)) {
+                workerFood.setTag(worker);
+                workerFood.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Worker worker = (Worker) v.getTag();
+                        if (WorkerHelper.isReady(worker)) {
+                            Intent intent = new Intent(activity, FoodActivity.class);
+                            intent.putExtra(WorkerHelper.INTENT_ID, worker.getWorkerID());
+                            startActivity(intent);
+                        }
+                    }
+                });
+            }
+            workerFood.setImageResource(resourceID);
+            workerFood.setVisibility(View.VISIBLE);
+
             workerTool.setImageResource(DisplayHelper.getItemDrawableID(this, worker.getToolUsed()));
             workerTool.setTag(worker);
             workerTool.setOnClickListener(new Button.OnClickListener() {
@@ -108,18 +128,20 @@ public class WorkerActivity extends Activity {
                 }
             });
             workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
+
             workerResourceContainer.setTag(worker);
             workerResourceContainer.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Worker worker = (Worker) v.getTag();
                     if (worker.isPurchased()) {
-                        List<Worker_Resource> resources = WorkerHelper.getResourcesByTool(worker.getToolUsed());
+                        List<Worker_Resource> resources = WorkerHelper.getResourcesByTool((int) worker.getToolUsed());
                         ToastHelper.showToast(activity, Toast.LENGTH_LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(resources, false)), false);
+                                WorkerHelper.getRewardResourcesText(worker, resources, false)), false);
                     }
                 }
             });
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
+
             workerButton.setText(WorkerHelper.getButtonText(worker));
             workerButton.setTag(worker);
             workerButton.setOnClickListener(new Button.OnClickListener() {

@@ -64,27 +64,33 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
     private void populateTools(String selection) {
         TableLayout toolHolder = (TableLayout) findViewById(R.id.toolHolder);
         toolHolder.removeAllViews();
+        TextView noToolsMessage = (TextView)findViewById(R.id.noTools);
 
         List<Inventory> tools = WorkerHelper.getTools(selection);
-        for (Inventory tool : tools) {
-            Item toolItem = Item.findById(Item.class, tool.getItem());
-            ImageView itemImage = dh.createItemImage(tool.getItem(), 25, 25, true, true);
-            TextView itemName = dh.createTextView(toolItem.getName(), 30);
-            ImageView selectImage = new ImageView(this);
-            selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
+        if (tools.size() > 0) {
+            noToolsMessage.setVisibility(View.GONE);
+            for (Inventory tool : tools) {
+                Item toolItem = Item.findById(Item.class, tool.getItem());
+                ImageView itemImage = dh.createItemImage(tool.getItem(), 25, 25, true, true);
+                TextView itemName = dh.createTextView(toolItem.getName(), 30);
+                ImageView selectImage = new ImageView(this);
+                selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
 
-            TableRow row = new TableRow(this);
-            row.setTag(R.id.itemID, tool.getItem());
-            row.setTag(R.id.itemState, tool.getState());
-            row.addView(itemImage);
-            row.addView(itemName);
-            row.addView(selectImage);
-            row.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    selectTool(v);
-                }
-            });
-            toolHolder.addView(row);
+                TableRow row = new TableRow(this);
+                row.setTag(R.id.itemID, tool.getItem());
+                row.setTag(R.id.itemState, tool.getState());
+                row.addView(itemImage);
+                row.addView(itemName);
+                row.addView(selectImage);
+                row.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        selectTool(v);
+                    }
+                });
+                toolHolder.addView(row);
+            }
+        } else {
+            noToolsMessage.setVisibility(View.VISIBLE);
         }
     }
 

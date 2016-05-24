@@ -92,11 +92,45 @@ public class Player_Info extends SugarRecord {
         return premium.getIntValue() == 1;
     }
 
+    public static boolean displayAds() {
+        Player_Info premium = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("Premium")).first();
+        Setting hideAllAds = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS);
+
+        // Return true unless the player is premium + has hidden ads.
+        return !(premium.getIntValue() == 1 && hideAllAds.getBoolValue());
+    }
+
+    public static boolean isBonusReady() {
+        return timeUntilBonusReady() <= 0;
+    }
+
+    public static long timeUntilBonusReady() {
+        long lastClaimedTime = System.currentTimeMillis();
+
+        Player_Info lastBonusClaim = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
+        if (lastBonusClaim != null) {
+            lastClaimedTime = lastBonusClaim.getLongValue();
+        }
+
+        long bonusRechargeTime = Player_Info.isPremium() ? Constants.BONUS_TIME_PREMIUM : Constants.BONUS_TIME_NON_PREMIUM;
+        long timeBonusReady = lastClaimedTime + bonusRechargeTime;
+
+        return timeBonusReady - System.currentTimeMillis();
+    }
+
     public static int getPrestige() {
         Player_Info prestige = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Prestige")).first();
 
         return prestige.getIntValue();
+    }
+
+    public static int getCollectionsCrafted() {
+        Player_Info collections = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("CollectionsCreated")).first();
+
+        return collections.getIntValue();
     }
 
     public static double getCompletionPercent() {
@@ -230,6 +264,6 @@ public class Player_Info extends SugarRecord {
     }
 
     public enum Statistic {
-        ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige
+        CollectionsCreated, ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige, QuestsCompleted
     }
 }

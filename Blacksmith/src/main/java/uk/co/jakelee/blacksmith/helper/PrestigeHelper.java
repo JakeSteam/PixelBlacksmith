@@ -27,6 +27,8 @@ public class PrestigeHelper {
         resetTraders();
         resetWorkers();
         resetCraftingInterface();
+
+        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TIMES_PRESTIGED, Player_Info.getPrestige() + 1);
     }
 
     private static void increasePrestige() {
@@ -39,7 +41,7 @@ public class PrestigeHelper {
     }
 
     private static void resetItems() {
-        Inventory.deleteAll(Inventory.class);
+        Inventory.executeQuery("DELETE FROM inventory WHERE item NOT IN (SELECT id FROM item WHERE type = " + Constants.TYPE_PAGE + " OR type = " + Constants.TYPE_BOOK + ")");
         Pending_Inventory.deleteAll(Pending_Inventory.class);
 
         DatabaseHelper.createInventory();

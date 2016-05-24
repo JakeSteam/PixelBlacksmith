@@ -35,6 +35,38 @@
             app:layout_heightPercent="10%"
             app:layout_marginTopPercent="1%" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:layout_marginTopPercent="9%"
+            app:layout_marginBottomPercent="80%">
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/itemsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/itemsText"
+                android:layout_margin="3dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:background="@drawable/button_short"
+                android:clickable="true"
+                android:onClick="toggleTab"
+                android:gravity="center"/>
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/ringsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ringsText"
+                android:layout_margin="3dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:background="@drawable/button_short"
+                android:clickable="true"
+                android:onClick="toggleTab"
+                android:gravity="center"/>
+        </LinearLayout>
+
         <Button
             android:id="@+id/upButton"
             android:layout_width="40dp"
@@ -99,19 +131,8 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <TableLayout
-            android:id="@+id/ingredientsTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/horizontalIndicator"
-            android:padding="5dp"
-            android:shrinkColumns="1"
-            android:stretchColumns="1"
-            app:layout_marginTopPercent="3%" />
-
         <LinearLayout
+            android:id="@+id/buttonContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -155,6 +176,27 @@
                 android:text="@string/craft100Text"
                 android:textSize="25sp" />
         </LinearLayout>
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ingredientsScroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/horizontalIndicator"
+            android:layout_above="@id/buttonContainer"
+            android:padding="3dp"
+            android:fadeScrollbars="false"
+            app:layout_marginTopPercent="3%">
+
+            <TableLayout
+                android:id="@+id/ingredientsTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:shrinkColumns="1"
+                android:stretchColumns="1" />
+        </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

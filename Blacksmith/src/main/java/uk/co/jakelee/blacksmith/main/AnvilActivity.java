@@ -28,6 +28,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
+import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -46,6 +47,7 @@ public class AnvilActivity extends Activity {
     private TextView craft1;
     private TextView craft10;
     private TextView craft100;
+    private boolean ringsSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,13 +55,14 @@ public class AnvilActivity extends Activity {
         setContentView(R.layout.activity_anvil);
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.prefs.getInt("anvilTier", Constants.TIER_MIN);
+        displayedTier = MainActivity.prefs.getInt("anvilTier", ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN);
+        ringsSelected = MainActivity.prefs.getBoolean("anvilTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
-        createAnvilInterface(true);
+        createAnvilInterface(true, false);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
             startTutorial();
@@ -76,7 +79,7 @@ public class AnvilActivity extends Activity {
                         (RelativeLayout) findViewById(R.id.anvil),
                         (TableLayout) findViewById(R.id.ingredientsTable),
                         mViewFlipper,
-                        Constants.STATE_UNFINISHED);
+                        ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
@@ -89,12 +92,12 @@ public class AnvilActivity extends Activity {
 
         MainActivity.prefs.edit().putInt("anvilTier", displayedTier).apply();
         MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
+        MainActivity.prefs.edit().putBoolean("anvilTab", ringsSelected).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
-
         return super.onTouchEvent(event);
     }
 
@@ -107,7 +110,21 @@ public class AnvilActivity extends Activity {
         th.start(this);
     }
 
-    private void createAnvilInterface(boolean clearExisting) {
+    private void createAnvilInterface(boolean clearExisting, boolean resetTier) {
+        updateTabs();
+
+        if (resetTier) {
+            displayedTier = ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN;
+        }
+
+        if (ringsSelected) {
+            createRingsInterface(clearExisting);
+        } else {
+            createItemsInterface(clearExisting);
+        }
+    }
+
+    private void createItemsInterface(boolean clearExisting) {
         List<Item> items = Select.from(Item.class).where(
                 Condition.prop("type").gt(Constants.TYPE_ANVIL_MIN - 1),
                 Condition.prop("type").lt(Constants.TYPE_ANVIL_MAX + 1),
@@ -127,6 +144,30 @@ public class AnvilActivity extends Activity {
                 Constants.STATE_UNFINISHED);
 
         dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+
+        HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
+        horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+    }
+
+    private void createRingsInterface(boolean clearExisting) {
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_RING),
+                Condition.prop("tier").eq(displayedTier)).orderBy("level").list();
+
+        dh.createItemSelector(
+                (ViewFlipper) findViewById(R.id.viewFlipper),
+                clearExisting,
+                items,
+                Constants.STATE_NORMAL,
+                MainActivity.prefs.getInt("anvilPosition", 0));
+
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.anvil),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
+
+        dh.drawArrows(this.displayedTier, Constants.TIER_SILVER, Constants.TIER_GOLD, findViewById(R.id.downButton), findViewById(R.id.upButton));
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
@@ -177,17 +218,20 @@ public class AnvilActivity extends Activity {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
             quantityCrafted = quantity;
-            Inventory.removeItemIngredients(itemID, Constants.STATE_UNFINISHED, quantity);
+            Inventory.removeItemIngredients(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED, quantity);
             for (int i = 1; i <= quantity; i++) {
-                itemsToAdd.add(new Pair<>(itemID, Constants.STATE_UNFINISHED));
+                itemsToAdd.add(new Pair<>(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED));
             }
         }
 
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_UNFINISHED)), false);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
+            if (!ringsSelected) {
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
+            }
 
             Pending_Inventory.addScheduledItems(this, Constants.LOCATION_ANVIL, itemsToAdd);
             MainActivity.vh.anvilBusy = true;
@@ -198,18 +242,37 @@ public class AnvilActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < Constants.TIER_MAX) {
+        int maxTier = ringsSelected ? Constants.TIER_GOLD : Constants.TIER_MAX;
+        if (displayedTier < maxTier) {
             MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
-            createAnvilInterface(true);
+            createAnvilInterface(true, false);
         }
     }
 
     public void goDownTier(View view) {
-        if (displayedTier > Constants.TIER_MIN) {
+        int minTier = ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN;
+        if (displayedTier > minTier) {
             MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
-            createAnvilInterface(true);
+            createAnvilInterface(true, false);
+        }
+    }
+
+    public void toggleTab(View view) {
+        MainActivity.prefs.edit().putInt("anvilPosition", 0).apply();
+        ringsSelected = !ringsSelected;
+        updateTabs();
+        createAnvilInterface(true, true);
+    }
+
+    private void updateTabs() {
+        if (ringsSelected) {
+            (findViewById(R.id.itemsTab)).setAlpha(1f);
+            (findViewById(R.id.ringsTab)).setAlpha(0.3f);
+        } else {
+            (findViewById(R.id.itemsTab)).setAlpha(0.3f);
+            (findViewById(R.id.ringsTab)).setAlpha(1f);
         }
     }
 
@@ -229,7 +292,7 @@ public class AnvilActivity extends Activity {
                     (RelativeLayout) findViewById(R.id.anvil),
                     (TableLayout) findViewById(R.id.ingredientsTable),
                     mViewFlipper,
-                    Constants.STATE_UNFINISHED);
+                    ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED);
 
             HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
             horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
