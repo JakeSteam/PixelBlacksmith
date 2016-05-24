@@ -25,6 +25,11 @@ public class GestureHelper {
     }
 
     public void swipe(ViewFlipper viewFlipper, MotionEvent startXY, MotionEvent finishXY) {
+        // Check we've actually got some co-ords.
+        if (startXY == null || finishXY == null) {
+            return;
+        }
+
         // Swipe left (next)
         if (startXY.getX() > finishXY.getX()) {
             viewFlipper.setInAnimation(slide_in_right);

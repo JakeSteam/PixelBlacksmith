@@ -469,7 +469,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN}), GooglePlayHelper.RC_QUESTS);
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN, Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
         }
