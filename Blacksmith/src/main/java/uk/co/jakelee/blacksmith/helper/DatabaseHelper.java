@@ -41,6 +41,7 @@ public class DatabaseHelper {
     public final static int DB_V1_3_0 = 5;
     public final static int DB_V1_4_0 = 6;
     public final static int DB_V1_5_0 = 7;
+    public final static int DB_V1_5_1 = 8;
 
     public static void handlePatches() {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
@@ -78,6 +79,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
             DatabaseHelper.patch140to150();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
+            DatabaseHelper.patch150to151();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_1).apply();
         }
     }
 
@@ -475,6 +481,11 @@ public class DatabaseHelper {
             workerResources.add(new Worker_Resource(175, 203, 1, 30)); // Legendary fishing rod
             workerResources.add(new Worker_Resource(175, 204, 1, 30)); // Legendary fishing rod
         Worker_Resource.saveInTx(workerResources);
+    }
+
+    private static void patch150to151() {
+        Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id = 27");
+        Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
     }
 
     private static void createAchievement() {
