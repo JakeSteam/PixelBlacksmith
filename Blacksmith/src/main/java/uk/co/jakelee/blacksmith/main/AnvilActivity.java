@@ -218,16 +218,16 @@ public class AnvilActivity extends Activity {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
             quantityCrafted = quantity;
-            Inventory.removeItemIngredients(itemID, Constants.STATE_UNFINISHED, quantity);
+            Inventory.removeItemIngredients(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED, quantity);
             for (int i = 1; i <= quantity; i++) {
-                itemsToAdd.add(new Pair<>(itemID, Constants.STATE_UNFINISHED));
+                itemsToAdd.add(new Pair<>(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED));
             }
         }
 
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_UNFINISHED)), false);
+            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             if (!ringsSelected) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
