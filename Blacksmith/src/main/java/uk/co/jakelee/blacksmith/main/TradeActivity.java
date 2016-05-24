@@ -144,11 +144,21 @@ public class TradeActivity extends Activity {
         List<Inventory> matchingItems = demand.getMatchingInventory();
         final TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
 
-        TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
+        final TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
         if (matchingItems.size() == 0) {
-            noItemsMessage.setVisibility(View.VISIBLE);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    noItemsMessage.setVisibility(View.VISIBLE);
+                }
+            });
         } else {
-            noItemsMessage.setVisibility(View.GONE);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    noItemsMessage.setVisibility(View.GONE);
+                }
+            });
 
             // Create header row
             TableRow headerRow = new TableRow(getApplicationContext());
