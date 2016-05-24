@@ -56,6 +56,7 @@ public class TableActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("tableTier", booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN);
+        if (displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
         booksSelected = MainActivity.prefs.getBoolean("tableTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
@@ -143,7 +144,7 @@ public class TableActivity extends Activity {
                 mViewFlipper,
                 Constants.STATE_NORMAL);
 
-        dh.drawArrows(this.displayedTier, Constants.TIER_TABLE_MIN, Constants.TIER_TABLE_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_PREMIUM, findViewById(R.id.downButton), findViewById(R.id.upButton));
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
@@ -243,8 +244,13 @@ public class TableActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        int maxTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_TABLE_MAX;
-        if (displayedTier < maxTier) {
+        int maxTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_MAX;
+
+        if (displayedTier == Constants.TIER_MAX) {
+            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+            displayedTier = Constants.TIER_PREMIUM;
+            createTableInterface(true, false);
+        } else if (displayedTier < maxTier) {
             MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
             createTableInterface(true, false);
@@ -252,8 +258,13 @@ public class TableActivity extends Activity {
     }
 
     public void goDownTier(View view) {
-        int minTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_TABLE_MIN;
-        if (displayedTier > minTier) {
+        int minTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN;
+
+        if (displayedTier == Constants.TIER_PREMIUM) {
+            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+            displayedTier = Constants.TIER_MAX;
+            createTableInterface(true, false);
+        } else if (displayedTier > minTier) {
             MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
             createTableInterface(true, false);
