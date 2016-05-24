@@ -89,6 +89,12 @@ public class FoodActivity extends Activity {
     public void selectFood(View v) {
         long itemID = (long) v.getTag();
 
+        if (worker.getFoodUsed() > 0) {
+            Inventory oldItem = Inventory.getInventory(worker.getFoodUsed(), Constants.STATE_NORMAL);
+            oldItem.setQuantity(oldItem.getQuantity() + 1);
+            oldItem.save();
+        }
+
         Inventory newItem = Inventory.getInventory(itemID, Constants.STATE_NORMAL);
         newItem.setQuantity(newItem.getQuantity() - 1);
         newItem.save();
