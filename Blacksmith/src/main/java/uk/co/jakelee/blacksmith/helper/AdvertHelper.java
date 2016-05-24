@@ -180,11 +180,11 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             strings.add(context.getString(R.string.advertWatchedLegendaryPremium1));
             strings.add(context.getString(R.string.advertWatchedLegendaryPremium2));
         } else if (rewardLegendary && !isPremium) {
-            strings.add(context.getString(R.string.advertWatchedPremium1));
-            strings.add(context.getString(R.string.advertWatchedPremium2));
-        }else if (!rewardLegendary && isPremium) {
             strings.add(context.getString(R.string.advertWatchedLegendary1));
             strings.add(context.getString(R.string.advertWatchedLegendary2));
+        }else if (!rewardLegendary && isPremium) {
+            strings.add(context.getString(R.string.advertWatchedPremium1));
+            strings.add(context.getString(R.string.advertWatchedPremium2));
         }else if (!rewardLegendary && !isPremium) {
             strings.add(context.getString(R.string.advertWatched1));
             strings.add(context.getString(R.string.advertWatched2));
