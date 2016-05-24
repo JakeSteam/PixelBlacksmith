@@ -214,7 +214,7 @@ public class AnvilActivity extends Activity {
         int quantityCrafted = 0;
         List<Pair<Long, Integer>> itemsToAdd = new ArrayList<>();
 
-        int canCreate = Inventory.canCreateBulkItem(itemID, Constants.STATE_UNFINISHED, quantity);
+        int canCreate = Inventory.canCreateBulkItem(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED, quantity);
         if (MainActivity.vh.anvilBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
