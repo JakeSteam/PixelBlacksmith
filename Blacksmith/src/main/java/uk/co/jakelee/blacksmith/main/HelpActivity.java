@@ -318,12 +318,13 @@ public class HelpActivity extends Activity {
     private void displayHelpQuests(LinearLayout layout) {
         layout.addView(dh.createTextView("Quests\n", 26));
         layout.addView(dh.createTextView("Quests are an excellent way to gather additional rewards whilst playing.\n", 22));
-        layout.addView(dh.createTextView("Tapping the quest indicator at the top of the screen will display a list of ongoing quests that can currently be accepted.\n", 22));
         layout.addView(dh.createTextView("Once a quest is accepted, the relevant icon and current progress will appear in the indicator. If multiple are selected, the next to end will be displayed.\n", 22));
+        layout.addView(dh.createTextView("A list of accepted / upcoming / completed / failed quests is available, as well as a schedule of all events.\n", 22));
         layout.addView(dh.createTextView("All quests reward XP, 0-2 pages, and 2-24 items / 50-2100 coins.\n", 22));
         layout.addView(dh.createTextView("XP is calculated by multiplier * current level. The values for the multiplier are: Easy 9, Medium 15, Hard 35, Elite 75.\n", 22));
         layout.addView(dh.createTextView("Page chance is 25% for Easy, 50% for Medium, 100% for Hard, and 200% for Elite (2 pages!).\n", 22));
-        layout.addView(dh.createTextView("The number of items / coins rewarded is halved for Easy, unchanged for Medium, doubled for Hard, and tripled for Elite.", 22));
+        layout.addView(dh.createTextView("The number of items / coins rewarded is halved for Easy, unchanged for Medium, doubled for Hard, and tripled for Elite.\n", 22));
+        layout.addView(dh.createTextView("Accepted quests (except contribution quests) will give a reminder notification (via Google Play Games) 24 hours before the end.", 22));
     }
 
     public void openHelp(View view) {
