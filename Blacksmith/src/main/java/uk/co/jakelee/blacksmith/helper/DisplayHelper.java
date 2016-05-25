@@ -98,6 +98,10 @@ public class DisplayHelper {
         List<Location> locations = Select.from(Location.class).list();
         int playerLevel = Player_Info.getPlayerLevel();
 
+        if (Player_Info.isPremium()) {
+            Slot.executeQuery("UPDATE slot SET premium = 0 WHERE level = 9999");
+        }
+
         for (final Location location : locations) {
             GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
             slotContainer.removeAllViews();
