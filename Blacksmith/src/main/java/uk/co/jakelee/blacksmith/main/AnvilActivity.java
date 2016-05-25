@@ -56,7 +56,6 @@ public class AnvilActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("anvilTier", ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN);
-        if (displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
         ringsSelected = MainActivity.prefs.getBoolean("anvilTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
@@ -119,8 +118,10 @@ public class AnvilActivity extends Activity {
         }
 
         if (ringsSelected) {
+            if (displayedTier < Constants.TIER_SILVER || displayedTier > Constants.TIER_GOLD) displayedTier = Constants.TIER_GOLD;
             createRingsInterface(clearExisting);
         } else {
+            if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
             createItemsInterface(clearExisting);
         }
     }
@@ -261,7 +262,7 @@ public class AnvilActivity extends Activity {
     }
 
     public void toggleTab(View view) {
-        MainActivity.prefs.edit().putInt("anvilPosition", 0).apply();
+        MainActivity.prefs.edit().putInt("anvilTier", displayedTier).apply();
         ringsSelected = !ringsSelected;
         updateTabs();
         createAnvilInterface(true, true);
