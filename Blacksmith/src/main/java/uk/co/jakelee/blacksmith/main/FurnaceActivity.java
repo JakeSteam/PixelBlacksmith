@@ -137,6 +137,9 @@ public class FurnaceActivity extends Activity {
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+
+        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt1.setText(R.string.smelt1Text);
     }
 
     private void createFoodInterface(boolean clearExisting) {
@@ -158,6 +161,9 @@ public class FurnaceActivity extends Activity {
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+
+        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt1.setText(R.string.cook1Text);
     }
 
     public void smelt1(View v) {
