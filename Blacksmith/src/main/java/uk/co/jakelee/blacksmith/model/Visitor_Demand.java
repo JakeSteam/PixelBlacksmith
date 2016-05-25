@@ -99,7 +99,11 @@ public class Visitor_Demand extends SugarRecord {
         } else if (this.getCriteriaType() == 2L) {
             searchText += "AND tier = " + this.getCriteriaValue();
         } else if (this.getCriteriaType() == 3L) {
-            searchText += "AND type = " + this.getCriteriaValue();
+            if (this.getCriteriaValue() == 27L || this.getCriteriaValue() == 28L) {
+                searchText += "AND type IN (27, 28)";
+            } else {
+                searchText += "AND type = " + this.getCriteriaValue();
+            }
         }
         searchText += " ORDER BY Inventory.state, Item.name";
 
