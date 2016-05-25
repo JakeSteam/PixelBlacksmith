@@ -42,6 +42,7 @@ public class DatabaseHelper {
     public final static int DB_V1_4_0 = 6;
     public final static int DB_V1_5_0 = 7;
     public final static int DB_V1_5_1 = 8;
+    public final static int DB_V1_5_4 = 9;
 
     public static void handlePatches() {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
@@ -81,9 +82,9 @@ public class DatabaseHelper {
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
-            DatabaseHelper.patch150to151();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_1).apply();
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
+            DatabaseHelper.patch150to154();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
         }
     }
 
@@ -483,7 +484,7 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    private static void patch150to151() {
+    private static void patch150to154() {
         Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id = 27");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
     }
