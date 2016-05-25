@@ -23,7 +23,6 @@ import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
-import com.google.android.gms.games.quest.Quests;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -469,7 +468,9 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN, Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
+            //startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN, Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
+            Intent intent = new Intent(this, QuestActivity.class);
+            startActivity(intent);
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
         }

@@ -139,6 +139,7 @@
     <string name="booksText">Books</string>
     <string name="enchantText">Enchants</string>
     <string name="powderText">Powders</string>
+    <string name="questText">Quests</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -426,6 +427,8 @@
 
     <string name="leaderboardsNoConnection">Viewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
     <string name="questsNoConnection">Participating in quests requires being connected to Google Play Games, via the settings menu!</string>
+
+    <string name="questsCompleted">%d quests completed.</string>
 
     <string name="questComplete">Completed \"%1$s\" and received a %2$s Reward: %3$s.</string>
     <string name="questRewardNoPage">%1$d XP and %2$dx %3$s</string>
