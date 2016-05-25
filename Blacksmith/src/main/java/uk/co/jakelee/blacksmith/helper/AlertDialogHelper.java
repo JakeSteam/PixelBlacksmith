@@ -372,13 +372,14 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
+
+                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });
 
         alertDialog.setNegativeButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.vh.traderBusy = true;
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 List<Pair<Long, Integer>> items = new ArrayList<>();
@@ -420,6 +421,7 @@ public class AlertDialogHelper {
         alertDialog.setNeutralButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+                MainActivity.vh.traderBusy = false;
             }
         });
 
@@ -451,7 +453,6 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.vh.traderBusy = true;
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 boolean successful = true;
@@ -498,6 +499,7 @@ public class AlertDialogHelper {
 
         alertDialog.setNegativeButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+                MainActivity.vh.traderBusy = false;
                 dialog.cancel();
             }
         });
