@@ -160,6 +160,12 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         }
     }
 
+    public void callbackRestock() {
+        trader.restock(0);
+        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.traderRestockCompleteAdvert, true);
+        createTraderInterface();
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Trader);

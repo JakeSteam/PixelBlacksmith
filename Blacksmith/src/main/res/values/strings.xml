@@ -316,8 +316,11 @@
     <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %s!</string>
     <string name="restockTextNoTax">All traders have been restocked!</string>
     <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
-    <string name="traderRestockConfirm">Restock</string>
+    <string name="traderRestockQuestionAdvert">Restock \"%1$s\" for %2$d coins, or by watching an advert?</string>
+    <string name="traderRestockConfirm">Pay Coins</string>
+    <string name="traderRestockConfirmAdvert">Watch Ad</string>
     <string name="traderRestockComplete">Restocked trader for %d coins.</string>
+    <string name="traderRestockCompleteAdvert">Restocked trader for free!</string>
     <string name="traderRestockCancel">Cancel</string>
 
     <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>

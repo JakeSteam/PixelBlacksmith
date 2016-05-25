@@ -295,7 +295,9 @@ public class AlertDialogHelper {
 
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
+        alertDialog.setMessage(Player_Info.displayAds() ?
+                        String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(), restockCost) :
+                        String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.traderRestockConfirm), new DialogInterface.OnClickListener() {
@@ -310,11 +312,19 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(context.getString(R.string.traderRestockCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(context.getString(R.string.traderRestockCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
+
+        if (Player_Info.displayAds()) {
+            alertDialog.setNegativeButton(context.getString(R.string.traderRestockConfirmAdvert), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvTraderRestock);
+                }
+            });
+        }
 
         alertDialog.show();
     }

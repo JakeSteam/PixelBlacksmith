@@ -19,6 +19,7 @@ import java.util.Map;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
+import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
@@ -26,12 +27,13 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
-    public enum advertPurpose {ConvMarketRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox};
+    public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox};
     public AppLovinIncentivizedInterstitial advert;
     private final Context context;
     private MainActivity mainActivity;
     private MarketActivity marketActivity;
     private VisitorActivity visitorActivity;
+    private TraderActivity traderActivity;
     private boolean verified;
     private advertPurpose currentPurpose;
     private static AdvertHelper dhInstance = null;
@@ -54,6 +56,18 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     public void showAdvert(MainActivity activity, advertPurpose purpose) {
         verified = false;
         mainActivity = activity;
+        currentPurpose = purpose;
+
+        if (advert.isAdReadyToDisplay()) {
+            advert.show(activity, this, this, this);
+        } else {
+            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+        }
+    }
+
+    public void showAdvert(TraderActivity activity, advertPurpose purpose) {
+        verified = false;
+        traderActivity = activity;
         currentPurpose = purpose;
 
         if (advert.isAdReadyToDisplay()) {
@@ -99,6 +113,9 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     break;
                 case ConvVisitorSpawn:
                     mainActivity.callbackSpawn();
+                    break;
+                case ConvTraderRestock:
+                    traderActivity.callbackRestock();
                     break;
                 case BonusBox:
                     mainActivity.callbackBonus();
