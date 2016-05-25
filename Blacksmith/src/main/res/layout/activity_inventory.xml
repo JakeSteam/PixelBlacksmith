@@ -142,13 +142,24 @@
             android:fadeScrollbars="false"
             android:layout_marginBottom="5dp">
 
-            <TableLayout
-                android:id="@+id/inventoryTable"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:shrinkColumns="2"
-                android:stretchColumns="2" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/loadingMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loadingMessage"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"/>
+                <TableLayout
+                    android:id="@+id/inventoryTable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:shrinkColumns="2"
+                    android:stretchColumns="2" />
+            </RelativeLayout>
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 

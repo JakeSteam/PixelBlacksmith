@@ -337,6 +337,8 @@
     <string name="supportCodeFailed">Error whilst applying code. Please contact support!</string>
     <string name="supportCodeCancel">Cancel</string>
 
+    <string name="loadingMessage">Hold onto your hammers, loading..!</string>
+
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
     <string name="notificationBonus">A bonus is ready to claim!</string>

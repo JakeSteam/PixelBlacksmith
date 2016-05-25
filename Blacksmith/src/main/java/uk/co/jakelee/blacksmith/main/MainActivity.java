@@ -468,7 +468,6 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            //startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN, Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
             Intent intent = new Intent(this, QuestActivity.class);
             startActivity(intent);
         } else {
