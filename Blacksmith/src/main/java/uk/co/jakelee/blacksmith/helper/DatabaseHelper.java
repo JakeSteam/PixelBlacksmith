@@ -485,7 +485,7 @@ public class DatabaseHelper {
     }
 
     private static void patch150to154() {
-        Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id = 27");
+        Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id IN (27, 28)");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
     }
 
