@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.Quests;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -47,7 +48,7 @@ public class QuestActivity extends Activity {
 
     public void failedQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_FAILED}), GooglePlayHelper.RC_QUESTS);
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_FAILED, Quest.STATE_EXPIRED}), GooglePlayHelper.RC_QUESTS);
         }
     }
 

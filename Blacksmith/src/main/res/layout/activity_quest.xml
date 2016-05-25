@@ -55,7 +55,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="26sp" />
+                    android:textSize="26sp"
+                    android:layout_marginBottom="5dp"/>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
@@ -117,34 +118,17 @@
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
-                <RelativeLayout
-                    android:id="@+id/redditSchedule"
-                    android:layout_width="match_parent"
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_extra_wide"
-                    android:onClick="redditSchedule">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/playgames" />
-
-                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center"
-                            android:text="Schedule"
-                            android:textColor="@color/black"
-                            android:textSize="30sp" />
-                    </LinearLayout>
-                </RelativeLayout>
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="redditSchedule"
+                    android:text="Schedule (on Reddit)"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
             </LinearLayout>
 
         </ScrollView>
