@@ -180,6 +180,7 @@
 \n- Extra crafting slot for all areas.
 \n- Gold tax paid by all traders on automatic restock.
 \n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.
+\n- Doubled bonus chest rewards.
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
