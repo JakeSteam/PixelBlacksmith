@@ -267,6 +267,7 @@
     <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>
 
     <string name="enchantingButtonText">%1$s (x%2$s)</string>
+    <string name="genericQuantity">%1$dx %2$s</string>
 
     <string name="horizontalDotsSelected">x</string>
     <string name="horizontalDotsUnselected">o</string>
