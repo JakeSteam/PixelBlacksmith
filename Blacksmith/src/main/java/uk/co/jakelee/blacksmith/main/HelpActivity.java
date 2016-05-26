@@ -269,16 +269,19 @@ public class HelpActivity extends Activity {
     private void displayHelpUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView("Upgrade\n", 26));
         layout.addView(dh.createTextView("On this screen various upgrades can be bought, to help improve your shop.\n", 22));
-        layout.addView(dh.createTextView("The XP and Gold bonuses will be more effective when dealing with more valuable items, and buying premium will increase the current and maximum values of most upgrades significantly.\n", 22));
-        layout.addView(dh.createTextView("Visitor Spawn Time\nUpgrading visitor spawn time will decrease the minutes between additional visitors appearing.\n", 22));
-        layout.addView(dh.createTextView("Market Restock Time\nUpgrading market restock time will decrease the hours between new traders entering the market.\n", 22));
-        layout.addView(dh.createTextView("Maximum Visitors\nUpgrading maximum visitors will increase the maximum number of visitors in the shop at once.\n", 22));
-        layout.addView(dh.createTextView("Maximum Traders\nUpgrading maximum traders will increase how many traders can be in the market at once.\n", 22));
-        layout.addView(dh.createTextView("Gold Bonus\nUpgrading gold bonus will increase the % of bonus gold received on every trade / sale.\n", 22));
-        layout.addView(dh.createTextView("XP Bonus\nUpgrading XP bonus will increase the % of bonus XP received for every in-game action.\n", 22));
+        layout.addView(dh.createTextView("The XP and Gold bonuses will be more effective when dealing with more valuable items, and buying premium will increase the values of some upgrades.\n", 22));
         layout.addView(dh.createTextView("Craft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.\n", 22));
+        layout.addView(dh.createTextView("Gold Bonus\nUpgrading gold bonus will increase the % of bonus gold received on every trade / sale.\n", 22));
         layout.addView(dh.createTextView("Legendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.\n", 22));
+        layout.addView(dh.createTextView("Market Restock Time\nUpgrading market restock time will decrease the hours between new traders entering the market.\n", 22));
+        layout.addView(dh.createTextView("Maximum Traders\nUpgrading maximum traders will increase how many traders can be in the market at once.\n", 22));
+        layout.addView(dh.createTextView("Maximum Visitor Rewards\nUpgrading maximum visitor rewards will increase the maximum number of items a visitor can give you.\n", 22));
+        layout.addView(dh.createTextView("Maximum Visitors\nUpgrading maximum visitors will increase the maximum number of visitors in the shop at once.\n", 22));
+        layout.addView(dh.createTextView("Minimum Visitor Rewards\nUpgrading minimum visitor rewards will increase the minimum number of items a visitor can give you.\n", 22));
         layout.addView(dh.createTextView("Restock All Cost\nUpgrading the restock all cost will reduce the cost of restocking the entire marketplace.", 22));
+        layout.addView(dh.createTextView("Visitor Spawn Time\nUpgrading visitor spawn time will decrease the minutes between additional visitors appearing.\n", 22));
+        layout.addView(dh.createTextView("Worker Time\nUpgrading worker time will decrease the time taken for a worker to complete a trip.\n", 22));
+        layout.addView(dh.createTextView("XP Bonus\nUpgrading XP bonus will increase the % of bonus XP received for every in-game action.\n", 22));
     }
 
     private void displayHelpPremium(LinearLayout layout) {

@@ -50,7 +50,8 @@ public class FoodActivity extends Activity {
                 "FROM inventory " +
                 "INNER JOIN item on inventory.item = item.id " +
                 "WHERE item.type IN (" + Constants.TYPE_FOOD + "," + Constants.TYPE_PROCESSED_FOOD + ") " +
-                "AND quantity > 0");
+                "AND quantity > 0 " +
+                "ORDER BY value DESC");
         if (foods.size() > 0) {
             noFoodMessage.setVisibility(View.GONE);
             for (Inventory food : foods) {
