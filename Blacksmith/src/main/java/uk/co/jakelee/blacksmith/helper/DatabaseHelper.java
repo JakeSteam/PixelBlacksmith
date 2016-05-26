@@ -43,6 +43,8 @@ public class DatabaseHelper {
     public final static int DB_V1_5_0 = 7;
     public final static int DB_V1_5_1 = 8;
     public final static int DB_V1_5_4 = 9;
+    public final static int DB_V1_6_0 = 10;
+
 
     public static void handlePatches() {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
@@ -85,6 +87,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
             DatabaseHelper.patch150to154();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_0) {
+            DatabaseHelper.patch154to160();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
         }
     }
 
@@ -484,9 +491,26 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    private static void patch150to154() {
+    public static void patch150to154() {
         Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id IN (27, 28)");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
+    }
+
+    public static void patch154to160() {
+        // Rename premium
+        Tier.executeQuery("UPDATE tier SET name = 'Legendary' WHERE name = 'Premium'");
+
+        // Change type of worker 7
+        Worker.executeQuery("UPDATE worker SET character_id = 11 WHERE worker_id = 7");
+
+        // Swap favourite item for worker 1 + 3, and worker 4 + 7 (currently worker_id + 211)
+        Worker.executeQuery("UPDATE worker SET favourite_food = 214 WHERE worker_id = 1");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 212 WHERE worker_id = 3");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 218 WHERE worker_id = 4");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 215 WHERE worker_id = 7");
+
+        // Change pie to include apple, not blueberry
+        Recipe.executeQuery("UPDATE recipe SET ingredient = 77 WHERE item = 218 and ingredient = 205");
     }
 
     private static void createAchievement() {
