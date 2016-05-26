@@ -260,7 +260,7 @@ public class DisplayHelper {
     }
 
     public void populateVisitorsContainer(final Context context, final MainActivity activity, final LinearLayout visitorsContainer, final LinearLayout visitorsContainerOverflow) {
-        List<Visitor> visitors = Visitor.listAll(Visitor.class);
+        final List<Visitor> visitors = Visitor.listAll(Visitor.class);
         List<ImageView> visitorImages = new ArrayList<>();
         if (visitors.size() == 0) {
             VisitorHelper.tryCreateVisitor();
@@ -287,9 +287,9 @@ public class DisplayHelper {
         }
 
         LinearLayout targetContainer = null;
-        if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+        if (visitors.size() < Constants.MAXIMUM_VISITORS_PER_ROW) {
             targetContainer = visitorsContainer;
-        } else if (visitorsContainerOverflow.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+        } else if (visitors.size() < (Constants.MAXIMUM_VISITORS_PER_ROW * 2)) {
             targetContainer = visitorsContainerOverflow;
         }
 
@@ -315,7 +315,7 @@ public class DisplayHelper {
                 visitorsContainerOverflow.removeAllViews();
                 boolean shouldDrawAddButton = false;
 
-                if (finalVisitorImages.size() < Upgrade.getValue("Maximum Visitors")) {
+                if (visitors.size() < Upgrade.getValue("Maximum Visitors")) {
                     shouldDrawAddButton = true;
                 }
 
