@@ -267,7 +267,7 @@ public class DisplayHelper {
         }
 
         int yPadding = convertDpToPixel(4);
-        int xPadding = convertDpToPixel(7);
+        int xPadding = convertDpToPixel(6.5f);
 
         for (final Visitor visitor : visitors) {
             // Creating visitor image
@@ -474,6 +474,10 @@ public class DisplayHelper {
     }
 
     public int convertDpToPixel(int dp) {
+        return convertDpToPixel((float) dp);
+    }
+
+    public int convertDpToPixel(float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);

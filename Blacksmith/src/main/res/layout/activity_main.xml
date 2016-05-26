@@ -250,7 +250,7 @@
 
             <LinearLayout
                 android:id="@+id/visitors_container"
-                android:layout_width="315dp"
+                android:layout_width="330dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="65dp"
                 android:orientation="horizontal"
@@ -259,7 +259,7 @@
 
             <LinearLayout
                 android:id="@+id/visitors_container_overflow"
-                android:layout_width="315dp"
+                android:layout_width="330dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="65dp"
                 android:orientation="horizontal"
