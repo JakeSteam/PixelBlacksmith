@@ -509,8 +509,14 @@ public class DatabaseHelper {
         Worker.executeQuery("UPDATE worker SET favourite_food = 218 WHERE worker_id = 4");
         Worker.executeQuery("UPDATE worker SET favourite_food = 215 WHERE worker_id = 7");
 
-        // Change pie to include apple, not blueberry
+        // Change pie to include 2 apples, not 1 blueberry
         Recipe.executeQuery("UPDATE recipe SET ingredient = 77 WHERE item = 218 and ingredient = 205");
+
+        // Ensure cooked food is item type 27
+        Type.executeQuery("UPDATE type SET id = 27 WHERE name = 'Cooked Food' OR name = 'Processed Food'");
+
+        // Change mice to prefer cooked food
+        Visitor_Type.executeQuery("UPDATE visitortype SET type_preferred = 27 WHERE visitor_id IN (13,48)");
     }
 
     private static void createAchievement() {
