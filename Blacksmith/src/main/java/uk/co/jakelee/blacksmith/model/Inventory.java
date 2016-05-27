@@ -23,10 +23,6 @@ public class Inventory extends SugarRecord implements Serializable {
         this.quantity = quantity;
     }
 
-    public static void addItem(Pending_Inventory item) {
-        addItem(item.getItem(), item.getState(), item.getQuantity());
-    }
-
     public static void addItem(Pending_Inventory item, boolean rewardXp) {
         addItem(item.getItem(), item.getState(), item.getQuantity(), rewardXp);
     }
@@ -114,23 +110,6 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
-    public static int tryCreateItem(Long itemId, long state, Long locationID) {
-        int canCreate = canCreateItem(itemId, state);
-        if (canCreate != Constants.SUCCESS) {
-            return canCreate;
-        }
-
-        removeItemIngredients(itemId, state);
-
-        if (Slot.hasAvailableSlot(locationID)) {
-            Pending_Inventory.addItem(itemId, state, 1, locationID);
-        } else {
-            Pending_Inventory.addScheduledItem(itemId, state, 1, locationID);
-        }
-
-        return Constants.SUCCESS;
-    }
-
     public static int tryPowderGem(Long itemId, long state, Long locationID) {
         int canCreate = canCreateItem(itemId, state);
         if (canCreate != Constants.SUCCESS) {
@@ -202,24 +181,6 @@ public class Inventory extends SugarRecord implements Serializable {
         Inventory foundInventory = getInventory(itemId, state);
 
         return (foundInventory.getQuantity() - quantity) >= 0;
-    }
-
-    public static int sellItem(Long itemId, long state, int quantity, int price) {
-        if (!canSellItem(itemId, state, quantity)) {
-            return Constants.ERROR_NOT_ENOUGH_ITEMS;
-        } else {
-            Inventory itemStock = Inventory.getInventory(itemId, state);
-            itemStock.setQuantity(itemStock.getQuantity() - quantity);
-            itemStock.save();
-
-            if (Slot.hasAvailableSlot(Constants.LOCATION_SELLING)) {
-                Pending_Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price, Constants.LOCATION_SELLING);
-            } else {
-                Pending_Inventory.addScheduledItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price, Constants.LOCATION_SELLING);
-            }
-
-            return Constants.SUCCESS;
-        }
     }
 
     public static int tradeItem(Long itemId, long state, int price) {

@@ -196,7 +196,7 @@ public class Player_Info extends SugarRecord {
                 Condition.prop("name").eq("XP")).first();
 
         double xpMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus"));
-        double xpMultiplierPrestige = xpMultiplier * (Player_Info.getPrestige() + 1);
+        double xpMultiplierPrestige = xpMultiplier + Player_Info.getPrestige();
         double modifiedXp = xpMultiplierPrestige * xp;
 
         xpInfo.setIntValue(xpInfo.getIntValue() + (int) modifiedXp);
