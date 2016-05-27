@@ -153,7 +153,7 @@ public class Worker extends SugarRecord {
 
     public static List<Worker> getAvailableWorkers() {
         return Select.from(Worker.class).where(
-                Condition.prop("purchased").eq(true),
+                Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").eq(0)).list();
     }
 }

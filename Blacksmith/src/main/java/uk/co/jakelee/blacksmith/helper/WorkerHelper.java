@@ -77,11 +77,14 @@ public class WorkerHelper {
         List<Worker> workers = Select.from(Worker.class).where(
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
+        int workersFinished = 0;
+        String rewardText = "";
         boolean refillFood = Setting.findById(Setting.class, Constants.SETTING_AUTOFEED).getBoolValue();
 
         for (Worker worker : workers) {
             if (getTimeRemaining(worker) <= 0) {
-                rewardResources(context, worker);
+                rewardText = rewardResources(context, worker);
+                workersFinished++;
 
                 // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
                 if (refillFood && worker.getFoodUsed() > 0) {
@@ -94,18 +97,26 @@ public class WorkerHelper {
                     }
                 }
 
-
                 worker.setTimeStarted(0);
                 worker.setTimesCompleted(worker.getTimesCompleted() + 1);
                 worker.save();
             }
         }
+
+        if (workersFinished > 1) {
+            rewardText = String.format(context.getString(R.string.workersReturned), workersFinished);
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, rewardText, true);
+        } else if (workersFinished == 1) {
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, rewardText, true);
+        }
     }
 
-    public static void rewardResources(Context context, Worker worker) {
+    public static String rewardResources(Context context, Worker worker) {
+        Character workerCharacter = Character.findById(Character.class, worker.getCharacterID());
         List<Worker_Resource> resources = getResourcesByTool((int) worker.getToolUsed());
-        ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.workerReturned),
-                getRewardResourcesText(worker, resources, true)), true);
+        return String.format(context.getString(R.string.workerReturned),
+                workerCharacter.getName(),
+                getRewardResourcesText(worker, resources, true));
     }
 
     public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {
