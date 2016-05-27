@@ -56,7 +56,7 @@ public class TableActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("tableTier", booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN);
-        if (displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
+        if (displayedTier > Constants.TIER_MAX && displayedTier != Constants.TIER_PREMIUM) displayedTier = Constants.TIER_PREMIUM;
         booksSelected = MainActivity.prefs.getBoolean("tableTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
