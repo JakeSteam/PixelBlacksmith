@@ -205,6 +205,12 @@
     <string name="worseSaveLoad">Load</string>
     <string name="worseSaveCancel">Cancel</string>
 
+    <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudLoadBeginning">Loading cloud save from remote server...</string>
+    <string name="cloudLoadSuccess">Load from cloud successful!</string>
+    <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
+
     <string name="buyWorker">Purchase Worker</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
@@ -320,11 +326,6 @@
     <string name="unknownText">\???</string>
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
-
-    <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
-    <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
-    <string name="cloudSuccess">Cloud %s successful!</string>
-    <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
 
     <string name="restockText">Restock</string>
     <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>

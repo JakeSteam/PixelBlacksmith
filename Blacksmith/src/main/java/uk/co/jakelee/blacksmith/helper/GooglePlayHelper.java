@@ -206,20 +206,24 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
                 return result.getStatus().getStatusCode();
             }
-
-            @Override
-            protected void onPostExecute(Integer status) {
-                ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask), true);
-            }
         };
 
         task.execute();
     }
 
-    private static void loadFromCloud(boolean checkIsImprovement) {
+    private static void loadFromCloud(final boolean checkIsImprovement) {
         if (!IsConnected()) {
             return;
         }
+
+        callingActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!checkIsImprovement) {
+                    ToastHelper.showToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudLoadBeginning, false);
+                }
+            }
+        });
 
         Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
 
@@ -373,6 +377,14 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 }
             }
         }
+
+        callingActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ToastHelper.showPositiveToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudLoadSuccess, true);
+            }
+        });
+
     }
 
     private static Pair<Integer, Integer> getPrestigeAndXPFromSave(byte[] saveBytes) {
@@ -394,7 +406,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     private static boolean cloudSaveIsBetter(Pair<Integer, Integer> cloudValues) {
-        boolean isCloudSaveBetter = true;
+        boolean isCloudSaveBetter;
         if (cloudValues.first <= Player_Info.getPrestige() && cloudValues.second <= Player_Info.getXp()) {
             isCloudSaveBetter = false;
         } else {
