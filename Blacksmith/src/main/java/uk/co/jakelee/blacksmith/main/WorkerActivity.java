@@ -218,8 +218,10 @@ public class WorkerActivity extends Activity {
         }
 
         if (numWorkers > 0) {
-            ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, "Sent out workers: " + numWorkers, true);
+            ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
         }
+
+        updateButtons();
     }
 
     public void scheduledTask() {

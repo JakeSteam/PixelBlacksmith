@@ -193,6 +193,10 @@
     <string name="buyWorkerComplete">Successfully hired worker!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
+    <string name="sendOutWorkers">Send Out\nWorkers</string>
+    <string name="sendOutWorkersToast">%d workers excitedly jog out of the door, in search of resources.</string>
+    <string name="autofeedWorkers">Auto-feed\n</string>
+
     <string name="buyWorker">Purchase Worker</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>

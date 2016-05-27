@@ -305,6 +305,8 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The resources gained depends on the tool used. Higher tier tools will gather more / better resources.\n", 22));
         layout.addView(dh.createTextView("Providing a worker with food will provide bonus resources and provide a chance of finding a page.\n",22));
         layout.addView(dh.createTextView("Each worker has a favourite food, which will provide twice the normal bonus if provided. Food is consumed on each trip.\n", 22));
+        layout.addView(dh.createTextView("If 'autofeed' is enabled, workers will automatically restock themselves if the last used food is available.\n", 22));
+        layout.addView(dh.createTextView("Tapping the 'Send Out Workers' button will send out all available workers.\n", 22));
         layout.addView(dh.createTextView("Tapping a purchased worker will tell you their name, total trips, and current food item.\n", 22));
         layout.addView(dh.createTextView("Tapping the food item will let you pick another. Discovered favourite food(s) are highlighted in green, and provide double food bonuses + page chance.\n", 22));
         layout.addView(dh.createTextView("Tapping the tool will let you to choose another, based on items you currently own.\n", 22));
