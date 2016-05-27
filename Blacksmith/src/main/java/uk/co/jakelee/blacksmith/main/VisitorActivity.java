@@ -51,6 +51,7 @@ public class VisitorActivity extends Activity {
     private static Visitor_Stats visitorStats;
 
     private static boolean identifyFirstDemand = false;
+    public static boolean loadingTrade = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class VisitorActivity extends Activity {
 
         Intent intent = getIntent();
         Long visitorId = Long.parseLong(intent.getStringExtra(DisplayHelper.VISITOR_TO_LOAD));
+        loadingTrade = false;
 
         if (visitorId > 0) {
             visitor = Visitor.findById(Visitor.class, visitorId);
@@ -252,9 +254,12 @@ public class VisitorActivity extends Activity {
                 if (!demand.isDemandFulfilled()) {
                     demandRow.setOnClickListener(new Button.OnClickListener() {
                         public void onClick(View v) {
-                            Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
-                            intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
-                            startActivity(intent);
+                            if (!loadingTrade) {
+                                loadingTrade = true;
+                                Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
+                                intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
+                                startActivity(intent);
+                            }
                         }
                     });
                 }
