@@ -498,31 +498,30 @@ public class DatabaseHelper {
     }
 
     public static void patch154to160() {
-        // Rename premium
-        Tier.executeQuery("UPDATE tier SET name = 'Legendary' WHERE name = 'Premium'");
+        // Store current version, so updates can be checked
+        Player_Info savedVersion = new Player_Info("SavedVersion", BuildConfig.VERSION_CODE);
+        savedVersion.save();
 
-        // Change type of worker 7
-        Worker.executeQuery("UPDATE worker SET character_id = 11 WHERE worker_id = 7");
-
-        // Swap favourite item for worker 1 + 3, and worker 4 + 7 (currently worker_id + 211)
-        Worker.executeQuery("UPDATE worker SET favourite_food = 214 WHERE worker_id = 1");
-        Worker.executeQuery("UPDATE worker SET favourite_food = 212 WHERE worker_id = 3");
-        Worker.executeQuery("UPDATE worker SET favourite_food = 218 WHERE worker_id = 4");
-        Worker.executeQuery("UPDATE worker SET favourite_food = 215 WHERE worker_id = 7");
-
-        // Change pie to include 2 apples, not 1 blueberry
+        // Change pie to include 2 apples, not 1 blueberry. Change legendary half helmet + hammer to use 3 parts each.
         Recipe.executeQuery("UPDATE recipe SET ingredient = 77 WHERE item = 218 and ingredient = 205");
-
-        // Change mice to prefer cooked food
-        Visitor_Type.executeQuery("UPDATE visitortype SET type_preferred = (SELECT id FROM type WHERE name = 'Cooked Food') WHERE visitor_id IN (13,48)");
+        Recipe.executeQuery("UPDATE recipe SET quantity = 3 WHERE item IN (169, 176)");
 
         // Setting to control whether food should auto re fill
         Setting toggleFeed = new Setting(10L, "Autofeed", false);
         toggleFeed.save();
+        
+        // Rename premium tier
+        Tier.executeQuery("UPDATE tier SET name = 'Legendary' WHERE name = 'Premium'");
 
-        // Store current version, so updates can be checked
-        Player_Info savedVersion = new Player_Info("SavedVersion", BuildConfig.VERSION_CODE);
-        savedVersion.save();
+        // Change mice to prefer cooked food
+        Visitor_Type.executeQuery("UPDATE visitortype SET type_preferred = (SELECT id FROM type WHERE name = 'Cooked Food') WHERE visitor_id IN (13,48)");
+
+        // Change type of worker 7. Swap favourite item for worker 1 + 3, and worker 4 + 7 (currently worker_id + 211).
+        Worker.executeQuery("UPDATE worker SET character_id = 11 WHERE worker_id = 7");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 214 WHERE worker_id = 1");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 212 WHERE worker_id = 3");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 218 WHERE worker_id = 4");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 215 WHERE worker_id = 7");
 
         // Halve hammer resources, and change ruby / onyx resources.
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = resource_quantity * 0.75 WHERE tool_id IN (35, 51, 68, 96, 112, 128, 147, 176)");
