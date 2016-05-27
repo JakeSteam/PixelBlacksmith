@@ -27,6 +27,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import hotchemi.android.rate.AppRate;
+import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AdvertHelper;
@@ -107,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
+        }
+
+        Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
+        if (!TutorialHelper.currentlyInTutorial &&
+                savedVersion != null && savedVersion.getIntValue() != BuildConfig.VERSION_CODE &&
+                BuildConfig.VERSION_NAME.length() > 0 && BuildConfig.VERSION_NAME.endsWith(".0")) {
+            AlertDialogHelper.displayUpdateMessage(this, this);
+            savedVersion.setIntValue(BuildConfig.VERSION_CODE);
         }
 
         gph.UpdateQuest();

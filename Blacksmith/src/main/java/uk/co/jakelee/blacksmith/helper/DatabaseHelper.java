@@ -6,6 +6,7 @@ import com.orm.query.Select;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
@@ -518,6 +519,10 @@ public class DatabaseHelper {
         // Setting to control whether food should auto re fill
         Setting toggleFeed = new Setting(10L, "Autofeed", false);
         toggleFeed.save();
+
+        // Store current version, so updates can be checked
+        Player_Info savedVersion = new Player_Info("SavedVersion", BuildConfig.VERSION_CODE);
+        savedVersion.save();
     }
 
     private static void createAchievement() {
