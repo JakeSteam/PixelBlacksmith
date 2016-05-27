@@ -523,6 +523,16 @@ public class DatabaseHelper {
         // Store current version, so updates can be checked
         Player_Info savedVersion = new Player_Info("SavedVersion", BuildConfig.VERSION_CODE);
         savedVersion.save();
+
+        // Change
+        Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
+        List<Worker_Resource> workerResources = new ArrayList<>();
+        workerResources.add(new Worker_Resource(72, 73, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(72, 74, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(76, 73, 1, 3)); // Onyx
+        workerResources.add(new Worker_Resource(76, 74, 1, 2)); // Onyx
+        workerResources.add(new Worker_Resource(76, 75, 1, 2)); // Onyx
+        Worker_Resource.saveInTx(workerResources);
     }
 
     private static void createAchievement() {
