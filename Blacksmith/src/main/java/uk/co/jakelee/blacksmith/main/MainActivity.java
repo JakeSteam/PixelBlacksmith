@@ -376,8 +376,8 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 dh.createAllSlots(activity);
                 if (Trader_Stock.shouldRestock()) {
-                    Trader_Stock.restockTraders();
                     boolean taxPaid = PremiumHelper.payOutTax();
+                    Trader_Stock.restockTraders();
                     ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
