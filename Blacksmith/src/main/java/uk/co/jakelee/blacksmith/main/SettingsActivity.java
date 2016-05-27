@@ -251,7 +251,7 @@ public class SettingsActivity extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.SavedGamesIntent(getApplicationContext(), intent);
+        GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
     }
 
 

@@ -201,6 +201,10 @@
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
+    <string name="worseSaveMessage">Are you SURE you want to load this inferior cloud save?\n\nLocal save: Prestige %1$d, Level %2$d, XP %3$d\nCloud save: Prestige %4$d, Level %5$d, XP %6$d</string>
+    <string name="worseSaveLoad">Load</string>
+    <string name="worseSaveCancel">Cancel</string>
+
     <string name="buyWorker">Purchase Worker</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>

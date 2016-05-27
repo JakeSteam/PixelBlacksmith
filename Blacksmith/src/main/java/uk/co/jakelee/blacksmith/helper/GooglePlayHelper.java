@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Pair;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -52,6 +53,9 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     private static final String mCurrentSaveName = "blacksmithCloudSave";
     public static GoogleApiClient mGoogleApiClient;
     private static boolean mResolvingConnectionFailure = false;
+    private static byte[] cloudSaveData;
+    private static Context callingContext;
+    private static Activity callingActivity;
 
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
         if (mResolvingConnectionFailure) {
@@ -168,10 +172,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
-    public static void SavedGamesIntent(final Context context, final Intent intent) {
+    public static void SavedGamesIntent(final Context context, final Activity activity, final Intent intent) {
         if (intent == null || !mGoogleApiClient.isConnected()) {
             return;
         }
+        callingContext = context;
+        callingActivity = activity;
 
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
             String currentTask = "synchronising";
@@ -184,7 +190,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     Snapshot snapshot = result.getSnapshot();
                     try {
                         if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
-                            loadFromCloud(snapshot.getSnapshotContents().readFully());
+                            cloudSaveData = snapshot.getSnapshotContents().readFully();
+                            loadFromCloud(true);
                             currentTask = "loading";
                         } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
                             saveToCloud(context, snapshot);
@@ -209,12 +216,30 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         task.execute();
     }
 
-    private static void loadFromCloud(byte[] cloudData) {
+    private static void loadFromCloud(boolean checkIsImprovement) {
         if (!IsConnected()) {
             return;
         }
 
-        applyBackup(new String(cloudData));
+        Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
+
+        if (!checkIsImprovement || cloudSaveIsBetter(cloudData)) {
+            applyBackup(new String(cloudSaveData));
+        } else {
+            AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
+                    Player_Info.getPrestige(),
+                    Player_Info.getXp(),
+                    cloudData.first,
+                    cloudData.second);
+        }
+    }
+
+    public static void forceLoadFromCloud() {
+        new Thread(new Runnable() {
+            public void run() {
+                loadFromCloud(false);
+            }
+        }).start();
     }
 
     private static void saveToCloud(Context context, Snapshot snapshot) {
@@ -348,6 +373,34 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 }
             }
         }
+    }
+
+    private static Pair<Integer, Integer> getPrestigeAndXPFromSave(byte[] saveBytes) {
+        int prestige = 0;
+        int xp = 0;
+        Gson gson = new Gson();
+
+        String[] splitData = splitBackupData(new String(saveBytes));
+        Player_Info[] saveInfos = gson.fromJson(splitData[1], Player_Info[].class);
+        for (Player_Info saveInfo : saveInfos) {
+            if (saveInfo.getName().equals("Prestige")) {
+                prestige = saveInfo.getIntValue();
+            } else if (saveInfo.getName().equals("XP")) {
+                xp = saveInfo.getIntValue();
+            }
+        }
+
+        return new Pair<>(prestige, xp);
+    }
+
+    private static boolean cloudSaveIsBetter(Pair<Integer, Integer> cloudValues) {
+        boolean isCloudSaveBetter = true;
+        if (cloudValues.first <= Player_Info.getPrestige() && cloudValues.second <= Player_Info.getXp()) {
+            isCloudSaveBetter = false;
+        } else {
+            isCloudSaveBetter = true;
+        }
+        return isCloudSaveBetter;
     }
 
     private static String[] splitBackupData(String backupData) {

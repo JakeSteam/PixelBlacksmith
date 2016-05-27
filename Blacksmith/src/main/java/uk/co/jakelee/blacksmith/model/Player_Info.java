@@ -57,7 +57,7 @@ public class Player_Info extends SugarRecord {
         }
     }
 
-    private static int convertXpToLevel(int xp) {
+    public static int convertXpToLevel(int xp) {
         // Level = 0.1 * sqrt(xp)
         return (int) (Constants.LEVEL_MODIFIER * Math.sqrt(xp));
     }

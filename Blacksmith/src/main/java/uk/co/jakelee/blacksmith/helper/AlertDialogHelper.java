@@ -349,6 +349,38 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
+    public static void confirmWorseCloudLoad(final Context context, final Activity activity, int localPrestige, int localXP, int cloudPrestige, int cloudXP) {
+        int localLevel = Player_Info.convertXpToLevel(localXP);
+        int cloudLevel = Player_Info.convertXpToLevel(cloudXP);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.worseSaveMessage),
+                localPrestige,
+                localLevel,
+                localXP,
+                cloudPrestige,
+                cloudLevel,
+                cloudXP));
+
+        alertDialog.setPositiveButton(context.getString(R.string.worseSaveLoad), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GooglePlayHelper.forceLoadFromCloud();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.worseSaveCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
     public static void displayUpdateMessage(final Context context, final MainActivity activity) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
