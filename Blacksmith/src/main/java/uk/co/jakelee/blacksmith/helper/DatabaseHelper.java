@@ -85,12 +85,12 @@ public class DatabaseHelper {
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
             DatabaseHelper.patch150to154();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_0) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
             DatabaseHelper.patch154to160();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
         }
