@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +25,8 @@ public class WorkerHelper {
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
-                Condition.prop("tool_id").eq(toolID)).list();
+                Condition.prop("tool_id").eq(toolID))
+                .orderBy("resource_quantity DESC").list();
     }
 
     public static void populateResources(DisplayHelper dh, LinearLayout container, long toolID) {
@@ -120,7 +121,7 @@ public class WorkerHelper {
     }
 
     public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {
-        HashMap<String, Integer> data = new HashMap<>();
+        LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, worker.getFoodUsed());
         boolean applyFoodBonus = worker.getFoodUsed() > 0 && (worker.getTimeStarted() > 0 || addItems);
 
@@ -147,8 +148,7 @@ public class WorkerHelper {
             if(data.containsKey(item.getName())) {
                 temp = data.get(item.getName()) + resource.getResourceQuantity();
                 data.put(item.getName(), temp);
-            }
-            else {
+            } else {
                 data.put(item.getName(), resource.getResourceQuantity());
             }
         }
