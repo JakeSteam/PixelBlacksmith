@@ -2,6 +2,8 @@ package uk.co.jakelee.blacksmith.model;
 
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 
@@ -143,6 +145,15 @@ public class Worker extends SugarRecord {
         }
 
         return trips;
+    }
 
+    public static int getAvailableWorkersCount() {
+        return getAvailableWorkers().size();
+    }
+
+    public static List<Worker> getAvailableWorkers() {
+        return Select.from(Worker.class).where(
+                Condition.prop("purchased").eq(true),
+                Condition.prop("time_started").eq(0)).list();
     }
 }

@@ -514,6 +514,10 @@ public class DatabaseHelper {
 
         // Change mice to prefer cooked food
         Visitor_Type.executeQuery("UPDATE visitortype SET type_preferred = (SELECT id FROM type WHERE name = 'Cooked Food') WHERE visitor_id IN (13,48)");
+
+        // Setting to control whether food should auto re fill
+        Setting toggleFeed = new Setting(10L, "Autofeed", false);
+        toggleFeed.save();
     }
 
     private static void createAchievement() {

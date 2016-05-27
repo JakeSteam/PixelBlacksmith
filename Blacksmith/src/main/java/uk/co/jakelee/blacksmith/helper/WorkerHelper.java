@@ -15,6 +15,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
@@ -76,12 +77,24 @@ public class WorkerHelper {
         List<Worker> workers = Select.from(Worker.class).where(
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
+        boolean refillFood = Setting.findById(Setting.class, Constants.SETTING_AUTOFEED).getBoolValue();
 
         for (Worker worker : workers) {
             if (getTimeRemaining(worker) <= 0) {
                 rewardResources(context, worker);
 
-                worker.setFoodUsed(0);
+                // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
+                if (refillFood && worker.getFoodUsed() > 0) {
+                    Inventory currentFoodStock = Inventory.getInventory(worker.getFoodUsed(), Constants.STATE_NORMAL);
+                    if (currentFoodStock.getQuantity() > 0) {
+                        currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
+                        currentFoodStock.save();
+                    } else {
+                        worker.setFoodUsed(0);
+                    }
+                }
+
+
                 worker.setTimeStarted(0);
                 worker.setTimesCompleted(worker.getTimesCompleted() + 1);
                 worker.save();

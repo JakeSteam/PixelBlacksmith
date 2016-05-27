@@ -26,6 +26,7 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/workerTitle"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/workerText"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -44,11 +45,65 @@
             android:fadeScrollbars="false">
 
             <LinearLayout
-                android:id="@+id/workerContainer"
+                android:id="@+id/mainWrapper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/workerControlsContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/gatherAllButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:layout_margin="2dp"
+                        android:onClick="sendAllGathering"
+                        android:text="Send All\nGathering"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/autoFeedToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/gatherAllButton"
+                        android:background="@drawable/button"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:layout_margin="2dp"
+                        android:onClick="toggleAutofeed"
+                        android:text="Auto-feed?\n"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+
+                    <ImageView
+                        android:id="@+id/autoFeedIndicator"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/cross"
+                        android:onClick="toggleAutofeed"
+                        android:layout_alignLeft="@id/autoFeedToggle"
+                        android:layout_alignRight="@id/autoFeedToggle"
+                        android:layout_alignBottom="@id/autoFeedToggle"
+                        android:layout_marginBottom="3dp"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/workerContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp" />
             </LinearLayout>
 
         </ScrollView>
