@@ -525,7 +525,7 @@ public class DatabaseHelper {
         savedVersion.save();
 
         // Halve hammer resources, and change ruby / onyx resources.
-        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = resource_quantity / 2 WHERE tool_id IN (35, 51, 68, 96, 112, 128, 147, 176)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = resource_quantity * 0.75 WHERE tool_id IN (35, 51, 68, 96, 112, 128, 147, 176)");
         Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(72, 73, 1, 2)); // Ruby
