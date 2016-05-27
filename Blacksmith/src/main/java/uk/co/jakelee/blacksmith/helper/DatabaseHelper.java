@@ -498,6 +498,9 @@ public class DatabaseHelper {
     }
 
     public static void patch154to160() {
+        // Change gold bar to level 35
+        Item.executeQuery("UPDATE item SET level = 35 WHERE id = 18");
+
         // Store current version, so updates can be checked
         Player_Info savedVersion = new Player_Info("SavedVersion", BuildConfig.VERSION_CODE);
         savedVersion.save();
@@ -509,7 +512,7 @@ public class DatabaseHelper {
         // Setting to control whether food should auto re fill
         Setting toggleFeed = new Setting(10L, "Autofeed", false);
         toggleFeed.save();
-        
+
         // Rename premium tier
         Tier.executeQuery("UPDATE tier SET name = 'Legendary' WHERE name = 'Premium'");
 
