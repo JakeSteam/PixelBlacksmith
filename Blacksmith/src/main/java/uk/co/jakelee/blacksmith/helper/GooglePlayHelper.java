@@ -173,6 +173,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static void SavedGamesIntent(final Context context, final Activity activity, final Intent intent) {
+        ToastHelper.showToast(context, Toast.LENGTH_SHORT, R.string.comparingSaves, true);
+
         if (intent == null || !mGoogleApiClient.isConnected()) {
             return;
         }
