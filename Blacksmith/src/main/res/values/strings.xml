@@ -172,16 +172,14 @@
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:
-\n- +50% maximum extra gold.
-\n- +20% current extra gold.
-\n- +50% maximum extra XP.
-\n- +20% current extra XP.
+\n- Immediate +20% to bonus coins and bonus XP upgrades.
+\n- +50% maximum possible bonus coins and bonus XP upgrades (from 50% to 100%).
 \n- Ability to turn off all ads.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
-\n- Gold tax paid by all traders on automatic restock.
-\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.
-\n- Doubled bonus chest rewards.
+\n- Coins paid by all out of stock traders on automatic market restock.
+\n- Ability to prestige at level 70, and begin a New Game Plus with a massive gold + XP bonus!
+\n- Doubled bonus chest rewards, and reduced time between chest openings.
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
@@ -206,8 +204,14 @@
     <string name="worseSaveLoad">Load</string>
     <string name="worseSaveCancel">Cancel</string>
 
+    <string name="cloudSaveWarning">Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.</string>
+    <string name="cloudSaveSave">Overwrite</string>
+    <string name="cloudSaveCancel">Cancel</string>
+
     <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
     <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudSaveBeginning">Saving game to cloud...</string>
+    <string name="cloudSaveSuccess">Save to cloud successful!</string>
     <string name="cloudLoadBeginning">Loading cloud save from remote server...</string>
     <string name="cloudLoadSuccess">Load from cloud successful!</string>
     <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
@@ -441,7 +445,7 @@
     <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
     <string name="statisticsCollectionsCrafted">Collections Crafted:</string>
     <string name="statisticsQuestsCompleted">Quests Completed:</string>
-    <string name="statisticsTotalBonusGold">Total Gold Bonus:</string>
+    <string name="statisticsTotalBonusGold">Total Coins Bonus:</string>
     <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>

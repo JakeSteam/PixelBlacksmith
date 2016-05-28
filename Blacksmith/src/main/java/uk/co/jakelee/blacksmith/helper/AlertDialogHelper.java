@@ -259,9 +259,9 @@ public class AlertDialogHelper {
 
     public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        String question = Player_Info.displayAds() ?
+        String question = String.format(Player_Info.displayAds() ?
                 context.getString(R.string.traderRestockAllQuestionAdvert) :
-                String.format(context.getString(R.string.traderRestockAllQuestion), restockCost);
+                context.getString(R.string.traderRestockAllQuestion), restockCost);
         alertDialog.setMessage(question);
         alertDialog.setIcon(R.drawable.item52);
 
@@ -368,6 +368,33 @@ public class AlertDialogHelper {
         });
 
         alertDialog.setNegativeButton(context.getString(R.string.worseSaveCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
+    public static void confirmCloudSave(final Context context, final Activity activity, String desc, long saveTime, String deviceName) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.cloudSaveWarning),
+                desc,
+                DateHelper.displayTime(saveTime, DateHelper.datetime),
+                deviceName));
+
+        alertDialog.setPositiveButton(context.getString(R.string.cloudSaveSave), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GooglePlayHelper.forceSaveToCloud();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.cloudSaveCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

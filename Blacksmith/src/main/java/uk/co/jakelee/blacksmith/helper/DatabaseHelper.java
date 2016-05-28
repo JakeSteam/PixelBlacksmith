@@ -526,6 +526,9 @@ public class DatabaseHelper {
         // Fix trader desc
         Trader.executeQuery("UPDATE trader SET description = 'Lots and and lots and lots of ore!' WHERE name = 'Lots More Ore'");
 
+        // Change upgrade name
+        Upgrade.executeQuery("UPDATE upgrade SET name = 'Coins Bonus' WHERE name = 'Gold Bonus'");
+
         // Change mice to prefer cooked food
         Visitor_Type.executeQuery("UPDATE visitortype SET type_preferred = (SELECT id FROM type WHERE name = 'Cooked Food') WHERE visitor_id IN (13,48)");
 

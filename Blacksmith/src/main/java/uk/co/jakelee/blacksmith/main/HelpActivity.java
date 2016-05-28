@@ -148,7 +148,7 @@ public class HelpActivity extends Activity {
     private void displayHelpInventory(LinearLayout layout) {
         layout.addView(dh.createTextView("Inventory\n", 26));
         layout.addView(dh.createTextView("All of your current stock can be viewed here.\n", 22));
-        layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / gold bonuses will not apply here.\n", 22));
+        layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / coins bonus will not apply here.\n", 22));
         layout.addView(dh.createTextView("Instead, try and create items that will sell for a large bonus with visitors.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to view all items.", 22));
     }
@@ -269,9 +269,9 @@ public class HelpActivity extends Activity {
     private void displayHelpUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView("Upgrade\n", 26));
         layout.addView(dh.createTextView("On this screen various upgrades can be bought, to help improve your shop.\n", 22));
-        layout.addView(dh.createTextView("The XP and Gold bonuses will be more effective when dealing with more valuable items, and buying premium will increase the values of some upgrades.\n", 22));
+        layout.addView(dh.createTextView("The XP and Coin bonuses will be more effective when dealing with more valuable items, and buying premium will increase the values of some upgrades.\n", 22));
         layout.addView(dh.createTextView("Craft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.\n", 22));
-        layout.addView(dh.createTextView("Gold Bonus\nUpgrading gold bonus will increase the % of bonus gold received on every trade / sale.\n", 22));
+        layout.addView(dh.createTextView("Coins Bonus\nUpgrading coins bonus will increase the % of bonus coins received on every trade / sale.\n", 22));
         layout.addView(dh.createTextView("Legendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.\n", 22));
         layout.addView(dh.createTextView("Market Restock Time\nUpgrading market restock time will decrease the hours between new traders entering the market.\n", 22));
         layout.addView(dh.createTextView("Maximum Traders\nUpgrading maximum traders will increase how many traders can be in the market at once.\n", 22));
@@ -288,6 +288,8 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Premium\n", 26));
         layout.addView(dh.createTextView("Buying premium provides a ton of new features, and also helps further development on the game!\n", 22));
         layout.addView(dh.createTextView("Among the benefits is a tax paid by all out of stock traders when an automatic restock happens. Think of it as a reward for being a loyal customer!\n", 22));
+        layout.addView(dh.createTextView("You'll also be able to prestige, essentially starting a new game with extra XP and coin bonuses.\n", 22));
+        layout.addView(dh.createTextView("There's also extremely valuable legendary items, a reduced cooldown on the bonus chest, and many more features!\n", 22));
         layout.addView(dh.createTextView("Note that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.", 22));
     }
 

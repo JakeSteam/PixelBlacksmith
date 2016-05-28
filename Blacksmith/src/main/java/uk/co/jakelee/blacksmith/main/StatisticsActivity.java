@@ -140,7 +140,7 @@ public class StatisticsActivity extends Activity {
 
         int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
         int prestigePercent = (prestigeLevel > 0 ? prestigeLevel * 100 : 0);
-        int bonusGoldPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("Gold Bonus")).first().getCurrent();
+        int bonusGoldPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("Coins Bonus")).first().getCurrent();
         int bonusXPPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("XP Bonus")).first().getCurrent();
 
         ((TextViewPixel) findViewById(R.id.totalBonusGold)).setText(String.format("+%,d%%", bonusGoldPercent));

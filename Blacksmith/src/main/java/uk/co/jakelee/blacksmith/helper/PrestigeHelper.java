@@ -54,11 +54,13 @@ public class PrestigeHelper {
     private static void resetUpgrades() {
         List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
         for (Upgrade upgrade : upgrades) {
-            if (upgrade.getName().equals("Gold Bonus") || upgrade.getName().equals("XP Bonus")) {
+            if (upgrade.getName().equals("Coins Bonus") || upgrade.getName().equals("XP Bonus")) {
                 if (Player_Info.isPremium()) {
                     upgrade.setCurrent(20);
+                    upgrade.setMaximum(100);
                 } else {
                     upgrade.setCurrent(0);
+                    upgrade.setMaximum(50);
                 }
             } else {
                 upgrade.setCurrent(upgrade.getMinimum());
