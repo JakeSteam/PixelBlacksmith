@@ -266,6 +266,14 @@
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="44%" />
 
+            <!-- Areas -->
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/furnace"
+                android:layout_marginLeft="553dp"
+                app:layout_marginTopPercent="25%" />
+
             <!-- Water -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
@@ -289,6 +297,12 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/water"
                 android:layout_marginLeft="192dp" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bridge"
+                android:layout_marginLeft="256dp" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
