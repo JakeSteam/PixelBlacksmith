@@ -274,6 +274,13 @@
                 android:layout_marginLeft="553dp"
                 app:layout_marginTopPercent="25%" />
 
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/anvil"
+                android:layout_marginLeft="789dp"
+                app:layout_marginTopPercent="24%" />
+
             <!-- Water -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
