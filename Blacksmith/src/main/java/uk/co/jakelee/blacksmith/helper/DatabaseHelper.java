@@ -498,6 +498,11 @@ public class DatabaseHelper {
     }
 
     public static void patch154to160() {
+        // Fix collection + prestige achievements
+        Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'CollectionsCreated') WHERE name = 'The Collector'");
+        Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'Prestige') WHERE name = 'The Fun Never Stops'");
+        Player_Info.executeQuery("UPDATE playerinfo SET last_sent_value = 0 WHERE name IN ('CollectionsCreated','Prestige')");
+
         // Change gold bar to level 35
         Item.executeQuery("UPDATE item SET level = 35 WHERE id = 18");
 

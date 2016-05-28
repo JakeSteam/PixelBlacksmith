@@ -1,11 +1,13 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -33,6 +35,8 @@ public class PrestigeHelper {
 
     private static void increasePrestige() {
         Player_Info.increaseByOne(Player_Info.Statistic.Prestige);
+        Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Fun Never Stops")).first();
+        Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
 
         Player_Info prestigeDate = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateLastPrestiged")).first();

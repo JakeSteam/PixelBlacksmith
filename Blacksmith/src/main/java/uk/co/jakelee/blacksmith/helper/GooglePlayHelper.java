@@ -157,7 +157,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
         if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
             int difference = currentValue - lastSentValue;
-            if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17) {
+            if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17 || achievement.getPlayerInfoID() == 23) {
                 Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
             } else {
                 Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
@@ -173,8 +173,6 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static void SavedGamesIntent(final Context context, final Activity activity, final Intent intent) {
-        ToastHelper.showToast(context, Toast.LENGTH_SHORT, R.string.comparingSaves, true);
-
         if (intent == null || !mGoogleApiClient.isConnected()) {
             return;
         }
