@@ -214,7 +214,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     private static void loadFromCloud(final boolean checkIsImprovement) {
-        if (!IsConnected()) {
+        if (!IsConnected() || callingContext == null || callingActivity == null || cloudSaveData == null) {
             return;
         }
 
