@@ -150,6 +150,7 @@
     <string name="socialMediaTwitter">Twitter</string>
     <string name="socialMediaReddit">Reddit</string>
 
+    <string name="discoveredPreferences">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="tierPreference">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>
     <string name="statePreference">This customer will pay %1$s extra for items in a %2$s condition.</string>
@@ -277,11 +278,13 @@
     <string name="trophy100thVisit">100th visit: %s</string>
     <string name="trophyBestItem">Best item: %s</string>
     <string name="trophyRarity">Appear chance: %d</string>
+    <string name="trophyPreferences">Preferences: %1$s / %2$s / %3$s</string>
     <string name="trophyVisitsUnknown">Visits: ???</string>
     <string name="trophyFirstSeenUnknown">First seen: ???</string>
     <string name="trophy100thVisitUnknown">100th visit: ???</string>
     <string name="trophyBestItemUnknown">Best item: ???</string>
     <string name="trophyRarityUnknown">Appear chance: ???</string>
+    <string name="trophyPreferencesUnknown">Preferences: ???</string>
 
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
     <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>

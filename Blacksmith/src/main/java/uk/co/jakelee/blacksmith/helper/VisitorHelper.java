@@ -426,4 +426,22 @@ public class VisitorHelper {
         return new Pair<>(rewardedPage, Constants.STATE_NORMAL);
     }
 
+    public static String getDiscoveredPreferencesText(Context context, Visitor_Type vType) {
+        String type = context.getString(R.string.unknownText);
+        String tier = context.getString(R.string.unknownText);
+        String state = context.getString(R.string.unknownText);
+
+        if (vType.isTypeDiscovered()) {
+            type = Type.findById(Type.class, vType.getTypePreferred()).getName();
+        }
+        if (vType.isTierDiscovered()) {
+            tier = Tier.findById(Tier.class, vType.getTierPreferred()).getName();
+        }
+        if (vType.isStateDiscovered()) {
+            state = State.findById(State.class, vType.getStatePreferred()).getName();
+        }
+
+        return String.format(context.getString(R.string.trophyPreferences), type, tier, state);
+    }
+
 }
