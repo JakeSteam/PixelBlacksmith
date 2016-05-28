@@ -248,14 +248,6 @@
                 app:layout_heightPercent="8%"
                 app:layout_marginTopPercent="80%" />
 
-            <pl.droidsonroids.gif.GifImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/torch"
-                android:layout_marginLeft="65dp"
-                app:layout_heightPercent="11%"
-                app:layout_marginTopPercent="22%" />
-
             <LinearLayout
                 android:id="@+id/visitors_container"
                 android:layout_width="330dp"
@@ -273,6 +265,39 @@
                 android:orientation="horizontal"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="44%" />
+
+            <!-- Torches -->
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="86dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="22%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="218dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="22%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="860dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="11%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="1240dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="11%" />
 
         </android.support.percent.PercentRelativeLayout>
     </HorizontalScrollView>
