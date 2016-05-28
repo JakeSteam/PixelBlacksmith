@@ -9,6 +9,7 @@ public class Constants {
     public static final String LEADERBOARD_TIMES_PRESTIGED = "CgkI6tnE2Y4OEAIQIg";
     public static final String LEADERBOARD_COMPLETION = "CgkI6tnE2Y4OEAIQIw";
     public static final String LEADERBOARD_COLLECTIONS = "CgkI6tnE2Y4OEAIQJQ";
+    public static final String LEADERBOARD_HIGHEST_LEV = "CgkI6tnE2Y4OEAIQQg";
 
     public static final String EVENT_VISITOR_FULLY_COMPLETED = "CgkI6tnE2Y4OEAIQJg";
     public static final String EVENT_VISITOR_COMPLETED = "CgkI6tnE2Y4OEAIQKA";

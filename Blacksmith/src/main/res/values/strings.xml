@@ -415,6 +415,7 @@
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
     <string name="statisticsNextLevel">Next Level In:</string>
+    <string name="statisticsHighestLevel">Highest Level:</string>
     <string name="statisticsSmelted">Items Smelted:</string>
     <string name="statisticsCrafted">Items Crafted:</string>
     <string name="statisticsTraded">Items Traded:</string>

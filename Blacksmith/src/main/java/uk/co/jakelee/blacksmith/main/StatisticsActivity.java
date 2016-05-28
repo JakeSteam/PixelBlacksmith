@@ -54,6 +54,9 @@ public class StatisticsActivity extends Activity {
         int nextLevelIn = nextLevelXP - Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.nextLevelIn)).setText(String.format("%,d", nextLevelIn));
 
+        int highestLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("HighestLevel")).first().getIntValue();
+        ((TextViewPixel) findViewById(R.id.highestLevel)).setText(String.format("%,d", highestLevel));
+
         int itemsSmelted = Select.from(Player_Info.class).where(Condition.prop("name").eq("ItemsSmelted")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.itemsSmelted)).setText(String.format("%,d", itemsSmelted));
 
@@ -174,6 +177,8 @@ public class StatisticsActivity extends Activity {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COMPLETION), GooglePlayHelper.RC_LEADERBOARDS);
             } else if (view.getTag().equals("collectionscrafted")) {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COLLECTIONS), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (view.getTag().equals("highestlevel")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_HIGHEST_LEV), GooglePlayHelper.RC_LEADERBOARDS);
             }
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);

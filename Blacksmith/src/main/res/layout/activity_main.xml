@@ -281,6 +281,13 @@
                 android:layout_marginLeft="789dp"
                 app:layout_marginTopPercent="24%" />
 
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/window"
+                android:layout_marginLeft="1296dp"
+                app:layout_marginTopPercent="11%" />
+
             <!-- Water -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"

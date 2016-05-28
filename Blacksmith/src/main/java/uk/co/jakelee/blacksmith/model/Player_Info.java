@@ -126,6 +126,13 @@ public class Player_Info extends SugarRecord {
         return prestige.getIntValue();
     }
 
+    public static int getHighestLevel() {
+        Player_Info level = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("HighestLevel")).first();
+
+        return level.getIntValue();
+    }
+
     public static int getCollectionsCrafted() {
         Player_Info collections = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("CollectionsCreated")).first();
@@ -264,6 +271,6 @@ public class Player_Info extends SugarRecord {
     }
 
     public enum Statistic {
-        CollectionsCreated, ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige, QuestsCompleted
+        CollectionsCreated, HighestLevel, ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige, QuestsCompleted
     }
 }

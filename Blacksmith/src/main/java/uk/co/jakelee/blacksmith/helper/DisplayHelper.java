@@ -582,9 +582,16 @@ public class DisplayHelper {
         TextViewPixel levelPercent = MainActivity.levelPercent;
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
-        if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevel()), true);
-            Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, Player_Info.getPlayerLevel() - Player_Info.getPlayerLevelFromDB());
+        int highestLevel = Player_Info.getHighestLevel();
+        int playerLevel = Player_Info.getPlayerLevel();
+
+        if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(playerLevel), true);
+            Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
+            if (playerLevel > highestLevel) {
+                Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_HIGHEST_LEV, playerLevel);
+            }
             return true;
         }
         return false;

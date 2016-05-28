@@ -502,8 +502,10 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET level = 35 WHERE id = 18");
 
         // Store current version, so updates can be checked
-        Player_Info savedVersion = new Player_Info("SavedVersion", BuildConfig.VERSION_CODE);
-        savedVersion.save();
+        List<Player_Info> infos = new ArrayList<>();
+            infos.add(new Player_Info("SavedVersion", BuildConfig.VERSION_CODE));
+            infos.add(new Player_Info("HighestLevel", 1));
+        Player_Info.saveInTx(infos);
 
         // Change pie to include 2 apples, not 1 blueberry. Change legendary half helmet + hammer to use 3 parts each.
         Recipe.executeQuery("UPDATE recipe SET ingredient = 77 WHERE item = 218 and ingredient = 205");
