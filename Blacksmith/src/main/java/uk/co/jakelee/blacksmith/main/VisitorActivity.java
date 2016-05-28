@@ -284,6 +284,11 @@ public class VisitorActivity extends Activity {
                         rewardedPage.first.getFullName(rewardedPage.second)), true);
             }
 
+            if (visitorStats.getVisits() >= Constants.VISITS_TROPHY && visitorStats.getTrophyAchieved() == 0) {
+                visitorStats.setTrophyAchieved(System.currentTimeMillis());
+                visitorStats.save();
+            }
+
             if (visitor.isVisitorFullyComplete()) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_VISITOR_FULLY_COMPLETED, 1);
             }

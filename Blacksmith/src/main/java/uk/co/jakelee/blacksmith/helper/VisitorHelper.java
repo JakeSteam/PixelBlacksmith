@@ -394,7 +394,7 @@ public class VisitorHelper {
         rewards.add(pageReward);
 
         Inventory.addItem(itemReward.first.getId(), itemReward.second, Constants.TROPHY_ITEM_REWARDS);
-        Inventory.addItem(pageReward.first.getId(), itemReward.second, Constants.TROPHY_PAGE_REWARDS);
+        Inventory.addItem(pageReward.first.getId(), pageReward.second, Constants.TROPHY_PAGE_REWARDS);
 
         return rewards;
     }

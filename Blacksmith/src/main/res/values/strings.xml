@@ -477,6 +477,7 @@
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, and <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>.</string>
     <string name="creditsLibraries">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
+\n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.

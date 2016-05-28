@@ -36,4 +36,5 @@ dependencies {
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile project(':BaseGameUtils')
     compile files('libs/applovin-sdk-6.2.2.jar')
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
 }
