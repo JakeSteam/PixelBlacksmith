@@ -45,6 +45,7 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Trader;
@@ -692,13 +693,15 @@ public class DisplayHelper {
             itemSelector.setDisplayedChild(selectedPosition);
         }
 
-        itemSelector.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ItemSelectActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
+        if (Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue()) {
+            itemSelector.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ItemSelectActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {

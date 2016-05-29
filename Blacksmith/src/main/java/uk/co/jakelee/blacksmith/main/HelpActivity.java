@@ -193,6 +193,9 @@ public class HelpActivity extends Activity {
     private void displayHelpSettings(LinearLayout layout) {
         layout.addView(dh.createTextView("Settings\n", 26));
         layout.addView(dh.createTextView("Game settings can be changed here, changes take place as soon as the settings interface is closed.\n", 22));
+        layout.addView(dh.createTextView("The sound & music options will enable / disable all game sounds / background music.\n", 22));
+        layout.addView(dh.createTextView("The notification options will enable / disable trader restock, visitor spawn, worker return, and bonus chest notifications.\n", 22));
+        layout.addView(dh.createTextView("The click to change item option will enable / disable the ability to click an item in a crafting table to open a quick-select interface. If disabled, it will be much easier to swipe to change item.\n", 22));
         layout.addView(dh.createTextView("The messages button displays the last 100 important messages (e.g. level ups) received.\n", 22));
         layout.addView(dh.createTextView("The tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\n", 22));
         layout.addView(dh.createTextView("The rate app button will link you to the game's Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\n", 22));

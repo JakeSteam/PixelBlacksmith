@@ -42,7 +42,6 @@ public class DatabaseHelper {
     public final static int DB_V1_3_0 = 5;
     public final static int DB_V1_4_0 = 6;
     public final static int DB_V1_5_0 = 7;
-    public final static int DB_V1_5_1 = 8;
     public final static int DB_V1_5_4 = 9;
     public final static int DB_V1_6_0 = 10;
 
@@ -517,8 +516,10 @@ public class DatabaseHelper {
         Recipe.executeQuery("UPDATE recipe SET quantity = 3 WHERE item IN (169, 176)");
 
         // Setting to control whether food should auto re fill
-        Setting toggleFeed = new Setting(10L, "Autofeed", false);
-        toggleFeed.save();
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(10L, "Autofeed", false));
+        settings.add(new Setting(11L, "EnableClickChange", true));
+        Setting.saveInTx(settings);
 
         // Rename premium tier
         Tier.executeQuery("UPDATE tier SET name = 'Legendary' WHERE name = 'Premium'");

@@ -143,6 +143,10 @@ public class SettingsActivity extends Activity {
         boolean adToggleValue = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS).getBoolValue();
         adToggle.setImageDrawable(adToggleValue ? tick : cross);
 
+        ImageView clickChangeToggle = (ImageView) findViewById(R.id.clickChangeButton);
+        boolean clickChangeToggleValue = Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue();
+        clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
+
         TextView prestigeButton = (TextViewPixel) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -175,6 +179,9 @@ public class SettingsActivity extends Activity {
                 break;
             case R.id.turnOffAdsButton:
                 settingID = Constants.SETTING_DISABLE_ADS;
+                break;
+            case R.id.clickChangeButton:
+                settingID = Constants.SETTING_CLICK_CHANGE;
         }
 
         if (settingID != null) {
