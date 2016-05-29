@@ -115,6 +115,9 @@
         <activity
             android:name=".main.QuestActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".main.ItemSelectActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />

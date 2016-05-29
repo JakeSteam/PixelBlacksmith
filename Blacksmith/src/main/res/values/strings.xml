@@ -140,6 +140,7 @@
     <string name="enchantText">Enchants</string>
     <string name="powderText">Powders</string>
     <string name="questText">Quests</string>
+    <string name="itemSelectText">Items</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>

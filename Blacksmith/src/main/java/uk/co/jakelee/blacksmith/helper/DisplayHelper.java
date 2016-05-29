@@ -34,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.main.ItemSelectActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -64,6 +66,10 @@ public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private final Context context;
     private boolean isProcessingPendingInventory = false;
+
+    public ViewFlipper itemSelectionFlipper;
+    public HorizontalDots itemSelectionDots;
+    public List<Item> itemSelectionItems;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -363,7 +369,7 @@ public class DisplayHelper {
         return textView;
     }
 
-    public RelativeLayout createItemSelectorElement(long itemID, long state) {
+    public RelativeLayout createItemSelectorElement(final long itemID, long state) {
         RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         countParams.setMargins(0, convertDpToPixel(60), 0, 0);
 
@@ -662,7 +668,11 @@ public class DisplayHelper {
         }
     }
 
-    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state, int selectedPosition) {
+    public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition) {
+        this.itemSelectionFlipper = itemSelector;
+        this.itemSelectionDots = dots;
+        this.itemSelectionItems = items;
+
         if (clearExisting) {
             itemSelector.removeAllViews();
         }
@@ -674,6 +684,14 @@ public class DisplayHelper {
         if (clearExisting) {
             itemSelector.setDisplayedChild(selectedPosition);
         }
+
+        itemSelector.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ItemSelectActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {

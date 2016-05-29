@@ -135,6 +135,7 @@ public class TableActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
@@ -158,6 +159,7 @@ public class TableActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,

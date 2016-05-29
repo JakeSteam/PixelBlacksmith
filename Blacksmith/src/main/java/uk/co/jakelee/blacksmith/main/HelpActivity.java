@@ -97,6 +97,8 @@ public class HelpActivity extends Activity {
             displayHelpTools(layout);
         } else if (topic == TOPICS.Quests) {
             displayHelpQuests(layout);
+        } else if (topic == TOPICS.Item_Picker) {
+            displayHelpItemPicker(layout);
         }
     }
 
@@ -320,6 +322,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Tools\n", 26));
         layout.addView(dh.createTextView("Select a tool for a worker to use by first selecting a category, then an item.\n", 22));
         layout.addView(dh.createTextView("Only currently owned items will be displayed. Note that higher tier tools will provide better / more resources.", 22));
+        layout.addView(dh.createTextView("Tools do not degrade, and can be reclaimed by providing the worker with a replacement tool.", 22));
     }
 
     private void displayHelpQuests(LinearLayout layout) {
@@ -334,6 +337,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Accepted quests (except contribution quests) will give a reminder notification (via Google Play Games) 24 hours before the end.", 22));
     }
 
+    private void displayHelpItemPicker(LinearLayout layout) {
+        layout.addView(dh.createTextView("Item Picker\n", 26));
+        layout.addView(dh.createTextView("In most crafting interfaces, an item can be tapped to open a larger item selection screen.\n", 26));
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
@@ -345,5 +353,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Food, Furnace, Help, Inventory, Market, Messages, Overview, Premium, Quests, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
+    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Food, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Quests, Settings, Statistics, Table, Tool, Trading, Trader, Trophy, Upgrade, Visitor, Worker}
 }

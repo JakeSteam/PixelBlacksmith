@@ -134,6 +134,7 @@ public class AnvilActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_UNFINISHED,
@@ -158,6 +159,7 @@ public class AnvilActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
