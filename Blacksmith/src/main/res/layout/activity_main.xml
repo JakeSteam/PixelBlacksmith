@@ -277,6 +277,14 @@
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/bookcase"
+                android:layout_marginLeft="130dp"
+                app:layout_marginTopPercent="20%"
+                android:onClick="clickBookcase"/>
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/anvil"
                 android:layout_marginLeft="789dp"
                 app:layout_marginTopPercent="24%" />

@@ -342,7 +342,9 @@ public class HelpActivity extends Activity {
 
     private void displayHelpItemPicker(LinearLayout layout) {
         layout.addView(dh.createTextView("Item Picker\n", 26));
-        layout.addView(dh.createTextView("In most crafting interfaces, an item can be tapped to open a larger item selection screen.\n", 26));
+        layout.addView(dh.createTextView("When the \"Click to change item\" setting is enabled, tapping an item will display a list of all items in the current tier.\n", 22));
+        layout.addView(dh.createTextView("Tapping any item image / name will load it into the crafting interface, and this can often be faster than swiping to the area.\n", 22));
+        layout.addView(dh.createTextView("When this option is enabled, swiping to change item can be trickier, so some players may wish to disable it via the settings menu for easier swiping.", 22));
     }
 
     public void openHelp(View view) {

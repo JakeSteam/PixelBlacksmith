@@ -26,6 +26,8 @@ import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.Random;
+
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
@@ -495,6 +497,11 @@ public class MainActivity extends AppCompatActivity implements
 
     public void clickWindow(View view) {
         ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.windowClick, false);
+    }
+
+    public void clickBookcase(View view) {
+        String[] array = getResources().getStringArray(R.array.tipsArray);
+        ToastHelper.showTipToast(this, Toast.LENGTH_LONG, array[new Random().nextInt(array.length)], false);
     }
 
     @Override

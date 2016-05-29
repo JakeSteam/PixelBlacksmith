@@ -46,9 +46,9 @@
 
     <!-- Stage 6 -->
     <string name="tutorialFurnaceItems">Item</string>
-    <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, items can only be viewed after being created, but the bronze bar has been unlocked for you.</string>
+    <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, item information can only be seen after being created, but the bronze bar has been unlocked for you.</string>
     <string name="tutorialFurnaceScroll">Changing Items</string>
-    <string name="tutorialFurnaceScrollText">Swiping left and right will change between available items. For now though, they\'ll all be hidden.</string>
+    <string name="tutorialFurnaceScrollText">Swiping left and right or tapping the item image will change between available items. For now though, they\'ll mostly be hidden.</string>
     <string name="tutorialFurnaceIngredients">Ingredients</string>
     <string name="tutorialFurnaceIngredientsText">Since this is a rather basic item, it only requires level 1. It also requires copper and tin ore, which we have plenty of.</string>
     <string name="tutorialFurnaceSmelt">Smelting</string>
@@ -516,4 +516,57 @@
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+
+    <string-array name='tipsArray'>
+        <!-- General -->
+        <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
+        <item>The tutorial can be replayed from the Settings menu if you need a reminder.</item>
+        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
+        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
+        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
+
+        <!-- Market -->
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>Is the large number of items you bought at the Market taking too long to be delivered? Investing in the "Craft Time" upgrade also reduces delivery time on future purchases.</item>
+
+        <!-- Upgrades-->
+        <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
+        <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
+        <item>Initially, you can only have up to 2 Visitors at the same time. This can increased to 10 Visitors by upgrading "Maximum Visitors".</item>
+        <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
+        <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
+        <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
+        <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
+        <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
+        <item>Workers initially take 3 hours to return with resources. This can be reduced to only 30 minutes by upgrading "Worker Time".</item>
+        <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
+        <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
+
+        <!-- Visitor -->
+        <item>A Visitor\'s Required Trades are listed in black.</item>
+        <item>A Visitor\'s Optional Trades are listed in grey.</item>
+        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
+        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
+        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
+        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
+        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
+        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
+
+        <!-- Workers -->
+        <item>There are 7 different hirable Workers that unlock as you level up.</item>
+        <item>You only have to pay to hire each different Worker once. After you\'ve hired a Worker, they will continue to work for you as long as you want to give them a job to do.</item>
+        <item>Workers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>There are 8 different types of Tools that Workers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
+        <item>A Worker with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
+        <item>Equipping a Worker with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
+        <item>Once you\'ve equipped a Worker with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
+        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Workers a Food item to increase how much they will gather.</item>
+        <item>The Foods that you craft may provide a higher Worker gather bonus than the Foods you can buy in the Market.</item>
+        <item>Each Worker has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
+        <item>Providing your Workers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+    </string-array>
 </resources>
