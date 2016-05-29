@@ -13,6 +13,8 @@
     <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying... well, everything. They are earned by trading away items.</string>
+    <string name="tutorialQuest">Quests</string>
+    <string name="tutorialQuestText">This is your current quest (if any). Quests are an excellent way to earn extra resources.</string>
     <string name="tutorialLevel">Level</string>
     <string name="tutorialLevelText">This is your current level. XP is earned by crafting and trading items.</string>
     <string name="tutorialVisitor">Visitor</string>

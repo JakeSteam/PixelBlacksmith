@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements
         TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
         th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
         th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
+        th.addTutorial(mainActivity, mainActivity.findViewById(R.id.questContainer), R.string.tutorialQuest, R.string.tutorialQuestText, false);
         th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
         th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
         th.start(mainActivity);
