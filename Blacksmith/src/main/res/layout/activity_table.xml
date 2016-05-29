@@ -31,7 +31,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="60sp"
+            android:textSize="55sp"
             app:layout_heightPercent="10%"
             app:layout_marginTopPercent="1%" />
 

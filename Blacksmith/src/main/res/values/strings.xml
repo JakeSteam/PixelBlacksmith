@@ -524,6 +524,8 @@
         <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
         <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
         <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
+        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
+        <item>Pages can be found by completing visitors, sending out workers with food, and opening the bonus chest.</item>
 
         <!-- Market -->
         <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
@@ -560,6 +562,7 @@
         <item>There are 7 different hirable Workers that unlock as you level up.</item>
         <item>You only have to pay to hire each different Worker once. After you\'ve hired a Worker, they will continue to work for you as long as you want to give them a job to do.</item>
         <item>Workers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
         <item>There are 8 different types of Tools that Workers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
         <item>A Worker with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
         <item>Equipping a Worker with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>

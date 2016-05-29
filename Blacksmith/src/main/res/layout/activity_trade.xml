@@ -26,8 +26,9 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tradeTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="7%"
+            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/tradeText"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -41,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/tradeTitle"
             android:layout_below="@id/tradeTitle"
-            android:layout_marginTop="35dp"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
