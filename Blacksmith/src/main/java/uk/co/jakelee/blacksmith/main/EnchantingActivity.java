@@ -73,6 +73,13 @@ public class EnchantingActivity extends Activity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+        createInterface(true, false);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 

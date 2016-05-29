@@ -29,7 +29,7 @@ public class HelpActivity extends Activity {
             displayHelp(helpLayout, topicIntent);
         } else {
             for (TOPICS topic : TOPICS.values()) {
-                TextViewPixel topicView = dh.createTextView(topic.name(), 34);
+                TextViewPixel topicView = dh.createTextView(topic.name().replace("_"," "), 34);
                 int topicPadding = dh.convertDpToPixel(3);
                 topicView.setPadding(topicPadding, topicPadding, topicPadding, topicPadding);
                 topicView.setTag(topic);

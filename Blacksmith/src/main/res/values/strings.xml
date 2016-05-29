@@ -217,6 +217,8 @@
     <string name="cloudLoadSuccess">Load from cloud successful!</string>
     <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins</string>
 
+    <string name="windowClick">What was that!?</string>
+
     <string name="buyWorker">Purchase Worker</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>

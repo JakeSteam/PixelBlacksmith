@@ -86,6 +86,16 @@ public class FurnaceActivity extends Activity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.furnace),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         MainActivity.prefs.edit().putInt("furnacePosition", mViewFlipper.getDisplayedChild()).apply();

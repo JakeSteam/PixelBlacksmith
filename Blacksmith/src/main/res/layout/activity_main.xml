@@ -286,7 +286,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/window"
                 android:layout_marginLeft="1296dp"
-                app:layout_marginTopPercent="11%" />
+                app:layout_marginTopPercent="11%"
+                android:onClick="clickWindow"/>
 
             <!-- Water -->
             <pl.droidsonroids.gif.GifImageView

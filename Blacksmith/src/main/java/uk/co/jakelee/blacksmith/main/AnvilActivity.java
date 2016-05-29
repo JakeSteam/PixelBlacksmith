@@ -87,6 +87,16 @@ public class AnvilActivity extends Activity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.anvil),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 

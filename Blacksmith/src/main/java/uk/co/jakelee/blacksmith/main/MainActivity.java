@@ -493,6 +493,10 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    public void clickWindow(View view) {
+        ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.windowClick, false);
+    }
+
     @Override
     public void onConnected(Bundle connectionHint) {
         Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);

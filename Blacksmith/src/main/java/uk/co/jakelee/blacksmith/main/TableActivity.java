@@ -90,6 +90,16 @@ public class TableActivity extends Activity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.table),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 
