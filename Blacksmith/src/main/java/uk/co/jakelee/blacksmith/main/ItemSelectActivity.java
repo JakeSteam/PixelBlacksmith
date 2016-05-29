@@ -3,15 +3,21 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 
 public class ItemSelectActivity extends Activity {
@@ -29,19 +35,50 @@ public class ItemSelectActivity extends Activity {
     }
 
     private void displayItemsList() {
-        LinearLayout itemsContainer = (LinearLayout) findViewById(R.id.itemsTable);
+        TableLayout itemsContainer = (TableLayout) findViewById(R.id.itemsTable);
         int itemIndex = 0;
         for (Item item : items) {
-            TextViewPixel itemName = dh.createTextView(item.getName(), 22);
-            itemName.setTag(itemIndex++);
-            itemName.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickItem(v);
-                }
-            });
-
-            itemsContainer.addView(itemName);
+            TableRow itemRow = createItemRow(item, itemIndex++);
+            itemsContainer.addView(itemRow);
         }
+    }
+
+    private TableRow createItemRow(Item item, int itemIndex) {
+        // Get item owned count
+        Inventory inventory = Select.from(Inventory.class).where(
+                Condition.prop("item").eq(item.getId()),
+                Condition.prop("state").eq(dh.itemSelectionState)).first();
+        int numberOwned = 0;
+        if (inventory != null) {
+            numberOwned = inventory.getQuantity();
+        }
+
+        // Inflate layout
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View inflatedView = inflater.inflate(R.layout.custom_item_select, null);
+        TableRow row = (TableRow) inflatedView.findViewById(R.id.row);
+
+        row.setTag(itemIndex);
+        TextViewPixel itemName = (TextViewPixel) row.findViewById(R.id.itemName);
+        TextViewPixel itemCount = (TextViewPixel) row.findViewById(R.id.itemCount);
+        ImageView itemImage = (ImageView) row.findViewById(R.id.itemImage);
+
+        // Update info visibility
+        boolean haveSeen = Inventory.haveSeen(item.getId(), dh.itemSelectionState);
+        boolean canCreate = Inventory.haveLevelFor(item.getId());
+        if (haveSeen) {
+            itemName.setText(String.format("%s", item.getFullName(dh.itemSelectionState)));
+            itemCount.setText(String.format("%d", numberOwned));
+        } else if (canCreate) {
+            itemName.setText(String.format("%s", item.getFullName(dh.itemSelectionState)));
+            itemCount.setText(R.string.unknownText);
+        } else {
+            itemName.setText(R.string.unknownText);
+            itemCount.setText(R.string.unknownText);
+        }
+        itemImage.setImageDrawable(dh.createItemImageDrawable(item.getId(), 80, 80, haveSeen, canCreate));
+
+        return row;
     }
 
     public void clickItem(View view) {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    android:id="@+id/row"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="clickItem">
+
+    <RelativeLayout>
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_margin="2dp"/>
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/itemCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@id/itemImage"
+            android:layout_alignRight="@id/itemImage"
+            android:layout_alignBottom="@id/itemImage"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:alpha="0.6"
+            android:gravity="center"
+            android:textSize="25sp"/>
+    </RelativeLayout>
+
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:singleLine="false"/>
+</TableRow>

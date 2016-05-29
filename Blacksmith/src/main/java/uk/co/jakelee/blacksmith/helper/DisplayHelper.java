@@ -70,6 +70,7 @@ public class DisplayHelper {
     public ViewFlipper itemSelectionFlipper;
     public HorizontalDots itemSelectionDots;
     public List<Item> itemSelectionItems;
+    public long itemSelectionState;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -446,6 +447,17 @@ public class DisplayHelper {
 
     public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
+
+        ImageView image = new ImageView(context);
+        image.setId(viewId);
+        image.setTag(itemId);
+        image.setImageDrawable(createItemImageDrawable(itemId, width, height, haveSeen, canCreate));
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        return image;
+    }
+
+    public Drawable createItemImageDrawable(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
         int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
 
@@ -457,13 +469,7 @@ public class DisplayHelper {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         }
 
-        ImageView image = new ImageView(context);
-        image.setId(viewId);
-        image.setTag(itemId);
-        image.setImageDrawable(imageResource);
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        return image;
+        return imageResource;
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {
@@ -672,6 +678,7 @@ public class DisplayHelper {
         this.itemSelectionFlipper = itemSelector;
         this.itemSelectionDots = dots;
         this.itemSelectionItems = items;
+        this.itemSelectionState = state;
 
         if (clearExisting) {
             itemSelector.removeAllViews();

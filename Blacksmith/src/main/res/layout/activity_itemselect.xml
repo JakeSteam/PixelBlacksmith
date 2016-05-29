@@ -42,11 +42,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/itemSelectTitle"
             android:fadeScrollbars="false">
-            <LinearLayout
+            <TableLayout
                 android:id="@+id/itemsTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:layout_marginRight="5dp"
+                android:shrinkColumns="1"
+                android:stretchColumns="1"/>
         </ScrollView>
 
     </android.support.percent.PercentRelativeLayout>
