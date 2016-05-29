@@ -254,7 +254,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
-                String desc = String.format(callingContext.getString(R.string.cloudSaveCaption), Player_Info.getPlayerLevel(), Inventory.getCoins());
+                String desc = String.format(callingContext.getString(R.string.cloudSaveCaption),
+                        Player_Info.getPrestige(),
+                        Player_Info.getPlayerLevel(),
+                        Inventory.getCoins());
                 Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.promo);
 
                 loadedSnapshot.getSnapshotContents().writeBytes(data);

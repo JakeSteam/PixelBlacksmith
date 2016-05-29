@@ -201,7 +201,7 @@
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
-    <string name="worseSaveMessage">Are you SURE you want to load this inferior cloud save?\n\nLocal save:\nPrestige %1$d, Level %2$d, XP %3$d.\n\nCloud save:\nPrestige %4$d, Level %5$d, XP %6$d.</string>
+    <string name="worseSaveMessage">Are you SURE you want to load this inferior cloud save?\n\nLocal save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nCloud save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
     <string name="worseSaveLoad">Load</string>
     <string name="worseSaveCancel">Cancel</string>
 
@@ -215,7 +215,7 @@
     <string name="cloudSaveSuccess">Save to cloud successful!</string>
     <string name="cloudLoadBeginning">Loading cloud save from remote server...</string>
     <string name="cloudLoadSuccess">Load from cloud successful!</string>
-    <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
+    <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins</string>
 
     <string name="buyWorker">Purchase Worker</string>
     <string name="workerCoins">%,d coins</string>
