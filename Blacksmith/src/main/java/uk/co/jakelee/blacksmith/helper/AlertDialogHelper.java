@@ -44,7 +44,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1464649199000|UPDATE playerinfo SET int_value = 360000 WHERE name = 'XP'");
+                //String supportCode = SupportCodeHelper.encode("1464735599000|INSERT INTO inventory (item, state, quantity) VALUES (123, 5, 123);UPDATE inventory SET quantity = 12345 WHERE item = 52");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);

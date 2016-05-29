@@ -16,7 +16,13 @@ public class SupportCodeHelper {
         String decodedString = decode(code);
         String[] parts = decodedString.split("\\|");
         if (validatePartsAndCode(parts)) {
-            Player_Info.executeQuery(parts[1]);
+            String[] queries = parts[1].split(";");
+            for (String query : queries) {
+                if (query.length() > 0) {
+                    query = query.trim();
+                    Player_Info.executeQuery(query);
+                }
+            }
             successful = true;
         }
         return successful;
