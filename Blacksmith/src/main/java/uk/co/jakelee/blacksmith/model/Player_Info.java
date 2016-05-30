@@ -152,39 +152,41 @@ public class Player_Info extends SugarRecord {
             Trophies * 1
             Workers * 100
          */
-        int currentlyComplete = getCurrentCompletion();
-        int totalToComplete = getFullCompletion();
-
-        double completionPercentage = (((double) currentlyComplete / (double) totalToComplete) * 100);
-        return completionPercentage > 100 ? 100 : completionPercentage;
-    }
-
-    private static int getCurrentCompletion() {
-        int currentLevelPoints = 100 * (Player_Info.getPlayerLevel() > 70 ? 70 : Player_Info.getPlayerLevel());
+        int currentLevelPoints = 100 * Player_Info.getPlayerLevel();
         int currentUpgradePoints = (10 * Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue());
         int currentTraderPoints = (10 * (int) Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count());
         int currentSlotPoints = (10 * Slot.getUnlockedCount());
         int currentTraderStockPoints = Trader_Stock.getUnlockedCount();
         int currentItemPoints = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
-        int currentPreferences = Visitor_Type.getPreferencesDiscovered();
-        int currentTrophies = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
-        int currentWorkers = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
+        int currentPreferencePoints = Visitor_Type.getPreferencesDiscovered();
+        int currentTrophyPoints = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
+        int currentWorkerPoints = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
 
-        return currentLevelPoints + currentUpgradePoints + currentTraderPoints + currentSlotPoints + currentTraderStockPoints + currentItemPoints + currentPreferences + currentTrophies + currentWorkers;
-    }
-
-    private static int getFullCompletion() {
         int maxLevelPoints = (100 * Constants.PRESTIGE_LEVEL_REQUIRED);
         int maxUpgradePoints = (10 * Upgrade.getMaximumUpgrades());
         int maxTraderPoints = (10 * (int) Trader.count(Trader.class));
         int maxSlotPoints = (10 * ((int) Slot.count(Slot.class) - (int)Location.count(Location.class))); // 1 overflow slot per location
         int maxTraderStockPoints = (int) Trader_Stock.count(Trader_Stock.class);
         int maxItemPoints = (int) Item.count(Item.class);
-        int maxPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;
-        int maxTrophies = (int) Visitor_Stats.count(Visitor_Stats.class);
-        int maxWorkers = Worker.listAll(Worker.class).size();
+        int maxPreferencePoints = (int) Visitor_Type.count(Visitor_Type.class) * 3;
+        int maxTrophyPoints = (int) Visitor_Stats.count(Visitor_Stats.class);
+        int maxWorkerPoints = Worker.listAll(Worker.class).size();
+        
+        int adjustedLevelPoints = currentLevelPoints > maxLevelPoints ? maxLevelPoints : currentLevelPoints;
+        int adjustedUpgradePoints = currentUpgradePoints > maxUpgradePoints ? maxUpgradePoints : currentUpgradePoints;
+        int adjustedTraderPoints = currentTraderPoints > maxTraderPoints ? maxTraderPoints : currentTraderPoints;
+        int adjustedSlotPoints = currentSlotPoints > maxSlotPoints ? maxSlotPoints : currentSlotPoints;
+        int adjustedTraderStockPoints = currentTraderStockPoints > maxTraderStockPoints ? maxTraderStockPoints : currentTraderStockPoints;
+        int adjustedItemPoints = currentItemPoints > maxItemPoints ? maxItemPoints : currentItemPoints;
+        int adjustedPreferencePoints = currentPreferencePoints > maxPreferencePoints ? maxPreferencePoints : currentPreferencePoints;
+        int adjustedTrophyPoints = currentTrophyPoints > maxTrophyPoints ? maxTrophyPoints : currentTrophyPoints;
+        int adjustedWorkerPoints = currentWorkerPoints > maxWorkerPoints ? maxWorkerPoints : currentWorkerPoints;
 
-        return maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferences + maxTrophies + maxWorkers;
+        int adjustedComplete = adjustedLevelPoints + adjustedUpgradePoints + adjustedTraderPoints + adjustedSlotPoints + adjustedTraderStockPoints + adjustedItemPoints + adjustedPreferencePoints + adjustedTrophyPoints + adjustedWorkerPoints;
+        int totalToComplete = maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferencePoints + maxTrophyPoints + maxWorkerPoints;
+
+        double completionPercentage = (((double) adjustedComplete / (double) totalToComplete) * 100);
+        return completionPercentage > 100 ? 100 : completionPercentage;
     }
 
     public static int getXp() {
