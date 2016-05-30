@@ -326,13 +326,13 @@
     <string name="sell100Text">Sell 100</string>
     <string name="crushGemText">Crush Gem</string>
 
-    <string name="soundSettingText">Enable sounds?</string>
-    <string name="musicSettingText">Enable music?</string>
-    <string name="restockNotificationSettingText">Restock notifications?</string>
-    <string name="visitorNotificationSettingText">Visitor notifications?</string>
-    <string name="workerNotificationSettingText">Worker notifications?</string>
-    <string name="bonusNotificationSettingText">Bonus notifications?</string>
-    <string name="notificationSoundSettingText">Enable notification sounds?</string>
+    <string name="soundSettingText">Sounds</string>
+    <string name="musicSettingText">Music</string>
+    <string name="notificationSoundSettingText">Alerts</string>
+    <string name="restockNotificationSettingText">Restocks</string>
+    <string name="visitorNotificationSettingText">Visitors</string>
+    <string name="workerNotificationSettingText">Workers</string>
+    <string name="bonusNotificationSettingText">Bonuses</string>
     <string name="prestigeSettingText">Prestige</string>
 
     <string name="unknownText">\???</string>

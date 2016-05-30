@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
@@ -82,7 +81,7 @@ public class SettingsActivity extends Activity {
     }
 
     private void updateAdToggleVisibility() {
-        TableRow adRow = (TableRow) findViewById(R.id.adToggleLayout);
+        LinearLayout adRow = (LinearLayout) findViewById(R.id.turnOffAdsToggle);
         adRow.setVisibility(Player_Info.isPremium() ? View.VISIBLE : View.GONE);
     }
 
@@ -143,7 +142,7 @@ public class SettingsActivity extends Activity {
         boolean adToggleValue = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS).getBoolValue();
         adToggle.setImageDrawable(adToggleValue ? tick : cross);
 
-        ImageView clickChangeToggle = (ImageView) findViewById(R.id.clickChangeButton);
+        ImageView clickChangeToggle = (ImageView) findViewById(R.id.clickChangeToggleButton);
         boolean clickChangeToggleValue = Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue();
         clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
 
@@ -156,31 +155,31 @@ public class SettingsActivity extends Activity {
     public void toggleSetting(View v) {
         Long settingID = null;
         switch (v.getId()) {
-            case R.id.soundToggleButton:
+            case R.id.soundToggle:
                 settingID = Constants.SETTING_SOUNDS;
                 break;
-            case R.id.musicToggleButton:
+            case R.id.musicToggle:
                 settingID = Constants.SETTING_MUSIC;
                 break;
-            case R.id.restockNotificationToggleButton:
+            case R.id.restockNotificationToggle:
                 settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
                 break;
-            case R.id.workerNotificationToggleButton:
+            case R.id.workerNotificationToggle:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
                 break;
-            case R.id.visitorNotificationToggleButton:
+            case R.id.visitorNotificationToggle:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
                 break;
-            case R.id.bonusNotificationToggleButton:
+            case R.id.bonusNotificationToggle:
                 settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
                 break;
-            case R.id.notificationSoundToggleButton:
+            case R.id.notificationSoundToggle:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
                 break;
-            case R.id.turnOffAdsButton:
+            case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
                 break;
-            case R.id.clickChangeButton:
+            case R.id.clickChangeToggle:
                 settingID = Constants.SETTING_CLICK_CHANGE;
         }
 
