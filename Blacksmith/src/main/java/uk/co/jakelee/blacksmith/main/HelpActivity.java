@@ -197,6 +197,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Here all game sounds, game music, and notification sounds can be enabled / disabled.\n", 22));
         layout.addView(dh.createTextView("Notification Options:", 24));
         layout.addView(dh.createTextView("Market restock, visitor spawn, worker return, and bonus chest refill notifications can be enabled / disabled.\n", 22));
+        layout.addView(dh.createTextView("Market restock, visitor spawn, worker return, and bonus chest refill notifications can be enabled / disabled.\n", 22));
         layout.addView(dh.createTextView("Gameplay Options:", 24));
         layout.addView(dh.createTextView("Premium players can disable adverts and prestige their account. Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\n", 22));
         layout.addView(dh.createTextView("In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
@@ -230,9 +231,11 @@ public class HelpActivity extends Activity {
                 "- Slots unlocked\n" +
                 "- Items seen\n" +
                 "- Visitor preferences discovered\n" +
-                "- Trophies unlocked\n", 22));
+                "- Trophies unlocked\n" +
+                "- Workers purchased\n", 22));
         layout.addView(dh.createTextView("Note that every prestige (Level 70+) counts as an additional 100%.\n", 22));
-        layout.addView(dh.createTextView("Total gold and xp bonus is calculated as 100% per prestige, plus the increase from the upgrades screen.", 22));
+        layout.addView(dh.createTextView("Total coin percentage is calculated as: Coins Upgrade + (0.5 * Prestige Level)), then converted from a multiplier into a percentage.", 22));
+        layout.addView(dh.createTextView("Total XP percentage is calculated as: XP Upgrade * (0.75 ^ Prestige Level)), then converted from a multiplier into a percentage.", 22));
     }
 
     private void displayHelpTable(LinearLayout layout) {
