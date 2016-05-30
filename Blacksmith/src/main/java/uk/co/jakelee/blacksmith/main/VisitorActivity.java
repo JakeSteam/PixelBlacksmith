@@ -271,6 +271,7 @@ public class VisitorActivity extends Activity {
     public void completeVisitor(View view) {
         if (visitor.isVisitorComplete()) {
             VisitorHelper.createVisitorReward(this, visitor.isVisitorFullyComplete());
+            VisitorHelper.rewardXp(visitor.isVisitorFullyComplete());
             VisitorHelper.removeVisitor(visitor);
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);

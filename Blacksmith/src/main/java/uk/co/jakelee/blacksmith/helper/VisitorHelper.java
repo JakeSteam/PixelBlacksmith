@@ -351,6 +351,10 @@ public class VisitorHelper {
         return strings.get(position);
     }
 
+    public static void rewardXp(boolean isFullyComplete) {
+        Player_Info.addXp(Player_Info.getPlayerLevel() * (isFullyComplete ? Constants.QUEST_XP_MODIFIER_MEDIUM : Constants.QUEST_XP_MODIFIER_EASY));
+    }
+
     public static void createVisitorReward(Context context, boolean isFullyComplete) {
         int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
         int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
@@ -366,14 +370,14 @@ public class VisitorHelper {
         // Get normal reward
         List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
         Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
-        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
+        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards, false);
         String rewardString = VisitorHelper.getRewardString(context, rewardLegendary, isFullyComplete);
 
         // Get legendary reward
         if (rewardLegendary) {
             List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
-            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
+            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1, false);
             ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(),

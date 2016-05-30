@@ -363,7 +363,6 @@
                         android:layout_width="match_parent"
                         android:visibility="gone">
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:id="@+id/clickChangeToggleText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
