@@ -141,6 +141,8 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         if (!MainActivity.vh.traderBusy) {
             MainActivity.vh.traderBusy = true;
             AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
+        } else {
+            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, R.string.traderBusy, false);
         }
     }
 

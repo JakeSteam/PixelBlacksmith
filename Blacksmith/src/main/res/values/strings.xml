@@ -356,6 +356,7 @@
     <string name="traderRestockComplete">Restocked trader for %d coins.</string>
     <string name="traderRestockCompleteAdvert">Restocked trader for free!</string>
     <string name="traderRestockCancel">Cancel</string>
+    <string name="traderBusy">The traders are still busy fulfilling your last big order! Either wait a second, or leave the market and come back later.</string>
 
     <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>
     <string name="traderRestockAllQuestionAdvert">Restock all traders for %d coins / free with an advert?</string>

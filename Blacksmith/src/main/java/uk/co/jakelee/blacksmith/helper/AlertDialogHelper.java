@@ -494,8 +494,6 @@ public class AlertDialogHelper {
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
-
-                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });
@@ -503,6 +501,13 @@ public class AlertDialogHelper {
         alertDialog.setNeutralButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+                MainActivity.vh.traderBusy = false;
+            }
+        });
+
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
                 MainActivity.vh.traderBusy = false;
             }
         });
@@ -573,8 +578,6 @@ public class AlertDialogHelper {
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
-
-                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });
@@ -583,6 +586,13 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 MainActivity.vh.traderBusy = false;
                 dialog.cancel();
+            }
+        });
+
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                MainActivity.vh.traderBusy = false;
             }
         });
 

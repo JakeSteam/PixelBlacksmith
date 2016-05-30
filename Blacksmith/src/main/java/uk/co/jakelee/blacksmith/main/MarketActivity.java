@@ -39,6 +39,7 @@ public class MarketActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        MainActivity.vh.traderBusy = false;
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_14_MARKET) {
             startTutorial();
