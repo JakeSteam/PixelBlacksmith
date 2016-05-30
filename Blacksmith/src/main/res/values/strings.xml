@@ -335,6 +335,11 @@
     <string name="bonusNotificationSettingText">Bonuses</string>
     <string name="prestigeSettingText">Prestige</string>
 
+    <string name="soundSettingGroup">Sound Options</string>
+    <string name="notificationSettingGroup">Notification Options</string>
+    <string name="gameplaySettingGroup">Gameplay Options</string>
+    <string name="otherSettingGroup">Other</string>
+
     <string name="unknownText">\???</string>
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
@@ -371,7 +376,7 @@
     <string name="notificationWorker">A worker has returned!</string>
     <string name="notificationBonus">A bonus is ready to claim!</string>
 
-    <string name="clickChangeText">Click to select item:</string>
+    <string name="clickChangeText">Quick Select</string>
 
     <string name="turnOffAdsText">Disable Adverts</string>
     <string name="adFailedToLoad">No advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
