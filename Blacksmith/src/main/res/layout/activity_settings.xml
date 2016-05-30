@@ -354,93 +354,162 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="-5dp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/prestigeButton"
+                        android:orientation="vertical"
+                        android:onClick="prestigeClick"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:visibility="gone">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/clickChangeToggleText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/prestigeSettingText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
                 </TableRow>
 
+                <!-- Extras -->
                 <TableRow>
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:paddingTop="5dp"
                         android:text="@string/otherSettingGroup"
                         android:textColor="@color/black"
                         android:textSize="28sp"
                         android:layout_span="3" />
                 </TableRow>
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/prestigeButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="prestigeClick"
-                    android:text="@string/prestigeSettingText"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:visibility="gone" />
+                <TableRow>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:onClick="openMessages"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="@string/messagesText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:onClick="openTutorial"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="@string/tutorialText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:onClick="openCredits"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="@string/creditsText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </TableRow>
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/messages"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="openMessages"
-                    android:text="@string/messagesText"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
+                <TableRow>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:onClick="openRating"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="@string/rateText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:onClick="openSocialMedia"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="@string/socialMediaText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:onClick="openSupportCode"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="@string/supportCode"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </TableRow>
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="openTutorial"
-                    android:text="@string/tutorialText"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
-
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="openCredits"
-                    android:text="@string/creditsText"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
-
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="openRating"
-                    android:text="@string/rateText"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
-
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="openSocialMedia"
-                    android:text="@string/socialMediaText"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
+                <!-- Google Play -->
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/googlePlaySettingGroup"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        android:layout_span="3" />
+                </TableRow>
 
                 <RelativeLayout
                     android:id="@+id/signInButton"
@@ -543,18 +612,6 @@
                         android:padding="10dp"
                         android:src="@drawable/playquests" />
                 </LinearLayout>
-
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:onClick="openSupportCode"
-                    android:text="@string/supportCode"
-                    android:textColor="@color/black"
-                    android:textSize="30sp" />
             </TableLayout>
 
         </ScrollView>

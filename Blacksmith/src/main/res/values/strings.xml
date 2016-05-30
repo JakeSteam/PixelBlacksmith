@@ -148,7 +148,7 @@
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
 
-    <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!</string>
+    <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!\n\nReddit is the most active community, but any will get a quick response.</string>
     <string name="socialMediaFacebook">Facebook</string>
     <string name="socialMediaTwitter">Twitter</string>
     <string name="socialMediaReddit">Reddit</string>
@@ -234,8 +234,8 @@
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
-    <string name="bribeQuestionAdvert">Would you like to pay %1$d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestionAdvert">Would you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeAdvert">Watch Ad</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
@@ -264,8 +264,8 @@
     <string name="prestigeComplete">Prestige successful, all gold &amp; XP is now multiplied by %d! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
-    <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
-    <string name="dismissQuestionAdvert">Would you like to pay %d coins or watch an ad to make the visitor leave immediately?</string>
+    <string name="dismissQuestion">Would you like to pay a visitor %,d coins to leave immediately?</string>
+    <string name="dismissQuestionAdvert">Would you like to pay %,d coins or watch an ad to make the visitor leave immediately?</string>
     <string name="dismissConfirm">Pay</string>
     <string name="dismissConfirmAdvert">Watch Ad</string>
     <string name="dismissComplete">The visitor leaves, a little bit grumpily.</string>
@@ -329,16 +329,17 @@
     <string name="soundSettingText">Sounds</string>
     <string name="musicSettingText">Music</string>
     <string name="notificationSoundSettingText">Alerts</string>
-    <string name="restockNotificationSettingText">Restocks</string>
-    <string name="visitorNotificationSettingText">Visitors</string>
-    <string name="workerNotificationSettingText">Workers</string>
-    <string name="bonusNotificationSettingText">Bonuses</string>
-    <string name="prestigeSettingText">Prestige</string>
+    <string name="restockNotificationSettingText">Restock</string>
+    <string name="visitorNotificationSettingText">Visitor</string>
+    <string name="workerNotificationSettingText">Worker</string>
+    <string name="bonusNotificationSettingText">Bonus</string>
+    <string name="prestigeSettingText">Prestige\n(NG+)</string>
 
     <string name="soundSettingGroup">Sound Options</string>
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
-    <string name="otherSettingGroup">Other</string>
+    <string name="otherSettingGroup">Extras</string>
+    <string name="googlePlaySettingGroup">Google Play</string>
 
     <string name="unknownText">\???</string>
 

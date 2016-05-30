@@ -10,13 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
@@ -146,7 +144,7 @@ public class SettingsActivity extends Activity {
         boolean clickChangeToggleValue = Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue();
         clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
 
-        TextView prestigeButton = (TextViewPixel) findViewById(R.id.prestigeButton);
+        LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
         }
