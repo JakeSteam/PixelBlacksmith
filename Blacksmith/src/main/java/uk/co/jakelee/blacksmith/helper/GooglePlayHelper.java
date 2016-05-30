@@ -249,7 +249,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static void forceSaveToCloud() {
-        ToastHelper.showToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudSaveBeginning, false);
+        callingActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ToastHelper.showToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudSaveBeginning, false);
+            }
+        });
 
         new Thread(new Runnable() {
             public void run() {
@@ -285,10 +290,14 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-        AlertDialogHelper.confirmCloudSave(callingContext, callingActivity,
-                loadedSnapshot.getMetadata().getDescription(),
-                loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
-                loadedSnapshot.getMetadata().getDeviceName());
+        if (loadedSnapshot.getMetadata().getDeviceName() == null) {
+            forceSaveToCloud();
+        } else {
+            AlertDialogHelper.confirmCloudSave(callingContext, callingActivity,
+                    loadedSnapshot.getMetadata().getDescription(),
+                    loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
+                    loadedSnapshot.getMetadata().getDeviceName());
+        }
 
     }
 
