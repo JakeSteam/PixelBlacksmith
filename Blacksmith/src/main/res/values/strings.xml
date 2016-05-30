@@ -535,6 +535,19 @@
         <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
         <item>Pages can be found by completing visitors, sending out workers with food, and opening the bonus chest.</item>
 
+        <!-- Settings -->
+        <item>Game sounds / music can be turned off in the Settings, along with notification sounds.</item>
+        <item>All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</item>
+        <item>Premium players can disable all adverts from the settings menu.</item>
+        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
+        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
+        <item>The tutorial can be replayed at any time via the Settings menu.</item>
+        <item>The game's credits can be viewed in the Settings menu.</item>
+        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the 'Social Media' section in the Settings menu!</item>
+        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
+        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
+        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
+
         <!-- Market -->
         <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
         <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
