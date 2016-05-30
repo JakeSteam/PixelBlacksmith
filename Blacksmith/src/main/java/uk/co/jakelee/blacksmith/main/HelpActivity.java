@@ -193,16 +193,22 @@ public class HelpActivity extends Activity {
     private void displayHelpSettings(LinearLayout layout) {
         layout.addView(dh.createTextView("Settings\n", 26));
         layout.addView(dh.createTextView("Game settings can be changed here, changes take place as soon as the settings interface is closed.\n", 22));
-        layout.addView(dh.createTextView("The sound & music options will enable / disable all game sounds / background music.\n", 22));
-        layout.addView(dh.createTextView("The notification options will enable / disable trader restock, visitor spawn, worker return, and bonus chest notifications.\n", 22));
-        layout.addView(dh.createTextView("The click to change item option will enable / disable the ability to click an item in a crafting table to open a quick-select interface. If disabled, it will be much easier to swipe to change item.\n", 22));
-        layout.addView(dh.createTextView("The messages button displays the last 100 important messages (e.g. level ups) received.\n", 22));
+        layout.addView(dh.createTextView("Sound Options:", 24));
+        layout.addView(dh.createTextView("Here all game sounds, game music, and notification sounds can be enabled / disabled.\n", 22));
+        layout.addView(dh.createTextView("Notification Options:", 24));
+        layout.addView(dh.createTextView("Market restock, visitor spawn, worker return, and bonus chest refill notifications can be enabled / disabled.\n", 22));
+        layout.addView(dh.createTextView("Gameplay Options:", 24));
+        layout.addView(dh.createTextView("Premium players can disable adverts and prestige their account. Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\n", 22));
+        layout.addView(dh.createTextView("In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
+        layout.addView(dh.createTextView("All players can enable / disable the 'Quick Select' functionality (tap item image in crafting interface to select). Disabling 'Quick Select' will make swiping to change item easier.\n", 22));
+        layout.addView(dh.createTextView("Extras:", 24));
+        layout.addView(dh.createTextView("The message log will show the last 100 important game messages.\n", 22));
         layout.addView(dh.createTextView("The tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\n", 22));
         layout.addView(dh.createTextView("The rate app button will link you to the game's Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\n", 22));
-        layout.addView(dh.createTextView("Google Play Games services can also be accessed here, and any codes given by customer support can be entered.\n", 22));
-        layout.addView(dh.createTextView("If you're over level 70, a prestige button will also be visible.\n", 22));
-        layout.addView(dh.createTextView("Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses. In return for being set back to level 1, you'll received a +100% bonus to all gold and XP earnings.\n", 22));
-    }
+        layout.addView(dh.createTextView("If you've received a support code from customer support, it can also be entered here.\n", 22));
+        layout.addView(dh.createTextView("Google Play:", 24));
+        layout.addView(dh.createTextView("Google Play Games services can also be accessed here, including cloud saves, achievements, leaderboards, and quests.\n", 22));
+        }
 
     private void displayHelpTrader(LinearLayout layout) {
         layout.addView(dh.createTextView("Trader\n", 26));
