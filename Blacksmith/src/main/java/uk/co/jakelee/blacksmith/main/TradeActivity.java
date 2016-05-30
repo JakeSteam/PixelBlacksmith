@@ -259,7 +259,7 @@ public class TradeActivity extends Activity {
 
         // Calculate the item sell value, rounded up
         double bonus = visitorType.getBonus(itemInventory);
-        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Coins Bonus")) + Player_Info.getPrestige();
+        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Coins Bonus")) + (0.5 * Player_Info.getPrestige());
         double modifiedBonus = coinMultiplier * bonus;
         int value = (int) (itemToSell.getModifiedValue(itemState.getId()) * modifiedBonus);
 

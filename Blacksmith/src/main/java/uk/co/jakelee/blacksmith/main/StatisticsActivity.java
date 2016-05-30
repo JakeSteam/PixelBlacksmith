@@ -138,14 +138,24 @@ public class StatisticsActivity extends Activity {
         int questsCompleted = Select.from(Player_Info.class).where(Condition.prop("name").eq("QuestsCompleted")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.questsCompleted)).setText(String.format("%,d", questsCompleted));
 
-        int prestigeLevel = Select.from(Player_Info.class).where(Condition.prop("name").eq("Prestige")).first().getIntValue();
-        int prestigePercent = (prestigeLevel > 0 ? prestigeLevel * 100 : 0);
-        int bonusGoldPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("Coins Bonus")).first().getCurrent();
-        int bonusXPPercent = prestigePercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("XP Bonus")).first().getCurrent();
+        int prestigeLevel = Player_Info.getPrestige();
+        int prestigeGoldPercent = prestigeLevel * 50;
+        int bonusGoldPercent = prestigeGoldPercent + Select.from(Upgrade.class).where(Condition.prop("name").eq("Coins Bonus")).first().getCurrent();
+
+        double bonusXPMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus")) * (Math.pow(0.75, prestigeLevel));
+        if (bonusXPMultiplier >= 1) {
+            int xpPercent = (int) (100 * (bonusXPMultiplier - 1));
+            ((TextViewPixel) findViewById(R.id.totalBonusXP)).setText(String.format(getString(R.string.genericPercent), "+", xpPercent));
+        } else {
+            int xpPercent = (int) Math.ceil(100 - (100 * bonusXPMultiplier));
+            ((TextViewPixel) findViewById(R.id.totalBonusXP)).setText(String.format(getString(R.string.genericPercent), "-", xpPercent));
+        }
 
         ((TextViewPixel) findViewById(R.id.totalBonusGold)).setText(String.format("+%,d%%", bonusGoldPercent));
-        ((TextViewPixel) findViewById(R.id.totalBonusXP)).setText(String.format("+%,d%%", bonusXPPercent));
-        ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue), prestigeLevel + 1));
+        ((TextViewPixel) findViewById(R.id.prestigeLevel)).setText(String.format(getString(R.string.statisticsPrestigeValue),
+                prestigeLevel + 1,
+                Player_Info.getPrestige() * 50,
+                (int) (100 * (1 - Math.pow(0.75, Player_Info.getPrestige())))));
 
         long lastPrestiged = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateLastPrestiged")).first().getLongValue();
         if (lastPrestiged > 0) {

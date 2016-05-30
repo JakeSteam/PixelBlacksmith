@@ -258,10 +258,10 @@
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
-    <string name="prestigeQuestion">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +100% coin &amp; XP gains.
+    <string name="prestigeQuestion">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50%% coin &amp; -25%% XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
-    <string name="prestigeComplete">Prestige successful, all gold &amp; XP is now multiplied by %d! Good luck!</string>
+    <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
     <string name="dismissQuestion">Would you like to pay a visitor %,d coins to leave immediately?</string>
@@ -387,6 +387,7 @@
     <string name="tableSell">Sell</string>
 
     <string name="genericProgress">%1$d / %2$d</string>
+    <string name="genericPercent">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%s Trades</string>
@@ -462,7 +463,7 @@
     <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
-    <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
     <string name="statisticsVersion">Game Version:</string>
