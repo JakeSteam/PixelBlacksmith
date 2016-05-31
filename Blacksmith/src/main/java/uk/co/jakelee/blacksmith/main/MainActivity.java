@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements
                 BuildConfig.VERSION_NAME.length() > 0 && BuildConfig.VERSION_NAME.endsWith(".0")) {
             AlertDialogHelper.displayUpdateMessage(this, this);
             savedVersion.setIntValue(BuildConfig.VERSION_CODE);
+            savedVersion.save();
         }
 
         gph.UpdateQuest();
