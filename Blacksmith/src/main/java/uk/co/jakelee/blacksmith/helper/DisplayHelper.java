@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -284,6 +285,12 @@ public class DisplayHelper {
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastVisitorClick < 500){
+                        return;
+                    } else {
+                        MainActivity.vh.lastVisitorClick = SystemClock.elapsedRealtime();
+                    }
+
                     Intent intent = new Intent(context, VisitorActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(VISITOR_TO_LOAD, (String) v.getTag());

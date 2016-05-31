@@ -53,6 +53,8 @@ public class HelpActivity extends Activity {
     private void displayHelp(LinearLayout layout, TOPICS topic) {
         if (topic == TOPICS.Help) {
             displayHelpHelp(layout);
+        } else if (topic == TOPICS.Tips_And_Tricks) {
+            displayTips(layout);
         } else if (topic == TOPICS.Overview) {
             displayHelpOverview(layout);
         } else if (topic == TOPICS.Furnace) {
@@ -99,6 +101,17 @@ public class HelpActivity extends Activity {
             displayHelpQuests(layout);
         } else if (topic == TOPICS.Item_Picker) {
             displayHelpItemPicker(layout);
+        }
+    }
+
+    private void displayTips(LinearLayout layout) {
+        layout.addView(dh.createTextView("Tips And Tricks\n", 26));
+
+        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        int i = 1;
+        for (String tip : tipArray) {
+            layout.addView(dh.createTextView(i + ": " + tip + "\n", 22));
+            i++;
         }
     }
 
@@ -365,5 +378,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
 }
