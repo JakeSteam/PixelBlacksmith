@@ -218,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_15_MAIN);
         th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_inventory), R.string.tutorialMainInventory, R.string.tutorialMainInventoryText, false, Gravity.TOP);
         th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, true, Gravity.TOP);
         th.start(mainActivity);
 

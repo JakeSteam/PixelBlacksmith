@@ -111,6 +111,8 @@
     <!-- Stage 15 -->
     <string name="tutorialMainSettings">Settings</string>
     <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
+    <string name="tutorialMainInventory">Inventory</string>
+    <string name="tutorialMainInventoryText">All of your items can be seen here, and sold if necessary.</string>
     <string name="tutorialMainHelp">Help</string>
     <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
 
