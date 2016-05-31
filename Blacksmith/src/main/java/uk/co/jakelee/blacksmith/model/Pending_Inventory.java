@@ -17,7 +17,6 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.main.AnvilActivity;
 import uk.co.jakelee.blacksmith.main.FurnaceActivity;
 import uk.co.jakelee.blacksmith.main.InventoryActivity;
-import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.TableActivity;
 
 public class Pending_Inventory extends SugarRecord {
@@ -123,9 +122,6 @@ public class Pending_Inventory extends SugarRecord {
             public void run() {
                 for (Pair item : items) {
                     Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
-                }
-                if (location == Constants.LOCATION_MARKET) {
-                    MainActivity.vh.traderBusy = false;
                 }
             }
         }).start();
