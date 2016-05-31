@@ -134,6 +134,12 @@ public class AnvilActivity extends Activity {
             if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
             createItemsInterface(clearExisting);
         }
+
+        if (MainActivity.vh.anvilBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
+        }
     }
 
     private void createItemsInterface(boolean clearExisting) {

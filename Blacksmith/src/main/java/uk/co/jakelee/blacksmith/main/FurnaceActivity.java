@@ -126,6 +126,12 @@ public class FurnaceActivity extends Activity {
         } else {
             createFurnaceInterface(clearExisting);
         }
+
+        if (MainActivity.vh.furnaceBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
+        }
     }
 
     private void createFurnaceInterface(boolean clearExisting) {

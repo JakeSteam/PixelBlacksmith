@@ -135,6 +135,12 @@ public class TableActivity extends Activity {
         } else {
             createItemsInterface(clearExisting);
         }
+
+        if (MainActivity.vh.tableBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
+        }
     }
 
     private void createItemsInterface(boolean clearExisting) {
