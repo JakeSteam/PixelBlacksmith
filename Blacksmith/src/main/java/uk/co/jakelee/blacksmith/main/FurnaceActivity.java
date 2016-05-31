@@ -60,15 +60,15 @@ public class FurnaceActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt10 = (TextView) findViewById(R.id.smelt10);
+        smelt100 = (TextView) findViewById(R.id.smelt100);
+
         createInterface(true);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_6_FURNACE) {
             startTutorial();
         }
-
-        smelt1 = (TextView) findViewById(R.id.smelt1);
-        smelt10 = (TextView) findViewById(R.id.smelt10);
-        smelt100 = (TextView) findViewById(R.id.smelt100);
 
         final Runnable everySecond = new Runnable() {
             @Override

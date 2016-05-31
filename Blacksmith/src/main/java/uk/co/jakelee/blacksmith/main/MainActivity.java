@@ -506,7 +506,7 @@ public class MainActivity extends AppCompatActivity implements
             thisTip = 0;
         }
 
-        String tipMessage = (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
+        String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
         ToastHelper.showTipToast(this, Toast.LENGTH_LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
