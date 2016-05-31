@@ -67,7 +67,12 @@ public class TradeActivity extends Activity {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
             visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
             visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
-            createTradeInterface();
+
+            new Thread(new Runnable() {
+                public void run() {
+                    createTradeInterface();
+                }
+            }).start();
         }
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_3_TRADE) {
@@ -312,12 +317,17 @@ public class TradeActivity extends Activity {
     }
 
     private void updateMax() {
-        Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
-        Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
-
-        ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
+        final Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
+        final Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
+        final ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
+        
         tradeMax = prefs.getBoolean("tradeMax", false);
-        maxIndicator.setImageDrawable(tradeMax ? tick : cross);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                maxIndicator.setImageDrawable(tradeMax ? tick : cross);
+            }
+        });
     }
 
     public void openHelp(View view) {
