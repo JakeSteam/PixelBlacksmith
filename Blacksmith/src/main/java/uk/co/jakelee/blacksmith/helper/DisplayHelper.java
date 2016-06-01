@@ -547,6 +547,8 @@ public class DisplayHelper {
         ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
 
         questIcon.setImageResource(getEventDrawableID(eventID));
+
+        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
         questProgress.setProgress(current);
         questProgress.setMax(max);
     }
@@ -735,12 +737,14 @@ public class DisplayHelper {
 
     public static void updateBonusChest(ImageView chest) {
         if (Player_Info.displayAds()) {
+            chest.setVisibility(View.VISIBLE);
             if (Player_Info.isBonusReady()) {
                 chest.setImageResource(R.drawable.bonus_chest_full);
             } else {
                 chest.setImageResource(R.drawable.bonus_chest_empty);
             }
         } else {
+            chest.setVisibility(View.GONE);
             chest.setImageResource(R.drawable.transparent);
         }
     }

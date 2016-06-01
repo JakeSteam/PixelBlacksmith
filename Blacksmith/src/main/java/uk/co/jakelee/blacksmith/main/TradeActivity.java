@@ -129,15 +129,20 @@ public class TradeActivity extends Activity {
     }
 
     private void displayDemandInfo() {
-        Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+        final Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+        final TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
 
-        TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
-        demandTextView.setText(String.format(getString(R.string.demandText),
-                demandCriteria.getName(),
-                Visitor_Demand.getCriteriaName(demand),
-                demand.getQuantityProvided(),
-                demand.getQuantity()
-        ));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                demandTextView.setText(String.format(getString(R.string.demandText),
+                        demandCriteria.getName(),
+                        Visitor_Demand.getCriteriaName(demand),
+                        demand.getQuantityProvided(),
+                        demand.getQuantity()
+                ));
+            }
+        });
 
         ProgressBar demandProgress = (ProgressBar) findViewById(R.id.demandProgress);
         demandProgress.setMax(demand.getQuantity());
@@ -320,7 +325,7 @@ public class TradeActivity extends Activity {
         final Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
         final Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
         final ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
-        
+
         tradeMax = prefs.getBoolean("tradeMax", false);
         runOnUiThread(new Runnable() {
             @Override

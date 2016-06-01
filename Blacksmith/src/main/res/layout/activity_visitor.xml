@@ -228,7 +228,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginRight="7dp">
 
                 <TableLayout
                     android:id="@+id/demandsTable"
@@ -242,7 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/demandsTable"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/button_wide"
                     android:clickable="true"
                     android:gravity="center"

@@ -34,7 +34,6 @@ import uk.co.jakelee.blacksmith.model.Trader_Stock;
 public class MarketActivity extends Activity {
     public final static String TRADER_TO_LOAD = "uk.co.jakelee.blacksmith.tradertoload";
     private static DisplayHelper dh;
-    public static boolean loadingTrader = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

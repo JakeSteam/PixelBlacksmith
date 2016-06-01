@@ -17,7 +17,7 @@ public class PremiumHelper {
     }
 
     public static int getTaxAmount() {
-        int taxAmount = Player_Info.getPlayerLevelFromDB() * Trader.outOfStockTraders();
+        int taxAmount = Player_Info.getPlayerLevel() * Trader.outOfStockTraders();
         double multiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Coins Bonus")) + (0.5 * Player_Info.getPrestige());
         return (int) (taxAmount * multiplier);
     }
