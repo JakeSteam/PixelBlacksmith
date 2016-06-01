@@ -43,6 +43,7 @@ public class DatabaseHelper {
     public final static int DB_V1_5_0 = 7;
     public final static int DB_V1_5_4 = 9;
     public final static int DB_V1_6_0 = 10;
+    public final static int DB_V1_6_1 = 11;
 
 
     public static void handlePatches() {
@@ -91,6 +92,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
             DatabaseHelper.patch154to160();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_0) {
+            DatabaseHelper.patch160to161();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_1).apply();
         }
     }
 
@@ -543,11 +549,22 @@ public class DatabaseHelper {
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = resource_quantity * 0.75 WHERE tool_id IN (35, 51, 68, 96, 112, 128, 147, 176)");
         Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
         List<Worker_Resource> workerResources = new ArrayList<>();
-        workerResources.add(new Worker_Resource(72, 73, 1, 2)); // Ruby
-        workerResources.add(new Worker_Resource(72, 74, 1, 2)); // Ruby
-        workerResources.add(new Worker_Resource(76, 73, 1, 3)); // Onyx
-        workerResources.add(new Worker_Resource(76, 74, 1, 2)); // Onyx
-        workerResources.add(new Worker_Resource(76, 75, 1, 2)); // Onyx
+        workerResources.add(new Worker_Resource(72, 129, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(72, 130, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(76, 129, 1, 3)); // Onyx
+        workerResources.add(new Worker_Resource(76, 130, 1, 2)); // Onyx
+        workerResources.add(new Worker_Resource(76, 131, 1, 2)); // Onyx
+        Worker_Resource.saveInTx(workerResources);
+    }
+
+    public static void patch160to161() {
+        Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
+        List<Worker_Resource> workerResources = new ArrayList<>();
+        workerResources.add(new Worker_Resource(72, 129, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(72, 130, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(76, 129, 1, 3)); // Onyx
+        workerResources.add(new Worker_Resource(76, 130, 1, 2)); // Onyx
+        workerResources.add(new Worker_Resource(76, 131, 1, 2)); // Onyx
         Worker_Resource.saveInTx(workerResources);
     }
 
