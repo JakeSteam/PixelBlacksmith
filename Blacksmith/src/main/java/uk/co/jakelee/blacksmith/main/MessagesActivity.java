@@ -42,7 +42,7 @@ public class MessagesActivity extends Activity {
 
             String timeText = DateHelper.displayTime(message.getAdded(), DateHelper.time);
             TextViewPixel timeTextView = dh.createTextView(timeText + " ", 22, Color.DKGRAY);
-            TextViewPixel messageTextView = dh.createTextView(message.getMessage(), 18);
+            TextViewPixel messageTextView = dh.createTextView(message.getMessage() + "\n", 18);
 
             messageRow.addView(timeTextView);
             messageRow.addView(messageTextView, params);

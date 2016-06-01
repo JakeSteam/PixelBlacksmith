@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/messages"
+        android:id="@+id/itemSelect"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="30dp"
@@ -21,37 +21,37 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:weightSum="2"
-        tools:context="uk.co.jakelee.blacksmith.main.MessagesActivity">
+        tools:context="uk.co.jakelee.blacksmith.main.ItemSelectActivity">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/messagesTitle"
+            android:id="@+id/itemSelectTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
-            app:layout_marginBottomPercent="7%"
-            app:layout_marginTopPercent="3%"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/messagesText"
+            android:text="@string/itemSelectText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/itemsScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/messagesTitle"
-            android:fadeScrollbars="false">
-
+            android:layout_below="@id/itemSelectTitle"
+            android:fadeScrollbars="false"
+            android:paddingBottom="5dp">
             <TableLayout
-                android:id="@+id/messagesHolder"
+                android:id="@+id/itemsTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginRight="5dp"
                 android:shrinkColumns="1"
-                android:stretchColumns="1"
-                android:layout_marginRight="2dp"/>
-
+                android:stretchColumns="1"/>
         </ScrollView>
+
     </android.support.percent.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"

@@ -177,7 +177,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         isPremium.save();
 
         // Add upgrades, and max upgrades
-        Upgrade goldBonus = Select.from(Upgrade.class).where(Condition.prop("name").eq("Gold Bonus")).first();
+        Upgrade goldBonus = Select.from(Upgrade.class).where(Condition.prop("name").eq("Coins Bonus")).first();
         goldBonus.setCurrent(goldBonus.getCurrent() + 20);
         goldBonus.setMaximum(goldBonus.getMaximum() + 50);
         goldBonus.save();

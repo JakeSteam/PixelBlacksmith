@@ -22,6 +22,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
@@ -108,6 +109,7 @@ public class TrophyActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(String.format(getString(R.string.trophy100thVisit), trophyAchievedText));
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(String.format(getString(R.string.trophyBestItem), bestItemText));
             ((TextViewPixel) findViewById(R.id.visitorRarity)).setText(String.format(getString(R.string.trophyRarity), visitorType.getWeighting()));
+            ((TextViewPixel) findViewById(R.id.visitorPreferences)).setText(VisitorHelper.getDiscoveredPreferencesText(this, visitorType));
         } else if (visitorStats.getVisits() > 0) {
             String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
 
@@ -119,6 +121,7 @@ public class TrophyActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(R.string.trophy100thVisitUnknown);
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(R.string.trophyBestItemUnknown);
             ((TextViewPixel) findViewById(R.id.visitorRarity)).setText(String.format(getString(R.string.trophyRarity), visitorType.getWeighting()));
+            ((TextViewPixel) findViewById(R.id.visitorPreferences)).setText(VisitorHelper.getDiscoveredPreferencesText(this, visitorType));
         } else {
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
             ((TextViewPixel) findViewById(R.id.visitorName)).setText(R.string.unknownText);
@@ -128,6 +131,7 @@ public class TrophyActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(R.string.trophy100thVisitUnknown);
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(R.string.trophyBestItemUnknown);
             ((TextViewPixel) findViewById(R.id.visitorRarity)).setText(R.string.trophyRarityUnknown);
+            ((TextViewPixel) findViewById(R.id.visitorPreferences)).setText(R.string.trophyPreferencesUnknown);
         }
     }
 

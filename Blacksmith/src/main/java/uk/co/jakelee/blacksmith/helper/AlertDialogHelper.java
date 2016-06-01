@@ -16,6 +16,7 @@ import com.orm.query.Select;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
@@ -43,8 +44,8 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1462827600000|UPDATE upgrade SET current = 20, maximum = 100 WHERE name IN ('Gold Bonus', 'XP Bonus')");
-                String supportCode = supportCodeBox.getText().toString();
+                String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
+                //String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
                 } else {
@@ -160,7 +161,9 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 PrestigeHelper.prestigeAccount();
-                ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete), Player_Info.getPrestige() + 1), false);
+                ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete),
+                        Player_Info.getPrestige() * 50,
+                        (int) (100 * (1 - Math.pow(0.75, Player_Info.getPrestige())))), false);
             }
         });
 
@@ -258,9 +261,9 @@ public class AlertDialogHelper {
 
     public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        String question = Player_Info.displayAds() ?
+        String question = String.format(Player_Info.displayAds() ?
                 context.getString(R.string.traderRestockAllQuestionAdvert) :
-                String.format(context.getString(R.string.traderRestockAllQuestion), restockCost);
+                context.getString(R.string.traderRestockAllQuestion), restockCost);
         alertDialog.setMessage(question);
         alertDialog.setIcon(R.drawable.item52);
 
@@ -295,7 +298,9 @@ public class AlertDialogHelper {
 
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
+        alertDialog.setMessage(Player_Info.displayAds() ?
+                        String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(), restockCost) :
+                        String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.traderRestockConfirm), new DialogInterface.OnClickListener() {
@@ -310,11 +315,19 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(context.getString(R.string.traderRestockCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(context.getString(R.string.traderRestockCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
+
+        if (Player_Info.displayAds()) {
+            alertDialog.setNegativeButton(context.getString(R.string.traderRestockConfirmAdvert), new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    AdvertHelper.getInstance(context).showAdvert(activity, AdvertHelper.advertPurpose.ConvTraderRestock);
+                }
+            });
+        }
 
         alertDialog.show();
     }
@@ -330,6 +343,85 @@ public class AlertDialogHelper {
         });
 
         alertDialog.setNegativeButton(context.getString(R.string.bonusCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    public static void confirmWorseCloudLoad(final Context context, final Activity activity, int localPrestige, int localXP, int cloudPrestige, int cloudXP) {
+        int localLevel = Player_Info.convertXpToLevel(localXP);
+        int cloudLevel = Player_Info.convertXpToLevel(cloudXP);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.worseSaveMessage),
+                localPrestige,
+                localLevel,
+                localXP,
+                cloudPrestige,
+                cloudLevel,
+                cloudXP));
+
+        alertDialog.setPositiveButton(context.getString(R.string.worseSaveLoad), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GooglePlayHelper.forceLoadFromCloud();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.worseSaveCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
+    public static void confirmCloudSave(final Context context, final Activity activity, String desc, long saveTime, String deviceName) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.cloudSaveWarning),
+                desc,
+                DateHelper.displayTime(saveTime, DateHelper.datetime),
+                deviceName));
+
+        alertDialog.setPositiveButton(context.getString(R.string.cloudSaveSave), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GooglePlayHelper.forceSaveToCloud();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.cloudSaveCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
+    public static void displayUpdateMessage(final Context context, final MainActivity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
+
+        alertDialog.setPositiveButton(context.getString(R.string.updateReddit), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/"));
+                context.startActivity(browserIntent);
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.updateClose), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -362,13 +454,13 @@ public class AlertDialogHelper {
                 } else {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
+
                 activity.alertDialogCallback();
             }
         });
 
         alertDialog.setNegativeButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.vh.traderBusy = true;
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 List<Pair<Long, Integer>> items = new ArrayList<>();
@@ -401,8 +493,6 @@ public class AlertDialogHelper {
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
-
-                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });
@@ -441,7 +531,6 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.vh.traderBusy = true;
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
                 boolean successful = true;
@@ -480,8 +569,6 @@ public class AlertDialogHelper {
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
-
-                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });

@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,12 +20,14 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
@@ -174,9 +177,58 @@ public class WorkerActivity extends Activity {
         return traderRoot;
     }
 
+    public void toggleAutofeed(View v) {
+        Setting autofeed = Setting.findById(Setting.class, Constants.SETTING_AUTOFEED);
+        if (autofeed != null) {
+            autofeed.setBoolValue(!autofeed.getBoolValue());
+            autofeed.save();
+        }
+
+        updateButtons();
+    }
+
+    private void updateButtons() {
+        ImageView autofeedToggle = (ImageView) findViewById(R.id.autoFeedIndicator);
+        TextView sendOutWorkers = (TextView) findViewById(R.id.gatherAllButton);
+
+        Setting autofeedSetting = Setting.findById(Setting.class, Constants.SETTING_AUTOFEED);
+        if (autofeedSetting != null) {
+            Drawable tick = dh.createDrawable(R.drawable.tick, 30, 30);
+            Drawable cross = dh.createDrawable(R.drawable.cross, 30, 30);
+
+            boolean autofeedToggleValue = autofeedSetting.getBoolValue();
+            autofeedToggle.setImageDrawable(autofeedToggleValue ? tick : cross);
+        }
+
+        if (Worker.getAvailableWorkersCount() > 0) {
+            sendOutWorkers.setAlpha(1f);
+        } else {
+            sendOutWorkers.setAlpha(0.3f);
+        }
+    }
+
+    public void sendAllGathering(View v) {
+        // For each available worker, send out worker.
+        List<Worker> workers = Worker.getAvailableWorkers();
+        int numWorkers = 0;
+        for (Worker worker : workers) {
+            if (WorkerHelper.sendOutWorker(worker)) {
+                numWorkers++;
+            }
+        }
+
+        if (numWorkers > 0) {
+            ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
+        }
+
+        updateButtons();
+    }
+
     public void scheduledTask() {
         WorkerHelper.checkForFinishedWorkers(this);
         populateWorkers();
+
+        updateButtons();
     }
 
     private RelativeLayout createTraderRoot() {

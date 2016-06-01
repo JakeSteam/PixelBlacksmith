@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Pair;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -52,6 +53,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     private static final String mCurrentSaveName = "blacksmithCloudSave";
     public static GoogleApiClient mGoogleApiClient;
     private static boolean mResolvingConnectionFailure = false;
+    private static byte[] cloudSaveData;
+    private static Context callingContext;
+    private static Activity callingActivity;
+    private static Snapshot loadedSnapshot;
 
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
         if (mResolvingConnectionFailure) {
@@ -153,7 +158,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
         if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
             int difference = currentValue - lastSentValue;
-            if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17) {
+            if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17 || achievement.getPlayerInfoID() == 23) {
                 Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
             } else {
                 Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
@@ -168,10 +173,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
-    public static void SavedGamesIntent(final Context context, final Intent intent) {
+    public static void SavedGamesIntent(final Context context, final Activity activity, final Intent intent) {
         if (intent == null || !mGoogleApiClient.isConnected()) {
             return;
         }
+        callingContext = context;
+        callingActivity = activity;
 
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
             String currentTask = "synchronising";
@@ -184,10 +191,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     Snapshot snapshot = result.getSnapshot();
                     try {
                         if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
-                            loadFromCloud(snapshot.getSnapshotContents().readFully());
+                            cloudSaveData = snapshot.getSnapshotContents().readFully();
+                            loadFromCloud(true);
                             currentTask = "loading";
                         } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
-                            saveToCloud(context, snapshot);
+                            loadedSnapshot = snapshot;
+                            saveToCloud();
                             currentTask = "saving";
                         }
                     } catch (IOException e) {
@@ -199,42 +208,97 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
                 return result.getStatus().getStatusCode();
             }
-
-            @Override
-            protected void onPostExecute(Integer status) {
-                ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.cloudSuccess), currentTask), true);
-            }
         };
 
         task.execute();
     }
 
-    private static void loadFromCloud(byte[] cloudData) {
-        if (!IsConnected()) {
+    private static void loadFromCloud(final boolean checkIsImprovement) {
+        if (!IsConnected() || callingContext == null || callingActivity == null || cloudSaveData == null) {
             return;
         }
 
-        applyBackup(new String(cloudData));
+        callingActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!checkIsImprovement) {
+                    ToastHelper.showToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudLoadBeginning, false);
+                }
+            }
+        });
+
+        Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
+
+        if (!checkIsImprovement || cloudSaveIsBetter(cloudData)) {
+            applyBackup(new String(cloudSaveData));
+        } else {
+            AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
+                    Player_Info.getPrestige(),
+                    Player_Info.getXp(),
+                    cloudData.first,
+                    cloudData.second);
+        }
     }
 
-    private static void saveToCloud(Context context, Snapshot snapshot) {
-        if (!IsConnected()) {
+    public static void forceLoadFromCloud() {
+        new Thread(new Runnable() {
+            public void run() {
+                loadFromCloud(false);
+            }
+        }).start();
+    }
+
+    public static void forceSaveToCloud() {
+        callingActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ToastHelper.showToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudSaveBeginning, false);
+            }
+        });
+
+        new Thread(new Runnable() {
+            public void run() {
+                byte[] data = createBackup();
+                String desc = String.format(callingContext.getString(R.string.cloudSaveCaption),
+                        Player_Info.getPrestige(),
+                        Player_Info.getPlayerLevel(),
+                        Inventory.getCoins());
+                Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.promo);
+
+                loadedSnapshot.getSnapshotContents().writeBytes(data);
+
+                SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
+                        .setDescription(desc)
+                        .setCoverImage(cover)
+                        .build();
+
+                // Commit the operation
+                Games.Snapshots.commitAndClose(mGoogleApiClient, loadedSnapshot, metadataChange);
+
+                callingActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastHelper.showPositiveToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudSaveSuccess, true);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private static void saveToCloud() {
+        if (!IsConnected() || callingContext == null || callingActivity == null || loadedSnapshot == null) {
             return;
         }
 
-        byte[] data = createBackup();
-        String desc = String.format(context.getString(R.string.cloudSaveCaption), Player_Info.getPlayerLevel(), Inventory.getCoins());
-        Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.wallpaper);
+        if (loadedSnapshot.getMetadata().getDeviceName() == null) {
+            forceSaveToCloud();
+        } else {
+            AlertDialogHelper.confirmCloudSave(callingContext, callingActivity,
+                    loadedSnapshot.getMetadata().getDescription(),
+                    loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
+                    loadedSnapshot.getMetadata().getDeviceName());
+        }
 
-        snapshot.getSnapshotContents().writeBytes(data);
-
-        SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
-                .setDescription(desc)
-                .setCoverImage(cover)
-                .build();
-
-        // Commit the operation
-        Games.Snapshots.commitAndClose(mGoogleApiClient, snapshot, metadataChange);
     }
 
     public static boolean AreGooglePlayServicesInstalled(Activity activity) {
@@ -348,6 +412,42 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 }
             }
         }
+
+        callingActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ToastHelper.showPositiveToast(callingActivity, Toast.LENGTH_LONG, R.string.cloudLoadSuccess, true);
+            }
+        });
+
+    }
+
+    private static Pair<Integer, Integer> getPrestigeAndXPFromSave(byte[] saveBytes) {
+        int prestige = 0;
+        int xp = 0;
+        Gson gson = new Gson();
+
+        String[] splitData = splitBackupData(new String(saveBytes));
+        Player_Info[] saveInfos = gson.fromJson(splitData[1], Player_Info[].class);
+        for (Player_Info saveInfo : saveInfos) {
+            if (saveInfo.getName().equals("Prestige")) {
+                prestige = saveInfo.getIntValue();
+            } else if (saveInfo.getName().equals("XP")) {
+                xp = saveInfo.getIntValue();
+            }
+        }
+
+        return new Pair<>(prestige, xp);
+    }
+
+    private static boolean cloudSaveIsBetter(Pair<Integer, Integer> cloudValues) {
+        boolean isCloudSaveBetter;
+        if (cloudValues.first <= Player_Info.getPrestige() && cloudValues.second <= Player_Info.getXp()) {
+            isCloudSaveBetter = false;
+        } else {
+            isCloudSaveBetter = true;
+        }
+        return isCloudSaveBetter;
     }
 
     private static String[] splitBackupData(String backupData) {

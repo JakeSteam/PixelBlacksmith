@@ -105,7 +105,7 @@ public class Visitor_Demand extends SugarRecord {
                 searchText += "AND type = " + this.getCriteriaValue();
             }
         }
-        searchText += " ORDER BY Inventory.state, Item.name";
+        searchText += " AND TYPE NOT IN (25, 26) ORDER BY Inventory.state, Item.name";
 
         return Inventory.findWithQuery(Inventory.class, searchText);
     }

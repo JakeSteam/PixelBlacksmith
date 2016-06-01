@@ -50,13 +50,16 @@ public class FoodActivity extends Activity {
                 "FROM inventory " +
                 "INNER JOIN item on inventory.item = item.id " +
                 "WHERE item.type IN (" + Constants.TYPE_FOOD + "," + Constants.TYPE_PROCESSED_FOOD + ") " +
-                "AND quantity > 0");
+                "AND quantity > 0 " +
+                "ORDER BY value DESC");
         if (foods.size() > 0) {
             noFoodMessage.setVisibility(View.GONE);
             for (Inventory food : foods) {
                 Item foodItem = Item.findById(Item.class, food.getItem());
                 ImageView itemImage = dh.createItemImage(food.getItem(), 25, 25, true, true);
-                TextView itemName = dh.createTextView(foodItem.getName(), 30);
+                TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
+                        food.getQuantity(),
+                        foodItem.getName()), 26);
                 ImageView selectImage = new ImageView(this);
                 selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
                 TextView itemBonus = createBonusTextView(foodItem, worker.isFavouriteFoodDiscovered());
@@ -107,7 +110,7 @@ public class FoodActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Food);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Worker_Food);
         startActivity(intent);
     }
 

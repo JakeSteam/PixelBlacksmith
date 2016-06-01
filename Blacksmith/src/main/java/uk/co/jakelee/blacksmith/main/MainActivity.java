@@ -23,11 +23,11 @@ import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
-import com.google.android.gms.games.quest.Quests;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import hotchemi.android.rate.AppRate;
+import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AdvertHelper;
@@ -110,6 +110,15 @@ public class MainActivity extends AppCompatActivity implements
             ah = AdvertHelper.getInstance(this);
         }
 
+        Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
+        if (!TutorialHelper.currentlyInTutorial &&
+                savedVersion != null && savedVersion.getIntValue() != BuildConfig.VERSION_CODE &&
+                BuildConfig.VERSION_NAME.length() > 0 && BuildConfig.VERSION_NAME.endsWith(".0")) {
+            AlertDialogHelper.displayUpdateMessage(this, this);
+            savedVersion.setIntValue(BuildConfig.VERSION_CODE);
+            savedVersion.save();
+        }
+
         gph.UpdateQuest();
     }
 
@@ -146,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements
         TutorialHelper th = new TutorialHelper(Constants.STAGE_1_MAIN);
         th.addTutorialNoOverlay(mainActivity, visitorContainer, R.string.tutorialIntro, R.string.tutorialIntroText, false);
         th.addTutorial(mainActivity, coins, R.string.tutorialCoins, R.string.tutorialCoinsText, false);
+        th.addTutorial(mainActivity, mainActivity.findViewById(R.id.questContainer), R.string.tutorialQuest, R.string.tutorialQuestText, false);
         th.addTutorial(mainActivity, level, R.string.tutorialLevel, R.string.tutorialLevelText, false);
         th.addTutorialRectangle(mainActivity, visitorContainer, R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
         th.start(mainActivity);
@@ -208,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_15_MAIN);
         th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_inventory), R.string.tutorialMainInventory, R.string.tutorialMainInventoryText, false, Gravity.TOP);
         th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, true, Gravity.TOP);
         th.start(mainActivity);
 
@@ -377,8 +388,8 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 dh.createAllSlots(activity);
                 if (Trader_Stock.shouldRestock()) {
-                    Trader_Stock.restockTraders();
                     boolean taxPaid = PremiumHelper.payOutTax();
+                    Trader_Stock.restockTraders();
                     ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
@@ -469,7 +480,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_ACCEPTED, Quests.SELECT_OPEN, Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
+            Intent intent = new Intent(this, QuestActivity.class);
+            startActivity(intent);
         } else {
             ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
         }
@@ -482,6 +494,22 @@ public class MainActivity extends AppCompatActivity implements
             ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
                     DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
         }
+    }
+
+    public void clickWindow(View view) {
+        ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.windowClick, false);
+    }
+
+    public void clickBookcase(View view) {
+        int thisTip = prefs.getInt("nextTip", 0);
+        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        if (thisTip > tipArray.length) {
+            thisTip = 0;
+        }
+
+        String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
+        ToastHelper.showTipToast(this, Toast.LENGTH_LONG, tipMessage, false);
+        prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
 
     @Override

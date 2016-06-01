@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -131,6 +132,7 @@ public class InventoryActivity extends Activity {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                ((TextView) findViewById(R.id.loadingMessage)).setVisibility(View.GONE);
                 inventoryTable.removeAllViews();
                 for (TableRow row : finalRows)
                 inventoryTable.addView(row);

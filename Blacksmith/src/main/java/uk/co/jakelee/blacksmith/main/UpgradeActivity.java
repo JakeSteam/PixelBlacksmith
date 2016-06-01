@@ -11,6 +11,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.orm.query.Select;
+
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -42,7 +44,7 @@ public class UpgradeActivity extends Activity {
     }
 
     private void createUpgradeInterface() {
-        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
+        List<Upgrade> upgrades = Select.from(Upgrade.class).orderBy("name ASC").list();
         TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
         upgradeTable.removeAllViews();
 

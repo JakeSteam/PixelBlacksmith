@@ -60,15 +60,15 @@ public class FurnaceActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt10 = (TextView) findViewById(R.id.smelt10);
+        smelt100 = (TextView) findViewById(R.id.smelt100);
+
         createInterface(true);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_6_FURNACE) {
             startTutorial();
         }
-
-        smelt1 = (TextView) findViewById(R.id.smelt1);
-        smelt10 = (TextView) findViewById(R.id.smelt10);
-        smelt100 = (TextView) findViewById(R.id.smelt100);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -83,6 +83,16 @@ public class FurnaceActivity extends Activity {
         };
         handler.post(everySecond);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.furnace),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
     }
 
     @Override
@@ -116,6 +126,12 @@ public class FurnaceActivity extends Activity {
         } else {
             createFurnaceInterface(clearExisting);
         }
+
+        if (MainActivity.vh.furnaceBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
+        }
     }
 
     private void createFurnaceInterface(boolean clearExisting) {
@@ -124,6 +140,7 @@ public class FurnaceActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
@@ -137,6 +154,9 @@ public class FurnaceActivity extends Activity {
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+
+        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt1.setText(R.string.smelt1Text);
     }
 
     private void createFoodInterface(boolean clearExisting) {
@@ -145,6 +165,7 @@ public class FurnaceActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
@@ -158,6 +179,9 @@ public class FurnaceActivity extends Activity {
 
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
+
+        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
+        smelt1.setText(R.string.cook1Text);
     }
 
     public void smelt1(View v) {

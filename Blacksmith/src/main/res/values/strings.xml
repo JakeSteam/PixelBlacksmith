@@ -13,6 +13,8 @@
     <string name="tutorialIntroText">Welcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
     <string name="tutorialCoins">Coins</string>
     <string name="tutorialCoinsText">Your coins are used for buying... well, everything. They are earned by trading away items.</string>
+    <string name="tutorialQuest">Quests</string>
+    <string name="tutorialQuestText">This is your current quest (if any). Quests are an excellent way to earn extra resources.</string>
     <string name="tutorialLevel">Level</string>
     <string name="tutorialLevelText">This is your current level. XP is earned by crafting and trading items.</string>
     <string name="tutorialVisitor">Visitor</string>
@@ -46,9 +48,9 @@
 
     <!-- Stage 6 -->
     <string name="tutorialFurnaceItems">Item</string>
-    <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, items can only be viewed after being created, but the bronze bar has been unlocked for you.</string>
+    <string name="tutorialFurnaceItemsText">Item information is shown here. Generally, item information can only be seen after being created, but the bronze bar has been unlocked for you.</string>
     <string name="tutorialFurnaceScroll">Changing Items</string>
-    <string name="tutorialFurnaceScrollText">Swiping left and right will change between available items. For now though, they\'ll all be hidden.</string>
+    <string name="tutorialFurnaceScrollText">Swiping left and right or tapping the item image will change between available items. For now though, they\'ll mostly be hidden.</string>
     <string name="tutorialFurnaceIngredients">Ingredients</string>
     <string name="tutorialFurnaceIngredientsText">Since this is a rather basic item, it only requires level 1. It also requires copper and tin ore, which we have plenty of.</string>
     <string name="tutorialFurnaceSmelt">Smelting</string>
@@ -109,6 +111,8 @@
     <!-- Stage 15 -->
     <string name="tutorialMainSettings">Settings</string>
     <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
+    <string name="tutorialMainInventory">Inventory</string>
+    <string name="tutorialMainInventoryText">All of your items can be seen here, and sold if necessary. It\'s a good way to keep track of everything!</string>
     <string name="tutorialMainHelp">Help</string>
     <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
 
@@ -129,7 +133,7 @@
     <string name="helpText">Help</string>
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
-    <string name="messagesText">Messages</string>
+    <string name="messagesText">Message Log</string>
     <string name="socialMediaText">Social Media</string>
     <string name="workerText">Workers</string>
     <string name="toolText">Tools</string>
@@ -139,16 +143,20 @@
     <string name="booksText">Books</string>
     <string name="enchantText">Enchants</string>
     <string name="powderText">Powders</string>
+    <string name="questText">Quests</string>
+    <string name="itemSelectText">Items</string>
+    <string name="tipsText">Tips</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>
 
-    <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!</string>
+    <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!\n\nReddit is the most active community, but any will get a quick response.</string>
     <string name="socialMediaFacebook">Facebook</string>
     <string name="socialMediaTwitter">Twitter</string>
     <string name="socialMediaReddit">Reddit</string>
 
+    <string name="discoveredPreferences">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="tierPreference">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>
     <string name="statePreference">This customer will pay %1$s extra for items in a %2$s condition.</string>
@@ -170,15 +178,14 @@
     <string name="premiumStatusActive">Currently premium!</string>
     <string name="premiumStatusInactive">Not currently premium.</string>
     <string name="premiumFeatures">Premium benefits:
-\n- +50% maximum extra gold.
-\n- +20% current extra gold.
-\n- +50% maximum extra XP.
-\n- +20% current extra XP.
+\n- Immediate +20% to bonus coins and bonus XP upgrades.
+\n- +50% maximum possible bonus coins and bonus XP upgrades (from 50% to 100%).
 \n- Ability to turn off all ads.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
-\n- Gold tax paid by all traders on automatic restock.
-\n- Ability to prestige at level 70, and start again with a massive gold + XP bonus.
+\n- Coins paid by all out of stock traders on automatic market restock.
+\n- Ability to prestige at level 70, and begin a New Game Plus with +50% coin earnings &amp; -25% XP!
+\n- Doubled bonus chest rewards, and reduced time between chest openings.
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
@@ -191,6 +198,32 @@
     <string name="buyWorkerComplete">Successfully hired worker!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
+    <string name="sendOutWorkers">Send Out\nWorkers</string>
+    <string name="sendOutWorkersToast">%d workers excitedly jog out of the door, in search of resources.</string>
+    <string name="autofeedWorkers">Auto-feed\n</string>
+
+    <string name="updateMessage">Updated to version %s!\n\nA full changelist can be viewed on the /r/PixelBlacksmith subreddit.</string>
+    <string name="updateReddit">View Changes</string>
+    <string name="updateClose">Close</string>
+
+    <string name="worseSaveMessage">Are you SURE you want to load this inferior cloud save?\n\nLocal save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nCloud save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseSaveLoad">Load</string>
+    <string name="worseSaveCancel">Cancel</string>
+
+    <string name="cloudSaveWarning">Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.</string>
+    <string name="cloudSaveSave">Overwrite</string>
+    <string name="cloudSaveCancel">Cancel</string>
+
+    <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudSaveBeginning">Saving game to cloud...</string>
+    <string name="cloudSaveSuccess">Save to cloud successful!</string>
+    <string name="cloudLoadBeginning">Loading cloud save from remote server...</string>
+    <string name="cloudLoadSuccess">Load from cloud successful!</string>
+    <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins</string>
+
+    <string name="windowClick">What was that!?</string>
+
     <string name="buyWorker">Purchase Worker</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
@@ -199,12 +232,13 @@
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
-    <string name="workerReturned">A worker has returned, along with: %s.</string>
+    <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
+    <string name="workersReturned">%d workers have returned, laden down with resources!</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 
-    <string name="bribeQuestion">Would you like to bribe a visitor %1$d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
-    <string name="bribeQuestionAdvert">Would you like to pay %1$d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestion">Would you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestionAdvert">Would you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeConfirm">Bribe</string>
     <string name="bribeAdvert">Watch Ad</string>
     <string name="bribeComplete">A visitor walks in, with %d coins. What a coincidence!</string>
@@ -227,14 +261,14 @@
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
-    <string name="prestigeQuestion">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +100% coin &amp; XP gains.
+    <string name="prestigeQuestion">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50%% coin &amp; -25%% XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
-    <string name="prestigeComplete">Prestige successful, all gold &amp; XP is now multiplied by %d! Good luck!</string>
+    <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
-    <string name="dismissQuestion">Would you like to pay a visitor %d coins to leave immediately?</string>
-    <string name="dismissQuestionAdvert">Would you like to pay %d coins or watch an ad to make the visitor leave immediately?</string>
+    <string name="dismissQuestion">Would you like to pay a visitor %,d coins to leave immediately?</string>
+    <string name="dismissQuestionAdvert">Would you like to pay %,d coins or watch an ad to make the visitor leave immediately?</string>
     <string name="dismissConfirm">Pay</string>
     <string name="dismissConfirmAdvert">Watch Ad</string>
     <string name="dismissComplete">The visitor leaves, a little bit grumpily.</string>
@@ -255,16 +289,19 @@
     <string name="trophy100thVisit">100th visit: %s</string>
     <string name="trophyBestItem">Best item: %s</string>
     <string name="trophyRarity">Appear chance: %d</string>
+    <string name="trophyPreferences">Preferences: %1$s / %2$s / %3$s</string>
     <string name="trophyVisitsUnknown">Visits: ???</string>
     <string name="trophyFirstSeenUnknown">First seen: ???</string>
     <string name="trophy100thVisitUnknown">100th visit: ???</string>
     <string name="trophyBestItemUnknown">Best item: ???</string>
     <string name="trophyRarityUnknown">Appear chance: ???</string>
+    <string name="trophyPreferencesUnknown">Preferences: ???</string>
 
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
     <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>
 
     <string name="enchantingButtonText">%1$s (x%2$s)</string>
+    <string name="genericQuantity">%1$dx %2$s</string>
 
     <string name="horizontalDotsSelected">x</string>
     <string name="horizontalDotsUnselected">o</string>
@@ -280,6 +317,7 @@
     <string name="bestText">Best</string>
     <string name="finishText">Finish</string>
 
+    <string name="cook1Text">Cook 1</string>
     <string name="smelt1Text">Smelt 1</string>
     <string name="smelt10Text">10</string>
     <string name="smelt100Text">100</string>
@@ -291,32 +329,37 @@
     <string name="sell100Text">Sell 100</string>
     <string name="crushGemText">Crush Gem</string>
 
-    <string name="soundSettingText">Enable sounds?</string>
-    <string name="musicSettingText">Enable music?</string>
-    <string name="restockNotificationSettingText">Restock notifications?</string>
-    <string name="visitorNotificationSettingText">Visitor notifications?</string>
-    <string name="workerNotificationSettingText">Worker notifications?</string>
-    <string name="bonusNotificationSettingText">Bonus notifications?</string>
-    <string name="notificationSoundSettingText">Enable notification sounds?</string>
-    <string name="prestigeSettingText">Prestige</string>
+    <string name="soundSettingText">Sounds</string>
+    <string name="musicSettingText">Music</string>
+    <string name="notificationSoundSettingText">Alerts</string>
+    <string name="restockNotificationSettingText">Restock</string>
+    <string name="visitorNotificationSettingText">Visitor</string>
+    <string name="workerNotificationSettingText">Worker</string>
+    <string name="bonusNotificationSettingText">Bonus</string>
+    <string name="prestigeSettingText">Prestige\n(NG+)</string>
+
+    <string name="soundSettingGroup">Sound Options</string>
+    <string name="notificationSettingGroup">Notification Options</string>
+    <string name="gameplaySettingGroup">Gameplay Options</string>
+    <string name="otherSettingGroup">Extras</string>
+    <string name="googlePlaySettingGroup">Google Play</string>
 
     <string name="unknownText">\???</string>
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
-
-    <string name="cloudLocalFailure">A local error occurred whilst %1$s from cloud: %2$s</string>
-    <string name="cloudRemoteFailure">A remote error occurred whilst %1$s from cloud: %2$s</string>
-    <string name="cloudSuccess">Cloud %s successful!</string>
-    <string name="cloudSaveCaption">Blacksmith: Level %1$d | %2$,d coins</string>
 
     <string name="restockText">Restock</string>
     <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>
     <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %s!</string>
     <string name="restockTextNoTax">All traders have been restocked!</string>
     <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
-    <string name="traderRestockConfirm">Restock</string>
+    <string name="traderRestockQuestionAdvert">Restock \"%1$s\" for %2$d coins, or by watching an advert?</string>
+    <string name="traderRestockConfirm">Pay Coins</string>
+    <string name="traderRestockConfirmAdvert">Watch Ad</string>
     <string name="traderRestockComplete">Restocked trader for %d coins.</string>
+    <string name="traderRestockCompleteAdvert">Restocked trader for free!</string>
     <string name="traderRestockCancel">Cancel</string>
+    <string name="traderBusy">The traders are still busy fulfilling your last big order! Either wait a second, or leave the market and come back later.</string>
 
     <string name="traderRestockAllQuestion">Restock all traders for %d coins?</string>
     <string name="traderRestockAllQuestionAdvert">Restock all traders for %d coins / free with an advert?</string>
@@ -332,9 +375,13 @@
     <string name="supportCodeFailed">Error whilst applying code. Please contact support!</string>
     <string name="supportCodeCancel">Cancel</string>
 
+    <string name="loadingMessage">Hold onto your hammers, loading..!</string>
+
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
     <string name="notificationBonus">A bonus is ready to claim!</string>
+
+    <string name="clickChangeText">Quick Select</string>
 
     <string name="turnOffAdsText">Disable Adverts</string>
     <string name="adFailedToLoad">No advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
@@ -344,6 +391,7 @@
     <string name="tableSell">Sell</string>
 
     <string name="genericProgress">%1$d / %2$d</string>
+    <string name="genericPercent">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%s Trades</string>
@@ -391,6 +439,7 @@
     <string name="statisticsCompletion">Completion:</string>
     <string name="statisticsCurrentXP">Current XP:</string>
     <string name="statisticsNextLevel">Next Level In:</string>
+    <string name="statisticsHighestLevel">Highest Level:</string>
     <string name="statisticsSmelted">Items Smelted:</string>
     <string name="statisticsCrafted">Items Crafted:</string>
     <string name="statisticsTraded">Items Traded:</string>
@@ -414,17 +463,19 @@
     <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
     <string name="statisticsCollectionsCrafted">Collections Crafted:</string>
     <string name="statisticsQuestsCompleted">Quests Completed:</string>
-    <string name="statisticsTotalBonusGold">Total Gold Bonus:</string>
+    <string name="statisticsTotalBonusGold">Total Coins Bonus:</string>
     <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
-    <string name="statisticsPrestigeValue">%1$d (%1$dx all gold &amp; XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
     <string name="statisticsVersion">Game Version:</string>
 
     <string name="leaderboardsNoConnection">Viewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
     <string name="questsNoConnection">Participating in quests requires being connected to Google Play Games, via the settings menu!</string>
+
+    <string name="questsCompleted">%d quests completed.</string>
 
     <string name="questComplete">Completed \"%1$s\" and received a %2$s Reward: %3$s.</string>
     <string name="questRewardNoPage">%1$d XP and %2$dx %3$s</string>
@@ -451,6 +502,7 @@
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, and <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>.</string>
     <string name="creditsLibraries">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
+\n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
@@ -461,7 +513,7 @@
     <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
 \n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
-    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing / suggestions.
+    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
 </string>
 
     <string-array name="toolsArray">
@@ -477,4 +529,65 @@
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+
+    <string-array name='tipsArray'>
+        <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
+        <item>The tutorial can be replayed from the Settings menu if you need a reminder.</item>
+        <item>Game sounds / music can be turned off in the Settings, along with notification sounds.</item>
+        <item>All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</item>
+        <item>A Visitor\'s Required Trades are listed in black.</item>
+        <item>A Visitor\'s Optional Trades are listed in grey.</item>
+        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
+        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
+        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
+        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
+        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
+        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
+        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
+        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
+        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
+        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
+        <item>Pages can be found by completing visitors, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
+        <item>Premium players can disable all adverts from the settings menu.</item>
+        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
+        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
+        <item>The game\'s credits can be viewed in the Settings menu.</item>
+        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
+        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
+        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
+        <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
+        <item>Initially, you can only have up to 2 Visitors at the same time. This can increased to 10 Visitors by upgrading "Maximum Visitors".</item>
+        <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
+        <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
+        <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
+        <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
+        <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
+        <item>Workers initially take 3 hours to return with resources. This can be reduced to only 30 minutes by upgrading "Worker Time".</item>
+        <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
+        <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
+        <item>There are 7 different hirable Workers that unlock as you level up.</item>
+        <item>You only have to pay to hire each different Worker once. After you\'ve hired a Worker, they will continue to work for you as long as you want to give them a job to do.</item>
+        <item>Workers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
+        <item>There are 8 different types of Tools that Workers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
+        <item>A Worker with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
+        <item>Equipping a Worker with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
+        <item>Once you\'ve equipped a Worker with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
+        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Workers a Food item to increase how much they will gather.</item>
+        <item>The Foods that you craft may provide a higher Worker gather bonus than the Foods you can buy in the Market.</item>
+        <item>Each Worker has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
+        <item>Providing your Workers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+    </string-array>
 </resources>

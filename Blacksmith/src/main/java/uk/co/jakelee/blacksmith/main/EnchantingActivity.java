@@ -73,6 +73,13 @@ public class EnchantingActivity extends Activity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+        createInterface(true, false);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 
@@ -110,6 +117,7 @@ public class EnchantingActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
@@ -137,6 +145,7 @@ public class EnchantingActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,

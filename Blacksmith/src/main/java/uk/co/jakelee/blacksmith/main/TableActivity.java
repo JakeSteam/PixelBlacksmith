@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -32,6 +33,7 @@ import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
+import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
@@ -56,22 +58,22 @@ public class TableActivity extends Activity {
         dh = DisplayHelper.getInstance(getApplicationContext());
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("tableTier", booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN);
-        if (displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
+        if (displayedTier > Constants.TIER_MAX && displayedTier != Constants.TIER_PREMIUM) displayedTier = Constants.TIER_PREMIUM;
         booksSelected = MainActivity.prefs.getBoolean("tableTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        craft1 = (TextView) findViewById(R.id.craft1);
+        craft10 = (TextView) findViewById(R.id.craft10);
+        craft100 = (TextView) findViewById(R.id.craft100);
+
         createTableInterface(true, false);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_10_TABLE) {
             startTutorial();
         }
-
-        craft1 = (TextView) findViewById(R.id.craft1);
-        craft10 = (TextView) findViewById(R.id.craft10);
-        craft100 = (TextView) findViewById(R.id.craft100);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -85,6 +87,16 @@ public class TableActivity extends Activity {
             }
         };
         handler.post(everySecond);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dh.createCraftingInterface(
+                (RelativeLayout) findViewById(R.id.table),
+                (TableLayout) findViewById(R.id.ingredientsTable),
+                mViewFlipper,
+                Constants.STATE_NORMAL);
     }
 
     @Override
@@ -123,6 +135,12 @@ public class TableActivity extends Activity {
         } else {
             createItemsInterface(clearExisting);
         }
+
+        if (MainActivity.vh.tableBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
+        }
     }
 
     private void createItemsInterface(boolean clearExisting) {
@@ -133,6 +151,7 @@ public class TableActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
@@ -156,6 +175,7 @@ public class TableActivity extends Activity {
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
+                (HorizontalDots) findViewById(R.id.horizontalIndicator),
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
@@ -221,6 +241,8 @@ public class TableActivity extends Activity {
 
             if (itemID.equals(Constants.ITEM_THE_COLLECTION)) {
                 Player_Info.increaseByOne(Player_Info.Statistic.CollectionsCreated);
+                Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Collector")).first();
+                Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
                 GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COLLECTIONS, Player_Info.getCollectionsCrafted());
             }
         }

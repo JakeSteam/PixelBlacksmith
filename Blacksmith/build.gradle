@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 34
-        versionName "1.5.4"
+        versionCode 37
+        versionName "1.6.0"
     }
     buildTypes {
         release {
@@ -36,4 +36,5 @@ dependencies {
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile project(':BaseGameUtils')
     compile files('libs/applovin-sdk-6.2.2.jar')
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
 }

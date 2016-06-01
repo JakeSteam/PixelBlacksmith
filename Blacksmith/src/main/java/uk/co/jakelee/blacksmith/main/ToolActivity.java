@@ -72,7 +72,9 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
             for (Inventory tool : tools) {
                 Item toolItem = Item.findById(Item.class, tool.getItem());
                 ImageView itemImage = dh.createItemImage(tool.getItem(), 25, 25, true, true);
-                TextView itemName = dh.createTextView(toolItem.getName(), 30);
+                TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
+                        tool.getQuantity(),
+                        toolItem.getName()), 30);
                 ImageView selectImage = new ImageView(this);
                 selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
 
@@ -115,7 +117,7 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Tool);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Worker_Tools);
         startActivity(intent);
     }
 

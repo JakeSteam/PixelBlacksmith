@@ -26,14 +26,14 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/statisticsTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            app:layout_heightPercent="10%"
             android:gravity="center"
             android:text="@string/statisticsText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="55sp"
-            app:layout_marginBottomPercent="9%"
+            app:layout_marginBottomPercent="7%"
             app:layout_marginTopPercent="3%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -103,6 +103,32 @@
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/nextLevelIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <LinearLayout>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="@string/statisticsHighestLevel"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/button_narrow"
+                        android:src="@drawable/playleaderboards"
+                        android:padding="2dp"
+                        android:tag="highestlevel"
+                        android:onClick="openLeaderboards"/>
+                </LinearLayout>
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/highestLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"

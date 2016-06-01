@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +15,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
@@ -24,7 +25,8 @@ public class WorkerHelper {
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
-                Condition.prop("tool_id").eq(toolID)).list();
+                Condition.prop("tool_id").eq(toolID))
+                .orderBy("resource_quantity DESC").list();
     }
 
     public static void populateResources(DisplayHelper dh, LinearLayout container, long toolID) {
@@ -76,27 +78,50 @@ public class WorkerHelper {
         List<Worker> workers = Select.from(Worker.class).where(
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
+        int workersFinished = 0;
+        String rewardText = "";
+        boolean refillFood = Setting.findById(Setting.class, Constants.SETTING_AUTOFEED).getBoolValue();
 
         for (Worker worker : workers) {
             if (getTimeRemaining(worker) <= 0) {
-                rewardResources(context, worker);
+                rewardText = rewardResources(context, worker);
+                workersFinished++;
 
-                worker.setFoodUsed(0);
+                // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
+                if (refillFood && worker.getFoodUsed() > 0) {
+                    Inventory currentFoodStock = Inventory.getInventory(worker.getFoodUsed(), Constants.STATE_NORMAL);
+                    if (currentFoodStock.getQuantity() > 0) {
+                        currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
+                        currentFoodStock.save();
+                    } else {
+                        worker.setFoodUsed(0);
+                    }
+                }
+
                 worker.setTimeStarted(0);
                 worker.setTimesCompleted(worker.getTimesCompleted() + 1);
                 worker.save();
             }
         }
+
+        if (workersFinished > 1) {
+            rewardText = String.format(context.getString(R.string.workersReturned), workersFinished);
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, rewardText, true);
+        } else if (workersFinished == 1) {
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, rewardText, true);
+        }
     }
 
-    public static void rewardResources(Context context, Worker worker) {
+    public static String rewardResources(Context context, Worker worker) {
+        Character workerCharacter = Character.findById(Character.class, worker.getCharacterID());
         List<Worker_Resource> resources = getResourcesByTool((int) worker.getToolUsed());
-        ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.workerReturned),
-                getRewardResourcesText(worker, resources, true)), true);
+        return String.format(context.getString(R.string.workerReturned),
+                workerCharacter.getName(),
+                getRewardResourcesText(worker, resources, true));
     }
 
     public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {
-        HashMap<String, Integer> data = new HashMap<>();
+        LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, worker.getFoodUsed());
         boolean applyFoodBonus = worker.getFoodUsed() > 0 && (worker.getTimeStarted() > 0 || addItems);
 
@@ -123,8 +148,7 @@ public class WorkerHelper {
             if(data.containsKey(item.getName())) {
                 temp = data.get(item.getName()) + resource.getResourceQuantity();
                 data.put(item.getName(), temp);
-            }
-            else {
+            } else {
                 data.put(item.getName(), resource.getResourceQuantity());
             }
         }
@@ -206,6 +230,6 @@ public class WorkerHelper {
             itemString.append(item.getId().toString());
             itemString.append(",");
         }
-        return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1 AND quantity > 0";
+        return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1 AND quantity > 0 ORDER BY item ASC";
     }
 }

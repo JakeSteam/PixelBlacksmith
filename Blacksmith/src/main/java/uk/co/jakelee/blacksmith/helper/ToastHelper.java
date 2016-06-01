@@ -32,6 +32,10 @@ public class ToastHelper {
         showToast(context, length, text, saveToLog, R.color.holo_red_dark);
     }
 
+    public static void showTipToast(Context context, int length, String text, boolean saveToLog) {
+        showToast(context, length, text, saveToLog, R.color.holo_blue_dark);
+    }
+
     public static void showPositiveToast(Context context, int length, int textID, boolean saveToLog) {
         String string = context.getResources().getString(textID);
         showPositiveToast(context, length, string, saveToLog);

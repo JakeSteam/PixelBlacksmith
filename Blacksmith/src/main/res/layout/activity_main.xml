@@ -250,7 +250,7 @@
 
             <LinearLayout
                 android:id="@+id/visitors_container"
-                android:layout_width="315dp"
+                android:layout_width="330dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="65dp"
                 android:orientation="horizontal"
@@ -259,12 +259,112 @@
 
             <LinearLayout
                 android:id="@+id/visitors_container_overflow"
-                android:layout_width="315dp"
+                android:layout_width="330dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="65dp"
                 android:orientation="horizontal"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="44%" />
+
+            <!-- Areas -->
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/furnace"
+                android:layout_marginLeft="553dp"
+                app:layout_marginTopPercent="25%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bookcase"
+                android:layout_marginLeft="130dp"
+                app:layout_marginTopPercent="20%"
+                android:onClick="clickBookcase"/>
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/anvil"
+                android:layout_marginLeft="789dp"
+                app:layout_marginTopPercent="24%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/window"
+                android:layout_marginLeft="1296dp"
+                app:layout_marginTopPercent="11%"
+                android:onClick="clickWindow"/>
+
+            <!-- Water -->
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/water" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/water"
+                android:layout_marginLeft="64dp"/>
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/water"
+                android:layout_marginLeft="128dp" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/water"
+                android:layout_marginLeft="192dp" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bridge"
+                android:layout_marginLeft="256dp" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/water"
+                android:layout_marginLeft="320dp" />
+
+            <!-- Torches -->
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="86dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="22%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="218dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="22%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="860dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="11%" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/torch"
+                android:layout_marginLeft="1240dp"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="11%" />
 
         </android.support.percent.PercentRelativeLayout>
     </HorizontalScrollView>

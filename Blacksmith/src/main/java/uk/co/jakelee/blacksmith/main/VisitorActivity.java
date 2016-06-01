@@ -51,6 +51,7 @@ public class VisitorActivity extends Activity {
     private static Visitor_Stats visitorStats;
 
     private static boolean identifyFirstDemand = false;
+    private static boolean loadingTrade = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class VisitorActivity extends Activity {
 
         Intent intent = getIntent();
         Long visitorId = Long.parseLong(intent.getStringExtra(DisplayHelper.VISITOR_TO_LOAD));
+        loadingTrade = false;
 
         if (visitorId > 0) {
             visitor = Visitor.findById(Visitor.class, visitorId);
@@ -252,9 +254,12 @@ public class VisitorActivity extends Activity {
                 if (!demand.isDemandFulfilled()) {
                     demandRow.setOnClickListener(new Button.OnClickListener() {
                         public void onClick(View v) {
-                            Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
-                            intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
-                            startActivity(intent);
+                            if (!loadingTrade) {
+                                loadingTrade = true;
+                                Intent intent = new Intent(getApplicationContext(), TradeActivity.class);
+                                intent.putExtra(DisplayHelper.DEMAND_TO_LOAD, v.getTag().toString());
+                                startActivity(intent);
+                            }
                         }
                     });
                 }
@@ -266,6 +271,7 @@ public class VisitorActivity extends Activity {
     public void completeVisitor(View view) {
         if (visitor.isVisitorComplete()) {
             VisitorHelper.createVisitorReward(this, visitor.isVisitorFullyComplete());
+            VisitorHelper.rewardXp(visitor.isVisitorFullyComplete());
             VisitorHelper.removeVisitor(visitor);
             SoundHelper.playSound(this, SoundHelper.walkingSounds);
             Player_Info.increaseByOne(Player_Info.Statistic.VisitorsCompleted);
@@ -277,6 +283,11 @@ public class VisitorActivity extends Activity {
                 ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorTrophyEarned),
                         rewardedItem.first.getFullName(rewardedItem.second),
                         rewardedPage.first.getFullName(rewardedPage.second)), true);
+            }
+
+            if (visitorStats.getVisits() >= Constants.VISITS_TROPHY && visitorStats.getTrophyAchieved() == 0) {
+                visitorStats.setTrophyAchieved(System.currentTimeMillis());
+                visitorStats.save();
             }
 
             if (visitor.isVisitorFullyComplete()) {

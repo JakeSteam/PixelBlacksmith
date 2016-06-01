@@ -67,7 +67,12 @@ public class TradeActivity extends Activity {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
             visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
             visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
-            createTradeInterface();
+
+            new Thread(new Runnable() {
+                public void run() {
+                    createTradeInterface();
+                }
+            }).start();
         }
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_3_TRADE) {
@@ -124,15 +129,20 @@ public class TradeActivity extends Activity {
     }
 
     private void displayDemandInfo() {
-        Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+        final Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
+        final TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
 
-        TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
-        demandTextView.setText(String.format(getString(R.string.demandText),
-                demandCriteria.getName(),
-                Visitor_Demand.getCriteriaName(demand),
-                demand.getQuantityProvided(),
-                demand.getQuantity()
-        ));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                demandTextView.setText(String.format(getString(R.string.demandText),
+                        demandCriteria.getName(),
+                        Visitor_Demand.getCriteriaName(demand),
+                        demand.getQuantityProvided(),
+                        demand.getQuantity()
+                ));
+            }
+        });
 
         ProgressBar demandProgress = (ProgressBar) findViewById(R.id.demandProgress);
         demandProgress.setMax(demand.getQuantity());
@@ -259,7 +269,7 @@ public class TradeActivity extends Activity {
 
         // Calculate the item sell value, rounded up
         double bonus = visitorType.getBonus(itemInventory);
-        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Gold Bonus")) * (Player_Info.getPrestige() + 1);
+        double coinMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Coins Bonus")) + (0.5 * Player_Info.getPrestige());
         double modifiedBonus = coinMultiplier * bonus;
         int value = (int) (itemToSell.getModifiedValue(itemState.getId()) * modifiedBonus);
 
@@ -312,12 +322,17 @@ public class TradeActivity extends Activity {
     }
 
     private void updateMax() {
-        Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
-        Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
+        final Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
+        final Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
+        final ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
 
-        ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
         tradeMax = prefs.getBoolean("tradeMax", false);
-        maxIndicator.setImageDrawable(tradeMax ? tick : cross);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                maxIndicator.setImageDrawable(tradeMax ? tick : cross);
+            }
+        });
     }
 
     public void openHelp(View view) {

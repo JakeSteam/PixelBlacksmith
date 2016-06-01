@@ -351,6 +351,10 @@ public class VisitorHelper {
         return strings.get(position);
     }
 
+    public static void rewardXp(boolean isFullyComplete) {
+        Player_Info.addXp(Player_Info.getPlayerLevel() * (isFullyComplete ? Constants.QUEST_XP_MODIFIER_MEDIUM : Constants.QUEST_XP_MODIFIER_EASY));
+    }
+
     public static void createVisitorReward(Context context, boolean isFullyComplete) {
         int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
         int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
@@ -366,14 +370,14 @@ public class VisitorHelper {
         // Get normal reward
         List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
         Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
-        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards);
+        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards, false);
         String rewardString = VisitorHelper.getRewardString(context, rewardLegendary, isFullyComplete);
 
         // Get legendary reward
         if (rewardLegendary) {
             List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
-            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1);
+            Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1, false);
             ToastHelper.showToast(context, Toast.LENGTH_LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(),
@@ -394,7 +398,7 @@ public class VisitorHelper {
         rewards.add(pageReward);
 
         Inventory.addItem(itemReward.first.getId(), itemReward.second, Constants.TROPHY_ITEM_REWARDS);
-        Inventory.addItem(pageReward.first.getId(), itemReward.second, Constants.TROPHY_PAGE_REWARDS);
+        Inventory.addItem(pageReward.first.getId(), pageReward.second, Constants.TROPHY_PAGE_REWARDS);
 
         return rewards;
     }
@@ -424,6 +428,24 @@ public class VisitorHelper {
         Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
 
         return new Pair<>(rewardedPage, Constants.STATE_NORMAL);
+    }
+
+    public static String getDiscoveredPreferencesText(Context context, Visitor_Type vType) {
+        String type = context.getString(R.string.unknownText);
+        String tier = context.getString(R.string.unknownText);
+        String state = context.getString(R.string.unknownText);
+
+        if (vType.isTypeDiscovered()) {
+            type = Type.findById(Type.class, vType.getTypePreferred()).getName();
+        }
+        if (vType.isTierDiscovered()) {
+            tier = Tier.findById(Tier.class, vType.getTierPreferred()).getName();
+        }
+        if (vType.isStateDiscovered()) {
+            state = State.findById(State.class, vType.getStatePreferred()).getName();
+        }
+
+        return String.format(context.getString(R.string.trophyPreferences), type, tier, state);
     }
 
 }

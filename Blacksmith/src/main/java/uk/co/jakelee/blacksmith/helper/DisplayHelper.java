@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,7 +35,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.HorizontalDots;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.main.ItemSelectActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -43,6 +46,7 @@ import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Trader;
@@ -64,6 +68,11 @@ public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private final Context context;
     private boolean isProcessingPendingInventory = false;
+
+    public ViewFlipper itemSelectionFlipper;
+    public HorizontalDots itemSelectionDots;
+    public List<Item> itemSelectionItems;
+    public long itemSelectionState;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -260,14 +269,14 @@ public class DisplayHelper {
     }
 
     public void populateVisitorsContainer(final Context context, final MainActivity activity, final LinearLayout visitorsContainer, final LinearLayout visitorsContainerOverflow) {
-        List<Visitor> visitors = Visitor.listAll(Visitor.class);
+        final List<Visitor> visitors = Visitor.listAll(Visitor.class);
         List<ImageView> visitorImages = new ArrayList<>();
         if (visitors.size() == 0) {
             VisitorHelper.tryCreateVisitor();
         }
 
         int yPadding = convertDpToPixel(4);
-        int xPadding = convertDpToPixel(7);
+        int xPadding = convertDpToPixel(6.5f);
 
         for (final Visitor visitor : visitors) {
             // Creating visitor image
@@ -276,6 +285,12 @@ public class DisplayHelper {
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastVisitorClick < 500){
+                        return;
+                    } else {
+                        MainActivity.vh.lastVisitorClick = SystemClock.elapsedRealtime();
+                    }
+
                     Intent intent = new Intent(context, VisitorActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(VISITOR_TO_LOAD, (String) v.getTag());
@@ -287,9 +302,9 @@ public class DisplayHelper {
         }
 
         LinearLayout targetContainer = null;
-        if (visitorsContainer.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+        if (visitors.size() < Constants.MAXIMUM_VISITORS_PER_ROW) {
             targetContainer = visitorsContainer;
-        } else if (visitorsContainerOverflow.getChildCount() < Constants.MAXIMUM_VISITORS_PER_ROW) {
+        } else if (visitors.size() < (Constants.MAXIMUM_VISITORS_PER_ROW * 2)) {
             targetContainer = visitorsContainerOverflow;
         }
 
@@ -315,7 +330,7 @@ public class DisplayHelper {
                 visitorsContainerOverflow.removeAllViews();
                 boolean shouldDrawAddButton = false;
 
-                if (finalVisitorImages.size() < Upgrade.getValue("Maximum Visitors")) {
+                if (visitors.size() < Upgrade.getValue("Maximum Visitors")) {
                     shouldDrawAddButton = true;
                 }
 
@@ -363,7 +378,7 @@ public class DisplayHelper {
         return textView;
     }
 
-    public RelativeLayout createItemSelectorElement(long itemID, long state) {
+    public RelativeLayout createItemSelectorElement(final long itemID, long state) {
         RelativeLayout.LayoutParams countParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         countParams.setMargins(0, convertDpToPixel(60), 0, 0);
 
@@ -440,6 +455,17 @@ public class DisplayHelper {
 
     public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
+
+        ImageView image = new ImageView(context);
+        image.setId(viewId);
+        image.setTag(itemId);
+        image.setImageDrawable(createItemImageDrawable(itemId, width, height, haveSeen, canCreate));
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        return image;
+    }
+
+    public Drawable createItemImageDrawable(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
         int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
 
@@ -451,13 +477,7 @@ public class DisplayHelper {
             imageResource.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
         }
 
-        ImageView image = new ImageView(context);
-        image.setId(viewId);
-        image.setTag(itemId);
-        image.setImageDrawable(imageResource);
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        return image;
+        return imageResource;
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {
@@ -474,6 +494,10 @@ public class DisplayHelper {
     }
 
     public int convertDpToPixel(int dp) {
+        return convertDpToPixel((float) dp);
+    }
+
+    public int convertDpToPixel(float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
@@ -523,6 +547,8 @@ public class DisplayHelper {
         ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
 
         questIcon.setImageResource(getEventDrawableID(eventID));
+
+        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
         questProgress.setProgress(current);
         questProgress.setMax(max);
     }
@@ -578,9 +604,16 @@ public class DisplayHelper {
         TextViewPixel levelPercent = MainActivity.levelPercent;
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
-        if (Player_Info.getPlayerLevel() > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(Player_Info.getPlayerLevel()), true);
-            Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, Player_Info.getPlayerLevel() - Player_Info.getPlayerLevelFromDB());
+        int highestLevel = Player_Info.getHighestLevel();
+        int playerLevel = Player_Info.getPlayerLevel();
+
+        if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
+            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(playerLevel), true);
+            Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
+            if (playerLevel > highestLevel) {
+                Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_HIGHEST_LEV, playerLevel);
+            }
             return true;
         }
         return false;
@@ -651,7 +684,12 @@ public class DisplayHelper {
         }
     }
 
-    public void createItemSelector(ViewFlipper itemSelector, boolean clearExisting, List<Item> items, long state, int selectedPosition) {
+    public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition) {
+        this.itemSelectionFlipper = itemSelector;
+        this.itemSelectionDots = dots;
+        this.itemSelectionItems = items;
+        this.itemSelectionState = state;
+
         if (clearExisting) {
             itemSelector.removeAllViews();
         }
@@ -662,6 +700,16 @@ public class DisplayHelper {
 
         if (clearExisting) {
             itemSelector.setDisplayedChild(selectedPosition);
+        }
+
+        if (Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue()) {
+            itemSelector.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ItemSelectActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -689,12 +737,14 @@ public class DisplayHelper {
 
     public static void updateBonusChest(ImageView chest) {
         if (Player_Info.displayAds()) {
+            chest.setVisibility(View.VISIBLE);
             if (Player_Info.isBonusReady()) {
                 chest.setImageResource(R.drawable.bonus_chest_full);
             } else {
                 chest.setImageResource(R.drawable.bonus_chest_empty);
             }
         } else {
+            chest.setVisibility(View.GONE);
             chest.setImageResource(R.drawable.transparent);
         }
     }

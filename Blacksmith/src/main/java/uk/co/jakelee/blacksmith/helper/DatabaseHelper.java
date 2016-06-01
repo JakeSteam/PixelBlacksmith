@@ -41,8 +41,9 @@ public class DatabaseHelper {
     public final static int DB_V1_3_0 = 5;
     public final static int DB_V1_4_0 = 6;
     public final static int DB_V1_5_0 = 7;
-    public final static int DB_V1_5_1 = 8;
     public final static int DB_V1_5_4 = 9;
+    public final static int DB_V1_6_0 = 10;
+
 
     public static void handlePatches() {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
@@ -82,9 +83,14 @@ public class DatabaseHelper {
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
             DatabaseHelper.patch150to154();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
+            DatabaseHelper.patch154to160();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
         }
     }
 
@@ -484,9 +490,65 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    private static void patch150to154() {
+    public static void patch150to154() {
         Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id IN (27, 28)");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
+    }
+
+    public static void patch154to160() {
+        // Fix collection + prestige achievements
+        Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'CollectionsCreated') WHERE name = 'The Collector'");
+        Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'Prestige') WHERE name = 'The Fun Never Stops'");
+        Player_Info.executeQuery("UPDATE playerinfo SET last_sent_value = 0 WHERE name IN ('CollectionsCreated','Prestige')");
+
+        // Change gold bar to level 35
+        Item.executeQuery("UPDATE item SET level = 35 WHERE id = 18");
+
+        // Store current version, so updates can be checked
+        List<Player_Info> infos = new ArrayList<>();
+            infos.add(new Player_Info("SavedVersion", 0));
+            infos.add(new Player_Info("HighestLevel", Player_Info.getPlayerLevel()));
+        Player_Info.saveInTx(infos);
+
+        // Change pie to include 2 apples, not 1 blueberry. Change legendary half helmet + hammer to use 3 parts each.
+        Recipe.executeQuery("UPDATE recipe SET ingredient = 77 WHERE item = 218 and ingredient = 205");
+        Recipe.executeQuery("UPDATE recipe SET quantity = 3 WHERE item IN (169, 176)");
+
+        // Setting to control whether food should auto re fill
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(10L, "Autofeed", false));
+        settings.add(new Setting(11L, "EnableClickChange", true));
+        Setting.saveInTx(settings);
+
+        // Rename premium tier
+        Tier.executeQuery("UPDATE tier SET name = 'Legendary' WHERE name = 'Premium'");
+
+        // Fix trader desc
+        Trader.executeQuery("UPDATE trader SET description = 'Lots and and lots and lots of ore!' WHERE name = 'Lots More Ore'");
+
+        // Change upgrade name
+        Upgrade.executeQuery("UPDATE upgrade SET name = 'Coins Bonus' WHERE name = 'Gold Bonus'");
+
+        // Change mice to prefer cooked food
+        Visitor_Type.executeQuery("UPDATE visitortype SET type_preferred = (SELECT id FROM type WHERE name = 'Cooked Food') WHERE visitor_id IN (13,48)");
+
+        // Change type of worker 7. Swap favourite item for worker 1 + 3, and worker 4 + 7 (currently worker_id + 211).
+        Worker.executeQuery("UPDATE worker SET character_id = 11 WHERE worker_id = 7");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 214 WHERE worker_id = 1");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 212 WHERE worker_id = 3");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 218 WHERE worker_id = 4");
+        Worker.executeQuery("UPDATE worker SET favourite_food = 215 WHERE worker_id = 7");
+
+        // Halve hammer resources, and change ruby / onyx resources.
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = resource_quantity * 0.75 WHERE tool_id IN (35, 51, 68, 96, 112, 128, 147, 176)");
+        Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
+        List<Worker_Resource> workerResources = new ArrayList<>();
+        workerResources.add(new Worker_Resource(72, 73, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(72, 74, 1, 2)); // Ruby
+        workerResources.add(new Worker_Resource(76, 73, 1, 3)); // Onyx
+        workerResources.add(new Worker_Resource(76, 74, 1, 2)); // Onyx
+        workerResources.add(new Worker_Resource(76, 75, 1, 2)); // Onyx
+        Worker_Resource.saveInTx(workerResources);
     }
 
     private static void createAchievement() {

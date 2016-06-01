@@ -58,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:shrinkColumns="1"
-                android:stretchColumns="1" />
+                android:stretchColumns="1"
+                android:layout_marginRight="5dp" />
 
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>

@@ -9,6 +9,7 @@ public class Constants {
     public static final String LEADERBOARD_TIMES_PRESTIGED = "CgkI6tnE2Y4OEAIQIg";
     public static final String LEADERBOARD_COMPLETION = "CgkI6tnE2Y4OEAIQIw";
     public static final String LEADERBOARD_COLLECTIONS = "CgkI6tnE2Y4OEAIQJQ";
+    public static final String LEADERBOARD_HIGHEST_LEV = "CgkI6tnE2Y4OEAIQQg";
 
     public static final String EVENT_VISITOR_FULLY_COMPLETED = "CgkI6tnE2Y4OEAIQJg";
     public static final String EVENT_VISITOR_COMPLETED = "CgkI6tnE2Y4OEAIQKA";
@@ -131,6 +132,8 @@ public class Constants {
     public static final Long SETTING_WORKER_NOTIFICATIONS = 7L;
     public static final Long SETTING_DISABLE_ADS = 8L;
     public static final Long SETTING_BONUS_NOTIFICATIONS = 9L;
+    public static final Long SETTING_AUTOFEED = 10L;
+    public static final Long SETTING_CLICK_CHANGE = 11L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
