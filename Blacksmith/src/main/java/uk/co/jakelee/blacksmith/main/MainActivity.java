@@ -489,7 +489,11 @@ public class MainActivity extends AppCompatActivity implements
 
     public void clickBonusChest(View view) {
         if (Player_Info.isBonusReady()) {
-            AlertDialogHelper.confirmBonusAdvert(this, this);
+            if (Player_Info.isPremium()) {
+                callbackBonus();
+            } else {
+                AlertDialogHelper.confirmBonusAdvert(this, this);
+            }
         } else {
             ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
                     DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
