@@ -9,16 +9,15 @@ public class PremiumHelper {
     public static boolean payOutTax() {
         if (Player_Info.isPremium()) {
             int taxAmount = getTaxAmount();
-            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, taxAmount);
-            return true;
-        } else {
-            return false;
+                Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, taxAmount);
+                return true;
         }
+        return false;
     }
 
     public static int getTaxAmount() {
-        int taxAmount = Player_Info.getPlayerLevelFromDB() * Trader.outOfStockTraders();
+        int taxAmount = Player_Info.getPlayerLevel() * Trader.outOfStockTraders();
         double multiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("Coins Bonus")) + (0.5 * Player_Info.getPrestige());
-        return (int) (taxAmount * multiplier);
+        return (int) (taxAmount * multiplier) + 1000;
     }
 }

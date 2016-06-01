@@ -111,6 +111,8 @@
     <!-- Stage 15 -->
     <string name="tutorialMainSettings">Settings</string>
     <string name="tutorialMainSettingsText">Sounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
+    <string name="tutorialMainInventory">Inventory</string>
+    <string name="tutorialMainInventoryText">All of your items can be seen here, and sold if necessary. It\'s a good way to keep track of everything!</string>
     <string name="tutorialMainHelp">Help</string>
     <string name="tutorialMainHelpText">The tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
 
@@ -143,6 +145,7 @@
     <string name="powderText">Powders</string>
     <string name="questText">Quests</string>
     <string name="itemSelectText">Items</string>
+    <string name="tipsText">Tips</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -181,7 +184,7 @@
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Coins paid by all out of stock traders on automatic market restock.
-\n- Ability to prestige at level 70, and begin a New Game Plus with a massive gold + XP bonus!
+\n- Ability to prestige at level 70, and begin a New Game Plus with +50% coin earnings &amp; -25% XP!
 \n- Doubled bonus chest rewards, and reduced time between chest openings.
 \n- A big thank you from the developer!</string>
 
@@ -510,7 +513,7 @@
     <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
 \n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
-    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing / suggestions.
+    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
 </string>
 
     <string-array name="toolsArray">
@@ -528,37 +531,41 @@
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
 
     <string-array name='tipsArray'>
-        <!-- General -->
         <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
         <item>The tutorial can be replayed from the Settings menu if you need a reminder.</item>
-        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
-        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
-        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
-        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
-        <item>Pages can be found by completing visitors, sending out workers with food, and opening the bonus chest.</item>
-
-        <!-- Settings -->
         <item>Game sounds / music can be turned off in the Settings, along with notification sounds.</item>
         <item>All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</item>
-        <item>Premium players can disable all adverts from the settings menu.</item>
-        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
-        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
-        <item>The tutorial can be replayed at any time via the Settings menu.</item>
-        <item>The game\'s credits can be viewed in the Settings menu.</item>
-        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
-        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
-        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
-        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
-
-        <!-- Market -->
+        <item>A Visitor\'s Required Trades are listed in black.</item>
+        <item>A Visitor\'s Optional Trades are listed in grey.</item>
+        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
+        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
+        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
+        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
+        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
+        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
+        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
+        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
         <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
         <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
         <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
         <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
         <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
-        <item>Is the large number of items you bought at the Market taking too long to be delivered? Investing in the "Craft Time" upgrade also reduces delivery time on future purchases.</item>
-
-        <!-- Upgrades-->
+        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
+        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
+        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
+        <item>Pages can be found by completing visitors, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
+        <item>Premium players can disable all adverts from the settings menu.</item>
+        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
+        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
+        <item>The game\'s credits can be viewed in the Settings menu.</item>
+        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
+        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
+        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
         <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
         <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
         <item>Initially, you can only have up to 2 Visitors at the same time. This can increased to 10 Visitors by upgrading "Maximum Visitors".</item>
@@ -570,18 +577,6 @@
         <item>Workers initially take 3 hours to return with resources. This can be reduced to only 30 minutes by upgrading "Worker Time".</item>
         <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
         <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
-
-        <!-- Visitor -->
-        <item>A Visitor\'s Required Trades are listed in black.</item>
-        <item>A Visitor\'s Optional Trades are listed in grey.</item>
-        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
-        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
-        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
-        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
-        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
-        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
-
-        <!-- Workers -->
         <item>There are 7 different hirable Workers that unlock as you level up.</item>
         <item>You only have to pay to hire each different Worker once. After you\'ve hired a Worker, they will continue to work for you as long as you want to give them a job to do.</item>
         <item>Workers need Tools. You can either craft Tools or buy them from the Market.</item>

@@ -62,15 +62,15 @@ public class AnvilActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        craft1 = (TextView) findViewById(R.id.craft1);
+        craft10 = (TextView) findViewById(R.id.craft10);
+        craft100 = (TextView) findViewById(R.id.craft100);
+
         createAnvilInterface(true, false);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_8_ANVIL) {
             startTutorial();
         }
-
-        craft1 = (TextView) findViewById(R.id.craft1);
-        craft10 = (TextView) findViewById(R.id.craft10);
-        craft100 = (TextView) findViewById(R.id.craft100);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -133,6 +133,12 @@ public class AnvilActivity extends Activity {
         } else {
             if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
             createItemsInterface(clearExisting);
+        }
+
+        if (MainActivity.vh.anvilBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
         }
     }
 

@@ -51,7 +51,7 @@ public class VisitorActivity extends Activity {
     private static Visitor_Stats visitorStats;
 
     private static boolean identifyFirstDemand = false;
-    public static boolean loadingTrade = false;
+    private static boolean loadingTrade = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

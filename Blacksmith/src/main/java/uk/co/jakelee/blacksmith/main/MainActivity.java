@@ -26,8 +26,6 @@ import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.Random;
-
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
@@ -118,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements
                 BuildConfig.VERSION_NAME.length() > 0 && BuildConfig.VERSION_NAME.endsWith(".0")) {
             AlertDialogHelper.displayUpdateMessage(this, this);
             savedVersion.setIntValue(BuildConfig.VERSION_CODE);
+            savedVersion.save();
         }
 
         gph.UpdateQuest();
@@ -219,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements
 
         TutorialHelper th = new TutorialHelper(Constants.STAGE_15_MAIN);
         th.addTutorial(mainActivity, findViewById(R.id.open_settings), R.string.tutorialMainSettings, R.string.tutorialMainSettingsText, false, Gravity.TOP);
+        th.addTutorial(mainActivity, findViewById(R.id.open_inventory), R.string.tutorialMainInventory, R.string.tutorialMainInventoryText, false, Gravity.TOP);
         th.addTutorial(mainActivity, findViewById(R.id.open_help), R.string.tutorialMainHelp, R.string.tutorialMainHelpText, true, Gravity.TOP);
         th.start(mainActivity);
 
@@ -501,8 +501,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void clickBookcase(View view) {
-        String[] array = getResources().getStringArray(R.array.tipsArray);
-        ToastHelper.showTipToast(this, Toast.LENGTH_LONG, array[new Random().nextInt(array.length)], false);
+        int thisTip = prefs.getInt("nextTip", 0);
+        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        if (thisTip > tipArray.length) {
+            thisTip = 0;
+        }
+
+        String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
+        ToastHelper.showTipToast(this, Toast.LENGTH_LONG, tipMessage, false);
+        prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
 
     @Override

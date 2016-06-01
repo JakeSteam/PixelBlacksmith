@@ -44,8 +44,8 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1464735599000|UPDATE visitorstats SET visits = 50, first_seen = " + System.currentTimeMillis());
-                String supportCode = supportCodeBox.getText().toString().trim();
+                String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
+                //String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
                 } else {
@@ -455,7 +455,6 @@ public class AlertDialogHelper {
                     ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
-                MainActivity.vh.traderBusy = false;
                 activity.alertDialogCallback();
             }
         });
@@ -501,14 +500,6 @@ public class AlertDialogHelper {
         alertDialog.setNeutralButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
-                MainActivity.vh.traderBusy = false;
-            }
-        });
-
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                MainActivity.vh.traderBusy = false;
             }
         });
 
@@ -584,15 +575,7 @@ public class AlertDialogHelper {
 
         alertDialog.setNegativeButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.vh.traderBusy = false;
                 dialog.cancel();
-            }
-        });
-
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                MainActivity.vh.traderBusy = false;
             }
         });
 

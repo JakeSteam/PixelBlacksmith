@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,6 @@ public class MarketActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         dh = DisplayHelper.getInstance(getApplicationContext());
-        MainActivity.vh.traderBusy = false;
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_14_MARKET) {
             startTutorial();
@@ -86,6 +86,11 @@ public class MarketActivity extends Activity {
             inflatedView.setTag(trader.getId());
             inflatedView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500){
+                        return;
+                    } else {
+                        MainActivity.vh.lastTraderClick = SystemClock.elapsedRealtime();
+                    }
                     Intent intent = new Intent(getApplicationContext(), TraderActivity.class);
                     intent.putExtra(TRADER_TO_LOAD, v.getTag().toString());
                     startActivity(intent);

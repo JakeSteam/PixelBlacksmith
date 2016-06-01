@@ -41,14 +41,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/questTitle"
-            android:fadeScrollbars="false">
+            android:fadeScrollbars="false"
+            android:layout_centerInParent="true">
 
             <LinearLayout
                 android:id="@+id/questContainer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:gravity="center">
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/questsCompleted"

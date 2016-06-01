@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -284,6 +285,12 @@ public class DisplayHelper {
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastVisitorClick < 500){
+                        return;
+                    } else {
+                        MainActivity.vh.lastVisitorClick = SystemClock.elapsedRealtime();
+                    }
+
                     Intent intent = new Intent(context, VisitorActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(VISITOR_TO_LOAD, (String) v.getTag());
@@ -540,6 +547,8 @@ public class DisplayHelper {
         ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
 
         questIcon.setImageResource(getEventDrawableID(eventID));
+
+        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
         questProgress.setProgress(current);
         questProgress.setMax(max);
     }
@@ -728,12 +737,14 @@ public class DisplayHelper {
 
     public static void updateBonusChest(ImageView chest) {
         if (Player_Info.displayAds()) {
+            chest.setVisibility(View.VISIBLE);
             if (Player_Info.isBonusReady()) {
                 chest.setImageResource(R.drawable.bonus_chest_full);
             } else {
                 chest.setImageResource(R.drawable.bonus_chest_empty);
             }
         } else {
+            chest.setVisibility(View.GONE);
             chest.setImageResource(R.drawable.transparent);
         }
     }

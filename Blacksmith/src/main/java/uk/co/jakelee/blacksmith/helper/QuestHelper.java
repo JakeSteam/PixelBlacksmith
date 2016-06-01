@@ -56,7 +56,6 @@ public class QuestHelper {
         Inventory.addItem(rewardItem.getId(), Constants.STATE_NORMAL, rewardItemCount);
 
         Player_Info.addXp(xpAmount);
-        Player_Info.increaseByOne(Player_Info.Statistic.QuestsCompleted);
 
         if (rewardPageCount > 0) {
             List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();

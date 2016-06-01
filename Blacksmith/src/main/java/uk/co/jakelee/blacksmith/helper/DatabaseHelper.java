@@ -507,7 +507,7 @@ public class DatabaseHelper {
         // Store current version, so updates can be checked
         List<Player_Info> infos = new ArrayList<>();
             infos.add(new Player_Info("SavedVersion", 0));
-            infos.add(new Player_Info("HighestLevel", 1));
+            infos.add(new Player_Info("HighestLevel", Player_Info.getPlayerLevel()));
         Player_Info.saveInTx(infos);
 
         // Change pie to include 2 apples, not 1 blueberry. Change legendary half helmet + hammer to use 3 parts each.

@@ -138,12 +138,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
     }
 
     public void clickBuyAll(View v) {
-        if (!MainActivity.vh.traderBusy) {
-            MainActivity.vh.traderBusy = true;
-            AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
-        } else {
-            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, R.string.traderBusy, false);
-        }
+        AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
     }
 
     private int getRestockCost() {
@@ -158,10 +153,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     private void clickBuy(View v) {
         Trader_Stock itemStock = (Trader_Stock) v.getTag();
-        if (!MainActivity.vh.traderBusy) {
-            MainActivity.vh.traderBusy = true;
-            AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
-        }
+        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
     }
 
     public void callbackRestock() {

@@ -65,15 +65,15 @@ public class TableActivity extends Activity {
         mGestureDetector = new GestureDetector(this, customGestureDetector);
         mViewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);
 
+        craft1 = (TextView) findViewById(R.id.craft1);
+        craft10 = (TextView) findViewById(R.id.craft10);
+        craft100 = (TextView) findViewById(R.id.craft100);
+
         createTableInterface(true, false);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_10_TABLE) {
             startTutorial();
         }
-
-        craft1 = (TextView) findViewById(R.id.craft1);
-        craft10 = (TextView) findViewById(R.id.craft10);
-        craft100 = (TextView) findViewById(R.id.craft100);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -134,6 +134,12 @@ public class TableActivity extends Activity {
             createBooksInterface(clearExisting);
         } else {
             createItemsInterface(clearExisting);
+        }
+
+        if (MainActivity.vh.tableBusy) {
+            dimButtons();
+        } else {
+            brightenButtons();
         }
     }
 

@@ -41,7 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemSelectTitle"
-            android:fadeScrollbars="false">
+            android:fadeScrollbars="false"
+            android:paddingBottom="5dp">
             <TableLayout
                 android:id="@+id/itemsTable"
                 android:layout_width="match_parent"
