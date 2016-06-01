@@ -503,7 +503,7 @@ public class MainActivity extends AppCompatActivity implements
     public void clickBookcase(View view) {
         int thisTip = prefs.getInt("nextTip", 0);
         String[] tipArray = getResources().getStringArray(R.array.tipsArray);
-        if (thisTip > tipArray.length) {
+        if (thisTip >= tipArray.length) {
             thisTip = 0;
         }
 
