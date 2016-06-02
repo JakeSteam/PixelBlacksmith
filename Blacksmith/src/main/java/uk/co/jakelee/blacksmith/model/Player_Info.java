@@ -79,10 +79,10 @@ public class Player_Info extends SugarRecord {
     }
 
     public static int getVisitorsCompleted() {
-        Player_Info xpInfo = Select.from(Player_Info.class).where(
+        Player_Info completedVisitors = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("VisitorsCompleted")).first();
 
-        return xpInfo.getIntValue();
+        return completedVisitors.getIntValue();
     }
 
     public static boolean isPremium() {
@@ -123,21 +123,21 @@ public class Player_Info extends SugarRecord {
         Player_Info prestige = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Prestige")).first();
 
-        return prestige.getIntValue();
+        return prestige != null ? prestige.getIntValue() : 0;
     }
 
     public static int getHighestLevel() {
         Player_Info level = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("HighestLevel")).first();
 
-        return level.getIntValue();
+        return level != null ? level.getIntValue() : 0;
     }
 
     public static int getCollectionsCrafted() {
         Player_Info collections = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("CollectionsCreated")).first();
 
-        return collections.getIntValue();
+        return collections != null ? collections.getIntValue() : 0;
     }
 
     public static double getCompletionPercent() {
