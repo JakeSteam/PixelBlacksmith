@@ -101,7 +101,20 @@ public class HelpActivity extends Activity {
             displayHelpQuests(layout);
         } else if (topic == TOPICS.Item_Picker) {
             displayHelpItemPicker(layout);
+        } else if (topic == TOPICS.Prestige) {
+            displayHelpPrestige(layout);
         }
+    }
+
+    private void displayHelpPrestige(LinearLayout layout) {
+        layout.addView(dh.createTextView("Prestige\n", 26));
+        layout.addView(dh.createTextView("Prestiging resets many aspects of your game, and can only be performed at level 70 by premium players.\n", 22));
+        layout.addView(dh.createTextView("Benefits:", 24));
+        layout.addView(dh.createTextView("+50% coins bonus.\n-25% XP bonus.\n+100% to completion percentage.\nAchievement on first prestige.\n", 22));
+        layout.addView(dh.createTextView("Reset:", 24));
+        layout.addView(dh.createTextView("All items (except pages and books).\nAll upgrades (except premium benefits).\nAll slots.\nXP / Level.\nCurrent visitors.\nExtra trader stock unlocked.\nAll workers.\n", 22));
+        layout.addView(dh.createTextView("Kept:", 24));
+        layout.addView(dh.createTextView("Discovered visitor preferences.\nVisitor trophy progress.\nHighest level statistic.\nItems smelted / crafted / traded / bought / sold / enchanted statistics.\nCoins earned statistic.\nBiggest trade statistic.\nWorker's trips statistic.\nQuests completed statistic.", 22));
     }
 
     private void displayTips(LinearLayout layout) {
@@ -378,5 +391,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
 }
