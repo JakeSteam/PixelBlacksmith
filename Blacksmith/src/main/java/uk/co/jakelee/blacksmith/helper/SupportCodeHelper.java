@@ -49,7 +49,7 @@ public class SupportCodeHelper {
     }
 
     private static boolean validatePartsAndCode(String[] parts) {
-        if (parts.length != 2 || parts[0].equals("") || parts[1].equals("")) {
+        if (parts.length < 2 || parts[0].equals("") || parts[1].equals("")) {
             return false;
         }
 
