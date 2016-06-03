@@ -44,8 +44,8 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
-                //String supportCode = supportCodeBox.getText().toString().trim();
+                //String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
+                String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
                 } else {
