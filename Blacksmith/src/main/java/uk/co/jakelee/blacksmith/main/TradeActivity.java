@@ -183,12 +183,12 @@ public class TradeActivity extends Activity {
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
-                ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, true, true);
+                ImageView image = dh.createItemImage(inventory.getItem(), 35, 35, true, true);
 
                 String itemName = item.getPrefix(inventory.getState()) + item.getName();
                 TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                name.setPadding(0, 0, 0, 17);
+                name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
                 name.setSingleLine(false);
                 name.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -202,10 +202,11 @@ public class TradeActivity extends Activity {
 
                 // Create a sell button for that item
                 if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
-                    TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
-                    sell.setWidth(dh.convertDpToPixel(40));
-                    sell.setShadowLayer(10, 0, 0, Color.WHITE);
+                    TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18);
+                    sell.setClickable(true);
+                    sell.setTextColor(getResources().getColorStateList(R.color.text_color));
                     sell.setGravity(Gravity.CENTER);
+                    sell.setWidth(dh.convertDpToPixel(40));
                     sell.setBackgroundResource(R.drawable.sell_small);
                     sell.setTag(R.id.itemID, item.getId());
                     sell.setTag(R.id.itemState, inventory.getState());

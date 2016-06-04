@@ -113,6 +113,7 @@ public class InventoryActivity extends Activity {
                 sell.setClickable(true);
                 sell.setTextColor(getResources().getColorStateList(R.color.text_color));
                 sell.setGravity(Gravity.CENTER);
+                sell.setWidth(dh.convertDpToPixel(40));
                 sell.setBackgroundResource(R.drawable.sell_small);
 
                 sell.setTag(R.id.itemID, item.getId());
