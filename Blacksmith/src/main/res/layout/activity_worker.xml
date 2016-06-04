@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/workerTitle"
             app:layout_marginTopPercent="10%"
+            app:layout_marginBottomPercent="1%"
             android:fadeScrollbars="false">
 
             <LinearLayout
