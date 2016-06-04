@@ -83,6 +83,7 @@ public class TableActivity extends Activity {
                         (TableLayout) findViewById(R.id.ingredientsTable),
                         mViewFlipper,
                         Constants.STATE_NORMAL);
+                updateButtons();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
@@ -135,7 +136,9 @@ public class TableActivity extends Activity {
         } else {
             createItemsInterface(clearExisting);
         }
+    }
 
+    private void updateButtons() {
         if (MainActivity.vh.tableBusy) {
             dimButtons();
         } else {

@@ -575,8 +575,12 @@ public class DatabaseHelper {
     }
     
     private static void patch161to170() {
-        Setting setting = new Setting(7L, "OnlyAvailableItems", true);
+        // Add only displaying available items in quick select.
+        Setting setting = new Setting(12L, "OnlyAvailableItems", true);
         setting.save();
+
+        // Update prices of legendary hammer + half helmet to reflect part change
+        Item.executeQuery("UPDATE item SET value = 3000 WHERE name IN (\"Legendary half helmet\",\"Legendary hammer\")");
     }
 
     private static void createAchievement() {

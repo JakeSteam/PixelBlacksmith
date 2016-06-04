@@ -78,6 +78,7 @@ public class FurnaceActivity extends Activity {
                         (TableLayout) findViewById(R.id.ingredientsTable),
                         mViewFlipper,
                         Constants.STATE_NORMAL);
+                updateButtons();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
@@ -127,6 +128,10 @@ public class FurnaceActivity extends Activity {
             createFurnaceInterface(clearExisting);
         }
 
+        updateButtons();
+    }
+
+    private void updateButtons() {
         if (MainActivity.vh.furnaceBusy) {
             dimButtons();
         } else {

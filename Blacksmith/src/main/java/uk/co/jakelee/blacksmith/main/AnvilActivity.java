@@ -80,6 +80,7 @@ public class AnvilActivity extends Activity {
                         (TableLayout) findViewById(R.id.ingredientsTable),
                         mViewFlipper,
                         ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED);
+                updateButtons();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
@@ -134,7 +135,9 @@ public class AnvilActivity extends Activity {
             if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
             createItemsInterface(clearExisting);
         }
+    }
 
+    private void updateButtons() {
         if (MainActivity.vh.anvilBusy) {
             dimButtons();
         } else {
