@@ -273,8 +273,8 @@ public class EnchantingActivity extends Activity {
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.enchantAdd),
-                    item.getName(),
-                    gem.getName()), false);
+                    gem.getName(),
+                    item.getName()), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
 
@@ -287,7 +287,7 @@ public class EnchantingActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Enchanting);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Gem_Table);
         startActivity(intent);
     }
 

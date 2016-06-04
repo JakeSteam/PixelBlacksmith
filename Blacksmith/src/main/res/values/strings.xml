@@ -141,7 +141,7 @@
     <string name="itemsText">Items</string>
     <string name="ringsText">Rings</string>
     <string name="booksText">Books</string>
-    <string name="enchantText">Enchants</string>
+    <string name="enchantText">Gems</string>
     <string name="powderText">Powders</string>
     <string name="questText">Quests</string>
     <string name="itemSelectText">Items</string>
@@ -403,7 +403,7 @@
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
     <string name="restockMarketTextAdvert">The marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
     <string name="restockMarketButton">Restock</string>
-    <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
+    <string name="enchantAdd">Began embedding the %1$s into the %2$s.</string>
     <string name="powderAdd">Began crushing the gem into %s.</string>
 
     <string name="traderArrived">Trader \"%s\" has arrived.</string>
@@ -445,7 +445,7 @@
     <string name="statisticsSmelted">Items Smelted:</string>
     <string name="statisticsCrafted">Items Crafted:</string>
     <string name="statisticsTraded">Items Traded:</string>
-    <string name="statisticsEnchanted">Items Enchanted:</string>
+    <string name="statisticsEnchanted">Gems Embedded:</string>
     <string name="statisticsBought">Items Bought:</string>
     <string name="statisticsSold">Items Sold:</string>
     <string name="statisticsVisitors">Visitors Completed:</string>
@@ -492,7 +492,7 @@
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
     <string name="tradeMax">Max?</string>
-    <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or enchanting area to make some.</string>
+    <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
 
     <string name="creditsOverall">Overall</string>
     <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>

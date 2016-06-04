@@ -67,8 +67,8 @@ public class HelpActivity extends Activity {
             displayHelpInventory(layout);
         } else if (topic == TOPICS.Credits) {
             displayHelpCredits(layout);
-        } else if (topic == TOPICS.Enchanting) {
-            displayHelpEnchanting(layout);
+        } else if (topic == TOPICS.Gem_Table) {
+            displayHelpGemTable(layout);
         } else if (topic == TOPICS.Worker_Food) {
             displayHelpFood(layout);
         } else if (topic == TOPICS.Market) {
@@ -114,7 +114,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Reset:", 24));
         layout.addView(dh.createTextView("All items (except pages and books).\nAll upgrades (except premium benefits).\nAll slots.\nXP / Level.\nCurrent visitors.\nExtra trader stock unlocked.\nAll workers.\n", 22));
         layout.addView(dh.createTextView("Kept:", 24));
-        layout.addView(dh.createTextView("Discovered visitor preferences.\nVisitor trophy progress.\nHighest level statistic.\nItems smelted / crafted / traded / bought / sold / enchanted statistics.\nCoins earned statistic.\nBiggest trade statistic.\nWorker's trips statistic.\nQuests completed statistic.", 22));
+        layout.addView(dh.createTextView("Discovered visitor preferences.\nVisitor trophy progress.\nHighest level statistic.\nItems smelted / crafted / traded / bought / sold & gems embedded statistics.\nCoins earned statistic.\nBiggest trade statistic.\nWorker's trips statistic.\nQuests completed statistic.", 22));
     }
 
     private void displayTips(LinearLayout layout) {
@@ -197,7 +197,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Thanks, y'all!", 22));
     }
 
-    private void displayHelpEnchanting(LinearLayout layout) {
+    private void displayHelpGemTable(LinearLayout layout) {
         layout.addView(dh.createTextView("Gem Table\n", 26));
         layout.addView(dh.createTextView("Once an item is finished, its value can be greatly increased by putting a valuable gem inside.\n", 22));
         layout.addView(dh.createTextView("Use these wisely, as they are only available in limited quantities, and certain visitors will pay a very hefty bonus for items with their preferred gem in.\n", 22));
@@ -298,7 +298,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Once a visitor's preferred item type, tier, or state have been discovered through trading, this will be displayed underneath the visitor's picture. Also shown is how much extra a visitor will pay for these preferences. Combine all three to achieve the biggest profits!\n", 22));
         layout.addView(dh.createTextView("Item type: This is the item's category. For example dagger, sword, or hatchet.\n", 22));
         layout.addView(dh.createTextView("Item tier: This is the quality of the item's material. For example bronze, iron, or steel.\n", 22));
-        layout.addView(dh.createTextView("Item state: This is the condition of the item. For example unfinished (shattered vial icon) or normal (vial icon). At higher levels, this can be an enchantment such as red (ruby icon) or blue (sapphire icon).\n", 22));
+        layout.addView(dh.createTextView("Item state: This is the condition of the item. For example unfinished (shattered vial icon) or normal (vial icon). At higher levels, this can be an embedded gem such as red (ruby icon) or blue (sapphire icon).\n", 22));
         layout.addView(dh.createTextView("Additionally, the highest value item previously traded with the visitor is displayed.\n", 22));
         layout.addView(dh.createTextView("In the list of demands, black denotes a required trade, whilst grey is optional.\n", 22));
         layout.addView(dh.createTextView("Once all required trades have been completed, the visitor can be completed and you will receive a reward. If all of the visitor's optional demands have also been completed, you'll receive double the reward!\n", 22));
@@ -392,5 +392,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Enchanting, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Gem_Table, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
 }
