@@ -24,7 +24,7 @@ public class SoundHelper {
 
     private static void playSound(Context context, int soundID) {
         // Only play if the user has sounds enabled.
-        if (Setting.findById(Setting.class, Constants.SETTING_SOUNDS).getBoolValue()) {
+        if (Setting.getSafeBoolean(Constants.SETTING_SOUNDS)) {
             try {
                 MediaPlayer mediaPlayer = MediaPlayer.create(context, soundID);
                 mediaPlayer.start();

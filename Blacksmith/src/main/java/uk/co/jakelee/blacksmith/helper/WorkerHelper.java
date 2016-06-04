@@ -80,7 +80,8 @@ public class WorkerHelper {
                 Condition.prop("time_started").notEq(0)).list();
         int workersFinished = 0;
         String rewardText = "";
-        boolean refillFood = Setting.findById(Setting.class, Constants.SETTING_AUTOFEED).getBoolValue();
+
+        boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
 
         for (Worker worker : workers) {
             if (getTimeRemaining(worker) <= 0) {
