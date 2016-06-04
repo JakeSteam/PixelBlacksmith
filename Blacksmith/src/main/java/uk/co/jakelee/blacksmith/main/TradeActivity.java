@@ -238,8 +238,9 @@ public class TradeActivity extends Activity {
             @Override
             public void run() {
                 itemsTable.removeAllViews();
-                for (TableRow row : finalRows)
+                for (TableRow row : finalRows) {
                     itemsTable.addView(row);
+                }
             }
         });
     }

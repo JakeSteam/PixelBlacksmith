@@ -575,10 +575,6 @@ public class DatabaseHelper {
     }
     
     private static void patch161to170() {
-        // Add only displaying available items in quick select.
-        Setting setting = new Setting(12L, "OnlyAvailableItems", true);
-        setting.save();
-
         // Update prices of legendary hammer + half helmet to reflect part change
         Item.executeQuery("UPDATE item SET value = 3000 WHERE name IN (\"Legendary half helmet\",\"Legendary hammer\")");
 
@@ -586,6 +582,18 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = 21 WHERE name IN (\"Bronze half shield\",\"Bronze full shield\",\"Bronze half helmet\",\"Bronze chainmail\")");
         Item.executeQuery("UPDATE item SET value = 28 WHERE name = \"Bronze full helmet\"");
         Item.executeQuery("UPDATE item SET value = 35 WHERE name = \"Bronze platebody\"");
+
+        // Add only displaying available items in quick select.
+        new Setting(12L, "OnlyAvailableItems", true).save();
+
+        // Updating minimum levels for traders
+        Trader.executeQuery("UPDATE trader SET level = 20 WHERE name = \"The Backbone\" OR name = \"GemCrusher 9000\"");
+        Trader.executeQuery("UPDATE trader SET level = 35 WHERE name = \"The Nougat\" OR name = \"The Golden Boulders\"");
+        Trader.executeQuery("UPDATE trader SET level = 40 WHERE name = \"The Prime Cuts\"");
+        Trader.executeQuery("UPDATE trader SET level = 45 WHERE name = \"The Exclusive Emporium\"");
+
+        // Increasing stock for gem / powder traders
+        Trader_Stock.executeQuery("UPDATE traderstock SET default_stock = default_stock * 5 WHERE trader_type = 48");
 
         // Actually fixing green and blue visitors...
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 5, type_preferred = 20 WHERE visitor_id = 8");
