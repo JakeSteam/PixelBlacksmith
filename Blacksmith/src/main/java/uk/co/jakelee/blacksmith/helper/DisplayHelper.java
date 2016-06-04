@@ -702,7 +702,7 @@ public class DisplayHelper {
             itemSelector.setDisplayedChild(selectedPosition);
         }
 
-        if (Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue()) {
+        if (Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE)) {
             itemSelector.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemSelectActivity.class);

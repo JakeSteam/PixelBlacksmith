@@ -70,4 +70,9 @@ public class Setting extends SugarRecord {
         this.strValue = strValue;
     }
 
+    public static boolean getSafeBoolean(long settingId) {
+        Setting setting = Setting.findById(Setting.class, settingId);
+
+        return setting != null && setting.getBoolValue();
+    }
 }
