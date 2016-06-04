@@ -134,6 +134,7 @@ public class Constants {
     public static final Long SETTING_BONUS_NOTIFICATIONS = 9L;
     public static final Long SETTING_AUTOFEED = 10L;
     public static final Long SETTING_CLICK_CHANGE = 11L;
+    public static final Long SETTING_ONLY_AVAILABLE = 12L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

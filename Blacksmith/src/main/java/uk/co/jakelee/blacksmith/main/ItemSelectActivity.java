@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,11 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Setting;
 
 public class ItemSelectActivity extends Activity {
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.itemSelectID";
@@ -36,10 +39,39 @@ public class ItemSelectActivity extends Activity {
 
     private void displayItemsList() {
         TableLayout itemsContainer = (TableLayout) findViewById(R.id.itemsTable);
+        itemsContainer.removeAllViews();
+
+        boolean onlyDisplayAvailable = Setting.getSafeBoolean(Constants.SETTING_ONLY_AVAILABLE);
         int itemIndex = 0;
         for (Item item : items) {
-            TableRow itemRow = createItemRow(item, itemIndex++);
-            itemsContainer.addView(itemRow);
+            if (!onlyDisplayAvailable || (onlyDisplayAvailable && Inventory.canCreateBulkItem(item.getId(), dh.itemSelectionState, 1) == Constants.SUCCESS)) {
+                TableRow itemRow = createItemRow(item, itemIndex++);
+                itemsContainer.addView(itemRow);
+            }
+        }
+        updateIndicator();
+    }
+
+    public void toggleOnlyAvailable(View view) {
+        Setting onlyAvailable = Setting.findById(Setting.class, Constants.SETTING_ONLY_AVAILABLE);
+        if (onlyAvailable != null) {
+            onlyAvailable.setBoolValue(!onlyAvailable.getBoolValue());
+            onlyAvailable.save();
+
+            displayItemsList();
+        }
+    }
+
+    private void updateIndicator() {
+        ImageView onlyAvailableIndicator = (ImageView) findViewById(R.id.onlyAvailableIndicator);
+
+        Setting onlyAvailableSetting = Setting.findById(Setting.class, Constants.SETTING_ONLY_AVAILABLE);
+        if (onlyAvailableSetting != null) {
+            Drawable tick = dh.createDrawable(R.drawable.tick, 30, 30);
+            Drawable cross = dh.createDrawable(R.drawable.cross, 30, 30);
+
+            boolean onlyAvailableIndicatorValue = onlyAvailableSetting.getBoolValue();
+            onlyAvailableIndicator.setImageDrawable(onlyAvailableIndicatorValue ? cross : tick);
         }
     }
 

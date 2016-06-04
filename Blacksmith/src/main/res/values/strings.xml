@@ -202,6 +202,8 @@
     <string name="sendOutWorkersToast">%d workers excitedly jog out of the door, in search of resources.</string>
     <string name="autofeedWorkers">Auto-feed\n</string>
 
+    <string name="onlyAvailable">Show All Items\n</string>
+
     <string name="updateMessage">Updated to version %s!\n\nA full changelist can be viewed on the /r/PixelBlacksmith subreddit.</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>

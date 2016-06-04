@@ -36,11 +36,42 @@
             app:layout_marginBottomPercent="9%"
             app:layout_marginTopPercent="3%" />
 
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/onlyAvailableToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_extra_wide"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="toggleOnlyAvailable"
+            android:text="@string/onlyAvailable"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/onlyAvailableIndicator"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cross"
+            android:onClick="toggleOnlyAvailable"
+            android:layout_alignLeft="@id/onlyAvailableToggle"
+            android:layout_alignRight="@id/onlyAvailableToggle"
+            android:layout_alignBottom="@id/onlyAvailableToggle"
+            android:layout_marginBottom="3dp"/>
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/itemsScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemSelectTitle"
+            android:layout_above="@id/onlyAvailableToggle"
             android:fadeScrollbars="false"
             android:paddingBottom="5dp">
             <TableLayout

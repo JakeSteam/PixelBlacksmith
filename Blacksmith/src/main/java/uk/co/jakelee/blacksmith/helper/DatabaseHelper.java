@@ -44,6 +44,7 @@ public class DatabaseHelper {
     public final static int DB_V1_5_4 = 9;
     public final static int DB_V1_6_0 = 10;
     public final static int DB_V1_6_1 = 11;
+    public final static int DB_V1_7_0 = 12;
 
 
     public static void handlePatches() {
@@ -98,9 +99,14 @@ public class DatabaseHelper {
             DatabaseHelper.patch160to161();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_1).apply();
         }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_1) {
+            DatabaseHelper.patch161to170();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_0).apply();
+        }
     }
 
-    public static void initialSQL() {
+    private static void initialSQL() {
         createAchievement();
         createCategory();
         createCharacter();
@@ -124,13 +130,13 @@ public class DatabaseHelper {
         createVisitorType();
     }
 
-    public static void patch100to101() {
+    private static void patch100to101() {
         // Add upgradeable restock cost
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
         restockAllCost.save();
     }
 
-    public static void patch101to120() {
+    private static void patch101to120() {
         // Updated mithril sword description
         Item mithrilLongsword = Item.findById(Item.class, 83L);
         if (mithrilLongsword != null) {
@@ -155,7 +161,7 @@ public class DatabaseHelper {
 
     }
 
-    public static void patch120to121() {
+    private static void patch120to121() {
         Slot firstEnchantingSlot = Select.from(Slot.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_ENCHANTING),
                 Condition.prop("level").eq(25)).first();
@@ -165,7 +171,7 @@ public class DatabaseHelper {
         }
     }
 
-    public static void patch121to130() {
+    private static void patch121to130() {
         Upgrade upgrade = new Upgrade("Worker Time", "mins", 50, 30, 180, 30, 180);
         upgrade.save();
 
@@ -204,7 +210,7 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = value - 1 WHERE tier = 1 OR id = 11");
     }
 
-    public static void patch130to140() {
+    private static void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
         Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE visitor_id = 11");
@@ -219,7 +225,7 @@ public class DatabaseHelper {
         }
     }
 
-    public static void patch140to150() {
+    private static void patch140to150() {
         if (Upgrade.getValue("Minimum Visitor Rewards") == 0) {
             patch130to140();
         }
@@ -496,12 +502,12 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    public static void patch150to154() {
+    private static void patch150to154() {
         Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id IN (27, 28)");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
     }
 
-    public static void patch154to160() {
+    private static void patch154to160() {
         // Fix collection + prestige achievements
         Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'CollectionsCreated') WHERE name = 'The Collector'");
         Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'Prestige') WHERE name = 'The Fun Never Stops'");
@@ -557,7 +563,7 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    public static void patch160to161() {
+    private static void patch160to161() {
         Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(72, 129, 1, 2)); // Ruby
@@ -566,6 +572,11 @@ public class DatabaseHelper {
         workerResources.add(new Worker_Resource(76, 130, 1, 2)); // Onyx
         workerResources.add(new Worker_Resource(76, 131, 1, 2)); // Onyx
         Worker_Resource.saveInTx(workerResources);
+    }
+    
+    private static void patch161to170() {
+        Setting setting = new Setting(7L, "OnlyAvailableItems", true);
+        setting.save();
     }
 
     private static void createAchievement() {

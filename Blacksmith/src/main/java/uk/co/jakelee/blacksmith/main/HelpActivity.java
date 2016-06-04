@@ -378,6 +378,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("When the \"Quick Select\" setting is enabled, tapping an item will display a list of all items in the current tier.\n", 22));
         layout.addView(dh.createTextView("Tapping any item image / name will load it into the crafting interface, and this can often be faster than swiping to the area.\n", 22));
         layout.addView(dh.createTextView("When this option is enabled, swiping to change item can be trickier, so some players may wish to disable it via the settings menu for easier swiping.", 22));
+        layout.addView(dh.createTextView("Additionally, the \"Show All Items\" toggle will switch between only displaying creatable items, and displaying all items.", 22));
     }
 
     public void openHelp(View view) {
