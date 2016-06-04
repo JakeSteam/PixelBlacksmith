@@ -236,14 +236,14 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 setupRecurringEvents();
                 NotificationHelper.clearNotifications(getApplicationContext());
-                if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
+                if (Setting.getSafeBoolean(Constants.SETTING_MUSIC) && !musicServiceIsStarted) {
                     startService(musicService);
                     musicServiceIsStarted = true;
                 }
             }
         }).start();
 
-        if (Setting.findById(Setting.class, Constants.SETTING_SIGN_IN).getBoolValue() && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+        if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
             GooglePlayHelper.mGoogleApiClient.connect();
         }
     }
@@ -270,10 +270,10 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 newVisitors = VisitorHelper.tryCreateRequiredVisitors();
 
-                if (Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && !musicServiceIsStarted) {
+                if (Setting.getSafeBoolean(Constants.SETTING_MUSIC) && !musicServiceIsStarted) {
                     startService(musicService);
                     musicServiceIsStarted = true;
-                } else if (!Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue() && musicServiceIsStarted) {
+                } else if (!Setting.getSafeBoolean(Constants.SETTING_MUSIC) && musicServiceIsStarted) {
                     stopService(musicService);
                     musicServiceIsStarted = false;
                 }
@@ -313,24 +313,21 @@ public class MainActivity extends AppCompatActivity implements
         super.onStop();
 
         handler.removeCallbacksAndMessages(null);
+        boolean notificationSound = Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS);
 
-        if (Setting.findById(Setting.class, Constants.SETTING_RESTOCK_NOTIFICATIONS).getBoolValue()) {
-            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+        if (Setting.getSafeBoolean(Constants.SETTING_RESTOCK_NOTIFICATIONS)) {
             NotificationHelper.addRestockNotification(getApplicationContext(), notificationSound);
         }
 
-        if (Setting.findById(Setting.class, Constants.SETTING_WORKER_NOTIFICATIONS).getBoolValue()) {
-            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+        if (Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS)) {
             NotificationHelper.addWorkerNotification(getApplicationContext(), notificationSound);
         }
 
-        if (Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue() && Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
-            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+        if (Setting.getSafeBoolean(Constants.SETTING_VISITOR_NOTIFICATIONS) && Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
             NotificationHelper.addVisitorNotification(getApplicationContext(), notificationSound);
         }
 
-        if (Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue() && !Player_Info.isBonusReady() && Player_Info.displayAds()) {
-            boolean notificationSound = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+        if (Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS) && !Player_Info.isBonusReady() && Player_Info.displayAds()) {
             NotificationHelper.addBonusNotification(getApplicationContext(), notificationSound);
         }
 

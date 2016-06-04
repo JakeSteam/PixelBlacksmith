@@ -144,7 +144,7 @@ public class StatisticsActivity extends Activity {
 
         double bonusXPMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus")) * (Math.pow(0.75, prestigeLevel));
         if (bonusXPMultiplier >= 1) {
-            int xpPercent = (int) (100 * (bonusXPMultiplier - 1));
+            int xpPercent = (int) Math.ceil(100 * (bonusXPMultiplier - 1));
             ((TextViewPixel) findViewById(R.id.totalBonusXP)).setText(String.format(getString(R.string.genericPercent), "+", xpPercent));
         } else {
             int xpPercent = (int) Math.ceil(100 - (100 * bonusXPMultiplier));

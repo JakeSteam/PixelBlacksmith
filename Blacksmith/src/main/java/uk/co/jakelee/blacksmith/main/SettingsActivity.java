@@ -109,39 +109,39 @@ public class SettingsActivity extends Activity {
         Drawable cross = dh.createDrawable(R.drawable.cross, 50, 50);
 
         ImageView soundToggle = (ImageView) findViewById(R.id.soundToggleButton);
-        boolean soundToggleValue = Setting.findById(Setting.class, Constants.SETTING_SOUNDS).getBoolValue();
+        boolean soundToggleValue = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
         soundToggle.setImageDrawable(soundToggleValue ? tick : cross);
 
         ImageView musicToggle = (ImageView) findViewById(R.id.musicToggleButton);
-        boolean musicToggleValue = Setting.findById(Setting.class, Constants.SETTING_MUSIC).getBoolValue();
+        boolean musicToggleValue = Setting.getSafeBoolean(Constants.SETTING_MUSIC);
         musicToggle.setImageDrawable(musicToggleValue ? tick : cross);
 
         ImageView restockNotificationToggle = (ImageView) findViewById(R.id.restockNotificationToggleButton);
-        boolean restockNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_RESTOCK_NOTIFICATIONS).getBoolValue();
+        boolean restockNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_RESTOCK_NOTIFICATIONS);
         restockNotificationToggle.setImageDrawable(restockNotificationToggleValue ? tick : cross);
 
         ImageView visitorNotificationToggle = (ImageView) findViewById(R.id.visitorNotificationToggleButton);
-        boolean visitorNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_VISITOR_NOTIFICATIONS).getBoolValue();
+        boolean visitorNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_VISITOR_NOTIFICATIONS);
         visitorNotificationToggle.setImageDrawable(visitorNotificationToggleValue ? tick : cross);
 
         ImageView workerNotificationToggle = (ImageView) findViewById(R.id.workerNotificationToggleButton);
-        boolean workerNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_WORKER_NOTIFICATIONS).getBoolValue();
+        boolean workerNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS);
         workerNotificationToggle.setImageDrawable(workerNotificationToggleValue ? tick : cross);
 
         ImageView bonusNotificationToggle = (ImageView) findViewById(R.id.bonusNotificationToggleButton);
-        boolean bonusNotificationToggleValue = Setting.findById(Setting.class, Constants.SETTING_BONUS_NOTIFICATIONS).getBoolValue();
+        boolean bonusNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS);
         bonusNotificationToggle.setImageDrawable(bonusNotificationToggleValue ? tick : cross);
 
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
-        boolean notificationSoundToggleValue = Setting.findById(Setting.class, Constants.SETTING_NOTIFICATION_SOUNDS).getBoolValue();
+        boolean notificationSoundToggleValue = Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS);
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
 
         ImageView adToggle = (ImageView) findViewById(R.id.turnOffAdsButton);
-        boolean adToggleValue = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS).getBoolValue();
+        boolean adToggleValue = Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS);
         adToggle.setImageDrawable(adToggleValue ? tick : cross);
 
         ImageView clickChangeToggle = (ImageView) findViewById(R.id.clickChangeToggleButton);
-        boolean clickChangeToggleValue = Setting.findById(Setting.class, Constants.SETTING_CLICK_CHANGE).getBoolValue();
+        boolean clickChangeToggleValue = Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE);
         clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
 
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
