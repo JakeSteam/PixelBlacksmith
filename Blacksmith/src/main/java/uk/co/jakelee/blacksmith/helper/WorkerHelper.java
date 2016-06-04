@@ -107,9 +107,9 @@ public class WorkerHelper {
 
         if (workersFinished > 1) {
             rewardText = String.format(context.getString(R.string.workersReturned), workersFinished);
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, rewardText, true);
+            ToastHelper.showPositiveToast(context, ToastHelper.LONG, rewardText, true);
         } else if (workersFinished == 1) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, rewardText, true);
+            ToastHelper.showPositiveToast(context, ToastHelper.LONG, rewardText, true);
         }
     }
 

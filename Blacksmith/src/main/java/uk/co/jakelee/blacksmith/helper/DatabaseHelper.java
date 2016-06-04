@@ -583,8 +583,11 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = 28 WHERE name = \"Bronze full helmet\"");
         Item.executeQuery("UPDATE item SET value = 35 WHERE name = \"Bronze platebody\"");
 
-        // Add only displaying available items in quick select.
-        new Setting(12L, "OnlyAvailableItems", true).save();
+        // Add only displaying available items in quick select & open message log on toast click
+        List<Setting> settings = new ArrayList<>();
+            settings.add(new Setting(12L, "OnlyAvailableItems", true));
+            settings.add(new Setting(13L, "OpenMessageLog", false));
+        Setting.saveInTx(settings);
 
         // Updating minimum levels for traders
         Trader.executeQuery("UPDATE trader SET level = 20 WHERE name = \"The Backbone\" OR name = \"GemCrusher 9000\"");

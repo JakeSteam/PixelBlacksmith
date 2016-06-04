@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.Snackbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,6 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -136,7 +136,7 @@ public class MarketActivity extends Activity {
 
     public void callbackRestock() {
         Trader.restockAll(0);
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.traderRestockAllCompleteAdvert, true);
+        ToastHelper.showToast(this, ToastHelper.LONG, R.string.traderRestockAllCompleteAdvert, true);
         populateTraderList();
     }
 

@@ -192,7 +192,7 @@ public class TradeActivity extends Activity {
                 name.setSingleLine(false);
                 name.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                        ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
+                        ToastHelper.showToast(activity, ToastHelper.SHORT, item.getDescription(), false);
                     }
                 });
 
@@ -290,7 +290,7 @@ public class TradeActivity extends Activity {
 
         if (itemsTraded > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.tradedItem),
+            ToastHelper.showToast(getApplicationContext(), ToastHelper.SHORT, String.format(getString(R.string.tradedItem),
                     itemsTraded,
                     itemToSell.getName(),
                     value * itemsTraded), false);
@@ -301,7 +301,7 @@ public class TradeActivity extends Activity {
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse), false);
+            ToastHelper.showErrorToast(getApplicationContext(), ToastHelper.SHORT, ErrorHelper.errors.get(tradeResponse), false);
         }
 
         dh.updateCoins(Inventory.getCoins());

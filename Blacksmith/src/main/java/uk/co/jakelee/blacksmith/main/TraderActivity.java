@@ -133,7 +133,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         if (restockCost > 0) {
             AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.unnecessaryRestock, false);
+            ToastHelper.showToast(this, ToastHelper.SHORT, R.string.unnecessaryRestock, false);
         }
     }
 
@@ -158,7 +158,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     public void callbackRestock() {
         trader.restock(0);
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.traderRestockCompleteAdvert, true);
+        ToastHelper.showToast(this, ToastHelper.LONG, R.string.traderRestockCompleteAdvert, true);
         createTraderInterface();
     }
 

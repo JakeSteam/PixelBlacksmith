@@ -146,6 +146,7 @@
     <string name="questText">Quests</string>
     <string name="itemSelectText">Items</string>
     <string name="tipsText">Tips</string>
+    <string name="messageLogToggleText">Quick Log Access</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -331,6 +332,7 @@
     <string name="sell100Text">Sell 100</string>
     <string name="crushGemText">Crush Gem</string>
 
+    <string name="settingChanged">Setting \"%1$s\" successfully turned %2$s!</string>
     <string name="soundSettingText">Sounds</string>
     <string name="musicSettingText">Music</string>
     <string name="notificationSoundSettingText">Alerts</string>
@@ -570,7 +572,7 @@
         <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
         <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
         <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
-        <item>Initially, you can only have up to 2 Visitors at the same time. This can increased to 10 Visitors by upgrading "Maximum Visitors".</item>
+        <item>Initially, you can only have up to 2 Visitors at the same time. This can be increased to 10 Visitors by upgrading "Maximum Visitors".</item>
         <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
         <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
         <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>

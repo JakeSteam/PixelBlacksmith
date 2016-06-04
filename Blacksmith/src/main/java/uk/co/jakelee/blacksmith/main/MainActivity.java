@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -281,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
 
         if (newVisitors > 0) {
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
+            ToastHelper.showToast(context, ToastHelper.SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
             newVisitors = 0;
         }
 
@@ -368,9 +367,9 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors == 1) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, R.string.visitorArriving, true);
+                    ToastHelper.showToast(getApplicationContext(), ToastHelper.LONG, R.string.visitorArriving, true);
                 } else if (newVisitors > 1) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
+                    ToastHelper.showToast(getApplicationContext(), ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
                 gph.UpdateQuest();
@@ -387,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     boolean taxPaid = PremiumHelper.payOutTax();
                     Trader_Stock.restockTraders();
-                    ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
+                    ToastHelper.showPositiveToast(getApplicationContext(), ToastHelper.LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
@@ -480,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements
             Intent intent = new Intent(this, QuestActivity.class);
             startActivity(intent);
         } else {
-            ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
+            ToastHelper.showErrorToast(this, ToastHelper.LONG, R.string.questsNoConnection, false);
         }
     }
 
@@ -492,13 +491,13 @@ public class MainActivity extends AppCompatActivity implements
                 AlertDialogHelper.confirmBonusAdvert(this, this);
             }
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
+            ToastHelper.showToast(this, ToastHelper.SHORT, String.format(getString(R.string.bonusTimeLeft),
                     DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
         }
     }
 
     public void clickWindow(View view) {
-        ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.windowClick, false);
+        ToastHelper.showToast(this, ToastHelper.SHORT, R.string.windowClick, false);
     }
 
     public void clickBookcase(View view) {
@@ -509,7 +508,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
-        ToastHelper.showTipToast(this, Toast.LENGTH_LONG, tipMessage, false);
+        ToastHelper.showTipToast(this, ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
 
@@ -529,7 +528,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void onQuestCompleted(Quest quest) {
-        ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, GooglePlayHelper.CompleteQuest(quest), true);
+        ToastHelper.showPositiveToast(this, ToastHelper.LONG, GooglePlayHelper.CompleteQuest(quest), true);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -538,13 +537,13 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackSpawn() {
         if (VisitorHelper.tryCreateVisitor()) {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeAdvertComplete, true);
+            ToastHelper.showToast(this, ToastHelper.LONG, R.string.bribeAdvertComplete, true);
         }
     }
 
     public void callbackBonus() {
         String rewardText = AdvertHelper.createAdvertReward(this);
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, rewardText, true);
+        ToastHelper.showToast(this, ToastHelper.LONG, rewardText, true);
 
         Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
         lastClaimed.setLongValue(System.currentTimeMillis());

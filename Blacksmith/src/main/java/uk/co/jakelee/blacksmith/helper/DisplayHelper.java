@@ -25,7 +25,6 @@ import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -138,7 +137,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(activity.getApplicationContext(), ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -150,7 +149,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(activity.getApplicationContext(), ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -488,7 +487,7 @@ public class DisplayHelper {
             Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
             return new BitmapDrawable(context.getResources(), resizedImage);
         } catch (OutOfMemoryError e) {
-            ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.lowMemory), false);
+            ToastHelper.showErrorToast(context, ToastHelper.SHORT, context.getString(R.string.lowMemory), false);
             return new BitmapDrawable();
         }
     }
@@ -608,7 +607,7 @@ public class DisplayHelper {
         int playerLevel = Player_Info.getPlayerLevel();
 
         if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(playerLevel), true);
+            ToastHelper.showPositiveToast(context, ToastHelper.LONG, getLevelUpText(playerLevel), true);
             Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
             if (playerLevel > highestLevel) {
                 Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);
@@ -671,7 +670,7 @@ public class DisplayHelper {
             itemNameView.setPadding(0, 10, 0, 0);
             itemNameView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, itemIngredient.getDescription(), false);
+                    ToastHelper.showToast(context, ToastHelper.SHORT, itemIngredient.getDescription(), false);
                 }
             });
 

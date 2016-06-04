@@ -102,7 +102,7 @@ public class UpgradeActivity extends Activity {
         if (!selectedUpgrade.isAtMaximum()){
             AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
-            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
+            ToastHelper.showErrorToast(this, ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
         }
     }
 

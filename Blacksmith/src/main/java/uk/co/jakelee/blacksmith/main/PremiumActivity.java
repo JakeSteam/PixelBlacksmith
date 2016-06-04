@@ -47,7 +47,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             addPremiumFeatures();
             updatePremiumStatus();
 
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.restoredPremium, true);
+            ToastHelper.showToast(this, ToastHelper.LONG, R.string.restoredPremium, true);
         }
     }
 
@@ -57,18 +57,18 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             addPremiumFeatures();
             updatePremiumStatus();
 
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtPremium, true);
+            ToastHelper.showToast(this, ToastHelper.LONG, R.string.boughtPremium, true);
         } else if (productId.equals(SKU_CONTRIBUTE)) {
             bp.consumePurchase(SKU_CONTRIBUTE);
             addContributeFeatures();
             updateContributeStatus();
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtContribute, true);
+            ToastHelper.showToast(this, ToastHelper.LONG, R.string.boughtContribute, true);
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingIAPError, true);
+        ToastHelper.showToast(this, ToastHelper.LONG, R.string.buyingIAPError, true);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp.purchase(this, SKU_PREMIUM);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyIAP, true);
+            ToastHelper.showToast(this, ToastHelper.LONG, R.string.cannotBuyIAP, true);
         }
     }
 
@@ -130,7 +130,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp.purchase(this, SKU_CONTRIBUTE);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyIAP, true);
+            ToastHelper.showToast(this, ToastHelper.LONG, R.string.cannotBuyIAP, true);
         }
     }
 

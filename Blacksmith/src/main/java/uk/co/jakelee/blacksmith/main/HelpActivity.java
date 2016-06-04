@@ -226,6 +226,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Premium players can disable adverts and prestige their account. Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\n", 22));
         layout.addView(dh.createTextView("In return for being set back to level 1, you'll receive +50% to coin earnings, and -25% to XP gains.\n", 22));
         layout.addView(dh.createTextView("All players can enable / disable the 'Quick Select' functionality (tap item image in crafting interface to select). Disabling 'Quick Select' will make swiping to change item easier.\n", 22));
+        layout.addView(dh.createTextView("'Quick Log Access' makes tapping a message open the message log instead of closing the current message.\n", 22));
         layout.addView(dh.createTextView("Extras:", 24));
         layout.addView(dh.createTextView("The message log will show the last 100 important game messages.\n", 22));
         layout.addView(dh.createTextView("The tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\n", 22));

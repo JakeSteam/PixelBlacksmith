@@ -20,6 +20,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -144,6 +145,10 @@ public class SettingsActivity extends Activity {
         boolean clickChangeToggleValue = Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE);
         clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
 
+        ImageView messageLogToggle = (ImageView) findViewById(R.id.messageLogToggleButton);
+        boolean messageLogToggleValue = Setting.getSafeBoolean(Constants.SETTING_MESSAGE_LOG);
+        messageLogToggle.setImageDrawable(messageLogToggleValue ? tick : cross);
+
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -152,33 +157,48 @@ public class SettingsActivity extends Activity {
 
     public void toggleSetting(View v) {
         Long settingID = null;
+        String settingName = "";
         switch (v.getId()) {
             case R.id.soundToggle:
                 settingID = Constants.SETTING_SOUNDS;
+                settingName = "Game Sound";
                 break;
             case R.id.musicToggle:
                 settingID = Constants.SETTING_MUSIC;
+                settingName = "Game Music";
                 break;
             case R.id.restockNotificationToggle:
                 settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
+                settingName = "Restock Notifications";
                 break;
             case R.id.workerNotificationToggle:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
+                settingName = "Worker Notifications";
                 break;
             case R.id.visitorNotificationToggle:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
+                settingName = "Visitor Notifications";
                 break;
             case R.id.bonusNotificationToggle:
                 settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
+                settingName = "Bonus Notifications";
                 break;
             case R.id.notificationSoundToggle:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
+                settingName = "Notification Sounds";
                 break;
             case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
+                settingName = "Disable Ads";
                 break;
             case R.id.clickChangeToggle:
                 settingID = Constants.SETTING_CLICK_CHANGE;
+                settingName = "Quick Item Select";
+                break;
+            case R.id.messageLogToggle:
+                settingID = Constants.SETTING_MESSAGE_LOG;
+                settingName = "Quick Log Access";
+                break;
         }
 
         if (settingID != null) {
@@ -186,6 +206,9 @@ public class SettingsActivity extends Activity {
             settingToToggle.setBoolValue(!settingToToggle.getBoolValue());
             settingToToggle.save();
 
+            ToastHelper.showPositiveToast(this, ToastHelper.SHORT, String.format(getString(R.string.settingChanged),
+                    settingName,
+                    settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
         }
     }
@@ -205,7 +228,7 @@ public class SettingsActivity extends Activity {
     }
 
     public void openRating(View view) {
-        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        final String appPackageName = getPackageName(); 
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {
