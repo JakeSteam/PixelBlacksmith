@@ -222,7 +222,7 @@
     <string name="cloudSaveSuccess">Save to cloud successful!</string>
     <string name="cloudLoadBeginning">Loading cloud save from remote server...</string>
     <string name="cloudLoadSuccess">Load from cloud successful!</string>
-    <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins</string>
+    <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins | V%4$s</string>
 
     <string name="windowClick">What was that!?</string>
 

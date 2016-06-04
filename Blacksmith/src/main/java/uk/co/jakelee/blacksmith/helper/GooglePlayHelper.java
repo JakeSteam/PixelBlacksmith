@@ -29,7 +29,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -262,7 +264,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 String desc = String.format(callingContext.getString(R.string.cloudSaveCaption),
                         Player_Info.getPrestige(),
                         Player_Info.getPlayerLevel(),
-                        Inventory.getCoins());
+                        Inventory.getCoins(),
+                        BuildConfig.VERSION_NAME);
                 Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.promo);
 
                 loadedSnapshot.getSnapshotContents().writeBytes(data);
@@ -335,7 +338,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitor_types) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitor_demands) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(workers);
+        backupString += gson.toJson(workers) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_V1_7_0);
 
         return backupString.getBytes();
     }
@@ -393,7 +397,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             visitor_type.save();
         }
 
-        if (splitData.length >= 8) {
+        if (splitData.length > 8) {
             Visitor_Demand[] visitor_demands = gson.fromJson(splitData[8], Visitor_Demand[].class);
             if (visitor_demands.length > 0) {
                 Visitor_Demand.deleteAll(Visitor_Demand.class);
@@ -403,7 +407,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
         }
 
-        if (splitData.length >= 9) {
+        if (splitData.length > 9) {
             Worker[] workers = gson.fromJson(splitData[9], Worker[].class);
             if (workers.length > 0) {
                 Worker.deleteAll(Worker.class);
@@ -411,6 +415,11 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     worker.save();
                 }
             }
+        }
+
+        if (splitData.length > 10) {
+            MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[10])).apply();
+            DatabaseHelper.handlePatches();
         }
 
         callingActivity.runOnUiThread(new Runnable() {
