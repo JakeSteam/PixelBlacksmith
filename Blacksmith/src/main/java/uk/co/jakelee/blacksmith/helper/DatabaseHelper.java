@@ -581,6 +581,11 @@ public class DatabaseHelper {
 
         // Update prices of legendary hammer + half helmet to reflect part change
         Item.executeQuery("UPDATE item SET value = 3000 WHERE name IN (\"Legendary half helmet\",\"Legendary hammer\")");
+
+        // Update prices of bronze items
+        Item.executeQuery("UPDATE item SET value = 21 WHERE name IN (\"Bronze half shield\",\"Bronze full shield\",\"Bronze half helmet\",\"Bronze chainmail\")");
+        Item.executeQuery("UPDATE item SET value = 28 WHERE name = \"Bronze full helmet\"");
+        Item.executeQuery("UPDATE item SET value = 35 WHERE name = \"Bronze platebody\"");
     }
 
     private static void createAchievement() {
