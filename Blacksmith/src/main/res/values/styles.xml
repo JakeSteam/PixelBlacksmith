@@ -1,14 +1,9 @@
 <resources>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
-
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="@android:style/Theme.Translucent.NoTitleBar" />
 </resources>
