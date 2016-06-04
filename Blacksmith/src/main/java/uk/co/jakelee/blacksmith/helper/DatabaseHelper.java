@@ -586,6 +586,10 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = 21 WHERE name IN (\"Bronze half shield\",\"Bronze full shield\",\"Bronze half helmet\",\"Bronze chainmail\")");
         Item.executeQuery("UPDATE item SET value = 28 WHERE name = \"Bronze full helmet\"");
         Item.executeQuery("UPDATE item SET value = 35 WHERE name = \"Bronze platebody\"");
+
+        // Actually fixing green and blue visitors...
+        Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 5, type_preferred = 20 WHERE visitor_id = 8");
+        Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 4, type_preferred = 20 WHERE visitor_id = 9");
     }
 
     private static void createAchievement() {
