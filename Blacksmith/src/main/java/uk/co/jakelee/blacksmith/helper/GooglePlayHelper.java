@@ -223,7 +223,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudLoadBeginning, false);
+                    ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadBeginning), false);
                 }
             }
         });
@@ -253,7 +253,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudSaveBeginning, false);
+                ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveBeginning), false);
             }
         });
 
@@ -280,7 +280,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudSaveSuccess, true);
+                        ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveSuccess), true);
                     }
                 });
             }
@@ -424,7 +424,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudLoadSuccess, true);
+                ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
             }
         });
 

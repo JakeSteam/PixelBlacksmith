@@ -60,7 +60,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(null, ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 
@@ -72,7 +72,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 
@@ -84,7 +84,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 
@@ -96,7 +96,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 

@@ -136,7 +136,7 @@ public class MarketActivity extends Activity {
 
     public void callbackRestock() {
         Trader.restockAll(0);
-        ToastHelper.showToast(findViewById(R.id.marketTitle), ToastHelper.LONG, R.string.traderRestockAllCompleteAdvert, true);
+        ToastHelper.showToast(findViewById(R.id.marketTitle), ToastHelper.LONG, getString(R.string.traderRestockAllCompleteAdvert), true);
         populateTraderList();
     }
 

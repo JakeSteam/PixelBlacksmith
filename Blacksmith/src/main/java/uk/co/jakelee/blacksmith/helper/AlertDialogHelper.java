@@ -48,9 +48,9 @@ public class AlertDialogHelper {
                 //String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
-                    ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, R.string.supportCodeComplete, true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, activity.getString(R.string.supportCodeComplete), true);
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.settings), ToastHelper.LONG, R.string.supportCodeFailed, true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.settings), ToastHelper.LONG, activity.getString(R.string.supportCodeFailed), true);
                 }
             }
         });
@@ -260,7 +260,7 @@ public class AlertDialogHelper {
 
                     VisitorHelper.removeVisitor(visitor);
                     SoundHelper.playSound(context, SoundHelper.walkingSounds);
-                    ToastHelper.showPositiveToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, R.string.dismissComplete, true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, activity.getString(R.string.dismissComplete), true);
                     activity.finish();
                 } else {
                     ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, context.getString(R.string.dismissFailure), true);
@@ -571,7 +571,7 @@ public class AlertDialogHelper {
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         if (itemStocks.size() == 0) {
-            ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, R.string.itemBuyAllNoItems, false);
+            ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(R.string.itemBuyAllNoItems), false);
             return;
         }
 

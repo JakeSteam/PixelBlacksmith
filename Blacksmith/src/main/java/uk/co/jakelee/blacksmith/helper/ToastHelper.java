@@ -18,21 +18,11 @@ import uk.co.jakelee.blacksmith.model.Message;
 import uk.co.jakelee.blacksmith.model.Setting;
 
 public class ToastHelper {
-    public static int SHORT = Snackbar.LENGTH_SHORT;
-    public static int LONG = Snackbar.LENGTH_LONG;
-
-    public static void showToast(View view, int length, int textID, boolean saveToLog) {
-        String string = view.getResources().getString(textID);
-        showToast(view, length, string, saveToLog);
-    }
+    public static final int SHORT = Snackbar.LENGTH_SHORT;
+    public static final int LONG = Snackbar.LENGTH_LONG;
 
     public static void showToast(View view, int length, String text, boolean saveToLog) {
         showToast(view, length, text, saveToLog, R.color.lightBrown);
-    }
-
-    public static void showErrorToast(View view, int length, int textID, boolean saveToLog) {
-        String string = view.getResources().getString(textID);
-        showErrorToast(view, length, string, saveToLog);
     }
 
     public static void showErrorToast(View view, int length, String text, boolean saveToLog) {
@@ -41,11 +31,6 @@ public class ToastHelper {
 
     public static void showTipToast(View view, int length, String text, boolean saveToLog) {
         showToast(view, length, text, saveToLog, R.color.holo_blue_dark);
-    }
-
-    public static void showPositiveToast(View view, int length, int textID, boolean saveToLog) {
-        String string = view.getResources().getString(textID);
-        showPositiveToast(view, length, string, saveToLog);
     }
 
     public static void showPositiveToast(View view, int length, String text, boolean saveToLog) {

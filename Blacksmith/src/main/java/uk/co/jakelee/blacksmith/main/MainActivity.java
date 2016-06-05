@@ -1,7 +1,6 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         gph.UpdateQuest();
-        dh.updateFullscreen(this);
     }
 
     private void ratingPrompt() {
@@ -264,7 +262,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        final Context context = this;
 
         new Thread(new Runnable() {
             public void run() {
@@ -289,10 +286,7 @@ public class MainActivity extends AppCompatActivity implements
             updateVisitors();
         }
 
-        if (vh.reloadFullscreen || TutorialHelper.currentlyInTutorial) {
-            dh.updateFullscreen(this);
-            vh.reloadFullscreen = false;
-        }
+        dh.updateFullscreen(this);
 
         if (TutorialHelper.currentlyInTutorial) {
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
@@ -373,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors == 1) {
-                    ToastHelper.showToast(null, ToastHelper.LONG, R.string.visitorArriving, true);
+                    ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.visitorArriving), true);
                 } else if (newVisitors > 1) {
                     ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
@@ -484,9 +478,8 @@ public class MainActivity extends AppCompatActivity implements
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent intent = new Intent(this, QuestActivity.class);
             startActivity(intent);
-            MainActivity.vh.reloadFullscreen = true;
         } else {
-            ToastHelper.showErrorToast(null, ToastHelper.LONG, R.string.questsNoConnection, false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, getString(R.string.questsNoConnection), false);
         }
     }
 
@@ -504,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void clickWindow(View view) {
-        ToastHelper.showToast(null, ToastHelper.SHORT, R.string.windowClick, false);
+        ToastHelper.showToast(null, ToastHelper.SHORT, getString(R.string.windowClick), false);
     }
 
     public void clickBookcase(View view) {
@@ -544,7 +537,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackSpawn() {
         if (VisitorHelper.tryCreateVisitor()) {
-            ToastHelper.showToast(null, ToastHelper.LONG, R.string.bribeAdvertComplete, true);
+            ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.bribeAdvertComplete), true);
         }
     }
 
