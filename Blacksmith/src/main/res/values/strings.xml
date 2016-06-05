@@ -237,7 +237,7 @@
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
-    <string name="workersReturned">%d workers have returned, laden down with resources!</string>
+    <string name="workersReturned">%1$d workers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 

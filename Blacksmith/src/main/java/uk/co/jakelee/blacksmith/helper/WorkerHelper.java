@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,7 @@ public class WorkerHelper {
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
         int workersFinished = 0;
+        List<String> workerNames = new ArrayList<>();
         String rewardText = "";
 
         boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
@@ -85,6 +87,7 @@ public class WorkerHelper {
         for (Worker worker : workers) {
             if (getTimeRemaining(worker) <= 0) {
                 rewardText = rewardResources(context, worker);
+                workerNames.add(Character.findById(Character.class, worker.getCharacterID()).getName());
                 workersFinished++;
 
                 // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
@@ -101,15 +104,25 @@ public class WorkerHelper {
                 worker.setTimeStarted(0);
                 worker.setTimesCompleted(worker.getTimesCompleted() + 1);
                 worker.save();
+
+                ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
             }
         }
 
         if (workersFinished > 1) {
-            rewardText = String.format(context.getString(R.string.workersReturned), workersFinished);
-            ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
-        } else if (workersFinished == 1) {
-            ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
+            ToastHelper.showPositiveToast(null, ToastHelper.LONG, String.format(context.getString(R.string.workersReturned),
+                    workersFinished,
+                    workerNamesToString(workerNames)), true);
         }
+    }
+
+    private static String workerNamesToString(List<String> names) {
+        String nameString = "";
+        for (String name : names) {
+            nameString += "\"" + name + "\", ";
+        }
+
+        return nameString.replaceAll(", $", "");
     }
 
     public static String rewardResources(Context context, Worker worker) {
