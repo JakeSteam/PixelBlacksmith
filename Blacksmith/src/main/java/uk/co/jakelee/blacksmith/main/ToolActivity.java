@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,8 +53,9 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
 
     private void createDropdown() {
         Spinner toolSelector = (Spinner) findViewById(R.id.toolTypes);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.toolsArray, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toolSelector.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.toolsArray, R.layout.custom_spinner);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         toolSelector.setAdapter(adapter);
         toolSelector.setOnItemSelectedListener(this);
     }

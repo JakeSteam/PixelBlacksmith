@@ -68,7 +68,7 @@ public class TrophyActivity extends Activity {
             visitorImage.setPadding(visitorImagePadding, visitorImagePadding, visitorImagePadding, visitorImagePadding);
 
             // Apply colouring based on number of visits.
-            int numVisits = visitorStats.getVisits();
+            int numVisits = visitorStats != null ? visitorStats.getVisits() : 0;
             if (numVisits < Constants.VISITS_TROPHY) {
                 if (numVisits > Constants.VISITS_ALMOST) {
                     visitorImage.setColorFilter(Color.LTGRAY);
