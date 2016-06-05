@@ -254,23 +254,20 @@ public class DisplayHelper {
         }
     }
 
-    public void toggleFullscreen(Activity activity) {
-        int ints = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+    public void updateFullscreen(Activity activity) {
+        boolean shouldBeFullscreen = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
         if (Build.VERSION.SDK_INT >= 19) {
-            if (activity.getWindow().getDecorView().getSystemUiVisibility() == ints) {
-                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            if (shouldBeFullscreen) {
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             } else {
-                activity.getWindow().getDecorView().setSystemUiVisibility(ints);
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
             }
         } else {
-            WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
-            attrs.flags ^= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            activity.getWindow().setAttributes(attrs);
+            if (shouldBeFullscreen) {
+                activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            } else {
+                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
         }
     }
 

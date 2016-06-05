@@ -20,6 +20,7 @@ public class HelpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         LinearLayout helpLayout = (LinearLayout) findViewById(R.id.helpLayout);
         helpLayout.removeAllViews();
@@ -223,10 +224,11 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Notification Options:", 24));
         layout.addView(dh.createTextView("Market restock, visitor spawn, worker return, and bonus chest refill notifications can be enabled / disabled.\n", 22));
         layout.addView(dh.createTextView("Gameplay Options:", 24));
-        layout.addView(dh.createTextView("Premium players can disable adverts and prestige their account. Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\n", 22));
+        layout.addView(dh.createTextView("'Full Screen' enables a more immersive full screen mode.\n", 22));
+        layout.addView(dh.createTextView("The 'Quick Select' functionality allows tapping the item image in a crafting interface to change item. Disabling 'Quick Select' will make swiping to change item easier.\n", 22));
+        layout.addView(dh.createTextView("The 'Quick Log Access' option makes tapping a message open the message log instead of closing the current message.\n", 22));
+        layout.addView(dh.createTextView("Premium players can disable all mention of adverts and prestige their account. Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\n", 22));
         layout.addView(dh.createTextView("In return for being set back to level 1, you'll receive +50% to coin earnings, and -25% to XP gains.\n", 22));
-        layout.addView(dh.createTextView("All players can enable / disable the 'Quick Select' functionality (tap item image in crafting interface to select). Disabling 'Quick Select' will make swiping to change item easier.\n", 22));
-        layout.addView(dh.createTextView("'Quick Log Access' makes tapping a message open the message log instead of closing the current message.\n", 22));
         layout.addView(dh.createTextView("Extras:", 24));
         layout.addView(dh.createTextView("The message log will show the last 100 important game messages.\n", 22));
         layout.addView(dh.createTextView("The tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\n", 22));

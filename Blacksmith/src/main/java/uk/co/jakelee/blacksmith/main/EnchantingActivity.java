@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -51,6 +50,8 @@ public class EnchantingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enchanting);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("enchantingTier", Constants.TIER_MIN);
         powderSelected = MainActivity.prefs.getBoolean("enchantingTab", false);

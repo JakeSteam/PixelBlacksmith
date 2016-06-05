@@ -31,6 +31,7 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tool);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int workerID = (int) (long) intent.getLongExtra(WorkerHelper.INTENT_ID, 0);

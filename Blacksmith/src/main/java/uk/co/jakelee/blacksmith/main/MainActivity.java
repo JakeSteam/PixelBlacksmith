@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         gph.UpdateQuest();
+        dh.updateFullscreen(this);
     }
 
     private void ratingPrompt() {
@@ -286,6 +287,10 @@ public class MainActivity extends AppCompatActivity implements
 
         if (needToRedrawVisitors) {
             updateVisitors();
+        }
+
+        if (vh.reloadFullscreen || TutorialHelper.currentlyInTutorial) {
+            dh.updateFullscreen(this);
         }
 
         if (TutorialHelper.currentlyInTutorial) {

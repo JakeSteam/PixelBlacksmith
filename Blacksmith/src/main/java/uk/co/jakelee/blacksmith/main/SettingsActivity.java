@@ -34,6 +34,7 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         displaySettingsList();
     }
@@ -149,6 +150,10 @@ public class SettingsActivity extends Activity {
         boolean messageLogToggleValue = Setting.getSafeBoolean(Constants.SETTING_MESSAGE_LOG);
         messageLogToggle.setImageDrawable(messageLogToggleValue ? tick : cross);
 
+        ImageView fullscreenToggle = (ImageView) findViewById(R.id.fullscreenToggleButton);
+        boolean fullscreenToggleValue = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
+        fullscreenToggle.setImageDrawable(fullscreenToggleValue ? tick : cross);
+
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -199,6 +204,10 @@ public class SettingsActivity extends Activity {
                 settingID = Constants.SETTING_MESSAGE_LOG;
                 settingName = "Quick Log Access";
                 break;
+            case R.id.fullscreenToggle:
+                settingID = Constants.SETTING_FULLSCREEN;
+                settingName = "Fullscreen Mode";
+                break;
         }
 
         if (settingID != null) {
@@ -210,6 +219,10 @@ public class SettingsActivity extends Activity {
                     settingName,
                     settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
+
+            if (settingID.equals(Constants.SETTING_FULLSCREEN)) {
+                MainActivity.vh.reloadFullscreen = true;
+            }
         }
     }
 

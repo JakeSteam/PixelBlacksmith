@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
@@ -15,6 +14,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
+import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -22,6 +22,7 @@ import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
+    private static DisplayHelper dh;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
     private static final String SKU_PREMIUM = "premium";
@@ -31,6 +32,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_premium);
+        dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
         if (canBuyIAPs) {

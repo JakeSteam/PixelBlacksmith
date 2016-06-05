@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.Toast;
 
 import com.orm.query.Select;
 
@@ -33,6 +32,7 @@ public class UpgradeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         createUpgradeInterface();
     }

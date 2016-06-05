@@ -40,6 +40,7 @@ public class WorkerActivity extends Activity {
         setContentView(R.layout.activity_worker);
 
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
     }
 
     @Override

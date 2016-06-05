@@ -35,6 +35,7 @@ public class TrophyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         populateVisitorGrid();
 

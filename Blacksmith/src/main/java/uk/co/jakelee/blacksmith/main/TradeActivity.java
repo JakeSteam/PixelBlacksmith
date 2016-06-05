@@ -2,7 +2,6 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -50,7 +48,6 @@ public class TradeActivity extends Activity {
     private static Visitor visitor;
     private static Visitor_Type visitorType;
     private static DisplayHelper dh;
-    private static SharedPreferences prefs;
     private static boolean tradeMax = false;
     private boolean currentlySelling = false;
 
@@ -59,7 +56,7 @@ public class TradeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade);
         dh = DisplayHelper.getInstance(getApplicationContext());
-        prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
@@ -256,7 +253,7 @@ public class TradeActivity extends Activity {
         if (inventoryOfItem.getQuantity() > 0 && !currentlySelling) {
             currentlySelling = true;
             int quantity = 1;
-            if (prefs.getBoolean("tradeMax", false)) {
+            if (MainActivity.prefs.getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();
             }
             tradeItem(quantity, itemObject, itemStateObject);
@@ -318,8 +315,8 @@ public class TradeActivity extends Activity {
     }
 
     public void toggleMax(View view) {
-        tradeMax = !prefs.getBoolean("tradeMax", false);
-        prefs.edit().putBoolean("tradeMax", tradeMax).apply();
+        tradeMax = !MainActivity.prefs.getBoolean("tradeMax", false);
+        MainActivity.prefs.edit().putBoolean("tradeMax", tradeMax).apply();
         updateMax();
     }
 
@@ -328,7 +325,7 @@ public class TradeActivity extends Activity {
         final Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
         final ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
 
-        tradeMax = prefs.getBoolean("tradeMax", false);
+        tradeMax = MainActivity.prefs.getBoolean("tradeMax", false);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

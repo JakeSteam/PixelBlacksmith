@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +44,7 @@ public class InventoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {

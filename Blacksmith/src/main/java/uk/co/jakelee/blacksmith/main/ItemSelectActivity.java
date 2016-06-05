@@ -32,6 +32,7 @@ public class ItemSelectActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itemselect);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         this.items = dh.itemSelectionItems;
         displayItemsList();

@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -52,7 +51,10 @@ public class FurnaceActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnace);
+
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+        
         gh = new GestureHelper(getApplicationContext());
         foodSelected = MainActivity.prefs.getBoolean("furnaceTab", false);
 

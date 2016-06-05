@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
@@ -15,6 +14,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
+import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
@@ -32,11 +32,14 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
     private double completionPercent = 0.00;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         displayStatistics();
 

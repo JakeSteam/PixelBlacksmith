@@ -299,27 +299,27 @@
 
                 <TableRow>
                     <LinearLayout
-                        android:id="@+id/turnOffAdsToggle"
+                        android:id="@+id/fullscreenToggle"
                         android:orientation="vertical"
                         android:onClick="toggleSetting"
                         android:background="@drawable/button"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="match_parent">
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:id="@+id/turnOffAdsText"
+                            android:id="@+id/fullscreenToggleText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
                             android:gravity="center_horizontal"
-                            android:text="@string/turnOffAdsText"
+                            android:text="@string/fullscreenSettingText"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
                         <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:tools="http://schemas.android.com/tools"
-                            android:id="@+id/turnOffAdsButton"
+                            android:id="@+id/fullscreenToggleButton"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center_horizontal"
@@ -384,6 +384,34 @@
                 </TableRow>
 
                 <TableRow>
+                    <LinearLayout
+                        android:id="@+id/turnOffAdsToggle"
+                        android:orientation="vertical"
+                        android:onClick="toggleSetting"
+                        android:background="@drawable/button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/turnOffAdsText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/turnOffAdsText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/turnOffAdsButton"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/prestigeButton"
                         android:orientation="vertical"

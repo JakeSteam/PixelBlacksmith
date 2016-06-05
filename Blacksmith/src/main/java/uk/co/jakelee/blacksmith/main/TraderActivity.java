@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -41,6 +40,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trader);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int traderID = Integer.parseInt(intent.getStringExtra(MarketActivity.TRADER_TO_LOAD));

@@ -585,8 +585,9 @@ public class DatabaseHelper {
 
         // Add only displaying available items in quick select & open message log on toast click
         List<Setting> settings = new ArrayList<>();
-            settings.add(new Setting(12L, "OnlyAvailableItems", true));
+            settings.add(new Setting(12L, "OnlyAvailableItems", false));
             settings.add(new Setting(13L, "OpenMessageLog", false));
+            settings.add(new Setting(14L, "Fullscreen", true));
         Setting.saveInTx(settings);
 
         // Updating minimum levels for traders
@@ -699,6 +700,11 @@ public class DatabaseHelper {
         inventories.add(new Inventory(1L, Constants.STATE_NORMAL, 150));
         inventories.add(new Inventory(2L, Constants.STATE_NORMAL, 150));
         inventories.add(new Inventory(4L, Constants.STATE_NORMAL, 150));
+
+        // Make bronze bar + dagger visible.
+        inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 0));
+        inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
+        inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 0));
 
         // 30 silk, spidersilk
         inventories.add(new Inventory(69L, Constants.STATE_NORMAL, 30));

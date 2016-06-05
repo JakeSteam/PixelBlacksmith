@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
@@ -58,6 +57,7 @@ public class VisitorActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visitor);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
     }
 
     @Override
