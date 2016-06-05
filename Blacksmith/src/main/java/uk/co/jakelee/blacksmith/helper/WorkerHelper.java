@@ -2,7 +2,6 @@ package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -107,9 +106,9 @@ public class WorkerHelper {
 
         if (workersFinished > 1) {
             rewardText = String.format(context.getString(R.string.workersReturned), workersFinished);
-            ToastHelper.showPositiveToast(context, ToastHelper.LONG, rewardText, true);
+            ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
         } else if (workersFinished == 1) {
-            ToastHelper.showPositiveToast(context, ToastHelper.LONG, rewardText, true);
+            ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
         }
     }
 

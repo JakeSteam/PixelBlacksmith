@@ -36,7 +36,7 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 public class AlertDialogHelper {
-    public static void enterSupportCode(final Context context, Activity activity) {
+    public static void enterSupportCode(final Context context, final Activity activity) {
         final EditText supportCodeBox = new EditText(context);
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
@@ -48,9 +48,9 @@ public class AlertDialogHelper {
                 //String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
-                    ToastHelper.showPositiveToast(context, ToastHelper.LONG, R.string.supportCodeComplete, true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, R.string.supportCodeComplete, true);
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.LONG, R.string.supportCodeFailed, true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.settings), ToastHelper.LONG, R.string.supportCodeFailed, true);
                 }
             }
         });
@@ -81,11 +81,11 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int upgradeResponse = upgrade.tryUpgrade();
                 if (upgradeResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName()), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName()), true);
                     Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
                     activity.alertDialogCallback();
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(upgradeResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(upgradeResponse), true);
                 }
             }
         });
@@ -149,10 +149,10 @@ public class AlertDialogHelper {
 
                     worker.setPurchased(true);
                     worker.save();
-                    ToastHelper.showPositiveToast(context, ToastHelper.LONG, context.getString(R.string.buyWorkerComplete), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, context.getString(R.string.buyWorkerComplete), true);
                     activity.scheduledTask();
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
                 }
             }
         });
@@ -170,7 +170,7 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void confirmPrestige(final Context context, Activity activity) {
+    public static void confirmPrestige(final Context context, final Activity activity) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.prestigeQuestion));
         alertDialog.setIcon(R.drawable.levels);
@@ -178,7 +178,7 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 PrestigeHelper.prestigeAccount();
-                ToastHelper.showPositiveToast(context, ToastHelper.LONG, String.format(context.getString(R.string.prestigeComplete),
+                ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, String.format(context.getString(R.string.prestigeComplete),
                         Player_Info.getPrestige() * 50,
                         (int) (100 * (1 - Math.pow(0.75, Player_Info.getPrestige())))), false);
             }
@@ -214,10 +214,10 @@ public class AlertDialogHelper {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
                     coinStock.save();
                     if (VisitorHelper.tryCreateVisitor()) {
-                        ToastHelper.showPositiveToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
+                        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
                     }
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, context.getString(R.string.bribeFailure), true);
+                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.bribeFailure), true);
                 }
             }
         });
@@ -260,10 +260,10 @@ public class AlertDialogHelper {
 
                     VisitorHelper.removeVisitor(visitor);
                     SoundHelper.playSound(context, SoundHelper.walkingSounds);
-                    ToastHelper.showPositiveToast(context, ToastHelper.SHORT, R.string.dismissComplete, true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, R.string.dismissComplete, true);
                     activity.finish();
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, context.getString(R.string.dismissFailure), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, context.getString(R.string.dismissFailure), true);
                 }
             }
         });
@@ -301,9 +301,9 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int traderResponse = Trader.restockAll(restockCost);
                 if (traderResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -341,9 +341,9 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int traderResponse = trader.restock(restockCost);
                 if (traderResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -500,13 +500,13 @@ public class AlertDialogHelper {
 
                 int buyResponse = Inventory.buyItem(itemStock);
                 if (buyResponse == Constants.SUCCESS) {
-                    ToastHelper.showToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
+                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 activity.alertDialogCallback();
@@ -537,13 +537,13 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought), false);
+                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
@@ -571,7 +571,7 @@ public class AlertDialogHelper {
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         if (itemStocks.size() == 0) {
-            ToastHelper.showToast(context, ToastHelper.SHORT, R.string.itemBuyAllNoItems, false);
+            ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, R.string.itemBuyAllNoItems, false);
             return;
         }
 
@@ -616,14 +616,14 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showPositiveToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);

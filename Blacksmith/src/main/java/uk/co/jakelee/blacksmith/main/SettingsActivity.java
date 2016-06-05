@@ -215,7 +215,7 @@ public class SettingsActivity extends Activity {
             settingToToggle.setBoolValue(!settingToToggle.getBoolValue());
             settingToToggle.save();
 
-            ToastHelper.showPositiveToast(this, ToastHelper.SHORT, String.format(getString(R.string.settingChanged),
+            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(getString(R.string.settingChanged),
                     settingName,
                     settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();

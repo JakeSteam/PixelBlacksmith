@@ -194,7 +194,7 @@ public class StatisticsActivity extends Activity {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_HIGHEST_LEV), GooglePlayHelper.RC_LEADERBOARDS);
             }
         } else {
-            ToastHelper.showErrorToast(this, ToastHelper.SHORT, getString(R.string.leaderboardsNoConnection), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(R.string.leaderboardsNoConnection), false);
         }
     }
 

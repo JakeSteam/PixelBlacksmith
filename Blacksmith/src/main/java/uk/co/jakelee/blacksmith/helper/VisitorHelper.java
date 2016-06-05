@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -316,7 +315,7 @@ public class VisitorHelper {
     public static void displayPreference(Context context, View view, int string, String preferred) {
         String multiplier = (String) view.getTag(R.id.multiplier);
 
-        ToastHelper.showToast(context, ToastHelper.SHORT, String.format(context.getString(string),
+        ToastHelper.showToast(view, ToastHelper.SHORT, String.format(context.getString(string),
                 multiplier,
                 preferred), false);
     }
@@ -378,12 +377,12 @@ public class VisitorHelper {
             List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
             Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1, false);
-            ToastHelper.showToast(context, ToastHelper.LONG, String.format(rewardString,
+            ToastHelper.showToast(null, ToastHelper.LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(),
                     premiumItem.getFullName(Constants.STATE_UNFINISHED)), true);
         } else {
-            ToastHelper.showToast(context, ToastHelper.LONG, String.format(rewardString,
+            ToastHelper.showToast(null, ToastHelper.LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getFullName(Constants.STATE_NORMAL)), true);
         }

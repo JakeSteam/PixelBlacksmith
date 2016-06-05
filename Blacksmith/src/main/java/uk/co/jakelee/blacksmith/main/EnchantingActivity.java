@@ -248,7 +248,7 @@ public class EnchantingActivity extends Activity {
         int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
+            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_POWDER, 1);
 
             dh.createCraftingInterface(
@@ -257,7 +257,7 @@ public class EnchantingActivity extends Activity {
                     mViewFlipper,
                     Constants.STATE_NORMAL);
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), ToastHelper.SHORT, ErrorHelper.errors.get(powderResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
@@ -273,7 +273,7 @@ public class EnchantingActivity extends Activity {
         int enchantResponse = Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), ToastHelper.SHORT, String.format(getString(R.string.enchantAdd),
+            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.enchantAdd),
                     gem.getName(),
                     item.getName()), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
@@ -282,7 +282,7 @@ public class EnchantingActivity extends Activity {
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((TableLayout) findViewById(R.id.itemsTable));
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), ToastHelper.SHORT, ErrorHelper.errors.get(enchantResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(enchantResponse), false);
         }
     }
 

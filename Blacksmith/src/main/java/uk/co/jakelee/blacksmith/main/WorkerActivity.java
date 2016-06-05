@@ -82,7 +82,7 @@ public class WorkerActivity extends Activity {
         ImageView workerTool = (ImageView) traderRoot.findViewById(R.id.workerTool);
         TextView workerToolText = (TextView) traderRoot.findViewById(R.id.workerToolText);
         LinearLayout workerResourceContainer = (LinearLayout) traderRoot.findViewById(R.id.workerResource);
-        TextView workerButton = (TextView) traderRoot.findViewById(R.id.workerButton);
+        final TextView workerButton = (TextView) traderRoot.findViewById(R.id.workerButton);
 
         Item tool = Item.findById(Item.class, worker.getToolUsed());
         final WorkerActivity activity = this;
@@ -93,7 +93,7 @@ public class WorkerActivity extends Activity {
             workerCharacter.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     String workerTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Worker) v.getTag());
-                    ToastHelper.showToast(activity, ToastHelper.SHORT, workerTimesCompleted, false);
+                    ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, workerTimesCompleted, false);
                 }
             });
             workerCharacterText.setText(WorkerHelper.isReady(worker) ? R.string.workerStatusReady : R.string.workerStatusBusy);
@@ -138,7 +138,7 @@ public class WorkerActivity extends Activity {
                     Worker worker = (Worker) v.getTag();
                     if (worker.isPurchased()) {
                         List<Worker_Resource> resources = WorkerHelper.getResourcesByTool((int) worker.getToolUsed());
-                        ToastHelper.showToast(activity, ToastHelper.LONG, String.format(getString(R.string.workerResources),
+                        ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
                                 WorkerHelper.getRewardResourcesText(worker, resources, false)), false);
                     }
                 }
@@ -154,7 +154,7 @@ public class WorkerActivity extends Activity {
                         scheduledTask();
                     } else {
                         String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, worker);
-                        ToastHelper.showToast(activity, ToastHelper.SHORT, exactTimeLeft, false);
+                        ToastHelper.showToast(workerButton, ToastHelper.SHORT, exactTimeLeft, false);
                     }
                 }
             });
@@ -218,7 +218,7 @@ public class WorkerActivity extends Activity {
         }
 
         if (numWorkers > 0) {
-            ToastHelper.showPositiveToast(this, ToastHelper.LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
+            ToastHelper.showPositiveToast(v, ToastHelper.LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
         }
 
         updateButtons();

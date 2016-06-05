@@ -251,7 +251,7 @@ public class AnvilActivity extends Activity {
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
+            ToastHelper.showToast(findViewById(R.id.anvil), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             if (!ringsSelected) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
@@ -261,7 +261,7 @@ public class AnvilActivity extends Activity {
             MainActivity.vh.anvilBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
         }
     }
 

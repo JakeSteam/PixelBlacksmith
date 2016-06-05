@@ -254,7 +254,7 @@ public class TableActivity extends Activity {
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)), false);
+            ToastHelper.showToast(findViewById(R.id.table), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             if (!booksSelected) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_FINISHED, quantityCrafted);
@@ -264,7 +264,7 @@ public class TableActivity extends Activity {
             MainActivity.vh.tableBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.table), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
         }
 
     }

@@ -1,7 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
 import com.applovin.sdk.AppLovinAd;
@@ -61,7 +60,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, R.string.adFailedToLoad, false);
         }
     }
 
@@ -73,7 +72,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.LONG, R.string.adFailedToLoad, false);
         }
     }
 
@@ -85,7 +84,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.LONG, R.string.adFailedToLoad, false);
         }
     }
 
@@ -97,7 +96,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, ToastHelper.LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.LONG, R.string.adFailedToLoad, false);
         }
     }
 
@@ -122,7 +121,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     break;
             }
         } else {
-            ToastHelper.showErrorToast(context, ToastHelper.LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
         }
         // Begin loading next advert.
         advert.preload(null);

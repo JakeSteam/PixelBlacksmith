@@ -21,39 +21,44 @@ public class ToastHelper {
     public static int SHORT = Snackbar.LENGTH_SHORT;
     public static int LONG = Snackbar.LENGTH_LONG;
 
-    public static void showToast(Context context, int length, int textID, boolean saveToLog) {
-        String string = context.getResources().getString(textID);
-        showToast(context, length, string, saveToLog);
+    public static void showToast(View view, int length, int textID, boolean saveToLog) {
+        String string = view.getResources().getString(textID);
+        showToast(view, length, string, saveToLog);
     }
 
-    public static void showToast(Context context, int length, String text, boolean saveToLog) {
-        showToast(context, length, text, saveToLog, R.color.lightBrown);
+    public static void showToast(View view, int length, String text, boolean saveToLog) {
+        showToast(view, length, text, saveToLog, R.color.lightBrown);
     }
 
-    public static void showErrorToast(Context context, int length, int textID, boolean saveToLog) {
-        String string = context.getResources().getString(textID);
-        showErrorToast(context, length, string, saveToLog);
+    public static void showErrorToast(View view, int length, int textID, boolean saveToLog) {
+        String string = view.getResources().getString(textID);
+        showErrorToast(view, length, string, saveToLog);
     }
 
-    public static void showErrorToast(Context context, int length, String text, boolean saveToLog) {
-        showToast(context, length, text, saveToLog, R.color.holo_red_dark);
+    public static void showErrorToast(View view, int length, String text, boolean saveToLog) {
+        showToast(view, length, text, saveToLog, R.color.holo_red_dark);
     }
 
-    public static void showTipToast(Context context, int length, String text, boolean saveToLog) {
-        showToast(context, length, text, saveToLog, R.color.holo_blue_dark);
+    public static void showTipToast(View view, int length, String text, boolean saveToLog) {
+        showToast(view, length, text, saveToLog, R.color.holo_blue_dark);
     }
 
-    public static void showPositiveToast(Context context, int length, int textID, boolean saveToLog) {
-        String string = context.getResources().getString(textID);
-        showPositiveToast(context, length, string, saveToLog);
+    public static void showPositiveToast(View view, int length, int textID, boolean saveToLog) {
+        String string = view.getResources().getString(textID);
+        showPositiveToast(view, length, string, saveToLog);
     }
 
-    public static void showPositiveToast(Context context, int length, String text, boolean saveToLog) {
-        showToast(context, length, text, saveToLog, R.color.holo_green_dark);
+    public static void showPositiveToast(View view, int length, String text, boolean saveToLog) {
+        showToast(view, length, text, saveToLog, R.color.holo_green_dark);
     }
 
-    public static void showToast(final Context context, int length, String text, boolean saveToLog, int color) {
-        final Snackbar snackbar = Snackbar.make(MainActivity.questContainer, text, length);
+    public static void showToast(View targetView, int length, String text, boolean saveToLog, int color) {
+        if (targetView == null) {
+            targetView = MainActivity.questContainer;
+        }
+
+        final Snackbar snackbar = Snackbar.make(targetView, text, length);
+        final Context context = targetView.getContext();
 
         View snackbarView = snackbar.getView();
         snackbarView.setOnClickListener(new Button.OnClickListener() {

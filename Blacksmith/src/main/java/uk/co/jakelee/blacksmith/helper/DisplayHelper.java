@@ -113,7 +113,7 @@ public class DisplayHelper {
         }
 
         for (final Location location : locations) {
-            GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
+            final GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
             slotContainer.removeAllViews();
 
             // If user is premium, we want premium slots first so they can see them. Otherwise, at the very end.
@@ -139,7 +139,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -151,7 +151,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -506,7 +506,7 @@ public class DisplayHelper {
             Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
             return new BitmapDrawable(context.getResources(), resizedImage);
         } catch (OutOfMemoryError e) {
-            ToastHelper.showErrorToast(context, ToastHelper.SHORT, context.getString(R.string.lowMemory), false);
+            ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.lowMemory), false);
             return new BitmapDrawable();
         }
     }
@@ -626,7 +626,7 @@ public class DisplayHelper {
         int playerLevel = Player_Info.getPlayerLevel();
 
         if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, ToastHelper.LONG, getLevelUpText(playerLevel), true);
+            ToastHelper.showPositiveToast(levelCount, ToastHelper.LONG, getLevelUpText(playerLevel), true);
             Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
             if (playerLevel > highestLevel) {
                 Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);
@@ -653,7 +653,7 @@ public class DisplayHelper {
         return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
 
-    public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
+    public void createItemIngredientsTable(Long itemID, long state, final TableLayout ingredientsTable) {
         final Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
@@ -689,7 +689,7 @@ public class DisplayHelper {
             itemNameView.setPadding(0, 10, 0, 0);
             itemNameView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(context, ToastHelper.SHORT, itemIngredient.getDescription(), false);
+                    ToastHelper.showToast(ingredientsTable, ToastHelper.SHORT, itemIngredient.getDescription(), false);
                 }
             });
 

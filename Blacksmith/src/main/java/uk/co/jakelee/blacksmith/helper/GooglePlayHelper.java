@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.util.Pair;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -202,10 +201,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                             currentTask = "saving";
                         }
                     } catch (IOException e) {
-                        ToastHelper.showErrorToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
+                        ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
                     }
                 } else {
-                    ToastHelper.showErrorToast(context, ToastHelper.SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
                 }
 
                 return result.getStatus().getStatusCode();
@@ -224,7 +223,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    ToastHelper.showToast(callingActivity, ToastHelper.LONG, R.string.cloudLoadBeginning, false);
+                    ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudLoadBeginning, false);
                 }
             }
         });
@@ -254,7 +253,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ToastHelper.showToast(callingActivity, ToastHelper.LONG, R.string.cloudSaveBeginning, false);
+                ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudSaveBeginning, false);
             }
         });
 
@@ -281,7 +280,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastHelper.showPositiveToast(callingActivity, ToastHelper.LONG, R.string.cloudSaveSuccess, true);
+                        ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudSaveSuccess, true);
                     }
                 });
             }
@@ -425,7 +424,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ToastHelper.showPositiveToast(callingActivity, ToastHelper.LONG, R.string.cloudLoadSuccess, true);
+                ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, R.string.cloudLoadSuccess, true);
             }
         });
 
