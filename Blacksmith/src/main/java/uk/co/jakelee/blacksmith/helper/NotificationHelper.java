@@ -67,7 +67,7 @@ public class NotificationHelper extends BroadcastReceiver {
         notificationIntent.addCategory("android.intent.category.DEFAULT");
         notificationIntent.putExtra(NOTIFICATION_TYPE, notificationType);
 
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 9000 + notificationType, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, broadcast);
     }
