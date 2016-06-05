@@ -89,7 +89,7 @@ public class Player_Info extends SugarRecord {
         Player_Info premium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
 
-        return premium.getIntValue() == 1;
+        return premium != null && premium.getIntValue() == 1;
     }
 
     public static boolean displayAds() {

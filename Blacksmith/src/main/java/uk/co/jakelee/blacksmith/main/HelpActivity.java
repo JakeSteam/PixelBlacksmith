@@ -337,8 +337,8 @@ public class HelpActivity extends Activity {
     private void displayHelpMessages(LinearLayout layout) {
         layout.addView(dh.createTextView("Messages\n", 26));
         layout.addView(dh.createTextView("The last 100 important messages are displayed here.", 22));
-        layout.addView(dh.createTextView("Common messages, such as crafting beginning will not be displayed, but rarer ones like levelling up will.", 22));
-        layout.addView(dh.createTextView("This way, if a message is missed, it can be reviewed here.", 22));
+        layout.addView(dh.createTextView("Common messages, such as crafting beginning will not be displayed, but rarer ones like levelling up will. This way, if a message is missed, it can be reviewed here.", 22));
+        layout.addView(dh.createTextView("By default, tapping a message will close it. The 'Quick Log Access' setting will change this to open the messages interface instead.", 22));
     }
 
     private void displayHelpWorker(LinearLayout layout) {

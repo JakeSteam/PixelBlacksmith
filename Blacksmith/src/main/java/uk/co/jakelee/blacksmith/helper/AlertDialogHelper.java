@@ -2,13 +2,14 @@ package uk.co.jakelee.blacksmith.helper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Pair;
+import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -38,7 +39,7 @@ public class AlertDialogHelper {
     public static void enterSupportCode(final Context context, Activity activity) {
         final EditText supportCodeBox = new EditText(context);
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.supportCodeQuestion));
         alertDialog.setView(supportCodeBox);
 
@@ -60,11 +61,15 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmUpgrade(final Context context, final UpgradeActivity activity, final Upgrade upgrade) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.upgradeQuestion),
                 upgrade.getName(),
                 (upgrade.increases() ? upgrade.getCurrent() + upgrade.getIncrement() : upgrade.getCurrent() - upgrade.getIncrement()),
@@ -91,11 +96,15 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void openSocialMedia(final Context context, final Activity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.socialMediaQuestion));
 
         alertDialog.setNeutralButton(context.getString(R.string.socialMediaReddit), new DialogInterface.OnClickListener() {
@@ -119,12 +128,16 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmBuyWorker(final Context context, final WorkerActivity activity, final Worker worker) {
         final int buyCost = WorkerHelper.getBuyCost(worker);
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.buyWorkerQuestion), buyCost));
 
         alertDialog.setPositiveButton(context.getString(R.string.buyWorkerConfirm), new DialogInterface.OnClickListener() {
@@ -150,11 +163,15 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmPrestige(final Context context, Activity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.prestigeQuestion));
         alertDialog.setIcon(R.drawable.levels);
 
@@ -173,14 +190,18 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmVisitorAdd(final Context context, final MainActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
         int questionString = Player_Info.displayAds() ? R.string.bribeQuestionAdvert : R.string.bribeQuestion;
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(questionString),
                 visitorCost,
                 DateHelper.getMinsSecsRemaining(VisitorHelper.getTimeUntilSpawn())));
@@ -214,14 +235,19 @@ public class AlertDialogHelper {
                 }
             });
         }
-        alertDialog.show();
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmVisitorDismiss(final Context context, final Visitor visitor, final VisitorActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorDismissCost(visitor.getId());
         int questionID = Player_Info.displayAds() ? R.string.dismissQuestionAdvert : R.string.dismissQuestion;
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(questionID), visitorCost));
         alertDialog.setIcon(R.drawable.item52);
 
@@ -256,11 +282,15 @@ public class AlertDialogHelper {
             });
         }
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         String question = String.format(Player_Info.displayAds() ?
                 context.getString(R.string.traderRestockAllQuestionAdvert) :
                 context.getString(R.string.traderRestockAllQuestion), restockCost);
@@ -293,11 +323,15 @@ public class AlertDialogHelper {
             });
         }
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(Player_Info.displayAds() ?
                         String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(), restockCost) :
                         String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
@@ -329,11 +363,15 @@ public class AlertDialogHelper {
             });
         }
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmBonusAdvert(final Context context, final MainActivity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(R.string.bonusQuestion);
 
         alertDialog.setPositiveButton(context.getString(R.string.bonusWatch), new DialogInterface.OnClickListener() {
@@ -348,13 +386,17 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmWorseCloudLoad(final Context context, final Activity activity, int localPrestige, int localXP, int cloudPrestige, int cloudXP) {
         int localLevel = Player_Info.convertXpToLevel(localXP);
         int cloudLevel = Player_Info.convertXpToLevel(cloudXP);
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.worseSaveMessage),
                 localPrestige,
                 localLevel,
@@ -378,13 +420,17 @@ public class AlertDialogHelper {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                alertDialog.show();
+                final Dialog dialog = alertDialog.create();
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                dialog.show();
+                dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
             }
         });
     }
 
     public static void confirmCloudSave(final Context context, final Activity activity, String desc, long saveTime, String deviceName) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.cloudSaveWarning),
                 desc,
                 DateHelper.displayTime(saveTime, DateHelper.datetime),
@@ -405,13 +451,17 @@ public class AlertDialogHelper {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                alertDialog.show();
+                final Dialog dialog = alertDialog.create();
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                dialog.show();
+                dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
             }
         });
     }
 
     public static void displayUpdateMessage(final Context context, final MainActivity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
 
         alertDialog.setPositiveButton(context.getString(R.string.updateReddit), new DialogInterface.OnClickListener() {
@@ -427,7 +477,11 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock) {
@@ -436,7 +490,7 @@ public class AlertDialogHelper {
         final String itemName = item.getFullName(Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyQuestion), itemName, itemValue, itemStock.getStock(), itemValue));
         alertDialog.setIcon(R.drawable.item52);
 
@@ -503,7 +557,11 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmItemBuyAll(final Context context, final TraderActivity activity, final Trader trader) {
@@ -525,7 +583,7 @@ public class AlertDialogHelper {
             itemCount += itemStock.getStock();
         }
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
         alertDialog.setIcon(R.drawable.item52);
 
@@ -579,7 +637,11 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 }
 

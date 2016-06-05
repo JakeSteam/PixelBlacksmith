@@ -291,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements
 
         if (vh.reloadFullscreen || TutorialHelper.currentlyInTutorial) {
             dh.updateFullscreen(this);
+            vh.reloadFullscreen = false;
         }
 
         if (TutorialHelper.currentlyInTutorial) {
@@ -483,6 +484,7 @@ public class MainActivity extends AppCompatActivity implements
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent intent = new Intent(this, QuestActivity.class);
             startActivity(intent);
+            MainActivity.vh.reloadFullscreen = true;
         } else {
             ToastHelper.showErrorToast(this, ToastHelper.LONG, R.string.questsNoConnection, false);
         }

@@ -1,6 +1,8 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
 
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert" />
+
     <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>

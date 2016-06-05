@@ -263,12 +263,14 @@ public class SettingsActivity extends Activity {
     public void openAchievements(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
+            MainActivity.vh.reloadFullscreen = true;
         }
     }
 
     public void openLeaderboards(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
+            MainActivity.vh.reloadFullscreen = true;
         }
     }
 
@@ -277,12 +279,14 @@ public class SettingsActivity extends Activity {
             Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
                     "Cloud Saves", true, true, 1);
             startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
+            MainActivity.vh.reloadFullscreen = true;
         }
     }
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
+            MainActivity.vh.reloadFullscreen = true;
         }
     }
 
@@ -303,6 +307,7 @@ public class SettingsActivity extends Activity {
 
     public void openSocialMedia(View view) {
         AlertDialogHelper.openSocialMedia(getApplicationContext(), this);
+        MainActivity.vh.reloadFullscreen = true;
     }
 
     public void closePopup(View view) {
