@@ -2,8 +2,10 @@ package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.design.widget.Snackbar;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -65,12 +67,16 @@ public class ToastHelper {
                 }
             }
         });
-        snackbarView.setPadding(-12, -45, -12, -45);
+        snackbarView.setPadding(
+                convertDpToPixel(context, -5), // Left
+                convertDpToPixel(context, -18), // Top
+                convertDpToPixel(context, -5), // Right
+                convertDpToPixel(context, -18)); // Bottom
         snackbarView.setBackgroundResource(color);
 
         TextView snackbarText = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         snackbarText.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf"));
-        snackbarText.setTextSize(18);
+        snackbarText.setTextSize(20);
         snackbarText.setMinLines(2);
         snackbarText.setMaxLines(10);
         snackbarText.setGravity(Gravity.CENTER_VERTICAL);
@@ -80,5 +86,12 @@ public class ToastHelper {
         }
 
         snackbar.show();
+    }
+
+    public static int convertDpToPixel(Context context, float dp) {
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float px = dp * (metrics.densityDpi / 160f);
+        return (int) px;
     }
 }
