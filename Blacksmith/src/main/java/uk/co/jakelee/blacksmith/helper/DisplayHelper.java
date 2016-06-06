@@ -695,11 +695,19 @@ public class DisplayHelper {
 
             row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
             row.addView(itemNameView);
-            row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
-            row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));
+            row.addView(createTextView(formatLargeNumber(ingredient.getQuantity()), 22, Color.DKGRAY));
+            row.addView(createTextView(formatLargeNumber(owned.getQuantity()), 22, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }
+    }
+
+    private static String formatLargeNumber(int number) {
+        String numberString = Integer.toString(number);
+        if (numberString.length() > 3) {
+            numberString = numberString.substring(0, numberString.length() - 3) + "k";
+        }
+        return numberString;
     }
 
     public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition) {
