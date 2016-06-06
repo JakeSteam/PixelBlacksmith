@@ -3,8 +3,8 @@
 
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#ae6c37</item>
-        <item name="colorAccent">#FFFFFF</item> <!-- Buttons -->
-        <item name="android:textColorPrimary">#000000</item> <!-- Main text -->
+        <item name="colorAccent">#000000</item>  <!--Buttons -->
+        <item name="android:textColorPrimary">#FFFFFF</item> <!-- Main text -->
     </style>
 
     <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
