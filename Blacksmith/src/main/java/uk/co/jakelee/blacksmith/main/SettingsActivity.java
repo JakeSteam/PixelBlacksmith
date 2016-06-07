@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
@@ -86,19 +87,23 @@ public class SettingsActivity extends Activity {
     }
 
     private void updateSignInVisibility() {
+        TextView playHeader = (TextView) findViewById(R.id.googlePlayHeader);
         RelativeLayout signInButton = (RelativeLayout) findViewById(R.id.signInButton);
         RelativeLayout signOutButton = (RelativeLayout) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
 
         if (GooglePlayHelper.IsConnected()) {
+            playHeader.setVisibility(View.VISIBLE);
             signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.VISIBLE);
             playButtons.setVisibility(View.VISIBLE);
         } else if (GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            playHeader.setVisibility(View.VISIBLE);
             signInButton.setVisibility(View.VISIBLE);
             signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
         } else {
+            playHeader.setVisibility(View.GONE);
             signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);

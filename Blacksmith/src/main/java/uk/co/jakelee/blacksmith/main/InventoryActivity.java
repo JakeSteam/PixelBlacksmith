@@ -3,17 +3,23 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
+
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +37,15 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Type;
 
-public class InventoryActivity extends Activity {
+public class InventoryActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private LinearLayout sell1;
     private LinearLayout sell10;
     private LinearLayout sell100;
+    private Type selectedType = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,26 @@ public class InventoryActivity extends Activity {
         sell100 = (LinearLayout) findViewById(R.id.sell100);
 
         updateQuantityUI();
+        createDropdown();
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        selectedType = Select.from(Type.class).where(
+                Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
+        updateInventoryTable(this);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        updateInventoryTable(this);
+    }
+
+    private void createDropdown() {
+        Spinner typeSelector = (Spinner) findViewById(R.id.itemTypes);
+        typeSelector.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typesArray, R.layout.custom_spinner);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_item);
+        typeSelector.setAdapter(adapter);
+        typeSelector.setOnItemSelectedListener(this);
     }
 
     protected void onStop() {
@@ -74,8 +102,13 @@ public class InventoryActivity extends Activity {
     }
 
     private void updateInventoryTable(final Activity activity) {
+        List<Inventory> allInventoryItems;
+        if (selectedType != null) {
+            allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 AND item.type = " + selectedType.getId() + " ORDER BY inventory.state, item.name ASC");
+        } else {
+            allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
+        }
         List<TableRow> tableRows = new ArrayList<>();
-        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
         final TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
 
         TableRow headerRow = new TableRow(getApplicationContext());
@@ -84,6 +117,9 @@ public class InventoryActivity extends Activity {
         headerRow.addView(dh.createTextView("Name", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
         tableRows.add(headerRow);
+
+        findViewById(R.id.noItems).setVisibility(allInventoryItems.size() > 0 ? View.GONE : View.VISIBLE);
+        findViewById(R.id.inventoryTable).setVisibility(allInventoryItems.size() > 0 ? View.VISIBLE : View.INVISIBLE);
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
@@ -133,11 +169,11 @@ public class InventoryActivity extends Activity {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((TextView) findViewById(R.id.loadingMessage)).setVisibility(View.GONE);
+                findViewById(R.id.loadingMessage).setVisibility(View.GONE);
                 inventoryTable.removeAllViews();
-                for (TableRow row : finalRows)
-                inventoryTable.addView(row);
-
+                for (TableRow row : finalRows) {
+                    inventoryTable.addView(row);
+                }
             }
         });
     }

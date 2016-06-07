@@ -497,6 +497,7 @@
     <string name="buy">Buy</string>
     <string name="tradeMax">Max?</string>
     <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
+    <string name="noItemsInventory">You don\'t have any items in this category!</string>
 
     <string name="creditsOverall">Overall</string>
     <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>
@@ -535,6 +536,34 @@
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+
+    <string-array name="typesArray">
+        <item>All Items</item>
+        <item>Bar</item>
+        <item>Boot</item>
+        <item>Bow</item>
+        <item>Chainmail</item>
+        <item>Dagger</item>
+        <item>Food</item>
+        <item>Fishing Rod</item>
+        <item>Full Helmet</item>
+        <item>Full Shield</item>
+        <item>Gem</item>
+        <item>Glove</item>
+        <item>Half Helmet</item>
+        <item>Half Shield</item>
+        <item>Hammer</item>
+        <item>Hatchet</item>
+        <item>Longsword</item>
+        <item>Ore</item>
+        <item>Pickaxe</item>
+        <item>Platebody</item>
+        <item>Powder</item>
+        <item>Rare</item>
+        <item>Ring</item>
+        <item>Secondary</item>
+        <item>Sword</item>
+    </string-array>
 
     <string-array name='tipsArray'>
         <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
