@@ -119,9 +119,9 @@ public class Inventory extends SugarRecord implements Serializable {
         removeItemIngredients(itemId, state);
 
         if (Slot.hasAvailableSlot(locationID)) {
-            Pending_Inventory.addItem(itemId, state, 5, locationID);
+            Pending_Inventory.addItem(itemId, state, Constants.POWDERS_PER_GEM, locationID);
         } else {
-            Pending_Inventory.addScheduledItem(itemId, state, 5, locationID);
+            Pending_Inventory.addScheduledItem(itemId, state, Constants.POWDERS_PER_GEM, locationID);
         }
 
         return Constants.SUCCESS;

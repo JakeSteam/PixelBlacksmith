@@ -46,7 +46,6 @@ public class Constants {
     public static final int MINIMUM_COIN_REWARDS = 100;
     public static final int MAXIMUM_COIN_REWARDS = 700;
 
-    // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
@@ -55,6 +54,7 @@ public class Constants {
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
+    public static final int POWDERS_PER_GEM = 10;
 
     public static final long BONUS_TIME_PREMIUM = DateHelper.hoursToMilliseconds(2);
     public static final long BONUS_TIME_NON_PREMIUM = DateHelper.hoursToMilliseconds(4);

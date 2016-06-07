@@ -579,9 +579,28 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = 3000 WHERE name IN (\"Legendary half helmet\",\"Legendary hammer\")");
 
         // Update prices of bronze items
-        Item.executeQuery("UPDATE item SET value = 21 WHERE name IN (\"Bronze half shield\",\"Bronze full shield\",\"Bronze half helmet\",\"Bronze chainmail\")");
-        Item.executeQuery("UPDATE item SET value = 28 WHERE name = \"Bronze full helmet\"");
-        Item.executeQuery("UPDATE item SET value = 35 WHERE name = \"Bronze platebody\"");
+        Item.executeQuery("UPDATE item SET value = 5 WHERE name = \"Bronze bar\"");
+        Item.executeQuery("UPDATE item SET value = 12 WHERE name IN (\"Bronze sword\",\"Bronze longsword\",\"Bronze boots\",\"Bronze pickaxe\",\"Bronze fishing rod\")");
+        Item.executeQuery("UPDATE item SET value = 17 WHERE name IN (\"Bronze half shield\",\"Bronze full shield\",\"Bronze half helmet\",\"Bronze chainmail\")");
+        Item.executeQuery("UPDATE item SET value = 22 WHERE name = \"Bronze full helmet\"");
+        Item.executeQuery("UPDATE item SET value = 27 WHERE name = \"Bronze platebody\"");
+
+        // Update prices of all other tiers
+        Item.executeQuery("UPDATE item SET value = value + 8 WHERE name LIKE \"Mithril%\" AND name <> \"Mithril bar\" AND name <> \"Mithril ore\"");
+        Item.executeQuery("UPDATE item SET value = value + 7 WHERE name LIKE \"Adamant%\" AND name <> \"Adamant bar\" AND name <> \"Adamant ore\"");
+        Item.executeQuery("UPDATE item SET value = value + 15 WHERE name LIKE \"Rune%\" AND name <> \"Rune bar\" AND name <> \"Rune ore\"");
+        Item.executeQuery("UPDATE item SET value = value + 15 WHERE name LIKE \"Dragon%\" AND name <> \"Dragon bar\" AND name <> \"Dragon ore\"");
+
+        // Update prices of powdered items + visage
+        Item.executeQuery("UPDATE item SET value = 10 WHERE name IN (\"Powdered sapphire\",\"Powdered emerald\")");
+        Item.executeQuery("UPDATE item SET value = 20 WHERE name = \"Powdered diamond\"");
+        Item.executeQuery("UPDATE item SET value = 30 WHERE name = \"Draconic visage\"");
+
+        // Delete all sapphire from rune recipes.
+        Recipe.deleteAll(Recipe.class, "ingredient = 129 AND item IN (SELECT id FROM item WHERE name LIKE \"Rune%\")");
+
+        Worker_Resource.executeQuery("UPDATE workerresource SET quantity = 10 WHERE resource_id IN (73, 74, 75)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET quantity = 5 WHERE resource_id IN (72, 76)");
 
         // Add only displaying available items in quick select & open message log on toast click
         List<Setting> settings = new ArrayList<>();
