@@ -32,7 +32,6 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tool);
         dh = DisplayHelper.getInstance(getApplicationContext());
-        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int workerID = (int) (long) intent.getLongExtra(WorkerHelper.INTENT_ID, 0);
@@ -40,6 +39,12 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
 
         createDropdown();
         populateTools();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dh.updateFullscreen(this);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {

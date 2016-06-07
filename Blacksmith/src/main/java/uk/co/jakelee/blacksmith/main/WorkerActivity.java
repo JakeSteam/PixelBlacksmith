@@ -55,6 +55,8 @@ public class WorkerActivity extends Activity {
             }
         };
         handler.post(everyFiveSeconds);
+
+        dh.updateFullscreen(this);
     }
 
     @Override
