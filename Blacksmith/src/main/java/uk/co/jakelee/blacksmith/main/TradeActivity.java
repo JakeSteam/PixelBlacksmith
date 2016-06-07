@@ -36,6 +36,7 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -88,7 +89,10 @@ public class TradeActivity extends Activity {
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
-        handler.post(every2Seconds);
+
+        if (Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH)) {
+            handler.post(every2Seconds);
+        }
     }
 
     @Override

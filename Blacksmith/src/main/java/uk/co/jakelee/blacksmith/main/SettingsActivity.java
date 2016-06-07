@@ -155,6 +155,10 @@ public class SettingsActivity extends Activity {
         boolean messageLogToggleValue = Setting.getSafeBoolean(Constants.SETTING_MESSAGE_LOG);
         messageLogToggle.setImageDrawable(messageLogToggleValue ? tick : cross);
 
+        ImageView autoRefreshToggle = (ImageView) findViewById(R.id.autoRefreshToggleButton);
+        boolean autoRefreshToggleValue = Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH);
+        autoRefreshToggle.setImageDrawable(autoRefreshToggleValue ? tick : cross);
+
         ImageView fullscreenToggle = (ImageView) findViewById(R.id.fullscreenToggleButton);
         boolean fullscreenToggleValue = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
         fullscreenToggle.setImageDrawable(fullscreenToggleValue ? tick : cross);
@@ -212,6 +216,10 @@ public class SettingsActivity extends Activity {
             case R.id.fullscreenToggle:
                 settingID = Constants.SETTING_FULLSCREEN;
                 settingName = "Fullscreen Mode";
+                break;
+            case R.id.autoRefreshToggle:
+                settingID = Constants.SETTING_AUTOREFRESH;
+                settingName = "Item Listing Auto Refresh";
                 break;
         }
 

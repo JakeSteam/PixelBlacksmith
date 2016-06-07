@@ -137,6 +137,7 @@ public class Constants {
     public static final Long SETTING_ONLY_AVAILABLE = 12L;
     public static final Long SETTING_MESSAGE_LOG = 13L;
     public static final Long SETTING_FULLSCREEN = 14L;
+    public static final Long SETTING_AUTOREFRESH = 15L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

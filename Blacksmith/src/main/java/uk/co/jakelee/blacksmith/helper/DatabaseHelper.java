@@ -588,6 +588,7 @@ public class DatabaseHelper {
             settings.add(new Setting(12L, "OnlyAvailableItems", false));
             settings.add(new Setting(13L, "OpenMessageLog", false));
             settings.add(new Setting(14L, "Fullscreen", true));
+            settings.add(new Setting(15L, "Autorefresh", false));
         Setting.saveInTx(settings);
 
         // Updating minimum levels for traders

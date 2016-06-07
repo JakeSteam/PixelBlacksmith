@@ -343,10 +343,12 @@
     <string name="bonusNotificationSettingText">Bonus</string>
     <string name="prestigeSettingText">Prestige\n(NG+)</string>
     <string name="fullscreenSettingText">Full Screen</string>
+    <string name="autoRefreshSettingText">Auto Refresh</string>
 
     <string name="soundSettingGroup">Sound Options</string>
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
+    <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
     <string name="googlePlaySettingGroup">Google Play</string>
 

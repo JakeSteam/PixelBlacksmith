@@ -37,9 +37,10 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Type;
 
-public class InventoryActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class InventoryActivity extends Activity implements AdapterView.OnItemSelectedListener{
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private LinearLayout sell1;
@@ -66,7 +67,10 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
-        handler.post(every2Seconds);
+
+        if (Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH)) {
+            handler.post(every2Seconds);
+        }
 
         sell1 = (LinearLayout) findViewById(R.id.sell1);
         sell10 = (LinearLayout) findViewById(R.id.sell10);
@@ -79,6 +83,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         selectedType = Select.from(Type.class).where(
                 Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
+        dh.updateFullscreen(this);
         updateInventoryTable(this);
     }
 
