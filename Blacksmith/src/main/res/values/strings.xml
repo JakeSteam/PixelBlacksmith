@@ -137,6 +137,7 @@
     <string name="messagesShortText">Messages</string>
     <string name="socialMediaText">Social Media</string>
     <string name="workerText">Workers</string>
+    <string name="heroText">Heroes</string>
     <string name="toolText">Tools</string>
     <string name="foodText">Food</string>
     <string name="itemsText">Items</string>
@@ -191,7 +192,8 @@
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
-    <string name="levelUpPrestigeText">Levelled up to %d! You can now prestige, take a look at the settings menu!</string>
+    <string name="levelUpPrestigeText">Levelled up to %d! Premium players can prestige, take a look at the settings menu!</string>
+    <string name="levelUpPremiumPrestigeText">Levelled up to %d! You can now prestige (New Game +), take a look at the settings menu!</string>
     <string name="overflowText">+ %d</string>
 
     <string name="workerLocked">Locked</string>

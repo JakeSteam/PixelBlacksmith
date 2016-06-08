@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -33,6 +34,7 @@ import uk.co.jakelee.blacksmith.model.Worker_Resource;
 public class WorkerActivity extends Activity {
     private static DisplayHelper dh;
     private static final Handler handler = new Handler();
+    private boolean heroesSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,47 @@ public class WorkerActivity extends Activity {
         List<Worker> workers = Select.from(Worker.class).orderBy("purchased DESC, level_unlocked ASC").list();
         for (Worker worker : workers) {
             container.addView(createWorkerRow(worker));
+        }
+    }
+
+    private void populateHeroes() {
+        LinearLayout container = (LinearLayout) findViewById(R.id.workerContainer);
+        container.removeAllViews();
+
+        List<Hero> heroes = Select.from(Hero.class).orderBy("purchased DESC, level_unlocked ASC").list();
+        for (Hero hero : heroes) {
+            container.addView(createHeroRow(hero));
+        }
+    }
+
+    private RelativeLayout createHeroRow(Hero hero) {
+        RelativeLayout traderRoot = createTraderRoot();
+        return traderRoot;
+    }
+
+    public void toggleTab(View view) {
+        heroesSelected = !heroesSelected;
+        updateTabs();
+        createInterface();
+    }
+
+    private void createInterface() {
+        if (heroesSelected) {
+            populateHeroes();
+        } else {
+            populateWorkers();
+        }
+
+        updateButtons();
+    }
+
+    private void updateTabs() {
+        if (heroesSelected) {
+            (findViewById(R.id.heroesTab)).setAlpha(0.3f);
+            (findViewById(R.id.workersTab)).setAlpha(1f);
+        } else {
+            (findViewById(R.id.heroesTab)).setAlpha(1f);
+            (findViewById(R.id.workersTab)).setAlpha(0.3f);
         }
     }
 
@@ -228,9 +271,12 @@ public class WorkerActivity extends Activity {
 
     public void scheduledTask() {
         WorkerHelper.checkForFinishedWorkers(this);
-        populateWorkers();
 
-        updateButtons();
+        if (!heroesSelected) {
+            populateWorkers();
+            updateButtons();
+        }
+        updateTabs();
     }
 
     private RelativeLayout createTraderRoot() {

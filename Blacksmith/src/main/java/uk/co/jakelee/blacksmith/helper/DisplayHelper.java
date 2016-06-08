@@ -647,8 +647,9 @@ public class DisplayHelper {
         Long numStates = Select.from(State.class).where(
                 Condition.prop("minimum_level").eq(newLevel)).count();
 
-        if (newLevel == Constants.PRESTIGE_LEVEL_REQUIRED) {
-            return String.format(this.context.getString(R.string.levelUpPrestigeText), newLevel);
+        if (newLevel >= Constants.PRESTIGE_LEVEL_REQUIRED && newLevel % 5 == 0) {
+            return String.format(this.context.getString(Player_Info.isPremium() ? R.string.levelUpPremiumPrestigeText : R.string.levelUpPrestigeText),
+                    newLevel);
         }
         return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
