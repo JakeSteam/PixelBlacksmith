@@ -46,7 +46,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
     private LinearLayout sell1;
     private LinearLayout sell10;
     private LinearLayout sell100;
-    private Type selectedType = null;
+    private Type selectedType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
+        loadSelectedType();
 
         final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
@@ -80,6 +81,15 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         createDropdown();
     }
 
+    private void loadSelectedType() {
+        long savedType = MainActivity.prefs.getLong("inventoryFilter", 0);
+        if (savedType > 0) {
+            selectedType = Type.findById(Type.class, savedType);
+        } else {
+            selectedType = null;
+        }
+    }
+
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         selectedType = Select.from(Type.class).where(
                 Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
@@ -98,11 +108,13 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         typeSelector.setAdapter(adapter);
         typeSelector.setOnItemSelectedListener(this);
+        typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName()) : 0);
     }
 
     protected void onStop() {
         super.onStop();
 
+        MainActivity.prefs.edit().putLong("inventoryFilter", selectedType != null ? selectedType.getId() : 0).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
