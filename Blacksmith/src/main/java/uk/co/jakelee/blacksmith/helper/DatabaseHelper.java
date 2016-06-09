@@ -689,20 +689,99 @@ public class DatabaseHelper {
         // Animal Hunting: 100 - 250 difficulty.
         heroCategories.add(new Hero_Category(2, "Animal Hunting", 0));
             heroCategories.add(new Hero_Category(21, "Fly Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(211, 21, "Hunt Fruit Flies", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(212, 21, "Hunt Bottle Flies", "DESCRIPTION", 120));
+                heroAdventures.add(new Hero_Adventure(213, 21, "Hunt Mutant Flies", "DESCRIPTION", 150));
+                heroAdventures.add(new Hero_Adventure(214, 21, "Hunt Vampire Flies", "DESCRIPTION", 180));
+                heroAdventures.add(new Hero_Adventure(215, 21, "Hunt Scavenger Flies", "DESCRIPTION", 220));
+
             heroCategories.add(new Hero_Category(22, "Slug Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(221, 22, "Hunt Slow Slugs", "DESCRIPTION", 130));
+                heroAdventures.add(new Hero_Adventure(222, 22, "Hunt Sticky Slugs", "DESCRIPTION", 150));
+                heroAdventures.add(new Hero_Adventure(223, 22, "Hunt Fancy Slugs", "DESCRIPTION", 170));
+                heroAdventures.add(new Hero_Adventure(224, 22, "Hunt Deadly Slugs", "DESCRIPTION", 190));
+
             heroCategories.add(new Hero_Category(23, "Spider Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(231, 23, "Hunt Baby Spiders", "DESCRIPTION", 110));
+                heroAdventures.add(new Hero_Adventure(232, 23, "Hunt Daddy Long Legs Spiders", "DESCRIPTION", 140));
+                heroAdventures.add(new Hero_Adventure(232, 23, "Hunt Tarantula Spiders", "DESCRIPTION", 190));
+                heroAdventures.add(new Hero_Adventure(233, 23, "Hunt Black Widow Spiders", "DESCRIPTION", 250));
+
             heroCategories.add(new Hero_Category(24, "Frog Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(241, 24, "Hunt Baby Frogs", "DESCRIPTION", 110));
+                heroAdventures.add(new Hero_Adventure(242, 24, "Hunt Jumping Frogs", "DESCRIPTION", 140));
+                heroAdventures.add(new Hero_Adventure(243, 24, "Hunt Skermit The Frogs", "DESCRIPTION", 170));
+                heroAdventures.add(new Hero_Adventure(244, 24, "Hunt Mr. Frogs", "DESCRIPTION", 210));
+                heroAdventures.add(new Hero_Adventure(245, 24, "Hunt Hypnofrogs", "DESCRIPTION", 250));
+
             heroCategories.add(new Hero_Category(25, "Rabbit Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(251, 25, "Hunt White Rabbits", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(252, 25, "Hunt Dwarf Rabbits", "DESCRIPTION", 130));
+                heroAdventures.add(new Hero_Adventure(253, 25, "Hunt Wooly Rabbits", "DESCRIPTION", 170));
+                heroAdventures.add(new Hero_Adventure(254, 25, "Hunt Wabbits", "DESCRIPTION", 220));
+
             heroCategories.add(new Hero_Category(26, "Hellcat Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(261, 26, "Hunt Blue Hellcats", "DESCRIPTION", 2100));
+                heroAdventures.add(new Hero_Adventure(262, 26, "Hunt Green Hellcats", "DESCRIPTION", 220));
+                heroAdventures.add(new Hero_Adventure(263, 26, "Hunt Red Hellcats", "DESCRIPTION", 230));
+                heroAdventures.add(new Hero_Adventure(264, 26, "Hunt White Hellcats", "DESCRIPTION", 240));
+                heroAdventures.add(new Hero_Adventure(265, 26, "Hunt Black Hellcats", "DESCRIPTION", 250));
+
             heroCategories.add(new Hero_Category(27, "Wolf Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(271, 27, "Hunt White Wolves", "DESCRIPTION", 160));
+                heroAdventures.add(new Hero_Adventure(272, 27, "Hunt Wargs", "DESCRIPTION", 180));
+                heroAdventures.add(new Hero_Adventure(273, 27, "Hunt Big Bad Wolves", "DESCRIPTION", 200));
+                heroAdventures.add(new Hero_Adventure(274, 27, "Hunt Direwolves", "DESCRIPTION", 220));
+                heroAdventures.add(new Hero_Adventure(275, 27, "Hunt Werewolves", "DESCRIPTION", 240));
+
             heroCategories.add(new Hero_Category(28, "Bear Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(281, 28, "Hunt Bobo The Bears", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(282, 28, "Hunt Panda Bears", "DESCRIPTION", 140));
+                heroAdventures.add(new Hero_Adventure(283, 28, "Hunt Black Bears", "DESCRIPTION", 180));
+                heroAdventures.add(new Hero_Adventure(284, 28, "Hunt Black Bears", "DESCRIPTION", 220));
+                heroAdventures.add(new Hero_Adventure(285, 28, "Hunt Grizzly Bears", "DESCRIPTION", 250));
+
             heroCategories.add(new Hero_Category(29, "Tiger Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(291, 29, "Hunt Tiggers", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(292, 29, "Hunt Young Tigers", "DESCRIPTION", 110));
+                heroAdventures.add(new Hero_Adventure(293, 29, "Hunt Gladiatorial Tigers", "DESCRIPTION", 170));
+                heroAdventures.add(new Hero_Adventure(294, 29, "Hunt Phony Tigers", "DESCRIPTION", 180));
+                heroAdventures.add(new Hero_Adventure(295, 29, "Hunt Shere Khan", "DESCRIPTION", 240));
 
         // Monster Hunting: 200 - 600 difficulty.
         heroCategories.add(new Hero_Category(3, "Monster Hunting", 0));
+            heroCategories.add(new Hero_Category(31, "Ghost Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(311, 31, "Hunt Poltergeists", "DESCRIPTION", 220));
+                heroAdventures.add(new Hero_Adventure(312, 31, "Hunt Victorian Ghosts", "DESCRIPTION", 280));
+                heroAdventures.add(new Hero_Adventure(313, 31, "Hunt Bloody Barons", "DESCRIPTION", 340));
+                heroAdventures.add(new Hero_Adventure(314, 31, "Hunt Black Knights", "DESCRIPTION", 400));
 
-        // Boss Hunting: 700 - 1000 difficulty.
-        heroCategories.add(new Hero_Category(4, "Boss Hunting", 0));
+            heroCategories.add(new Hero_Category(32, "Vampire Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(321, 32, "Hunt Vampire Bats", "DESCRIPTION", 310));
+                heroAdventures.add(new Hero_Adventure(321, 32, "Hunt Vampire Counts", "DESCRIPTION", 350));
+                heroAdventures.add(new Hero_Adventure(321, 32, "Hunt Draugrs", "DESCRIPTION", 390));
+
+            heroCategories.add(new Hero_Category(33, "Sea Monster Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(331, 33, "Hunt Loch Ness Monsters", "DESCRIPTION", 500));
+                heroAdventures.add(new Hero_Adventure(332, 33, "Hunt Leviathans", "DESCRIPTION", 600));
+                heroAdventures.add(new Hero_Adventure(333, 33, "Hunt Elder Gods", "DESCRIPTION", 600));
+
+            heroCategories.add(new Hero_Category(34, "Alien Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(341, 34, "Hunt Soft Ones", "DESCRIPTION", 190));
+                heroAdventures.add(new Hero_Adventure(342, 34, "Hunt Reapers", "DESCRIPTION", 290));
+                heroAdventures.add(new Hero_Adventure(343, 34, "Hunt Daleks", "DESCRIPTION", 390));
+                heroAdventures.add(new Hero_Adventure(344, 34, "Hunt Xenomorphs", "DESCRIPTION", 490));
+                heroAdventures.add(new Hero_Adventure(345, 34, "Hunt Moties", "DESCRIPTION", 590));
+
+            heroCategories.add(new Hero_Category(35, "Zombie Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Infected", "DESCRIPTION", 400));
+                heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Crawlers", "DESCRIPTION", 440));
+                heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Runners", "DESCRIPTION", 480));
+                heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Spitters", "DESCRIPTION", 520));
+                heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Boomers", "DESCRIPTION", 600));
+
+        // ???: 700 - 1000 difficulty.
+        heroCategories.add(new Hero_Category(4, "???", 0));
 
         // Guard Duty: 100 - 250 difficulty.
         heroCategories.add(new Hero_Category(5, "Guard Duty", 0));
