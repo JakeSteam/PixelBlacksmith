@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.model;
 
-public class Hero_Resource {
+import com.orm.SugarRecord;
+
+public class Hero_Resource extends SugarRecord {
     private String adventureId;
     private int resourceID;
     private int resourceState;

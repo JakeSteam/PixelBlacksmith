@@ -8,6 +8,7 @@ public class Hero_Adventure extends SugarRecord {
     private String name;
     private String description;
     private int difficulty;
+    private boolean completed;
 
     public Hero_Adventure() {
     }
@@ -18,6 +19,7 @@ public class Hero_Adventure extends SugarRecord {
         this.name = name;
         this.description = description;
         this.difficulty = difficulty;
+        this.completed = false;
     }
 
     public int getAdventureId() {
@@ -58,5 +60,13 @@ public class Hero_Adventure extends SugarRecord {
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

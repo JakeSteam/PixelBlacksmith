@@ -14,6 +14,7 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Hero_Category;
+import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -641,6 +642,7 @@ public class DatabaseHelper {
 
         List<Hero_Category> heroCategories = new ArrayList<>();
         List<Hero_Adventure> heroAdventures = new ArrayList<>();
+        List<Hero_Resource> heroResources = new ArrayList<>();
 
         // Gathering: 1 - 150 difficulty.
         heroCategories.add(new Hero_Category(1, "Gathering", 0));
@@ -783,16 +785,40 @@ public class DatabaseHelper {
         // ???: 700 - 1000 difficulty.
         heroCategories.add(new Hero_Category(4, "???", 0));
 
-        // Guard Duty: 100 - 250 difficulty.
+        // Guard Duty: 100 - 300 difficulty.
         heroCategories.add(new Hero_Category(5, "Guard Duty", 0));
+            heroCategories.add(new Hero_Category(51, "Guard Shops", 5));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Butchers", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Bakers", "DESCRIPTION", 110));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Sandwich Shop", "DESCRIPTION", 120));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Fishmongers", "DESCRIPTION", 130));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Pie Shop", "DESCRIPTION", 140));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Fruit Stand", "DESCRIPTION", 150));
+
+            heroCategories.add(new Hero_Category(52, "Guard Markets", 5));
+                heroAdventures.add(new Hero_Adventure(521, 52, "Guard Local Market", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(522, 52, "Guard Farmer's Market", "DESCRIPTION", 200));
+                heroAdventures.add(new Hero_Adventure(523, 52, "Guard County Market", "DESCRIPTION", 300));
+
+            heroCategories.add(new Hero_Category(53, "Guard Factories", 5));
+                heroAdventures.add(new Hero_Adventure(531, 53, "Guard Food Processing Factory", "DESCRIPTION", 150));
+                heroAdventures.add(new Hero_Adventure(533, 53, "Guard Smelting Factory", "DESCRIPTION", 200));
+                heroAdventures.add(new Hero_Adventure(533, 53, "Guard Clothing Factory", "DESCRIPTION", 250));
+                heroAdventures.add(new Hero_Adventure(532, 53, "Guard Gem Factory", "DESCRIPTION", 300));
+
+            heroCategories.add(new Hero_Category(54, "Guard Embassies", 5));
+            heroCategories.add(new Hero_Category(55, "Guard Banks", 5));
+            heroCategories.add(new Hero_Category(56, "Guard Royalty", 5));
 
         // Exploring: 500 - 800 difficulty.
         heroCategories.add(new Hero_Category(6, "Exploring", 0));
 
         // Escort: 300 - 700 difficulty.
         heroCategories.add(new Hero_Category(7, "Escort", 0));
+
         Hero_Category.saveInTx(heroCategories);
         Hero_Adventure.saveInTx(heroAdventures);
+        Hero_Resource.saveInTx(heroResources);
     }
 
     private static void createAchievement() {
