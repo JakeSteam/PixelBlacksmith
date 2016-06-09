@@ -14,6 +14,7 @@ import java.util.Map;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -29,6 +30,12 @@ public class WorkerHelper {
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
                 Condition.prop("tool_id").eq(toolID))
+                .orderBy("resource_quantity DESC").list();
+    }
+
+    public static List<Hero_Resource> getResourcesByAdventure(int adventureID) {
+        return Select.from(Hero_Resource.class).where(
+                Condition.prop("adventure_id").eq(adventureID))
                 .orderBy("resource_quantity DESC").list();
     }
 
@@ -169,6 +176,65 @@ public class WorkerHelper {
         return String.format(context.getString(R.string.workerReturned),
                 workerCharacter.getName(),
                 getRewardResourcesText(worker, resources, true));
+    }
+
+    public static String getRewardResourcesText(Hero worker, List<Hero_Resource> resources, boolean addItems) {
+        LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
+        Item foodItem = Item.findById(Item.class, worker.getFoodItem());
+        boolean applyFoodBonus = worker.getFoodItem() > 0 && (worker.getTimeStarted() > 0 || addItems);
+
+        boolean favouriteFoodUsed = false;
+        /*if (worker.getFoodUsed() == worker.getFavouriteFood()) {
+            favouriteFoodUsed = true;
+            worker.setFavouriteFoodDiscovered(true);
+            worker.save();
+        }*/
+
+        for (Hero_Resource resource : resources) {
+            // Apply bonus from all equipment (including food!)
+            //resource.applyFoodBonus(foodItem, favouriteFoodUsed);
+
+            if (addItems) {
+                Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
+                resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
+                resourceInventory.save();
+            }
+
+            Item item = Item.findById(Item.class, resource.getResourceID());
+            Integer temp;
+            if(data.containsKey(item.getName())) {
+                temp = data.get(item.getName()) + resource.getResourceQuantity();
+                data.put(item.getName(), temp);
+            } else {
+                data.put(item.getName(), resource.getResourceQuantity());
+            }
+        }
+
+        String bonusText = "";
+        if (addItems && foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+            // If rewarding resources, and have luckily got a page
+            List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+            Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+            Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
+
+            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+        } else if (!addItems && foodItem != null) {
+            // If checking resources
+            /*if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
+                bonusText = ", and very possibly a rare page";
+            } else {
+                bonusText = ", and possibly a rare page";
+            }*/
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : data.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+
+            result.append(String.format("%dx %s, ", value, key));
+        }
+        return result.substring(0, result.length() - 2) + bonusText;
     }
 
     public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {

@@ -90,6 +90,10 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
     }
 
+    public static int getAdventureDrawableID(Context context, long adventure) {
+        return context.getResources().getIdentifier("adventure" + adventure, "drawable", context.getPackageName());
+    }
+
     public static int getCharacterDrawableID(Context context, long character) {
         return context.getResources().getIdentifier("character" + character, "drawable", context.getPackageName());
     }

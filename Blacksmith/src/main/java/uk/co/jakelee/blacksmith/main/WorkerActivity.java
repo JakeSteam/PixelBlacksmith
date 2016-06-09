@@ -26,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Adventure;
+import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -133,7 +134,7 @@ public class WorkerActivity extends Activity {
             heroFood.setImageResource(resourceID);
             heroFood.setVisibility(View.VISIBLE);
 
-            heroAdventure.setImageResource(DisplayHelper.getItemDrawableID(this, hero.getCurrentAdventure()));
+            heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
             heroAdventure.setTag(hero);
             heroAdventure.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -151,9 +152,9 @@ public class WorkerActivity extends Activity {
                 public void onClick(View v) {
                     Hero hero = (Hero) v.getTag();
                     if (hero.isPurchased()) {
-                        /*List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure((int) hero.getCurrentAdventure());
+                        List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure((int) hero.getCurrentAdventure());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(hero, resources, false)), false);*/
+                                WorkerHelper.getRewardResourcesText(hero, resources, false)), false);
                     }
                 }
             });
