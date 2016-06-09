@@ -200,6 +200,9 @@
     <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %,d coins?</string>
     <string name="buyWorkerConfirm">Hire</string>
     <string name="buyWorkerComplete">Successfully hired worker!</string>
+    <string name="buyHeroQuestion">Are you sure you would like to hire this hero for %,d coins?</string>
+    <string name="buyHeroConfirm">Hire</string>
+    <string name="buyHeroComplete">Successfully hired hero!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
     <string name="sendOutWorkers">Send Out\nWorkers</string>
@@ -231,10 +234,12 @@
     <string name="windowClick">What was that!?</string>
 
     <string name="buyWorker">Purchase Worker</string>
+    <string name="buyHero">Purchase Hero</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
+    <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a +%3$s%% bonus.</string>
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>

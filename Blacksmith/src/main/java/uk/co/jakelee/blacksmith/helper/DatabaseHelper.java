@@ -11,6 +11,8 @@ import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -599,8 +601,8 @@ public class DatabaseHelper {
         // Delete all sapphire from rune recipes.
         Recipe.deleteAll(Recipe.class, "ingredient = 129 AND item IN (SELECT id FROM item WHERE name LIKE \"Rune%\")");
 
-        Worker_Resource.executeQuery("UPDATE workerresource SET quantity = 10 WHERE resource_id IN (73, 74, 75)");
-        Worker_Resource.executeQuery("UPDATE workerresource SET quantity = 5 WHERE resource_id IN (72, 76)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE resource_id IN (73, 74, 75)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE resource_id IN (72, 76)");
 
         // Add only displaying available items in quick select & open message log on toast click
         List<Setting> settings = new ArrayList<>();
@@ -622,6 +624,14 @@ public class DatabaseHelper {
         // Actually fixing green and blue visitors...
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 5, type_preferred = 20 WHERE visitor_id = 8");
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 4, type_preferred = 20 WHERE visitor_id = 9");
+
+        List<Hero> heroes = new ArrayList<>();
+            heroes.add(new Hero(1, 1, 1, 1, true, 1, 1, 1, 1, 1, 1, 1, 1, 1));
+        Hero.saveInTx(heroes);
+
+        List<Hero_Adventure> heroAdventures = new ArrayList<>();
+            heroAdventures.add(new Hero_Adventure(1, 1, 1, 1, "Test Adventure"));
+        Hero_Adventure.saveInTx(heroAdventures);
     }
 
     private static void createAchievement() {

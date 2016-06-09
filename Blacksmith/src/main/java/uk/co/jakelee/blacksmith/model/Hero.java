@@ -6,6 +6,8 @@ import com.orm.SugarRecord;
 public class Hero extends SugarRecord {
     private int heroId;
     private int levelUnlocked;
+    private int currentAdventure;
+    private long timeStarted;
     private boolean purchased;
     private int visitorId;
     private int foodItem;
@@ -23,6 +25,8 @@ public class Hero extends SugarRecord {
     public Hero(int heroId, int levelUnlocked) {
         this.heroId = heroId;
         this.levelUnlocked = levelUnlocked;
+        this.currentAdventure = 0;
+        this.timeStarted = 0L;
         this.purchased = false;
         this.visitorId = 0;
         this.foodItem = 0;
@@ -35,9 +39,11 @@ public class Hero extends SugarRecord {
         this.ringItem = 0;
     }
 
-    public Hero(int heroId, int levelUnlocked, boolean purchased, int visitorId, int foodItem, int helmetItem, int armourItem, int weaponItem, int shieldItem, int glovesItem, int bootsItem, int ringItem) {
+    public Hero(int heroId, int levelUnlocked, int currentAdventure, long adventureStarted, boolean purchased, int visitorId, int foodItem, int helmetItem, int armourItem, int weaponItem, int shieldItem, int glovesItem, int bootsItem, int ringItem) {
         this.heroId = heroId;
         this.levelUnlocked = levelUnlocked;
+        this.currentAdventure = currentAdventure;
+        this.timeStarted = adventureStarted;
         this.purchased = purchased;
         this.visitorId = visitorId;
         this.foodItem = foodItem;
@@ -64,6 +70,22 @@ public class Hero extends SugarRecord {
 
     public void setLevelUnlocked(int levelUnlocked) {
         this.levelUnlocked = levelUnlocked;
+    }
+
+    public int getCurrentAdventure() {
+        return currentAdventure;
+    }
+
+    public void setCurrentAdventure(int currentAdventure) {
+        this.currentAdventure = currentAdventure;
+    }
+
+    public long getTimeStarted() {
+        return timeStarted;
+    }
+
+    public void setTimeStarted(long timeStarted) {
+        this.timeStarted = timeStarted;
     }
 
     public boolean isPurchased() {
@@ -144,5 +166,13 @@ public class Hero extends SugarRecord {
 
     public void setRingItem(int ringItem) {
         this.ringItem = ringItem;
+    }
+
+    public int getTotalItemBonusPercent() {
+        return (int) getTotalItemBonus();
+    }
+
+    public double getTotalItemBonus() {
+        return 1.11;
     }
 }

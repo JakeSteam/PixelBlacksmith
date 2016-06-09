@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -89,8 +90,105 @@ public class WorkerActivity extends Activity {
     }
 
     private RelativeLayout createHeroRow(Hero hero) {
-        RelativeLayout traderRoot = createTraderRoot();
-        return traderRoot;
+        RelativeLayout heroRoot = createHeroRow();
+        ImageView heroCharacter = (ImageView) heroRoot.findViewById(R.id.heroCharacter);
+        ImageView heroFood = (ImageView) heroRoot.findViewById(R.id.heroFood);
+        TextView heroCharacterText = (TextView) heroRoot.findViewById(R.id.heroCharacterText);
+        ImageView heroAdventure = (ImageView) heroRoot.findViewById(R.id.heroAdventure);
+        LinearLayout heroResourceContainer = (LinearLayout) heroRoot.findViewById(R.id.heroResource);
+        final TextView heroButton = (TextView) heroRoot.findViewById(R.id.heroButton);
+
+        Hero_Adventure adventure = Hero_Adventure.findById(Hero_Adventure.class, hero.getCurrentAdventure());
+
+        final WorkerActivity activity = this;
+
+        if (hero.isPurchased()) {
+            heroCharacter.setImageResource(DisplayHelper.getCharacterDrawableID(this, hero.getVisitorId()));
+            heroCharacter.setTag(hero);
+            heroCharacter.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    String heroTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Hero) v.getTag());
+                    ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, heroTimesCompleted, false);
+                }
+            });
+            heroCharacterText.setText(WorkerHelper.isReady(hero) ? R.string.workerStatusReady : R.string.workerStatusBusy);
+
+            int resourceID = R.drawable.transparent;
+            if (hero.getFoodItem() > 0) {
+                resourceID = DisplayHelper.getItemDrawableID(this, hero.getFoodItem());
+            }
+            if (WorkerHelper.isReady(hero)) {
+                heroFood.setTag(hero);
+                heroFood.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Hero hero = (Hero) v.getTag();
+                        if (WorkerHelper.isReady(hero)) {
+                            Intent intent = new Intent(activity, FoodActivity.class);
+                            intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
+                            startActivity(intent);
+                        }
+                    }
+                });
+            }
+            heroFood.setImageResource(resourceID);
+            heroFood.setVisibility(View.VISIBLE);
+
+            heroAdventure.setImageResource(DisplayHelper.getItemDrawableID(this, hero.getCurrentAdventure()));
+            heroAdventure.setTag(hero);
+            heroAdventure.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (WorkerHelper.isReady(hero)) {
+                        /*Intent intent = new Intent(activity, AdventureActivity.class);
+                        intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
+                        startActivity(intent);*/
+                    }
+                }
+            });
+
+            heroResourceContainer.setTag(hero);
+            heroResourceContainer.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (hero.isPurchased()) {
+                        /*List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure((int) hero.getCurrentAdventure());
+                        ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
+                                WorkerHelper.getRewardResourcesText(hero, resources, false)), false);*/
+                    }
+                }
+            });
+            WorkerHelper.populateResources(dh, heroResourceContainer, hero.getCurrentAdventure());
+
+            heroButton.setText(WorkerHelper.getButtonText(hero));
+            heroButton.setTag(hero);
+            heroButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (WorkerHelper.sendOutHero(hero)) {
+                        scheduledTask();
+                    } else {
+                        /*String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, hero);
+                        ToastHelper.showToast(heroButton, ToastHelper.SHORT, exactTimeLeft, false);*/
+                    }
+                }
+            });
+        } else if (hero.getLevelUnlocked() <= Player_Info.getPlayerLevel()) {
+            heroCharacter.setImageResource(R.drawable.item52);
+            heroCharacterText.setText(String.format(getString(R.string.workerCoins),
+                    WorkerHelper.getBuyCost(hero)));
+            heroButton.setText(R.string.buyHero);
+            heroButton.setTag(hero);
+            heroButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    AlertDialogHelper.confirmBuyHero(getApplicationContext(), activity, (Hero) v.getTag());
+                }
+            });
+        } else {
+            heroCharacter.setImageResource(R.drawable.lock);
+            heroCharacterText.setText(String.format(getString(R.string.slotLevel), hero.getLevelUnlocked()));
+        }
+
+        return heroRoot;
     }
 
     public void toggleTab(View view) {
@@ -120,14 +218,14 @@ public class WorkerActivity extends Activity {
     }
 
     private RelativeLayout createWorkerRow(Worker worker) {
-        RelativeLayout traderRoot = createTraderRoot();
-        ImageView workerCharacter = (ImageView) traderRoot.findViewById(R.id.workerCharacter);
-        ImageView workerFood = (ImageView) traderRoot.findViewById(R.id.workerFood);
-        TextView workerCharacterText = (TextView) traderRoot.findViewById(R.id.workerCharacterText);
-        ImageView workerTool = (ImageView) traderRoot.findViewById(R.id.workerTool);
-        TextView workerToolText = (TextView) traderRoot.findViewById(R.id.workerToolText);
-        LinearLayout workerResourceContainer = (LinearLayout) traderRoot.findViewById(R.id.workerResource);
-        final TextView workerButton = (TextView) traderRoot.findViewById(R.id.workerButton);
+        RelativeLayout workerRoot = createWorkerRow();
+        ImageView workerCharacter = (ImageView) workerRoot.findViewById(R.id.workerCharacter);
+        ImageView workerFood = (ImageView) workerRoot.findViewById(R.id.workerFood);
+        TextView workerCharacterText = (TextView) workerRoot.findViewById(R.id.workerCharacterText);
+        ImageView workerTool = (ImageView) workerRoot.findViewById(R.id.workerTool);
+        TextView workerToolText = (TextView) workerRoot.findViewById(R.id.workerToolText);
+        LinearLayout workerResourceContainer = (LinearLayout) workerRoot.findViewById(R.id.workerResource);
+        final TextView workerButton = (TextView) workerRoot.findViewById(R.id.workerButton);
 
         Item tool = Item.findById(Item.class, worker.getToolUsed());
         final WorkerActivity activity = this;
@@ -219,7 +317,7 @@ public class WorkerActivity extends Activity {
             workerCharacterText.setText(String.format(getString(R.string.slotLevel), worker.getLevelUnlocked()));
         }
 
-        return traderRoot;
+        return workerRoot;
     }
 
     public void toggleAutofeed(View v) {
@@ -279,10 +377,16 @@ public class WorkerActivity extends Activity {
         updateTabs();
     }
 
-    private RelativeLayout createTraderRoot() {
+    private RelativeLayout createWorkerRow() {
         LayoutInflater inflater = LayoutInflater.from(this);
         View inflatedView = inflater.inflate(R.layout.custom_worker, null);
-        return (RelativeLayout) inflatedView.findViewById(R.id.traderRow);
+        return (RelativeLayout) inflatedView.findViewById(R.id.workerRow);
+    }
+
+    private RelativeLayout createHeroRow() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View inflatedView = inflater.inflate(R.layout.custom_hero, null);
+        return (RelativeLayout) inflatedView.findViewById(R.id.heroRow);
     }
 
     public void openHelp(View view) {

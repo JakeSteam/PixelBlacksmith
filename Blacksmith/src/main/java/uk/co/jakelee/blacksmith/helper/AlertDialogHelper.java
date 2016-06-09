@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.main.WorkerActivity;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
@@ -125,6 +126,41 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/PixelBlacksmith"));
                 activity.startActivity(browserIntent);
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void confirmBuyHero(final Context context, final WorkerActivity activity, final Hero hero) {
+        final int buyCost = WorkerHelper.getBuyCost(hero);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.buyHeroQuestion), buyCost));
+
+        alertDialog.setPositiveButton(context.getString(R.string.buyHeroConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                if (coinStock.getQuantity() >= buyCost) {
+                    coinStock.setQuantity(coinStock.getQuantity() - buyCost);
+                    coinStock.save();
+
+                    hero.setPurchased(true);
+                    hero.save();
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, context.getString(R.string.buyHeroComplete), true);
+                    activity.scheduledTask();
+                } else {
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.buyWorkerCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
 

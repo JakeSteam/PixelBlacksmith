@@ -13,10 +13,13 @@ import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Upgrade;
+import uk.co.jakelee.blacksmith.model.Visitor_Stats;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
@@ -40,8 +43,16 @@ public class WorkerHelper {
         return worker.getTimeStarted() == 0;
     }
 
+    public static boolean isReady(Hero hero) {
+        return hero.getTimeStarted() == 0;
+    }
+
     public static String getTimeRemainingString(Worker worker) {
         return DateHelper.getHoursMinsRemaining(getTimeRemaining(worker) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
+    }
+
+    public static String getTimeRemainingString(Hero hero) {
+        return DateHelper.getHoursMinsRemaining(getTimeRemaining(hero) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
     }
 
     public static long getTimeRemaining(Worker worker) {
@@ -49,11 +60,20 @@ public class WorkerHelper {
         int minutesForCompletion = Upgrade.getValue("Worker Time");
         long timeForCompletion = DateHelper.minutesToMilliseconds(minutesForCompletion);
         return (timeStarted + timeForCompletion) - System.currentTimeMillis();
+    }
 
+    public static long getTimeRemaining(Hero hero) {
+        long timeStarted = hero.getTimeStarted();
+        long timeForCompletion = DateHelper.minutesToMilliseconds(Constants.HERO_MILLISECONDS_TAKEN);
+        return (timeStarted + timeForCompletion) - System.currentTimeMillis();
     }
 
     public static int getBuyCost(Worker worker) {
         return worker.getLevelUnlocked() * Constants.WORKER_COST_MULTIPLIER;
+    }
+
+    public static int getBuyCost(Hero hero) {
+        return hero.getLevelUnlocked() * Constants.HERO_COST_MULTIPLIER;
     }
 
     public static String getButtonText(Worker worker) {
@@ -64,12 +84,30 @@ public class WorkerHelper {
         }
     }
 
+    public static String getButtonText(Hero hero) {
+        if (isReady(hero)) {
+            return "Start gathering";
+        } else {
+            return "Returns in " + WorkerHelper.getTimeRemainingString(hero);
+        }
+    }
+
     public static boolean sendOutWorker(Worker worker) {
         if (!isReady(worker)) {
             return false;
         } else {
             worker.setTimeStarted(System.currentTimeMillis());
             worker.save();
+            return true;
+        }
+    }
+
+    public static boolean sendOutHero(Hero hero) {
+        if (!isReady(hero)) {
+            return false;
+        } else {
+            hero.setTimeStarted(System.currentTimeMillis());
+            hero.save();
             return true;
         }
     }
@@ -201,6 +239,15 @@ public class WorkerHelper {
                 worker.getTimesCompleted(),
                 foodUsed != null ? foodUsed.getName() : "nothing",
                 foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
+    }
+
+    public static String getTimesCompletedString(Context context, Hero hero) {
+        Visitor_Type visitorType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
+        Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, hero.getVisitorId());
+        return String.format(context.getString(R.string.heroTimesCompleted),
+                visitorType.getName(),
+                visitorStats.getAdventuresCompleted(),
+                hero.getTotalItemBonusPercent());
     }
 
     public static String getTimeLeftString(Context context, Worker worker) {
