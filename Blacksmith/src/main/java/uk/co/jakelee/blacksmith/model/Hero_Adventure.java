@@ -4,20 +4,20 @@ import com.orm.SugarRecord;
 
 public class Hero_Adventure extends SugarRecord {
     private int adventureId;
-    private int category;
     private int subcategory;
-    private int difficulty;
     private String name;
+    private String description;
+    private int difficulty;
 
     public Hero_Adventure() {
     }
 
-    public Hero_Adventure(int adventureId, int category, int subcategory, int difficulty, String name) {
+    public Hero_Adventure(int adventureId, int subcategory, String name, String description, int difficulty) {
         this.adventureId = adventureId;
-        this.category = category;
         this.subcategory = subcategory;
-        this.difficulty = difficulty;
         this.name = name;
+        this.description = description;
+        this.difficulty = difficulty;
     }
 
     public int getAdventureId() {
@@ -28,12 +28,20 @@ public class Hero_Adventure extends SugarRecord {
         this.adventureId = adventureId;
     }
 
-    public int getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(int category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getSubcategory() {
@@ -50,13 +58,5 @@ public class Hero_Adventure extends SugarRecord {
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

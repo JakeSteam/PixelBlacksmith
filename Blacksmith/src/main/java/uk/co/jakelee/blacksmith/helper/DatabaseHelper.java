@@ -13,6 +13,7 @@ import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Adventure;
+import uk.co.jakelee.blacksmith.model.Hero_Category;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -625,12 +626,93 @@ public class DatabaseHelper {
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 5, type_preferred = 20 WHERE visitor_id = 8");
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 4, type_preferred = 20 WHERE visitor_id = 9");
 
+        createHero();
+    }
+
+    private static void createHero() {
         List<Hero> heroes = new ArrayList<>();
-            heroes.add(new Hero(1, 1, 1, 1, true, 1, 1, 1, 1, 1, 1, 1, 1, 1));
+        heroes.add(new Hero(1, 25));
+        heroes.add(new Hero(2, 35));
+        heroes.add(new Hero(3, 45));
+        heroes.add(new Hero(4, 55));
+        heroes.add(new Hero(5, 65));
+        heroes.add(new Hero(99, 1, 1, System.currentTimeMillis(), true, 15, 78, 29, 27, 32, 24, 31, 30, 152));
         Hero.saveInTx(heroes);
 
+        List<Hero_Category> heroCategories = new ArrayList<>();
         List<Hero_Adventure> heroAdventures = new ArrayList<>();
-            heroAdventures.add(new Hero_Adventure(1, 1, 1, 1, "Test Adventure"));
+
+        // Gathering: 1 - 150 difficulty.
+        heroCategories.add(new Hero_Category(1, "Gathering", 0));
+            heroCategories.add(new Hero_Category(11, "Gather Herbs", 1));
+                heroAdventures.add(new Hero_Adventure(111, 11, "Gather Small Herbs", "These are either herbs, or pieces of grass. Gather them anyway!", 10));
+                heroAdventures.add(new Hero_Adventure(112, 11, "Gather Slimy Herbs", "Eww, they're all damp!", 20));
+                heroAdventures.add(new Hero_Adventure(113, 11, "Gather Spiky Herbs", "Better wear gloves whilst collecting these, they're sharp!", 30));
+
+            heroCategories.add(new Hero_Category(12, "Gather Bugs", 1));
+                heroAdventures.add(new Hero_Adventure(121, 12, "Gather Ants", "Calling all Anteater fans, come practice!", 25));
+                heroAdventures.add(new Hero_Adventure(122, 12, "Gather Woodlice", "Feel like acting like a woodpecker? Now's your chance!", 35));
+                heroAdventures.add(new Hero_Adventure(123, 12, "Gather Caterpillars", "Quickly, before they turn into butterflies!", 45));
+                heroAdventures.add(new Hero_Adventure(124, 12, "Gather Red Ants", "Uh oh, these have a rather nasty bite!", 45));
+                heroAdventures.add(new Hero_Adventure(125, 12, "Gather Praying Mantis", "It's time for the world's smallest boxing match!", 95));
+
+            heroCategories.add(new Hero_Category(13, "Gather Bones", 1));
+                heroAdventures.add(new Hero_Adventure(131, 13, "Gather Bird Bones", "RIP little birdies :(", 25));
+                heroAdventures.add(new Hero_Adventure(132, 13, "Gather Rat Bones", "Oh rats.", 35));
+                heroAdventures.add(new Hero_Adventure(133, 13, "Gather Fish Bones", "I hope you've got a snorkel ready...", 45));
+                heroAdventures.add(new Hero_Adventure(134, 13, "Gather Monkey Bones", "Hey, no sneaking human bones in here!", 55));
+                heroAdventures.add(new Hero_Adventure(135, 13, "Gather Shark Bones", "The teeth are even more terrifying now.", 65));
+
+            heroCategories.add(new Hero_Category(14, "Gather Ore", 1));
+                heroAdventures.add(new Hero_Adventure(141, 14, "Gather Copper Ore", "It can be tricky to tell apart from the dirt.", 5));
+                heroAdventures.add(new Hero_Adventure(142, 14, "Gather Tin Ore", "Put the tin in the tin.", 15));
+                heroAdventures.add(new Hero_Adventure(143, 14, "Gather Silver Ore", "DESCRIPTION", 25));
+                heroAdventures.add(new Hero_Adventure(144, 14, "Gather Iron Ore", "DESCRIPTION", 35));
+                heroAdventures.add(new Hero_Adventure(145, 14, "Gather Gold Ore", "DESCRIPTION", 45));
+                heroAdventures.add(new Hero_Adventure(146, 14, "Gather Mithril Ore", "DESCRIPTION", 65));
+                heroAdventures.add(new Hero_Adventure(147, 14, "Gather Adamant Ore", "DESCRIPTION", 85));
+                heroAdventures.add(new Hero_Adventure(148, 14, "Gather Rune Ore", "DESCRIPTION", 105));
+                heroAdventures.add(new Hero_Adventure(149, 14, "Gather Dragon Ore", "DESCRIPTION", 125));
+
+            heroCategories.add(new Hero_Category(15, "Gather Corpses", 1));
+                heroAdventures.add(new Hero_Adventure(151, 15, "Gather Mice Corpses", "DESCRIPTION", 50));
+                heroAdventures.add(new Hero_Adventure(152, 15, "Gather Wolf Corpses", "DESCRIPTION", 75));
+                heroAdventures.add(new Hero_Adventure(153, 15, "Gather Human Corpses", "DESCRIPTION", 100));
+                heroAdventures.add(new Hero_Adventure(154, 15, "Gather Giant Corpses", "DESCRIPTION", 125));
+                heroAdventures.add(new Hero_Adventure(155, 15, "Gather Monster Corpses", "DESCRIPTION", 150));
+
+            heroCategories.add(new Hero_Category(16, "Gather Buried Treasure", 1));
+                heroAdventures.add(new Hero_Adventure(161, 16, "Gather Buried Coins", "DESCRIPTION", 130));
+                heroAdventures.add(new Hero_Adventure(162, 16, "Gather Buried Gems", "DESCRIPTION", 140));
+                heroAdventures.add(new Hero_Adventure(163, 16, "Gather Buried Chests", "DESCRIPTION", 150));
+
+        // Animal Hunting: 100 - 250 difficulty.
+        heroCategories.add(new Hero_Category(2, "Animal Hunting", 0));
+            heroCategories.add(new Hero_Category(21, "Fly Hunting", 2));
+            heroCategories.add(new Hero_Category(22, "Slug Hunting", 2));
+            heroCategories.add(new Hero_Category(23, "Spider Hunting", 2));
+            heroCategories.add(new Hero_Category(24, "Frog Hunting", 2));
+            heroCategories.add(new Hero_Category(25, "Rabbit Hunting", 2));
+            heroCategories.add(new Hero_Category(26, "Hellcat Hunting", 2));
+            heroCategories.add(new Hero_Category(27, "Wolf Hunting", 2));
+            heroCategories.add(new Hero_Category(28, "Bear Hunting", 2));
+            heroCategories.add(new Hero_Category(29, "Tiger Hunting", 2));
+
+        // Monster Hunting: 200 - 600 difficulty.
+        heroCategories.add(new Hero_Category(3, "Monster Hunting", 0));
+
+        // Boss Hunting: 700 - 1000 difficulty.
+        heroCategories.add(new Hero_Category(4, "Boss Hunting", 0));
+
+        // Guard Duty: 100 - 250 difficulty.
+        heroCategories.add(new Hero_Category(5, "Guard Duty", 0));
+
+        // Exploring: 500 - 800 difficulty.
+        heroCategories.add(new Hero_Category(6, "Exploring", 0));
+
+        // Escort: 300 - 700 difficulty.
+        heroCategories.add(new Hero_Category(7, "Escort", 0));
+        Hero_Category.saveInTx(heroCategories);
         Hero_Adventure.saveInTx(heroAdventures);
     }
 
