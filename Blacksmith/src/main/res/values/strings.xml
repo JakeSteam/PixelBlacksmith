@@ -149,6 +149,7 @@
     <string name="itemSelectText">Items</string>
     <string name="tipsText">Tips</string>
     <string name="messageLogToggleText">Quick Log Access</string>
+    <string name="adventureText">Adventures</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -545,6 +546,12 @@
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+
+    <string-array name="categoryArray">
+        <item>This</item>
+        <item>is</item>
+        <item>temporary</item>
+    </string-array>
 
     <string-array name="typesArray">
         <item>All Items</item>

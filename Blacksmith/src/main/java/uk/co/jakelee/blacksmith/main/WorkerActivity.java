@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
@@ -99,7 +100,7 @@ public class WorkerActivity extends Activity {
         LinearLayout heroResourceContainer = (LinearLayout) heroRoot.findViewById(R.id.heroResource);
         final TextView heroButton = (TextView) heroRoot.findViewById(R.id.heroButton);
 
-        Hero_Adventure adventure = Hero_Adventure.findById(Hero_Adventure.class, hero.getCurrentAdventure());
+        Hero_Adventure adventure = Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(hero.getCurrentAdventure())).first();
 
         final WorkerActivity activity = this;
 
@@ -140,9 +141,9 @@ public class WorkerActivity extends Activity {
                 public void onClick(View v) {
                     Hero hero = (Hero) v.getTag();
                     if (WorkerHelper.isReady(hero)) {
-                        /*Intent intent = new Intent(activity, AdventureActivity.class);
+                        Intent intent = new Intent(activity, AdventureActivity.class);
                         intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
-                        startActivity(intent);*/
+                        startActivity(intent);
                     }
                 }
             });

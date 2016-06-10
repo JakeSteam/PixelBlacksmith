@@ -104,6 +104,8 @@ public class HelpActivity extends Activity {
             displayHelpItemPicker(layout);
         } else if (topic == TOPICS.Prestige) {
             displayHelpPrestige(layout);
+        } else if (topic == TOPICS.Hero_Adventures) {
+            displayHelpHeroAdventures(layout);
         }
     }
 
@@ -386,6 +388,10 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Additionally, the \"Show All Items\" toggle will switch between only displaying creatable items, and displaying all items.", 22));
     }
 
+    private void displayHelpHeroAdventures(LinearLayout layout) {
+        layout.addView(dh.createTextView("Adventures\n", 26));
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
@@ -397,5 +403,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Gem_Table, Furnace, Help, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Gem_Table, Furnace, Help, Hero_Adventures, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor, Worker, Worker_Tools, Worker_Food}
 }

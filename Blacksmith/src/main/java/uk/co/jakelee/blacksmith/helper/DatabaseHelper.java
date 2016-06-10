@@ -637,7 +637,7 @@ public class DatabaseHelper {
         heroes.add(new Hero(3, 45));
         heroes.add(new Hero(4, 55));
         heroes.add(new Hero(5, 65));
-        heroes.add(new Hero(99, 1, 111, System.currentTimeMillis(), true, 15, 78, 29, 27, 32, 24, 31, 30, 152));
+        heroes.add(new Hero(99, 1, 111, 0, true, 15, 78, 29, 27, 32, 24, 31, 30, 152));
         Hero.saveInTx(heroes);
 
         List<Hero_Category> heroCategories = new ArrayList<>();
