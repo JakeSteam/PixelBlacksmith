@@ -169,8 +169,8 @@ public class WorkerActivity extends Activity {
                     if (WorkerHelper.sendOutHero(hero)) {
                         scheduledTask();
                     } else {
-                        /*String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, hero);
-                        ToastHelper.showToast(heroButton, ToastHelper.SHORT, exactTimeLeft, false);*/
+                        String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, hero);
+                        ToastHelper.showToast(heroButton, ToastHelper.SHORT, exactTimeLeft, false);
                     }
                 }
             });
@@ -345,7 +345,9 @@ public class WorkerActivity extends Activity {
             autofeedToggle.setImageDrawable(autofeedToggleValue ? tick : cross);
         }
 
-        if (Worker.getAvailableWorkersCount() > 0) {
+        if (!heroesSelected && Worker.getAvailableWorkersCount() > 0) {
+            sendOutWorkers.setAlpha(1f);
+        } else if (heroesSelected && Hero.getAvailableHeroesCount() > 0) {
             sendOutWorkers.setAlpha(1f);
         } else {
             sendOutWorkers.setAlpha(0.3f);
@@ -354,28 +356,43 @@ public class WorkerActivity extends Activity {
 
     public void sendAllGathering(View v) {
         // For each available worker, send out worker.
-        List<Worker> workers = Worker.getAvailableWorkers();
-        int numWorkers = 0;
-        for (Worker worker : workers) {
-            if (WorkerHelper.sendOutWorker(worker)) {
-                numWorkers++;
+        if (heroesSelected) {
+            List<Hero> heroes = Hero.getAvailableHeroes();
+            int numHeroes = 0;
+            for (Hero hero : heroes) {
+                if (WorkerHelper.sendOutHero(hero)) {
+                    numHeroes++;
+                }
+            }
+
+            if (numHeroes > 0) {
+                ToastHelper.showPositiveToast(v, ToastHelper.LONG, String.format(getString(R.string.sendOutHeroesToast), numHeroes), true);
+            }
+        } else {
+            List<Worker> workers = Worker.getAvailableWorkers();
+            int numWorkers = 0;
+            for (Worker worker : workers) {
+                if (WorkerHelper.sendOutWorker(worker)) {
+                    numWorkers++;
+                }
+            }
+
+            if (numWorkers > 0) {
+                ToastHelper.showPositiveToast(v, ToastHelper.LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
             }
         }
-
-        if (numWorkers > 0) {
-            ToastHelper.showPositiveToast(v, ToastHelper.LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
-        }
-
         updateButtons();
     }
 
     public void scheduledTask() {
-        WorkerHelper.checkForFinishedWorkers(this);
-
-        if (!heroesSelected) {
+        if (heroesSelected) {
+            WorkerHelper.checkForFinishedHeroes(this);
+            populateHeroes();
+        } else {
+            WorkerHelper.checkForFinishedWorkers(this);
             populateWorkers();
-            updateButtons();
         }
+        updateButtons();
         updateTabs();
     }
 

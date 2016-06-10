@@ -71,7 +71,7 @@ public class WorkerHelper {
 
     public static long getTimeRemaining(Hero hero) {
         long timeStarted = hero.getTimeStarted();
-        long timeForCompletion = DateHelper.minutesToMilliseconds(Constants.HERO_MILLISECONDS_TAKEN);
+        long timeForCompletion = DateHelper.minutesToMilliseconds(Constants.HERO_MINUTES_TAKEN);
         return (timeStarted + timeForCompletion) - System.currentTimeMillis();
     }
 
@@ -116,6 +116,51 @@ public class WorkerHelper {
             hero.setTimeStarted(System.currentTimeMillis());
             hero.save();
             return true;
+        }
+    }
+
+    public static void checkForFinishedHeroes(Context context) {
+        List<Hero> heroes = Select.from(Hero.class).where(
+                Condition.prop("purchased").eq(1),
+                Condition.prop("time_started").notEq(0)).list();
+        int heroesFinished = 0;
+        List<String> heroNames = new ArrayList<>();
+        String rewardText = "";
+
+        boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
+
+        for (Hero hero : heroes) {
+            if (getTimeRemaining(hero) <= 0) {
+                rewardText = rewardResources(context, hero);
+                Visitor_Type heroVisitor = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
+                heroNames.add(heroVisitor.getName());
+                heroesFinished++;
+
+                // If autorefill is on and hero has food, remove 1 from inventory and leave the current food used.
+                if (refillFood && hero.getFoodItem() > 0) {
+                    Inventory currentFoodStock = Inventory.getInventory((long) hero.getFoodItem(), Constants.STATE_NORMAL);
+                    if (currentFoodStock.getQuantity() > 0) {
+                        currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
+                        currentFoodStock.save();
+                    } else {
+                        hero.setFoodItem(0);
+                    }
+                }
+
+                hero.setTimeStarted(0);
+                hero.save();
+
+                heroVisitor.setAdventuresCompleted(heroVisitor.getAdventuresCompleted() + 1);
+                heroVisitor.save();
+
+                ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
+            }
+        }
+
+        if (heroesFinished > 1) {
+            ToastHelper.showPositiveToast(null, ToastHelper.LONG, String.format(context.getString(R.string.heroesReturned),
+                    heroesFinished,
+                    workerNamesToString(heroNames)), true);
         }
     }
 
@@ -176,6 +221,14 @@ public class WorkerHelper {
         return String.format(context.getString(R.string.workerReturned),
                 workerCharacter.getName(),
                 getRewardResourcesText(worker, resources, true));
+    }
+
+    public static String rewardResources(Context context, Hero hero) {
+        Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
+        List<Hero_Resource> resources = getResourcesByAdventure(hero.getCurrentAdventure());
+        return String.format(context.getString(R.string.workerReturned),
+                vType.getName(),
+                getRewardResourcesText(hero, resources, true));
     }
 
     public static String getRewardResourcesText(Hero worker, List<Hero_Resource> resources, boolean addItems) {
@@ -321,6 +374,14 @@ public class WorkerHelper {
         String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(worker));
         return String.format(context.getString(R.string.workerReturnTime),
                 character.getName(),
+                timeRemaining);
+    }
+
+    public static String getTimeLeftString(Context context, Hero hero) {
+        Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
+        String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(hero));
+        return String.format(context.getString(R.string.workerReturnTime),
+                vType.getName(),
                 timeRemaining);
     }
 

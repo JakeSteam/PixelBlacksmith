@@ -208,6 +208,7 @@
 
     <string name="sendOutWorkers">Send Out\nWorkers</string>
     <string name="sendOutWorkersToast">%d workers excitedly jog out of the door, in search of resources.</string>
+    <string name="sendOutHeroesToast">%d heroes excitedly jog out of the door, in search of adventure.</string>
     <string name="autofeedWorkers">Auto-feed\n</string>
 
     <string name="onlyAvailable">Show All Items\n</string>
@@ -246,6 +247,7 @@
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
     <string name="workersReturned">%1$d workers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
+    <string name="heroesReturned">%1$d heroes (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 

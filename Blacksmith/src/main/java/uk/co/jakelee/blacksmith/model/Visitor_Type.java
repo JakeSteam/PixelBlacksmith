@@ -20,6 +20,7 @@ public class Visitor_Type extends SugarRecord {
     private boolean tierDiscovered;
     private boolean typeDiscovered;
     private boolean stateDiscovered;
+    private int adventuresCompleted;
     private int weighting;
 
     public Visitor_Type() {
@@ -38,6 +39,7 @@ public class Visitor_Type extends SugarRecord {
         this.tierDiscovered = tierDiscovered;
         this.typeDiscovered = typeDiscovered;
         this.stateDiscovered = stateDiscovered;
+        this.adventuresCompleted = 0;
         this.weighting = weighting;
     }
 
@@ -135,6 +137,14 @@ public class Visitor_Type extends SugarRecord {
 
     public void setStateDiscovered(boolean stateDiscovered) {
         this.stateDiscovered = stateDiscovered;
+    }
+
+    public int getAdventuresCompleted() {
+        return adventuresCompleted;
+    }
+
+    public void setAdventuresCompleted(int adventuresCompleted) {
+        this.adventuresCompleted = adventuresCompleted;
     }
 
     public int getWeighting() {

@@ -55,7 +55,7 @@ public class Constants {
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
     public static final int HERO_COST_MULTIPLIER = 2000;
-    public static final int HERO_MILLISECONDS_TAKEN = 10;
+    public static final int HERO_MINUTES_TAKEN = 10;
     public static final int POWDERS_PER_GEM = 10;
 
     public static final long BONUS_TIME_PREMIUM = DateHelper.hoursToMilliseconds(2);

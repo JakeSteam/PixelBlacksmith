@@ -4,6 +4,8 @@ package uk.co.jakelee.blacksmith.model;
 import android.util.Pair;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -115,6 +117,16 @@ public class Hero extends SugarRecord {
         }
 
         return totalBonus;
+    }
+
+    public static int getAvailableHeroesCount() {
+        return getAvailableHeroes().size();
+    }
+
+    public static List<Hero> getAvailableHeroes() {
+        return Select.from(Hero.class).where(
+                Condition.prop("purchased").eq(1),
+                Condition.prop("time_started").eq(0)).list();
     }
 
     public int getHeroId() {
