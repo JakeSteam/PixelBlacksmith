@@ -6,18 +6,16 @@ public class Hero_Adventure extends SugarRecord {
     private int adventureId;
     private int subcategory;
     private String name;
-    private String description;
     private int difficulty;
     private boolean completed;
 
     public Hero_Adventure() {
     }
 
-    public Hero_Adventure(int adventureId, int subcategory, String name, String description, int difficulty) {
+    public Hero_Adventure(int adventureId, int subcategory, String name, int difficulty) {
         this.adventureId = adventureId;
         this.subcategory = subcategory;
         this.name = name;
-        this.description = description;
         this.difficulty = difficulty;
         this.completed = false;
     }
@@ -36,14 +34,6 @@ public class Hero_Adventure extends SugarRecord {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getSubcategory() {
