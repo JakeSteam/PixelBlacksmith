@@ -179,6 +179,23 @@ public class Visitor_Type extends SugarRecord {
         return (double) bonus / (double) 100;
     }
 
+    public double getHeroBonus(int itemId, int state) {
+        Item item = Item.findById(Item.class, itemId);
+        int bonus = 100;
+
+        if (state == getStatePreferred()) {
+            bonus *= getStateMultiplier();
+        }
+        if (item.getTier() == getTierPreferred()) {
+            bonus *= getTierMultiplier();
+        }
+        if (item.getType() == getTypePreferred()) {
+            bonus *= getTypeMultiplier();
+        }
+
+        return (double) bonus / (double) 100;
+    }
+
 
     public void updateUnlockedPreferences(Item item, long state) {
         if (state == getStatePreferred()) {

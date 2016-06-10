@@ -1,7 +1,16 @@
 package uk.co.jakelee.blacksmith.model;
 
 
+import android.util.Pair;
+
 import com.orm.SugarRecord;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
 public class Hero extends SugarRecord {
     private int heroId;
@@ -11,13 +20,21 @@ public class Hero extends SugarRecord {
     private boolean purchased;
     private int visitorId;
     private int foodItem;
+    private int foodState;
     private int helmetItem;
+    private int helmetState;
     private int armourItem;
+    private int armourState;
     private int weaponItem;
+    private int weaponState;
     private int shieldItem;
+    private int shieldState;
     private int glovesItem;
+    private int glovesState;
     private int bootsItem;
+    private int bootsState;
     private int ringItem;
+    private int ringState;
 
     public Hero() {
     }
@@ -47,13 +64,57 @@ public class Hero extends SugarRecord {
         this.purchased = purchased;
         this.visitorId = visitorId;
         this.foodItem = foodItem;
+        this.foodState = Constants.STATE_NORMAL;
         this.helmetItem = helmetItem;
+        this.helmetState = Constants.STATE_NORMAL;
         this.armourItem = armourItem;
+        this.armourState = Constants.STATE_NORMAL;
         this.weaponItem = weaponItem;
+        this.weaponState = Constants.STATE_NORMAL;
         this.shieldItem = shieldItem;
+        this.shieldState = Constants.STATE_NORMAL;
         this.glovesItem = glovesItem;
+        this.glovesState = Constants.STATE_NORMAL;
         this.bootsItem = bootsItem;
+        this.bootsState = Constants.STATE_NORMAL;
         this.ringItem = ringItem;
+        this.ringState = Constants.STATE_NORMAL;
+    }
+
+    public int getTotalItemBonusPercent() {
+        return (int) getTotalItemBonus();
+    }
+
+    public double getTotalItemBonus() {
+        Visitor_Type visitor = Visitor_Type.findById(Visitor_Type.class, getVisitorId());
+        // Build array of equipped items
+        List<Pair<Integer, Integer>> equippedItems = new ArrayList<>(
+                Arrays.asList(
+                        new Pair<> (getFoodItem(), getFoodState()),
+                        new Pair<> (getHelmetItem(), getHelmetState()),
+                        new Pair<> (getArmourItem(), getArmourState()),
+                        new Pair<> (getWeaponItem(), getWeaponState()),
+                        new Pair<> (getShieldItem(), getShieldState()),
+                        new Pair<> (getGlovesItem(), getGlovesState()),
+                        new Pair<> (getBootsItem(), getBootsState()),
+                        new Pair<> (getRingItem(), getRingState()))
+        );
+
+        // Build array of equipped item bonuses
+        List<Double> equippedItemBonuses = new ArrayList<>();
+        for (Pair<Integer, Integer> pair : equippedItems) {
+            if (pair.first > 0 && pair.second > 0) {
+                equippedItemBonuses.add(visitor.getHeroBonus(pair.first, pair.second));
+            }
+        }
+
+        // Calculate total bonus
+        double totalBonus = 0;
+        for (Double bonus : equippedItemBonuses) {
+            totalBonus += bonus;
+        }
+
+        return totalBonus;
     }
 
     public int getHeroId() {
@@ -112,12 +173,28 @@ public class Hero extends SugarRecord {
         this.foodItem = foodItem;
     }
 
+    public int getFoodState() {
+        return foodState;
+    }
+
+    public void setFoodState(int foodState) {
+        this.foodState = foodState;
+    }
+
     public int getHelmetItem() {
         return helmetItem;
     }
 
     public void setHelmetItem(int helmetItem) {
         this.helmetItem = helmetItem;
+    }
+
+    public int getHelmetState() {
+        return helmetState;
+    }
+
+    public void setHelmetState(int helmetState) {
+        this.helmetState = helmetState;
     }
 
     public int getArmourItem() {
@@ -128,12 +205,28 @@ public class Hero extends SugarRecord {
         this.armourItem = armourItem;
     }
 
+    public int getArmourState() {
+        return armourState;
+    }
+
+    public void setArmourState(int armourState) {
+        this.armourState = armourState;
+    }
+
     public int getWeaponItem() {
         return weaponItem;
     }
 
     public void setWeaponItem(int weaponItem) {
         this.weaponItem = weaponItem;
+    }
+
+    public int getWeaponState() {
+        return weaponState;
+    }
+
+    public void setWeaponState(int weaponState) {
+        this.weaponState = weaponState;
     }
 
     public int getShieldItem() {
@@ -144,12 +237,28 @@ public class Hero extends SugarRecord {
         this.shieldItem = shieldItem;
     }
 
+    public int getShieldState() {
+        return shieldState;
+    }
+
+    public void setShieldState(int shieldState) {
+        this.shieldState = shieldState;
+    }
+
     public int getGlovesItem() {
         return glovesItem;
     }
 
     public void setGlovesItem(int glovesItem) {
         this.glovesItem = glovesItem;
+    }
+
+    public int getGlovesState() {
+        return glovesState;
+    }
+
+    public void setGlovesState(int glovesState) {
+        this.glovesState = glovesState;
     }
 
     public int getBootsItem() {
@@ -160,6 +269,14 @@ public class Hero extends SugarRecord {
         this.bootsItem = bootsItem;
     }
 
+    public int getBootsState() {
+        return bootsState;
+    }
+
+    public void setBootsState(int bootsState) {
+        this.bootsState = bootsState;
+    }
+
     public int getRingItem() {
         return ringItem;
     }
@@ -168,11 +285,11 @@ public class Hero extends SugarRecord {
         this.ringItem = ringItem;
     }
 
-    public int getTotalItemBonusPercent() {
-        return (int) getTotalItemBonus();
+    public int getRingState() {
+        return ringState;
     }
 
-    public double getTotalItemBonus() {
-        return 1.11;
+    public void setRingState(int ringState) {
+        this.ringState = ringState;
     }
 }

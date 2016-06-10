@@ -802,9 +802,9 @@ public class DatabaseHelper {
 
             heroCategories.add(new Hero_Category(53, "Guard Factories", 5));
                 heroAdventures.add(new Hero_Adventure(531, 53, "Guard Food Processing Factory", "DESCRIPTION", 150));
-                heroAdventures.add(new Hero_Adventure(533, 53, "Guard Smelting Factory", "DESCRIPTION", 200));
+                heroAdventures.add(new Hero_Adventure(532, 53, "Guard Smelting Factory", "DESCRIPTION", 200));
                 heroAdventures.add(new Hero_Adventure(533, 53, "Guard Clothing Factory", "DESCRIPTION", 250));
-                heroAdventures.add(new Hero_Adventure(532, 53, "Guard Gem Factory", "DESCRIPTION", 300));
+                heroAdventures.add(new Hero_Adventure(534, 53, "Guard Gem Factory", "DESCRIPTION", 300));
 
             heroCategories.add(new Hero_Category(54, "Guard Embassies", 5));
             heroCategories.add(new Hero_Category(55, "Guard Banks", 5));
