@@ -120,12 +120,12 @@ public class WorkerActivity extends Activity {
                 resourceID = DisplayHelper.getItemDrawableID(this, hero.getFoodItem());
             }
             if (WorkerHelper.isReady(hero)) {
-                heroFood.setTag(hero);
-                heroFood.setOnClickListener(new Button.OnClickListener() {
+                heroCharacter.setTag(hero);
+                heroCharacter.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         Hero hero = (Hero) v.getTag();
                         if (WorkerHelper.isReady(hero)) {
-                            Intent intent = new Intent(activity, FoodActivity.class);
+                            Intent intent = new Intent(activity, EquipmentActivity.class);
                             intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
                             startActivity(intent);
                         }

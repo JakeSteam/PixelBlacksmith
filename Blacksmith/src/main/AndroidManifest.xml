@@ -121,6 +121,9 @@
         <activity
             android:name=".main.AdventureActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
+            android:name=".main.EquipmentActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />

@@ -150,6 +150,7 @@
     <string name="tipsText">Tips</string>
     <string name="messageLogToggleText">Quick Log Access</string>
     <string name="adventureText">Adventures</string>
+    <string name="equipmentText">Equipment</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -250,6 +251,8 @@
     <string name="heroesReturned">%1$d heroes (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
+
+    <string name="heroTotalStrength">Total Strength: %d</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeQuestionAdvert">Would you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>

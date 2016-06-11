@@ -186,7 +186,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
             @Override
             protected Integer doInBackground(Void... params) {
-                Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
+                final Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
 
                 if (result.getStatus().isSuccess()) {
                     Snapshot snapshot = result.getSnapshot();
@@ -200,13 +200,22 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                             saveToCloud();
                             currentTask = "saving";
                         }
-                    } catch (IOException e) {
-                        ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
+                    } catch (final IOException e) {
+                        callingActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
+                            }
+                        });
                     }
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                    callingActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                        }
+                    });
                 }
-
                 return result.getStatus().getStatusCode();
             }
         };
