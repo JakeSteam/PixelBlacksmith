@@ -98,6 +98,10 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("character" + character, "drawable", context.getPackageName());
     }
 
+    public static int getVisitorDrawableID(Context context, int visitor) {
+        return context.getResources().getIdentifier("visitor" + visitor, "drawable", context.getPackageName());
+    }
+
     private static RelativeLayout createSlotRoot(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflatedView = inflater.inflate(R.layout.custom_slot, null);

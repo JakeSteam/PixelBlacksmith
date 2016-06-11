@@ -38,8 +38,8 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         dh = DisplayHelper.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
-        int heroID = (int) (long) intent.getLongExtra(WorkerHelper.INTENT_ID, 0);
-        hero = Hero.findById(Hero.class, heroID);
+        int heroID = intent.getIntExtra(WorkerHelper.INTENT_ID, 0);
+        hero = Hero.findById(heroID);
 
         createCategoryDropdown(false);
         createCategoryDropdown(true);
@@ -53,10 +53,10 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        if (parent.getTag() == "CategorySelect") {
+        if (parent.getTag().equals("CategorySelect")) {
             String selectedItem = (String) parent.getItemAtPosition(pos);
             populateSubcategories(selectedItem);
-        } else if (parent.getTag() == "SubcategorySelect") {
+        } else if (parent.getTag().equals("SubcategorySelect")) {
             String selectedItem = (String) parent.getItemAtPosition(pos);
             populateAdventures(selectedItem);
         }
@@ -118,20 +118,25 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         }
 
         Hero_Category category = Select.from(Hero_Category.class).where(Condition.prop("name").eq(selection)).first();
-        List<Hero_Adventure> adventures = Select.from(Hero_Adventure.class).where(Condition.prop("parent").eq(category.getCategoryId())).list();
+        List<Hero_Adventure> adventures = Select.from(Hero_Adventure.class).where(Condition.prop("subcategory").eq(category.getCategoryId())).list();
+
+        TableRow titleRow = new TableRow(this);
+        TextView adventureTitle = dh.createTextView("Adventure", 20);
+        TextView difficultyTitle = dh.createTextView("Diff.", 20);
+        titleRow.addView(adventureTitle);
+        titleRow.addView(difficultyTitle);
+        adventureHolder.addView(titleRow);
 
         for (Hero_Adventure adventure : adventures) {
             TextView difficulty = dh.createTextView(Integer.toString(adventure.getDifficulty()), 30);
             TextView name = dh.createTextView(adventure.getName(), 20);
-            //TextView description = dh.createTextView(adventure.getDescription(), 20);
             ImageView selectImage = new ImageView(this);
             selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
 
             TableRow row = new TableRow(this);
             row.setTag(R.id.adventure, adventure.getAdventureId());
-            row.addView(difficulty);
             row.addView(name);
-            //row.addView(description);
+            row.addView(difficulty);
             row.addView(selectImage);
             row.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

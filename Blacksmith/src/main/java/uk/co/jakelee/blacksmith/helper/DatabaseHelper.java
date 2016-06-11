@@ -648,6 +648,8 @@ public class DatabaseHelper {
         heroCategories.add(new Hero_Category(1, "Gathering", 0));
             heroCategories.add(new Hero_Category(11, "Gather Herbs", 1));
                 heroAdventures.add(new Hero_Adventure(111, 11, "Gather Small Herbs", 10));
+                    heroResources.add(new Hero_Resource(111, 1, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(111, 2, Constants.STATE_NORMAL, 1));
                 heroAdventures.add(new Hero_Adventure(112, 11, "Gather Slimy Herbs", 20));
                 heroAdventures.add(new Hero_Adventure(113, 11, "Gather Spiky Herbs", 30));
 

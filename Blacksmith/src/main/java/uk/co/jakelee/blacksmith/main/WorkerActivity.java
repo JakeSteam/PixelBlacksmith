@@ -105,7 +105,7 @@ public class WorkerActivity extends Activity {
         final WorkerActivity activity = this;
 
         if (hero.isPurchased()) {
-            heroCharacter.setImageResource(DisplayHelper.getCharacterDrawableID(this, hero.getVisitorId()));
+            heroCharacter.setImageResource(DisplayHelper.getVisitorDrawableID(this, hero.getVisitorId()));
             heroCharacter.setTag(hero);
             heroCharacter.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

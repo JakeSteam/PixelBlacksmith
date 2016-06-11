@@ -46,6 +46,13 @@ public class WorkerHelper {
         }
     }
 
+    public static void populateResources(DisplayHelper dh, LinearLayout container, int adventureId) {
+        List<Hero_Resource> resources = getResourcesByAdventure(adventureId);
+        for (Hero_Resource resource : resources) {
+            container.addView(dh.createImageView("item", String.valueOf(resource.getResourceID()), 22, 22));
+        }
+    }
+
     public static boolean isReady(Worker worker) {
         return worker.getTimeStarted() == 0;
     }
@@ -231,22 +238,11 @@ public class WorkerHelper {
                 getRewardResourcesText(hero, resources, true));
     }
 
-    public static String getRewardResourcesText(Hero worker, List<Hero_Resource> resources, boolean addItems) {
+    public static String getRewardResourcesText(Hero hero, List<Hero_Resource> resources, boolean addItems) {
         LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
-        Item foodItem = Item.findById(Item.class, worker.getFoodItem());
-        boolean applyFoodBonus = worker.getFoodItem() > 0 && (worker.getTimeStarted() > 0 || addItems);
-
-        boolean favouriteFoodUsed = false;
-        /*if (worker.getFoodUsed() == worker.getFavouriteFood()) {
-            favouriteFoodUsed = true;
-            worker.setFavouriteFoodDiscovered(true);
-            worker.save();
-        }*/
+        Item foodItem = Item.findById(Item.class, hero.getFoodItem());
 
         for (Hero_Resource resource : resources) {
-            // Apply bonus from all equipment (including food!)
-            //resource.applyFoodBonus(foodItem, favouriteFoodUsed);
-
             if (addItems) {
                 Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
                 resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
@@ -272,12 +268,7 @@ public class WorkerHelper {
 
             bonusText = String.format(", and a rare %s", rewardedPage.getName());
         } else if (!addItems && foodItem != null) {
-            // If checking resources
-            /*if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
-                bonusText = ", and very possibly a rare page";
-            } else {
-                bonusText = ", and possibly a rare page";
-            }*/
+            bonusText = ", and possibly a rare page";
         }
 
         StringBuilder result = new StringBuilder();

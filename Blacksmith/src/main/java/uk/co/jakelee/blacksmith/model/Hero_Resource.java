@@ -3,7 +3,7 @@ package uk.co.jakelee.blacksmith.model;
 import com.orm.SugarRecord;
 
 public class Hero_Resource extends SugarRecord {
-    private String adventureId;
+    private int adventureId;
     private int resourceID;
     private int resourceState;
     private int resourceQuantity;
@@ -11,18 +11,18 @@ public class Hero_Resource extends SugarRecord {
     public Hero_Resource() {
     }
 
-    public Hero_Resource(String adventureId, int resourceID, int resourceState, int resourceQuantity) {
+    public Hero_Resource(int adventureId, int resourceID, int resourceState, int resourceQuantity) {
         this.adventureId = adventureId;
         this.resourceID = resourceID;
         this.resourceState = resourceState;
         this.resourceQuantity = resourceQuantity;
     }
 
-    public String getAdventureId() {
+    public int getAdventureId() {
         return adventureId;
     }
 
-    public void setAdventureId(String adventureId) {
+    public void setAdventureId(int adventureId) {
         this.adventureId = adventureId;
     }
 

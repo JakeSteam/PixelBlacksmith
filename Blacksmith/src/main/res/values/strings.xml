@@ -548,12 +548,7 @@
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
-
-    <string-array name="categoryArray">
-        <item>This</item>
-        <item>is</item>
-        <item>temporary</item>
-    </string-array>
+    <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
 
     <string-array name="typesArray">
         <item>All Items</item>
