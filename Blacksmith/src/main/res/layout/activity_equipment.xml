@@ -89,6 +89,7 @@
                                 app:layout_heightPercent="25%"
                                 app:layout_widthPercent="20%"
                                 android:onClick="equipmentClick"
+                                android:tag="food"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"/>
 
@@ -132,6 +133,7 @@
                                 app:layout_widthPercent="20%"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"
+                                android:tag="helmet"
                                 android:onClick="equipmentClick"/>
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -174,6 +176,7 @@
                                 app:layout_widthPercent="20%"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"
+                                android:tag="armour"
                                 android:onClick="equipmentClick"/>
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -222,6 +225,7 @@
                                 android:layout_width="match_parent"
                                 app:layout_heightPercent="25%"
                                 app:layout_widthPercent="20%"
+                                android:tag="weapon"
                                 android:onClick="equipmentClick"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"/>
@@ -306,6 +310,7 @@
                                 app:layout_widthPercent="20%"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"
+                                android:tag="shield"
                                 android:onClick="equipmentClick"/>
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -356,6 +361,7 @@
                                 app:layout_widthPercent="20%"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"
+                                android:tag="gloves"
                                 android:onClick="equipmentClick"/>
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -398,6 +404,7 @@
                                 app:layout_widthPercent="20%"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"
+                                android:tag="boots"
                                 android:onClick="equipmentClick"/>
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -440,6 +447,7 @@
                                 app:layout_widthPercent="20%"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"
+                                android:tag="ring"
                                 android:onClick="equipmentClick"/>
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel

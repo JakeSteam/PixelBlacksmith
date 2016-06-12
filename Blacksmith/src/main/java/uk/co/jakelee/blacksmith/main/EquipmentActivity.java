@@ -2,7 +2,6 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -52,41 +51,35 @@ public class EquipmentActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.foodStrength)).setText("+" + Item.findById(Item.class, hero.getFoodItem()).getValue());
 
         ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());
 
         ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.armourStrength), hero.getArmourItem(), hero.getArmourState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.armourStrength), hero.getArmourItem(), hero.getArmourState());
 
         ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.weaponStrength), hero.getWeaponItem(), hero.getWeaponState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.weaponStrength), hero.getWeaponItem(), hero.getWeaponState());
 
         ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(dh.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
         ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
 
         ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.shieldStrength), hero.getShieldItem(), hero.getShieldState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.shieldStrength), hero.getShieldItem(), hero.getShieldState());
 
         ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.glovesStrength), hero.getGlovesItem(), hero.getGlovesState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.glovesStrength), hero.getGlovesItem(), hero.getGlovesState());
 
         ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.bootsStrength), hero.getBootsItem(), hero.getBootsState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.bootsStrength), hero.getBootsItem(), hero.getBootsState());
 
         ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), 25, 25, true, true));
-        setStrengthText((TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
     }
 
-    private void setStrengthText(TextViewPixel viewId, int item, int state) {
-        int baseStrength = WorkerHelper.getBasePrice(item, state);
-        int bonusStrength = WorkerHelper.getAdjustedStrength(vType, item, state);
-
-        if (baseStrength == bonusStrength) {
-            viewId.setTextColor(Color.WHITE);
-        } else {
-            viewId.setTextColor(Color.GREEN);
-        }
-
-        viewId.setText("+" + bonusStrength);
+    public void equipmentClick(View view) {
+        Intent intent = new Intent(this, EquipmentSelectActivity.class);
+        intent.putExtra(WorkerHelper.INTENT_TYPE, (String) view.getTag());
+        intent.putExtra(WorkerHelper.INTENT_HERO, hero.getHeroId());
+        startActivity(intent);
     }
 
     private void populatePreferences() {

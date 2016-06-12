@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.LinearLayout;
 
 import com.orm.query.Condition;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Resource;
@@ -26,6 +28,8 @@ import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
 public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
+    public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
+    public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
@@ -424,6 +428,19 @@ public class WorkerHelper {
         } else {
             return baseValue + (3 * state);
         }
+    }
+
+    public static void setStrengthText(Visitor_Type vType, TextViewPixel view, int item, int state) {
+        int baseStrength = WorkerHelper.getBasePrice(item, state);
+        int bonusStrength = WorkerHelper.getAdjustedStrength(vType, item, state);
+
+        if (baseStrength == bonusStrength) {
+            view.setTextColor(Color.WHITE);
+        } else {
+            view.setTextColor(Color.GREEN);
+        }
+
+        view.setText(Integer.toString(bonusStrength));
     }
 
     public static int getAdjustedStrength(Visitor_Type vType, int item, int state) {
