@@ -44,137 +44,535 @@
             android:textSize="26sp"
             app:layout_marginTopPercent="21%"/>
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_marginTopPercent="25%"
-            android:shrinkColumns="*"
-            android:stretchColumns="*">
+            app:layout_marginBottomPercent="2%">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp">
 
-                <!-- Food -->
-                <RelativeLayout
-                    android:id="@+id/foodEquipment">
-                    <ImageView
-                        android:id="@+id/foodImage"
-                        android:background="@drawable/slot"
-                        android:layout_height="80dp"
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <!-- Row 1 -->
+                    <TableRow>
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:text="Equipment"
+                            android:layout_span="3"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="26sp" />
+                    </TableRow>
+                    <TableRow
                         android:layout_width="match_parent"
-                        app:layout_heightPercent="25%"
-                        app:layout_widthPercent="20%"
-                        android:onClick="equipmentClick"/>
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/foodStrength"
-                        android:layout_height="wrap_content"
+                        <!-- Food -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/foodImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/foodStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/foodImage"
+                                android:layout_alignLeft="@id/foodImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/foodTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/foodImage"
+                                android:layout_alignLeft="@id/foodImage"
+                                android:gravity="center"
+                                android:text="@string/foodText"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- Helmet -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/helmetImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/helmetStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/helmetImage"
+                                android:layout_alignLeft="@id/helmetImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/helmetTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/helmetImage"
+                                android:layout_alignLeft="@id/helmetImage"
+                                android:gravity="center"
+                                android:text="Helmet"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- Armour -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/armourImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/armourStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/armourImage"
+                                android:layout_alignLeft="@id/armourImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/armourTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/armourImage"
+                                android:layout_alignLeft="@id/armourImage"
+                                android:gravity="center"
+                                android:text="Armour"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                    </TableRow>
+
+                    <!-- Row 2 -->
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_alignBottom="@id/foodImage"
-                        android:layout_alignLeft="@id/foodImage"
-                        android:alpha="0.6"
-                        android:background="@color/black"
-                        android:gravity="center"
-                        android:text="+0"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_widthPercent="30%" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/foodTitle"
-                        android:layout_height="wrap_content"
+                        <!-- Weapon -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/weaponImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/weaponStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/weaponImage"
+                                android:layout_alignLeft="@id/weaponImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/weaponTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/weaponImage"
+                                android:layout_alignLeft="@id/weaponImage"
+                                android:gravity="center"
+                                android:text="Weapon"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- Visitor Type -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/heroImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/heroName"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/heroImage"
+                                android:layout_alignLeft="@id/heroImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/heroTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/heroImage"
+                                android:layout_alignLeft="@id/heroImage"
+                                android:gravity="center"
+                                android:text="Hero"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- Shield -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/shieldImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/shieldStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/shieldImage"
+                                android:layout_alignLeft="@id/shieldImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/shieldTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/shieldImage"
+                                android:layout_alignLeft="@id/shieldImage"
+                                android:gravity="center"
+                                android:text="Shield"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                    </TableRow>
+
+                    <!-- Row 3 -->
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_below="@id/foodImage"
-                        android:layout_alignLeft="@id/foodImage"
-                        android:gravity="center"
-                        android:text="@string/foodText"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_widthPercent="30%" />
-                </RelativeLayout>
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                <!-- Helmet -->
-                <RelativeLayout
-                    android:id="@+id/helmetEquipment">
-                    <ImageView
-                        android:id="@+id/helmetImage"
-                        android:background="@drawable/slot"
-                        android:layout_height="80dp"
+                        <!-- Gloves -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/glovesImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/glovesStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/glovesImage"
+                                android:layout_alignLeft="@id/glovesImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/glovesTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/glovesImage"
+                                android:layout_alignLeft="@id/glovesImage"
+                                android:gravity="center"
+                                android:text="Gloves"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- Boots -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/bootsImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/bootsStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/bootsImage"
+                                android:layout_alignLeft="@id/bootsImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/bootsTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/bootsImage"
+                                android:layout_alignLeft="@id/bootsImage"
+                                android:gravity="center"
+                                android:text="Boots"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- Ring -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/ringImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="equipmentClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/ringStrength"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/ringImage"
+                                android:layout_alignLeft="@id/ringImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/ringTitle"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/ringImage"
+                                android:layout_alignLeft="@id/ringImage"
+                                android:gravity="center"
+                                android:text="Ring"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                    </TableRow>
+
+                    <!-- Row 4 -->
+                    <TableRow>
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:text="Preferences"
+                            android:layout_span="3"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="26sp" />
+                    </TableRow>
+                    <TableRow
                         android:layout_width="match_parent"
-                        app:layout_heightPercent="25%"
-                        app:layout_widthPercent="20%"
-                        android:onClick="equipmentClick"/>
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/helmetStrength"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_alignBottom="@id/helmetImage"
-                        android:layout_alignLeft="@id/helmetImage"
-                        android:alpha="0.6"
-                        android:background="@color/black"
-                        android:gravity="center"
-                        android:text="+0"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_widthPercent="30%" />
+                        <!-- Type -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/typeImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="typeClick"/>
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/helmetTitle"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/helmetImage"
-                        android:layout_alignLeft="@id/helmetImage"
-                        android:gravity="center"
-                        android:text="@string/foodText"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_widthPercent="30%" />
-                </RelativeLayout>
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/typeBonus"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/typeImage"
+                                android:layout_alignLeft="@id/typeImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
 
-                <!-- Armour -->
-                <RelativeLayout
-                    android:id="@+id/armourEquipment">
-                    <ImageView
-                        android:id="@+id/armourImage"
-                        android:background="@drawable/slot"
-                        android:layout_height="80dp"
-                        android:layout_width="match_parent"
-                        app:layout_heightPercent="25%"
-                        app:layout_widthPercent="20%"
-                        android:onClick="equipmentClick"/>
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/typeText"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/typeImage"
+                                android:layout_alignLeft="@id/typeImage"
+                                android:gravity="center"
+                                android:text="@string/typeText"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/armourStrength"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_alignBottom="@id/armourImage"
-                        android:layout_alignLeft="@id/armourImage"
-                        android:alpha="0.6"
-                        android:background="@color/black"
-                        android:gravity="center"
-                        android:text="+0"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_widthPercent="30%" />
+                        <!-- Tier -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/tierImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="tierClick"/>
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/armourTitle"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_below="@id/armourImage"
-                        android:layout_alignLeft="@id/armourImage"
-                        android:gravity="center"
-                        android:text="@string/foodText"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_widthPercent="30%" />
-                </RelativeLayout>
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/tierBonus"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/tierImage"
+                                android:layout_alignLeft="@id/tierImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
 
-            </TableRow>
-        </TableLayout>
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/tierText"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/tierImage"
+                                android:layout_alignLeft="@id/tierImage"
+                                android:gravity="center"
+                                android:text="@string/tierText"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                        <!-- State -->
+                        <RelativeLayout>
+                            <ImageView
+                                android:id="@+id/stateImage"
+                                android:background="@drawable/slot"
+                                android:layout_height="80dp"
+                                android:layout_width="match_parent"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%"
+                                android:onClick="stateClick"/>
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/stateBonus"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_alignBottom="@id/stateImage"
+                                android:layout_alignLeft="@id/stateImage"
+                                android:alpha="0.6"
+                                android:background="@color/black"
+                                android:gravity="center"
+                                android:text="+0"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+
+                            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                                android:id="@+id/stateText"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_below="@id/stateImage"
+                                android:layout_alignLeft="@id/stateImage"
+                                android:gravity="center"
+                                android:text="@string/stateText"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_widthPercent="30%" />
+                        </RelativeLayout>
+
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </android.support.percent.PercentRelativeLayout>
 

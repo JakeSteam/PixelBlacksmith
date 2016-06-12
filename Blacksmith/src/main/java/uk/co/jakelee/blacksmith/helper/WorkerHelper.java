@@ -410,4 +410,31 @@ public class WorkerHelper {
         }
         return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1 AND quantity > 0 ORDER BY item ASC";
     }
+
+    public static int getBasePrice(int itemId, int state) {
+        Item item = Item.findById(Item.class, itemId);
+        int baseValue = 4 + (item.getTier() * 4);
+
+        if (state == Constants.STATE_NORMAL) {
+            return baseValue;
+        } else if (state == Constants.STATE_UNFINISHED) {
+            return baseValue / 2;
+        } else {
+            return baseValue + (3 * state);
+        }
+    }
+
+    public static int getTotalStrength(Hero hero) {
+        int totalStrength = 0;
+        totalStrength += Item.findById(Item.class, hero.getFoodItem()).getValue();
+        totalStrength += getBasePrice(hero.getHelmetItem(), hero.getHelmetState());
+        totalStrength += getBasePrice(hero.getArmourItem(), hero.getArmourState());
+        totalStrength += getBasePrice(hero.getWeaponItem(), hero.getWeaponState());
+        totalStrength += getBasePrice(hero.getShieldItem(), hero.getShieldState());
+        totalStrength += getBasePrice(hero.getGlovesItem(), hero.getGlovesState());
+        totalStrength += getBasePrice(hero.getBootsItem(), hero.getBootsState());
+        totalStrength += getBasePrice(hero.getRingItem(), hero.getRingState());
+
+        return totalStrength;
+    }
 }
