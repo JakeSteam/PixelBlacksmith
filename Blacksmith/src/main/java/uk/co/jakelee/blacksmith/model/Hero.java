@@ -110,7 +110,7 @@ public class Hero extends SugarRecord {
         List<Double> equippedItemBonuses = new ArrayList<>();
         for (Pair<Integer, Integer> pair : equippedItems) {
             if (pair.first > 0 && pair.second > 0) {
-                equippedItemBonuses.add(visitor.getHeroBonus(pair.first, pair.second));
+                equippedItemBonuses.add(visitor.getBonus(pair.first, pair.second));
             }
         }
 

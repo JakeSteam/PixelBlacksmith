@@ -189,7 +189,7 @@ public class Visitor_Type extends SugarRecord {
         return (double) bonus / (double) 100;
     }
 
-    public double getHeroBonus(int itemId, int state) {
+    public double getBonus(int itemId, int state) {
         Item item = Item.findById(Item.class, itemId);
         int bonus = 100;
 

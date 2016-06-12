@@ -415,7 +415,9 @@ public class WorkerHelper {
         Item item = Item.findById(Item.class, itemId);
         int baseValue = 4 + (item.getTier() * 4);
 
-        if (state == Constants.STATE_NORMAL) {
+        if (item.getTier() == Constants.TIER_NONE) {
+            return item.getValue();
+        } else if (state == Constants.STATE_NORMAL) {
             return baseValue;
         } else if (state == Constants.STATE_UNFINISHED) {
             return baseValue / 2;
@@ -424,16 +426,22 @@ public class WorkerHelper {
         }
     }
 
-    public static int getTotalStrength(Hero hero) {
+    public static int getAdjustedStrength(Visitor_Type vType, int item, int state) {
+        int baseStrength = WorkerHelper.getBasePrice(item, state);
+        double bonus = vType.getBonus(item, state);
+        return (int) Math.ceil(baseStrength * bonus);
+    }
+
+    public static int getTotalStrength(Hero hero, Visitor_Type vType) {
         int totalStrength = 0;
         totalStrength += Item.findById(Item.class, hero.getFoodItem()).getValue();
-        totalStrength += getBasePrice(hero.getHelmetItem(), hero.getHelmetState());
-        totalStrength += getBasePrice(hero.getArmourItem(), hero.getArmourState());
-        totalStrength += getBasePrice(hero.getWeaponItem(), hero.getWeaponState());
-        totalStrength += getBasePrice(hero.getShieldItem(), hero.getShieldState());
-        totalStrength += getBasePrice(hero.getGlovesItem(), hero.getGlovesState());
-        totalStrength += getBasePrice(hero.getBootsItem(), hero.getBootsState());
-        totalStrength += getBasePrice(hero.getRingItem(), hero.getRingState());
+        totalStrength += getAdjustedStrength(vType, hero.getHelmetItem(), hero.getHelmetState());
+        totalStrength += getAdjustedStrength(vType, hero.getArmourItem(), hero.getArmourState());
+        totalStrength += getAdjustedStrength(vType, hero.getWeaponItem(), hero.getWeaponState());
+        totalStrength += getAdjustedStrength(vType, hero.getShieldItem(), hero.getShieldState());
+        totalStrength += getAdjustedStrength(vType, hero.getGlovesItem(), hero.getGlovesState());
+        totalStrength += getAdjustedStrength(vType, hero.getBootsItem(), hero.getBootsState());
+        totalStrength += getAdjustedStrength(vType, hero.getRingItem(), hero.getRingState());
 
         return totalStrength;
     }
