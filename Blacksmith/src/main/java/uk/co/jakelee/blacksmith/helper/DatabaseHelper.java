@@ -632,11 +632,12 @@ public class DatabaseHelper {
 
     private static void createHero() {
         List<Hero> heroes = new ArrayList<>();
-        heroes.add(new Hero(1, 25));
-        heroes.add(new Hero(2, 35));
-        heroes.add(new Hero(3, 45));
-        heroes.add(new Hero(4, 55));
-        heroes.add(new Hero(5, 65));
+        heroes.add(new Hero(1, 5));
+        heroes.add(new Hero(2, 25));
+        heroes.add(new Hero(3, 35));
+        heroes.add(new Hero(4, 45));
+        heroes.add(new Hero(5, 55));
+        heroes.add(new Hero(6, 65));
         heroes.add(new Hero(99, 1, 111, 0, true, 15, 78, 29, 27, 32, 24, 31, 30, 152));
         Hero.saveInTx(heroes);
 
@@ -646,14 +647,14 @@ public class DatabaseHelper {
 
         // Gathering: 1 - 150 difficulty.
         heroCategories.add(new Hero_Category(1, "Gathering", 0));
-            heroCategories.add(new Hero_Category(11, "Gather Herbs", 1));
-                heroAdventures.add(new Hero_Adventure(111, 11, "Gather Small Herbs", 10));
+            heroCategories.add(new Hero_Category(11, "Gather Plants", 1));
+                heroAdventures.add(new Hero_Adventure(111, 11, "Gather Red Weed", 10));
                     heroResources.add(new Hero_Resource(111, 1, Constants.STATE_NORMAL, 1));
                     heroResources.add(new Hero_Resource(111, 2, Constants.STATE_NORMAL, 1));
-                heroAdventures.add(new Hero_Adventure(112, 11, "Gather Slimy Herbs", 20));
-                heroAdventures.add(new Hero_Adventure(113, 11, "Gather Spiky Herbs", 30));
+                heroAdventures.add(new Hero_Adventure(112, 11, "Gather Nirnroot Herbs", 20));
+                heroAdventures.add(new Hero_Adventure(113, 11, "Gather Kyrt Herbs", 30));
 
-            heroCategories.add(new Hero_Category(12, "Gather Bugs", 1));
+            heroCategories.add(new Hero_Category(12, "Gather Insects", 1));
                 heroAdventures.add(new Hero_Adventure(121, 12, "Gather Ants", 25));
                 heroAdventures.add(new Hero_Adventure(122, 12, "Gather Woodlice", 35));
                 heroAdventures.add(new Hero_Adventure(123, 12, "Gather Caterpillars", 45));
@@ -725,7 +726,7 @@ public class DatabaseHelper {
                 heroAdventures.add(new Hero_Adventure(254, 25, "Hunt Wabbits", 220));
 
             heroCategories.add(new Hero_Category(26, "Hellcat Hunting", 2));
-                heroAdventures.add(new Hero_Adventure(261, 26, "Hunt Blue Hellcats", 2100));
+                heroAdventures.add(new Hero_Adventure(261, 26, "Hunt Blue Hellcats", 210));
                 heroAdventures.add(new Hero_Adventure(262, 26, "Hunt Green Hellcats", 220));
                 heroAdventures.add(new Hero_Adventure(263, 26, "Hunt Red Hellcats", 230));
                 heroAdventures.add(new Hero_Adventure(264, 26, "Hunt White Hellcats", 240));
@@ -784,8 +785,20 @@ public class DatabaseHelper {
                 heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Spitters", 520));
                 heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Boomers", 600));
 
-        // ???: 700 - 1000 difficulty.
-        heroCategories.add(new Hero_Category(4, "???", 0));
+        // Elite Challenges: 700 - 1500 difficulty.
+        heroCategories.add(new Hero_Category(4, "Elite Challenges", 0));
+            heroCategories.add(new Hero_Category(41, "Bosses", 4));
+                heroAdventures.add(new Hero_Adventure(351, 41, "Kill Big Daddy", 400));
+
+            heroCategories.add(new Hero_Category(42, "Hordes", 4));
+
+            heroCategories.add(new Hero_Category(43, "Unbeatable", 4));
+                heroAdventures.add(new Hero_Adventure(431, 43, "Achieve Nirvana", 1000));
+                heroAdventures.add(new Hero_Adventure(432, 43, "Calculate Prime Number Formula", 1100));
+                heroAdventures.add(new Hero_Adventure(433, 43, "Live Forever", 1200));
+                heroAdventures.add(new Hero_Adventure(434, 43, "Raise The Dead", 1300));
+                heroAdventures.add(new Hero_Adventure(435, 43, "Turn Back Time", 1400));
+                heroAdventures.add(new Hero_Adventure(436, 43, "Complete All Adventures", 1500));
 
         // Guard Duty: 100 - 300 difficulty.
         heroCategories.add(new Hero_Category(5, "Guard Duty", 0));
@@ -852,6 +865,27 @@ public class DatabaseHelper {
 
         // Escort: 300 - 700 difficulty.
         heroCategories.add(new Hero_Category(7, "Escort", 0));
+            heroCategories.add(new Hero_Category(71, "Escort Villagers", 7));
+                heroAdventures.add(new Hero_Adventure(711, 71, "Escort Butcher", 350));
+                heroAdventures.add(new Hero_Adventure(712, 71, "Escort Baker", 370));
+                heroAdventures.add(new Hero_Adventure(713, 71, "Escort Fisherman", 390));
+                heroAdventures.add(new Hero_Adventure(714, 71, "Escort Silk Trader", 410));
+                heroAdventures.add(new Hero_Adventure(715, 71, "Escort Gem Trader", 430));
+                heroAdventures.add(new Hero_Adventure(716, 71, "Escort Weapons Trader", 450));
+                heroAdventures.add(new Hero_Adventure(717, 71, "Escort Armour Trader", 470));
+
+            heroCategories.add(new Hero_Category(72, "Escort Visitors", 7));
+                heroAdventures.add(new Hero_Adventure(721, 72, "Escort Day Visitor", 500));
+                heroAdventures.add(new Hero_Adventure(722, 72, "Escort Night Visitor", 520));
+                heroAdventures.add(new Hero_Adventure(723, 72, "Escort Winter Visitor", 540));
+                heroAdventures.add(new Hero_Adventure(724, 72, "Escort Summer Visitor", 560));
+                heroAdventures.add(new Hero_Adventure(725, 72, "Escort Autumn Visitor", 580));
+                heroAdventures.add(new Hero_Adventure(726, 72, "Escort Spring Visitor", 600));
+
+            heroCategories.add(new Hero_Category(73, "Escort Soldiers", 7));
+                heroAdventures.add(new Hero_Adventure(731, 73, "Escort Underground Soldier", 630));
+                heroAdventures.add(new Hero_Adventure(732, 73, "Escort Shiny Soldier", 660));
+                heroAdventures.add(new Hero_Adventure(733, 73, "Escort Elegant Soldier", 690));
 
         Hero_Category.saveInTx(heroCategories);
         Hero_Adventure.saveInTx(heroAdventures);
