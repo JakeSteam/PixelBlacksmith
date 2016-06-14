@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -130,6 +131,10 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         for (Hero_Adventure adventure : adventures) {
             TextView difficulty = dh.createTextView(Integer.toString(adventure.getDifficulty()), 30);
             TextView name = dh.createTextView(adventure.getName(), 20);
+            if (adventure.isCompleted()) {
+                name.setPaintFlags(name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
+
             ImageView selectImage = new ImageView(this);
             selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
 

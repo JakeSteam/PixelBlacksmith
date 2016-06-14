@@ -268,6 +268,7 @@
                                 android:layout_width="match_parent"
                                 app:layout_heightPercent="25%"
                                 app:layout_widthPercent="20%"
+                                android:onClick="visitorClick"
                                 android:layout_margin="3dp"
                                 android:padding="5dp"/>
 

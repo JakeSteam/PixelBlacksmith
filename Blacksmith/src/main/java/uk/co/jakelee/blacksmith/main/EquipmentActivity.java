@@ -82,6 +82,12 @@ public class EquipmentActivity extends Activity {
         startActivity(intent);
     }
 
+    public void visitorClick(View view) {
+        Intent intent = new Intent(this, VisitorSelectActivity.class);
+        intent.putExtra(WorkerHelper.INTENT_HERO, hero.getHeroId());
+        startActivity(intent);
+    }
+
     private void populatePreferences() {
         ImageView typePic = (ImageView) findViewById(R.id.typeImage);
         TextViewPixel typeMultiplier = (TextViewPixel) findViewById(R.id.typeBonus);
