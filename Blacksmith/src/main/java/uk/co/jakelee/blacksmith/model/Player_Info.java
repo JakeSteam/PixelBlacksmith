@@ -158,7 +158,7 @@ public class Player_Info extends SugarRecord {
         int currentSlotPoints = (10 * Slot.getUnlockedCount());
         int currentTraderStockPoints = Trader_Stock.getUnlockedCount();
         int currentItemPoints = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
-        int currentPreferencePoints = Visitor_Type.getPreferencesDiscovered();
+        int currentPreferencePoints = Visitor_Type.getTotalPreferencesDiscovered();
         int currentTrophyPoints = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
         int currentWorkerPoints = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
 

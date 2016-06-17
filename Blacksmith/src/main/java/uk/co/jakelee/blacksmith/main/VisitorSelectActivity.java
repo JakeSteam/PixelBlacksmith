@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,15 +12,15 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
-import uk.co.jakelee.blacksmith.model.Inventory;
-import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class VisitorSelectActivity extends Activity {
@@ -41,29 +42,62 @@ public class VisitorSelectActivity extends Activity {
         super.onResume();
         dh.updateFullscreen(this);
 
-        populateVisitors();
+        new Thread(new Runnable() {
+            public void run() {
+                populateVisitors();
+            }
+        }).start();
     }
 
     private void populateVisitors() {
-        TableLayout visitorTable = (TableLayout) findViewById(R.id.visitorTable);
-        visitorTable.removeAllViews();
+        final TableLayout visitorTable = (TableLayout) findViewById(R.id.visitorTable);
         List<Visitor_Type> allVisitors = Visitor_Type.listAll(Visitor_Type.class);
+        List<TableRow> rows = new ArrayList<>();
 
         for (Visitor_Type visitor : allVisitors) {
-            // Inflate a layout
+            Visitor_Stats vStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getVisitorID());
+            boolean canBeSelected = WorkerHelper.canBeSelectedAsHero(visitor, vStats);
+            ImageView visitorImage = dh.createImageView("visitor", visitor.getVisitorID(), 60, 60);
+            TextView visitorReqs = dh.createTextView(String.format(getString(R.string.visitorRequirements),
+                    visitor.getName(),
+                    vStats.getVisits(), Constants.HERO_MIN_VISITS,
+                    vStats.getBestItemValue(), Constants.HERO_MIN_TRADE,
+                    visitor.getPreferencesDiscovered(), Constants.HERO_MIN_PREFS), 20);
+            visitorReqs.setPadding(dh.convertDpToPixel(6), 0, 0, dh.convertDpToPixel(10));
 
-            itemRow.setTag(R.id.visitor, visitor.getVisitorID());
-            itemRow.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    visitorClick(v);
-                }
-            });
-            equipmentTable.addView(itemRow);
+            TableRow visitorRow = new TableRow(this);
+
+            if (canBeSelected) {
+                visitorRow.setTag(R.id.visitor, visitor.getVisitorID());
+                visitorRow.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        visitorClick(v);
+                    }
+                });
+                visitorReqs.setTextColor(Color.parseColor("#267c18"));
+            } else {
+                visitorImage.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+            }
+
+            visitorRow.addView(visitorImage);
+            visitorRow.addView(visitorReqs);
+            rows.add(visitorRow);
         }
+
+        final List<TableRow> rowsToAdd = rows;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visitorTable.removeAllViews();
+                for (TableRow row : rowsToAdd) {
+                    visitorTable.addView(row);
+                }
+            }
+        });
     }
 
     public void visitorClick(View view) {
-        int visitorId = (int) view.getTag(R.id.visitor);
+        int visitorId = (int) (long) view.getTag(R.id.visitor);
         hero.setVisitorId(visitorId);
         hero.save();
 

@@ -122,8 +122,8 @@ public class EquipmentSelectActivity extends Activity {
     }
 
     public void equipmentClick(View view) {
-        int itemId = (int) view.getTag(R.id.itemID);
-        int itemState = (int) view.getTag(R.id.itemState);
+        int itemId = (int) (long) view.getTag(R.id.itemID);
+        int itemState = (int) (long) view.getTag(R.id.itemState);
 
         switch (itemType) {
             case ("food"):

@@ -155,6 +155,20 @@ public class Visitor_Type extends SugarRecord {
         this.weighting = weighting;
     }
 
+    public int getPreferencesDiscovered() {
+        int discovered = 0;
+        if (isTypeDiscovered()) {
+            discovered++;
+        }
+        if (isStateDiscovered()) {
+            discovered++;
+        }
+        if (isTierDiscovered()) {
+            discovered++;
+        }
+        return discovered;
+    }
+
     public double getDisplayedBonus(Inventory invent) {
         Item item = Item.findById(Item.class, invent.getItem());
         double bonus = 100;
@@ -232,7 +246,7 @@ public class Visitor_Type extends SugarRecord {
         }
     }
 
-    public static int getPreferencesDiscovered() {
+    public static int getTotalPreferencesDiscovered() {
         List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
         int preferencesDiscovered = 0;
 

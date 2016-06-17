@@ -86,6 +86,10 @@ public class Constants {
     public static final int TRADER_NOT_PRESENT = 0;
     public static final int TRADER_PRESENT = 1;
 
+    public static final int HERO_MIN_VISITS = 20;
+    public static final int HERO_MIN_TRADE = 100;
+    public static final int HERO_MIN_PREFS = 3;
+
     public static final int NOTIFICATION_VISITOR = 1;
     public static final int NOTIFICATION_RESTOCK = 2;
     public static final int NOTIFICATION_WORKER = 3;

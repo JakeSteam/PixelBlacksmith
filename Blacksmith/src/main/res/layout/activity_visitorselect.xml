@@ -52,8 +52,16 @@
                     android:id="@+id/visitorTable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:shrinkColumns="1"
-                    android:stretchColumns="1" />
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loadingMessage"
+                        android:textColor="@color/black"
+                        android:textSize="26sp"/>
+                </TableLayout>
             </LinearLayout>
         </ScrollView>
 

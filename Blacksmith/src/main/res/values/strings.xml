@@ -427,6 +427,7 @@
 
     <string name="traderArrived">Trader \"%s\" has arrived.</string>
 
+    <string name="visitorRequirements">%1$s\nVisits: %2$d / %3$d\nBest Trade: %4$d / %5$d\nPreferences: %6$d / %7$d</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
     <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item %1$s and 3x the super rare %2$s!</string>
     <string name="visitorArrived">%d visitor(s) have arrived.</string>

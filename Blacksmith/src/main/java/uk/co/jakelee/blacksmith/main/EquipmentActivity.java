@@ -12,7 +12,6 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
-import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
@@ -32,13 +31,14 @@ public class EquipmentActivity extends Activity {
         Intent intent = getIntent();
         int heroId = intent.getIntExtra(WorkerHelper.INTENT_ID, 0);
         hero = Hero.findById(heroId);
-        vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
     }
 
     @Override
     public void onResume() {
         super.onResume();
         dh.updateFullscreen(this);
+        hero = Hero.findById(hero.getHeroId());
+        vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
 
         populateEquipment();
         populatePreferences();
@@ -48,7 +48,7 @@ public class EquipmentActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.totalStrength)).setText(String.format(getString(R.string.heroTotalStrength), WorkerHelper.getTotalStrength(hero, vType)));
 
         ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), 25, 25, true, true));
-        ((TextViewPixel) findViewById(R.id.foodStrength)).setText("+" + Item.findById(Item.class, hero.getFoodItem()).getValue());
+        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.foodStrength), hero.getFoodItem(), hero.getFoodState());
 
         ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), 25, 25, true, true));
         WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());

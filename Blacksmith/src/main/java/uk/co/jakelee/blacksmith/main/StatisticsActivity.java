@@ -119,7 +119,7 @@ public class StatisticsActivity extends Activity {
         int totalItems = (int) Item.count(Item.class);
         ((TextViewPixel) findViewById(R.id.itemsSeen)).setText(String.format(getString(R.string.genericProgress), itemsSeen, totalItems));
 
-        int preferencesUnlocked = Visitor_Type.getPreferencesDiscovered();
+        int preferencesUnlocked = Visitor_Type.getTotalPreferencesDiscovered();
         int totalPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;
         ((TextViewPixel) findViewById(R.id.preferencesDiscovered)).setText(String.format(getString(R.string.genericProgress), preferencesUnlocked, totalPreferences));
 
