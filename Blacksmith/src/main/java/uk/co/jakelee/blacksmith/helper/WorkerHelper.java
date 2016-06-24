@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.widget.LinearLayout;
@@ -8,6 +9,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +18,11 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Message;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -30,6 +34,7 @@ public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
     public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
     public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
+    public enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
@@ -135,43 +140,177 @@ public class WorkerHelper {
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
         int heroesFinished = 0;
+        int heroesSuccessful = 0;
         List<String> heroNames = new ArrayList<>();
-        String rewardText = "";
+        String lastResult = "";
 
         boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
 
         for (Hero hero : heroes) {
             if (getTimeRemaining(hero) <= 0) {
-                rewardText = rewardResources(context, hero);
                 Visitor_Type heroVisitor = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
-                heroNames.add(heroVisitor.getName());
-                heroesFinished++;
+                int adventureResult = getAdventureResult(hero);
+                String adventureName = Hero_Adventure.findById(Hero_Adventure.class, hero.getCurrentAdventure()).getName();
 
-                // If autorefill is on and hero has food, remove 1 from inventory and leave the current food used.
-                if (refillFood && hero.getFoodItem() > 0) {
-                    Inventory currentFoodStock = Inventory.getInventory((long) hero.getFoodItem(), Constants.STATE_NORMAL);
-                    if (currentFoodStock.getQuantity() > 0) {
-                        currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
-                        currentFoodStock.save();
-                    } else {
-                        hero.setFoodItem(0);
-                    }
+                if (adventureResult == Constants.HERO_RESULT_SUCCESS) {
+                    lastResult = rewardResources(context, hero);
+                    heroesSuccessful++;
+                } else {
+                    List<EQUIP_SLOTS> slotsToEmpty = getSlotsToEmpty(hero, adventureResult);
+                    String lastResultString = removeEquippedItems(hero, slotsToEmpty);
+                    lastResult = String.format(context.getString(R.string.heroFailText),
+                            heroVisitor.getName(),
+                            adventureName,
+                            lastResultString);
                 }
-
-                hero.setTimeStarted(0);
-                hero.save();
-
-                heroVisitor.setAdventuresCompleted(heroVisitor.getAdventuresCompleted() + 1);
-                heroVisitor.save();
-
-                ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
+                heroNames.add(heroVisitor.getName());
+                completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS);
+                heroesFinished++;
+                Message.add(lastResult);
             }
         }
 
         if (heroesFinished > 1) {
-            ToastHelper.showPositiveToast(null, ToastHelper.LONG, String.format(context.getString(R.string.heroesReturned),
+            ToastHelper.showPositiveToast(((Activity) context).findViewById(R.id.worker), ToastHelper.LONG, String.format(context.getString(R.string.heroesReturned),
                     heroesFinished,
-                    workerNamesToString(heroNames)), true);
+                    workerNamesToString(heroNames),
+                    heroesSuccessful), true);
+        } else if (heroesFinished > 0 && heroesSuccessful > 0) {
+            ToastHelper.showPositiveToast(null, ToastHelper.LONG, lastResult, true);
+        } else if (heroesFinished > 0 && heroesSuccessful == 0) {
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, lastResult, true);
+        }
+    }
+
+    public static List<EQUIP_SLOTS> getSlotsWithItems(Hero hero) {
+        List<EQUIP_SLOTS> slotsWithItems = new ArrayList<>();
+        if (hero.getHelmetItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Helmet);
+        }
+        if (hero.getArmourItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Armour);
+        }
+        if (hero.getWeaponItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Weapon);
+        }
+        if (hero.getShieldItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Shield);
+        }
+        if (hero.getGlovesItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Gloves);
+        }
+        if (hero.getBootsItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Boots);
+        }
+        if (hero.getRingItem() > 0) {
+            slotsWithItems.add(EQUIP_SLOTS.Ring);
+        }
+        return slotsWithItems;
+    }
+
+
+    public static List<EQUIP_SLOTS> getSlotsToEmpty(Hero hero, int itemsToRemove) {
+        List<EQUIP_SLOTS> slotsWithItems = getSlotsWithItems(hero);
+        if (slotsWithItems.size() <= itemsToRemove) {
+            return slotsWithItems;
+        }
+
+        Collections.shuffle(slotsWithItems);
+
+        List<EQUIP_SLOTS> slotsToEmpty = new ArrayList<>();
+        for (int i = 0; i < itemsToRemove; i++) {
+            slotsToEmpty.add(slotsWithItems.get(i));
+        }
+        return slotsToEmpty;
+    }
+
+    public static String removeEquippedItems(Hero hero, List<EQUIP_SLOTS> slotsToEmpty) {
+        String slotsString = "";
+        for (EQUIP_SLOTS slot : slotsToEmpty) {
+            slotsString += slot.name() + ", ";
+            switch(slot) {
+                case Helmet:
+                    hero.setHelmetItem(0);
+                    hero.setHelmetState(0);
+                    break;
+                case Armour:
+                    hero.setArmourItem(0);
+                    hero.setArmourState(0);
+                    break;
+                case Weapon:
+                    hero.setWeaponItem(0);
+                    hero.setWeaponState(0);
+                    break;
+                case Shield:
+                    hero.setShieldItem(0);
+                    hero.setShieldState(0);
+                    break;
+                case Gloves:
+                    hero.setGlovesItem(0);
+                    hero.setGlovesState(0);
+                    break;
+                case Boots:
+                    hero.setBootsItem(0);
+                    hero.setBootsState(0);
+                    break;
+                case Ring:
+                    hero.setRingItem(0);
+                    hero.setRingState(0);
+                    break;
+            }
+        }
+        hero.save();
+
+        if (slotsString.endsWith(", ")) {
+            slotsString = slotsString.substring(0, slotsString.length() - 2);
+        }
+
+        return slotsString;
+    }
+
+    public static int getAdventureResult(Hero hero) {
+        Hero_Adventure adventure = Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(hero.getCurrentAdventure())).first();
+        Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
+        int heroStrength = WorkerHelper.getTotalStrength(hero, vType);
+        int difficulty = adventure.getDifficulty();
+        int chanceOfSuccess = getAdventureSuccessChance(heroStrength, difficulty);
+        boolean isSuccessful = VisitorHelper.getRandomBoolean(100 - chanceOfSuccess);
+        if (chanceOfSuccess >= 100 || isSuccessful) {
+            return Constants.HERO_RESULT_SUCCESS;
+        } else {
+            return VisitorHelper.getRandomNumber(Constants.HERO_RESULT_MIN, Constants.HERO_RESULT_MAX);
+        }
+    }
+
+    public static int getAdventureSuccessChance(int heroStrength, int difficulty) {
+        int strPercentOfDiff = (heroStrength / difficulty) * 100;
+        if (heroStrength < difficulty) {
+            int successChance = strPercentOfDiff - 50;
+            return successChance > 0 ? successChance : 0;
+        } else {
+            int successChance = strPercentOfDiff / 2;
+            return successChance < 100 ? successChance : 100;
+        }
+    }
+
+    public static void completeHero(Hero hero, boolean refillFood, Visitor_Type heroVisitor, boolean successful) {
+        // If autorefill is on and hero has food, remove 1 from inventory and leave the current food used.
+        if (refillFood && hero.getFoodItem() > 0) {
+            Inventory currentFoodStock = Inventory.getInventory((long) hero.getFoodItem(), Constants.STATE_NORMAL);
+            if (currentFoodStock.getQuantity() > 0) {
+                currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
+                currentFoodStock.save();
+            } else {
+                hero.setFoodItem(0);
+            }
+        }
+
+        hero.setTimeStarted(0);
+        hero.save();
+
+        if (successful) {
+            heroVisitor.setAdventuresCompleted(heroVisitor.getAdventuresCompleted() + 1);
+            heroVisitor.save();
         }
     }
 
@@ -361,7 +500,7 @@ public class WorkerHelper {
         return String.format(context.getString(R.string.heroTimesCompleted),
                 visitorType.getName(),
                 visitorStats.getAdventuresCompleted(),
-                hero.getTotalItemBonusPercent());
+                WorkerHelper.getTotalStrength(hero, visitorType));
     }
 
     public static String getTimeLeftString(Context context, Worker worker) {
@@ -444,6 +583,10 @@ public class WorkerHelper {
     }
 
     public static int getAdjustedStrength(Visitor_Type vType, int item, int state) {
+        if (item == 0 || state == 0) {
+            return 0;
+        }
+
         int baseStrength = WorkerHelper.getBasePrice(item, state);
         double bonus = vType.getBonus(item, state);
         return (int) Math.ceil(baseStrength * bonus);

@@ -242,17 +242,18 @@
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
-    <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a +%3$s%% bonus.</string>
+    <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
     <string name="workersReturned">%1$d workers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
-    <string name="heroesReturned">%1$d heroes (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
+    <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$s of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 
     <string name="heroTotalStrength">Total Strength: %d</string>
+    <string name="heroFailText">%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeQuestionAdvert">Would you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>

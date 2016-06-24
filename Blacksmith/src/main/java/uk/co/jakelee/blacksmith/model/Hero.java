@@ -87,11 +87,7 @@ public class Hero extends SugarRecord {
         this.ringState = Constants.STATE_NORMAL;
     }
 
-    public int getTotalItemBonusPercent() {
-        return (int) getTotalItemBonus();
-    }
-
-    public double getTotalItemBonus() {
+    public int getTotalItemBonus() {
         Visitor_Type visitor = Visitor_Type.findById(Visitor_Type.class, getVisitorId());
         // Build array of equipped items
         List<Pair<Integer, Integer>> equippedItems = new ArrayList<>(
@@ -120,7 +116,7 @@ public class Hero extends SugarRecord {
             totalBonus += bonus;
         }
 
-        return totalBonus;
+        return (int) totalBonus;
     }
 
     public static int getAvailableHeroesCount() {
