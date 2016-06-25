@@ -180,6 +180,8 @@ public class WorkerHelper {
         } else if (heroesFinished > 0 && heroesSuccessful == 0) {
             ToastHelper.showErrorToast(null, ToastHelper.LONG, lastResult, true);
         }
+
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_HERO_TRIPS, heroesSuccessful);
     }
 
     public static List<EQUIP_SLOTS> getSlotsWithItems(Hero hero) {
@@ -295,9 +297,9 @@ public class WorkerHelper {
 
     public static void completeHero(Hero hero, boolean refillFood, Visitor_Type heroVisitor, boolean successful) {
         // If autorefill is on and hero has food, remove 1 from inventory and leave the current food used.
-        if (refillFood && hero.getFoodItem() > 0) {
+        if (hero.getFoodItem() > 0) {
             Inventory currentFoodStock = Inventory.getInventory((long) hero.getFoodItem(), Constants.STATE_NORMAL);
-            if (currentFoodStock.getQuantity() > 0) {
+            if (currentFoodStock.getQuantity() > 0 && refillFood) {
                 currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
                 currentFoodStock.save();
             } else {
@@ -331,9 +333,9 @@ public class WorkerHelper {
                 workersFinished++;
 
                 // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
-                if (refillFood && worker.getFoodUsed() > 0) {
+                if (worker.getFoodUsed() > 0) {
                     Inventory currentFoodStock = Inventory.getInventory(worker.getFoodUsed(), Constants.STATE_NORMAL);
-                    if (currentFoodStock.getQuantity() > 0) {
+                    if (currentFoodStock.getQuantity() > 0 && refillFood) {
                         currentFoodStock.setQuantity(currentFoodStock.getQuantity() - 1);
                         currentFoodStock.save();
                     } else {
@@ -354,6 +356,8 @@ public class WorkerHelper {
                     workersFinished,
                     workerNamesToString(workerNames)), true);
         }
+
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_HELPER_TRIPS, workersFinished);
     }
 
     private static String workerNamesToString(List<String> names) {
@@ -594,7 +598,7 @@ public class WorkerHelper {
 
     public static int getTotalStrength(Hero hero, Visitor_Type vType) {
         int totalStrength = 0;
-        totalStrength += Item.findById(Item.class, hero.getFoodItem()).getValue();
+        totalStrength += (hero.getFoodItem() > 0 ? Item.findById(Item.class, hero.getFoodItem()).getValue() : 0);
         totalStrength += getAdjustedStrength(vType, hero.getHelmetItem(), hero.getHelmetState());
         totalStrength += getAdjustedStrength(vType, hero.getArmourItem(), hero.getArmourState());
         totalStrength += getAdjustedStrength(vType, hero.getWeaponItem(), hero.getWeaponState());

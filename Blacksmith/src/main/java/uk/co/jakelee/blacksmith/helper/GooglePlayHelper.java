@@ -116,11 +116,19 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public void UpdateQuest() {
+        if (!IsConnected()) {
+            return;
+        }
+
         PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
         quests.setResultCallback(this);
     }
 
     public static void UpdateEvent(String eventId, int quantity) {
+        if (!IsConnected() || quantity >= 0) {
+            return;
+        }
+
         Games.Events.increment(mGoogleApiClient, eventId, quantity);
     }
 

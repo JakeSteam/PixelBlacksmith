@@ -111,7 +111,7 @@ public class FoodActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Worker_Food);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Helper_Food);
         startActivity(intent);
     }
 

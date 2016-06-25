@@ -25,6 +25,8 @@ public class Constants {
     public static final String EVENT_BUY_ALL_ITEM = "CgkI6tnE2Y4OEAIQMw";
     public static final String EVENT_CONTRIBUTE = "CgkI6tnE2Y4OEAIQNA";
     public static final String EVENT_CLAIM_BONUS = "CgkI6tnE2Y4OEAIQNQ";
+    public static final String EVENT_HELPER_TRIPS = "CgkI6tnE2Y4OEAIQUw";
+    public static final String EVENT_HERO_TRIPS = "CgkI6tnE2Y4OEAIQVA";
 
     public static final int QUEST_XP_MODIFIER_EASY = 9;
     public static final int QUEST_XP_MODIFIER_MEDIUM = 15;

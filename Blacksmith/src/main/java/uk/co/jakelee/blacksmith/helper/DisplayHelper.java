@@ -609,6 +609,10 @@ public class DisplayHelper {
                 return R.drawable.uparrow;
             case Constants.EVENT_CLAIM_BONUS :
                 return R.drawable.bonus_chest_full;
+            case Constants.EVENT_HELPER_TRIPS :
+                return R.drawable.visitor3;
+            case Constants.EVENT_HERO_TRIPS :
+                return R.drawable.visitor43;
             default :
                 return R.drawable.quests;
         }

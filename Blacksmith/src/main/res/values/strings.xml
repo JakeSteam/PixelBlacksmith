@@ -137,6 +137,7 @@
     <string name="messagesShortText">Messages</string>
     <string name="socialMediaText">Social Media</string>
     <string name="workerText">Workers</string>
+    <string name="helperText">Helpers</string>
     <string name="heroText">Heroes</string>
     <string name="toolText">Tools</string>
     <string name="foodText">Food</string>
@@ -199,16 +200,16 @@
     <string name="overflowText">+ %d</string>
 
     <string name="workerLocked">Locked</string>
-    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %,d coins?</string>
+    <string name="buyWorkerQuestion">Are you sure you would like to hire this helper for %,d coins?</string>
     <string name="buyWorkerConfirm">Hire</string>
-    <string name="buyWorkerComplete">Successfully hired worker!</string>
+    <string name="buyWorkerComplete">Successfully hired helper!</string>
     <string name="buyHeroQuestion">Are you sure you would like to hire this hero for %,d coins?</string>
     <string name="buyHeroConfirm">Hire</string>
     <string name="buyHeroComplete">Successfully hired hero!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
     <string name="sendOutWorkers">Send Out\nWorkers</string>
-    <string name="sendOutWorkersToast">%d workers excitedly jog out of the door, in search of resources.</string>
+    <string name="sendOutWorkersToast">%d helpers excitedly jog out of the door, in search of resources.</string>
     <string name="sendOutHeroesToast">%d heroes excitedly jog out of the door, in search of adventure.</string>
     <string name="autofeedWorkers">Auto-feed\n</string>
 
@@ -236,7 +237,7 @@
 
     <string name="windowClick">What was that!?</string>
 
-    <string name="buyWorker">Purchase Worker</string>
+    <string name="buyWorker">Purchase Helper</string>
     <string name="buyHero">Purchase Hero</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
@@ -247,7 +248,7 @@
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
-    <string name="workersReturned">%1$d workers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
+    <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
     <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$s of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
@@ -482,8 +483,8 @@
     <string name="statisticsItemsSeen">Items Seen:</string>
     <string name="statisticsPreferencesDiscovered">Preferences Discovered:</string>
     <string name="statisticsTrophies">Trophies:</string>
-    <string name="statisticsWorkersOwned">Workers Owned:</string>
-    <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
+    <string name="statisticsWorkersOwned">Helpers Owned:</string>
+    <string name="statisticsWorkersTrips">Helper\'s Trips:</string>
     <string name="statisticsCollectionsCrafted">Collections Crafted:</string>
     <string name="statisticsQuestsCompleted">Quests Completed:</string>
     <string name="statisticsTotalBonusGold">Total Coins Bonus:</string>
@@ -628,20 +629,20 @@
         <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
         <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
         <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
-        <item>Workers initially take 3 hours to return with resources. This can be reduced to only 30 minutes by upgrading "Worker Time".</item>
+        <item>Helpers initially take 3 hours to return with resources, and heroes 6 hours. This can be reduced to only 30 / 60 minutes by upgrading "Worker Time".</item>
         <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
         <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
-        <item>There are 7 different hirable Workers that unlock as you level up.</item>
-        <item>You only have to pay to hire each different Worker once. After you\'ve hired a Worker, they will continue to work for you as long as you want to give them a job to do.</item>
-        <item>Workers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>There are 7 different hirable Helpers that unlock as you level up.</item>
+        <item>You only have to pay to hire each different Helper once. After you\'ve hired a Helper, they will continue to work for you as long as you want to give them a job to do.</item>
+        <item>Helpers need Tools. You can either craft Tools or buy them from the Market.</item>
         <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
-        <item>There are 8 different types of Tools that Workers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
-        <item>A Worker with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
-        <item>Equipping a Worker with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
-        <item>Once you\'ve equipped a Worker with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
-        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Workers a Food item to increase how much they will gather.</item>
-        <item>The Foods that you craft may provide a higher Worker gather bonus than the Foods you can buy in the Market.</item>
-        <item>Each Worker has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
-        <item>Providing your Workers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+        <item>There are 8 different types of Tools that Helpers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
+        <item>A Helper with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
+        <item>Equipping a Helper with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
+        <item>Once you\'ve equipped a Helper with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
+        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Helper a Food item to increase how much they will gather.</item>
+        <item>The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</item>
+        <item>Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
+        <item>Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
     </string-array>
 </resources>
