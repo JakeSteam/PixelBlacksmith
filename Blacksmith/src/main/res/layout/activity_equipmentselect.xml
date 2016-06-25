@@ -61,7 +61,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:shrinkColumns="1"
-                    android:stretchColumns="1" />
+                    android:stretchColumns="1">
+
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/noItemsMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:textColor="@color/black"
+                        android:text="@string/noItemsEquipment"/>
+                </TableLayout>
             </LinearLayout>
         </ScrollView>
 

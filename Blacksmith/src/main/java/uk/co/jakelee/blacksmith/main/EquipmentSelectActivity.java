@@ -11,6 +11,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -81,7 +82,7 @@ public class EquipmentSelectActivity extends Activity {
 
     private void populateEquipment() {
         TableLayout equipmentTable = (TableLayout) findViewById(R.id.equipmentTable);
-        equipmentTable.removeAllViews();
+        List<TableRow> rowsToAdd = new ArrayList<>();
         List<Inventory> matchedItems = Inventory.findWithQuery(Inventory.class,
                 "SELECT * " +
                         "FROM inventory " +
@@ -117,7 +118,14 @@ public class EquipmentSelectActivity extends Activity {
                     equipmentClick(v);
                 }
             });
-            equipmentTable.addView(itemRow);
+            rowsToAdd.add(itemRow);
+        }
+
+        if (rowsToAdd.size() > 0) {
+            equipmentTable.removeAllViews();
+            for (TableRow row : rowsToAdd) {
+                equipmentTable.addView(row);
+            }
         }
     }
 

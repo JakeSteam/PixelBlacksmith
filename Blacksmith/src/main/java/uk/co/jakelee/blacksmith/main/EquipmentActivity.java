@@ -47,32 +47,50 @@ public class EquipmentActivity extends Activity {
     private void populateEquipment() {
         ((TextViewPixel) findViewById(R.id.totalStrength)).setText(String.format(getString(R.string.heroTotalStrength), WorkerHelper.getTotalStrength(hero, vType)));
 
-        ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.foodStrength), hero.getFoodItem(), hero.getFoodState());
+        if (hero.getFoodItem() > 0) {
+            ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.foodStrength), hero.getFoodItem(), hero.getFoodState());
+        }
 
-        ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());
+        if (hero.getHelmetItem() > 0) {
+            ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());
+        }
 
-        ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.armourStrength), hero.getArmourItem(), hero.getArmourState());
+        if (hero.getArmourItem() > 0) {
+            ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.armourStrength), hero.getArmourItem(), hero.getArmourState());
+        }
 
-        ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.weaponStrength), hero.getWeaponItem(), hero.getWeaponState());
+        if (hero.getWeaponItem() > 0) {
+            ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.weaponStrength), hero.getWeaponItem(), hero.getWeaponState());
+        }
 
-        ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(dh.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
-        ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
+        if (hero.getVisitorId() > 0) {
+            ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(dh.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
+            ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
+        }
 
-        ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.shieldStrength), hero.getShieldItem(), hero.getShieldState());
+        if (hero.getShieldItem() > 0) {
+            ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.shieldStrength), hero.getShieldItem(), hero.getShieldState());
+        }
 
-        ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.glovesStrength), hero.getGlovesItem(), hero.getGlovesState());
+        if (hero.getGlovesItem() > 0) {
+            ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.glovesStrength), hero.getGlovesItem(), hero.getGlovesState());
+        }
 
-        ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.bootsStrength), hero.getBootsItem(), hero.getBootsState());
+        if (hero.getBootsItem() > 0) {
+            ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.bootsStrength), hero.getBootsItem(), hero.getBootsState());
+        }
 
-        ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), 25, 25, true, true));
-        WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
+        if (hero.getRingItem() > 0) {
+            ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), 25, 25, true, true));
+            WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
+        }
     }
 
     public void equipmentClick(View view) {
