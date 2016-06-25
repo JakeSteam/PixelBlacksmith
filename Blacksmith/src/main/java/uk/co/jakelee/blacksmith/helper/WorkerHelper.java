@@ -150,18 +150,26 @@ public class WorkerHelper {
             if (getTimeRemaining(hero) <= 0) {
                 Visitor_Type heroVisitor = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
                 int adventureResult = getAdventureResult(hero);
-                String adventureName = Hero_Adventure.findById(Hero_Adventure.class, hero.getCurrentAdventure()).getName();
+                Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
 
                 if (adventureResult == Constants.HERO_RESULT_SUCCESS) {
+                    adventure.setCompleted(true);
+                    adventure.save();
                     lastResult = rewardResources(context, hero);
                     heroesSuccessful++;
                 } else {
                     List<EQUIP_SLOTS> slotsToEmpty = getSlotsToEmpty(hero, adventureResult);
                     String lastResultString = removeEquippedItems(hero, slotsToEmpty);
-                    lastResult = String.format(context.getString(R.string.heroFailText),
-                            heroVisitor.getName(),
-                            adventureName,
-                            lastResultString);
+                    if (slotsToEmpty.size() > 0) {
+                        lastResult = String.format(context.getString(R.string.heroFailText),
+                                heroVisitor.getName(),
+                                adventure.getName(),
+                                lastResultString);
+                    } else {
+                        lastResult = String.format(context.getString(R.string.heroFailNoItemsText),
+                                heroVisitor.getName(),
+                                adventure.getName());
+                    }
                 }
                 heroNames.add(heroVisitor.getName());
                 completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS);
@@ -312,8 +320,9 @@ public class WorkerHelper {
 
         if (successful) {
             heroVisitor.setAdventuresCompleted(heroVisitor.getAdventuresCompleted() + 1);
-            heroVisitor.save();
         }
+        heroVisitor.setAdventuresAttempted(heroVisitor.getAdventuresAttempted() + 1);
+        heroVisitor.save();
     }
 
     public static void checkForFinishedWorkers(Context context) {

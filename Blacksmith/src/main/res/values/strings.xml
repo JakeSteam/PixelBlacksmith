@@ -255,6 +255,7 @@
 
     <string name="heroTotalStrength">Total Strength: %d</string>
     <string name="heroFailText">%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
+    <string name="heroFailNoItemsText">%1$s has failed whilst attempting to %2$s! They had no items, so lost nothing!</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeQuestionAdvert">Would you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
@@ -414,6 +415,7 @@
     <string name="tableSell">Sell</string>
 
     <string name="genericProgress">%1$d / %2$d</string>
+    <string name="genericProgressPercent">%1$d / %2$d (%3$d%%)</string>
     <string name="genericPercent">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
@@ -485,6 +487,8 @@
     <string name="statisticsTrophies">Trophies:</string>
     <string name="statisticsWorkersOwned">Helpers Owned:</string>
     <string name="statisticsWorkersTrips">Helper\'s Trips:</string>
+    <string name="statisticsHeroAdventuresCompleted">Adventures Completed:</string>
+    <string name="statisticsHeroAdventuresSuccessful">Successful Adventures:</string>
     <string name="statisticsCollectionsCrafted">Collections Crafted:</string>
     <string name="statisticsQuestsCompleted">Quests Completed:</string>
     <string name="statisticsTotalBonusGold">Total Coins Bonus:</string>

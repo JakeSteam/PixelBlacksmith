@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.util.Pair;
+
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class Visitor_Type extends SugarRecord {
     private boolean tierDiscovered;
     private boolean typeDiscovered;
     private boolean stateDiscovered;
+    private int adventuresAttempted;
     private int adventuresCompleted;
     private int weighting;
 
@@ -39,6 +42,7 @@ public class Visitor_Type extends SugarRecord {
         this.tierDiscovered = tierDiscovered;
         this.typeDiscovered = typeDiscovered;
         this.stateDiscovered = stateDiscovered;
+        this.adventuresAttempted = 0;
         this.adventuresCompleted = 0;
         this.weighting = weighting;
     }
@@ -137,6 +141,14 @@ public class Visitor_Type extends SugarRecord {
 
     public void setStateDiscovered(boolean stateDiscovered) {
         this.stateDiscovered = stateDiscovered;
+    }
+
+    public int getAdventuresAttempted() {
+        return adventuresAttempted;
+    }
+
+    public void setAdventuresAttempted(int adventuresAttempted) {
+        this.adventuresAttempted = adventuresAttempted;
     }
 
     public int getAdventuresCompleted() {
@@ -263,6 +275,19 @@ public class Visitor_Type extends SugarRecord {
         }
 
         return preferencesDiscovered;
+    }
+
+    public static Pair<Integer, Integer> getAdventureAttempts() {
+        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
+        int adventureAttempts = 0;
+        int adventureSuccesses = 0;
+
+        for (Visitor_Type visitor : visitors) {
+            adventureAttempts += visitor.getAdventuresAttempted();
+            adventureSuccesses += visitor.getAdventuresCompleted();
+        }
+
+        return new Pair<> (adventureAttempts, adventureSuccesses);
     }
 }
 

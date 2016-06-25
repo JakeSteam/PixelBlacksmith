@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 
 import com.google.android.gms.games.Games;
@@ -18,6 +19,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -134,6 +136,21 @@ public class StatisticsActivity extends Activity {
 
         int workersTrips = Worker.getTotalTrips();
         ((TextViewPixel) findViewById(R.id.workersTrips)).setText(String.format("%,d", workersTrips));
+
+        int adventuresCompleted = Hero_Adventure.getTotalCompleted();
+        int adventuresCount = (int) Hero_Adventure.count(Hero_Adventure.class);
+        int adventuresPercent = (int) (((double)adventuresCompleted / (double)adventuresCount) * 100);
+        ((TextViewPixel) findViewById(R.id.heroAdventuresCompleted)).setText(String.format(getString(R.string.genericProgressPercent),
+                adventuresCompleted,
+                adventuresCount,
+                adventuresPercent));
+
+        Pair<Integer, Integer> adventuresInfo = Visitor_Type.getAdventureAttempts();
+        int adventuresSuccessPercent = (int) (((double) (int) adventuresInfo.second / (double) (int) adventuresInfo.first) * 100);
+        ((TextViewPixel) findViewById(R.id.heroAdventuresSuccessful)).setText(String.format(getString(R.string.genericProgressPercent),
+                adventuresInfo.first,
+                adventuresInfo.second,
+                adventuresSuccessPercent));
 
         int collectionsCrafted = Player_Info.getCollectionsCrafted();
         ((TextViewPixel) findViewById(R.id.collectionsCrafted)).setText(String.format("%,d", collectionsCrafted));

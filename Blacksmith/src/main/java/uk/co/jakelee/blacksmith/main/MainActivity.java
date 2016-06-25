@@ -357,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements
                     dh.createAllSlots(activity);
                     needToRedrawSlots = false;
                 }
+                dh.updateFullscreen(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
