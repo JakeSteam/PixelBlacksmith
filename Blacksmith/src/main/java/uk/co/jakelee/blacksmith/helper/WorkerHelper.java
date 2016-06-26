@@ -67,7 +67,7 @@ public class WorkerHelper {
     }
 
     public static boolean isReady(Hero hero) {
-        return hero.getTimeStarted() == 0;
+        return hero.getTimeStarted() == 0 && hero.getCurrentAdventure() > 0 && hero.getVisitorId() > 0;
     }
 
     public static String getTimeRemainingString(Worker worker) {
@@ -221,7 +221,7 @@ public class WorkerHelper {
 
     public static List<EQUIP_SLOTS> getSlotsToEmpty(Hero hero, int itemsToRemove) {
         List<EQUIP_SLOTS> slotsWithItems = getSlotsWithItems(hero);
-        if (slotsWithItems.size() <= itemsToRemove) {
+        if (slotsWithItems.size() == 0 || slotsWithItems.size() <= itemsToRemove) {
             return slotsWithItems;
         }
 
@@ -607,7 +607,7 @@ public class WorkerHelper {
 
     public static int getTotalStrength(Hero hero, Visitor_Type vType) {
         int totalStrength = 0;
-        totalStrength += (hero.getFoodItem() > 0 ? Item.findById(Item.class, hero.getFoodItem()).getValue() : 0);
+        totalStrength += getAdjustedStrength(vType, hero.getFoodItem(), hero.getFoodState());
         totalStrength += getAdjustedStrength(vType, hero.getHelmetItem(), hero.getHelmetState());
         totalStrength += getAdjustedStrength(vType, hero.getArmourItem(), hero.getArmourState());
         totalStrength += getAdjustedStrength(vType, hero.getWeaponItem(), hero.getWeaponState());

@@ -151,6 +151,7 @@ public class Player_Info extends SugarRecord {
             Visitor Preferences * 1
             Trophies * 1
             Workers * 100
+            Adventures * 1
          */
         int currentLevelPoints = 100 * Player_Info.getPlayerLevel();
         int currentUpgradePoints = (10 * Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue());
@@ -161,6 +162,7 @@ public class Player_Info extends SugarRecord {
         int currentPreferencePoints = Visitor_Type.getTotalPreferencesDiscovered();
         int currentTrophyPoints = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
         int currentWorkerPoints = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
+        int currentAdventurePoints = Visitor_Type.getAdventureAttempts().second;
 
         int maxLevelPoints = (100 * Constants.PRESTIGE_LEVEL_REQUIRED);
         int maxUpgradePoints = (10 * Upgrade.getMaximumUpgrades());
@@ -170,7 +172,8 @@ public class Player_Info extends SugarRecord {
         int maxItemPoints = (int) Item.count(Item.class);
         int maxPreferencePoints = (int) Visitor_Type.count(Visitor_Type.class) * 3;
         int maxTrophyPoints = (int) Visitor_Stats.count(Visitor_Stats.class);
-        int maxWorkerPoints = Worker.listAll(Worker.class).size();
+        int maxWorkerPoints = (int) Worker.count(Worker.class);
+        int maxAdventurePoints = (int) Hero_Adventure.count(Hero_Adventure.class);
         
         int adjustedLevelPoints = currentLevelPoints > maxLevelPoints ? maxLevelPoints : currentLevelPoints;
         int adjustedUpgradePoints = currentUpgradePoints > maxUpgradePoints ? maxUpgradePoints : currentUpgradePoints;
@@ -181,9 +184,10 @@ public class Player_Info extends SugarRecord {
         int adjustedPreferencePoints = currentPreferencePoints > maxPreferencePoints ? maxPreferencePoints : currentPreferencePoints;
         int adjustedTrophyPoints = currentTrophyPoints > maxTrophyPoints ? maxTrophyPoints : currentTrophyPoints;
         int adjustedWorkerPoints = currentWorkerPoints > maxWorkerPoints ? maxWorkerPoints : currentWorkerPoints;
+        int adjustedAdventurePoints = currentAdventurePoints > maxAdventurePoints ? maxAdventurePoints : currentAdventurePoints;
 
-        int adjustedComplete = adjustedLevelPoints + adjustedUpgradePoints + adjustedTraderPoints + adjustedSlotPoints + adjustedTraderStockPoints + adjustedItemPoints + adjustedPreferencePoints + adjustedTrophyPoints + adjustedWorkerPoints;
-        int totalToComplete = maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferencePoints + maxTrophyPoints + maxWorkerPoints;
+        int adjustedComplete = adjustedLevelPoints + adjustedUpgradePoints + adjustedTraderPoints + adjustedSlotPoints + adjustedTraderStockPoints + adjustedItemPoints + adjustedPreferencePoints + adjustedTrophyPoints + adjustedWorkerPoints + adjustedAdventurePoints;
+        int totalToComplete = maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferencePoints + maxTrophyPoints + maxWorkerPoints + maxAdventurePoints;
 
         double completionPercentage = (((double) adjustedComplete / (double) totalToComplete) * 100);
         return completionPercentage > 100 ? 100 : completionPercentage;

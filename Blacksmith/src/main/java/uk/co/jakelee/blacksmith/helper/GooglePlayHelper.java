@@ -32,6 +32,7 @@ import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -344,8 +345,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
         List<Visitor_Demand> visitor_demands = Visitor_Demand.listAll(Visitor_Demand.class);
         List<Worker> workers = Worker.listAll(Worker.class);
+        List<Hero> heroes = Hero.listAll(Hero.class);
 
-        backupString = gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_V1_7_0) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(traders) + GooglePlayHelper.SAVE_DELIMITER;
@@ -355,7 +358,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         backupString += gson.toJson(visitor_types) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(visitor_demands) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(workers) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_V1_7_0);
+        backupString += gson.toJson(heroes) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
@@ -364,57 +367,58 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(backupData);
+        MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
 
-        Inventory[] inventories = gson.fromJson(splitData[0], Inventory[].class);
+        Inventory[] inventories = gson.fromJson(splitData[1], Inventory[].class);
         Inventory.deleteAll(Inventory.class);
         for (Inventory inventory : inventories) {
             inventory.save();
         }
 
-        Player_Info[] player_infos = gson.fromJson(splitData[1], Player_Info[].class);
+        Player_Info[] player_infos = gson.fromJson(splitData[2], Player_Info[].class);
         Player_Info.deleteAll(Player_Info.class);
         for (Player_Info player_info : player_infos) {
             player_info.save();
         }
 
-        Setting[] settings = gson.fromJson(splitData[2], Setting[].class);
+        Setting[] settings = gson.fromJson(splitData[3], Setting[].class);
         Setting.deleteAll(Setting.class);
         for (Setting setting : settings) {
             setting.save();
         }
 
-        Trader[] traders = gson.fromJson(splitData[3], Trader[].class);
+        Trader[] traders = gson.fromJson(splitData[4], Trader[].class);
         Trader.deleteAll(Trader.class);
         for (Trader trader : traders) {
             trader.save();
         }
 
-        Upgrade[] upgrades = gson.fromJson(splitData[4], Upgrade[].class);
+        Upgrade[] upgrades = gson.fromJson(splitData[5], Upgrade[].class);
         Upgrade.deleteAll(Upgrade.class);
         for (Upgrade upgrade : upgrades) {
             upgrade.save();
         }
 
-        Visitor[] visitors = gson.fromJson(splitData[5], Visitor[].class);
+        Visitor[] visitors = gson.fromJson(splitData[6], Visitor[].class);
         Visitor.deleteAll(Visitor.class);
         for (Visitor visitor : visitors) {
             visitor.save();
         }
 
-        Visitor_Stats[] visitor_stats = gson.fromJson(splitData[6], Visitor_Stats[].class);
+        Visitor_Stats[] visitor_stats = gson.fromJson(splitData[7], Visitor_Stats[].class);
         Visitor_Stats.deleteAll(Visitor_Stats.class);
         for (Visitor_Stats visitor_stat : visitor_stats) {
             visitor_stat.save();
         }
 
-        Visitor_Type[] visitor_types = gson.fromJson(splitData[7], Visitor_Type[].class);
+        Visitor_Type[] visitor_types = gson.fromJson(splitData[8], Visitor_Type[].class);
         Visitor_Type.deleteAll(Visitor_Type.class);
         for (Visitor_Type visitor_type : visitor_types) {
             visitor_type.save();
         }
 
-        if (splitData.length > 8) {
-            Visitor_Demand[] visitor_demands = gson.fromJson(splitData[8], Visitor_Demand[].class);
+        if (splitData.length > 9) {
+            Visitor_Demand[] visitor_demands = gson.fromJson(splitData[9], Visitor_Demand[].class);
             if (visitor_demands.length > 0) {
                 Visitor_Demand.deleteAll(Visitor_Demand.class);
                 for (Visitor_Demand visitor_demand : visitor_demands) {
@@ -423,8 +427,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
         }
 
-        if (splitData.length > 9) {
-            Worker[] workers = gson.fromJson(splitData[9], Worker[].class);
+        if (splitData.length > 10) {
+            Worker[] workers = gson.fromJson(splitData[10], Worker[].class);
             if (workers.length > 0) {
                 Worker.deleteAll(Worker.class);
                 for (Worker worker : workers) {
@@ -433,10 +437,17 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
         }
 
-        if (splitData.length > 10) {
-            MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[10])).apply();
-            DatabaseHelper.handlePatches();
+        if (splitData.length > 11) {
+            Hero[] heroes = gson.fromJson(splitData[11], Hero[].class);
+            if (heroes.length > 0) {
+                Hero.deleteAll(Hero.class);
+                for (Hero hero : heroes) {
+                    hero.save();
+                }
+            }
         }
+
+        DatabaseHelper.handlePatches();
 
         callingActivity.runOnUiThread(new Runnable() {
             @Override

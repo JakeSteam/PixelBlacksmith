@@ -319,7 +319,8 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS)) {
-            NotificationHelper.addWorkerNotification(getApplicationContext(), notificationSound);
+            NotificationHelper.addHelperNotification(getApplicationContext(), notificationSound);
+            NotificationHelper.addHeroNotification(getApplicationContext(), notificationSound);
         }
 
         if (Setting.getSafeBoolean(Constants.SETTING_VISITOR_NOTIFICATIONS) && Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
