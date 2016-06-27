@@ -109,8 +109,11 @@ public class WorkerActivity extends Activity {
             heroCharacter.setTag(hero);
             heroCharacter.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    String heroTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Hero) v.getTag());
-                    ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, heroTimesCompleted, false);
+                    Hero hero = (Hero) v.getTag();
+                    if (hero.getVisitorId() > 0) {
+                        String heroTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Hero) v.getTag());
+                        ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, heroTimesCompleted, false);
+                    }
                 }
             });
             heroCharacterText.setText(WorkerHelper.isReady(hero) ? R.string.workerStatusReady : R.string.workerStatusBusy);
@@ -119,28 +122,28 @@ public class WorkerActivity extends Activity {
             if (hero.getFoodItem() > 0) {
                 resourceID = DisplayHelper.getItemDrawableID(this, hero.getFoodItem());
             }
-            if (WorkerHelper.isReady(hero)) {
+            if (hero.getTimeStarted() == 0) {
                 heroCharacter.setTag(hero);
                 heroCharacter.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         Hero hero = (Hero) v.getTag();
-                        if (WorkerHelper.isReady(hero)) {
-                            Intent intent = new Intent(activity, EquipmentActivity.class);
-                            intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
-                            startActivity(intent);
-                        }
+                        Intent intent = new Intent(activity, EquipmentActivity.class);
+                        intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
+                        startActivity(intent);
                     }
                 });
             }
             heroFood.setImageResource(resourceID);
             heroFood.setVisibility(View.VISIBLE);
 
-            heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
+            if (adventure != null) {
+                heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
+            }
             heroAdventure.setTag(hero);
             heroAdventure.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Hero hero = (Hero) v.getTag();
-                    if (WorkerHelper.isReady(hero)) {
+                    if (hero.getVisitorId() > 0 && hero.getTimeStarted() == 0) {
                         Intent intent = new Intent(activity, AdventureActivity.class);
                         intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
                         startActivity(intent);
@@ -152,7 +155,7 @@ public class WorkerActivity extends Activity {
             heroResourceContainer.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Hero hero = (Hero) v.getTag();
-                    if (hero.isPurchased()) {
+                    if (hero.isPurchased() && hero.getVisitorId() > 0) {
                         List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure((int) hero.getCurrentAdventure());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
                                 WorkerHelper.getRewardResourcesText(hero, resources, false)), false);
@@ -169,8 +172,10 @@ public class WorkerActivity extends Activity {
                     if (WorkerHelper.sendOutHero(hero)) {
                         scheduledTask();
                     } else {
-                        String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, hero);
-                        ToastHelper.showToast(heroButton, ToastHelper.SHORT, exactTimeLeft, false);
+                        if (hero.getVisitorId() > 0 && hero.getCurrentAdventure() > 0) {
+                            String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, hero);
+                            ToastHelper.showToast(heroButton, ToastHelper.SHORT, exactTimeLeft, false);
+                        }
                     }
                 }
             });

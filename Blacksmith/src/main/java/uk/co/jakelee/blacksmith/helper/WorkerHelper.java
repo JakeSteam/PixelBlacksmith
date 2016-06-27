@@ -23,6 +23,7 @@ import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Message;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -67,7 +68,7 @@ public class WorkerHelper {
     }
 
     public static boolean isReady(Hero hero) {
-        return hero.getTimeStarted() == 0 && hero.getCurrentAdventure() > 0 && hero.getVisitorId() > 0;
+        return hero.getTimeStarted() == 0 && hero.getCurrentAdventure() > 0;
     }
 
     public static String getTimeRemainingString(Worker worker) {
@@ -101,7 +102,7 @@ public class WorkerHelper {
 
     public static String getButtonText(Worker worker) {
         if (isReady(worker)) {
-            return "Start gathering";
+            return "Start Gathering";
         } else {
             return "Returns in " + WorkerHelper.getTimeRemainingString(worker);
         }
@@ -109,7 +110,11 @@ public class WorkerHelper {
 
     public static String getButtonText(Hero hero) {
         if (isReady(hero)) {
-            return "Start gathering";
+            return "Start Gathering";
+        } else if (hero.getVisitorId() == 0) {
+            return "Select Hero";
+        } else if (hero.getCurrentAdventure() == 0) {
+            return "Select Adventure";
         } else {
             return "Returns in " + WorkerHelper.getTimeRemainingString(hero);
         }
@@ -153,6 +158,7 @@ public class WorkerHelper {
                 Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
 
                 if (adventureResult == Constants.HERO_RESULT_SUCCESS) {
+                    Player_Info.addXp(adventure.getDifficulty());
                     adventure.setCompleted(true);
                     adventure.save();
                     lastResult = rewardResources(context, hero);

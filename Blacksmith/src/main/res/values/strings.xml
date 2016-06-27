@@ -648,5 +648,11 @@
         <item>The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</item>
         <item>Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
         <item>Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+        <item>Heroes are a riskier way to earn items, but can be very profitable!</item>
+        <item>Make the most of a hero\'s item preferences to complete the trickier quests.</item>
+        <item>The worker notification will inform you when both heroes and helpers have returned.</item>
+        <item>When pressed, messages can either show the message log, or disappear. Change it in the settings!</item>
+        <item>Fullscreen mode provides a more immersive mode, but can drain battery faster!</item>
+        <item>If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</item>
     </string-array>
 </resources>

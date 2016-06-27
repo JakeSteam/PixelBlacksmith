@@ -107,6 +107,9 @@ public class EquipmentActivity extends Activity {
     }
 
     private void populatePreferences() {
+        if (vType == null) {
+            return;
+        }
         ImageView typePic = (ImageView) findViewById(R.id.typeImage);
         TextViewPixel typeMultiplier = (TextViewPixel) findViewById(R.id.typeBonus);
         ImageView tierPic = (ImageView) findViewById(R.id.tierImage);

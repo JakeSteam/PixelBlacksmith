@@ -464,12 +464,14 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(new String(saveBytes));
-        Player_Info[] saveInfos = gson.fromJson(splitData[1], Player_Info[].class);
-        for (Player_Info saveInfo : saveInfos) {
-            if (saveInfo.getName().equals("Prestige")) {
-                prestige = saveInfo.getIntValue();
-            } else if (saveInfo.getName().equals("XP")) {
-                xp = saveInfo.getIntValue();
+        if (splitData.length >= 2) {
+            Player_Info[] saveInfos = gson.fromJson(splitData[2], Player_Info[].class);
+            for (Player_Info saveInfo : saveInfos) {
+                if (saveInfo.getName().equals("Prestige")) {
+                    prestige = saveInfo.getIntValue();
+                } else if (saveInfo.getName().equals("XP")) {
+                    xp = saveInfo.getIntValue();
+                }
             }
         }
 
