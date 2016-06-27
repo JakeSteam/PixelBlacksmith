@@ -203,7 +203,7 @@ public class Inventory extends SugarRecord implements Serializable {
 
         Item item = Item.findById(Item.class, itemStock.getItemID());
 
-        if ((coins.getQuantity() - item.getModifiedValue(itemStock.getState())) <= 0) {
+        if ((coins.getQuantity() - item.getModifiedValue(itemStock.getState())) < 0) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
         } else if (itemStock.getStock() <= 0) {
             return Constants.ERROR_TRADER_RUN_OUT;
