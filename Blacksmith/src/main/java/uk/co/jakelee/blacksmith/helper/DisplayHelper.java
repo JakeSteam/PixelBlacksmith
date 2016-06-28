@@ -173,27 +173,31 @@ public class DisplayHelper {
     }
 
     public void populateSlots(Activity activity, View parentView) {
+        boolean updateUI = Setting.getSafeBoolean(Constants.SETTING_UPDATE_SLOTS);
+
         if (Pending_Inventory.count(Pending_Inventory.class) > 0) {
             List<Location> locations = Location.listAll(Location.class);
             for (Location location : locations) {
-                populateSlot(activity, location.getId(), parentView);
+                populateSlot(activity, location.getId(), parentView, updateUI);
             }
         }
     }
 
-    private void populateSlot(final Activity activity, final long locationID, View parentView) {
+    private void populateSlot(final Activity activity, final long locationID, View parentView, boolean updateUI) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         if (pendingItems.size() > 0 && !isProcessingPendingInventory) {
             final int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
             final int numSlots = Slot.getUnlockedSlots(locationID);
 
             final GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    emptySlotContainer(slotContainer);
-                }
-            });
+            if (updateUI) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        emptySlotContainer(slotContainer);
+                    }
+                });
+            }
 
             int slotIndex = 0;
             int finishedItems = 0;
@@ -213,25 +217,29 @@ public class DisplayHelper {
                     } else {
                         final int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
-                            }
-                        });
+                        if (updateUI) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                                    slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                                }
+                            });
+                        }
                         slotIndex++;
                     }
                 }
             }
             final RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
             final int totalFinishedItems = finishedItems;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    displayOverflow(lockedSlot, numItems, numSlots, totalFinishedItems);
-                }
-            });
+            if (updateUI) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        displayOverflow(lockedSlot, numItems, numSlots, totalFinishedItems);
+                    }
+                });
+            }
 
             if (completedItems.size() > 0) {
                 isProcessingPendingInventory = true;
@@ -263,6 +271,10 @@ public class DisplayHelper {
     }
 
     public void updateFullscreen(Activity activity) {
+        if (!Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN)) {
+            return;
+        }
+
         boolean shouldBeFullscreen = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
         if (Build.VERSION.SDK_INT >= 19) {
             if (shouldBeFullscreen) {

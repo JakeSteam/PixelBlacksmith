@@ -159,6 +159,14 @@ public class SettingsActivity extends Activity {
         boolean autoRefreshToggleValue = Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH);
         autoRefreshToggle.setImageDrawable(autoRefreshToggleValue ? tick : cross);
 
+        ImageView fullscreenCheckToggle = (ImageView) findViewById(R.id.fullscreenCheckToggleButton);
+        boolean fullscreenCheckToggleValue = Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN);
+        fullscreenCheckToggle.setImageDrawable(fullscreenCheckToggleValue ? tick : cross);
+
+        ImageView updateSlotsToggle = (ImageView) findViewById(R.id.updateSlotsToggleButton);
+        boolean updateSlotsToggleValue = Setting.getSafeBoolean(Constants.SETTING_UPDATE_SLOTS);
+        updateSlotsToggle.setImageDrawable(updateSlotsToggleValue ? tick : cross);
+
         ImageView fullscreenToggle = (ImageView) findViewById(R.id.fullscreenToggleButton);
         boolean fullscreenToggleValue = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
         fullscreenToggle.setImageDrawable(fullscreenToggleValue ? tick : cross);
@@ -220,6 +228,14 @@ public class SettingsActivity extends Activity {
             case R.id.autoRefreshToggle:
                 settingID = Constants.SETTING_AUTOREFRESH;
                 settingName = "Item Listing Auto Refresh";
+                break;
+            case R.id.fullscreenCheckToggle:
+                settingID = Constants.SETTING_CHECK_FULLSCREEN;
+                settingName = "Fullscreen Mode Checking";
+                break;
+            case R.id.updateSlotsToggle:
+                settingID = Constants.SETTING_UPDATE_SLOTS;
+                settingName = "Item Slot Updating";
                 break;
         }
 
