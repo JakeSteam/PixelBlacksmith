@@ -1,6 +1,8 @@
 package uk.co.jakelee.blacksmith.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 public class Hero_Category extends SugarRecord {
     private int categoryId;
@@ -38,5 +40,9 @@ public class Hero_Category extends SugarRecord {
 
     public void setParent(int parent) {
         this.parent = parent;
+    }
+
+    public Hero_Category getParentObject() {
+        return Select.from(Hero_Category.class).where(Condition.prop("category_id").eq(this.parent)).first();
     }
 }

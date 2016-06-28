@@ -606,10 +606,9 @@ public class DatabaseHelper {
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE resource_id IN (73, 74, 75)");
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE resource_id IN (72, 76)");
 
-        // Add only displaying available items in quick select & open message log on toast click
         List<Setting> settings = new ArrayList<>();
             settings.add(new Setting(12L, "OnlyAvailableItems", false));
-            settings.add(new Setting(13L, "OpenMessageLog", false));
+            settings.add(new Setting(13L, "OpenMessageLog", true));
             settings.add(new Setting(14L, "Fullscreen", true));
             settings.add(new Setting(15L, "Autorefresh", false));
         Setting.saveInTx(settings);
@@ -638,7 +637,6 @@ public class DatabaseHelper {
         heroes.add(new Hero(4, 45));
         heroes.add(new Hero(5, 55));
         heroes.add(new Hero(6, 65));
-        heroes.add(new Hero(99, 1, 111, 0, true, 15, 78, 29, 27, 32, 24, 31, 30, 152));
         Hero.saveInTx(heroes);
 
         List<Hero_Category> heroCategories = new ArrayList<>();

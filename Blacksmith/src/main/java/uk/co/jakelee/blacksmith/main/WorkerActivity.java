@@ -94,9 +94,10 @@ public class WorkerActivity extends Activity {
     private RelativeLayout createHeroRow(Hero hero) {
         RelativeLayout heroRoot = createHeroRow();
         ImageView heroCharacter = (ImageView) heroRoot.findViewById(R.id.heroCharacter);
-        ImageView heroFood = (ImageView) heroRoot.findViewById(R.id.heroFood);
         TextView heroCharacterText = (TextView) heroRoot.findViewById(R.id.heroCharacterText);
+        ImageView heroFood = (ImageView) heroRoot.findViewById(R.id.heroFood);
         ImageView heroAdventure = (ImageView) heroRoot.findViewById(R.id.heroAdventure);
+        TextView heroAdventureText = (TextView) heroRoot.findViewById(R.id.heroAdventureText);
         LinearLayout heroResourceContainer = (LinearLayout) heroRoot.findViewById(R.id.heroResource);
         final TextView heroButton = (TextView) heroRoot.findViewById(R.id.heroButton);
 
@@ -138,6 +139,7 @@ public class WorkerActivity extends Activity {
 
             if (adventure != null) {
                 heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
+                heroAdventureText.setText(adventure.getName());
             }
             heroAdventure.setTag(hero);
             heroAdventure.setOnClickListener(new Button.OnClickListener() {

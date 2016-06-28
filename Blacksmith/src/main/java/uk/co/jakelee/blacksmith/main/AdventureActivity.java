@@ -61,6 +61,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
             String selectedItem = (String) parent.getItemAtPosition(pos);
             populateAdventures(selectedItem);
         }
+        dh.updateFullscreen(this);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

@@ -78,4 +78,8 @@ public class Hero_Adventure extends SugarRecord {
     public static Hero_Adventure getAdventure(int id) {
         return Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(id)).first();
     }
+
+    public Hero_Category getSubcategoryObject() {
+        return Select.from(Hero_Category.class).where(Condition.prop("category_id").eq(this.getSubcategory())).first();
+    }
 }

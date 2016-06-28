@@ -14,6 +14,19 @@
         app:layout_marginTopPercent="2%"
         app:layout_widthPercent="35%" />
 
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/heroCharacterText"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/heroCharacter"
+        android:layout_alignLeft="@id/heroCharacter"
+        android:alpha="0.6"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="@string/workerLocked"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_widthPercent="35%" />
+
     <ImageView
         android:id="@+id/heroFood"
         android:layout_width="wrap_content"
@@ -34,6 +47,19 @@
         app:layout_marginTopPercent="2%"
         app:layout_widthPercent="35%"/>
 
+    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+        android:id="@+id/heroAdventureText"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/heroAdventure"
+        android:layout_alignLeft="@id/heroAdventure"
+        android:alpha="0.6"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="@string/workerLocked"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_widthPercent="35%" />
+
     <LinearLayout
         android:id="@+id/heroResource"
         android:orientation="vertical"
@@ -46,19 +72,6 @@
         android:paddingBottom="10dp"
         app:layout_marginTopPercent="2%"
         app:layout_widthPercent="20%" />
-
-    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-        android:id="@+id/heroCharacterText"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/heroCharacter"
-        android:layout_alignLeft="@id/heroCharacter"
-        android:alpha="0.6"
-        android:background="@color/black"
-        android:gravity="center"
-        android:text="@string/workerLocked"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_widthPercent="35%" />
 
     <uk.co.jakelee.blacksmith.controls.TextViewPixel
         android:id="@+id/heroButton"
