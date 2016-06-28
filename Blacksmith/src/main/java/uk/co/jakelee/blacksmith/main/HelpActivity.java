@@ -235,7 +235,10 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("'Full Screen' enables a more immersive full screen mode.\n", 22));
         layout.addView(dh.createTextView("The 'Quick Select' functionality allows tapping the item image in a crafting interface to change item. Disabling 'Quick Select' will make swiping to change item easier.\n", 22));
         layout.addView(dh.createTextView("The 'Quick Log Access' option makes tapping a message open the message log instead of closing the current message.\n", 22));
+        layout.addView(dh.createTextView("Performance Options:", 24));
         layout.addView(dh.createTextView("The 'Auto Refresh' option will enable auto refreshing on inventory and trade screens. This feature can cause performance issues, so is disabled by default.\n", 22));
+        layout.addView(dh.createTextView("The 'Full Screen Check' option will enable check fullscreen status. If disabled, fullscreen mode will be less reliable, but performance will be improved.\n", 22));
+        layout.addView(dh.createTextView("The 'Update Slots' option will enable updating item slots. Disabling it is not recommended, but can improve performance slightly.\n", 22));
         layout.addView(dh.createTextView("Premium Options:", 24));
         layout.addView(dh.createTextView("Premium players can disable all mention of adverts and prestige their account. Prestiging resets all items (except pages & books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\n", 22));
         layout.addView(dh.createTextView("In return for being set back to level 1, you'll receive +50% to coin earnings, and -25% to XP gains.\n", 22));

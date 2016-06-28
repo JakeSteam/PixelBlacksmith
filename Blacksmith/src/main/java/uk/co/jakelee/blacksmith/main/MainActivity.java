@@ -287,8 +287,12 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         dh.updateFullscreen(this);
-
+        View exitTutorialButton = findViewById(R.id.exitTutorial);
         if (TutorialHelper.currentlyInTutorial) {
+            if (exitTutorialButton != null) {
+                exitTutorialButton.setVisibility(View.VISIBLE);
+            }
+
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
             } else if (TutorialHelper.currentStage == Constants.STAGE_4_VISITOR || TutorialHelper.currentStage == Constants.STAGE_5_MAIN) {
@@ -304,7 +308,15 @@ public class MainActivity extends AppCompatActivity implements
             } else if (TutorialHelper.currentStage == Constants.STAGE_14_MARKET || TutorialHelper.currentStage == Constants.STAGE_15_MAIN) {
                 startSeventhTutorial();
             }
+        } else if (exitTutorialButton != null) {
+            exitTutorialButton.setVisibility(View.GONE);
         }
+    }
+
+    public void exitTutorial(View v) {
+        TutorialHelper.currentlyInTutorial = false;
+        findViewById(R.id.exitTutorial).setVisibility(View.GONE);
+        ToastHelper.showToast(findViewById(R.id.exitTutorial), ToastHelper.LONG, getString(R.string.exitTutorialText), true);
     }
 
     @Override

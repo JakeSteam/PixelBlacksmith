@@ -363,6 +363,9 @@
     <string name="autoRefreshSettingText">Auto Refresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
 
+    <string name="exitTutorial">Skip Tutorial</string>
+    <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
+
     <string name="soundSettingGroup">Sound Options</string>
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
