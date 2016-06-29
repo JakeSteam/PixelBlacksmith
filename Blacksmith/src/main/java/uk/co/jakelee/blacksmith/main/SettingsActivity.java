@@ -171,6 +171,10 @@ public class SettingsActivity extends Activity {
         boolean fullscreenToggleValue = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
         fullscreenToggle.setImageDrawable(fullscreenToggleValue ? tick : cross);
 
+        ImageView longToastToggle = (ImageView) findViewById(R.id.longToastToggleButton);
+        boolean longToastToggleValue = Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST);
+        longToastToggle.setImageDrawable(longToastToggleValue ? tick : cross);
+
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -237,6 +241,10 @@ public class SettingsActivity extends Activity {
                 settingID = Constants.SETTING_UPDATE_SLOTS;
                 settingName = "Item Slot Updating";
                 break;
+            case R.id.longToastToggle:
+                settingID = Constants.SETTING_LONG_TOAST;
+                settingName = "Longer Message Durations";
+                break;
         }
 
         if (settingID != null) {
@@ -277,6 +285,7 @@ public class SettingsActivity extends Activity {
     public void openTutorial(View view) {
         this.finish();
         TutorialHelper.currentlyInTutorial = true;
+        TutorialHelper.currentStage  = Constants.STAGE_1_MAIN;
         this.finish();
     }
 

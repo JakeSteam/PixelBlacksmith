@@ -362,6 +362,7 @@
     <string name="fullscreenCheckSettingText">Full Screen Check</string>
     <string name="autoRefreshSettingText">Auto Refresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
+    <string name="longToastSettingText">Longer Messages</string>
 
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>

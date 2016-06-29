@@ -18,8 +18,8 @@ import uk.co.jakelee.blacksmith.model.Message;
 import uk.co.jakelee.blacksmith.model.Setting;
 
 public class ToastHelper {
-    public static final int SHORT = Snackbar.LENGTH_SHORT;
-    public static final int LONG = Snackbar.LENGTH_LONG;
+    public static final int SHORT = Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST) ? 5000 : Snackbar.LENGTH_SHORT;
+    public static final int LONG = Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST) ? 20000 : Snackbar.LENGTH_LONG;
 
     public static void showToast(View view, int length, String text, boolean saveToLog) {
         showToast(view, length, text, saveToLog, R.color.lightBrown);

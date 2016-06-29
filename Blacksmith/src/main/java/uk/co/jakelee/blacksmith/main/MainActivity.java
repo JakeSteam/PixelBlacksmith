@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements
         dh.updateFullscreen(this);
         View exitTutorialButton = findViewById(R.id.exitTutorial);
         if (TutorialHelper.currentlyInTutorial) {
-            if (exitTutorialButton != null) {
+            if (exitTutorialButton != null && TutorialHelper.currentStage <= Constants.STAGE_15_MAIN) {
                 exitTutorialButton.setVisibility(View.VISIBLE);
             }
 
@@ -315,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void exitTutorial(View v) {
         TutorialHelper.currentlyInTutorial = false;
+        TutorialHelper.currentStage = 99;
         findViewById(R.id.exitTutorial).setVisibility(View.GONE);
         ToastHelper.showToast(findViewById(R.id.exitTutorial), ToastHelper.LONG, getString(R.string.exitTutorialText), true);
     }
