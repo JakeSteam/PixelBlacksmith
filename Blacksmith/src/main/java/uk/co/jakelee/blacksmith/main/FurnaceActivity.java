@@ -85,7 +85,6 @@ public class FurnaceActivity extends Activity {
             }
         };
         handler.post(everySecond);
-
     }
 
     @Override
@@ -198,12 +197,14 @@ public class FurnaceActivity extends Activity {
 
     public void smelt10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        smelt(itemID, 10);
+        int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
+        smelt(itemID, numCraftable >= 10 ? 10 : numCraftable);
     }
 
     public void smelt100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        smelt(itemID, 100);
+        int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
+        smelt(itemID, numCraftable >= 100 ? 100 : numCraftable);
     }
 
     private void smelt(Long itemID, int quantity) {

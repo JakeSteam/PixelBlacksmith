@@ -204,12 +204,14 @@ public class TableActivity extends Activity {
 
     public void craft10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, 10);
+        int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
+        craft(itemID, numCraftable >= 10 ? 10 : numCraftable);
     }
 
     public void craft100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, 100);
+        int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
+        craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
     }
 
     public void brightenButtons() {

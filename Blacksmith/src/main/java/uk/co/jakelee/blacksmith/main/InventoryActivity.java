@@ -209,7 +209,10 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         int canSell = Constants.ERROR_NOT_ENOUGH_ITEMS;
         if (MainActivity.vh.inventoryBusy) {
             canSell = Constants.ERROR_BUSY;
-        } else if (inventory.getQuantity() >= quantity) {
+        } else {
+            if (inventory.getQuantity() < quantity) {
+                quantity = inventory.getQuantity();
+            }
             quantityToSell = quantity;
             inventory.setQuantity(inventory.getQuantity() - quantity);
             inventory.save();

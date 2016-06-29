@@ -208,12 +208,16 @@ public class AnvilActivity extends Activity {
 
     public void craft10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, 10);
+        int state = ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED;
+        int numCraftable = Inventory.getNumberCreatable(itemID, state);
+        craft(itemID, numCraftable >= 10 ? 10 : numCraftable);
     }
 
     public void craft100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, 100);
+        int state = ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED;
+        int numCraftable = Inventory.getNumberCreatable(itemID, state);
+        craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
     }
 
     public void brightenButtons() {

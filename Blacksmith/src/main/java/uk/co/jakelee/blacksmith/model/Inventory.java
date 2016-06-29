@@ -5,6 +5,8 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -44,6 +46,32 @@ public class Inventory extends SugarRecord implements Serializable {
     public static boolean haveLevelFor(Long itemID) {
         Item item = Item.findById(Item.class, itemID);
         return Player_Info.getPlayerLevel() >= item.getLevel();
+    }
+
+    public static int getNumberCreatable(Long itemID, long state) {
+        Item item = Item.findById(Item.class, itemID);
+        if (item.getLevel() > Player_Info.getPlayerLevel()) {
+            return 0;
+        }
+
+        List<Recipe> ingredients = Select.from(Recipe.class).where(
+                Condition.prop("item_state").eq(state),
+                Condition.prop("item").eq(item)).list();
+
+        List<Integer> quantities = new ArrayList<>();
+        for (Recipe recipe : ingredients) {
+            Inventory ingredientInventory = Select.from(Inventory.class).where(
+                    Condition.prop("item").eq(recipe.getIngredient()),
+                    Condition.prop("state").eq(recipe.getIngredientState())).first();
+
+            if (ingredientInventory == null) {
+                quantities.add(0);
+            } else {
+                quantities.add((ingredientInventory.getQuantity() / recipe.getQuantity()));
+            }
+        }
+
+        return Collections.min(quantities);
     }
 
     public static int canCreateBulkItem(Long itemID, long state, int quantity) {
