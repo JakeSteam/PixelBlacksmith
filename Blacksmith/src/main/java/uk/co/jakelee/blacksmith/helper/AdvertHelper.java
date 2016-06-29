@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
 import com.applovin.sdk.AppLovinAd;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.InterstitialActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
@@ -36,6 +38,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     private boolean verified;
     private advertPurpose currentPurpose;
     private static AdvertHelper dhInstance = null;
+    public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
 
     public AdvertHelper(Context context) {
         this.context = context;
@@ -50,6 +53,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             dhInstance = new AdvertHelper(ctx.getApplicationContext());
         }
         return dhInstance;
+    }
+
+    public void openInterstitial(advertPurpose purpose) {
+        Intent intent = new Intent(context, InterstitialActivity.class);
+        intent.putExtra(AdvertHelper.INTENT_ID, purpose.toString());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     public void showAdvert(MainActivity activity, advertPurpose purpose) {
@@ -72,7 +82,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
+            openInterstitial(purpose);
         }
     }
 
@@ -125,6 +135,26 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         }
         // Begin loading next advert.
         advert.preload(null);
+    }
+
+    public void triggerCallback(advertPurpose purpose) {
+        switch (purpose) {
+            case ConvMarketRestock:
+                marketActivity.callbackRestock();
+                break;
+            case ConvVisitorDismiss:
+                visitorActivity.callbackDismiss();
+                break;
+            case ConvVisitorSpawn:
+                mainActivity.callbackSpawn();
+                break;
+            case ConvTraderRestock:
+                traderActivity.callbackRestock();
+                break;
+            case BonusBox:
+                mainActivity.callbackBonus();
+                break;
+        }
     }
 
     @Override

@@ -152,6 +152,9 @@
     <string name="messageLogToggleText">Quick Log Access</string>
     <string name="adventureText">Adventures</string>
     <string name="equipmentText">Equipment</string>
+    <string name="interstitialText">Advert</string>
+
+    <string name="interstitialTimeLeft">Remaining: %1$ds</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -530,6 +533,12 @@
     <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
     <string name="noItemsInventory">You don\'t have any items in this category!</string>
     <string name="noItemsEquipment">You don\'t have any suitable equipment for this slot!</string>
+
+    <string name="interstitialLongText">No advert could be loaded!
+\n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
+\n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
+\n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">leave the game a rating</a>. It\'s the best way to help the game grow!
+\n\nYou could also read a few tips:</string>
 
     <string name="creditsOverall">Overall</string>
     <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>

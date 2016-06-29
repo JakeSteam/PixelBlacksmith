@@ -4,4 +4,5 @@
     <color name="black">#000000</color>
     <color name="grey">#808080</color>
     <color name="lightBrown">#ae6c37</color>
+    <color name="defaultLink">#0000EE</color>
 </resources>

@@ -109,6 +109,8 @@ public class Constants {
     public static final int HERO_RESULT_MIN = 1;
     public static final int HERO_RESULT_MAX = 5;
 
+    public static final int ADVERT_TIMEOUT = 30000;
+
     // Error codes
     public static final int SUCCESS = 1;
     public static final int ERROR_PLAYER_LEVEL = 2;
