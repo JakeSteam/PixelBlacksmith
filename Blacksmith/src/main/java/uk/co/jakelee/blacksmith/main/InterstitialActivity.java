@@ -66,7 +66,7 @@ public class InterstitialActivity extends Activity {
         final TextView countdownTimer = (TextView)findViewById(R.id.countdownTimer);
         new CountDownTimer(Constants.ADVERT_TIMEOUT, DateHelper.MILLISECONDS_IN_SECOND) {
             public void onTick(long millisUntilFinished) {
-                int timeLeft = (int) (millisUntilFinished / 1000) + 1;
+                int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);
                 countdownTimer.setText(String.format(getString(R.string.interstitialTimeLeft), timeLeft));
             }
 
