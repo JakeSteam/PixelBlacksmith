@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -179,6 +181,21 @@ public class SettingsActivity extends Activity {
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
         }
+
+        TextView settingsCode = (TextView) findViewById(R.id.settingsCodeHeader);
+        settingsCode.setText(getSettingsCode());
+    }
+
+    public String getSettingsCode() {
+        List<Setting> settings = Setting.listAll(Setting.class);
+        String settingsCode = "1";
+        for (Setting setting : settings) {
+            settingsCode += (setting.getBoolValue() ? "1" : "0");
+        }
+
+        return String.format(getString(R.string.settingsCode),
+                settings.size(),
+                Integer.valueOf(settingsCode, 2));
     }
 
     public void toggleSetting(View v) {

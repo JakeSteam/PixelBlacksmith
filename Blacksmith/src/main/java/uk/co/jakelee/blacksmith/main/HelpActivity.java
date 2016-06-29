@@ -249,6 +249,8 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("If you've received a support code from customer support, it can also be entered here.\n", 22));
         layout.addView(dh.createTextView("Google Play:", 24));
         layout.addView(dh.createTextView("Google Play Games services can also be accessed here, including cloud saves, achievements, leaderboards, and quests.\n", 22));
+        layout.addView(dh.createTextView("Settings Code:", 24));
+        layout.addView(dh.createTextView("The settings code is an indicator of your current settings. Changing any setting will generate a new unique code. It can be used to help diagnose problems, or to quickly check two devices have the same settings.", 22));
         }
 
     private void displayHelpTrader(LinearLayout layout) {

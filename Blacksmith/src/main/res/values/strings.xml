@@ -374,6 +374,8 @@
     <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
     <string name="googlePlaySettingGroup">Google Play</string>
+    <string name="settingsCodeUnknown">Settings Code: ???</string>
+    <string name="settingsCode">Settings Code: %2$d</string>
 
     <string name="unknownText">\???</string>
 
