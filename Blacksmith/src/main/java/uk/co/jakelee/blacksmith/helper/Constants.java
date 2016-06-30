@@ -155,6 +155,7 @@ public class Constants {
     public static final Long SETTING_CHECK_FULLSCREEN = 16L;
     public static final Long SETTING_UPDATE_SLOTS = 17L;
     public static final Long SETTING_LONG_TOAST = 18L;
+    public static final Long SETTING_HANDLE_MAX = 19L;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

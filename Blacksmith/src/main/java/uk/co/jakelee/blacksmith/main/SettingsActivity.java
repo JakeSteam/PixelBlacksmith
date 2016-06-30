@@ -177,6 +177,10 @@ public class SettingsActivity extends Activity {
         boolean longToastToggleValue = Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST);
         longToastToggle.setImageDrawable(longToastToggleValue ? tick : cross);
 
+        ImageView handleMaxToggle = (ImageView) findViewById(R.id.handleMaxToggleButton);
+        boolean handleMaxToggleValue = Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX);
+        handleMaxToggle.setImageDrawable(handleMaxToggleValue ? tick : cross);
+
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -261,6 +265,10 @@ public class SettingsActivity extends Activity {
             case R.id.longToastToggle:
                 settingID = Constants.SETTING_LONG_TOAST;
                 settingName = "Longer Message Durations";
+                break;
+            case R.id.handleMaxToggle:
+                settingID = Constants.SETTING_HANDLE_MAX;
+                settingName = "Smelt / Craft / Sell Max";
                 break;
         }
 

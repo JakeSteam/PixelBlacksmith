@@ -35,6 +35,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 
 public class FurnaceActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -161,8 +162,12 @@ public class FurnaceActivity extends Activity {
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
-        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
-        smelt1.setText(R.string.smelt1Text);
+        ((TextView) findViewById(R.id.smelt1)).setText(R.string.smelt1Text);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.maxText);
+        } else {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.smelt100Text);
+        }
     }
 
     private void createFoodInterface(boolean clearExisting) {
@@ -186,8 +191,12 @@ public class FurnaceActivity extends Activity {
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
-        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
-        smelt1.setText(R.string.cook1Text);
+        ((TextView) findViewById(R.id.smelt1)).setText(R.string.cook1Text);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.maxText);
+        } else {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.smelt100Text);
+        }
     }
 
     public void smelt1(View v) {
@@ -204,7 +213,11 @@ public class FurnaceActivity extends Activity {
     public void smelt100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
-        smelt(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            smelt(itemID, numCraftable);
+        } else {
+            smelt(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        }
     }
 
     private void smelt(Long itemID, int quantity) {

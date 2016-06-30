@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -79,6 +80,12 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
 
         updateQuantityUI();
         createDropdown();
+
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            ((TextView) findViewById(R.id.sell100Text)).setText(R.string.maxText);
+        } else {
+            ((TextView) findViewById(R.id.sell100Text)).setText(R.string.sell100Text);
+        }
     }
 
     private void loadSelectedType() {
@@ -210,7 +217,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         if (MainActivity.vh.inventoryBusy) {
             canSell = Constants.ERROR_BUSY;
         } else {
-            if (inventory.getQuantity() < quantity) {
+            if (inventory.getQuantity() < quantity || Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
                 quantity = inventory.getQuantity();
             }
             quantityToSell = quantity;

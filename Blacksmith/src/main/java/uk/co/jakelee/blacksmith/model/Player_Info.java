@@ -95,10 +95,10 @@ public class Player_Info extends SugarRecord {
     public static boolean displayAds() {
         Player_Info premium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
-        Setting hideAllAds = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS);
+        boolean hideAllAds = Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS);
 
         // Return true unless the player is premium + has hidden ads.
-        return !(premium.getIntValue() == 1 && hideAllAds.getBoolValue());
+        return !(premium.getIntValue() == 1 && hideAllAds);
     }
 
     public static boolean isBonusReady() {

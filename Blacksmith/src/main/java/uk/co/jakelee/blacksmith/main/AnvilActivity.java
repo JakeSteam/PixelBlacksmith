@@ -35,6 +35,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 
 public class AnvilActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -136,6 +137,12 @@ public class AnvilActivity extends Activity {
             if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
             createItemsInterface(clearExisting);
         }
+
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            craft100.setText(R.string.maxText);
+        } else {
+            craft100.setText(R.string.craft100Text);
+        }
     }
 
     private void updateButtons() {
@@ -217,7 +224,11 @@ public class AnvilActivity extends Activity {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         int state = ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED;
         int numCraftable = Inventory.getNumberCreatable(itemID, state);
-        craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            craft(itemID, numCraftable);
+        } else {
+            craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        }
     }
 
     public void brightenButtons() {

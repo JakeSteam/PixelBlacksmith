@@ -122,6 +122,7 @@
                 android:orientation="vertical">
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/sell100Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-5dp"

@@ -614,6 +614,7 @@ public class DatabaseHelper {
             settings.add(new Setting(16L, "CheckFullscreen", true));
             settings.add(new Setting(17L, "UpdateSlots", true));
             settings.add(new Setting(18L, "LongToasts", false));
+            settings.add(new Setting(19L, "HandleMax", false));
         Setting.saveInTx(settings);
 
         // Updating minimum levels for traders

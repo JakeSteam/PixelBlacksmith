@@ -37,6 +37,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 
 public class TableActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -137,6 +138,12 @@ public class TableActivity extends Activity {
         } else {
             createItemsInterface(clearExisting);
         }
+
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            craft100.setText(R.string.maxText);
+        } else {
+            craft100.setText(R.string.craft100Text);
+        }
     }
 
     private void updateButtons() {
@@ -211,7 +218,11 @@ public class TableActivity extends Activity {
     public void craft100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
-        craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            craft(itemID, numCraftable);
+        } else {
+            craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        }
     }
 
     public void brightenButtons() {

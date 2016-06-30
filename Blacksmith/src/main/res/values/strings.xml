@@ -351,6 +351,7 @@
     <string name="sell10Text">Sell 10</string>
     <string name="sell100Text">Sell 100</string>
     <string name="crushGemText">Crush Gem</string>
+    <string name="maxText">Max</string>
 
     <string name="settingChanged">Setting \"%1$s\" successfully turned %2$s!</string>
     <string name="soundSettingText">Sounds</string>
@@ -366,6 +367,7 @@
     <string name="autoRefreshSettingText">Auto Refresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
     <string name="longToastSettingText">Longer Messages</string>
+    <string name="handleMaxSettingText">Use Max</string>
 
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
