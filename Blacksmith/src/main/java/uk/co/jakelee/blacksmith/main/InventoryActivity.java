@@ -82,7 +82,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         createDropdown();
 
         if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
-            ((TextView) findViewById(R.id.sell100Text)).setText(R.string.maxText);
+            ((TextView) findViewById(R.id.sell100Text)).setText(R.string.sellMaxText);
         } else {
             ((TextView) findViewById(R.id.sell100Text)).setText(R.string.sell100Text);
         }
@@ -217,7 +217,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         if (MainActivity.vh.inventoryBusy) {
             canSell = Constants.ERROR_BUSY;
         } else {
-            if (inventory.getQuantity() < quantity || Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            if (inventory.getQuantity() < quantity || (quantity == 100 && Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX))) {
                 quantity = inventory.getQuantity();
             }
             quantityToSell = quantity;

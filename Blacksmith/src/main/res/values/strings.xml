@@ -353,6 +353,7 @@
     <string name="sell1Text">Sell 1</string>
     <string name="sell10Text">Sell 10</string>
     <string name="sell100Text">Sell 100</string>
+    <string name="sellMaxText">Sell Max</string>
     <string name="crushGemText">Crush Gem</string>
     <string name="maxText">Max</string>
 
