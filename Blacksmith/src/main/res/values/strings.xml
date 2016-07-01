@@ -156,6 +156,9 @@
 
     <string name="interstitialTimeLeft">Remaining: %1$ds</string>
 
+    <string name="upgradeTabText">Upgrade</string>
+    <string name="superTabText">Super</string>
+
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>

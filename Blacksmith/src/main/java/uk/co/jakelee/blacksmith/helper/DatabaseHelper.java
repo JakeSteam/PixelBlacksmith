@@ -24,6 +24,7 @@ import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -631,6 +632,17 @@ public class DatabaseHelper {
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 4, type_preferred = 20 WHERE visitor_id = 9");
 
         createHero();
+        createSuperUpgrade();
+    }
+
+    private static void createSuperUpgrade() {
+        List<Super_Upgrade> upgrades = new ArrayList<>();
+            upgrades.add(new Super_Upgrade(Constants.SU_SAVE_INGREDIENT, "50% Chance Of Saving Ingredient", false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "60s of 10x all XP (5/day)", false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "60s of 10x all Coins (5/day)", false));
+            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "10x Trader Stocks", false));
+            upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", false));
+        Super_Upgrade.saveInTx(upgrades);
     }
 
     private static void createHero() {

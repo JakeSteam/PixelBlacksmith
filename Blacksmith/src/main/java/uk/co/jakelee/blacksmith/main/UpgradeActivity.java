@@ -22,10 +22,12 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class UpgradeActivity extends Activity {
     private static DisplayHelper dh;
+    private boolean superSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,15 @@ public class UpgradeActivity extends Activity {
         setContentView(R.layout.activity_upgrade);
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
+        superSelected = MainActivity.prefs.getBoolean("upgradeTab", false);
 
-        createUpgradeInterface();
+        createInterface();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        MainActivity.prefs.edit().putBoolean("upgradeTab", superSelected).apply();
     }
 
     public void openHelp(View view) {
@@ -43,12 +52,48 @@ public class UpgradeActivity extends Activity {
         startActivity(intent);
     }
 
+    public void toggleTab(View view) {
+        superSelected = !superSelected;
+        updateTabs();
+        createInterface();
+    }
+
+    private void updateTabs() {
+        if (superSelected) {
+            (findViewById(R.id.upgradeTab)).setAlpha(1f);
+            (findViewById(R.id.superTab)).setAlpha(0.3f);
+        } else {
+            (findViewById(R.id.upgradeTab)).setAlpha(0.3f);
+            (findViewById(R.id.superTab)).setAlpha(1f);
+        }
+    }
+
+    private void createInterface() {
+        updateTabs();
+
+        if (superSelected) {
+            createSuperInterface();
+        } else {
+            createUpgradeInterface();
+        }
+    }
+
+    private void createSuperInterface() {
+        List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).orderBy("name ASC").list();
+        TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
+        upgradeTable.removeAllViews();
+
+        for (Super_Upgrade upgrade : upgrades) {
+            upgradeTable.addView(dh.createTextView(upgrade.getName(), 24));
+        }
+    }
+
     private void createUpgradeInterface() {
         List<Upgrade> upgrades = Select.from(Upgrade.class).orderBy("name ASC").list();
         TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
         upgradeTable.removeAllViews();
 
-        for (final Upgrade upgrade : upgrades) {
+        for (Upgrade upgrade : upgrades) {
             if (upgrade.getName().equals("Legendary Chance") && !Player_Info.isPremium()) {
                 continue;
             }

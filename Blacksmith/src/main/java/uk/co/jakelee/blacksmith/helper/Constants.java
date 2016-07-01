@@ -157,6 +157,12 @@ public class Constants {
     public static final Long SETTING_LONG_TOAST = 18L;
     public static final Long SETTING_HANDLE_MAX = 19L;
 
+    public static final int SU_SAVE_INGREDIENT = 1;
+    public static final int SU_BONUS_GOLD = 2;
+    public static final int SU_BONUS_XP = 3;
+    public static final int SU_TRADER_STOCK = 4;
+    public static final int SU_WORKER_RESOURCES = 5;
+
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
     public static final int STATE_ENCHANTED_MIN = 3;
