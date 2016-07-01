@@ -3,12 +3,16 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Select;
 
@@ -79,13 +83,81 @@ public class UpgradeActivity extends Activity {
     }
 
     private void createSuperInterface() {
-        List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).orderBy("name ASC").list();
+        List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).orderBy("prestige_level ASC").list();
         TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
         upgradeTable.removeAllViews();
 
+        upgradeTable.addView(createCollectionText());
+        upgradeTable.addView(createPrestigeText());
+
         for (Super_Upgrade upgrade : upgrades) {
-            upgradeTable.addView(dh.createTextView(upgrade.getName(), 24));
+            TableRow row = createSuperUpgradeRow(upgrade.getSuperUpgradeId());
+            row.addView(createSuperUpgradeText(upgrade));
+            row.addView(createSuperUpgradeImage(upgrade.isEnabled()));
+            upgradeTable.addView(row);
         }
+    }
+
+    private TableRow createSuperUpgradeRow(int upgradeId) {
+        TableRow row = new TableRow(this);
+        row.setTag(upgradeId);
+        row.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                toggleSetting(v, (int) v.getTag());
+            }
+        });
+        return row;
+    }
+
+    private TextView createSuperUpgradeText(Super_Upgrade upgrade) {
+        TextView superUpgrade = dh.createTextView(upgrade.getName() + "\n", 24);
+        superUpgrade.setSingleLine(false);
+        if (!upgrade.havePrestigeLevel()) {
+            superUpgrade.setPaintFlags(superUpgrade.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+        return superUpgrade;
+    }
+
+    private ImageView createSuperUpgradeImage(boolean enabled) {
+        ImageView upgradeStatus = new ImageView(getApplicationContext());
+        Drawable statusDrawable = dh.createDrawable((enabled ? R.drawable.tick : R.drawable.cross), 35, 35);
+        upgradeStatus.setImageDrawable(statusDrawable);
+        return upgradeStatus;
+    }
+
+    private TextView createCollectionText() {
+        return dh.createTextView(String.format(getString(R.string.superUpgradeCollections),
+                Player_Info.getCollectionsCrafted(),
+                Constants.MAX_SUPGRADES_ENABLED
+        ), 20);
+    }
+
+    private TextView createPrestigeText() {
+        return dh.createTextView(String.format(getString(R.string.superUpgradePrestiges),
+                Player_Info.getPrestige(),
+                Super_Upgrade.totalUnlocked(),
+                Super_Upgrade.total()
+        ), 20);
+    }
+
+    private void toggleSetting(View view, int superUpgradeId) {
+        Super_Upgrade upgrade = Super_Upgrade.find(superUpgradeId);
+        if (!upgrade.havePrestigeLevel()) {
+            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradePrestigeLevel), upgrade.getPrestigeLevel()), false);
+            return;
+        } else if (!upgrade.isEnabled() && (Super_Upgrade.totalEnabled() >= Super_Upgrade.maxEnabled())) {
+            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_SUPER_UPGRADE), false);
+            return;
+        }
+
+        upgrade.setEnabled(!upgrade.isEnabled());
+        upgrade.save();
+        ToastHelper.showPositiveToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradeStatusChange),
+                upgrade.getName(),
+                getString(upgrade.isEnabled() ? R.string.superUpgradeEnabled : R.string.superUpgradeDisabled)
+        ), true);
+
+        createSuperInterface();
     }
 
     private void createUpgradeInterface() {

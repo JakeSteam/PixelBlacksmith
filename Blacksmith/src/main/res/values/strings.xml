@@ -159,6 +159,13 @@
     <string name="upgradeTabText">Upgrade</string>
     <string name="superTabText">Super</string>
 
+    <string name="superUpgradeStatusChange">Super upgrade %1$s %2$s! For a description, see the help page.</string>
+    <string name="superUpgradeCollections">You have completed %1$d collections, so can activate %1$d/%2$d super upgrades at a time.\n</string>
+    <string name="superUpgradePrestiges">You have a prestige level of %1$d, so have unlocked %2$d/%3$d super upgrades.\n</string>
+    <string name="superUpgradeEnabled">enabled</string>
+    <string name="superUpgradeDisabled">disabled</string>
+    <string name="superUpgradePrestigeLevel">You need a prestige level of %1$d to use this Super Upgrade.</string>
+
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
     <string name="slotSeconds">%ds</string>

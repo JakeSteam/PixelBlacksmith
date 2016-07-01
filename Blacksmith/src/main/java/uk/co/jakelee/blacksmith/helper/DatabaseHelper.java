@@ -637,11 +637,11 @@ public class DatabaseHelper {
 
     private static void createSuperUpgrade() {
         List<Super_Upgrade> upgrades = new ArrayList<>();
-            upgrades.add(new Super_Upgrade(Constants.SU_SAVE_INGREDIENT, "50% Chance Of Saving Ingredient", false));
-            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "60s of 10x all XP (5/day)", false));
-            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "60s of 10x all Coins (5/day)", false));
-            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "10x Trader Stocks", false));
-            upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", false));
+            upgrades.add(new Super_Upgrade(Constants.SU_SAVE_INGREDIENT, "50% Chance Of Saving Ingredient", 0, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "60s of 10x all XP (5/day)", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "60s of 10x all Coins (5/day)", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "10x Trader Stocks", 3, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 4, false));
         Super_Upgrade.saveInTx(upgrades);
     }
 
