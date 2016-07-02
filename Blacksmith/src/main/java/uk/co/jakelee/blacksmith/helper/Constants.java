@@ -35,6 +35,8 @@ public class Constants {
 
     public static final int MAX_SUPGRADES_ENABLED = 6;
 
+    public static final int CONTRIBUTE_GOLD = 2000;
+
     public static final double QUEST_PAGE_CHANCE_EASY = 0.25;
     public static final double QUEST_PAGE_CHANCE_MEDIUM = 0.50;
     public static final double QUEST_PAGE_CHANCE_HARD = 1.00;
@@ -59,7 +61,6 @@ public class Constants {
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
     public static final int HERO_COST_MULTIPLIER = 2000;
-    public static final int HERO_MINUTES_TAKEN = 1;
     public static final int POWDERS_PER_GEM = 10;
 
     public static final long BONUS_TIME_PREMIUM = DateHelper.hoursToMilliseconds(2);
@@ -160,11 +161,19 @@ public class Constants {
     public static final Long SETTING_LONG_TOAST = 18L;
     public static final Long SETTING_HANDLE_MAX = 19L;
 
-    public static final int SU_SAVE_INGREDIENT = 1;
+    public static final int SU_DOUBLE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;
     public static final int SU_BONUS_XP = 3;
     public static final int SU_TRADER_STOCK = 4;
     public static final int SU_WORKER_RESOURCES = 5;
+    public static final int SU_SINGLE_DEMAND = 6;
+    public static final int SU_MARKET_RESTOCK = 7;
+    public static final int SU_HALF_WORKER_TIME = 8;
+    public static final int SU_DOUBLE_TRADE_PRICE = 9;
+    public static final int SU_HALF_MARKET_COST = 10;
+    public static final int SU_HALF_BONUS_CHEST = 11;
+    public static final int SU_CONTRIBUTIONS = 12;
+    public static final int SU_PAGE_CHANCE = 13;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

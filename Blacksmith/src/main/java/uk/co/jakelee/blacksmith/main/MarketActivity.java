@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -141,9 +142,12 @@ public class MarketActivity extends Activity {
     }
 
     public void clickRestockAll(View view) {
-        int restockCost = Trader.getRestockAllCost();
-
-        AlertDialogHelper.confirmTraderRestockAll(getApplicationContext(), this, restockCost);
+        if (Super_Upgrade.isEnabled(Constants.SU_MARKET_RESTOCK)) {
+            callbackRestock();
+        } else {
+            int restockCost = Trader.getRestockAllCost();
+            AlertDialogHelper.confirmTraderRestockAll(getApplicationContext(), this, restockCost);
+        }
     }
 
     public void openHelp(View view) {

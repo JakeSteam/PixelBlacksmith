@@ -30,6 +30,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -522,7 +523,7 @@ public class AlertDialogHelper {
 
     public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock) {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
-        final int itemValue = item.getValue();
+        final int itemValue = item.getValue() / (item.getValue() > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
         final String itemName = item.getFullName(Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
 
@@ -532,7 +533,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(context.getString(R.string.itemBuy1Confirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                int quantity = 1;
+                int quantity = Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1;
 
                 int buyResponse = Inventory.buyItem(itemStock);
                 if (buyResponse == Constants.SUCCESS) {
@@ -558,8 +559,10 @@ public class AlertDialogHelper {
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                 Item item = Item.findById(Item.class, itemStock.getItemID());
                 int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+
                 if (totalCost <= coinStock.getQuantity()) {
-                    int itemsToBuy = itemStock.getStock();
+                    int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
                     itemsBought += itemsToBuy;
                     itemStock.setStock(0);
                     itemStock.save();
@@ -618,6 +621,7 @@ public class AlertDialogHelper {
             totalValue += (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
             itemCount += itemStock.getStock();
         }
+        totalValue = (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1) * totalValue;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
@@ -634,8 +638,10 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     Item item = Item.findById(Item.class, itemStock.getItemID());
                     int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                    totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+
                     if (totalCost <= coinStock.getQuantity() && successful) {
-                        int itemsToBuy = itemStock.getStock();
+                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
                         itemsBought += itemsToBuy;
                         itemStock.setStock(0);
                         itemStock.save();

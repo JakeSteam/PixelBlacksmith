@@ -346,7 +346,9 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Once premium, you'll also be able to prestige, essentially starting a new game with +50% coin earnings and -25% XP gain.\n", 22));
         layout.addView(dh.createTextView("There's also extremely valuable legendary items, a reduced cooldown on the bonus chest, and many more features!\n", 22));
         layout.addView(dh.createTextView("Among the benefits is a tax paid by all out of stock traders when an automatic restock happens. Think of it as a reward for being a loyal customer!\n", 22));
-        layout.addView(dh.createTextView("Note that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.", 22));
+        layout.addView(dh.createTextView("Note that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.\n", 22));
+        layout.addView(dh.createTextView("Contributions\n", 26));
+        layout.addView(dh.createTextView("Contributing is a way to continue helping the games's development. Soon, contributing repeatedly will provide extra benefits such as suggesting new items and visitors!\n", 22));
     }
 
     private void displayHelpMessages(LinearLayout layout) {

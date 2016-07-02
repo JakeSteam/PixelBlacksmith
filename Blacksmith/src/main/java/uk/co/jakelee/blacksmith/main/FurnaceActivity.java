@@ -36,6 +36,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 
 public class FurnaceActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -228,8 +229,13 @@ public class FurnaceActivity extends Activity {
         if (MainActivity.vh.furnaceBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
-            quantitySmelted = quantity;
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
+
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                quantity = quantity * 2;
+            }
+
+            quantitySmelted = quantity;
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }

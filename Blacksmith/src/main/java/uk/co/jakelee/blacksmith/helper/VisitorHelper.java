@@ -18,6 +18,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Type;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -94,7 +95,7 @@ public class VisitorHelper {
             visitor.save();
 
             // Work out how many demands need to be generated
-            int numDemands = getRandomNumber(Constants.MINIMUM_DEMANDS, Constants.MAXIMUM_DEMANDS);
+            int numDemands = Super_Upgrade.isEnabled(Constants.SU_SINGLE_DEMAND) ? 1 : getRandomNumber(Constants.MINIMUM_DEMANDS, Constants.MAXIMUM_DEMANDS);
 
             // Generate the demands
             for (int i = 1; i <= numDemands; i++) {
@@ -124,7 +125,7 @@ public class VisitorHelper {
 
         int maxQuantity = (criteria.getName().equals("State") ? Constants.MAXIMUM_QUANTITY_STATE : Constants.MAXIMUM_QUANTITY);
         int quantity = getRandomNumber(Constants.MINIMUM_QUANTITY, maxQuantity);
-        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE)); // 70% chance of demands optional
+        boolean required = (i == 1 || getRandomBoolean(Constants.DEMAND_REQUIRED_PERCENTAGE)); // 70% chance of demand being optional
 
         // Check if the current criteria already exists. If it does, try again.
         Pair<Long, Long> currentCriteria = new Pair<>(criteriaType, criteriaValue);

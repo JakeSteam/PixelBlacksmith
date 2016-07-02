@@ -11,6 +11,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 
 public class QuestHelper {
     public static String getQuestReward(Context context, String difficulty) {
@@ -77,11 +78,14 @@ public class QuestHelper {
     }
 
     private static int getPagesRewarded(double pageChance) {
+        int pages;
         if ((int) pageChance >= 1) {
-            return (int) pageChance;
+            pages = (int) pageChance;
         } else {
             int percentPageChance = (int) (pageChance * 100);
-            return VisitorHelper.getRandomBoolean(100 - percentPageChance) ? 1 : 0;
+            pages = VisitorHelper.getRandomBoolean(100 - percentPageChance) ? 1 : 0;
         }
+
+        return (Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) && pages < 1) ? 1 : pages;
     }
 }

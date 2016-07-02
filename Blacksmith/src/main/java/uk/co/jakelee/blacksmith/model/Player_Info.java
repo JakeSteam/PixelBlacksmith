@@ -114,6 +114,7 @@ public class Player_Info extends SugarRecord {
         }
 
         long bonusRechargeTime = Player_Info.isPremium() ? Constants.BONUS_TIME_PREMIUM : Constants.BONUS_TIME_NON_PREMIUM;
+        bonusRechargeTime = bonusRechargeTime / (Super_Upgrade.isEnabled(Constants.SU_HALF_BONUS_CHEST) ? 2 : 1);
         long timeBonusReady = lastClaimedTime + bonusRechargeTime;
 
         return timeBonusReady - System.currentTimeMillis();
@@ -211,6 +212,10 @@ public class Player_Info extends SugarRecord {
         double xpMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus"));
         double xpMultiplierPrestige = xpMultiplier * Math.pow(0.75, Player_Info.getPrestige());
         int modifiedXp = (int) Math.ceil(xpMultiplierPrestige * xp);
+
+        if (Super_Upgrade.isEnabled(Constants.SU_BONUS_XP)) {
+            modifiedXp = modifiedXp * 2;
+        }
 
         xpInfo.setIntValue(xpInfo.getIntValue() + modifiedXp);
         xpInfo.save();

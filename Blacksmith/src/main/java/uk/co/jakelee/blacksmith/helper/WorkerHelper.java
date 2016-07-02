@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Message;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
@@ -71,24 +72,18 @@ public class WorkerHelper {
         return hero.getTimeStarted() == 0 && hero.getCurrentAdventure() > 0;
     }
 
-    public static String getTimeRemainingString(Worker worker) {
-        return DateHelper.getHoursMinsRemaining(getTimeRemaining(worker) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
+    public static String getTimeRemainingString(long timeStarted) {
+        return DateHelper.getHoursMinsRemaining(getTimeRemaining(timeStarted) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
     }
 
-    public static String getTimeRemainingString(Hero hero) {
-        return DateHelper.getHoursMinsRemaining(getTimeRemaining(hero) + (DateHelper.MILLISECONDS_IN_SECOND * 60)); // Rounded up.
-    }
-
-    public static long getTimeRemaining(Worker worker) {
-        long timeStarted = worker.getTimeStarted();
+    public static long getTimeRemaining(long timeStarted) {
         int minutesForCompletion = Upgrade.getValue("Worker Time");
-        long timeForCompletion = DateHelper.minutesToMilliseconds(minutesForCompletion);
-        return (timeStarted + timeForCompletion) - System.currentTimeMillis();
-    }
 
-    public static long getTimeRemaining(Hero hero) {
-        long timeStarted = hero.getTimeStarted();
-        long timeForCompletion = DateHelper.minutesToMilliseconds(Constants.HERO_MINUTES_TAKEN);
+        if (Super_Upgrade.isEnabled(Constants.SU_HALF_WORKER_TIME)) {
+            minutesForCompletion = minutesForCompletion / 2;
+        }
+
+        long timeForCompletion = DateHelper.minutesToMilliseconds(minutesForCompletion);
         return (timeStarted + timeForCompletion) - System.currentTimeMillis();
     }
 
@@ -104,7 +99,7 @@ public class WorkerHelper {
         if (isReady(worker)) {
             return "Start Gathering";
         } else {
-            return "Returns in " + WorkerHelper.getTimeRemainingString(worker);
+            return "Returns in " + WorkerHelper.getTimeRemainingString(worker.getTimeStarted());
         }
     }
 
@@ -116,7 +111,7 @@ public class WorkerHelper {
         } else if (hero.getCurrentAdventure() == 0) {
             return "Select Adventure";
         } else {
-            return "Returns in " + WorkerHelper.getTimeRemainingString(hero);
+            return "Returns in " + WorkerHelper.getTimeRemainingString(hero.getTimeStarted());
         }
     }
 
@@ -152,7 +147,7 @@ public class WorkerHelper {
         boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
 
         for (Hero hero : heroes) {
-            if (getTimeRemaining(hero) <= 0) {
+            if (getTimeRemaining(hero.getTimeStarted()) <= 0) {
                 Visitor_Type heroVisitor = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
                 int adventureResult = getAdventureResult(hero);
                 Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
@@ -342,7 +337,7 @@ public class WorkerHelper {
         boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
 
         for (Worker worker : workers) {
-            if (getTimeRemaining(worker) <= 0) {
+            if (getTimeRemaining(worker.getTimeStarted()) <= 0) {
                 rewardText = rewardResources(context, worker);
                 workerNames.add(Character.findById(Character.class, worker.getCharacterID()).getName());
                 workersFinished++;
@@ -405,24 +400,27 @@ public class WorkerHelper {
         Item foodItem = Item.findById(Item.class, hero.getFoodItem());
 
         for (Hero_Resource resource : resources) {
+            int numberResources = (Super_Upgrade.isEnabled(Constants.SU_WORKER_RESOURCES) ? 2 : 1) * resource.getResourceQuantity();
             if (addItems) {
                 Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
-                resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
+                resourceInventory.setQuantity(resourceInventory.getQuantity() + numberResources);
                 resourceInventory.save();
             }
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
             if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName()) + resource.getResourceQuantity();
+                temp = data.get(item.getName()) + numberResources;
                 data.put(item.getName(), temp);
             } else {
-                data.put(item.getName(), resource.getResourceQuantity());
+                data.put(item.getName(), numberResources);
             }
         }
 
         String bonusText = "";
-        if (addItems && foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+        if (addItems &&
+                (Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) ||
+                        (foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())))) {
             // If rewarding resources, and have luckily got a page
             List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
@@ -456,28 +454,31 @@ public class WorkerHelper {
         }
 
         for (Worker_Resource resource : resources) {
+            int numberResources = (Super_Upgrade.isEnabled(Constants.SU_WORKER_RESOURCES) ? 2 : 1) * resource.getResourceQuantity();
             if (applyFoodBonus) {
                 resource.applyFoodBonus(foodItem, favouriteFoodUsed);
             }
 
             if (addItems) {
                 Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
-                resourceInventory.setQuantity(resourceInventory.getQuantity() + resource.getResourceQuantity());
+                resourceInventory.setQuantity(resourceInventory.getQuantity() + numberResources);
                 resourceInventory.save();
             }
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
             if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName()) + resource.getResourceQuantity();
+                temp = data.get(item.getName()) + numberResources;
                 data.put(item.getName(), temp);
             } else {
-                data.put(item.getName(), resource.getResourceQuantity());
+                data.put(item.getName(), numberResources);
             }
         }
 
         String bonusText = "";
-        if (addItems && foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())) {
+        if (addItems &&
+                (Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) ||
+                        (foodItem != null && VisitorHelper.getRandomBoolean(100 - foodItem.getValue())))) {
             // If rewarding resources, and have luckily got a page
             List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
@@ -524,7 +525,7 @@ public class WorkerHelper {
 
     public static String getTimeLeftString(Context context, Worker worker) {
         Character character = Character.findById(Character.class, worker.getCharacterID());
-        String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(worker));
+        String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(worker.getTimeStarted()));
         return String.format(context.getString(R.string.workerReturnTime),
                 character.getName(),
                 timeRemaining);
@@ -532,7 +533,7 @@ public class WorkerHelper {
 
     public static String getTimeLeftString(Context context, Hero hero) {
         Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
-        String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(hero));
+        String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(hero.getTimeStarted()));
         return String.format(context.getString(R.string.workerReturnTime),
                 vType.getName(),
                 timeRemaining);

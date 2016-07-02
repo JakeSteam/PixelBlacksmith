@@ -17,8 +17,10 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
@@ -206,6 +208,9 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             lastDonated.setTextValue(DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date));
             lastDonated.save();
         }
+
+        int contributeCoins = (Super_Upgrade.isEnabled(Constants.SU_CONTRIBUTIONS) ? 2 : 1) * Constants.CONTRIBUTE_GOLD;
+        Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, contributeCoins);
 
         GooglePlayHelper.UpdateEvent(Constants.EVENT_CONTRIBUTE, 1);
     }

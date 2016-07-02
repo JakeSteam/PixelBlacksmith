@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
@@ -174,7 +175,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         int minimumRewards = Constants.MINIMUM_REWARDS;
         int maximumRewards = Constants.MAXIMUM_REWARDS;
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
-        boolean rewardPage = VisitorHelper.getRandomBoolean(65); // 35% chance to get page
+        boolean rewardPage = VisitorHelper.getRandomBoolean(Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) ? 0 : 65); // 35% chance to get page
 
         // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
         Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);

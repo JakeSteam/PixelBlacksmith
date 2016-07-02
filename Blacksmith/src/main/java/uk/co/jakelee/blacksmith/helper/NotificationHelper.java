@@ -48,7 +48,7 @@ public class NotificationHelper extends BroadcastReceiver {
         List<Worker> workers = Worker.listAll(Worker.class);
         for (Worker worker : workers) {
             if (worker.isPurchased() && !WorkerHelper.isReady(worker)) {
-                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(worker);
+                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(worker.getTimeStarted());
                 NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
             }
         }
@@ -60,7 +60,7 @@ public class NotificationHelper extends BroadcastReceiver {
         List<Hero> heroes = Hero.listAll(Hero.class);
         for (Hero hero : heroes) {
             if (hero.isPurchased() && !WorkerHelper.isReady(hero)) {
-                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(hero);
+                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(hero.getTimeStarted());
                 NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
             }
         }

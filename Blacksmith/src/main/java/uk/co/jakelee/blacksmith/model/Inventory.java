@@ -71,7 +71,7 @@ public class Inventory extends SugarRecord implements Serializable {
             }
         }
 
-        return Collections.min(quantities);
+        return (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS) ? 2 : 1) * Collections.min(quantities);
     }
 
     public static int canCreateBulkItem(Long itemID, long state, int quantity) {
@@ -139,6 +139,7 @@ public class Inventory extends SugarRecord implements Serializable {
     }
 
     public static int tryPowderGem(Long itemId, long state, Long locationID) {
+        int quantity = Constants.POWDERS_PER_GEM;
         int canCreate = canCreateItem(itemId, state);
         if (canCreate != Constants.SUCCESS) {
             return canCreate;
@@ -146,10 +147,14 @@ public class Inventory extends SugarRecord implements Serializable {
 
         removeItemIngredients(itemId, state);
 
+        if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+            quantity = quantity * 2;
+        }
+
         if (Slot.hasAvailableSlot(locationID)) {
-            Pending_Inventory.addItem(itemId, state, Constants.POWDERS_PER_GEM, locationID);
+            Pending_Inventory.addItem(itemId, state, quantity, locationID);
         } else {
-            Pending_Inventory.addScheduledItem(itemId, state, Constants.POWDERS_PER_GEM, locationID);
+            Pending_Inventory.addScheduledItem(itemId, state, quantity, locationID);
         }
 
         return Constants.SUCCESS;
@@ -158,6 +163,7 @@ public class Inventory extends SugarRecord implements Serializable {
     public static int enchantItem(Long itemId, Long gemId, Long locationID) {
         Inventory itemInventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         Inventory gemInventory = Inventory.getInventory(gemId, Constants.STATE_NORMAL);
+        int quantity = 1;
 
         if (itemInventory.getQuantity() <= 0) {
             return Constants.ERROR_NO_ITEMS;
@@ -175,10 +181,14 @@ public class Inventory extends SugarRecord implements Serializable {
             State enchantedItemState = Select.from(State.class).where(
                     Condition.prop("initiating_item").eq(gemId)).first();
 
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                quantity = quantity * 2;
+            }
+
             if (Slot.hasAvailableSlot(locationID)) {
-                Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
+                Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), quantity, locationID);
             } else {
-                Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
+                Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), quantity, locationID);
             }
             return Constants.SUCCESS;
         }
@@ -205,14 +215,12 @@ public class Inventory extends SugarRecord implements Serializable {
         return itemFound > 0L;
     }
 
-    private static boolean canSellItem(Long itemId, long state, int quantity) {
-        Inventory foundInventory = getInventory(itemId, state);
-
-        return (foundInventory.getQuantity() - quantity) >= 0;
-    }
-
     public static int tradeItem(Long itemId, long state, int price) {
         Inventory itemStock = Inventory.getInventory(itemId, state);
+
+        if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD) || Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TRADE_PRICE)) {
+            price = price * 2;
+        }
 
         if (itemStock.getQuantity() > 0) {
             itemStock.setQuantity(itemStock.getQuantity() - 1);

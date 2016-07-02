@@ -39,6 +39,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Type;
 
 public class InventoryActivity extends Activity implements AdapterView.OnItemSelectedListener{
@@ -220,6 +221,11 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
             if (inventory.getQuantity() < quantity || (quantity == 100 && Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX))) {
                 quantity = inventory.getQuantity();
             }
+
+            if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD)) {
+                itemValue = itemValue * 2;
+            }
+
             quantityToSell = quantity;
             inventory.setQuantity(inventory.getQuantity() - quantity);
             inventory.save();

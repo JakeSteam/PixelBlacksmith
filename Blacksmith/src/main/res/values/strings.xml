@@ -161,7 +161,7 @@
 
     <string name="superUpgradeStatusChange">Super upgrade %1$s %2$s! For a description, see the help page.</string>
     <string name="superUpgradeCollections">You have completed %1$d collections, so can activate %1$d/%2$d super upgrades at a time.\n</string>
-    <string name="superUpgradePrestiges">You have a prestige level of %1$d, so have unlocked %2$d/%3$d super upgrades.\n</string>
+    <string name="superUpgradePrestiges">You have prestiged %1$d times, so have unlocked %2$d/%3$d super upgrades.\n</string>
     <string name="superUpgradeEnabled">enabled</string>
     <string name="superUpgradeDisabled">disabled</string>
     <string name="superUpgradePrestigeLevel">You need a prestige level of %1$d to use this Super Upgrade.</string>
@@ -187,8 +187,8 @@
     <string name="buyingIAPError">An error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
 
     <string name="buyContribute">Contribute</string>
-    <string name="boughtContribute">Thank you for contributing! You\'re the best! Message me at /u/JakeSteam for a personalised thank you.</string>
-    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 100 coin reward for contributing, but that\'s mostly so it doesn\'t classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
+    <string name="boughtContribute">Thank you for contributing! You\'re the best! Soon, contributing will unlock reward tiers providing beta access, the ability to suggest items, etc.</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 2000 coin reward for contributing, but that\'s mostly so it doesn\'t classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
     <string name="contributeStatus">You\'ve contributed %1$d time(s), the last time was on %2$s.</string>
 
     <string name="buyPremium">Go Premium!</string>
@@ -643,7 +643,7 @@
         <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
         <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
         <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
-        <item>Pages can be found by completing visitors, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
+        <item>Pages can be found by completing quests, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
         <item>Premium players can disable all adverts from the settings menu.</item>
         <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
         <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>

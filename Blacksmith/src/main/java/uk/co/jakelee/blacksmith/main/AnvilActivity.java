@@ -36,6 +36,7 @@ import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 
 public class AnvilActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -256,8 +257,13 @@ public class AnvilActivity extends Activity {
         if (MainActivity.vh.anvilBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
-            quantityCrafted = quantity;
             Inventory.removeItemIngredients(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED, quantity);
+
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                quantity = quantity * 2;
+            }
+
+            quantityCrafted = quantity;
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED));
             }
