@@ -637,19 +637,19 @@ public class DatabaseHelper {
 
     private static void createSuperUpgrade() {
         List<Super_Upgrade> upgrades = new ArrayList<>();
-            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "2x All XP", 6, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "2x Coin Earnings", 6, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 3, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 4, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 2, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_WORKER_TIME, "-50% Worker Time", 5, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TRADE_PRICE, "2x Trade Price", 5, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_MARKET_COST, "-50% Market Buy Cost", 4, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 3, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 1, false)); // Implemented, not tested
             upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false)); // Implemented, not tested (chest / worker / quest)
+            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 2, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 3, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 3, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 4, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_MARKET_COST, "-50% Market Buy Cost", 4, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_WORKER_TIME, "-50% Worker Time", 5, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TRADE_PRICE, "2x Trade Price", 5, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "2x All XP", 6, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "2x Coin Earnings", 6, false)); // Implemented, not tested
         Super_Upgrade.saveInTx(upgrades);
     }
 
@@ -1232,6 +1232,10 @@ public class DatabaseHelper {
                 heroAdventures.add(new Hero_Adventure(726, 72, "Escort Spring Visitor", 600));
                     heroResources.add(new Hero_Resource(726, 180, Constants.STATE_NORMAL, 1));
                     heroResources.add(new Hero_Resource(726, 160, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(727, 72, "Escort Lost Courier", 620));
+                    heroResources.add(new Hero_Resource(727, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(727, 216, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(727, 217, Constants.STATE_NORMAL, 2));
 
             heroCategories.add(new Hero_Category(73, "Escort Soldiers", 7));
                 heroAdventures.add(new Hero_Adventure(731, 73, "Escort Underground Soldier", 630));

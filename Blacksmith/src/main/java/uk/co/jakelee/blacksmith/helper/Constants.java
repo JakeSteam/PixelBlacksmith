@@ -35,7 +35,7 @@ public class Constants {
 
     public static final int MAX_SUPGRADES_ENABLED = 6;
 
-    public static final int CONTRIBUTE_GOLD = 2000;
+    public static final int CONTRIBUTE_GOLD = 1337;
 
     public static final double QUEST_PAGE_CHANCE_EASY = 0.25;
     public static final double QUEST_PAGE_CHANCE_MEDIUM = 0.50;

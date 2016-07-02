@@ -36,8 +36,10 @@ public class PrestigeHelper {
 
     private static void increasePrestige() {
         Player_Info.increaseByOne(Player_Info.Statistic.Prestige);
-        Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Fun Never Stops")).first();
-        Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+        if (GooglePlayHelper.IsConnected()) {
+            Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Fun Never Stops")).first();
+            Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+        }
 
         Player_Info prestigeDate = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateLastPrestiged")).first();
