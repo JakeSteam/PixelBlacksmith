@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 
@@ -19,6 +20,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.InventoryActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
@@ -430,6 +432,53 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
+    public static void confirmPageExchange(final Context context, final InventoryActivity activity, final View view,  final Inventory inventory, final Item item) {
+        final int maxNewPages = inventory.getQuantity() / Constants.PAGE_EXCHANGE_QTY;
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(activity.getString(R.string.exchangePagesQuestion),
+                Constants.PAGE_EXCHANGE_QTY,
+                item.getName(),
+                maxNewPages * Constants.PAGE_EXCHANGE_QTY,
+                maxNewPages));
+
+        alertDialog.setPositiveButton(context.getString(R.string.exchangePagesOne), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String name = Inventory.exchangePages(inventory, 1);
+                ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(context.getString(R.string.exchangePagesSuccess),
+                        Constants.PAGE_EXCHANGE_QTY,
+                        item.getName(),
+                        1,
+                        name), true);
+                activity.callback();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.exchangePagesAll), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String name = Inventory.exchangePages(inventory, maxNewPages);
+                ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(context.getString(R.string.exchangePagesSuccess),
+                        maxNewPages * Constants.PAGE_EXCHANGE_QTY,
+                        item.getName(),
+                        maxNewPages,
+                        name), true);
+                activity.callback();
+            }
+        });
+
+        alertDialog.setNeutralButton(context.getString(R.string.exchangePagesCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
     public static void confirmWorseCloudLoad(final Context context, final Activity activity, int localPrestige, int localXP, int cloudPrestige, int cloudXP) {
         int localLevel = Player_Info.convertXpToLevel(localXP);
         int cloudLevel = Player_Info.convertXpToLevel(cloudXP);
@@ -557,7 +606,6 @@ public class AlertDialogHelper {
                 List<Pair<Long, Integer>> items = new ArrayList<>();
 
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-                Item item = Item.findById(Item.class, itemStock.getItemID());
                 int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
                 totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
 
@@ -576,7 +624,7 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought), false);
+                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, totalCost), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);

@@ -284,6 +284,13 @@
     <string name="bonusWatch">Watch Ad</string>
     <string name="bonusCancel">Cancel</string>
 
+    <string name="exchangePagesText">Exc</string>
+    <string name="exchangePagesQuestion">Would you like to exchange %1$dx %2$s for 1 random page, or exchange %3$dx for %4$d random pages?</string>
+    <string name="exchangePagesOne">One</string>
+    <string name="exchangePagesAll">All</string>
+    <string name="exchangePagesCancel">Cancel</string>
+    <string name="exchangePagesSuccess">Successfully exchanged %1$dx %2$s for %3$dx %4$s.</string>
+
     <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
     <string name="upgradeCancel">Cancel</string>

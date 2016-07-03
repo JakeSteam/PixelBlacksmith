@@ -27,6 +27,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -64,7 +65,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        updateInventoryTable(activity);
+                        updateInventoryTable();
                     }
                 }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
@@ -102,11 +103,11 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         selectedType = Select.from(Type.class).where(
                 Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
         dh.updateFullscreen(this);
-        updateInventoryTable(this);
+        updateInventoryTable();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        updateInventoryTable(this);
+        updateInventoryTable();
     }
 
     private void createDropdown() {
@@ -126,7 +127,8 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void updateInventoryTable(final Activity activity) {
+    private void updateInventoryTable() {
+        final Activity activity = this;
         List<Inventory> allInventoryItems;
         if (selectedType != null) {
             allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 AND item.type = " + selectedType.getId() + " ORDER BY inventory.state, item.name ASC");
@@ -169,23 +171,32 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
             itemRow.addView(image);
             itemRow.addView(name);
 
-            if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
-                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
-                sell.setClickable(true);
-                sell.setTextColor(getResources().getColorStateList(R.color.text_color));
-                sell.setGravity(Gravity.CENTER);
-                sell.setWidth(dh.convertDpToPixel(40));
-                sell.setBackgroundResource(R.drawable.sell_small);
+            TextViewPixel tradeBtn = dh.createTextView("", 20);
+            tradeBtn.setClickable(true);
+            tradeBtn.setTextColor(getResources().getColorStateList(R.color.text_color));
+            tradeBtn.setGravity(Gravity.CENTER);
+            tradeBtn.setWidth(dh.convertDpToPixel(40));
+            tradeBtn.setBackgroundResource(R.drawable.sell_small);
 
-                sell.setTag(R.id.itemID, item.getId());
-                sell.setTag(R.id.itemState, inventoryItem.getState());
-                sell.setOnClickListener(new Button.OnClickListener() {
+            if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
+                tradeBtn.setText(Integer.toString(item.getModifiedValue(inventoryItem.getState())));
+                tradeBtn.setTag(R.id.itemID, item.getId());
+                tradeBtn.setTag(R.id.itemState, inventoryItem.getState());
+                tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         clickSellButton(v);
                     }
                 });
-                itemRow.addView(sell);
+            } else if (inventoryItem.getQuantity() >= Constants.PAGE_EXCHANGE_QTY) {
+                tradeBtn.setText(R.string.exchangePagesText);
+                tradeBtn.setTag((int) (long) item.getId());
+                tradeBtn.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                    clickExchangeButton(v);
+                    }
+                });
             }
+            itemRow.addView(tradeBtn);
 
             tableRows.add(itemRow);
         }
@@ -201,6 +212,13 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
                 }
             }
         });
+    }
+
+    private void clickExchangeButton(View v) {
+        int itemId = (int) v.getTag();
+        Item item = Item.findById(Item.class, itemId);
+        Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
+        AlertDialogHelper.confirmPageExchange(this, this, v, inventory, item);
     }
 
     private void clickSellButton(View view) {
@@ -248,7 +266,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         } else {
             ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(canSell), false);
         }
-        updateInventoryTable(this);
+        updateInventoryTable();
         dh.updateCoins(Inventory.getCoins());
     }
 
@@ -280,6 +298,10 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         ((ImageView) findViewById(R.id.sell1indicator)).setImageDrawable(quantity == 1 ? tick : cross);
         ((ImageView) findViewById(R.id.sell10indicator)).setImageDrawable(quantity == 10 ? tick : cross);
         ((ImageView) findViewById(R.id.sell100indicator)).setImageDrawable(quantity == 100 ? tick : cross);
+    }
+
+    public void callback() {
+        updateInventoryTable();
     }
 
     public void brightenButtons() {

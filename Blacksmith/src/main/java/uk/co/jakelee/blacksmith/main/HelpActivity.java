@@ -188,6 +188,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("All of your current stock can be viewed here.\n", 22));
         layout.addView(dh.createTextView("Most items can be sold for their basic value here, although this is not recommended. Note that any prestige / coins bonus will not apply here.\n", 22));
         layout.addView(dh.createTextView("Instead, try and create items that will sell for a large bonus with visitors.\n", 22));
+        layout.addView(dh.createTextView("If a page has \"Exc\" next to it, it can be exchanged for a random page. This can be useful when trying to get the last few pages for a book.\n", 22));
         layout.addView(dh.createTextView("Scroll up and down to view all items.", 22));
     }
 

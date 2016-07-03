@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
 public class Inventory extends SugarRecord implements Serializable {
     private Long item;
@@ -194,6 +195,10 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
+    public static Inventory getInventory(int id, long state) {
+        return getInventory((long) id, state);
+    }
+
     public static Inventory getInventory(Long id, long state) {
         List<Inventory> inventories = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(state),
@@ -207,6 +212,17 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
+    public static String exchangePages(Inventory pageInventory, int quantity) {
+        pageInventory.setQuantity(pageInventory.getQuantity() - (quantity * Constants.PAGE_EXCHANGE_QTY));
+        pageInventory.save();
+
+        List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+        Item rewardPage = VisitorHelper.pickRandomItemFromList(pages);
+        Inventory.addItem(rewardPage.getId(), Constants.STATE_NORMAL, quantity);
+
+        return rewardPage.getName();
+    }
+
     public static boolean haveSeen(long item, long state) {
         long itemFound = Select.from(Inventory.class).where(
                 Condition.prop("state").eq(state),
@@ -218,7 +234,9 @@ public class Inventory extends SugarRecord implements Serializable {
     public static int tradeItem(Long itemId, long state, int price) {
         Inventory itemStock = Inventory.getInventory(itemId, state);
 
-        if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD) || Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TRADE_PRICE)) {
+        if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD) && Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TRADE_PRICE)) {
+            price = price * 4;
+        } else if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD) || Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TRADE_PRICE)) {
             price = price * 2;
         }
 

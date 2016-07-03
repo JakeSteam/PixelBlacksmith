@@ -87,6 +87,8 @@ public class Constants {
     public static final int STARTING_XP = 100;
     public static final int MESSAGE_LOG_LIMIT = 100;
 
+    public static final int PAGE_EXCHANGE_QTY = 3;
+
     public static final int TRADER_OUT_OF_STOCK = -1;
     public static final int TRADER_NOT_PRESENT = 0;
     public static final int TRADER_PRESENT = 1;

@@ -639,17 +639,17 @@ public class DatabaseHelper {
         List<Super_Upgrade> upgrades = new ArrayList<>();
             upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 1, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false)); // Implemented, not tested (chest / worker / quest)
-            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 2, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 3, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 3, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 4, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_MARKET_COST, "-50% Market Buy Cost", 4, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_WORKER_TIME, "-50% Worker Time", 5, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TRADE_PRICE, "2x Trade Price", 5, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "2x All XP", 6, false)); // Implemented, not tested
-            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "2x Coin Earnings", 6, false)); // Implemented, not tested
+            upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 3, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 3, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 4, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_MARKET_COST, "-50% Market Buy Cost", 4, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_WORKER_TIME, "-50% Worker Time", 5, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TRADE_PRICE, "2x Trade Price", 5, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "2x All XP", 6, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "2x Coin Earnings", 6, false));
         Super_Upgrade.saveInTx(upgrades);
     }
 
