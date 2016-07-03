@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Hero_Category;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class AdventureActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static DisplayHelper dh;
@@ -45,6 +46,10 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         createCategoryDropdown(false);
         createCategoryDropdown(true);
         populateAdventures("Please select");
+
+        TextView totalStrength = (TextView) findViewById(R.id.totalStrengthMessage);
+        int heroStrength = WorkerHelper.getTotalStrength(hero, Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId()));
+        totalStrength.setText(String.format(getString(R.string.heroTotalStrength), heroStrength));
     }
 
     @Override

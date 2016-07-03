@@ -414,14 +414,21 @@ public class HelpActivity extends Activity {
 
     private void displayHelpHeroAdventures(LinearLayout layout) {
         layout.addView(dh.createTextView("Adventures\n", 26));
+        layout.addView(dh.createTextView("Select categories, subcategories, and finally adventures here.\n", 22));
+        layout.addView(dh.createTextView("Select categories, subcategories, and finally adventures here.\n", 22));
     }
 
     private void displayHelpHeroEquipment(LinearLayout layout) {
         layout.addView(dh.createTextView("Equipment\n", 26));
+        layout.addView(dh.createTextView("Any item of the correct time can be given to a worker.\n", 22));
+        layout.addView(dh.createTextView("However, taking notice of their preferences will ensure the most efficient tools are selected..\n", 22));
     }
 
     private void displayHelpHeroVisitors(LinearLayout layout) {
         layout.addView(dh.createTextView("Visitors\n", 26));
+        layout.addView(dh.createTextView("A list of all visitors is here, along with progress towards unlocking them.\n", 22));
+        layout.addView(dh.createTextView("Once the requirements have been met, they can be selected as a hero.\n", 22));
+        layout.addView(dh.createTextView("Selecting heroes with high preference bonuses is a good way to increase total strength.\n", 22));
     }
 
     private void displayHelpSuperUpgrade(LinearLayout layout) {

@@ -603,7 +603,7 @@ public class WorkerHelper {
     }
 
     public static int getAdjustedStrength(Visitor_Type vType, int item, int state) {
-        if (item == 0 || state == 0) {
+        if (item == 0 || state == 0 || vType == null) {
             return 0;
         }
 

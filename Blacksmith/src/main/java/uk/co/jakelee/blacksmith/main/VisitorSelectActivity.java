@@ -12,12 +12,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
@@ -98,10 +103,19 @@ public class VisitorSelectActivity extends Activity {
 
     public void visitorClick(View view) {
         int visitorId = (int) (long) view.getTag(R.id.visitor);
-        hero.setVisitorId(visitorId);
-        hero.save();
+        Hero conflictingHero = Select.from(Hero.class).where(
+                Condition.prop("visitor_id").eq(visitorId)).first();
+        boolean alreadyInUse = conflictingHero != null && conflictingHero.getHeroId() != hero.getHeroId();
 
-        finish();
+
+        if (alreadyInUse) {
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_VISITOR_IN_USE), false);
+        } else {
+            hero.setVisitorId(visitorId);
+            hero.save();
+
+            finish();
+        }
     }
 
 

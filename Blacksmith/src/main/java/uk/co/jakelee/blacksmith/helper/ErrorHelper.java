@@ -20,6 +20,7 @@ public class ErrorHelper {
         errors.put(Constants.ERROR_NO_SLOTS_ENCHANTING, "There's no gem table slots unlocked! The first one unlocks at level 10.");
         errors.put(Constants.ERROR_BUSY, "Currently calculating... please try again!");
         errors.put(Constants.ERROR_MAXIMUM_SUPER_UPGRADE, "No more super upgrades can be enabled! Create another collection to increase the maximum, or disable an enabled");
+        errors.put(Constants.ERROR_VISITOR_IN_USE, "This visitor is already in use by another hero slot!");
 
         return errors;
     }

@@ -137,18 +137,24 @@ public class EquipmentActivity extends Activity {
     }
 
     public void tierClick(View view) {
-        String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
-        VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
+        if (hero.getVisitorId() > 0) {
+            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
+        }
     }
 
     public void typeClick(View view) {
-        String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
-        VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
+        if (hero.getVisitorId() > 0) {
+            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
+        }
     }
 
     public void stateClick(View view) {
-        String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
-        VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+        if (hero.getVisitorId() > 0) {
+            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
+            VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+        }
     }
 
 
