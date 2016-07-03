@@ -176,6 +176,9 @@ public class Constants {
     public static final int SU_HALF_BONUS_CHEST = 11;
     public static final int SU_CONTRIBUTIONS = 12;
     public static final int SU_PAGE_CHANCE = 13;
+    public static final int SU_QUEST_MED = 14;
+    public static final int SU_QUEST_HARD = 15;
+    public static final int SU_QUEST_ELITE = 16;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

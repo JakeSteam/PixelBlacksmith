@@ -141,6 +141,13 @@ public class Player_Info extends SugarRecord {
         return collections != null ? collections.getIntValue() : 0;
     }
 
+    public static String getLastContributed() {
+        Player_Info lastContributed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("LastDonated")).first();
+
+        return lastContributed != null ? lastContributed.getTextValue() : "never";
+    }
+
     public static double getCompletionPercent() {
         /*
             Level * 100

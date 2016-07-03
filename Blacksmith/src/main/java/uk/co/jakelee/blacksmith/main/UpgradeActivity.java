@@ -52,7 +52,7 @@ public class UpgradeActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Upgrade);
+        intent.putExtra(HelpActivity.INTENT_ID, superSelected ? HelpActivity.TOPICS.Super_Upgrade : HelpActivity.TOPICS.Upgrade);
         startActivity(intent);
     }
 

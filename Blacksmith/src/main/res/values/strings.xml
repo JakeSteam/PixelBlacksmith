@@ -187,9 +187,11 @@
     <string name="buyingIAPError">An error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
 
     <string name="buyContribute">Contribute</string>
-    <string name="boughtContribute">Thank you for contributing! You\'re the best! Soon, contributing will unlock reward tiers providing beta access, the ability to suggest items, etc.</string>
-    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 2000 coin reward for contributing, but that\'s mostly so it doesn\'t classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
-    <string name="contributeStatus">You\'ve contributed %1$d time(s), the last time was on %2$s.</string>
+    <string name="boughtContribute">Thank you for contributing! You\'re the best!</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like.\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
+    <string name="contributeStatus">\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
+    <string name="contributeTitle">%1$s (%2$d / %3$d)</string>
+    <string name="contributeHeader">Rewards:</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
@@ -199,12 +201,14 @@
     <string name="premiumFeatures">Premium benefits:
 \n- Immediate +20% to bonus coins and bonus XP upgrades.
 \n- +50% maximum possible bonus coins and bonus XP upgrades (from 50% to 100%).
+\n- Easier access to extremely powerful Super Upgrades.
 \n- Ability to turn off all ads.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Coins paid by all out of stock traders on automatic market restock.
 \n- Ability to prestige at level 70, and begin a New Game Plus with +50% coin earnings &amp; -25% XP!
 \n- Doubled bonus chest rewards, and reduced time between chest openings.
+\n- Ability to Contribute, which can unlock beta access and suggesting new items / visitors!
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
@@ -692,5 +696,9 @@
         <item>When pressed, messages can either show the message log, or disappear. Change it in the settings!</item>
         <item>Fullscreen mode provides a more immersive mode, but can drain battery faster!</item>
         <item>If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</item>
+        <item>Messages disappearing too quickly? Enable longer messages in the settings.</item>
+        <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
+        <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
+        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more!</item>
     </string-array>
 </resources>

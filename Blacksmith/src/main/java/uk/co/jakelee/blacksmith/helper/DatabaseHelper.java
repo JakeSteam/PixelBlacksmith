@@ -10,6 +10,7 @@ import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Contribution_Goal;
 import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Adventure;
@@ -631,25 +632,41 @@ public class DatabaseHelper {
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 5, type_preferred = 20 WHERE visitor_id = 8");
         Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 4, type_preferred = 20 WHERE visitor_id = 9");
 
+        createContributionGoals();
         createHero();
         createSuperUpgrade();
     }
 
+    private static void createContributionGoals() {
+        List<Contribution_Goal> goals = new ArrayList<>();
+            goals.add(new Contribution_Goal(1, "Thank You", 1, "Get an extra little thank you.\n", "Thanks! Your contributions are what make further development on Pixel Blacksmith possible!\n"));
+            goals.add(new Contribution_Goal(2, "Dev Queue", 3, "Get access to the Trello board used to plan / prioritise new features, changes, and bug fixes.", "<a href=\"https://trello.com/b/Zw01amFA/\">Trello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it'll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in."));
+            goals.add(new Contribution_Goal(3, "Beta & Credits", 6, "Get beta access to all releases at least 24hr in advance, and get your name / username in the credits.", "Hey, send an email to <a href=\"mailto:i.am.now.a.beta.player@jakelee.co.uk\">the beta address</a> and I'll get you added to the beta testing / credits!"));
+            goals.add(new Contribution_Goal(4, "Create Quest", 10, "Create a quest and quest reward for a hero to be added to the game.", "Woo! Try and make your idea fit into an existing category, and email it to <a href=\"mailto:i.make.the.quests@jakelee.co.uk\">the quest address</a>, and I'll put it in the game."));
+            goals.add(new Contribution_Goal(5, "Create Item", 18, "Create an item (e.g. weapon, armour, ingredient) to be added to the game.", "Hey! Email your item name, description, ingredients, and purpose to <a href=\"mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk\">the item address</a>. We might have to make some changes to balance the item though!"));
+            goals.add(new Contribution_Goal(6, "Create Visitor", 24, "Create a visitor, along with preferences.", "You're a big fan of contributing, huh? Email a visitor name, description, and preferences to <a href=\"mailto:i.make.people.happen@jakelee.co.uk\">the visitor address</a>, and we'll discuss the visitor's appearance etc."));
+            goals.add(new Contribution_Goal(7, "Create Feature", 38, "Suggest an entirely new feature (within reason!) for the game.", "Wow, that's impressive..! Send me an email to <a href=\"mailto:i.basically.make.the.game@jakelee.co.uk\">the feature address</a>, and we'll work together to make the feature reality."));
+        Contribution_Goal.saveInTx(goals);
+    }
+
     private static void createSuperUpgrade() {
         List<Super_Upgrade> upgrades = new ArrayList<>();
+            upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 0, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 0, false));
             upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 2, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 3, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 3, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 4, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 3, false));
             upgrades.add(new Super_Upgrade(Constants.SU_HALF_MARKET_COST, "-50% Market Buy Cost", 4, false));
             upgrades.add(new Super_Upgrade(Constants.SU_HALF_WORKER_TIME, "-50% Worker Time", 5, false));
             upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TRADE_PRICE, "2x Trade Price", 5, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 5, false));
             upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "2x All XP", 6, false));
             upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "2x Coin Earnings", 6, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_QUEST_MED, "All Quests Medium+", 0, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_QUEST_HARD, "All Quests Hard+", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_QUEST_ELITE, "All Quests Elite", 3, false));
         Super_Upgrade.saveInTx(upgrades);
     }
 

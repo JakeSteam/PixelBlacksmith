@@ -90,6 +90,8 @@ public class HelpActivity extends Activity {
             displayHelpVisitor(layout);
         } else if (topic == TOPICS.Upgrade) {
             displayHelpUpgrade(layout);
+        }else if (topic == TOPICS.Super_Upgrade) {
+            displayHelpSuperUpgrade(layout);
         } else if (topic == TOPICS.Premium) {
             displayHelpPremium(layout);
         } else if (topic == TOPICS.Helper) {
@@ -422,6 +424,26 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("Visitors\n", 26));
     }
 
+    private void displayHelpSuperUpgrade(LinearLayout layout) {
+        layout.addView(dh.createTextView("Super Upgrades\n", 26));
+        layout.addView(dh.createTextView("Super upgrades are much more powerful upgrades that can only be used by players that have completed a collection.\n", 22));
+        layout.addView(dh.createTextView("Prestiging will unlock more Super Upgrades, whilst completing collections will increase the maximum that can be enabled at once.\n", 22));
+        layout.addView(dh.createTextView("'100x Contribution Reward' increases the 1337 coins usually received by contributing to a staggering 13,370 coins.\n", 22));
+        layout.addView(dh.createTextView("'Free Market Restock' makes restocking the market free, perfect for emptying traders out!\n", 22));
+        layout.addView(dh.createTextView("'2x Crafted Items' doubles the number of items received from every crafting process.\n", 22));
+        layout.addView(dh.createTextView("'5x Worker Resources' increases the resources received from Helper tasks and Hero adventures.\n", 22));
+        layout.addView(dh.createTextView("'Guaranteed Pages' guarantees that workers with food, watching adverts, and quests will all reward pages.\n", 22));
+        layout.addView(dh.createTextView("'-50% Bonus Chest Time' halves the time taken for the bonus chest to refill.\n", 22));
+        layout.addView(dh.createTextView("'1 Demand Per Visitor' forces each visitor to only have 1 demand.\n", 22));
+        layout.addView(dh.createTextView("'-50% Market Buy Cost' will halve the price of all items on the market.\n", 22));
+        layout.addView(dh.createTextView("'-50% Worker Time' will have the time taken for a helper or hero to complete a task.\n", 22));
+        layout.addView(dh.createTextView("'2x Trade Price' will double the money received from every trade.\n", 22));
+        layout.addView(dh.createTextView("'2x Trader Items Purchased' will double all items purchased from a trader.\n", 22));
+        layout.addView(dh.createTextView("'2x All XP' will double all XP (after other bonuses have been applied).\n", 22));
+        layout.addView(dh.createTextView("'2x Coin Earnings' will double all coins earned (after other bonuses have been applied).\n", 22));
+        layout.addView(dh.createTextView("'All Quests Medium / Hard / Elite' increase the minimum quest reward to the specified level.\n", 22));
+    }
+
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, TOPICS.Help);
@@ -433,5 +455,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }

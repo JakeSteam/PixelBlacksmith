@@ -78,6 +78,14 @@ public class QuestHelper {
     }
 
     private static int getPagesRewarded(double pageChance) {
+        if (Super_Upgrade.isEnabled(Constants.SU_QUEST_ELITE) && pageChance < Constants.QUEST_PAGE_CHANCE_ELITE) {
+            return (int) Constants.QUEST_PAGE_CHANCE_ELITE;
+        } else if (Super_Upgrade.isEnabled(Constants.SU_QUEST_HARD) && pageChance < Constants.QUEST_PAGE_CHANCE_HARD) {
+            return (int) Constants.QUEST_PAGE_CHANCE_HARD;
+        } else if (Super_Upgrade.isEnabled(Constants.SU_QUEST_MED) && pageChance < Constants.QUEST_PAGE_CHANCE_MEDIUM) {
+            return (int) Constants.QUEST_PAGE_CHANCE_MEDIUM;
+        }
+
         int pages;
         if ((int) pageChance >= 1) {
             pages = (int) pageChance;
