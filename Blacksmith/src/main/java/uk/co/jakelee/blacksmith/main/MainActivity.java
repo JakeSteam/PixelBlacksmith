@@ -405,6 +405,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
+                WorkerHelper.checkForFinishedHeroes(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
