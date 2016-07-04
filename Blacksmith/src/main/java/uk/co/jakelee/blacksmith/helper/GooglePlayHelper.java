@@ -126,7 +126,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static void UpdateEvent(String eventId, int quantity) {
-        if (!IsConnected() || quantity >= 0) {
+        if (!IsConnected() || quantity <= 0) {
             return;
         }
 
