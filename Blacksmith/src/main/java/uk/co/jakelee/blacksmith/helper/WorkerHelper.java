@@ -627,7 +627,8 @@ public class WorkerHelper {
     }
 
     public static boolean canBeSelectedAsHero(Visitor_Type vType, Visitor_Stats vStats) {
-        return vStats.getVisits() >= Constants.HERO_MIN_VISITS
+        return vType != null && vStats != null &&
+                vStats.getVisits() >= Constants.HERO_MIN_VISITS
                 && vStats.getBestItemValue() >= Constants.HERO_MIN_TRADE
                 && vType.getPreferencesDiscovered() >= Constants.HERO_MIN_PREFS;
     }
