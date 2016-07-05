@@ -90,7 +90,7 @@ public class Inventory extends SugarRecord implements Serializable {
                     Condition.prop("item").eq(recipe.getIngredient()),
                     Condition.prop("state").eq(recipe.getIngredientState())).first();
 
-            if (ingredientInventory == null || (recipe.getQuantity() * quantity) > ingredientInventory.getQuantity()) {
+            if (ingredientInventory == null || ingredientInventory.getQuantity() == 0 || (recipe.getQuantity() * quantity) > ingredientInventory.getQuantity()) {
                 return Constants.ERROR_NOT_ENOUGH_INGREDIENTS;
             }
         }
