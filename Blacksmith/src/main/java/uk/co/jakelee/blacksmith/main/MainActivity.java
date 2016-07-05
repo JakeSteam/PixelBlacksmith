@@ -109,12 +109,16 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
-        if (!TutorialHelper.currentlyInTutorial &&
-                savedVersion != null && savedVersion.getIntValue() != BuildConfig.VERSION_CODE &&
-                BuildConfig.VERSION_NAME.length() > 0 && BuildConfig.VERSION_NAME.endsWith(".0")) {
-            AlertDialogHelper.displayUpdateMessage(this, this);
+        if (savedVersion != null &&
+                savedVersion.getIntValue() != BuildConfig.VERSION_CODE &&
+                BuildConfig.VERSION_NAME.length() > 0 &&
+                BuildConfig.VERSION_NAME.endsWith(".0")) {
             savedVersion.setIntValue(BuildConfig.VERSION_CODE);
             savedVersion.save();
+
+            if (!TutorialHelper.currentlyInTutorial) {
+                AlertDialogHelper.displayUpdateMessage(this, this);
+            }
         }
 
         gph.UpdateQuest();
@@ -289,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements
         dh.updateFullscreen(this);
         View exitTutorialButton = findViewById(R.id.exitTutorial);
         if (TutorialHelper.currentlyInTutorial) {
-            if (exitTutorialButton != null && TutorialHelper.currentStage <= Constants.STAGE_15_MAIN) {
+            if (exitTutorialButton != null) {
                 exitTutorialButton.setVisibility(View.VISIBLE);
             }
 
@@ -308,16 +312,15 @@ public class MainActivity extends AppCompatActivity implements
             } else if (TutorialHelper.currentStage == Constants.STAGE_14_MARKET || TutorialHelper.currentStage == Constants.STAGE_15_MAIN) {
                 startSeventhTutorial();
             }
-        } else if (exitTutorialButton != null) {
-            exitTutorialButton.setVisibility(View.GONE);
         }
     }
 
     public void exitTutorial(View v) {
         TutorialHelper.currentlyInTutorial = false;
-        TutorialHelper.currentStage = 99;
-        findViewById(R.id.exitTutorial).setVisibility(View.GONE);
+        TutorialHelper.currentStage = 0;
+        prefs.edit().putInt("tutorialStage", 0).apply();
         ToastHelper.showToast(findViewById(R.id.exitTutorial), ToastHelper.LONG, getString(R.string.exitTutorialText), true);
+        v.setVisibility(View.GONE);
     }
 
     @Override
@@ -405,6 +408,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
+                WorkerHelper.checkForFinishedHeroes(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
