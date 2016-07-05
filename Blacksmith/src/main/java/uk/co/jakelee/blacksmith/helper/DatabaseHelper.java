@@ -650,6 +650,8 @@ public class DatabaseHelper {
             heroResources.add(new Hero_Resource(253, 123, Constants.STATE_NORMAL, 4));
             heroResources.add(new Hero_Resource(254, 142, Constants.STATE_NORMAL, 1));
         Hero_Resource.saveInTx(heroResources);
+
+        Super_Upgrade.executeQuery("UPDATE superupgrade SET name = \"2x Worker Resources\" WHERE super_upgrade_id = " + Constants.SU_WORKER_RESOURCES);
     }
 
     private static void createContributionGoals() {

@@ -438,7 +438,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("'100x Contribution Reward' increases the 1337 coins usually received by contributing to a staggering 13,370 coins.\n", 22));
         layout.addView(dh.createTextView("'Free Market Restock' makes restocking the market free, perfect for emptying traders out!\n", 22));
         layout.addView(dh.createTextView("'2x Crafted Items' doubles the number of items received from every crafting process.\n", 22));
-        layout.addView(dh.createTextView("'5x Worker Resources' increases the resources received from Helper tasks and Hero adventures.\n", 22));
+        layout.addView(dh.createTextView("'2x Worker Resources' doubles the resources received from Helper tasks and Hero adventures.\n", 22));
         layout.addView(dh.createTextView("'Guaranteed Pages' guarantees that workers with food, watching adverts, and quests will all reward pages.\n", 22));
         layout.addView(dh.createTextView("'-50% Bonus Chest Time' halves the time taken for the bonus chest to refill.\n", 22));
         layout.addView(dh.createTextView("'1 Demand Per Visitor' forces each visitor to only have 1 demand.\n", 22));
