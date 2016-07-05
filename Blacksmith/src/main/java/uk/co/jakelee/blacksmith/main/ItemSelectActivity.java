@@ -46,9 +46,10 @@ public class ItemSelectActivity extends Activity {
         int itemIndex = 0;
         for (Item item : items) {
             if (!onlyDisplayAvailable || (onlyDisplayAvailable && Inventory.canCreateBulkItem(item.getId(), dh.itemSelectionState, 1) == Constants.SUCCESS)) {
-                TableRow itemRow = createItemRow(item, itemIndex++);
+                TableRow itemRow = createItemRow(item, itemIndex);
                 itemsContainer.addView(itemRow);
             }
+            itemIndex++;
         }
         updateIndicator();
     }
