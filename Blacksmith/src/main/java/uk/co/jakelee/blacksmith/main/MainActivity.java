@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements
         dh.updateFullscreen(this);
         View exitTutorialButton = findViewById(R.id.exitTutorial);
         if (TutorialHelper.currentlyInTutorial) {
-            if (exitTutorialButton != null && TutorialHelper.currentStage > 0) {
+            if (exitTutorialButton != null) {
                 exitTutorialButton.setVisibility(View.VISIBLE);
             }
 
