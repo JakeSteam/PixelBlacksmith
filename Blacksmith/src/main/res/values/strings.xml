@@ -675,7 +675,7 @@
         <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
         <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
         <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
-        <item>Helpers initially take 3 hours to return with resources, and heroes 6 hours. This can be reduced to only 30 / 60 minutes by upgrading "Worker Time".</item>
+        <item>Helpers and heroes initially take 3 hours to return with resources. This can be reduced to just 30 minutes by upgrading "Worker Time".</item>
         <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
         <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
         <item>There are 7 different hirable Helpers that unlock as you level up.</item>
@@ -699,6 +699,6 @@
         <item>Messages disappearing too quickly? Enable longer messages in the settings.</item>
         <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
         <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
-        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more!</item>
+        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</item>
     </string-array>
 </resources>

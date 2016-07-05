@@ -414,8 +414,8 @@ public class HelpActivity extends Activity {
 
     private void displayHelpHeroAdventures(LinearLayout layout) {
         layout.addView(dh.createTextView("Adventures\n", 26));
-        layout.addView(dh.createTextView("Select categories, subcategories, and finally adventures here.\n", 22));
-        layout.addView(dh.createTextView("Select categories, subcategories, and finally adventures here.\n", 22));
+        layout.addView(dh.createTextView("Adventures can be selected for your hero to go on.\n", 22));
+        layout.addView(dh.createTextView("They are organised into categories and subcategories. Quests with a higher difficulty generally offer better rewards, but your hero is more likely to fail!\n", 22));
     }
 
     private void displayHelpHeroEquipment(LinearLayout layout) {
