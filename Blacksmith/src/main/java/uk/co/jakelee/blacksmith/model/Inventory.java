@@ -72,7 +72,7 @@ public class Inventory extends SugarRecord implements Serializable {
             }
         }
 
-        return (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS) ? 2 : 1) * Collections.min(quantities);
+        return Collections.min(quantities);
     }
 
     public static int canCreateBulkItem(Long itemID, long state, int quantity) {
