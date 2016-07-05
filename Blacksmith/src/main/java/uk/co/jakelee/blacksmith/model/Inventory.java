@@ -170,7 +170,6 @@ public class Inventory extends SugarRecord implements Serializable {
     public static int enchantItem(Long itemId, Long gemId, Long locationID) {
         Inventory itemInventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         Inventory gemInventory = Inventory.getInventory(gemId, Constants.STATE_NORMAL);
-        int quantity = 1;
 
         if (itemInventory.getQuantity() <= 0) {
             return Constants.ERROR_NO_ITEMS;
@@ -188,14 +187,16 @@ public class Inventory extends SugarRecord implements Serializable {
             State enchantedItemState = Select.from(State.class).where(
                     Condition.prop("initiating_item").eq(gemId)).first();
 
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
-                quantity = quantity * 2;
-            }
-
             if (Slot.hasAvailableSlot(locationID)) {
-                Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), quantity, locationID);
+                Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
+                if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                    Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
+                }
             } else {
-                Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), quantity, locationID);
+                Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
+                if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                    Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
+                }
             }
             return Constants.SUCCESS;
         }
