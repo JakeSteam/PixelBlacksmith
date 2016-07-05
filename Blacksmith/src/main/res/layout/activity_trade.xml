@@ -86,15 +86,14 @@
             android:id="@+id/maxCheckboxArea"
             android:layout_width="40dp"
             android:layout_height="45dp"
-            android:background="@drawable/sell"
-            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_narrow"
             android:layout_toLeftOf="@id/finishTrade"
+            android:layout_alignTop="@id/finishTrade"
+            android:layout_alignBottom="@id/finishTrade"
             android:onClick="toggleMax"
             android:clickable="true"
             android:gravity="center"
             android:layout_marginRight="5dp"
-            app:layout_marginBottomPercent="2%"
-            app:layout_marginTopPercent="2%"
             android:orientation="vertical">
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -102,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tradeMax"
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="-5dp"/>
 

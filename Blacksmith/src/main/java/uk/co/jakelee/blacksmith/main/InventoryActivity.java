@@ -3,24 +3,31 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -32,19 +39,25 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
+import uk.co.jakelee.blacksmith.model.Type;
 
-public class InventoryActivity extends Activity {
+public class InventoryActivity extends Activity implements AdapterView.OnItemSelectedListener{
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private LinearLayout sell1;
     private LinearLayout sell10;
     private LinearLayout sell100;
+    private Type selectedType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+        loadSelectedType();
 
         final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
@@ -52,30 +65,77 @@ public class InventoryActivity extends Activity {
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        updateInventoryTable(activity);
+                        updateInventoryTable();
                     }
                 }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
-        handler.post(every2Seconds);
+
+        if (Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH)) {
+            handler.post(every2Seconds);
+        }
 
         sell1 = (LinearLayout) findViewById(R.id.sell1);
         sell10 = (LinearLayout) findViewById(R.id.sell10);
         sell100 = (LinearLayout) findViewById(R.id.sell100);
 
         updateQuantityUI();
+        createDropdown();
+
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            ((TextView) findViewById(R.id.sell100Text)).setText(R.string.sellMaxText);
+        } else {
+            ((TextView) findViewById(R.id.sell100Text)).setText(R.string.sell100Text);
+        }
+    }
+
+    private void loadSelectedType() {
+        long savedType = MainActivity.prefs.getLong("inventoryFilter", 0);
+        if (savedType > 0) {
+            selectedType = Type.findById(Type.class, savedType);
+        } else {
+            selectedType = null;
+        }
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        selectedType = Select.from(Type.class).where(
+                Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
+        dh.updateFullscreen(this);
+        updateInventoryTable();
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        updateInventoryTable();
+    }
+
+    private void createDropdown() {
+        Spinner typeSelector = (Spinner) findViewById(R.id.itemTypes);
+        typeSelector.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typesArray, R.layout.custom_spinner);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_item);
+        typeSelector.setAdapter(adapter);
+        typeSelector.setOnItemSelectedListener(this);
+        typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName()) : 0);
     }
 
     protected void onStop() {
         super.onStop();
 
+        MainActivity.prefs.edit().putLong("inventoryFilter", selectedType != null ? selectedType.getId() : 0).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void updateInventoryTable(final Activity activity) {
+    private void updateInventoryTable() {
+        final Activity activity = this;
+        List<Inventory> allInventoryItems;
+        if (selectedType != null) {
+            allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 AND item.type = " + selectedType.getId() + " ORDER BY inventory.state, item.name ASC");
+        } else {
+            allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
+        }
         List<TableRow> tableRows = new ArrayList<>();
-        List<Inventory> allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 ORDER BY inventory.state, item.name ASC");
         final TableLayout inventoryTable = (TableLayout) findViewById(R.id.inventoryTable);
 
         TableRow headerRow = new TableRow(getApplicationContext());
@@ -84,6 +144,9 @@ public class InventoryActivity extends Activity {
         headerRow.addView(dh.createTextView("Name", 22, Color.BLACK));
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
         tableRows.add(headerRow);
+
+        findViewById(R.id.noItems).setVisibility(allInventoryItems.size() > 0 ? View.GONE : View.VISIBLE);
+        findViewById(R.id.inventoryTable).setVisibility(allInventoryItems.size() > 0 ? View.VISIBLE : View.INVISIBLE);
 
         for (Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
@@ -100,7 +163,7 @@ public class InventoryActivity extends Activity {
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
             name.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
+                    ToastHelper.showToast(inventoryTable, ToastHelper.SHORT, item.getDescription(), false);
                 }
             });
 
@@ -108,22 +171,32 @@ public class InventoryActivity extends Activity {
             itemRow.addView(image);
             itemRow.addView(name);
 
-            if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
-                TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventoryItem.getState())), 20);
-                sell.setClickable(true);
-                sell.setTextColor(getResources().getColorStateList(R.color.text_color));
-                sell.setGravity(Gravity.CENTER);
-                sell.setBackgroundResource(R.drawable.sell_small);
+            TextViewPixel tradeBtn = dh.createTextView("", 20);
+            tradeBtn.setClickable(true);
+            tradeBtn.setTextColor(getResources().getColorStateList(R.color.text_color));
+            tradeBtn.setGravity(Gravity.CENTER);
+            tradeBtn.setWidth(dh.convertDpToPixel(40));
+            tradeBtn.setBackgroundResource(R.drawable.sell_small);
 
-                sell.setTag(R.id.itemID, item.getId());
-                sell.setTag(R.id.itemState, inventoryItem.getState());
-                sell.setOnClickListener(new Button.OnClickListener() {
+            if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
+                tradeBtn.setText(Integer.toString(item.getModifiedValue(inventoryItem.getState())));
+                tradeBtn.setTag(R.id.itemID, item.getId());
+                tradeBtn.setTag(R.id.itemState, inventoryItem.getState());
+                tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         clickSellButton(v);
                     }
                 });
-                itemRow.addView(sell);
+            } else if (inventoryItem.getQuantity() >= Constants.PAGE_EXCHANGE_QTY) {
+                tradeBtn.setText(R.string.exchangePagesText);
+                tradeBtn.setTag((int) (long) item.getId());
+                tradeBtn.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                    clickExchangeButton(v);
+                    }
+                });
             }
+            itemRow.addView(tradeBtn);
 
             tableRows.add(itemRow);
         }
@@ -132,13 +205,20 @@ public class InventoryActivity extends Activity {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((TextView) findViewById(R.id.loadingMessage)).setVisibility(View.GONE);
+                findViewById(R.id.loadingMessage).setVisibility(View.GONE);
                 inventoryTable.removeAllViews();
-                for (TableRow row : finalRows)
-                inventoryTable.addView(row);
-
+                for (TableRow row : finalRows) {
+                    inventoryTable.addView(row);
+                }
             }
         });
+    }
+
+    private void clickExchangeButton(View v) {
+        int itemId = (int) v.getTag();
+        Item item = Item.findById(Item.class, itemId);
+        Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
+        AlertDialogHelper.confirmPageExchange(this, this, v, inventory, item);
     }
 
     private void clickSellButton(View view) {
@@ -155,7 +235,15 @@ public class InventoryActivity extends Activity {
         int canSell = Constants.ERROR_NOT_ENOUGH_ITEMS;
         if (MainActivity.vh.inventoryBusy) {
             canSell = Constants.ERROR_BUSY;
-        } else if (inventory.getQuantity() >= quantity) {
+        } else {
+            if (inventory.getQuantity() < quantity || (quantity == 100 && Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX))) {
+                quantity = inventory.getQuantity();
+            }
+
+            if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD)) {
+                itemValue = itemValue * 2;
+            }
+
             quantityToSell = quantity;
             inventory.setQuantity(inventory.getQuantity() - quantity);
             inventory.save();
@@ -167,7 +255,7 @@ public class InventoryActivity extends Activity {
 
         if (quantityToSell > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
+            ToastHelper.showToast(view, ToastHelper.SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue * quantityToSell);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_SOLD_ITEM, quantityToSell);
@@ -176,9 +264,9 @@ public class InventoryActivity extends Activity {
             MainActivity.vh.inventoryBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canSell), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(canSell), false);
         }
-        updateInventoryTable(this);
+        updateInventoryTable();
         dh.updateCoins(Inventory.getCoins());
     }
 
@@ -210,6 +298,10 @@ public class InventoryActivity extends Activity {
         ((ImageView) findViewById(R.id.sell1indicator)).setImageDrawable(quantity == 1 ? tick : cross);
         ((ImageView) findViewById(R.id.sell10indicator)).setImageDrawable(quantity == 10 ? tick : cross);
         ((ImageView) findViewById(R.id.sell100indicator)).setImageDrawable(quantity == 100 ? tick : cross);
+    }
+
+    public void callback() {
+        updateInventoryTable();
     }
 
     public void brightenButtons() {

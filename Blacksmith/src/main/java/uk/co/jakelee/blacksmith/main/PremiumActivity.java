@@ -2,26 +2,38 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
+import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.model.Contribution_Goal;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
+    private static DisplayHelper dh;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
     private static final String SKU_PREMIUM = "premium";
@@ -31,6 +43,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_premium);
+        dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
         if (canBuyIAPs) {
@@ -47,7 +61,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             addPremiumFeatures();
             updatePremiumStatus();
 
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.restoredPremium, true);
+            ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.restoredPremium), true);
         }
     }
 
@@ -57,18 +71,18 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             addPremiumFeatures();
             updatePremiumStatus();
 
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtPremium, true);
+            ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtPremium), true);
         } else if (productId.equals(SKU_CONTRIBUTE)) {
             bp.consumePurchase(SKU_CONTRIBUTE);
             addContributeFeatures();
             updateContributeStatus();
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.boughtContribute, true);
+            ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtContribute), true);
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.buyingIAPError, true);
+        ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.buyingIAPError), true);
     }
 
     @Override
@@ -83,46 +97,72 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
 
     private void updatePremiumStatus() {
         boolean isPremium = Player_Info.isPremium();
-        TextViewPixel premiumIndicator = (TextViewPixel) findViewById(R.id.premiumStatusResult);
-        TextViewPixel premiumButton = (TextViewPixel) findViewById(R.id.buyPremiumButton);
-
-        String premiumText = getString(isPremium ? R.string.premiumStatusActive : R.string.premiumStatusInactive);
-        int premiumColour = getResources().getColor(isPremium ? R.color.holo_green_dark : R.color.holo_red_dark);
         int visibility = (isPremium ? View.GONE : View.VISIBLE);
-
-        premiumIndicator.setText(premiumText);
-        premiumIndicator.setTextColor(premiumColour);
-        premiumButton.setVisibility(visibility);
+        findViewById(R.id.buyPremiumButton).setVisibility(visibility);
+        findViewById(R.id.premiumFeatures).setVisibility(visibility);
     }
 
     private void updateContributeStatus() {
         boolean isPremium = Player_Info.isPremium();
         int visibility = (isPremium ? View.VISIBLE : View.GONE);
         TextViewPixel contributeDesc = (TextViewPixel) findViewById(R.id.contributeDescription);
-        TextViewPixel contributeStatus = (TextViewPixel) findViewById(R.id.contributeStatus);
         TextViewPixel contributeButton = (TextViewPixel) findViewById(R.id.contributeButton);
 
         contributeDesc.setVisibility(visibility);
-        contributeStatus.setVisibility(visibility);
         contributeButton.setVisibility(visibility);
 
         Player_Info timesDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("TimesDonated")).first();
-        Player_Info lastDonated = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastDonated")).first();
 
-        if (timesDonated != null && lastDonated != null && timesDonated.getIntValue() > 0) {
-            contributeStatus.setText(String.format(getString(R.string.contributeStatus),
-                    timesDonated.getIntValue(),
-                    lastDonated.getTextValue()));
-        } else {
-            contributeStatus.setText("");
+        if (isPremium) {
+            createContributeGoals(timesDonated.getIntValue());
         }
+    }
+
+    public void createContributeGoals(int timesContributed) {
+        List<Contribution_Goal> contributions = Select.from(Contribution_Goal.class).orderBy("req_contributions ASC").list();
+        LinearLayout container = (LinearLayout) findViewById(R.id.contributeContainer);
+        container.removeAllViews();
+        container.addView(dh.createTextView(getString(R.string.contributeHeader), 28));
+
+        for (Contribution_Goal contribution : contributions) {
+            boolean unlocked = timesContributed >= contribution.getReqContributions();
+            TextView contributeTitle = dh.createTextView(String.format(getString(R.string.contributeTitle),
+                    contribution.getName(),
+                    unlocked ? contribution.getReqContributions() : timesContributed,
+                    contribution.getReqContributions()), 24);
+            contributeTitle.setTextColor(unlocked ? Color.parseColor("#267c18") : Color.BLACK);
+            contributeTitle.setPadding(0, 0, 15, 0);
+
+            ProgressBar contributeProgress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+            contributeProgress.getProgressDrawable().setColorFilter(0xFF267c18,android.graphics.PorterDuff.Mode.MULTIPLY);
+            contributeProgress.setProgress(unlocked ? contribution.getReqContributions() : timesContributed);
+            contributeProgress.setMax(contribution.getReqContributions());
+            contributeProgress.setPadding(0, 0, 15, 0);
+
+            TextView contributeBody = new TextViewPixel(this);
+            contributeBody.setText(Html.fromHtml(unlocked ? contribution.getUnlockedText() : contribution.getTeaserText() + "<br><br>"));
+            contributeBody.setTextSize(20);
+            contributeBody.setMovementMethod(LinkMovementMethod.getInstance());
+            contributeBody.setTextColor(Color.BLACK);
+            contributeBody.setLinkTextColor(Color.BLUE);
+            contributeBody.setLinksClickable(true);
+
+            container.addView(contributeTitle);
+            container.addView(contributeProgress);
+            container.addView(contributeBody);
+        }
+
+        TextView contributeSummary = dh.createTextView(String.format(getString(R.string.contributeStatus),
+                timesContributed,
+                Player_Info.getLastContributed()), 22, Color.DKGRAY);
+        container.addView(contributeSummary);
     }
 
     public void buyPremium(View v) {
         if (canBuyIAPs) {
             bp.purchase(this, SKU_PREMIUM);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyIAP, true);
+            ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }
     }
 
@@ -130,7 +170,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp.purchase(this, SKU_CONTRIBUTE);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.cannotBuyIAP, true);
+            ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }
     }
 
@@ -203,6 +243,9 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             lastDonated.setTextValue(DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date));
             lastDonated.save();
         }
+
+        int contributeCoins = (Super_Upgrade.isEnabled(Constants.SU_CONTRIBUTIONS) ? 2 : 1) * Constants.CONTRIBUTE_GOLD;
+        Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, contributeCoins);
 
         GooglePlayHelper.UpdateEvent(Constants.EVENT_CONTRIBUTE, 1);
     }

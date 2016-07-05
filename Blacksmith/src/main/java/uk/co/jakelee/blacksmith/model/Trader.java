@@ -1,7 +1,6 @@
 package uk.co.jakelee.blacksmith.model;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -70,7 +69,7 @@ public class Trader extends SugarRecord {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
             if (!TutorialHelper.currentlyInTutorial) {
-                ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+                ToastHelper.showToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
             }
         }
     }

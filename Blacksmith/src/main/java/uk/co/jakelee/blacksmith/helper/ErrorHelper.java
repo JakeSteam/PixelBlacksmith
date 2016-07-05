@@ -17,8 +17,10 @@ public class ErrorHelper {
         errors.put(Constants.ERROR_NO_ITEMS, "You cannot enchant an item you do not have!");
         errors.put(Constants.ERROR_NO_GEMS, "You cannot enchant an item using non-existent gems!");
         errors.put(Constants.ERROR_MAXIMUM_UPGRADE, "There's no further upgrades to purchase!");
-        errors.put(Constants.ERROR_NO_SLOTS_ENCHANTING, "There's no enchanting slots unlocked! The first one unlocks at level 10.");
+        errors.put(Constants.ERROR_NO_SLOTS_ENCHANTING, "There's no gem table slots unlocked! The first one unlocks at level 10.");
         errors.put(Constants.ERROR_BUSY, "Currently calculating... please try again!");
+        errors.put(Constants.ERROR_MAXIMUM_SUPER_UPGRADE, "No more super upgrades can be enabled! Create another collection to increase the maximum, or disable an enabled super upgrade.");
+        errors.put(Constants.ERROR_VISITOR_IN_USE, "This visitor is already in use by another hero slot!");
 
         return errors;
     }

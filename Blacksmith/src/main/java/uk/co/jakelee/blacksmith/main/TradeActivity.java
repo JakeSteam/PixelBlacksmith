@@ -2,7 +2,6 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -38,6 +36,7 @@ import uk.co.jakelee.blacksmith.model.Criteria;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
@@ -50,7 +49,6 @@ public class TradeActivity extends Activity {
     private static Visitor visitor;
     private static Visitor_Type visitorType;
     private static DisplayHelper dh;
-    private static SharedPreferences prefs;
     private static boolean tradeMax = false;
     private boolean currentlySelling = false;
 
@@ -59,7 +57,7 @@ public class TradeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade);
         dh = DisplayHelper.getInstance(getApplicationContext());
-        prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
@@ -91,7 +89,10 @@ public class TradeActivity extends Activity {
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
             }
         };
-        handler.post(every2Seconds);
+
+        if (Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH)) {
+            handler.post(every2Seconds);
+        }
     }
 
     @Override
@@ -183,16 +184,16 @@ public class TradeActivity extends Activity {
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
-                ImageView image = dh.createItemImage(inventory.getItem(), 30, 30, true, true);
+                ImageView image = dh.createItemImage(inventory.getItem(), 35, 35, true, true);
 
                 String itemName = item.getPrefix(inventory.getState()) + item.getName();
                 TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-                name.setPadding(0, 0, 0, 17);
+                name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
                 name.setSingleLine(false);
                 name.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                        ToastHelper.showToast(activity, Toast.LENGTH_SHORT, item.getDescription(), false);
+                        ToastHelper.showToast(itemsTable, ToastHelper.SHORT, item.getDescription(), false);
                     }
                 });
 
@@ -202,10 +203,11 @@ public class TradeActivity extends Activity {
 
                 // Create a sell button for that item
                 if (item.getType() != Constants.TYPE_PAGE && item.getType() != Constants.TYPE_BOOK) {
-                    TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18, Color.BLACK);
-                    sell.setWidth(dh.convertDpToPixel(40));
-                    sell.setShadowLayer(10, 0, 0, Color.WHITE);
+                    TextViewPixel sell = dh.createTextView(Integer.toString(item.getModifiedValue(inventory.getState())), 18);
+                    sell.setClickable(true);
+                    sell.setTextColor(getResources().getColorStateList(R.color.text_color));
                     sell.setGravity(Gravity.CENTER);
+                    sell.setWidth(dh.convertDpToPixel(40));
                     sell.setBackgroundResource(R.drawable.sell_small);
                     sell.setTag(R.id.itemID, item.getId());
                     sell.setTag(R.id.itemState, inventory.getState());
@@ -237,8 +239,9 @@ public class TradeActivity extends Activity {
             @Override
             public void run() {
                 itemsTable.removeAllViews();
-                for (TableRow row : finalRows)
+                for (TableRow row : finalRows) {
                     itemsTable.addView(row);
+                }
             }
         });
     }
@@ -254,7 +257,7 @@ public class TradeActivity extends Activity {
         if (inventoryOfItem.getQuantity() > 0 && !currentlySelling) {
             currentlySelling = true;
             int quantity = 1;
-            if (prefs.getBoolean("tradeMax", false)) {
+            if (MainActivity.prefs.getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();
             }
             tradeItem(quantity, itemObject, itemStateObject);
@@ -288,7 +291,7 @@ public class TradeActivity extends Activity {
 
         if (itemsTraded > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.tradedItem),
+            ToastHelper.showToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, String.format(getString(R.string.tradedItem),
                     itemsTraded,
                     itemToSell.getName(),
                     value * itemsTraded), false);
@@ -299,7 +302,7 @@ public class TradeActivity extends Activity {
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(tradeResponse), false);
+            ToastHelper.showErrorToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(tradeResponse), false);
         }
 
         dh.updateCoins(Inventory.getCoins());
@@ -316,8 +319,8 @@ public class TradeActivity extends Activity {
     }
 
     public void toggleMax(View view) {
-        tradeMax = !prefs.getBoolean("tradeMax", false);
-        prefs.edit().putBoolean("tradeMax", tradeMax).apply();
+        tradeMax = !MainActivity.prefs.getBoolean("tradeMax", false);
+        MainActivity.prefs.edit().putBoolean("tradeMax", tradeMax).apply();
         updateMax();
     }
 
@@ -326,7 +329,7 @@ public class TradeActivity extends Activity {
         final Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
         final ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
 
-        tradeMax = prefs.getBoolean("tradeMax", false);
+        tradeMax = MainActivity.prefs.getBoolean("tradeMax", false);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

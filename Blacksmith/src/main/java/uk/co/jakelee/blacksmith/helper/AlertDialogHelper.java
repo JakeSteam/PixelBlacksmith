@@ -2,13 +2,15 @@ package uk.co.jakelee.blacksmith.helper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Pair;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -18,16 +20,19 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.InventoryActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.main.WorkerActivity;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -35,21 +40,21 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 public class AlertDialogHelper {
-    public static void enterSupportCode(final Context context, Activity activity) {
+    public static void enterSupportCode(final Context context, final Activity activity) {
         final EditText supportCodeBox = new EditText(context);
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.supportCodeQuestion));
         alertDialog.setView(supportCodeBox);
 
         alertDialog.setPositiveButton(context.getString(R.string.supportCodeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = SupportCodeHelper.encode("1464865932000|UPDATE playerinfo set int_value = 3 WHERE name = 'Prestige'");
+                //String supportCode = SupportCodeHelper.encode("1466722799000|UPDATE playerinfo set int_value = 504100 WHERE name = 'XP';UPDATE playerinfo set int_value = 1 WHERE name = 'Premium';UPDATE slot SET premium = 0 WHERE level = 9999; UPDATE upgrade SET current = current + 20, maximum = maximum + 50 WHERE name IN ('Coins Bonus', 'XP Bonus')");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCodeHelper.applyCode(supportCode)) {
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, R.string.supportCodeComplete, true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, activity.getString(R.string.supportCodeComplete), true);
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_LONG, R.string.supportCodeFailed, true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.settings), ToastHelper.LONG, activity.getString(R.string.supportCodeFailed), true);
                 }
             }
         });
@@ -60,11 +65,15 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmUpgrade(final Context context, final UpgradeActivity activity, final Upgrade upgrade) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.upgradeQuestion),
                 upgrade.getName(),
                 (upgrade.increases() ? upgrade.getCurrent() + upgrade.getIncrement() : upgrade.getCurrent() - upgrade.getIncrement()),
@@ -76,11 +85,11 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int upgradeResponse = upgrade.tryUpgrade();
                 if (upgradeResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName()), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName()), true);
                     Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
                     activity.alertDialogCallback();
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(upgradeResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(upgradeResponse), true);
                 }
             }
         });
@@ -91,11 +100,15 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void openSocialMedia(final Context context, final Activity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.socialMediaQuestion));
 
         alertDialog.setNeutralButton(context.getString(R.string.socialMediaReddit), new DialogInterface.OnClickListener() {
@@ -119,12 +132,51 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void confirmBuyHero(final Context context, final WorkerActivity activity, final Hero hero) {
+        final int buyCost = WorkerHelper.getBuyCost(hero);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(context.getString(R.string.buyHeroQuestion), buyCost));
+
+        alertDialog.setPositiveButton(context.getString(R.string.buyHeroConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                if (coinStock.getQuantity() >= buyCost) {
+                    coinStock.setQuantity(coinStock.getQuantity() - buyCost);
+                    coinStock.save();
+
+                    hero.setPurchased(true);
+                    hero.save();
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, context.getString(R.string.buyHeroComplete), true);
+                    activity.scheduledTask();
+                } else {
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.buyWorkerCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmBuyWorker(final Context context, final WorkerActivity activity, final Worker worker) {
         final int buyCost = WorkerHelper.getBuyCost(worker);
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.buyWorkerQuestion), buyCost));
 
         alertDialog.setPositiveButton(context.getString(R.string.buyWorkerConfirm), new DialogInterface.OnClickListener() {
@@ -136,10 +188,10 @@ public class AlertDialogHelper {
 
                     worker.setPurchased(true);
                     worker.save();
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, context.getString(R.string.buyWorkerComplete), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, context.getString(R.string.buyWorkerComplete), true);
                     activity.scheduledTask();
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
                 }
             }
         });
@@ -150,18 +202,22 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void confirmPrestige(final Context context, Activity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+    public static void confirmPrestige(final Context context, final Activity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.prestigeQuestion));
         alertDialog.setIcon(R.drawable.levels);
 
         alertDialog.setPositiveButton(context.getString(R.string.prestigeConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 PrestigeHelper.prestigeAccount();
-                ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, String.format(context.getString(R.string.prestigeComplete),
+                ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, String.format(context.getString(R.string.prestigeComplete),
                         Player_Info.getPrestige() * 50,
                         (int) (100 * (1 - Math.pow(0.75, Player_Info.getPrestige())))), false);
             }
@@ -173,14 +229,18 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmVisitorAdd(final Context context, final MainActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorAddCost();
         int questionString = Player_Info.displayAds() ? R.string.bribeQuestionAdvert : R.string.bribeQuestion;
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(questionString),
                 visitorCost,
                 DateHelper.getMinsSecsRemaining(VisitorHelper.getTimeUntilSpawn())));
@@ -193,10 +253,10 @@ public class AlertDialogHelper {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
                     coinStock.save();
                     if (VisitorHelper.tryCreateVisitor()) {
-                        ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
+                        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
                     }
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.bribeFailure), true);
+                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.bribeFailure), true);
                 }
             }
         });
@@ -214,14 +274,19 @@ public class AlertDialogHelper {
                 }
             });
         }
-        alertDialog.show();
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmVisitorDismiss(final Context context, final Visitor visitor, final VisitorActivity activity) {
         final int visitorCost = VisitorHelper.getVisitorDismissCost(visitor.getId());
         int questionID = Player_Info.displayAds() ? R.string.dismissQuestionAdvert : R.string.dismissQuestion;
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(questionID), visitorCost));
         alertDialog.setIcon(R.drawable.item52);
 
@@ -234,10 +299,10 @@ public class AlertDialogHelper {
 
                     VisitorHelper.removeVisitor(visitor);
                     SoundHelper.playSound(context, SoundHelper.walkingSounds);
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, R.string.dismissComplete, true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, activity.getString(R.string.dismissComplete), true);
                     activity.finish();
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.dismissFailure), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.SHORT, context.getString(R.string.dismissFailure), true);
                 }
             }
         });
@@ -256,11 +321,15 @@ public class AlertDialogHelper {
             });
         }
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmTraderRestockAll(final Context context, final MarketActivity activity, final int restockCost) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         String question = String.format(Player_Info.displayAds() ?
                 context.getString(R.string.traderRestockAllQuestionAdvert) :
                 context.getString(R.string.traderRestockAllQuestion), restockCost);
@@ -271,9 +340,9 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int traderResponse = Trader.restockAll(restockCost);
                 if (traderResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -293,11 +362,15 @@ public class AlertDialogHelper {
             });
         }
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(Player_Info.displayAds() ?
                         String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(), restockCost) :
                         String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
@@ -307,9 +380,9 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int traderResponse = trader.restock(restockCost);
                 if (traderResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -329,11 +402,15 @@ public class AlertDialogHelper {
             });
         }
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmBonusAdvert(final Context context, final MainActivity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(R.string.bonusQuestion);
 
         alertDialog.setPositiveButton(context.getString(R.string.bonusWatch), new DialogInterface.OnClickListener() {
@@ -348,13 +425,64 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void confirmPageExchange(final Context context, final InventoryActivity activity, final View view,  final Inventory inventory, final Item item) {
+        final int maxNewPages = inventory.getQuantity() / Constants.PAGE_EXCHANGE_QTY;
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(activity.getString(R.string.exchangePagesQuestion),
+                Constants.PAGE_EXCHANGE_QTY,
+                item.getName(),
+                maxNewPages * Constants.PAGE_EXCHANGE_QTY,
+                maxNewPages));
+
+        alertDialog.setPositiveButton(context.getString(R.string.exchangePagesOne), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String name = Inventory.exchangePages(inventory, 1);
+                ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(context.getString(R.string.exchangePagesSuccess),
+                        Constants.PAGE_EXCHANGE_QTY,
+                        item.getName(),
+                        1,
+                        name), true);
+                activity.callback();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.exchangePagesAll), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String name = Inventory.exchangePages(inventory, maxNewPages);
+                ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(context.getString(R.string.exchangePagesSuccess),
+                        maxNewPages * Constants.PAGE_EXCHANGE_QTY,
+                        item.getName(),
+                        maxNewPages,
+                        name), true);
+                activity.callback();
+            }
+        });
+
+        alertDialog.setNeutralButton(context.getString(R.string.exchangePagesCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmWorseCloudLoad(final Context context, final Activity activity, int localPrestige, int localXP, int cloudPrestige, int cloudXP) {
         int localLevel = Player_Info.convertXpToLevel(localXP);
         int cloudLevel = Player_Info.convertXpToLevel(cloudXP);
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.worseSaveMessage),
                 localPrestige,
                 localLevel,
@@ -378,13 +506,17 @@ public class AlertDialogHelper {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                alertDialog.show();
+                final Dialog dialog = alertDialog.create();
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                dialog.show();
+                dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
             }
         });
     }
 
     public static void confirmCloudSave(final Context context, final Activity activity, String desc, long saveTime, String deviceName) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.cloudSaveWarning),
                 desc,
                 DateHelper.displayTime(saveTime, DateHelper.datetime),
@@ -405,13 +537,17 @@ public class AlertDialogHelper {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                alertDialog.show();
+                final Dialog dialog = alertDialog.create();
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                dialog.show();
+                dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
             }
         });
     }
 
     public static void displayUpdateMessage(final Context context, final MainActivity activity) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
 
         alertDialog.setPositiveButton(context.getString(R.string.updateReddit), new DialogInterface.OnClickListener() {
@@ -427,32 +563,36 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock) {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
-        final int itemValue = item.getValue();
+        final int itemValue = item.getValue() / (item.getValue() > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
         final String itemName = item.getFullName(Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyQuestion), itemName, itemValue, itemStock.getStock(), itemValue));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.itemBuy1Confirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                int quantity = 1;
+                int quantity = Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1;
 
                 int buyResponse = Inventory.buyItem(itemStock);
                 if (buyResponse == Constants.SUCCESS) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
+                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 activity.alertDialogCallback();
@@ -466,10 +606,11 @@ public class AlertDialogHelper {
                 List<Pair<Long, Integer>> items = new ArrayList<>();
 
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-                Item item = Item.findById(Item.class, itemStock.getItemID());
                 int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+
                 if (totalCost <= coinStock.getQuantity()) {
-                    int itemsToBuy = itemStock.getStock();
+                    int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
                     itemsBought += itemsToBuy;
                     itemStock.setStock(0);
                     itemStock.save();
@@ -483,13 +624,13 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, itemValue * itemsBought), false);
+                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, totalCost), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
@@ -503,7 +644,11 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
     public static void confirmItemBuyAll(final Context context, final TraderActivity activity, final Trader trader) {
@@ -513,7 +658,7 @@ public class AlertDialogHelper {
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1)).list();
 
         if (itemStocks.size() == 0) {
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, R.string.itemBuyAllNoItems, false);
+            ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(R.string.itemBuyAllNoItems), false);
             return;
         }
 
@@ -524,8 +669,9 @@ public class AlertDialogHelper {
             totalValue += (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
             itemCount += itemStock.getStock();
         }
+        totalValue = (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1) * totalValue;
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
         alertDialog.setIcon(R.drawable.item52);
 
@@ -540,8 +686,10 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     Item item = Item.findById(Item.class, itemStock.getItemID());
                     int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                    totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+
                     if (totalCost <= coinStock.getQuantity() && successful) {
-                        int itemsToBuy = itemStock.getStock();
+                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
                         itemsBought += itemsToBuy;
                         itemStock.setStock(0);
                         itemStock.save();
@@ -558,14 +706,14 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showPositiveToast(context, Toast.LENGTH_SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
@@ -579,7 +727,11 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 }
 

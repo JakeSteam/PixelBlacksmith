@@ -8,6 +8,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -35,8 +36,10 @@ public class PrestigeHelper {
 
     private static void increasePrestige() {
         Player_Info.increaseByOne(Player_Info.Statistic.Prestige);
-        Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Fun Never Stops")).first();
-        Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+        if (GooglePlayHelper.IsConnected()) {
+            Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Fun Never Stops")).first();
+            Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+        }
 
         Player_Info prestigeDate = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("DateLastPrestiged")).first();
@@ -88,6 +91,10 @@ public class PrestigeHelper {
 
     private static void resetWorkers() {
         Worker.executeQuery("UPDATE worker SET purchased = 0, tool_used = 32, tool_state = 1, time_started = 0");
+        Hero.executeQuery("UPDATE hero SET current_adventure = 0, time_started = 0, purchased = 0, visitor_id = 0, " +
+                "food_item = 0, food_state = 0, helmet_item = 0, helmet_state = 0, armour_item = 0, armour_state = 0, " +
+                "weapon_item = 0, weapon_state = 0, shield_item = 0, shield_state = 0, gloves_item = 0, gloves_state = 0, " +
+                "boots_item = 0, boots_state = 0, ring_item = 0, ring_state = 0");
     }
 
     public static void resetCraftingInterface() {

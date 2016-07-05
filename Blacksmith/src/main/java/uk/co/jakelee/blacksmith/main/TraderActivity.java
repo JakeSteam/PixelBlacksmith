@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -41,6 +40,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trader);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int traderID = Integer.parseInt(intent.getStringExtra(MarketActivity.TRADER_TO_LOAD));
@@ -133,7 +133,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         if (restockCost > 0) {
             AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.unnecessaryRestock, false);
+            ToastHelper.showToast(findViewById(R.id.trader), ToastHelper.SHORT, getString(R.string.unnecessaryRestock), false);
         }
     }
 
@@ -158,7 +158,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     public void callbackRestock() {
         trader.restock(0);
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.traderRestockCompleteAdvert, true);
+        ToastHelper.showToast(findViewById(R.id.trader), ToastHelper.LONG, getString(R.string.traderRestockCompleteAdvert), true);
         createTraderInterface();
     }
 

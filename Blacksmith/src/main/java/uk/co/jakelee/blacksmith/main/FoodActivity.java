@@ -31,6 +31,7 @@ public class FoodActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         Intent intent = getIntent();
         int workerID = (int) (long) intent.getLongExtra(WorkerHelper.INTENT_ID, 0);
@@ -110,7 +111,7 @@ public class FoodActivity extends Activity {
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Worker_Food);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Helper_Food);
         startActivity(intent);
     }
 

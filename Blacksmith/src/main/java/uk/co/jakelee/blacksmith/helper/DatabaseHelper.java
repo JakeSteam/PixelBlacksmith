@@ -10,7 +10,12 @@ import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Contribution_Goal;
 import uk.co.jakelee.blacksmith.model.Criteria;
+import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
+import uk.co.jakelee.blacksmith.model.Hero_Category;
+import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -20,6 +25,7 @@ import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.State;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Tier;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -44,6 +50,7 @@ public class DatabaseHelper {
     public final static int DB_V1_5_4 = 9;
     public final static int DB_V1_6_0 = 10;
     public final static int DB_V1_6_1 = 11;
+    public final static int DB_V1_7_0 = 12;
 
 
     public static void handlePatches() {
@@ -98,9 +105,14 @@ public class DatabaseHelper {
             DatabaseHelper.patch160to161();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_1).apply();
         }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_1) {
+            DatabaseHelper.patch161to170();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_0).apply();
+        }
     }
 
-    public static void initialSQL() {
+    private static void initialSQL() {
         createAchievement();
         createCategory();
         createCharacter();
@@ -124,13 +136,13 @@ public class DatabaseHelper {
         createVisitorType();
     }
 
-    public static void patch100to101() {
+    private static void patch100to101() {
         // Add upgradeable restock cost
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
         restockAllCost.save();
     }
 
-    public static void patch101to120() {
+    private static void patch101to120() {
         // Updated mithril sword description
         Item mithrilLongsword = Item.findById(Item.class, 83L);
         if (mithrilLongsword != null) {
@@ -155,7 +167,7 @@ public class DatabaseHelper {
 
     }
 
-    public static void patch120to121() {
+    private static void patch120to121() {
         Slot firstEnchantingSlot = Select.from(Slot.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_ENCHANTING),
                 Condition.prop("level").eq(25)).first();
@@ -165,7 +177,7 @@ public class DatabaseHelper {
         }
     }
 
-    public static void patch121to130() {
+    private static void patch121to130() {
         Upgrade upgrade = new Upgrade("Worker Time", "mins", 50, 30, 180, 30, 180);
         upgrade.save();
 
@@ -204,7 +216,7 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = value - 1 WHERE tier = 1 OR id = 11");
     }
 
-    public static void patch130to140() {
+    private static void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
         Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE visitor_id = 11");
@@ -219,7 +231,7 @@ public class DatabaseHelper {
         }
     }
 
-    public static void patch140to150() {
+    private static void patch140to150() {
         if (Upgrade.getValue("Minimum Visitor Rewards") == 0) {
             patch130to140();
         }
@@ -496,12 +508,12 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    public static void patch150to154() {
+    private static void patch150to154() {
         Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id IN (27, 28)");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
     }
 
-    public static void patch154to160() {
+    private static void patch154to160() {
         // Fix collection + prestige achievements
         Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'CollectionsCreated') WHERE name = 'The Collector'");
         Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'Prestige') WHERE name = 'The Fun Never Stops'");
@@ -557,7 +569,7 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    public static void patch160to161() {
+    private static void patch160to161() {
         Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(72, 129, 1, 2)); // Ruby
@@ -566,6 +578,698 @@ public class DatabaseHelper {
         workerResources.add(new Worker_Resource(76, 130, 1, 2)); // Onyx
         workerResources.add(new Worker_Resource(76, 131, 1, 2)); // Onyx
         Worker_Resource.saveInTx(workerResources);
+    }
+    
+    private static void patch161to170() {
+        // Update prices of legendary hammer + half helmet to reflect part change
+        Item.executeQuery("UPDATE item SET value = 3000 WHERE name IN (\"Legendary half helmet\",\"Legendary hammer\")");
+
+        // Update prices of bronze items
+        Item.executeQuery("UPDATE item SET value = 5 WHERE name = \"Bronze bar\"");
+        Item.executeQuery("UPDATE item SET value = 12 WHERE name IN (\"Bronze sword\",\"Bronze longsword\",\"Bronze boots\",\"Bronze pickaxe\",\"Bronze fishing rod\")");
+        Item.executeQuery("UPDATE item SET value = 17 WHERE name IN (\"Bronze half shield\",\"Bronze full shield\",\"Bronze half helmet\",\"Bronze chainmail\")");
+        Item.executeQuery("UPDATE item SET value = 22 WHERE name = \"Bronze full helmet\"");
+        Item.executeQuery("UPDATE item SET value = 27 WHERE name = \"Bronze platebody\"");
+
+        // Update prices of all other tiers
+        Item.executeQuery("UPDATE item SET value = value + 8 WHERE name LIKE \"Mithril%\" AND name <> \"Mithril bar\" AND name <> \"Mithril ore\"");
+        Item.executeQuery("UPDATE item SET value = value + 7 WHERE name LIKE \"Adamant%\" AND name <> \"Adamant bar\" AND name <> \"Adamant ore\"");
+        Item.executeQuery("UPDATE item SET value = value + 15 WHERE name LIKE \"Rune%\" AND name <> \"Rune bar\" AND name <> \"Rune ore\"");
+        Item.executeQuery("UPDATE item SET value = value + 15 WHERE name LIKE \"Dragon%\" AND name <> \"Dragon bar\" AND name <> \"Dragon ore\"");
+
+        // Update prices of powdered items + visage
+        Item.executeQuery("UPDATE item SET value = 10 WHERE name IN (\"Powdered sapphire\",\"Powdered emerald\")");
+        Item.executeQuery("UPDATE item SET value = 20 WHERE name = \"Powdered diamond\"");
+        Item.executeQuery("UPDATE item SET value = 30 WHERE name = \"Draconic visage\"");
+
+        // Delete all sapphire from rune recipes.
+        Recipe.deleteAll(Recipe.class, "ingredient = 129 AND item IN (SELECT id FROM item WHERE name LIKE \"Rune%\")");
+
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE resource_id IN (73, 74, 75)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE resource_id IN (72, 76)");
+
+        List<Setting> settings = new ArrayList<>();
+            settings.add(new Setting(12L, "OnlyAvailableItems", false));
+            settings.add(new Setting(13L, "OpenMessageLog", true));
+            settings.add(new Setting(14L, "Fullscreen", true));
+            settings.add(new Setting(15L, "Autorefresh", false));
+            settings.add(new Setting(16L, "CheckFullscreen", true));
+            settings.add(new Setting(17L, "UpdateSlots", true));
+            settings.add(new Setting(18L, "LongToasts", false));
+            settings.add(new Setting(19L, "HandleMax", false));
+        Setting.saveInTx(settings);
+
+        // Updating minimum levels for traders
+        Trader.executeQuery("UPDATE trader SET level = 20 WHERE name = \"The Backbone\" OR name = \"GemCrusher 9000\"");
+        Trader.executeQuery("UPDATE trader SET level = 35 WHERE name = \"The Nougat\" OR name = \"The Golden Boulders\"");
+        Trader.executeQuery("UPDATE trader SET level = 40 WHERE name = \"The Prime Cuts\"");
+        Trader.executeQuery("UPDATE trader SET level = 45 WHERE name = \"The Exclusive Emporium\"");
+
+        // Increasing stock for gem / powder traders
+        Trader_Stock.executeQuery("UPDATE traderstock SET default_stock = default_stock * 5 WHERE trader_type = 48");
+
+        // Actually fixing green and blue visitors...
+        Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 5, type_preferred = 20 WHERE visitor_id = 8");
+        Visitor_Type.executeQuery("UPDATE VisitorType SET state_preferred = 4, type_preferred = 20 WHERE visitor_id = 9");
+
+        createContributionGoals();
+        createHero();
+        createSuperUpgrade();
+    }
+
+    private static void createContributionGoals() {
+        List<Contribution_Goal> goals = new ArrayList<>();
+            goals.add(new Contribution_Goal(1, "Thank You", 1, "Get an extra little thank you.\n", "Thanks! Your contributions are what make further development on Pixel Blacksmith possible!\n"));
+            goals.add(new Contribution_Goal(2, "Dev Queue", 3, "Get access to the Trello board used to plan / prioritise new features, changes, and bug fixes.", "<a href=\"https://trello.com/b/Zw01amFA/\">Trello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it'll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in."));
+            goals.add(new Contribution_Goal(3, "Beta & Credits", 6, "Get beta access to all releases at least 24hr in advance, and get your name / username in the credits.", "Hey, send an email to <a href=\"mailto:i.am.now.a.beta.player@jakelee.co.uk\">the beta address</a> and I'll get you added to the beta testing / credits!"));
+            goals.add(new Contribution_Goal(4, "Create Quest", 10, "Create a quest and quest reward for a hero to be added to the game.", "Woo! Try and make your idea fit into an existing category, and email it to <a href=\"mailto:i.make.the.quests@jakelee.co.uk\">the quest address</a>, and I'll put it in the game."));
+            goals.add(new Contribution_Goal(5, "Create Item", 18, "Create an item (e.g. weapon, armour, ingredient) to be added to the game.", "Hey! Email your item name, description, ingredients, and purpose to <a href=\"mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk\">the item address</a>. We might have to make some changes to balance the item though!"));
+            goals.add(new Contribution_Goal(6, "Create Visitor", 24, "Create a visitor, along with preferences.", "You're a big fan of contributing, huh? Email a visitor name, description, and preferences to <a href=\"mailto:i.make.people.happen@jakelee.co.uk\">the visitor address</a>, and we'll discuss the visitor's appearance etc."));
+            goals.add(new Contribution_Goal(7, "Create Feature", 38, "Suggest an entirely new feature (within reason!) for the game.", "Wow, that's impressive..! Send me an email to <a href=\"mailto:i.basically.make.the.game@jakelee.co.uk\">the feature address</a>, and we'll work together to make the feature reality."));
+        Contribution_Goal.saveInTx(goals);
+    }
+
+    private static void createSuperUpgrade() {
+        List<Super_Upgrade> upgrades = new ArrayList<>();
+            upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 0, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 0, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_SINGLE_DEMAND, "1 Demand Per Visitor", 3, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_MARKET_COST, "-50% Market Buy Cost", 4, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_HALF_WORKER_TIME, "-50% Worker Time", 5, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TRADE_PRICE, "2x Trade Price", 5, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_TRADER_STOCK, "2x Trader Items Purchased", 5, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_XP, "2x All XP", 6, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_BONUS_GOLD, "2x Coin Earnings", 6, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_QUEST_MED, "All Quests Medium+", 0, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_QUEST_HARD, "All Quests Hard+", 2, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_QUEST_ELITE, "All Quests Elite", 3, false));
+        Super_Upgrade.saveInTx(upgrades);
+    }
+
+    private static void createHero() {
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(new Hero(1, 5));
+        heroes.add(new Hero(2, 25));
+        heroes.add(new Hero(3, 35));
+        heroes.add(new Hero(4, 45));
+        heroes.add(new Hero(5, 55));
+        heroes.add(new Hero(6, 65));
+        Hero.saveInTx(heroes);
+
+        List<Hero_Category> heroCategories = new ArrayList<>();
+        List<Hero_Adventure> heroAdventures = new ArrayList<>();
+        List<Hero_Resource> heroResources = new ArrayList<>();
+
+        // Gathering: 1 - 150 difficulty.
+        heroCategories.add(new Hero_Category(1, "Gathering", 0));
+            heroCategories.add(new Hero_Category(11, "Gather Plants", 1));
+                heroAdventures.add(new Hero_Adventure(111, 11, "Gather Red Weed", 10));
+                    heroResources.add(new Hero_Resource(111, 20, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(112, 11, "Gather Nirnroot Herbs", 20));
+                    heroResources.add(new Hero_Resource(112, 23, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(113, 11, "Gather Kyrt Herbs", 30));
+                    heroResources.add(new Hero_Resource(113, 27, Constants.STATE_NORMAL, 5));
+
+            heroCategories.add(new Hero_Category(12, "Gather Insects", 1));
+                heroAdventures.add(new Hero_Adventure(121, 12, "Gather Ants", 25));
+                    heroResources.add(new Hero_Resource(121, 37, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(122, 12, "Gather Bees", 35));
+                    heroResources.add(new Hero_Resource(122, 40, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(123, 12, "Gather Stick Insects", 45));
+                    heroResources.add(new Hero_Resource(123, 42, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(124, 12, "Gather Hercules Beetles", 45));
+                    heroResources.add(new Hero_Resource(124, 50, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(125, 12, "Gather Praying Mantis", 95));
+                    heroResources.add(new Hero_Resource(125, 43, Constants.STATE_NORMAL, 5));
+
+            heroCategories.add(new Hero_Category(13, "Gather Bones", 1));
+                heroAdventures.add(new Hero_Adventure(131, 13, "Gather Bird Bones", 25));
+                    heroResources.add(new Hero_Resource(131, 55, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(132, 13, "Gather Rat Bones", 35));
+                    heroResources.add(new Hero_Resource(132, 57, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(133, 13, "Gather Fish Bones", 45));
+                    heroResources.add(new Hero_Resource(133, 58, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(134, 13, "Gather Monkey Bones", 55));
+                    heroResources.add(new Hero_Resource(134, 61, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(135, 13, "Gather Shark Bones", 65));
+                    heroResources.add(new Hero_Resource(135, 62, Constants.STATE_NORMAL, 5));
+
+            heroCategories.add(new Hero_Category(14, "Gather Ore", 1));
+                heroAdventures.add(new Hero_Adventure(141, 14, "Gather Coal", 15));
+                    heroResources.add(new Hero_Resource(141, 3, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(142, 14, "Gather Iron Ore", 25));
+                    heroResources.add(new Hero_Resource(142, 4, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(143, 14, "Gather Silver Nuggets", 35));
+                    heroResources.add(new Hero_Resource(143, 9, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(144, 14, "Gather Gold Nuggets", 45));
+                    heroResources.add(new Hero_Resource(144, 8, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(145, 14, "Gather Mithril Ore", 65));
+                    heroResources.add(new Hero_Resource(145, 5, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(146, 14, "Gather Adamantite Ore", 85));
+                    heroResources.add(new Hero_Resource(146, 6, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(147, 14, "Gather Runite Ore", 105));
+                    heroResources.add(new Hero_Resource(147, 7, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(148, 14, "Gather Dragonite Ore", 125));
+                    heroResources.add(new Hero_Resource(148, 10, Constants.STATE_NORMAL, 10));
+
+            heroCategories.add(new Hero_Category(15, "Gather Corpses", 1));
+                heroAdventures.add(new Hero_Adventure(151, 15, "Gather Mice Corpses", 50));
+                    heroResources.add(new Hero_Resource(151, 78, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(151, 217, Constants.STATE_NORMAL, 1));
+                heroAdventures.add(new Hero_Adventure(152, 15, "Gather Wolf Corpses", 75));
+                    heroResources.add(new Hero_Resource(152, 80, Constants.STATE_NORMAL, 5));
+                    heroResources.add(new Hero_Resource(152, 70, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(153, 15, "Gather Human Corpses", 100));
+                    heroResources.add(new Hero_Resource(153, 80, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(154, 15, "Gather Giant Corpses", 125));
+                    heroResources.add(new Hero_Resource(154, 80, Constants.STATE_NORMAL, 15));
+                heroAdventures.add(new Hero_Adventure(155, 15, "Gather Monster Corpses", 150));
+                    heroResources.add(new Hero_Resource(155, 80, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(155, 130, Constants.STATE_NORMAL, 3));
+
+            heroCategories.add(new Hero_Category(16, "Gather Buried Treasure", 1));
+                heroAdventures.add(new Hero_Adventure(161, 16, "Gather Buried Coins", 130));
+                    heroResources.add(new Hero_Resource(161, 52, Constants.STATE_NORMAL, 275));
+                heroAdventures.add(new Hero_Adventure(162, 16, "Gather Buried Gems", 140));
+                    heroResources.add(new Hero_Resource(162, 129, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(162, 130, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(162, 131, Constants.STATE_NORMAL, 2));
+                heroAdventures.add(new Hero_Adventure(163, 16, "Gather Buried Chests", 150));
+                    heroResources.add(new Hero_Resource(163, 129, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(163, 130, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(163, 52, Constants.STATE_NORMAL, 225));
+
+        // Animal Hunting: 100 - 250 difficulty.
+        heroCategories.add(new Hero_Category(2, "Animal Hunting", 0));
+            heroCategories.add(new Hero_Category(21, "Fly Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(211, 21, "Hunt Fruit Flies", 100));
+                    heroResources.add(new Hero_Resource(211, 77, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(211, 206, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(211, 207, Constants.STATE_NORMAL, 2));
+                heroAdventures.add(new Hero_Adventure(212, 21, "Hunt Blue Flies", 120));
+                    heroResources.add(new Hero_Resource(212, 16, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(213, 21, "Hunt Mutant Flies", 150));
+                    heroResources.add(new Hero_Resource(213, 80, Constants.STATE_NORMAL, 8));
+                    heroResources.add(new Hero_Resource(213, 214, Constants.STATE_NORMAL, 8));
+                heroAdventures.add(new Hero_Adventure(214, 21, "Hunt Vampire Flies", 180));
+                    heroResources.add(new Hero_Resource(214, 80, Constants.STATE_NORMAL, 8));
+                    heroResources.add(new Hero_Resource(214, 80, Constants.STATE_NORMAL, 8));
+                heroAdventures.add(new Hero_Adventure(215, 21, "Hunt Scavenger Flies", 220));
+                    heroResources.add(new Hero_Resource(215, 155, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(215, 113, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(215, 73, Constants.STATE_NORMAL, 1));
+
+            heroCategories.add(new Hero_Category(22, "Slug Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(221, 22, "Hunt Slow Slugs", 130));
+                    heroResources.add(new Hero_Resource(221, 204, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(222, 22, "Hunt Sticky Slugs", 150));
+                    heroResources.add(new Hero_Resource(222, 204, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(222, 79, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(223, 22, "Hunt Fancy Slugs", 170));
+                    heroResources.add(new Hero_Resource(223, 204, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(223, 158, Constants.STATE_NORMAL, 1));
+                heroAdventures.add(new Hero_Adventure(224, 22, "Hunt Deadly Slugs", 190));
+                    heroResources.add(new Hero_Resource(224, 204, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(224, 114, 4, 2));
+
+            heroCategories.add(new Hero_Category(23, "Spider Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(231, 23, "Hunt Baby Spiders", 110));
+                    heroResources.add(new Hero_Resource(231, 69, Constants.STATE_NORMAL, 13));
+                heroAdventures.add(new Hero_Adventure(232, 23, "Hunt Daddy Long Legs Spiders", 140));
+                    heroResources.add(new Hero_Resource(232, 69, Constants.STATE_NORMAL, 4));
+                    heroResources.add(new Hero_Resource(232, 70, Constants.STATE_NORMAL, 9));
+                heroAdventures.add(new Hero_Adventure(232, 23, "Hunt Tarantula Spiders", 190));
+                    heroResources.add(new Hero_Resource(233, 69, Constants.STATE_NORMAL, 9));
+                    heroResources.add(new Hero_Resource(233, 70, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(233, 23, "Hunt Black Widow Spiders", 250));
+                    heroResources.add(new Hero_Resource(231, 70, Constants.STATE_NORMAL, 13));
+
+            heroCategories.add(new Hero_Category(24, "Frog Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(241, 24, "Hunt Baby Frogs", 110));
+                    heroResources.add(new Hero_Resource(241, 24, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(241, 25, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(242, 24, "Hunt Jumping Frogs", 140));
+                    heroResources.add(new Hero_Resource(242, 57, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(242, 58, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(243, 24, "Hunt Skermit The Frogs", 170));
+                    heroResources.add(new Hero_Resource(243, 85, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(243, 86, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(244, 24, "Hunt Mr. Frogs", 210));
+                    heroResources.add(new Hero_Resource(244, 101, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(244, 102, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(245, 24, "Hunt Hypnofrogs", 250));
+                    heroResources.add(new Hero_Resource(245, 117, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(245, 118, Constants.STATE_NORMAL, 3));
+
+            heroCategories.add(new Hero_Category(25, "Rabbit Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(251, 25, "Hunt White Rabbits", 100));
+                heroAdventures.add(new Hero_Adventure(252, 25, "Hunt Dwarf Rabbits", 130));
+                heroAdventures.add(new Hero_Adventure(253, 25, "Hunt Wooly Rabbits", 170));
+                heroAdventures.add(new Hero_Adventure(254, 25, "Hunt Wabbits", 220));
+
+            heroCategories.add(new Hero_Category(26, "Hellcat Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(261, 26, "Hunt Blue Hellcats", 210));
+                    heroResources.add(new Hero_Resource(261, 73, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(262, 26, "Hunt Green Hellcats", 220));
+                    heroResources.add(new Hero_Resource(262, 74, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(263, 26, "Hunt Red Hellcats", 230));
+                    heroResources.add(new Hero_Resource(263, 72, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(264, 26, "Hunt White Hellcats", 240));
+                    heroResources.add(new Hero_Resource(264, 75, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(265, 26, "Hunt Black Hellcats", 250));
+                    heroResources.add(new Hero_Resource(265, 76, Constants.STATE_NORMAL, 3));
+
+            heroCategories.add(new Hero_Category(27, "Wolf Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(271, 27, "Hunt White Wolves", 160));
+                    heroResources.add(new Hero_Resource(271, 80, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(271, 17, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(271, 56, 6, 3));
+                heroAdventures.add(new Hero_Adventure(272, 27, "Hunt Wargs", 180));
+                    heroResources.add(new Hero_Resource(272, 80, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(272, 17, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(272, 58, 6, 3));
+                heroAdventures.add(new Hero_Adventure(273, 27, "Hunt Big Bad Wolves", 200));
+                    heroResources.add(new Hero_Resource(273, 80, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(273, 17, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(273, 63, 6, 3));
+                heroAdventures.add(new Hero_Adventure(274, 27, "Hunt Direwolves", 220));
+                    heroResources.add(new Hero_Resource(274, 80, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(274, 17, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(274, 68, 6, 3));
+                heroAdventures.add(new Hero_Adventure(275, 27, "Hunt Werewolves", 240));
+                    heroResources.add(new Hero_Resource(275, 80, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(275, 17, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(275, 60, 6, 3));
+
+            heroCategories.add(new Hero_Category(28, "Bear Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(281, 28, "Hunt Bobo The Bears", 100));
+                    heroResources.add(new Hero_Resource(281, 80, Constants.STATE_NORMAL, 4));
+                    heroResources.add(new Hero_Resource(281, 211, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(282, 28, "Hunt Panda Bears", 140));
+                    heroResources.add(new Hero_Resource(282, 80, Constants.STATE_NORMAL, 6));
+                    heroResources.add(new Hero_Resource(282, 211, Constants.STATE_NORMAL, 6));
+                heroAdventures.add(new Hero_Adventure(283, 28, "Hunt Pom Bears", 180));
+                    heroResources.add(new Hero_Resource(283, 80, Constants.STATE_NORMAL, 9));
+                    heroResources.add(new Hero_Resource(283, 211, Constants.STATE_NORMAL, 9));
+                heroAdventures.add(new Hero_Adventure(284, 28, "Hunt Black Bears", 220));
+                    heroResources.add(new Hero_Resource(284, 80, Constants.STATE_NORMAL, 14));
+                    heroResources.add(new Hero_Resource(284, 211, Constants.STATE_NORMAL, 14));
+                heroAdventures.add(new Hero_Adventure(285, 28, "Hunt Grizzly Bears", 250));
+                    heroResources.add(new Hero_Resource(285, 80, Constants.STATE_NORMAL, 21));
+                    heroResources.add(new Hero_Resource(285, 211, Constants.STATE_NORMAL, 21));
+
+            heroCategories.add(new Hero_Category(29, "Tiger Hunting", 2));
+                heroAdventures.add(new Hero_Adventure(291, 29, "Hunt Tiggers", 100));
+                    heroResources.add(new Hero_Resource(291, 1, Constants.STATE_NORMAL, 7));
+                    heroResources.add(new Hero_Resource(291, 3, Constants.STATE_NORMAL, 7));
+                heroAdventures.add(new Hero_Adventure(292, 29, "Hunt Young Tigers", 110));
+                    heroResources.add(new Hero_Resource(292, 1, Constants.STATE_NORMAL, 13));
+                    heroResources.add(new Hero_Resource(292, 3, Constants.STATE_NORMAL, 13));
+                heroAdventures.add(new Hero_Adventure(293, 29, "Hunt Gladiatorial Tigers", 170));
+                    heroResources.add(new Hero_Resource(293, 1, Constants.STATE_NORMAL, 22));
+                    heroResources.add(new Hero_Resource(293, 3, Constants.STATE_NORMAL, 22));
+                heroAdventures.add(new Hero_Adventure(294, 29, "Hunt Phony Tigers", 180));
+                    heroResources.add(new Hero_Resource(294, 1, Constants.STATE_NORMAL, 30));
+                    heroResources.add(new Hero_Resource(294, 3, Constants.STATE_NORMAL, 30));
+                heroAdventures.add(new Hero_Adventure(295, 29, "Hunt Shere Khan", 240));
+                    heroResources.add(new Hero_Resource(295, 1, Constants.STATE_NORMAL, 41));
+                    heroResources.add(new Hero_Resource(295, 3, Constants.STATE_NORMAL, 41));
+
+        // Monster Hunting: 200 - 600 difficulty.
+        heroCategories.add(new Hero_Category(3, "Monster Hunting", 0));
+            heroCategories.add(new Hero_Category(31, "Ghost Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(311, 31, "Hunt Poltergeists", 220));
+                    heroResources.add(new Hero_Resource(311, 192, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(311, 54, 6, 1));
+                heroAdventures.add(new Hero_Adventure(312, 31, "Hunt Victorian Ghosts", 280));
+                    heroResources.add(new Hero_Resource(312, 192, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(312, 63, 6, 1));
+                heroAdventures.add(new Hero_Adventure(313, 31, "Hunt Bloody Barons", 340));
+                    heroResources.add(new Hero_Resource(313, 192, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(313, 67, 6, 1));
+                heroAdventures.add(new Hero_Adventure(314, 31, "Hunt Black Knights", 400));
+                    heroResources.add(new Hero_Resource(314, 192, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(314, 68, 6, 1));
+
+            heroCategories.add(new Hero_Category(32, "Vampire Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(321, 32, "Hunt Vampire Bats", 310));
+                    heroResources.add(new Hero_Resource(321, 178, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(321, 40, 3, 1));
+                heroAdventures.add(new Hero_Adventure(322, 32, "Hunt Vampire Counts", 350));
+                    heroResources.add(new Hero_Resource(322, 178, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(322, 44, 3, 1));
+                heroAdventures.add(new Hero_Adventure(323, 32, "Hunt Draugrs", 390));
+                    heroResources.add(new Hero_Resource(323, 178, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(323, 49, 3, 1));
+
+            heroCategories.add(new Hero_Category(33, "Sea Monster Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(331, 33, "Hunt Loch Ness Monsters", 500));
+                    heroResources.add(new Hero_Resource(331, 184, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(331, 115, 4, 1));
+                heroAdventures.add(new Hero_Adventure(332, 33, "Hunt Leviathans", 600));
+                    heroResources.add(new Hero_Resource(332, 184, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(332, 118, 4, 1));
+                heroAdventures.add(new Hero_Adventure(333, 33, "Hunt Elder Gods", 600));
+                    heroResources.add(new Hero_Resource(333, 184, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(333, 126, 4, 1));
+
+            heroCategories.add(new Hero_Category(34, "Alien Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(341, 34, "Hunt Soft Ones", 190));
+                    heroResources.add(new Hero_Resource(341, 190, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(341, 82, 7, 1));
+                heroAdventures.add(new Hero_Adventure(342, 34, "Hunt Reapers", 290));
+                    heroResources.add(new Hero_Resource(342, 190, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(342, 93, 7, 1));
+                heroAdventures.add(new Hero_Adventure(343, 34, "Hunt Daleks", 390));
+                    heroResources.add(new Hero_Resource(343, 190, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(343, 96, 7, 1));
+                heroAdventures.add(new Hero_Adventure(344, 34, "Hunt Xenomorphs", 490));
+                    heroResources.add(new Hero_Resource(344, 190, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(344, 81, 7, 1));
+                heroAdventures.add(new Hero_Adventure(345, 34, "Hunt Moties", 590));
+                    heroResources.add(new Hero_Resource(345, 190, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(345, 99, 7, 1));
+
+            heroCategories.add(new Hero_Category(35, "Zombie Hunting", 3));
+                heroAdventures.add(new Hero_Adventure(351, 35, "Hunt Infected", 400));
+                    heroResources.add(new Hero_Resource(351, 182, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(351, 100, 5, 1));
+                heroAdventures.add(new Hero_Adventure(352, 35, "Hunt Crawlers", 440));
+                    heroResources.add(new Hero_Resource(352, 182, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(352, 107, 5, 1));
+                heroAdventures.add(new Hero_Adventure(353, 35, "Hunt Runners", 480));
+                    heroResources.add(new Hero_Resource(353, 182, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(353, 110, 5, 1));
+                heroAdventures.add(new Hero_Adventure(354, 35, "Hunt Spitters", 520));
+                    heroResources.add(new Hero_Resource(354, 182, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(354, 98, 5, 1));
+                heroAdventures.add(new Hero_Adventure(355, 35, "Hunt Boomers", 600));
+                    heroResources.add(new Hero_Resource(355, 182, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(355, 103, 5, 1));
+
+        // Elite Challenges: 700 - 1500 difficulty.
+        heroCategories.add(new Hero_Category(4, "Elite Challenges", 0));
+            heroCategories.add(new Hero_Category(41, "Bosses", 4));
+                heroAdventures.add(new Hero_Adventure(411, 41, "Kill Big Smoke", 700));
+                    heroResources.add(new Hero_Resource(411, 100, 5, 3));
+                    heroResources.add(new Hero_Resource(411, 116, 5, 3));
+                    heroResources.add(new Hero_Resource(411, 135, 5, 3));
+                heroAdventures.add(new Hero_Adventure(412, 41, "Kill Big Daddy", 740));
+                    heroResources.add(new Hero_Resource(412, 38, 7, 3));
+                    heroResources.add(new Hero_Resource(412, 45, 7, 3));
+                    heroResources.add(new Hero_Resource(412, 51, 7, 3));
+                heroAdventures.add(new Hero_Adventure(413, 41, "Kill Olmec", 780));
+                    heroResources.add(new Hero_Resource(413, 18, Constants.STATE_NORMAL, 25));
+                    heroResources.add(new Hero_Resource(413, 72, Constants.STATE_NORMAL, 5));
+                    heroResources.add(new Hero_Resource(413, 141, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(414, 41, "Kill Handsome Jack", 820));
+                    heroResources.add(new Hero_Resource(414, 52, Constants.STATE_NORMAL, 5000));
+                    heroResources.add(new Hero_Resource(414, 8, Constants.STATE_NORMAL, 35));
+                    heroResources.add(new Hero_Resource(414, 18, Constants.STATE_NORMAL, 35));
+                heroAdventures.add(new Hero_Adventure(415, 41, "Kill The Warrior", 860));
+                    heroResources.add(new Hero_Resource(415, 80, Constants.STATE_NORMAL, 35));
+                    heroResources.add(new Hero_Resource(415, 132, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(415, 113, Constants.STATE_NORMAL, 15));
+                heroAdventures.add(new Hero_Adventure(416, 41, "Kill Nihilanth", 900));
+                    heroResources.add(new Hero_Resource(416, 148, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(416, 214, Constants.STATE_NORMAL, 30));
+                heroAdventures.add(new Hero_Adventure(417, 41, "Kill GLaDOS", 940));
+                    heroResources.add(new Hero_Resource(416, 192, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(416, 149, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(416, 60, 6, 7));
+                heroAdventures.add(new Hero_Adventure(418, 41, "Kill Netherlord", 980));
+                    heroResources.add(new Hero_Resource(418, 72, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(418, 52, Constants.STATE_NORMAL, 6500));
+                    heroResources.add(new Hero_Resource(418, 133, 3, 5));
+                heroAdventures.add(new Hero_Adventure(419, 41, "Kill Doviculus", 1020));
+                    heroResources.add(new Hero_Resource(419, 51, Constants.STATE_NORMAL, 100));
+                    heroResources.add(new Hero_Resource(419, 38, Constants.STATE_NORMAL, 100));
+
+            heroCategories.add(new Hero_Category(42, "Hordes", 4));
+                heroAdventures.add(new Hero_Adventure(421, 42, "Survive Blacksmith Horde", 750));
+                    heroResources.add(new Hero_Resource(421, 112, 5, 4));
+                    heroResources.add(new Hero_Resource(421, 15, Constants.STATE_NORMAL, 100));
+                    heroResources.add(new Hero_Resource(421, 6, Constants.STATE_NORMAL, 100));
+                heroAdventures.add(new Hero_Adventure(422, 42, "Survive Spider Horde", 850));
+                    heroResources.add(new Hero_Resource(422, 69, Constants.STATE_NORMAL, 100));
+                    heroResources.add(new Hero_Resource(422, 70, Constants.STATE_NORMAL, 100));
+                heroAdventures.add(new Hero_Adventure(423, 42, "Survive Golem Horde", 950));
+                    heroResources.add(new Hero_Resource(423, 9, Constants.STATE_NORMAL, 100));
+                    heroResources.add(new Hero_Resource(423, 4, Constants.STATE_NORMAL, 100));
+                    heroResources.add(new Hero_Resource(423, 3, Constants.STATE_NORMAL, 100));
+                heroAdventures.add(new Hero_Adventure(424, 42, "Survive Angry Mob", 1050));
+                    heroResources.add(new Hero_Resource(424, 66, Constants.STATE_NORMAL, 22));
+                    heroResources.add(new Hero_Resource(424, 126, Constants.STATE_NORMAL, 22));
+                    heroResources.add(new Hero_Resource(424, 135, Constants.STATE_NORMAL, 11));
+                heroAdventures.add(new Hero_Adventure(425, 42, "Survive Warrior Horde", 1100));
+                    heroResources.add(new Hero_Resource(425, 140, Constants.STATE_NORMAL, 22));
+                    heroResources.add(new Hero_Resource(425, 119, Constants.STATE_NORMAL, 11));
+                    heroResources.add(new Hero_Resource(425, 142, Constants.STATE_NORMAL, 22));
+
+            heroCategories.add(new Hero_Category(43, "Unbeatable", 4));
+                heroAdventures.add(new Hero_Adventure(431, 43, "Achieve Nirvana", 1000));
+                    heroResources.add(new Hero_Resource(431, 52, Constants.STATE_NORMAL, 20000));
+                    heroResources.add(new Hero_Resource(431, 186, Constants.STATE_NORMAL, 1));
+                heroAdventures.add(new Hero_Adventure(432, 43, "Calculate Prime Number Formula", 1100));
+                    heroResources.add(new Hero_Resource(432, 52, Constants.STATE_NORMAL, 20000));
+                    heroResources.add(new Hero_Resource(432, 190, Constants.STATE_NORMAL, 1));
+                heroAdventures.add(new Hero_Adventure(433, 43, "Live Forever", 1200));
+                    heroResources.add(new Hero_Resource(433, 52, Constants.STATE_NORMAL, 20000));
+                    heroResources.add(new Hero_Resource(433, 204, Constants.STATE_NORMAL, 60));
+                heroAdventures.add(new Hero_Adventure(434, 43, "Raise The Dead", 1300));
+                    heroResources.add(new Hero_Resource(434, 52, Constants.STATE_NORMAL, 20000));
+                    heroResources.add(new Hero_Resource(434, 160, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(434, 154, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(435, 43, "Turn Back Time", 1400));
+                    heroResources.add(new Hero_Resource(435, 52, Constants.STATE_NORMAL, 20000));
+                    heroResources.add(new Hero_Resource(435, 129, Constants.STATE_NORMAL, 45));
+                    heroResources.add(new Hero_Resource(435, 130, Constants.STATE_NORMAL, 45));
+                heroAdventures.add(new Hero_Adventure(436, 43, "Complete All Adventures", 1500));
+                    heroResources.add(new Hero_Resource(436, 52, Constants.STATE_NORMAL, 20000));
+                    heroResources.add(new Hero_Resource(436, 139, Constants.STATE_NORMAL, 20));
+                    heroResources.add(new Hero_Resource(436, 147, 3, 4));
+
+        // Guard Duty: 100 - 300 difficulty.
+        heroCategories.add(new Hero_Category(5, "Guard Duty", 0));
+            heroCategories.add(new Hero_Category(51, "Guard Shops", 5));
+                heroAdventures.add(new Hero_Adventure(511, 51, "Guard Butchers", 100));
+                    heroResources.add(new Hero_Resource(511, 80, Constants.STATE_NORMAL, 5));
+                    heroResources.add(new Hero_Resource(511, 214, Constants.STATE_NORMAL, 5));
+                heroAdventures.add(new Hero_Adventure(512, 51, "Guard Bakers", 110));
+                    heroResources.add(new Hero_Resource(512, 79, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(512, 218, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(512, 219, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(513, 51, "Guard Sandwich Shop", 120));
+                    heroResources.add(new Hero_Resource(513, 216, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(513, 217, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(513, 215, Constants.STATE_NORMAL, 2));
+                heroAdventures.add(new Hero_Adventure(514, 51, "Guard Fishmongers", 130));
+                    heroResources.add(new Hero_Resource(514, 211, Constants.STATE_NORMAL, 9));
+                heroAdventures.add(new Hero_Adventure(515, 51, "Guard Pie Shop", 140));
+                    heroResources.add(new Hero_Resource(515, 218, Constants.STATE_NORMAL, 6));
+                heroAdventures.add(new Hero_Adventure(516, 51, "Guard Fruit Stand", 150));
+                    heroResources.add(new Hero_Resource(516, 205, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(516, 208, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(516, 218, Constants.STATE_NORMAL, 2));
+                heroAdventures.add(new Hero_Adventure(517, 51, "Guard Farmer's Stand", 160));
+                    heroResources.add(new Hero_Resource(517, 202, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(517, 203, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(517, 204, Constants.STATE_NORMAL, 3));
+                heroAdventures.add(new Hero_Adventure(518, 51, "Guard Sweet Shop", 170));
+                    heroResources.add(new Hero_Resource(518, 209, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(518, 210, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(518, 219, Constants.STATE_NORMAL, 3));
+
+            heroCategories.add(new Hero_Category(52, "Guard Markets", 5));
+                heroAdventures.add(new Hero_Adventure(521, 52, "Guard Local Market", 100));
+                    heroResources.add(new Hero_Resource(521, 79, Constants.STATE_NORMAL, 5));
+                    heroResources.add(new Hero_Resource(521, 52, Constants.STATE_NORMAL, 250));
+                heroAdventures.add(new Hero_Adventure(522, 52, "Guard Farmer's Market", 200));
+                    heroResources.add(new Hero_Resource(522, 79, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(522, 52, Constants.STATE_NORMAL, 750));
+                heroAdventures.add(new Hero_Adventure(523, 52, "Guard County Market", 300));
+                    heroResources.add(new Hero_Resource(523, 79, Constants.STATE_NORMAL, 20));
+                    heroResources.add(new Hero_Resource(523, 52, Constants.STATE_NORMAL, 1500));
+
+            heroCategories.add(new Hero_Category(53, "Guard Factories", 5));
+                heroAdventures.add(new Hero_Adventure(531, 53, "Guard Food Processing Factory", 150));
+                    heroResources.add(new Hero_Resource(531, 78, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(531, 214, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(531, 215, Constants.STATE_NORMAL, 2));
+                heroAdventures.add(new Hero_Adventure(532, 53, "Guard Smelting Factory", 200));
+                    heroResources.add(new Hero_Resource(532, 3, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(532, 5, Constants.STATE_NORMAL, 4));
+                    heroResources.add(new Hero_Resource(532, 14, Constants.STATE_NORMAL, 6));
+                heroAdventures.add(new Hero_Adventure(533, 53, "Guard Clothing Factory", 250));
+                    heroResources.add(new Hero_Resource(533, 69, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(533, 70, Constants.STATE_NORMAL, 15));
+                heroAdventures.add(new Hero_Adventure(534, 53, "Guard Gem Factory", 300));
+                    heroResources.add(new Hero_Resource(534, 72, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(534, 130, Constants.STATE_NORMAL, 4));
+                    heroResources.add(new Hero_Resource(534, 131, Constants.STATE_NORMAL, 4));
+
+            heroCategories.add(new Hero_Category(54, "Guard Banks", 5));
+                heroAdventures.add(new Hero_Adventure(541, 54, "Guard Local Bank", 190));
+                    heroResources.add(new Hero_Resource(541, 52, Constants.STATE_NORMAL, 200));
+                heroAdventures.add(new Hero_Adventure(542, 54, "Guard Town Bank", 210));
+                    heroResources.add(new Hero_Resource(542, 52, Constants.STATE_NORMAL, 220));
+                heroAdventures.add(new Hero_Adventure(543, 54, "Guard City Bank", 220));
+                    heroResources.add(new Hero_Resource(543, 52, Constants.STATE_NORMAL, 260));
+                heroAdventures.add(new Hero_Adventure(544, 54, "Guard State Bank", 230));
+                    heroResources.add(new Hero_Resource(544, 52, Constants.STATE_NORMAL, 310));
+                heroAdventures.add(new Hero_Adventure(545, 54, "Guard Federal Bank", 240));
+                    heroResources.add(new Hero_Resource(545, 52, Constants.STATE_NORMAL, 400));
+
+            heroCategories.add(new Hero_Category(55, "Guard Royalty", 5));
+                heroAdventures.add(new Hero_Adventure(551, 55, "Guard Princess", 270));
+                    heroResources.add(new Hero_Resource(551, 9, Constants.STATE_NORMAL, 8));
+                    heroResources.add(new Hero_Resource(551, 17, Constants.STATE_NORMAL, 8));
+                heroAdventures.add(new Hero_Adventure(552, 55, "Guard Prince", 260));
+                    heroResources.add(new Hero_Resource(552, 8, Constants.STATE_NORMAL, 8));
+                    heroResources.add(new Hero_Resource(552, 18, Constants.STATE_NORMAL, 8));
+                heroAdventures.add(new Hero_Adventure(553, 55, "Guard Queen", 280));
+                    heroResources.add(new Hero_Resource(553, 9, Constants.STATE_NORMAL, 16));
+                    heroResources.add(new Hero_Resource(553, 17, Constants.STATE_NORMAL, 16));
+                heroAdventures.add(new Hero_Adventure(554, 55, "Guard King", 290));
+                    heroResources.add(new Hero_Resource(554, 8, Constants.STATE_NORMAL, 16));
+                    heroResources.add(new Hero_Resource(554, 18, Constants.STATE_NORMAL, 16));
+
+        // Exploring: 500 - 800 difficulty.
+        heroCategories.add(new Hero_Category(6, "Exploring", 0));
+            heroCategories.add(new Hero_Category(61, "Explore Forest", 6));
+                heroAdventures.add(new Hero_Adventure(611, 61, "Explore Shrubs", 500));
+                    heroResources.add(new Hero_Resource(611, 73, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(611, 202, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(612, 61, "Explore Bushes", 520));
+                    heroResources.add(new Hero_Resource(612, 74, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(612, 203, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(613, 61, "Explore Trees", 540));
+                    heroResources.add(new Hero_Resource(613, 76, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(613, 77, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(614, 61, "Explore Treetops", 600));
+                    heroResources.add(new Hero_Resource(614, 75, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(614, 130, Constants.STATE_NORMAL, 5));
+
+            heroCategories.add(new Hero_Category(62, "Explore Desert", 6));
+                heroAdventures.add(new Hero_Adventure(621, 62, "Explore Sandwich", 500));
+                    heroResources.add(new Hero_Resource(621, 217, Constants.STATE_NORMAL, 8));
+                heroAdventures.add(new Hero_Adventure(622, 62, "Explore Sandcastle", 650));
+                    heroResources.add(new Hero_Resource(622, 216, Constants.STATE_NORMAL, 8));
+                heroAdventures.add(new Hero_Adventure(623, 62, "Explore Sand Dune", 700));
+                    heroResources.add(new Hero_Resource(623, 215, Constants.STATE_NORMAL, 8));
+
+            heroCategories.add(new Hero_Category(63, "Explore City", 6));
+                heroAdventures.add(new Hero_Adventure(631, 63, "Explore Central City", 600));
+                    heroResources.add(new Hero_Resource(631, 188, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(631, 13, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(631, 12, Constants.STATE_NORMAL, 10));
+                heroAdventures.add(new Hero_Adventure(632, 63, "Explore West City", 640));
+                    heroResources.add(new Hero_Resource(632, 188, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(632, 14, Constants.STATE_NORMAL, 20));
+                heroAdventures.add(new Hero_Adventure(633, 63, "Explore South City", 680));
+                    heroResources.add(new Hero_Resource(633, 188, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(633, 15, Constants.STATE_NORMAL, 20));
+                heroAdventures.add(new Hero_Adventure(634, 63, "Explore East City", 720));
+                    heroResources.add(new Hero_Resource(634, 188, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(634, 16, Constants.STATE_NORMAL, 20));
+                heroAdventures.add(new Hero_Adventure(635, 63, "Explore North City", 760));
+                    heroResources.add(new Hero_Resource(635, 188, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(635, 19, Constants.STATE_NORMAL, 20));
+
+            heroCategories.add(new Hero_Category(64, "Explore Underwater", 6));
+                heroAdventures.add(new Hero_Adventure(641, 64, "Explore Coral Reef", 600));
+                    heroResources.add(new Hero_Resource(641, 211, Constants.STATE_NORMAL, 25));
+                heroAdventures.add(new Hero_Adventure(642, 64, "Explore Mariana Trench", 800));
+                    heroResources.add(new Hero_Resource(642, 211, Constants.STATE_NORMAL, 45));
+
+            heroCategories.add(new Hero_Category(65, "Explore Caves", 6));
+                heroAdventures.add(new Hero_Adventure(651, 65, "Explore Small Cave", 750));
+                    heroResources.add(new Hero_Resource(651, 105, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(651, 128, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(651, 144, Constants.STATE_NORMAL, 2));
+                heroAdventures.add(new Hero_Adventure(652, 65, "Explore Medium Cave", 790));
+                    heroResources.add(new Hero_Resource(652, 110, Constants.STATE_NORMAL, 4));
+                    heroResources.add(new Hero_Resource(652, 127, Constants.STATE_NORMAL, 4));
+                    heroResources.add(new Hero_Resource(652, 143, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(653, 65, "Explore Large Cave", 800));
+                    heroResources.add(new Hero_Resource(653, 106, 3, 2));
+                    heroResources.add(new Hero_Resource(653, 122, 4, 2));
+                    heroResources.add(new Hero_Resource(653, 132, 5, 2));
+
+        // Escort: 300 - 700 difficulty.
+        heroCategories.add(new Hero_Category(7, "Escort", 0));
+            heroCategories.add(new Hero_Category(71, "Escort Villagers", 7));
+                heroAdventures.add(new Hero_Adventure(711, 71, "Escort Butcher", 350));
+                    heroResources.add(new Hero_Resource(711, 80, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(711, 52, Constants.STATE_NORMAL, 50));
+                heroAdventures.add(new Hero_Adventure(712, 71, "Escort Baker", 370));
+                    heroResources.add(new Hero_Resource(712, 79, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(712, 202, Constants.STATE_NORMAL, 5));
+                    heroResources.add(new Hero_Resource(712, 52, Constants.STATE_NORMAL, 75));
+                heroAdventures.add(new Hero_Adventure(713, 71, "Escort Fisherman", 390));
+                    heroResources.add(new Hero_Resource(713, 211, Constants.STATE_NORMAL, 15));
+                    heroResources.add(new Hero_Resource(713, 52, Constants.STATE_NORMAL, 100));
+                heroAdventures.add(new Hero_Adventure(714, 71, "Escort Silk Trader", 410));
+                    heroResources.add(new Hero_Resource(714, 69, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(714, 70, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(714, 52, Constants.STATE_NORMAL, 125));
+                heroAdventures.add(new Hero_Adventure(715, 71, "Escort Gem Trader", 430));
+                    heroResources.add(new Hero_Resource(715, 76, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(715, 131, Constants.STATE_NORMAL, 10));
+                    heroResources.add(new Hero_Resource(715, 52, Constants.STATE_NORMAL, 150));
+                heroAdventures.add(new Hero_Adventure(716, 71, "Escort Weapons Trader", 450));
+                    heroResources.add(new Hero_Resource(716, 115, Constants.STATE_NORMAL, 7));
+                    heroResources.add(new Hero_Resource(716, 116, Constants.STATE_NORMAL, 7));
+                    heroResources.add(new Hero_Resource(716, 52, Constants.STATE_NORMAL, 175));
+                heroAdventures.add(new Hero_Adventure(717, 71, "Escort Armour Trader", 470));
+                    heroResources.add(new Hero_Resource(717, 118, Constants.STATE_NORMAL, 7));
+                    heroResources.add(new Hero_Resource(717, 120, Constants.STATE_NORMAL, 7));
+                    heroResources.add(new Hero_Resource(717, 52, Constants.STATE_NORMAL, 200));
+
+            heroCategories.add(new Hero_Category(72, "Escort Visitors", 7));
+                heroAdventures.add(new Hero_Adventure(721, 72, "Escort Day Visitor", 500));
+                    heroResources.add(new Hero_Resource(721, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(721, 155, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(722, 72, "Escort Night Visitor", 520));
+                    heroResources.add(new Hero_Resource(722, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(722, 156, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(723, 72, "Escort Winter Visitor", 540));
+                    heroResources.add(new Hero_Resource(723, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(723, 157, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(724, 72, "Escort Summer Visitor", 560));
+                    heroResources.add(new Hero_Resource(724, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(724, 158, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(725, 72, "Escort Autumn Visitor", 580));
+                    heroResources.add(new Hero_Resource(725, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(725, 159, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(726, 72, "Escort Spring Visitor", 600));
+                    heroResources.add(new Hero_Resource(726, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(726, 160, Constants.STATE_NORMAL, 4));
+                heroAdventures.add(new Hero_Adventure(727, 72, "Escort Lost Courier", 620));
+                    heroResources.add(new Hero_Resource(727, 180, Constants.STATE_NORMAL, 1));
+                    heroResources.add(new Hero_Resource(727, 216, Constants.STATE_NORMAL, 2));
+                    heroResources.add(new Hero_Resource(727, 217, Constants.STATE_NORMAL, 2));
+
+            heroCategories.add(new Hero_Category(73, "Escort Soldiers", 7));
+                heroAdventures.add(new Hero_Adventure(731, 73, "Escort Underground Soldier", 630));
+                    heroResources.add(new Hero_Resource(731, 52, Constants.STATE_NORMAL, 1000));
+                    heroResources.add(new Hero_Resource(731, 148, Constants.STATE_NORMAL, 1));
+                heroAdventures.add(new Hero_Adventure(732, 73, "Escort Shiny Soldier", 660));
+                    heroResources.add(new Hero_Resource(732, 52, Constants.STATE_NORMAL, 1200));
+                    heroResources.add(new Hero_Resource(732, 18, Constants.STATE_NORMAL, 3));
+                    heroResources.add(new Hero_Resource(732, 148, Constants.STATE_NORMAL, 1));
+                heroAdventures.add(new Hero_Adventure(733, 73, "Escort Elegant Soldier", 690));
+                    heroResources.add(new Hero_Resource(733, 52, Constants.STATE_NORMAL, 1400));
+                    heroResources.add(new Hero_Resource(733, 70, Constants.STATE_NORMAL, 5));
+                    heroResources.add(new Hero_Resource(733, 148, Constants.STATE_NORMAL, 1));
+
+        Hero_Category.saveInTx(heroCategories);
+        Hero_Adventure.saveInTx(heroAdventures);
+        Hero_Resource.saveInTx(heroResources);
     }
 
     private static void createAchievement() {
@@ -664,6 +1368,11 @@ public class DatabaseHelper {
         inventories.add(new Inventory(1L, Constants.STATE_NORMAL, 150));
         inventories.add(new Inventory(2L, Constants.STATE_NORMAL, 150));
         inventories.add(new Inventory(4L, Constants.STATE_NORMAL, 150));
+
+        // Make bronze bar + dagger visible.
+        inventories.add(new Inventory(11L, Constants.STATE_NORMAL, 0));
+        inventories.add(new Inventory(20L, Constants.STATE_UNFINISHED, 0));
+        inventories.add(new Inventory(20L, Constants.STATE_NORMAL, 0));
 
         // 30 silk, spidersilk
         inventories.add(new Inventory(69L, Constants.STATE_NORMAL, 30));

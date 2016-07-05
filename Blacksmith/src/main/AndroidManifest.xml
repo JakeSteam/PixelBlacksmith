@@ -10,7 +10,6 @@
 
     <application
         android:name="com.orm.SugarApp"
-        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -31,7 +30,7 @@
             android:value="blacksmith.db" />
         <meta-data
             android:name="VERSION"
-            android:value="3" />
+            android:value="4" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="false" />
@@ -43,7 +42,7 @@
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
         <activity
             android:name=".main.SplashScreenActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,70 +53,85 @@
             android:name=".main.MainActivity"/>
         <activity
             android:name=".main.InventoryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.MarketActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.FurnaceActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.AnvilActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.TableActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.TraderActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.VisitorActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.TradeActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.EnchantingActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.SettingsActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.CreditsActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.TrophyActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.StatisticsActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.HelpActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.UpgradeActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.MessagesActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.PremiumActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.WorkerActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.ToolActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.FoodActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.QuestActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.ItemSelectActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
+            android:name=".main.AdventureActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
+            android:name=".main.EquipmentActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
+            android:name=".main.EquipmentSelectActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
+            android:name=".main.VisitorSelectActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
+            android:name=".main.InterstitialActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />

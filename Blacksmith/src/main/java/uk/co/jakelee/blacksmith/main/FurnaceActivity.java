@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -36,6 +35,8 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 
 public class FurnaceActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -52,7 +53,10 @@ public class FurnaceActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furnace);
+
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+        
         gh = new GestureHelper(getApplicationContext());
         foodSelected = MainActivity.prefs.getBoolean("furnaceTab", false);
 
@@ -78,11 +82,11 @@ public class FurnaceActivity extends Activity {
                         (TableLayout) findViewById(R.id.ingredientsTable),
                         mViewFlipper,
                         Constants.STATE_NORMAL);
+                updateButtons();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
         handler.post(everySecond);
-
     }
 
     @Override
@@ -127,6 +131,10 @@ public class FurnaceActivity extends Activity {
             createFurnaceInterface(clearExisting);
         }
 
+        updateButtons();
+    }
+
+    private void updateButtons() {
         if (MainActivity.vh.furnaceBusy) {
             dimButtons();
         } else {
@@ -155,8 +163,12 @@ public class FurnaceActivity extends Activity {
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
-        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
-        smelt1.setText(R.string.smelt1Text);
+        ((TextView) findViewById(R.id.smelt1)).setText(R.string.smelt1Text);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.maxText);
+        } else {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.smelt100Text);
+        }
     }
 
     private void createFoodInterface(boolean clearExisting) {
@@ -180,8 +192,12 @@ public class FurnaceActivity extends Activity {
         HorizontalDots horizontalIndicator = (HorizontalDots) findViewById(R.id.horizontalIndicator);
         horizontalIndicator.addDots(dh, mViewFlipper.getChildCount(), mViewFlipper.getDisplayedChild());
 
-        TextView smelt1 = (TextView) findViewById(R.id.smelt1);
-        smelt1.setText(R.string.cook1Text);
+        ((TextView) findViewById(R.id.smelt1)).setText(R.string.cook1Text);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.maxText);
+        } else {
+            ((TextView) findViewById(R.id.smelt100)).setText(R.string.smelt100Text);
+        }
     }
 
     public void smelt1(View v) {
@@ -191,12 +207,18 @@ public class FurnaceActivity extends Activity {
 
     public void smelt10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        smelt(itemID, 10);
+        int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
+        smelt(itemID, numCraftable >= 10 ? 10 : numCraftable);
     }
 
     public void smelt100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        smelt(itemID, 100);
+        int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            smelt(itemID, numCraftable);
+        } else {
+            smelt(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        }
     }
 
     private void smelt(Long itemID, int quantity) {
@@ -207,8 +229,13 @@ public class FurnaceActivity extends Activity {
         if (MainActivity.vh.furnaceBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
-            quantitySmelted = quantity;
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
+
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                quantity = quantity * 2;
+            }
+
+            quantitySmelted = quantity;
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, Constants.STATE_NORMAL));
             }
@@ -217,7 +244,7 @@ public class FurnaceActivity extends Activity {
         if (quantitySmelted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
+            ToastHelper.showToast(findViewById(R.id.furnace), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             GooglePlayHelper.UpdateEvent(foodSelected ? Constants.EVENT_CREATE_FOOD : Constants.EVENT_CREATE_BAR, quantitySmelted);
 
@@ -225,7 +252,7 @@ public class FurnaceActivity extends Activity {
             MainActivity.vh.furnaceBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
         }
     }
 

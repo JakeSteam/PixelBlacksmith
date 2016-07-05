@@ -3,12 +3,15 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orm.query.Select;
@@ -23,24 +26,138 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class UpgradeActivity extends Activity {
     private static DisplayHelper dh;
+    private boolean superSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+        superSelected = MainActivity.prefs.getBoolean("upgradeTab", false);
 
-        createUpgradeInterface();
+        createInterface();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        MainActivity.prefs.edit().putBoolean("upgradeTab", superSelected).apply();
     }
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Upgrade);
+        intent.putExtra(HelpActivity.INTENT_ID, superSelected ? HelpActivity.TOPICS.Super_Upgrade : HelpActivity.TOPICS.Upgrade);
         startActivity(intent);
+    }
+
+    public void toggleTab(View view) {
+        superSelected = !superSelected;
+        updateTabs();
+        createInterface();
+    }
+
+    private void updateTabs() {
+        if (superSelected) {
+            (findViewById(R.id.upgradeTab)).setAlpha(1f);
+            (findViewById(R.id.superTab)).setAlpha(0.3f);
+        } else {
+            (findViewById(R.id.upgradeTab)).setAlpha(0.3f);
+            (findViewById(R.id.superTab)).setAlpha(1f);
+        }
+    }
+
+    private void createInterface() {
+        updateTabs();
+
+        if (superSelected) {
+            createSuperInterface();
+        } else {
+            createUpgradeInterface();
+        }
+    }
+
+    private void createSuperInterface() {
+        List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).orderBy("prestige_level ASC").list();
+        TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
+        upgradeTable.removeAllViews();
+
+        upgradeTable.addView(createCollectionText());
+        upgradeTable.addView(createPrestigeText());
+
+        for (Super_Upgrade upgrade : upgrades) {
+            TableRow row = createSuperUpgradeRow(upgrade.getSuperUpgradeId());
+            row.addView(createSuperUpgradeText(upgrade));
+            row.addView(createSuperUpgradeImage(upgrade.isEnabled()));
+            upgradeTable.addView(row);
+        }
+    }
+
+    private TableRow createSuperUpgradeRow(int upgradeId) {
+        TableRow row = new TableRow(this);
+        row.setTag(upgradeId);
+        row.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                toggleSetting(v, (int) v.getTag());
+            }
+        });
+        return row;
+    }
+
+    private TextView createSuperUpgradeText(Super_Upgrade upgrade) {
+        TextView superUpgrade = dh.createTextView(upgrade.getName() + "\n", 24);
+        superUpgrade.setSingleLine(false);
+        if (!upgrade.havePrestigeLevel()) {
+            superUpgrade.setPaintFlags(superUpgrade.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+        return superUpgrade;
+    }
+
+    private ImageView createSuperUpgradeImage(boolean enabled) {
+        ImageView upgradeStatus = new ImageView(getApplicationContext());
+        Drawable statusDrawable = dh.createDrawable((enabled ? R.drawable.tick : R.drawable.cross), 35, 35);
+        upgradeStatus.setImageDrawable(statusDrawable);
+        return upgradeStatus;
+    }
+
+    private TextView createCollectionText() {
+        return dh.createTextView(String.format(getString(R.string.superUpgradeCollections),
+                Player_Info.getCollectionsCrafted(),
+                Constants.MAX_SUPGRADES_ENABLED
+        ), 20);
+    }
+
+    private TextView createPrestigeText() {
+        return dh.createTextView(String.format(getString(R.string.superUpgradePrestiges),
+                Player_Info.getPrestige(),
+                Super_Upgrade.totalUnlocked(),
+                Super_Upgrade.total()
+        ), 20);
+    }
+
+    private void toggleSetting(View view, int superUpgradeId) {
+        Super_Upgrade upgrade = Super_Upgrade.find(superUpgradeId);
+        if (!upgrade.havePrestigeLevel()) {
+            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradePrestigeLevel), upgrade.getPrestigeLevel()), false);
+            return;
+        } else if (!upgrade.isEnabled() && (Super_Upgrade.totalEnabled() >= Super_Upgrade.maxEnabled())) {
+            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_SUPER_UPGRADE), false);
+            return;
+        }
+
+        upgrade.setEnabled(!upgrade.isEnabled());
+        upgrade.save();
+        ToastHelper.showPositiveToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradeStatusChange),
+                upgrade.getName(),
+                getString(upgrade.isEnabled() ? R.string.superUpgradeEnabled : R.string.superUpgradeDisabled)
+        ), true);
+
+        createSuperInterface();
     }
 
     private void createUpgradeInterface() {
@@ -48,7 +165,7 @@ public class UpgradeActivity extends Activity {
         TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
         upgradeTable.removeAllViews();
 
-        for (final Upgrade upgrade : upgrades) {
+        for (Upgrade upgrade : upgrades) {
             if (upgrade.getName().equals("Legendary Chance") && !Player_Info.isPremium()) {
                 continue;
             }
@@ -102,7 +219,7 @@ public class UpgradeActivity extends Activity {
         if (!selectedUpgrade.isAtMaximum()){
             AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
-            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
+            ToastHelper.showErrorToast(findViewById(R.id.upgradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
         }
     }
 

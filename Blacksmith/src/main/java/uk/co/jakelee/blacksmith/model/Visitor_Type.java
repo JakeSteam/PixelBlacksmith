@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.util.Pair;
+
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -20,6 +22,8 @@ public class Visitor_Type extends SugarRecord {
     private boolean tierDiscovered;
     private boolean typeDiscovered;
     private boolean stateDiscovered;
+    private int adventuresAttempted;
+    private int adventuresCompleted;
     private int weighting;
 
     public Visitor_Type() {
@@ -38,6 +42,8 @@ public class Visitor_Type extends SugarRecord {
         this.tierDiscovered = tierDiscovered;
         this.typeDiscovered = typeDiscovered;
         this.stateDiscovered = stateDiscovered;
+        this.adventuresAttempted = 0;
+        this.adventuresCompleted = 0;
         this.weighting = weighting;
     }
 
@@ -137,12 +143,42 @@ public class Visitor_Type extends SugarRecord {
         this.stateDiscovered = stateDiscovered;
     }
 
+    public int getAdventuresAttempted() {
+        return adventuresAttempted;
+    }
+
+    public void setAdventuresAttempted(int adventuresAttempted) {
+        this.adventuresAttempted = adventuresAttempted;
+    }
+
+    public int getAdventuresCompleted() {
+        return adventuresCompleted;
+    }
+
+    public void setAdventuresCompleted(int adventuresCompleted) {
+        this.adventuresCompleted = adventuresCompleted;
+    }
+
     public int getWeighting() {
         return weighting;
     }
 
     public void setWeighting(int weighting) {
         this.weighting = weighting;
+    }
+
+    public int getPreferencesDiscovered() {
+        int discovered = 0;
+        if (isTypeDiscovered()) {
+            discovered++;
+        }
+        if (isStateDiscovered()) {
+            discovered++;
+        }
+        if (isTierDiscovered()) {
+            discovered++;
+        }
+        return discovered;
     }
 
     public double getDisplayedBonus(Inventory invent) {
@@ -164,9 +200,26 @@ public class Visitor_Type extends SugarRecord {
 
     public double getBonus(Inventory invent) {
         Item item = Item.findById(Item.class, invent.getItem());
-        int bonus = 100;
+        double bonus = 1;
 
         if (invent.getState() == getStatePreferred()) {
+            bonus *= getStateMultiplier();
+        }
+        if (item.getTier() == getTierPreferred()) {
+            bonus *= getTierMultiplier();
+        }
+        if (item.getType() == getTypePreferred()) {
+            bonus *= getTypeMultiplier();
+        }
+
+        return bonus;
+    }
+
+    public double getBonus(int itemId, int state) {
+        Item item = Item.findById(Item.class, itemId);
+        int bonus = 100;
+
+        if (state == getStatePreferred()) {
             bonus *= getStateMultiplier();
         }
         if (item.getTier() == getTierPreferred()) {
@@ -205,7 +258,7 @@ public class Visitor_Type extends SugarRecord {
         }
     }
 
-    public static int getPreferencesDiscovered() {
+    public static int getTotalPreferencesDiscovered() {
         List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
         int preferencesDiscovered = 0;
 
@@ -222,6 +275,19 @@ public class Visitor_Type extends SugarRecord {
         }
 
         return preferencesDiscovered;
+    }
+
+    public static Pair<Integer, Integer> getAdventureAttempts() {
+        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
+        int adventureAttempts = 0;
+        int adventureSuccesses = 0;
+
+        for (Visitor_Type visitor : visitors) {
+            adventureAttempts += visitor.getAdventuresAttempted();
+            adventureSuccesses += visitor.getAdventuresCompleted();
+        }
+
+        return new Pair<> (adventureAttempts, adventureSuccesses);
     }
 }
 

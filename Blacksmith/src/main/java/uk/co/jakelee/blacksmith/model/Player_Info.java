@@ -89,16 +89,16 @@ public class Player_Info extends SugarRecord {
         Player_Info premium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
 
-        return premium.getIntValue() == 1;
+        return premium != null && premium.getIntValue() == 1;
     }
 
     public static boolean displayAds() {
         Player_Info premium = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("Premium")).first();
-        Setting hideAllAds = Setting.findById(Setting.class, Constants.SETTING_DISABLE_ADS);
+        boolean hideAllAds = Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS);
 
         // Return true unless the player is premium + has hidden ads.
-        return !(premium.getIntValue() == 1 && hideAllAds.getBoolValue());
+        return !(premium.getIntValue() == 1 && hideAllAds);
     }
 
     public static boolean isBonusReady() {
@@ -114,6 +114,7 @@ public class Player_Info extends SugarRecord {
         }
 
         long bonusRechargeTime = Player_Info.isPremium() ? Constants.BONUS_TIME_PREMIUM : Constants.BONUS_TIME_NON_PREMIUM;
+        bonusRechargeTime = bonusRechargeTime / (Super_Upgrade.isEnabled(Constants.SU_HALF_BONUS_CHEST) ? 2 : 1);
         long timeBonusReady = lastClaimedTime + bonusRechargeTime;
 
         return timeBonusReady - System.currentTimeMillis();
@@ -140,6 +141,13 @@ public class Player_Info extends SugarRecord {
         return collections != null ? collections.getIntValue() : 0;
     }
 
+    public static String getLastContributed() {
+        Player_Info lastContributed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("LastDonated")).first();
+
+        return lastContributed != null ? lastContributed.getTextValue() : "never";
+    }
+
     public static double getCompletionPercent() {
         /*
             Level * 100
@@ -151,6 +159,7 @@ public class Player_Info extends SugarRecord {
             Visitor Preferences * 1
             Trophies * 1
             Workers * 100
+            Adventures * 1
          */
         int currentLevelPoints = 100 * Player_Info.getPlayerLevel();
         int currentUpgradePoints = (10 * Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue());
@@ -158,9 +167,10 @@ public class Player_Info extends SugarRecord {
         int currentSlotPoints = (10 * Slot.getUnlockedCount());
         int currentTraderStockPoints = Trader_Stock.getUnlockedCount();
         int currentItemPoints = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size();
-        int currentPreferencePoints = Visitor_Type.getPreferencesDiscovered();
+        int currentPreferencePoints = Visitor_Type.getTotalPreferencesDiscovered();
         int currentTrophyPoints = (int) Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count();
         int currentWorkerPoints = (int) Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count();
+        int currentAdventurePoints = Visitor_Type.getAdventureAttempts().second;
 
         int maxLevelPoints = (100 * Constants.PRESTIGE_LEVEL_REQUIRED);
         int maxUpgradePoints = (10 * Upgrade.getMaximumUpgrades());
@@ -170,7 +180,8 @@ public class Player_Info extends SugarRecord {
         int maxItemPoints = (int) Item.count(Item.class);
         int maxPreferencePoints = (int) Visitor_Type.count(Visitor_Type.class) * 3;
         int maxTrophyPoints = (int) Visitor_Stats.count(Visitor_Stats.class);
-        int maxWorkerPoints = Worker.listAll(Worker.class).size();
+        int maxWorkerPoints = (int) Worker.count(Worker.class);
+        int maxAdventurePoints = (int) Hero_Adventure.count(Hero_Adventure.class);
         
         int adjustedLevelPoints = currentLevelPoints > maxLevelPoints ? maxLevelPoints : currentLevelPoints;
         int adjustedUpgradePoints = currentUpgradePoints > maxUpgradePoints ? maxUpgradePoints : currentUpgradePoints;
@@ -181,9 +192,10 @@ public class Player_Info extends SugarRecord {
         int adjustedPreferencePoints = currentPreferencePoints > maxPreferencePoints ? maxPreferencePoints : currentPreferencePoints;
         int adjustedTrophyPoints = currentTrophyPoints > maxTrophyPoints ? maxTrophyPoints : currentTrophyPoints;
         int adjustedWorkerPoints = currentWorkerPoints > maxWorkerPoints ? maxWorkerPoints : currentWorkerPoints;
+        int adjustedAdventurePoints = currentAdventurePoints > maxAdventurePoints ? maxAdventurePoints : currentAdventurePoints;
 
-        int adjustedComplete = adjustedLevelPoints + adjustedUpgradePoints + adjustedTraderPoints + adjustedSlotPoints + adjustedTraderStockPoints + adjustedItemPoints + adjustedPreferencePoints + adjustedTrophyPoints + adjustedWorkerPoints;
-        int totalToComplete = maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferencePoints + maxTrophyPoints + maxWorkerPoints;
+        int adjustedComplete = adjustedLevelPoints + adjustedUpgradePoints + adjustedTraderPoints + adjustedSlotPoints + adjustedTraderStockPoints + adjustedItemPoints + adjustedPreferencePoints + adjustedTrophyPoints + adjustedWorkerPoints + adjustedAdventurePoints;
+        int totalToComplete = maxLevelPoints + maxUpgradePoints + maxTraderPoints + maxSlotPoints + maxTraderStockPoints + maxItemPoints + maxPreferencePoints + maxTrophyPoints + maxWorkerPoints + maxAdventurePoints;
 
         double completionPercentage = (((double) adjustedComplete / (double) totalToComplete) * 100);
         return completionPercentage > 100 ? 100 : completionPercentage;
@@ -207,6 +219,10 @@ public class Player_Info extends SugarRecord {
         double xpMultiplier = VisitorHelper.percentToMultiplier(Upgrade.getValue("XP Bonus"));
         double xpMultiplierPrestige = xpMultiplier * Math.pow(0.75, Player_Info.getPrestige());
         int modifiedXp = (int) Math.ceil(xpMultiplierPrestige * xp);
+
+        if (Super_Upgrade.isEnabled(Constants.SU_BONUS_XP)) {
+            modifiedXp = modifiedXp * 2;
+        }
 
         xpInfo.setIntValue(xpInfo.getIntValue() + modifiedXp);
         xpInfo.save();

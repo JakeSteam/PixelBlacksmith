@@ -25,11 +25,17 @@ public class Constants {
     public static final String EVENT_BUY_ALL_ITEM = "CgkI6tnE2Y4OEAIQMw";
     public static final String EVENT_CONTRIBUTE = "CgkI6tnE2Y4OEAIQNA";
     public static final String EVENT_CLAIM_BONUS = "CgkI6tnE2Y4OEAIQNQ";
+    public static final String EVENT_HELPER_TRIPS = "CgkI6tnE2Y4OEAIQUw";
+    public static final String EVENT_HERO_TRIPS = "CgkI6tnE2Y4OEAIQVA";
 
     public static final int QUEST_XP_MODIFIER_EASY = 9;
     public static final int QUEST_XP_MODIFIER_MEDIUM = 15;
     public static final int QUEST_XP_MODIFIER_HARD = 35;
     public static final int QUEST_XP_MODIFIER_ELITE = 75;
+
+    public static final int MAX_SUPGRADES_ENABLED = 6;
+
+    public static final int CONTRIBUTE_GOLD = 1337;
 
     public static final double QUEST_PAGE_CHANCE_EASY = 0.25;
     public static final double QUEST_PAGE_CHANCE_MEDIUM = 0.50;
@@ -46,7 +52,6 @@ public class Constants {
     public static final int MINIMUM_COIN_REWARDS = 100;
     public static final int MAXIMUM_COIN_REWARDS = 700;
 
-    // Information about game mechanics
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;
     public static final int MAXIMUM_VISITORS_PER_ROW = 5;
@@ -55,6 +60,8 @@ public class Constants {
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
+    public static final int HERO_COST_MULTIPLIER = 2000;
+    public static final int POWDERS_PER_GEM = 10;
 
     public static final long BONUS_TIME_PREMIUM = DateHelper.hoursToMilliseconds(2);
     public static final long BONUS_TIME_NON_PREMIUM = DateHelper.hoursToMilliseconds(4);
@@ -80,9 +87,15 @@ public class Constants {
     public static final int STARTING_XP = 100;
     public static final int MESSAGE_LOG_LIMIT = 100;
 
+    public static final int PAGE_EXCHANGE_QTY = 3;
+
     public static final int TRADER_OUT_OF_STOCK = -1;
     public static final int TRADER_NOT_PRESENT = 0;
     public static final int TRADER_PRESENT = 1;
+
+    public static final int HERO_MIN_VISITS = 20;
+    public static final int HERO_MIN_TRADE = 100;
+    public static final int HERO_MIN_PREFS = 3;
 
     public static final int NOTIFICATION_VISITOR = 1;
     public static final int NOTIFICATION_RESTOCK = 2;
@@ -96,6 +109,12 @@ public class Constants {
     public static final int VISITS_UNSTARTED = 0;
     public static final int TROPHY_ITEM_REWARDS = 10;
     public static final int TROPHY_PAGE_REWARDS = 3;
+
+    public static final int HERO_RESULT_SUCCESS = 0;
+    public static final int HERO_RESULT_MIN = 1;
+    public static final int HERO_RESULT_MAX = 5;
+
+    public static final int ADVERT_TIMEOUT = 30000;
 
     // Error codes
     public static final int SUCCESS = 1;
@@ -111,6 +130,8 @@ public class Constants {
     public static final int ERROR_MAXIMUM_UPGRADE = 11;
     public static final int ERROR_NO_SLOTS_ENCHANTING = 12;
     public static final int ERROR_BUSY = 13;
+    public static final int ERROR_MAXIMUM_SUPER_UPGRADE = 14;
+    public static final int ERROR_VISITOR_IN_USE = 15;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
@@ -134,6 +155,31 @@ public class Constants {
     public static final Long SETTING_BONUS_NOTIFICATIONS = 9L;
     public static final Long SETTING_AUTOFEED = 10L;
     public static final Long SETTING_CLICK_CHANGE = 11L;
+    public static final Long SETTING_ONLY_AVAILABLE = 12L;
+    public static final Long SETTING_MESSAGE_LOG = 13L;
+    public static final Long SETTING_FULLSCREEN = 14L;
+    public static final Long SETTING_AUTOREFRESH = 15L;
+    public static final Long SETTING_CHECK_FULLSCREEN = 16L;
+    public static final Long SETTING_UPDATE_SLOTS = 17L;
+    public static final Long SETTING_LONG_TOAST = 18L;
+    public static final Long SETTING_HANDLE_MAX = 19L;
+
+    public static final int SU_DOUBLE_CRAFTS = 1;
+    public static final int SU_BONUS_GOLD = 2;
+    public static final int SU_BONUS_XP = 3;
+    public static final int SU_TRADER_STOCK = 4;
+    public static final int SU_WORKER_RESOURCES = 5;
+    public static final int SU_SINGLE_DEMAND = 6;
+    public static final int SU_MARKET_RESTOCK = 7;
+    public static final int SU_HALF_WORKER_TIME = 8;
+    public static final int SU_DOUBLE_TRADE_PRICE = 9;
+    public static final int SU_HALF_MARKET_COST = 10;
+    public static final int SU_HALF_BONUS_CHEST = 11;
+    public static final int SU_CONTRIBUTIONS = 12;
+    public static final int SU_PAGE_CHANCE = 13;
+    public static final int SU_QUEST_MED = 14;
+    public static final int SU_QUEST_HARD = 15;
+    public static final int SU_QUEST_ELITE = 16;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

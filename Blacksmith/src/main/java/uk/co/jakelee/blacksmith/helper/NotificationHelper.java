@@ -18,6 +18,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -41,13 +42,25 @@ public class NotificationHelper extends BroadcastReceiver {
         NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_VISITOR);
     }
 
-    public static void addWorkerNotification(Context context, boolean useSoundsSetting) {
+    public static void addHelperNotification(Context context, boolean useSoundsSetting) {
         useSounds = useSoundsSetting;
 
         List<Worker> workers = Worker.listAll(Worker.class);
         for (Worker worker : workers) {
             if (worker.isPurchased() && !WorkerHelper.isReady(worker)) {
-                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(worker);
+                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(worker.getTimeStarted());
+                NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
+            }
+        }
+    }
+
+    public static void addHeroNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
+        List<Hero> heroes = Hero.listAll(Hero.class);
+        for (Hero hero : heroes) {
+            if (hero.isPurchased() && !WorkerHelper.isReady(hero)) {
+                long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(hero.getTimeStarted());
                 NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
             }
         }
@@ -67,7 +80,7 @@ public class NotificationHelper extends BroadcastReceiver {
         notificationIntent.addCategory("android.intent.category.DEFAULT");
         notificationIntent.putExtra(NOTIFICATION_TYPE, notificationType);
 
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 1234, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 9000 + notificationType, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, broadcast);
     }

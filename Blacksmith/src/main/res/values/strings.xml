@@ -134,18 +134,37 @@
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
     <string name="messagesText">Message Log</string>
+    <string name="messagesShortText">Messages</string>
     <string name="socialMediaText">Social Media</string>
     <string name="workerText">Workers</string>
+    <string name="helperText">Helpers</string>
+    <string name="heroText">Heroes</string>
     <string name="toolText">Tools</string>
     <string name="foodText">Food</string>
     <string name="itemsText">Items</string>
     <string name="ringsText">Rings</string>
     <string name="booksText">Books</string>
-    <string name="enchantText">Enchants</string>
+    <string name="enchantText">Gems</string>
     <string name="powderText">Powders</string>
     <string name="questText">Quests</string>
     <string name="itemSelectText">Items</string>
     <string name="tipsText">Tips</string>
+    <string name="messageLogToggleText">Quick Log Access</string>
+    <string name="adventureText">Adventures</string>
+    <string name="equipmentText">Equipment</string>
+    <string name="interstitialText">Advert</string>
+
+    <string name="interstitialTimeLeft">Remaining: %1$ds</string>
+
+    <string name="upgradeTabText">Upgrade</string>
+    <string name="superTabText">Super</string>
+
+    <string name="superUpgradeStatusChange">Super upgrade %1$s %2$s! For a description, see the help page.</string>
+    <string name="superUpgradeCollections">You have completed %1$d collection(s), so can activate %1$d/%2$d super upgrades at a time.\n</string>
+    <string name="superUpgradePrestiges">You have prestiged %1$d times, so have unlocked %2$d/%3$d super upgrades.\n</string>
+    <string name="superUpgradeEnabled">enabled</string>
+    <string name="superUpgradeDisabled">disabled</string>
+    <string name="superUpgradePrestigeLevel">You need to have prestiged %1$d times to unlock this Super Upgrade.</string>
 
     <string name="slotLevel">Lv %d</string>
     <string name="slotPremium">Prem</string>
@@ -168,9 +187,11 @@
     <string name="buyingIAPError">An error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
 
     <string name="buyContribute">Contribute</string>
-    <string name="boughtContribute">Thank you for contributing! You\'re the best! Message me at /u/JakeSteam for a personalised thank you.</string>
-    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The "contribute" option is for those that want to give more to support development.\n\nThere is a 100 coin reward for contributing, but that\'s mostly so it doesn\'t classify as a donation!\n\nYou can contribute as often as you like, but please feel free to never contribute beyond buying Premium, I\'m still extremely grateful!</string>
-    <string name="contributeStatus">You\'ve contributed %1$d time(s), the last time was on %2$s.</string>
+    <string name="boughtContribute">Thank you for contributing! You\'re the best!</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like.\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
+    <string name="contributeStatus">\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
+    <string name="contributeTitle">%1$s (%2$d / %3$d)</string>
+    <string name="contributeHeader">Rewards:</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
@@ -180,27 +201,36 @@
     <string name="premiumFeatures">Premium benefits:
 \n- Immediate +20% to bonus coins and bonus XP upgrades.
 \n- +50% maximum possible bonus coins and bonus XP upgrades (from 50% to 100%).
+\n- Easier access to extremely powerful Super Upgrades.
 \n- Ability to turn off all ads.
 \n- Access to 17 new extremely valuable legendary items.
 \n- Extra crafting slot for all areas.
 \n- Coins paid by all out of stock traders on automatic market restock.
 \n- Ability to prestige at level 70, and begin a New Game Plus with +50% coin earnings &amp; -25% XP!
 \n- Doubled bonus chest rewards, and reduced time between chest openings.
+\n- Ability to Contribute, which can unlock beta access and suggesting new items / visitors!
 \n- A big thank you from the developer!</string>
 
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
-    <string name="levelUpPrestigeText">Levelled up to %d! You can now prestige, take a look at the settings menu!</string>
+    <string name="levelUpPrestigeText">Levelled up to %d! Premium players can prestige, take a look at the settings menu!</string>
+    <string name="levelUpPremiumPrestigeText">Levelled up to %d! You can now prestige (New Game +), take a look at the settings menu!</string>
     <string name="overflowText">+ %d</string>
 
     <string name="workerLocked">Locked</string>
-    <string name="buyWorkerQuestion">Are you sure you would like to hire this worker for %,d coins?</string>
+    <string name="buyWorkerQuestion">Are you sure you would like to hire this helper for %,d coins?</string>
     <string name="buyWorkerConfirm">Hire</string>
-    <string name="buyWorkerComplete">Successfully hired worker!</string>
+    <string name="buyWorkerComplete">Successfully hired helper!</string>
+    <string name="buyHeroQuestion">Are you sure you would like to hire this hero for %,d coins?</string>
+    <string name="buyHeroConfirm">Hire</string>
+    <string name="buyHeroComplete">Successfully hired hero!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
     <string name="sendOutWorkers">Send Out\nWorkers</string>
-    <string name="sendOutWorkersToast">%d workers excitedly jog out of the door, in search of resources.</string>
+    <string name="sendOutWorkersToast">%d helpers excitedly jog out of the door, in search of resources.</string>
+    <string name="sendOutHeroesToast">%d heroes excitedly jog out of the door, in search of adventure.</string>
     <string name="autofeedWorkers">Auto-feed\n</string>
+
+    <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="updateMessage">Updated to version %s!\n\nA full changelist can be viewed on the /r/PixelBlacksmith subreddit.</string>
     <string name="updateReddit">View Changes</string>
@@ -220,22 +250,29 @@
     <string name="cloudSaveSuccess">Save to cloud successful!</string>
     <string name="cloudLoadBeginning">Loading cloud save from remote server...</string>
     <string name="cloudLoadSuccess">Load from cloud successful!</string>
-    <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins</string>
+    <string name="cloudSaveCaption">%1$d Prestiges | Level %2$d | %3$,d coins | V%4$s</string>
 
     <string name="windowClick">What was that!?</string>
 
-    <string name="buyWorker">Purchase Worker</string>
+    <string name="buyWorker">Purchase Helper</string>
+    <string name="buyHero">Purchase Hero</string>
     <string name="workerCoins">%,d coins</string>
     <string name="workerLevel">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
+    <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
-    <string name="workersReturned">%d workers have returned, laden down with resources!</string>
+    <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
+    <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$s of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
+
+    <string name="heroTotalStrength">Total Strength: %d</string>
+    <string name="heroFailText">%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
+    <string name="heroFailNoItemsText">%1$s has failed whilst attempting to %2$s! They had no items, so lost nothing!</string>
 
     <string name="bribeQuestion">Would you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
     <string name="bribeQuestionAdvert">Would you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
@@ -250,6 +287,13 @@
     <string name="bonusQuestion">The bonus chest is ready! Would you like to open it?</string>
     <string name="bonusWatch">Watch Ad</string>
     <string name="bonusCancel">Cancel</string>
+
+    <string name="exchangePagesText">Exc</string>
+    <string name="exchangePagesQuestion">Would you like to exchange %1$dx %2$s for 1 random page, or exchange %3$dx for %4$d random pages?</string>
+    <string name="exchangePagesOne">One</string>
+    <string name="exchangePagesAll">All</string>
+    <string name="exchangePagesCancel">Cancel</string>
+    <string name="exchangePagesSuccess">Successfully exchanged %1$dx %2$s for %3$dx %4$s.</string>
 
     <string name="upgradeQuestion">Would you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
     <string name="upgradeConfirm">Upgrade</string>
@@ -327,8 +371,11 @@
     <string name="sell1Text">Sell 1</string>
     <string name="sell10Text">Sell 10</string>
     <string name="sell100Text">Sell 100</string>
+    <string name="sellMaxText">Sell Max</string>
     <string name="crushGemText">Crush Gem</string>
+    <string name="maxText">Max</string>
 
+    <string name="settingChanged">Setting \"%1$s\" successfully turned %2$s!</string>
     <string name="soundSettingText">Sounds</string>
     <string name="musicSettingText">Music</string>
     <string name="notificationSoundSettingText">Alerts</string>
@@ -337,12 +384,25 @@
     <string name="workerNotificationSettingText">Worker</string>
     <string name="bonusNotificationSettingText">Bonus</string>
     <string name="prestigeSettingText">Prestige\n(NG+)</string>
+    <string name="fullscreenSettingText">Full Screen</string>
+    <string name="fullscreenCheckSettingText">Full Screen Check</string>
+    <string name="autoRefreshSettingText">Auto Refresh</string>
+    <string name="updateSlotsSettingText">Update Slots</string>
+    <string name="longToastSettingText">Longer Messages</string>
+    <string name="handleMaxSettingText">Use Max</string>
+
+    <string name="exitTutorial">Skip Tutorial</string>
+    <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
 
     <string name="soundSettingGroup">Sound Options</string>
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
+    <string name="performanceSettingGroup">Performance Options</string>
+    <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
     <string name="googlePlaySettingGroup">Google Play</string>
+    <string name="settingsCodeUnknown">Settings Code: ???</string>
+    <string name="settingsCode">Settings Code: %2$d</string>
 
     <string name="unknownText">\???</string>
 
@@ -391,6 +451,7 @@
     <string name="tableSell">Sell</string>
 
     <string name="genericProgress">%1$d / %2$d</string>
+    <string name="genericProgressPercent">%1$d / %2$d (%3$d%%)</string>
     <string name="genericPercent">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
@@ -401,11 +462,12 @@
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
     <string name="restockMarketTextAdvert">The marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
     <string name="restockMarketButton">Restock</string>
-    <string name="enchantAdd">Began enchanting %1$s with a %2$s.</string>
+    <string name="enchantAdd">Began embedding the %1$s into the %2$s.</string>
     <string name="powderAdd">Began crushing the gem into %s.</string>
 
     <string name="traderArrived">Trader \"%s\" has arrived.</string>
 
+    <string name="visitorRequirements">%1$s\nVisits: %2$d / %3$d\nBest Trade: %4$d / %5$d\nPreferences: %6$d / %7$d</string>
     <string name="visitorCompleteFailure">You can\'t get rid of an unsatisfied customer!</string>
     <string name="visitorTrophyEarned">This visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item %1$s and 3x the super rare %2$s!</string>
     <string name="visitorArrived">%d visitor(s) have arrived.</string>
@@ -443,7 +505,7 @@
     <string name="statisticsSmelted">Items Smelted:</string>
     <string name="statisticsCrafted">Items Crafted:</string>
     <string name="statisticsTraded">Items Traded:</string>
-    <string name="statisticsEnchanted">Items Enchanted:</string>
+    <string name="statisticsEnchanted">Gems Embedded:</string>
     <string name="statisticsBought">Items Bought:</string>
     <string name="statisticsSold">Items Sold:</string>
     <string name="statisticsVisitors">Visitors Completed:</string>
@@ -459,8 +521,10 @@
     <string name="statisticsItemsSeen">Items Seen:</string>
     <string name="statisticsPreferencesDiscovered">Preferences Discovered:</string>
     <string name="statisticsTrophies">Trophies:</string>
-    <string name="statisticsWorkersOwned">Workers Owned:</string>
-    <string name="statisticsWorkersTrips">Worker\'s Trips:</string>
+    <string name="statisticsWorkersOwned">Helpers Owned:</string>
+    <string name="statisticsWorkersTrips">Helper\'s Trips:</string>
+    <string name="statisticsHeroAdventuresCompleted">Adventures Completed:</string>
+    <string name="statisticsHeroAdventuresSuccessful">Successful Adventures:</string>
     <string name="statisticsCollectionsCrafted">Collections Crafted:</string>
     <string name="statisticsQuestsCompleted">Quests Completed:</string>
     <string name="statisticsTotalBonusGold">Total Coins Bonus:</string>
@@ -490,7 +554,15 @@
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
     <string name="tradeMax">Max?</string>
-    <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or enchanting area to make some.</string>
+    <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
+    <string name="noItemsInventory">You don\'t have any items in this category!</string>
+    <string name="noItemsEquipment">You don\'t have any suitable equipment for this slot!</string>
+
+    <string name="interstitialLongText">No advert could be loaded!
+\n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
+\n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
+\n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">leave the game a rating</a>. It\'s the best way to help the game grow!
+\n\nYou could also read a few tips:</string>
 
     <string name="creditsOverall">Overall</string>
     <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>
@@ -499,7 +571,7 @@
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
     <string name="creditsGraphics">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
-\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, and <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>.</string>
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
     <string name="creditsLibraries">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
@@ -529,6 +601,35 @@
     </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+    <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
+
+    <string-array name="typesArray">
+        <item>All Items</item>
+        <item>Bar</item>
+        <item>Boot</item>
+        <item>Bow</item>
+        <item>Chainmail</item>
+        <item>Dagger</item>
+        <item>Food</item>
+        <item>Fishing Rod</item>
+        <item>Full Helmet</item>
+        <item>Full Shield</item>
+        <item>Gem</item>
+        <item>Glove</item>
+        <item>Half Helmet</item>
+        <item>Half Shield</item>
+        <item>Hammer</item>
+        <item>Hatchet</item>
+        <item>Longsword</item>
+        <item>Ore</item>
+        <item>Pickaxe</item>
+        <item>Platebody</item>
+        <item>Powder</item>
+        <item>Rare</item>
+        <item>Ring</item>
+        <item>Secondary</item>
+        <item>Sword</item>
+    </string-array>
 
     <string-array name='tipsArray'>
         <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
@@ -553,7 +654,7 @@
         <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
         <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
         <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
-        <item>Pages can be found by completing visitors, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
+        <item>Pages can be found by completing quests, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
         <item>Premium players can disable all adverts from the settings menu.</item>
         <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
         <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
@@ -568,26 +669,36 @@
         <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
         <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
         <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
-        <item>Initially, you can only have up to 2 Visitors at the same time. This can increased to 10 Visitors by upgrading "Maximum Visitors".</item>
+        <item>Initially, you can only have up to 2 Visitors at the same time. This can be increased to 10 Visitors by upgrading "Maximum Visitors".</item>
         <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
         <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
         <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
         <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
         <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
-        <item>Workers initially take 3 hours to return with resources. This can be reduced to only 30 minutes by upgrading "Worker Time".</item>
+        <item>Helpers initially take 3 hours to return with resources, and heroes 6 hours. This can be reduced to only 30 / 60 minutes by upgrading "Worker Time".</item>
         <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
         <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
-        <item>There are 7 different hirable Workers that unlock as you level up.</item>
-        <item>You only have to pay to hire each different Worker once. After you\'ve hired a Worker, they will continue to work for you as long as you want to give them a job to do.</item>
-        <item>Workers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>There are 7 different hirable Helpers that unlock as you level up.</item>
+        <item>You only have to pay to hire each different Helper once. After you\'ve hired a Helper, they will continue to work for you as long as you want to give them a job to do.</item>
+        <item>Helpers need Tools. You can either craft Tools or buy them from the Market.</item>
         <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
-        <item>There are 8 different types of Tools that Workers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
-        <item>A Worker with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
-        <item>Equipping a Worker with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
-        <item>Once you\'ve equipped a Worker with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
-        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Workers a Food item to increase how much they will gather.</item>
-        <item>The Foods that you craft may provide a higher Worker gather bonus than the Foods you can buy in the Market.</item>
-        <item>Each Worker has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
-        <item>Providing your Workers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+        <item>There are 8 different types of Tools that Helpers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
+        <item>A Helper with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
+        <item>Equipping a Helper with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
+        <item>Once you\'ve equipped a Helper with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
+        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Helper a Food item to increase how much they will gather.</item>
+        <item>The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</item>
+        <item>Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
+        <item>Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+        <item>Heroes are a riskier way to earn items, but can be very profitable!</item>
+        <item>Make the most of a hero\'s item preferences to complete the trickier quests.</item>
+        <item>The worker notification will inform you when both heroes and helpers have returned.</item>
+        <item>When pressed, messages can either show the message log, or disappear. Change it in the settings!</item>
+        <item>Fullscreen mode provides a more immersive mode, but can drain battery faster!</item>
+        <item>If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</item>
+        <item>Messages disappearing too quickly? Enable longer messages in the settings.</item>
+        <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
+        <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
+        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more!</item>
     </string-array>
 </resources>

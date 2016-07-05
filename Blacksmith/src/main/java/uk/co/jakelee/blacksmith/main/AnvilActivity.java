@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -36,6 +35,8 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Setting;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 
 public class AnvilActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -54,6 +55,8 @@ public class AnvilActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anvil);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("anvilTier", ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN);
         ringsSelected = MainActivity.prefs.getBoolean("anvilTab", false);
@@ -80,6 +83,7 @@ public class AnvilActivity extends Activity {
                         (TableLayout) findViewById(R.id.ingredientsTable),
                         mViewFlipper,
                         ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED);
+                updateButtons();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
@@ -135,6 +139,14 @@ public class AnvilActivity extends Activity {
             createItemsInterface(clearExisting);
         }
 
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            craft100.setText(R.string.maxText);
+        } else {
+            craft100.setText(R.string.craft100Text);
+        }
+    }
+
+    private void updateButtons() {
         if (MainActivity.vh.anvilBusy) {
             dimButtons();
         } else {
@@ -204,12 +216,20 @@ public class AnvilActivity extends Activity {
 
     public void craft10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, 10);
+        int state = ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED;
+        int numCraftable = Inventory.getNumberCreatable(itemID, state);
+        craft(itemID, numCraftable >= 10 ? 10 : numCraftable);
     }
 
     public void craft100(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
-        craft(itemID, 100);
+        int state = ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED;
+        int numCraftable = Inventory.getNumberCreatable(itemID, state);
+        if (Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX)) {
+            craft(itemID, numCraftable);
+        } else {
+            craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
+        }
     }
 
     public void brightenButtons() {
@@ -237,8 +257,13 @@ public class AnvilActivity extends Activity {
         if (MainActivity.vh.anvilBusy) {
             canCreate = Constants.ERROR_BUSY;
         } else if (canCreate == Constants.SUCCESS) {
-            quantityCrafted = quantity;
             Inventory.removeItemIngredients(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED, quantity);
+
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                quantity = quantity * 2;
+            }
+
+            quantityCrafted = quantity;
             for (int i = 1; i <= quantity; i++) {
                 itemsToAdd.add(new Pair<>(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED));
             }
@@ -247,7 +272,7 @@ public class AnvilActivity extends Activity {
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
+            ToastHelper.showToast(findViewById(R.id.anvil), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             if (!ringsSelected) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
@@ -257,7 +282,7 @@ public class AnvilActivity extends Activity {
             MainActivity.vh.anvilBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
         }
     }
 

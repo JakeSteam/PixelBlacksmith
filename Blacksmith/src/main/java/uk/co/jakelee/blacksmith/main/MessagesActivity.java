@@ -27,6 +27,7 @@ public class MessagesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         populateMessages();
     }

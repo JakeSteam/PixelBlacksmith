@@ -30,7 +30,7 @@
             app:layout_marginBottomPercent="7%"
             app:layout_marginTopPercent="3%"
             android:gravity="center"
-            android:text="@string/messagesText"
+            android:text="@string/messagesShortText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"

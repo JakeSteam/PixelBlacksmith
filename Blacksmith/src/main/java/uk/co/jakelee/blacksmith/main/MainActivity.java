@@ -1,7 +1,6 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -111,12 +109,16 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
-        if (!TutorialHelper.currentlyInTutorial &&
-                savedVersion != null && savedVersion.getIntValue() != BuildConfig.VERSION_CODE &&
-                BuildConfig.VERSION_NAME.length() > 0 && BuildConfig.VERSION_NAME.endsWith(".0")) {
-            AlertDialogHelper.displayUpdateMessage(this, this);
+        if (savedVersion != null &&
+                savedVersion.getIntValue() != BuildConfig.VERSION_CODE &&
+                BuildConfig.VERSION_NAME.length() > 0 &&
+                BuildConfig.VERSION_NAME.endsWith(".0")) {
             savedVersion.setIntValue(BuildConfig.VERSION_CODE);
             savedVersion.save();
+
+            if (!TutorialHelper.currentlyInTutorial) {
+                AlertDialogHelper.displayUpdateMessage(this, this);
+            }
         }
 
         gph.UpdateQuest();
@@ -264,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        final Context context = this;
 
         new Thread(new Runnable() {
             public void run() {
@@ -281,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
 
         if (newVisitors > 0) {
-            ToastHelper.showToast(context, Toast.LENGTH_SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
+            ToastHelper.showToast(null, ToastHelper.SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
             newVisitors = 0;
         }
 
@@ -289,7 +290,13 @@ public class MainActivity extends AppCompatActivity implements
             updateVisitors();
         }
 
+        dh.updateFullscreen(this);
+        View exitTutorialButton = findViewById(R.id.exitTutorial);
         if (TutorialHelper.currentlyInTutorial) {
+            if (exitTutorialButton != null) {
+                exitTutorialButton.setVisibility(View.VISIBLE);
+            }
+
             if (TutorialHelper.currentStage <= Constants.STAGE_1_MAIN) {
                 startFirstTutorial();
             } else if (TutorialHelper.currentStage == Constants.STAGE_4_VISITOR || TutorialHelper.currentStage == Constants.STAGE_5_MAIN) {
@@ -308,6 +315,14 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    public void exitTutorial(View v) {
+        TutorialHelper.currentlyInTutorial = false;
+        TutorialHelper.currentStage = 0;
+        prefs.edit().putInt("tutorialStage", 0).apply();
+        ToastHelper.showToast(findViewById(R.id.exitTutorial), ToastHelper.LONG, getString(R.string.exitTutorialText), true);
+        v.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -320,7 +335,8 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS)) {
-            NotificationHelper.addWorkerNotification(getApplicationContext(), notificationSound);
+            NotificationHelper.addHelperNotification(getApplicationContext(), notificationSound);
+            NotificationHelper.addHeroNotification(getApplicationContext(), notificationSound);
         }
 
         if (Setting.getSafeBoolean(Constants.SETTING_VISITOR_NOTIFICATIONS) && Visitor.count(Visitor.class) < Upgrade.getValue("Maximum Visitors")) {
@@ -358,6 +374,7 @@ public class MainActivity extends AppCompatActivity implements
                     dh.createAllSlots(activity);
                     needToRedrawSlots = false;
                 }
+                dh.updateFullscreen(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
@@ -368,9 +385,9 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors == 1) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, R.string.visitorArriving, true);
+                    ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.visitorArriving), true);
                 } else if (newVisitors > 1) {
-                    ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
+                    ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
                 gph.UpdateQuest();
@@ -387,10 +404,11 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     boolean taxPaid = PremiumHelper.payOutTax();
                     Trader_Stock.restockTraders();
-                    ToastHelper.showPositiveToast(getApplicationContext(), Toast.LENGTH_LONG, getRestockText(taxPaid), true);
+                    ToastHelper.showPositiveToast(null, ToastHelper.LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
+                WorkerHelper.checkForFinishedHeroes(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
@@ -480,7 +498,7 @@ public class MainActivity extends AppCompatActivity implements
             Intent intent = new Intent(this, QuestActivity.class);
             startActivity(intent);
         } else {
-            ToastHelper.showErrorToast(this, Toast.LENGTH_LONG, R.string.questsNoConnection, false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, getString(R.string.questsNoConnection), false);
         }
     }
 
@@ -492,13 +510,13 @@ public class MainActivity extends AppCompatActivity implements
                 AlertDialogHelper.confirmBonusAdvert(this, this);
             }
         } else {
-            ToastHelper.showToast(this, Toast.LENGTH_SHORT, String.format(getString(R.string.bonusTimeLeft),
+            ToastHelper.showToast(null, ToastHelper.SHORT, String.format(getString(R.string.bonusTimeLeft),
                     DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
         }
     }
 
     public void clickWindow(View view) {
-        ToastHelper.showToast(this, Toast.LENGTH_SHORT, R.string.windowClick, false);
+        ToastHelper.showToast(null, ToastHelper.SHORT, getString(R.string.windowClick), false);
     }
 
     public void clickBookcase(View view) {
@@ -509,7 +527,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
-        ToastHelper.showTipToast(this, Toast.LENGTH_LONG, tipMessage, false);
+        ToastHelper.showTipToast(null, ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
 
@@ -529,7 +547,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void onQuestCompleted(Quest quest) {
-        ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, GooglePlayHelper.CompleteQuest(quest), true);
+        ToastHelper.showPositiveToast(null, ToastHelper.LONG, GooglePlayHelper.CompleteQuest(quest), true);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -538,13 +556,13 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackSpawn() {
         if (VisitorHelper.tryCreateVisitor()) {
-            ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.bribeAdvertComplete, true);
+            ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.bribeAdvertComplete), true);
         }
     }
 
     public void callbackBonus() {
         String rewardText = AdvertHelper.createAdvertReward(this);
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, rewardText, true);
+        ToastHelper.showToast(null, ToastHelper.LONG, rewardText, true);
 
         Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
         lastClaimed.setLongValue(System.currentTimeMillis());

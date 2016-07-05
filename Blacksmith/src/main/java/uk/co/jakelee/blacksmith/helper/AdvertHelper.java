@@ -1,7 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.content.Intent;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
 import com.applovin.sdk.AppLovinAd;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.InterstitialActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
@@ -24,6 +25,7 @@ import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
@@ -37,6 +39,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     private boolean verified;
     private advertPurpose currentPurpose;
     private static AdvertHelper dhInstance = null;
+    public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
 
     public AdvertHelper(Context context) {
         this.context = context;
@@ -53,6 +56,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         return dhInstance;
     }
 
+    public void openInterstitial(advertPurpose purpose) {
+        Intent intent = new Intent(context, InterstitialActivity.class);
+        intent.putExtra(AdvertHelper.INTENT_ID, purpose.toString());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     public void showAdvert(MainActivity activity, advertPurpose purpose) {
         verified = false;
         mainActivity = activity;
@@ -61,7 +71,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 
@@ -73,7 +83,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+            openInterstitial(purpose);
         }
     }
 
@@ -85,7 +95,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 
@@ -97,7 +107,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            ToastHelper.showErrorToast(activity, Toast.LENGTH_LONG, R.string.adFailedToLoad, false);
+            ToastHelper.showErrorToast(activity.findViewById(R.id.visitor), ToastHelper.LONG, activity.getString(R.string.adFailedToLoad), false);
         }
     }
 
@@ -122,10 +132,30 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     break;
             }
         } else {
-            ToastHelper.showErrorToast(context, Toast.LENGTH_LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
         }
         // Begin loading next advert.
         advert.preload(null);
+    }
+
+    public void triggerCallback(advertPurpose purpose) {
+        switch (purpose) {
+            case ConvMarketRestock:
+                marketActivity.callbackRestock();
+                break;
+            case ConvVisitorDismiss:
+                visitorActivity.callbackDismiss();
+                break;
+            case ConvVisitorSpawn:
+                mainActivity.callbackSpawn();
+                break;
+            case ConvTraderRestock:
+                traderActivity.callbackRestock();
+                break;
+            case BonusBox:
+                mainActivity.callbackBonus();
+                break;
+        }
     }
 
     @Override
@@ -145,7 +175,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         int minimumRewards = Constants.MINIMUM_REWARDS;
         int maximumRewards = Constants.MAXIMUM_REWARDS;
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
-        boolean rewardPage = VisitorHelper.getRandomBoolean(65); // 35% chance to get page
+        boolean rewardPage = VisitorHelper.getRandomBoolean(Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) ? 0 : 65); // 35% chance to get page
 
         // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
         Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);

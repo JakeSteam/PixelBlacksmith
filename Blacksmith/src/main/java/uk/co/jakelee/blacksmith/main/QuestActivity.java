@@ -14,15 +14,19 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class QuestActivity extends Activity {
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest);
+        dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         int questsCompleted = Select.from(Player_Info.class).where(Condition.prop("name").eq("QuestsCompleted")).first().getIntValue();
         ((TextViewPixel) findViewById(R.id.questsCompleted)).setText(String.format(getString(R.string.questsCompleted), questsCompleted));

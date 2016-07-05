@@ -10,11 +10,13 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -25,7 +27,6 @@ import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -89,8 +90,16 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("item" + item, "drawable", context.getPackageName());
     }
 
+    public static int getAdventureDrawableID(Context context, long adventure) {
+        return context.getResources().getIdentifier("adventure" + adventure, "drawable", context.getPackageName());
+    }
+
     public static int getCharacterDrawableID(Context context, long character) {
         return context.getResources().getIdentifier("character" + character, "drawable", context.getPackageName());
+    }
+
+    public static int getVisitorDrawableID(Context context, int visitor) {
+        return context.getResources().getIdentifier("visitor" + visitor, "drawable", context.getPackageName());
     }
 
     private static RelativeLayout createSlotRoot(Context context) {
@@ -112,7 +121,7 @@ public class DisplayHelper {
         }
 
         for (final Location location : locations) {
-            GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
+            final GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
             slotContainer.removeAllViews();
 
             // If user is premium, we want premium slots first so they can see them. Otherwise, at the very end.
@@ -138,7 +147,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -150,7 +159,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(activity.getApplicationContext(), Toast.LENGTH_SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -164,27 +173,31 @@ public class DisplayHelper {
     }
 
     public void populateSlots(Activity activity, View parentView) {
+        boolean updateUI = Setting.getSafeBoolean(Constants.SETTING_UPDATE_SLOTS);
+
         if (Pending_Inventory.count(Pending_Inventory.class) > 0) {
             List<Location> locations = Location.listAll(Location.class);
             for (Location location : locations) {
-                populateSlot(activity, location.getId(), parentView);
+                populateSlot(activity, location.getId(), parentView, updateUI);
             }
         }
     }
 
-    private void populateSlot(final Activity activity, final long locationID, View parentView) {
+    private void populateSlot(final Activity activity, final long locationID, View parentView, boolean updateUI) {
         List<Pending_Inventory> pendingItems = Pending_Inventory.getPendingItems(locationID, false);
         if (pendingItems.size() > 0 && !isProcessingPendingInventory) {
             final int numItems = Pending_Inventory.getPendingItems(locationID, true).size();
             final int numSlots = Slot.getUnlockedSlots(locationID);
 
             final GridLayout slotContainer = (GridLayout) parentView.findViewById(slotIDs[(int) locationID]);
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    emptySlotContainer(slotContainer);
-                }
-            });
+            if (updateUI) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        emptySlotContainer(slotContainer);
+                    }
+                });
+            }
 
             int slotIndex = 0;
             int finishedItems = 0;
@@ -204,25 +217,29 @@ public class DisplayHelper {
                     } else {
                         final int seconds = DateHelper.getSecondsRoundUp(itemFinishTime - currentTime);
 
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
-                                slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
-                            }
-                        });
+                        if (updateUI) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                                    slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
+                                }
+                            });
+                        }
                         slotIndex++;
                     }
                 }
             }
             final RelativeLayout lockedSlot = (RelativeLayout) slotContainer.getChildAt(numSlots);
             final int totalFinishedItems = finishedItems;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    displayOverflow(lockedSlot, numItems, numSlots, totalFinishedItems);
-                }
-            });
+            if (updateUI) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        displayOverflow(lockedSlot, numItems, numSlots, totalFinishedItems);
+                    }
+                });
+            }
 
             if (completedItems.size() > 0) {
                 isProcessingPendingInventory = true;
@@ -249,6 +266,27 @@ public class DisplayHelper {
                 overflowDisplay.setText(String.format(getString(R.string.overflowText), overflow));
             } else {
                 overflowDisplay.setText("");
+            }
+        }
+    }
+
+    public void updateFullscreen(Activity activity) {
+        if (!Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN)) {
+            return;
+        }
+
+        boolean shouldBeFullscreen = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= 19) {
+            if (shouldBeFullscreen) {
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            } else {
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            }
+        } else {
+            if (shouldBeFullscreen) {
+                activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            } else {
+                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             }
         }
     }
@@ -488,7 +526,7 @@ public class DisplayHelper {
             Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
             return new BitmapDrawable(context.getResources(), resizedImage);
         } catch (OutOfMemoryError e) {
-            ToastHelper.showErrorToast(context, Toast.LENGTH_SHORT, context.getString(R.string.lowMemory), false);
+            ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.lowMemory), false);
             return new BitmapDrawable();
         }
     }
@@ -583,6 +621,10 @@ public class DisplayHelper {
                 return R.drawable.uparrow;
             case Constants.EVENT_CLAIM_BONUS :
                 return R.drawable.bonus_chest_full;
+            case Constants.EVENT_HELPER_TRIPS :
+                return R.drawable.visitor3;
+            case Constants.EVENT_HERO_TRIPS :
+                return R.drawable.visitor43;
             default :
                 return R.drawable.quests;
         }
@@ -608,7 +650,7 @@ public class DisplayHelper {
         int playerLevel = Player_Info.getPlayerLevel();
 
         if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(context, Toast.LENGTH_LONG, getLevelUpText(playerLevel), true);
+            ToastHelper.showPositiveToast(levelCount, ToastHelper.LONG, getLevelUpText(playerLevel), true);
             Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
             if (playerLevel > highestLevel) {
                 Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);
@@ -629,13 +671,14 @@ public class DisplayHelper {
         Long numStates = Select.from(State.class).where(
                 Condition.prop("minimum_level").eq(newLevel)).count();
 
-        if (newLevel == Constants.PRESTIGE_LEVEL_REQUIRED) {
-            return String.format(this.context.getString(R.string.levelUpPrestigeText), newLevel);
+        if (newLevel >= Constants.PRESTIGE_LEVEL_REQUIRED && newLevel % 5 == 0) {
+            return String.format(this.context.getString(Player_Info.isPremium() ? R.string.levelUpPremiumPrestigeText : R.string.levelUpPrestigeText),
+                    newLevel);
         }
         return String.format(this.context.getString(R.string.levelUpText), newLevel, numItems, numTraders, numSlots, numStates);
     }
 
-    public void createItemIngredientsTable(Long itemID, long state, TableLayout ingredientsTable) {
+    public void createItemIngredientsTable(Long itemID, long state, final TableLayout ingredientsTable) {
         final Context context = ingredientsTable.getContext();
         // Prepare the ingredients table and retrieve the list of ingredients
         List<Recipe> ingredients = Recipe.getIngredients(itemID, state);
@@ -671,17 +714,25 @@ public class DisplayHelper {
             itemNameView.setPadding(0, 10, 0, 0);
             itemNameView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(context, Toast.LENGTH_SHORT, itemIngredient.getDescription(), false);
+                    ToastHelper.showToast(ingredientsTable, ToastHelper.SHORT, itemIngredient.getDescription(), false);
                 }
             });
 
             row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
             row.addView(itemNameView);
-            row.addView(createTextView(Integer.toString(ingredient.getQuantity()), 22, Color.DKGRAY));
-            row.addView(createTextView(Integer.toString(owned.getQuantity()), 22, Color.DKGRAY));
+            row.addView(createTextView(formatLargeNumber(ingredient.getQuantity()), 22, Color.DKGRAY));
+            row.addView(createTextView(formatLargeNumber(owned.getQuantity()), 22, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }
+    }
+
+    private static String formatLargeNumber(int number) {
+        String numberString = Integer.toString(number);
+        if (numberString.length() > 3) {
+            numberString = numberString.substring(0, numberString.length() - 3) + "k";
+        }
+        return numberString;
     }
 
     public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition) {

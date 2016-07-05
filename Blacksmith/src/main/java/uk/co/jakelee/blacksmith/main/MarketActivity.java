@@ -14,7 +14,6 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -28,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -40,6 +40,7 @@ public class MarketActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         if (TutorialHelper.currentlyInTutorial && TutorialHelper.currentStage <= Constants.STAGE_14_MARKET) {
             startTutorial();
@@ -136,14 +137,17 @@ public class MarketActivity extends Activity {
 
     public void callbackRestock() {
         Trader.restockAll(0);
-        ToastHelper.showToast(this, Toast.LENGTH_LONG, R.string.traderRestockAllCompleteAdvert, true);
+        ToastHelper.showToast(findViewById(R.id.marketTitle), ToastHelper.LONG, getString(R.string.traderRestockAllCompleteAdvert), true);
         populateTraderList();
     }
 
     public void clickRestockAll(View view) {
-        int restockCost = Trader.getRestockAllCost();
-
-        AlertDialogHelper.confirmTraderRestockAll(getApplicationContext(), this, restockCost);
+        if (Super_Upgrade.isEnabled(Constants.SU_MARKET_RESTOCK)) {
+            callbackRestock();
+        } else {
+            int restockCost = Trader.getRestockAllCost();
+            AlertDialogHelper.confirmTraderRestockAll(getApplicationContext(), this, restockCost);
+        }
     }
 
     public void openHelp(View view) {

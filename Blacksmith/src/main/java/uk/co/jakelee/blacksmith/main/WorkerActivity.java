@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
@@ -25,6 +25,9 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
+import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
+import uk.co.jakelee.blacksmith.model.Hero_Resource;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -34,6 +37,7 @@ import uk.co.jakelee.blacksmith.model.Worker_Resource;
 public class WorkerActivity extends Activity {
     private static DisplayHelper dh;
     private static final Handler handler = new Handler();
+    private boolean heroesSelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class WorkerActivity extends Activity {
         setContentView(R.layout.activity_worker);
 
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
     }
 
     @Override
@@ -55,6 +60,8 @@ public class WorkerActivity extends Activity {
             }
         };
         handler.post(everyFiveSeconds);
+
+        dh.updateFullscreen(this);
     }
 
     @Override
@@ -74,15 +81,160 @@ public class WorkerActivity extends Activity {
         }
     }
 
+    private void populateHeroes() {
+        LinearLayout container = (LinearLayout) findViewById(R.id.workerContainer);
+        container.removeAllViews();
+
+        List<Hero> heroes = Select.from(Hero.class).orderBy("purchased DESC, level_unlocked ASC").list();
+        for (Hero hero : heroes) {
+            container.addView(createHeroRow(hero));
+        }
+    }
+
+    private RelativeLayout createHeroRow(Hero hero) {
+        RelativeLayout heroRoot = createHeroRow();
+        ImageView heroCharacter = (ImageView) heroRoot.findViewById(R.id.heroCharacter);
+        TextView heroCharacterText = (TextView) heroRoot.findViewById(R.id.heroCharacterText);
+        ImageView heroFood = (ImageView) heroRoot.findViewById(R.id.heroFood);
+        ImageView heroAdventure = (ImageView) heroRoot.findViewById(R.id.heroAdventure);
+        TextView heroAdventureText = (TextView) heroRoot.findViewById(R.id.heroAdventureText);
+        LinearLayout heroResourceContainer = (LinearLayout) heroRoot.findViewById(R.id.heroResource);
+        final TextView heroButton = (TextView) heroRoot.findViewById(R.id.heroButton);
+
+        Hero_Adventure adventure = Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(hero.getCurrentAdventure())).first();
+
+        final WorkerActivity activity = this;
+
+        if (hero.isPurchased()) {
+            heroCharacter.setImageResource(DisplayHelper.getVisitorDrawableID(this, hero.getVisitorId()));
+            heroCharacter.setTag(hero);
+            heroCharacter.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (hero.getVisitorId() > 0) {
+                        String heroTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Hero) v.getTag());
+                        ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, heroTimesCompleted, false);
+                    }
+                }
+            });
+            heroCharacterText.setText(WorkerHelper.isReady(hero) ? R.string.workerStatusReady : R.string.workerStatusBusy);
+
+            int resourceID = R.drawable.transparent;
+            if (hero.getFoodItem() > 0) {
+                resourceID = DisplayHelper.getItemDrawableID(this, hero.getFoodItem());
+            }
+            if (hero.getTimeStarted() == 0) {
+                heroCharacter.setTag(hero);
+                heroCharacter.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Hero hero = (Hero) v.getTag();
+                        Intent intent = new Intent(activity, EquipmentActivity.class);
+                        intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
+                        startActivity(intent);
+                    }
+                });
+            }
+            heroFood.setImageResource(resourceID);
+            heroFood.setVisibility(View.VISIBLE);
+
+            if (adventure != null) {
+                heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
+                heroAdventureText.setText(adventure.getName());
+            }
+            heroAdventure.setTag(hero);
+            heroAdventure.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (hero.getVisitorId() > 0 && hero.getTimeStarted() == 0) {
+                        Intent intent = new Intent(activity, AdventureActivity.class);
+                        intent.putExtra(WorkerHelper.INTENT_ID, hero.getHeroId());
+                        startActivity(intent);
+                    }
+                }
+            });
+
+            heroResourceContainer.setTag(hero);
+            heroResourceContainer.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (hero.isPurchased() && hero.getVisitorId() > 0) {
+                        List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure((int) hero.getCurrentAdventure());
+                        ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
+                                WorkerHelper.getRewardResourcesText(hero, resources, false)), false);
+                    }
+                }
+            });
+            WorkerHelper.populateResources(dh, heroResourceContainer, hero.getCurrentAdventure());
+
+            heroButton.setText(WorkerHelper.getButtonText(hero));
+            heroButton.setTag(hero);
+            heroButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Hero hero = (Hero) v.getTag();
+                    if (WorkerHelper.sendOutHero(hero)) {
+                        scheduledTask();
+                    } else {
+                        if (hero.getVisitorId() > 0 && hero.getCurrentAdventure() > 0) {
+                            String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, hero);
+                            ToastHelper.showToast(heroButton, ToastHelper.SHORT, exactTimeLeft, false);
+                        }
+                    }
+                }
+            });
+        } else if (hero.getLevelUnlocked() <= Player_Info.getPlayerLevel()) {
+            heroCharacter.setImageResource(R.drawable.item52);
+            heroCharacterText.setText(String.format(getString(R.string.workerCoins),
+                    WorkerHelper.getBuyCost(hero)));
+            heroButton.setText(R.string.buyHero);
+            heroButton.setTag(hero);
+            heroButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    AlertDialogHelper.confirmBuyHero(getApplicationContext(), activity, (Hero) v.getTag());
+                }
+            });
+        } else {
+            heroCharacter.setImageResource(R.drawable.lock);
+            heroCharacterText.setText(String.format(getString(R.string.slotLevel), hero.getLevelUnlocked()));
+        }
+
+        return heroRoot;
+    }
+
+    public void toggleTab(View view) {
+        heroesSelected = !heroesSelected;
+        updateTabs();
+        createInterface();
+    }
+
+    private void createInterface() {
+        if (heroesSelected) {
+            populateHeroes();
+        } else {
+            populateWorkers();
+        }
+
+        updateButtons();
+    }
+
+    private void updateTabs() {
+        if (heroesSelected) {
+            (findViewById(R.id.heroesTab)).setAlpha(0.3f);
+            (findViewById(R.id.workersTab)).setAlpha(1f);
+        } else {
+            (findViewById(R.id.heroesTab)).setAlpha(1f);
+            (findViewById(R.id.workersTab)).setAlpha(0.3f);
+        }
+    }
+
     private RelativeLayout createWorkerRow(Worker worker) {
-        RelativeLayout traderRoot = createTraderRoot();
-        ImageView workerCharacter = (ImageView) traderRoot.findViewById(R.id.workerCharacter);
-        ImageView workerFood = (ImageView) traderRoot.findViewById(R.id.workerFood);
-        TextView workerCharacterText = (TextView) traderRoot.findViewById(R.id.workerCharacterText);
-        ImageView workerTool = (ImageView) traderRoot.findViewById(R.id.workerTool);
-        TextView workerToolText = (TextView) traderRoot.findViewById(R.id.workerToolText);
-        LinearLayout workerResourceContainer = (LinearLayout) traderRoot.findViewById(R.id.workerResource);
-        TextView workerButton = (TextView) traderRoot.findViewById(R.id.workerButton);
+        RelativeLayout workerRoot = createWorkerRow();
+        ImageView workerCharacter = (ImageView) workerRoot.findViewById(R.id.workerCharacter);
+        ImageView workerFood = (ImageView) workerRoot.findViewById(R.id.workerFood);
+        TextView workerCharacterText = (TextView) workerRoot.findViewById(R.id.workerCharacterText);
+        ImageView workerTool = (ImageView) workerRoot.findViewById(R.id.workerTool);
+        TextView workerToolText = (TextView) workerRoot.findViewById(R.id.workerToolText);
+        LinearLayout workerResourceContainer = (LinearLayout) workerRoot.findViewById(R.id.workerResource);
+        final TextView workerButton = (TextView) workerRoot.findViewById(R.id.workerButton);
 
         Item tool = Item.findById(Item.class, worker.getToolUsed());
         final WorkerActivity activity = this;
@@ -93,7 +245,7 @@ public class WorkerActivity extends Activity {
             workerCharacter.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     String workerTimesCompleted = WorkerHelper.getTimesCompletedString(activity, (Worker) v.getTag());
-                    ToastHelper.showToast(activity, Toast.LENGTH_SHORT, workerTimesCompleted, false);
+                    ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, workerTimesCompleted, false);
                 }
             });
             workerCharacterText.setText(WorkerHelper.isReady(worker) ? R.string.workerStatusReady : R.string.workerStatusBusy);
@@ -138,7 +290,7 @@ public class WorkerActivity extends Activity {
                     Worker worker = (Worker) v.getTag();
                     if (worker.isPurchased()) {
                         List<Worker_Resource> resources = WorkerHelper.getResourcesByTool((int) worker.getToolUsed());
-                        ToastHelper.showToast(activity, Toast.LENGTH_LONG, String.format(getString(R.string.workerResources),
+                        ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
                                 WorkerHelper.getRewardResourcesText(worker, resources, false)), false);
                     }
                 }
@@ -154,7 +306,7 @@ public class WorkerActivity extends Activity {
                         scheduledTask();
                     } else {
                         String exactTimeLeft = WorkerHelper.getTimeLeftString(activity, worker);
-                        ToastHelper.showToast(activity, Toast.LENGTH_SHORT, exactTimeLeft, false);
+                        ToastHelper.showToast(workerButton, ToastHelper.SHORT, exactTimeLeft, false);
                     }
                 }
             });
@@ -174,7 +326,7 @@ public class WorkerActivity extends Activity {
             workerCharacterText.setText(String.format(getString(R.string.slotLevel), worker.getLevelUnlocked()));
         }
 
-        return traderRoot;
+        return workerRoot;
     }
 
     public void toggleAutofeed(View v) {
@@ -200,7 +352,9 @@ public class WorkerActivity extends Activity {
             autofeedToggle.setImageDrawable(autofeedToggleValue ? tick : cross);
         }
 
-        if (Worker.getAvailableWorkersCount() > 0) {
+        if (!heroesSelected && Worker.getAvailableWorkersCount() > 0) {
+            sendOutWorkers.setAlpha(1f);
+        } else if (heroesSelected && Hero.getAvailableHeroesCount() > 0) {
             sendOutWorkers.setAlpha(1f);
         } else {
             sendOutWorkers.setAlpha(0.3f);
@@ -209,37 +363,61 @@ public class WorkerActivity extends Activity {
 
     public void sendAllGathering(View v) {
         // For each available worker, send out worker.
-        List<Worker> workers = Worker.getAvailableWorkers();
-        int numWorkers = 0;
-        for (Worker worker : workers) {
-            if (WorkerHelper.sendOutWorker(worker)) {
-                numWorkers++;
+        if (heroesSelected) {
+            List<Hero> heroes = Hero.getAvailableHeroes();
+            int numHeroes = 0;
+            for (Hero hero : heroes) {
+                if (WorkerHelper.sendOutHero(hero)) {
+                    numHeroes++;
+                }
+            }
+
+            if (numHeroes > 0) {
+                ToastHelper.showPositiveToast(v, ToastHelper.LONG, String.format(getString(R.string.sendOutHeroesToast), numHeroes), true);
+            }
+        } else {
+            List<Worker> workers = Worker.getAvailableWorkers();
+            int numWorkers = 0;
+            for (Worker worker : workers) {
+                if (WorkerHelper.sendOutWorker(worker)) {
+                    numWorkers++;
+                }
+            }
+
+            if (numWorkers > 0) {
+                ToastHelper.showPositiveToast(v, ToastHelper.LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
             }
         }
-
-        if (numWorkers > 0) {
-            ToastHelper.showPositiveToast(this, Toast.LENGTH_LONG, String.format(getString(R.string.sendOutWorkersToast), numWorkers), true);
-        }
-
         updateButtons();
     }
 
     public void scheduledTask() {
-        WorkerHelper.checkForFinishedWorkers(this);
-        populateWorkers();
-
+        if (heroesSelected) {
+            WorkerHelper.checkForFinishedHeroes(this);
+            populateHeroes();
+        } else {
+            WorkerHelper.checkForFinishedWorkers(this);
+            populateWorkers();
+        }
         updateButtons();
+        updateTabs();
     }
 
-    private RelativeLayout createTraderRoot() {
+    private RelativeLayout createWorkerRow() {
         LayoutInflater inflater = LayoutInflater.from(this);
         View inflatedView = inflater.inflate(R.layout.custom_worker, null);
-        return (RelativeLayout) inflatedView.findViewById(R.id.traderRow);
+        return (RelativeLayout) inflatedView.findViewById(R.id.workerRow);
+    }
+
+    private RelativeLayout createHeroRow() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View inflatedView = inflater.inflate(R.layout.custom_hero, null);
+        return (RelativeLayout) inflatedView.findViewById(R.id.heroRow);
     }
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Worker);
+        intent.putExtra(HelpActivity.INTENT_ID, heroesSelected ? HelpActivity.TOPICS.Hero : HelpActivity.TOPICS.Helper);
         startActivity(intent);
     }
 

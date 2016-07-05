@@ -27,131 +27,150 @@
             android:id="@+id/inventoryTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/inventoryText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
+
+        <Spinner
+            android:id="@+id/itemTypes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginBottomPercent="78%"
+            app:layout_marginTopPercent="11%" />
+
+        <LinearLayout
+            android:id="@+id/buttonPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/buttonPanel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:id="@+id/sell1"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="sell1Toggle"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sell1"
-                    android:layout_width="55dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/button_narrow"
-                    android:onClick="sell1Toggle"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_margin="3dp">
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/sell1Text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sell1Text"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="-5dp"/>
-
-                    <ImageView
-                        android:id="@+id/sell1indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/tick"
-                        android:layout_marginTop="-2dp"
-                        android:layout_marginBottom="2dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/sell10"
-                    android:layout_width="65dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/button_narrow"
-                    android:onClick="sell10Toggle"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_margin="3dp">
-
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sell10Text"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="-5dp"/>
-
-                    <ImageView
-                        android:id="@+id/sell10indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/cross"
-                        android:layout_marginTop="-2dp"
-                        android:layout_marginBottom="2dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/sell100"
-                    android:layout_width="75dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/button_narrow"
-                    android:onClick="sell100Toggle"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_margin="3dp">
-
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sell100Text"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="-5dp"/>
-
-                    <ImageView
-                        android:id="@+id/sell100indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/cross"
-                        android:layout_marginTop="-2dp"
-                        android:layout_marginBottom="2dp"/>
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/sell1indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="-2dp"
+                    android:src="@drawable/tick" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sell10"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="sell10Toggle"
+                android:orientation="vertical">
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/sell10Text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/sell10indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="-2dp"
+                    android:src="@drawable/cross" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sell100"
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/button_narrow"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="sell100Toggle"
+                android:orientation="vertical">
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/sell100Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/sell100Text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/sell100indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="-2dp"
+                    android:src="@drawable/cross" />
+            </LinearLayout>
+        </LinearLayout>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/inventoryScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/inventoryTitle"
             android:layout_above="@id/buttonPanel"
-            android:fadeScrollbars="false"
-            android:layout_marginBottom="5dp">
+            android:layout_below="@id/inventoryTitle"
+            android:layout_marginBottom="5dp"
+            android:fadeScrollbars="false">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/loadingMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/loadingMessage"
                     android:textColor="@color/black"
-                    android:textSize="26sp"/>
+                    android:textSize="26sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/noItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/noItemsInventory"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    android:visibility="gone"/>
+
                 <TableLayout
                     android:id="@+id/inventoryTable"
                     android:layout_width="fill_parent"

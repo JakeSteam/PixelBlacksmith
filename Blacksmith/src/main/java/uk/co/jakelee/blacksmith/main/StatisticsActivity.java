@@ -3,8 +3,8 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
@@ -15,9 +15,11 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
+import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -32,11 +34,14 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
     private double completionPercent = 0.00;
+    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         displayStatistics();
 
@@ -116,7 +121,7 @@ public class StatisticsActivity extends Activity {
         int totalItems = (int) Item.count(Item.class);
         ((TextViewPixel) findViewById(R.id.itemsSeen)).setText(String.format(getString(R.string.genericProgress), itemsSeen, totalItems));
 
-        int preferencesUnlocked = Visitor_Type.getPreferencesDiscovered();
+        int preferencesUnlocked = Visitor_Type.getTotalPreferencesDiscovered();
         int totalPreferences = (int) Visitor_Type.count(Visitor_Type.class) * 3;
         ((TextViewPixel) findViewById(R.id.preferencesDiscovered)).setText(String.format(getString(R.string.genericProgress), preferencesUnlocked, totalPreferences));
 
@@ -131,6 +136,21 @@ public class StatisticsActivity extends Activity {
 
         int workersTrips = Worker.getTotalTrips();
         ((TextViewPixel) findViewById(R.id.workersTrips)).setText(String.format("%,d", workersTrips));
+
+        int adventuresCompleted = Hero_Adventure.getTotalCompleted();
+        int adventuresCount = (int) Hero_Adventure.count(Hero_Adventure.class);
+        int adventuresPercent = (int) (((double)adventuresCompleted / (double)adventuresCount) * 100);
+        ((TextViewPixel) findViewById(R.id.heroAdventuresCompleted)).setText(String.format(getString(R.string.genericProgressPercent),
+                adventuresCompleted,
+                adventuresCount,
+                adventuresPercent));
+
+        Pair<Integer, Integer> adventuresInfo = Visitor_Type.getAdventureAttempts();
+        int adventuresSuccessPercent = (int) (((double) (int) adventuresInfo.second / (double) (int) adventuresInfo.first) * 100);
+        ((TextViewPixel) findViewById(R.id.heroAdventuresSuccessful)).setText(String.format(getString(R.string.genericProgressPercent),
+                adventuresInfo.first,
+                adventuresInfo.second,
+                adventuresSuccessPercent));
 
         int collectionsCrafted = Player_Info.getCollectionsCrafted();
         ((TextViewPixel) findViewById(R.id.collectionsCrafted)).setText(String.format("%,d", collectionsCrafted));
@@ -191,7 +211,7 @@ public class StatisticsActivity extends Activity {
                 startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_HIGHEST_LEV), GooglePlayHelper.RC_LEADERBOARDS);
             }
         } else {
-            ToastHelper.showErrorToast(this, Toast.LENGTH_SHORT, getString(R.string.leaderboardsNoConnection), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(R.string.leaderboardsNoConnection), false);
         }
     }
 

@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
@@ -51,6 +50,8 @@ public class EnchantingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enchanting);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
+
         gh = new GestureHelper(getApplicationContext());
         displayedTier = MainActivity.prefs.getInt("enchantingTier", Constants.TIER_MIN);
         powderSelected = MainActivity.prefs.getBoolean("enchantingTab", false);
@@ -247,7 +248,7 @@ public class EnchantingActivity extends Activity {
         int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
+            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_POWDER, 1);
 
             dh.createCraftingInterface(
@@ -256,7 +257,7 @@ public class EnchantingActivity extends Activity {
                     mViewFlipper,
                     Constants.STATE_NORMAL);
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(powderResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(powderResponse), false);
         }
     }
 
@@ -272,22 +273,22 @@ public class EnchantingActivity extends Activity {
         int enchantResponse = Inventory.enchantItem(itemId, gemId, Constants.LOCATION_ENCHANTING);
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(getApplicationContext(), Toast.LENGTH_SHORT, String.format(getString(R.string.enchantAdd),
-                    item.getName(),
-                    gem.getName()), false);
+            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.enchantAdd),
+                    gem.getName(),
+                    item.getName()), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((TableLayout) findViewById(R.id.itemsTable));
         } else {
-            ToastHelper.showErrorToast(getApplicationContext(), Toast.LENGTH_SHORT, ErrorHelper.errors.get(enchantResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(enchantResponse), false);
         }
     }
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Enchanting);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Gem_Table);
         startActivity(intent);
     }
 

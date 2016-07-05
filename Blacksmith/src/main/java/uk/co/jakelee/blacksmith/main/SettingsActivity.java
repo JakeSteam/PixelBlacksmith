@@ -10,9 +10,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
+
+import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
@@ -20,6 +23,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -33,6 +37,7 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         dh = DisplayHelper.getInstance(getApplicationContext());
+        dh.updateFullscreen(this);
 
         displaySettingsList();
     }
@@ -84,19 +89,23 @@ public class SettingsActivity extends Activity {
     }
 
     private void updateSignInVisibility() {
+        TextView playHeader = (TextView) findViewById(R.id.googlePlayHeader);
         RelativeLayout signInButton = (RelativeLayout) findViewById(R.id.signInButton);
         RelativeLayout signOutButton = (RelativeLayout) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
 
         if (GooglePlayHelper.IsConnected()) {
+            playHeader.setVisibility(View.VISIBLE);
             signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.VISIBLE);
             playButtons.setVisibility(View.VISIBLE);
         } else if (GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            playHeader.setVisibility(View.VISIBLE);
             signInButton.setVisibility(View.VISIBLE);
             signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
         } else {
+            playHeader.setVisibility(View.GONE);
             signInButton.setVisibility(View.GONE);
             signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
@@ -144,41 +153,123 @@ public class SettingsActivity extends Activity {
         boolean clickChangeToggleValue = Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE);
         clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
 
+        ImageView messageLogToggle = (ImageView) findViewById(R.id.messageLogToggleButton);
+        boolean messageLogToggleValue = Setting.getSafeBoolean(Constants.SETTING_MESSAGE_LOG);
+        messageLogToggle.setImageDrawable(messageLogToggleValue ? tick : cross);
+
+        ImageView autoRefreshToggle = (ImageView) findViewById(R.id.autoRefreshToggleButton);
+        boolean autoRefreshToggleValue = Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH);
+        autoRefreshToggle.setImageDrawable(autoRefreshToggleValue ? tick : cross);
+
+        ImageView fullscreenCheckToggle = (ImageView) findViewById(R.id.fullscreenCheckToggleButton);
+        boolean fullscreenCheckToggleValue = Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN);
+        fullscreenCheckToggle.setImageDrawable(fullscreenCheckToggleValue ? tick : cross);
+
+        ImageView updateSlotsToggle = (ImageView) findViewById(R.id.updateSlotsToggleButton);
+        boolean updateSlotsToggleValue = Setting.getSafeBoolean(Constants.SETTING_UPDATE_SLOTS);
+        updateSlotsToggle.setImageDrawable(updateSlotsToggleValue ? tick : cross);
+
+        ImageView fullscreenToggle = (ImageView) findViewById(R.id.fullscreenToggleButton);
+        boolean fullscreenToggleValue = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
+        fullscreenToggle.setImageDrawable(fullscreenToggleValue ? tick : cross);
+
+        ImageView longToastToggle = (ImageView) findViewById(R.id.longToastToggleButton);
+        boolean longToastToggleValue = Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST);
+        longToastToggle.setImageDrawable(longToastToggleValue ? tick : cross);
+
+        ImageView handleMaxToggle = (ImageView) findViewById(R.id.handleMaxToggleButton);
+        boolean handleMaxToggleValue = Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX);
+        handleMaxToggle.setImageDrawable(handleMaxToggleValue ? tick : cross);
+
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
         }
+
+        TextView settingsCode = (TextView) findViewById(R.id.settingsCodeHeader);
+        settingsCode.setText(getSettingsCode());
+    }
+
+    public String getSettingsCode() {
+        List<Setting> settings = Setting.listAll(Setting.class);
+        String settingsCode = "1";
+        for (Setting setting : settings) {
+            settingsCode += (setting.getBoolValue() ? "1" : "0");
+        }
+
+        return String.format(getString(R.string.settingsCode),
+                settings.size(),
+                Integer.valueOf(settingsCode, 2));
     }
 
     public void toggleSetting(View v) {
         Long settingID = null;
+        String settingName = "";
         switch (v.getId()) {
             case R.id.soundToggle:
                 settingID = Constants.SETTING_SOUNDS;
+                settingName = "Game Sound";
                 break;
             case R.id.musicToggle:
                 settingID = Constants.SETTING_MUSIC;
+                settingName = "Game Music";
                 break;
             case R.id.restockNotificationToggle:
                 settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
+                settingName = "Restock Notifications";
                 break;
             case R.id.workerNotificationToggle:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
+                settingName = "Worker Notifications";
                 break;
             case R.id.visitorNotificationToggle:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
+                settingName = "Visitor Notifications";
                 break;
             case R.id.bonusNotificationToggle:
                 settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
+                settingName = "Bonus Notifications";
                 break;
             case R.id.notificationSoundToggle:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
+                settingName = "Notification Sounds";
                 break;
             case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
+                settingName = "Disable Ads";
                 break;
             case R.id.clickChangeToggle:
                 settingID = Constants.SETTING_CLICK_CHANGE;
+                settingName = "Quick Item Select";
+                break;
+            case R.id.messageLogToggle:
+                settingID = Constants.SETTING_MESSAGE_LOG;
+                settingName = "Quick Log Access";
+                break;
+            case R.id.fullscreenToggle:
+                settingID = Constants.SETTING_FULLSCREEN;
+                settingName = "Fullscreen Mode";
+                break;
+            case R.id.autoRefreshToggle:
+                settingID = Constants.SETTING_AUTOREFRESH;
+                settingName = "Item Listing Auto Refresh";
+                break;
+            case R.id.fullscreenCheckToggle:
+                settingID = Constants.SETTING_CHECK_FULLSCREEN;
+                settingName = "Fullscreen Mode Checking";
+                break;
+            case R.id.updateSlotsToggle:
+                settingID = Constants.SETTING_UPDATE_SLOTS;
+                settingName = "Item Slot Updating";
+                break;
+            case R.id.longToastToggle:
+                settingID = Constants.SETTING_LONG_TOAST;
+                settingName = "Longer Message Durations";
+                break;
+            case R.id.handleMaxToggle:
+                settingID = Constants.SETTING_HANDLE_MAX;
+                settingName = "Smelt / Craft / Sell Max";
+                break;
         }
 
         if (settingID != null) {
@@ -186,6 +277,9 @@ public class SettingsActivity extends Activity {
             settingToToggle.setBoolValue(!settingToToggle.getBoolValue());
             settingToToggle.save();
 
+            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(getString(R.string.settingChanged),
+                    settingName,
+                    settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
         }
     }
@@ -205,7 +299,7 @@ public class SettingsActivity extends Activity {
     }
 
     public void openRating(View view) {
-        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        final String appPackageName = getPackageName(); 
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {
@@ -216,6 +310,7 @@ public class SettingsActivity extends Activity {
     public void openTutorial(View view) {
         this.finish();
         TutorialHelper.currentlyInTutorial = true;
+        TutorialHelper.currentStage  = Constants.STAGE_1_MAIN;
         this.finish();
     }
 
