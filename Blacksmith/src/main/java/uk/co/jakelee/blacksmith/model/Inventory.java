@@ -154,8 +154,14 @@ public class Inventory extends SugarRecord implements Serializable {
 
         if (Slot.hasAvailableSlot(locationID)) {
             Pending_Inventory.addItem(itemId, state, quantity, locationID);
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                Pending_Inventory.addItem(itemId, state, quantity, locationID);
+            }
         } else {
             Pending_Inventory.addScheduledItem(itemId, state, quantity, locationID);
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                Pending_Inventory.addScheduledItem(itemId, state, quantity, locationID);
+            }
         }
 
         return Constants.SUCCESS;
