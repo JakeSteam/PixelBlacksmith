@@ -651,6 +651,15 @@ public class DatabaseHelper {
             heroResources.add(new Hero_Resource(254, 142, Constants.STATE_NORMAL, 1));
         Hero_Resource.saveInTx(heroResources);
 
+        Item.executeQuery("UPDATE item SET value = 25 WHERE name = \"Adamantite ore\"");
+        Item.executeQuery("UPDATE item SET value = 100 WHERE name = \"Dragonite ore\"");
+        Item.executeQuery("UPDATE item SET value = 12 WHERE name IN (\"Bronze bow\", \"Bronze gloves\", \"Bronze hatchet\")");
+        Item.executeQuery("UPDATE item SET value = 10 WHERE name IN (\"Powdered Sapphire\", \"Powdered Emerald\")");
+        Item.executeQuery("UPDATE item SET value = 20 WHERE name = \"Powdered Diamond\"");
+        Item.executeQuery("UPDATE item SET value = 325 WHERE name = \"Rune half helmet\"");
+
+        Item.executeQuery("UPDATE type SET name = \"Page\" WHERE id = " + Constants.TYPE_PAGE);
+        Item.executeQuery("UPDATE type SET name = \"Book\" WHERE id = " + Constants.TYPE_BOOK);
         Super_Upgrade.executeQuery("UPDATE superupgrade SET name = \"2x Worker Resources\" WHERE super_upgrade_id = " + Constants.SU_WORKER_RESOURCES);
     }
 

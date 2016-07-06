@@ -420,7 +420,7 @@ public class HelpActivity extends Activity {
 
     private void displayHelpHeroEquipment(LinearLayout layout) {
         layout.addView(dh.createTextView("Equipment\n", 26));
-        layout.addView(dh.createTextView("Any item of the correct time can be given to a worker.\n", 22));
+        layout.addView(dh.createTextView("Any item of the correct type can be given to a worker.\n", 22));
         layout.addView(dh.createTextView("However, taking notice of their preferences will ensure the most efficient tools are selected..\n", 22));
     }
 
@@ -434,10 +434,11 @@ public class HelpActivity extends Activity {
     private void displayHelpSuperUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView("Super Upgrades\n", 26));
         layout.addView(dh.createTextView("Super upgrades are much more powerful upgrades that can only be used by players that have completed a collection.\n", 22));
+        layout.addView(dh.createTextView("Collections can be created from books in the 'Books' tab of the crafting table.\n", 22));
         layout.addView(dh.createTextView("Prestiging will unlock more Super Upgrades, whilst completing collections will increase the maximum that can be enabled at once.\n", 22));
         layout.addView(dh.createTextView("'100x Contribution Reward' increases the 1337 coins usually received by contributing to a staggering 13,370 coins.\n", 22));
         layout.addView(dh.createTextView("'Free Market Restock' makes restocking the market free, perfect for emptying traders out!\n", 22));
-        layout.addView(dh.createTextView("'2x Crafted Items' doubles the number of items received from every crafting process.\n", 22));
+        layout.addView(dh.createTextView("'2x Crafted Items' doubles the number of items received from every crafting process. Note that pages + books are excluded from this.\n", 22));
         layout.addView(dh.createTextView("'2x Worker Resources' doubles the resources received from Helper tasks and Hero adventures.\n", 22));
         layout.addView(dh.createTextView("'Guaranteed Pages' guarantees that workers with food, watching adverts, and quests will all reward pages.\n", 22));
         layout.addView(dh.createTextView("'-50% Bonus Chest Time' halves the time taken for the bonus chest to refill.\n", 22));

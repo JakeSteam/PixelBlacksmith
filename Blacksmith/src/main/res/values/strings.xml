@@ -606,11 +606,12 @@
     <string-array name="typesArray">
         <item>All Items</item>
         <item>Bar</item>
+        <item>Book</item>
         <item>Boot</item>
         <item>Bow</item>
         <item>Chainmail</item>
+        <item>Cooked Food</item>
         <item>Dagger</item>
-        <item>Food</item>
         <item>Fishing Rod</item>
         <item>Full Helmet</item>
         <item>Full Shield</item>
@@ -622,10 +623,12 @@
         <item>Hatchet</item>
         <item>Longsword</item>
         <item>Ore</item>
+        <item>Page</item>
         <item>Pickaxe</item>
         <item>Platebody</item>
         <item>Powder</item>
         <item>Rare</item>
+        <item>Raw Food</item>
         <item>Ring</item>
         <item>Secondary</item>
         <item>Sword</item>

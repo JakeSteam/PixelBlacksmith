@@ -64,7 +64,8 @@
                     android:text="@string/creditsOverallDetails"
                     android:textColor="@color/black"
                     android:paddingBottom="20dp"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColorLink="@color/defaultLink" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
@@ -79,7 +80,8 @@
                     android:singleLine="false"
                     android:text="@string/creditsMusicDetails"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColorLink="@color/defaultLink" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
@@ -88,7 +90,8 @@
                     android:singleLine="false"
                     android:text="@string/creditsCCBY"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColorLink="@color/defaultLink" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
@@ -104,7 +107,8 @@
                     android:singleLine="false"
                     android:text="@string/creditsGraphicsDetails"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColorLink="@color/defaultLink" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
@@ -120,7 +124,8 @@
                     android:singleLine="false"
                     android:text="@string/creditsLibrariesDetails"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColorLink="@color/defaultLink" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
@@ -136,7 +141,8 @@
                     android:singleLine="false"
                     android:text="@string/creditsSoftwareDetails"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColorLink="@color/defaultLink" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
@@ -145,7 +151,8 @@
                     android:singleLine="false"
                     android:text="@string/creditsMiscDetails"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textColorLink="@color/defaultLink" />
             </LinearLayout>
 
         </ScrollView>
