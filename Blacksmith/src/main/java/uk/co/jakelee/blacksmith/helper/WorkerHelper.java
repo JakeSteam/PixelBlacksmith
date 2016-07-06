@@ -454,10 +454,10 @@ public class WorkerHelper {
         }
 
         for (Worker_Resource resource : resources) {
-            int numberResources = (Super_Upgrade.isEnabled(Constants.SU_WORKER_RESOURCES) ? 2 : 1) * resource.getResourceQuantity();
             if (applyFoodBonus) {
                 resource.applyFoodBonus(foodItem, favouriteFoodUsed);
             }
+            int numberResources = (Super_Upgrade.isEnabled(Constants.SU_WORKER_RESOURCES) ? 2 : 1) * resource.getResourceQuantity();
 
             if (addItems) {
                 Inventory resourceInventory = Inventory.getInventory((long) resource.getResourceID(), resource.getResourceState());
