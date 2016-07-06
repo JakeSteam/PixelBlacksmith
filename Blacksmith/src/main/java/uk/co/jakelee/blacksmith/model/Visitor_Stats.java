@@ -23,6 +23,7 @@ public class Visitor_Stats extends SugarRecord {
         this.bestItemValue = bestItemValue;
         this.firstSeen = firstSeen;
         this.trophyAchieved = trophyAchieved;
+        this.adventuresCompleted = 0;
     }
 
     public Visitor_Stats(Long visitorType, int visits, Long bestItem, Long bestItemState, int bestItemValue, Long firstSeen, Long trophyAchieved, int adventuresCompleted) {

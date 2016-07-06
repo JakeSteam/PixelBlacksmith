@@ -46,6 +46,7 @@ public class WorkerActivity extends Activity {
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
+        heroesSelected = MainActivity.prefs.getBoolean("workerTab", false);
     }
 
     @Override
@@ -69,6 +70,7 @@ public class WorkerActivity extends Activity {
         super.onPause();
 
         handler.removeCallbacksAndMessages(null);
+        MainActivity.prefs.edit().putBoolean("workerTab", heroesSelected).apply();
     }
 
     private void populateWorkers() {
@@ -117,7 +119,16 @@ public class WorkerActivity extends Activity {
                     }
                 }
             });
-            heroCharacterText.setText(WorkerHelper.isReady(hero) ? R.string.workerStatusReady : R.string.workerStatusBusy);
+
+            if (hero.getVisitorId() == 0) {
+                heroCharacterText.setText(R.string.workerStatusSelectHero);
+                heroAdventureText.setText("");
+            } else if (hero.getCurrentAdventure() == 0) {
+                heroCharacterText.setText("");
+                heroAdventureText.setText(R.string.workerStatusSelectAdventure);
+            } else {
+                heroCharacterText.setText(WorkerHelper.isReady(hero) ? R.string.workerStatusReady : R.string.workerStatusBusy);
+            }
 
             int resourceID = R.drawable.transparent;
             if (hero.getFoodItem() > 0) {

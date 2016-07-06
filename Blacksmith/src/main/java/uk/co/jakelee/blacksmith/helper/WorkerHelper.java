@@ -105,7 +105,7 @@ public class WorkerHelper {
 
     public static String getButtonText(Hero hero) {
         if (isReady(hero)) {
-            return "Start Gathering";
+            return "Start Adventure";
         } else if (hero.getVisitorId() == 0) {
             return "Select Hero";
         } else if (hero.getCurrentAdventure() == 0) {
@@ -593,11 +593,7 @@ public class WorkerHelper {
         int baseStrength = WorkerHelper.getBasePrice(item, state);
         int bonusStrength = WorkerHelper.getAdjustedStrength(vType, item, state);
 
-        if (baseStrength == bonusStrength) {
-            view.setTextColor(Color.WHITE);
-        } else {
-            view.setTextColor(Color.GREEN);
-        }
+        view.setTextColor(baseStrength == bonusStrength ? Color.BLACK : Color.parseColor("#267c18"));
 
         view.setText(Integer.toString(bonusStrength));
     }

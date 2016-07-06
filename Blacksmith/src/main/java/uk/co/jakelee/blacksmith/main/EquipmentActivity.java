@@ -70,6 +70,8 @@ public class EquipmentActivity extends Activity {
         if (hero.getVisitorId() > 0) {
             ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(dh.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
             ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
+        } else {
+            ((TextViewPixel) findViewById(R.id.heroName)).setText(R.string.workerStatusSelectHero);
         }
 
         if (hero.getShieldItem() > 0) {

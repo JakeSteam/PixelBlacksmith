@@ -51,6 +51,7 @@ public class DatabaseHelper {
     public final static int DB_V1_6_0 = 10;
     public final static int DB_V1_6_1 = 11;
     public final static int DB_V1_7_0 = 12;
+    public final static int DB_V1_7_2 = 13;
 
 
     public static void handlePatches() {
@@ -109,6 +110,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_1) {
             DatabaseHelper.patch161to170();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_0).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_0) {
+            DatabaseHelper.patch170to172();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_2).apply();
         }
     }
 
@@ -635,6 +641,26 @@ public class DatabaseHelper {
         createContributionGoals();
         createHero();
         createSuperUpgrade();
+    }
+
+    private static void patch170to172() {
+        List<Hero_Resource> heroResources = new ArrayList<>();
+            heroResources.add(new Hero_Resource(251, 91, Constants.STATE_NORMAL, 10));
+            heroResources.add(new Hero_Resource(252, 107, Constants.STATE_NORMAL, 7));
+            heroResources.add(new Hero_Resource(253, 123, Constants.STATE_NORMAL, 4));
+            heroResources.add(new Hero_Resource(254, 142, Constants.STATE_NORMAL, 1));
+        Hero_Resource.saveInTx(heroResources);
+
+        Item.executeQuery("UPDATE item SET value = 25 WHERE name = \"Adamantite ore\"");
+        Item.executeQuery("UPDATE item SET value = 100 WHERE name = \"Dragonite ore\"");
+        Item.executeQuery("UPDATE item SET value = 12 WHERE name IN (\"Bronze bow\", \"Bronze gloves\", \"Bronze hatchet\")");
+        Item.executeQuery("UPDATE item SET value = 10 WHERE name IN (\"Powdered Sapphire\", \"Powdered Emerald\")");
+        Item.executeQuery("UPDATE item SET value = 20 WHERE name = \"Powdered Diamond\"");
+        Item.executeQuery("UPDATE item SET value = 325 WHERE name = \"Rune half helmet\"");
+
+        Item.executeQuery("UPDATE type SET name = \"Page\" WHERE id = " + Constants.TYPE_PAGE);
+        Item.executeQuery("UPDATE type SET name = \"Book\" WHERE id = " + Constants.TYPE_BOOK);
+        Super_Upgrade.executeQuery("UPDATE superupgrade SET name = \"2x Worker Resources\" WHERE super_upgrade_id = " + Constants.SU_WORKER_RESOURCES);
     }
 
     private static void createContributionGoals() {

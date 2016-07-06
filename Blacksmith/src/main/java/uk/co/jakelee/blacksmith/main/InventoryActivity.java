@@ -187,7 +187,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
                         clickSellButton(v);
                     }
                 });
-            } else if (inventoryItem.getQuantity() >= Constants.PAGE_EXCHANGE_QTY) {
+            } else if (item.getType() == Constants.TYPE_PAGE && inventoryItem.getQuantity() >= Constants.PAGE_EXCHANGE_QTY) {
                 tradeBtn.setText(R.string.exchangePagesText);
                 tradeBtn.setTag((int) (long) item.getId());
                 tradeBtn.setOnClickListener(new Button.OnClickListener() {
