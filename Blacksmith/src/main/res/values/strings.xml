@@ -225,7 +225,7 @@
     <string name="buyHeroComplete">Successfully hired hero!</string>
     <string name="buyWorkerCancel">Cancel</string>
 
-    <string name="sendOutWorkers">Send Out\nWorkers</string>
+    <string name="sendOutWorkers">Send Out\nAll</string>
     <string name="sendOutWorkersToast">%d helpers excitedly jog out of the door, in search of resources.</string>
     <string name="sendOutHeroesToast">%d heroes excitedly jog out of the door, in search of adventure.</string>
     <string name="autofeedWorkers">Auto-feed\n</string>
@@ -263,6 +263,8 @@
     <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
     <string name="workerStatusReady">Status:\nReady</string>
     <string name="workerStatusBusy">Status:\nBusy</string>
+    <string name="workerStatusSelectHero">Select Hero</string>
+    <string name="workerStatusSelectAdventure">Select Adventure</string>
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
     <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>

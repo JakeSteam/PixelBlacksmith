@@ -105,7 +105,7 @@ public class WorkerHelper {
 
     public static String getButtonText(Hero hero) {
         if (isReady(hero)) {
-            return "Start Gathering";
+            return "Start Adventure";
         } else if (hero.getVisitorId() == 0) {
             return "Select Hero";
         } else if (hero.getCurrentAdventure() == 0) {

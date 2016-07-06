@@ -420,7 +420,7 @@ public class HelpActivity extends Activity {
 
     private void displayHelpHeroEquipment(LinearLayout layout) {
         layout.addView(dh.createTextView("Equipment\n", 26));
-        layout.addView(dh.createTextView("Any item of the correct type can be given to a worker.\n", 22));
+        layout.addView(dh.createTextView("Any item of the correct type can be given to a hero.\n", 22));
         layout.addView(dh.createTextView("However, taking notice of their preferences will ensure the most efficient tools are selected..\n", 22));
     }
 
