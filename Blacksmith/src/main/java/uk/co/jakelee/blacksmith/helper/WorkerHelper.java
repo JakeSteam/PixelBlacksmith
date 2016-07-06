@@ -590,10 +590,18 @@ public class WorkerHelper {
     }
 
     public static void setStrengthText(Visitor_Type vType, TextViewPixel view, int item, int state) {
+        setStrengthText(vType, view, item, state, false);
+    }
+
+    public static void setStrengthText(Visitor_Type vType, TextViewPixel view, int item, int state, boolean useDarkColours) {
         int baseStrength = WorkerHelper.getBasePrice(item, state);
         int bonusStrength = WorkerHelper.getAdjustedStrength(vType, item, state);
 
-        view.setTextColor(baseStrength == bonusStrength ? Color.BLACK : Color.parseColor("#267c18"));
+        if (useDarkColours) {
+            view.setTextColor(baseStrength == bonusStrength ? Color.BLACK : Color.parseColor("#267c18"));
+        } else {
+            view.setTextColor(baseStrength == bonusStrength ? Color.WHITE : Color.GREEN);
+        }
 
         view.setText(Integer.toString(bonusStrength));
     }

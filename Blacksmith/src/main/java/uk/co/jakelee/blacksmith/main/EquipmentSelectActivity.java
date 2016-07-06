@@ -100,7 +100,7 @@ public class EquipmentSelectActivity extends Activity {
             TextView itemName = dh.createTextView(item.getFullName(inventory.getState()), 20, Color.BLACK);
 
             TextViewPixel itemStrength = dh.createTextView("", 24, Color.BLACK);
-            WorkerHelper.setStrengthText(vType, itemStrength, (int) (long) item.getId(), (int) inventory.getState());
+            WorkerHelper.setStrengthText(vType, itemStrength, (int) (long) item.getId(), (int) inventory.getState(), true);
 
             ImageView itemSelect = new ImageView(this);
             itemSelect.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
