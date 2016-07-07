@@ -59,7 +59,7 @@ public class NotificationHelper extends BroadcastReceiver {
 
         List<Hero> heroes = Hero.listAll(Hero.class);
         for (Hero hero : heroes) {
-            if (hero.isPurchased() && !WorkerHelper.isReady(hero)) {
+            if (hero.isPurchased() && !WorkerHelper.isReady(hero) && hero.getTimeStarted() > 0) {
                 long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(hero.getTimeStarted());
                 NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
             }
