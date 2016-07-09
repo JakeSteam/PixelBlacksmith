@@ -74,6 +74,7 @@ public class DisplayHelper {
     public HorizontalDots itemSelectionDots;
     public List<Item> itemSelectionItems;
     public long itemSelectionState;
+    public boolean itemSelectionInventoryCheck;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -736,10 +737,15 @@ public class DisplayHelper {
     }
 
     public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition) {
+        createItemSelector(itemSelector, dots, clearExisting, items, state, selectedPosition, false);
+    }
+
+    public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition, boolean inventoryOverride) {
         this.itemSelectionFlipper = itemSelector;
         this.itemSelectionDots = dots;
         this.itemSelectionItems = items;
         this.itemSelectionState = state;
+        this.itemSelectionInventoryCheck = inventoryOverride;
 
         if (clearExisting) {
             itemSelector.removeAllViews();
