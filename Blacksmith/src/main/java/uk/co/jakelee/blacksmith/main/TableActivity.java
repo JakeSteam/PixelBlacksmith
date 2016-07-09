@@ -263,7 +263,7 @@ public class TableActivity extends Activity {
             }
 
             if (itemID.equals(Constants.ITEM_THE_COLLECTION)) {
-                Player_Info.increaseByOne(Player_Info.Statistic.CollectionsCreated);
+                Player_Info.increaseByX(Player_Info.Statistic.CollectionsCreated, quantity);
                 Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Collector")).first();
                 Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
                 GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COLLECTIONS, Player_Info.getCollectionsCrafted());
