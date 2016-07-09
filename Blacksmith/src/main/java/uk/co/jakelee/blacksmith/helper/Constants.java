@@ -60,7 +60,7 @@ public class Constants {
     public static final int PRESTIGE_LEVEL_REQUIRED = 70;
     public static final int RESTOCK_COST_MULTIPLIER = 10;
     public static final int WORKER_COST_MULTIPLIER = 1000;
-    public static final int HERO_COST_MULTIPLIER = 2000;
+    public static final int HERO_COST_MULTIPLIER = 250;
     public static final int POWDERS_PER_GEM = 10;
 
     public static final long BONUS_TIME_PREMIUM = DateHelper.hoursToMilliseconds(2);
@@ -93,7 +93,7 @@ public class Constants {
     public static final int TRADER_NOT_PRESENT = 0;
     public static final int TRADER_PRESENT = 1;
 
-    public static final int HERO_MIN_VISITS = 20;
+    public static final int HERO_MIN_VISITS = 5;
     public static final int HERO_MIN_TRADE = 100;
     public static final int HERO_MIN_PREFS = 3;
 
