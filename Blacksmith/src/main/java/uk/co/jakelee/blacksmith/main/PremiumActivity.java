@@ -244,7 +244,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             lastDonated.save();
         }
 
-        int contributeCoins = (Super_Upgrade.isEnabled(Constants.SU_CONTRIBUTIONS) ? 2 : 1) * Constants.CONTRIBUTE_GOLD;
+        int contributeCoins = (Super_Upgrade.isEnabled(Constants.SU_CONTRIBUTIONS) ? 100 : 1) * Constants.CONTRIBUTE_GOLD;
         Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, contributeCoins);
 
         GooglePlayHelper.UpdateEvent(Constants.EVENT_CONTRIBUTE, 1);

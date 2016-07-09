@@ -43,9 +43,12 @@ public class ItemSelectActivity extends Activity {
         itemsContainer.removeAllViews();
 
         boolean onlyDisplayAvailable = Setting.getSafeBoolean(Constants.SETTING_ONLY_AVAILABLE);
+        boolean enchantingOverride = dh.itemSelectionInventoryCheck;
         int itemIndex = 0;
         for (Item item : items) {
-            if (!onlyDisplayAvailable || (onlyDisplayAvailable && Inventory.canCreateBulkItem(item.getId(), dh.itemSelectionState, 1) == Constants.SUCCESS)) {
+            if (!onlyDisplayAvailable ||
+                    (onlyDisplayAvailable && !enchantingOverride && Inventory.canCreateBulkItem(item.getId(), dh.itemSelectionState, 1) == Constants.SUCCESS) ||
+                    (onlyDisplayAvailable && enchantingOverride && Inventory.getInventory(item.getId(), dh.itemSelectionState).getQuantity() > 0)) {
                 TableRow itemRow = createItemRow(item, itemIndex);
                 itemsContainer.addView(itemRow);
             }
