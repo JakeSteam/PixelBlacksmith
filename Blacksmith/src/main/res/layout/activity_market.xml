@@ -50,7 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:shrinkColumns="0"
-                android:stretchColumns="0" />
+                android:stretchColumns="0"
+                android:layout_marginRight="10dp"/>
         </ScrollView>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"

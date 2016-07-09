@@ -83,7 +83,7 @@
         android:textColor="@color/black"
         android:background="@drawable/button_extra_wide"
         android:clickable="true"
-        android:textSize="25sp"
+        android:textSize="23sp"
         />
 
 </android.support.percent.PercentRelativeLayout>

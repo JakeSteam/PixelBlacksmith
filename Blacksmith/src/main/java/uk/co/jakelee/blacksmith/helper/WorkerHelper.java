@@ -105,7 +105,9 @@ public class WorkerHelper {
 
     public static String getButtonText(Hero hero) {
         if (isReady(hero)) {
-            return "Start Adventure";
+            Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
+            Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
+            return "Start Adventure (" + getAdventureSuccessChance(getTotalStrength(hero, vType), adventure.getDifficulty()) + "%)";
         } else if (hero.getVisitorId() == 0) {
             return "Select Hero";
         } else if (hero.getCurrentAdventure() == 0) {

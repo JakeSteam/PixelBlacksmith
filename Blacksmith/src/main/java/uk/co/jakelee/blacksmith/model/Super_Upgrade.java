@@ -6,6 +6,8 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.blacksmith.helper.Constants;
+
 public class Super_Upgrade extends SugarRecord {
     private int superUpgradeId;
     private String name;
@@ -81,6 +83,9 @@ public class Super_Upgrade extends SugarRecord {
     }
 
     public static int maxEnabled() {
+        if (Player_Info.getCollectionsCrafted() > Constants.MAX_SUPGRADES_ENABLED) {
+            return Constants.MAX_SUPGRADES_ENABLED;
+        }
         return Player_Info.getCollectionsCrafted();
     }
 

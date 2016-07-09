@@ -52,6 +52,7 @@ public class DatabaseHelper {
     public final static int DB_V1_6_1 = 11;
     public final static int DB_V1_7_0 = 12;
     public final static int DB_V1_7_2 = 13;
+    public final static int DB_V1_7_4 = 14;
 
 
     public static void handlePatches() {
@@ -115,6 +116,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_0) {
             DatabaseHelper.patch170to172();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_2).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_2) {
+            DatabaseHelper.patch172to174();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_4).apply();
         }
     }
 
@@ -611,7 +617,7 @@ public class DatabaseHelper {
         // Delete all sapphire from rune recipes.
         Recipe.deleteAll(Recipe.class, "ingredient = 129 AND item IN (SELECT id FROM item WHERE name LIKE \"Rune%\")");
 
-        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE resource_id IN (73, 74, 75)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE tool_id IN (73, 74, 75)");
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE resource_id IN (72, 76)");
 
         List<Setting> settings = new ArrayList<>();
@@ -661,6 +667,15 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE type SET name = \"Page\" WHERE id = " + Constants.TYPE_PAGE);
         Item.executeQuery("UPDATE type SET name = \"Book\" WHERE id = " + Constants.TYPE_BOOK);
         Super_Upgrade.executeQuery("UPDATE superupgrade SET name = \"2x Worker Resources\" WHERE super_upgrade_id = " + Constants.SU_WORKER_RESOURCES);
+    }
+
+    private static void patch172to174() {
+        Hero_Adventure.executeQuery("UPDATE heroadventure SET adventure_id = adventure_id + 1 WHERE name IN (\"Hunt Tarantula Spiders\",\"Hunt Black Widow Spiders\")");
+        Hero_Resource.executeQuery("UPDATE heroresource SET adventure_id = 234 WHERE resource_id = 70 AND resource_quantity = 13");
+
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 1 WHERE tool_id BETWEEN 149 AND 160 AND resource_id BETWEEN 72 AND 76");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE tool_id IN (73, 74, 75)");
+        Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE tool_id IN (72, 76)");
     }
 
     private static void createContributionGoals() {

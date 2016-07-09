@@ -1,14 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
 
-import android.util.Pair;
-
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -85,38 +81,6 @@ public class Hero extends SugarRecord {
         this.bootsState = Constants.STATE_NORMAL;
         this.ringItem = ringItem;
         this.ringState = Constants.STATE_NORMAL;
-    }
-
-    public int getTotalItemBonus() {
-        Visitor_Type visitor = Visitor_Type.findById(Visitor_Type.class, getVisitorId());
-        // Build array of equipped items
-        List<Pair<Integer, Integer>> equippedItems = new ArrayList<>(
-                Arrays.asList(
-                        new Pair<> (getFoodItem(), getFoodState()),
-                        new Pair<> (getHelmetItem(), getHelmetState()),
-                        new Pair<> (getArmourItem(), getArmourState()),
-                        new Pair<> (getWeaponItem(), getWeaponState()),
-                        new Pair<> (getShieldItem(), getShieldState()),
-                        new Pair<> (getGlovesItem(), getGlovesState()),
-                        new Pair<> (getBootsItem(), getBootsState()),
-                        new Pair<> (getRingItem(), getRingState()))
-        );
-
-        // Build array of equipped item bonuses
-        List<Double> equippedItemBonuses = new ArrayList<>();
-        for (Pair<Integer, Integer> pair : equippedItems) {
-            if (pair.first > 0 && pair.second > 0) {
-                equippedItemBonuses.add(visitor.getBonus(pair.first, pair.second));
-            }
-        }
-
-        // Calculate total bonus
-        double totalBonus = 0;
-        for (Double bonus : equippedItemBonuses) {
-            totalBonus += bonus;
-        }
-
-        return (int) totalBonus;
     }
 
     public static int getAvailableHeroesCount() {
