@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 
@@ -131,7 +132,11 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         int restockCost = getRestockCost();
 
         if (restockCost > 0) {
-            AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
+            if (Super_Upgrade.isEnabled(Constants.SU_MARKET_RESTOCK)) {
+                callbackRestock();
+            } else {
+                AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
+            }
         } else {
             ToastHelper.showToast(findViewById(R.id.trader), ToastHelper.SHORT, getString(R.string.unnecessaryRestock), false);
         }
