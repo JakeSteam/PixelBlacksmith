@@ -661,6 +661,9 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE type SET name = \"Page\" WHERE id = " + Constants.TYPE_PAGE);
         Item.executeQuery("UPDATE type SET name = \"Book\" WHERE id = " + Constants.TYPE_BOOK);
         Super_Upgrade.executeQuery("UPDATE superupgrade SET name = \"2x Worker Resources\" WHERE super_upgrade_id = " + Constants.SU_WORKER_RESOURCES);
+
+        Hero_Adventure.executeQuery("UPDATE heroadventure SET adventure_id = adventure_id + 1 WHERE name IN (\"Hunt Tarantula Spiders\",\"Hunt Black Widow Spiders\")");
+        Hero_Resource.executeQuery("UPDATE heroresource SET adventure_id = 234 WHERE resource_id = 70 AND resource_quantity = 13");
     }
 
     private static void createContributionGoals() {
