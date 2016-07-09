@@ -380,7 +380,7 @@ public class HelpActivity extends Activity {
     private void displayHelpHero(LinearLayout layout) {
         layout.addView(dh.createTextView("Hero\n", 26));
         layout.addView(dh.createTextView("Heroes are hireable workers who can be given equipment, and sent on adventures.\n", 22));
-        layout.addView(dh.createTextView("The higher a hero's strength, the more likely they are to succeed.\n", 22));
+        layout.addView(dh.createTextView("The higher a hero's strength, the more likely they are to succeed. The % chance of success is displayed on the Start Adventure button.\n", 22));
         layout.addView(dh.createTextView("If hero strength = adventure difficulty, there is a 50% chance of success. If hero strength >= 2x adventure difficulty, success is guaranteed.\n", 22));
         layout.addView(dh.createTextView("If a hero fails an adventure, they will lose a random 1-5 pieces of equipment. As such, be careful not to send heroes on unwinnable adventures.\n", 22));
     }
