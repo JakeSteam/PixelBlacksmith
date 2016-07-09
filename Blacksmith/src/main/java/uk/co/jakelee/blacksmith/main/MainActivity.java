@@ -397,10 +397,18 @@ public class MainActivity extends AppCompatActivity implements
         };
         handler.postDelayed(everyTenSeconds, DateHelper.MILLISECONDS_IN_SECOND * 10);
 
-        final Runnable everyMinute = new Runnable() {
+        final Runnable everyMinuteImmediate = new Runnable() {
             @Override
             public void run() {
                 dh.createAllSlots(activity);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
+            }
+        };
+        handler.post(everyMinuteImmediate);
+
+        final Runnable everyMinute = new Runnable() {
+            @Override
+            public void run() {
                 if (Trader_Stock.shouldRestock()) {
                     boolean taxPaid = PremiumHelper.payOutTax();
                     Trader_Stock.restockTraders();
@@ -412,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
-        handler.post(everyMinute);
+        handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 5);
     }
 
     private String getRestockText(boolean taxPaid) {
