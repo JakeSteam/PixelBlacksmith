@@ -250,6 +250,7 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("The tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\n", 22));
         layout.addView(dh.createTextView("The rate app button will link you to the game's Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\n", 22));
         layout.addView(dh.createTextView("If you've received a support code from customer support, it can also be entered here.\n", 22));
+        layout.addView(dh.createTextView("You game save can also be imported / exported from your device here. Saves are stored in ExternalStorage/PixelBlacksmith/PixelBlacksmith<date & time>.save.\n", 22));
         layout.addView(dh.createTextView("Google Play:", 24));
         layout.addView(dh.createTextView("Google Play Games services can also be accessed here, including cloud saves, achievements, leaderboards, and quests.\n", 22));
         layout.addView(dh.createTextView("Settings Code:", 24));

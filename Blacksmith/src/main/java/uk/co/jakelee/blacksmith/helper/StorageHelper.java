@@ -17,11 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 
@@ -44,16 +42,19 @@ public class StorageHelper {
         }
     }
 
-    public static String writeToSDFile(Activity activity){
+    public static String saveLocalSave(Activity activity){
         confirmStoragePermissions(activity);
-        // Encrypt them
-        File file;
-        FileOutputStream outputStream;
+
         try {
             String filename = getFilename(activity);
-            file = new File(Environment.getExternalStorageDirectory(), filename);
-            byte[] backup = GooglePlayHelper.createBackup();
+            byte[] backup = SupportCodeHelper.encode(GooglePlayHelper.createBackup());
 
+            File path = new File(Environment.getExternalStorageDirectory() + "/PixelBlacksmith");
+            path.mkdirs();
+
+            File file = new File(Environment.getExternalStorageDirectory() + "/PixelBlacksmith", filename);
+
+            FileOutputStream outputStream;
             outputStream = new FileOutputStream(file);
             outputStream.write(backup);
             outputStream.close();
@@ -69,9 +70,8 @@ public class StorageHelper {
         return String.format(context.getString(R.string.saveNameFormat), date);
     }
 
-    public static String readRaw(Context context){
-        List<String> paths = new ArrayList<>();
-        File directory = new File(Environment.getExternalStorageDirectory().getPath());
+    public static String loadLocalSave(){
+        File directory = new File(Environment.getExternalStorageDirectory().getPath() + "/PixelBlacksmith");
 
         // Get a list of all files
         File[] files = directory.listFiles(new FilenameFilter() {
@@ -84,11 +84,11 @@ public class StorageHelper {
         // Get the highest named save file, and apply it
         if (files.length > 0) {
             Arrays.sort(files, Collections.reverseOrder());
-            String backupText = getStringFromFile(files[0]);
+            String backupText = SupportCodeHelper.decode(getStringFromFile(files[0]));
 
             if (!backupText.equals("")) {
                 GooglePlayHelper.applyBackup(backupText);
-                return "Maybe it worked!";
+                return files[0].getName();
             }
         }
         return "Couldn't find a save.";

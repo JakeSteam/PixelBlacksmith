@@ -355,11 +355,17 @@ public class SettingsActivity extends Activity {
     }
 
     public void importSave(View view) {
-        StorageHelper.readRaw(this);
+        String readResult = StorageHelper.loadLocalSave();
+        if (readResult.equals("Success!")) {
+            ToastHelper.showPositiveToast(view, ToastHelper.LONG, getString(R.string.saveImportSuccess), true);
+        } else {
+            ToastHelper.showErrorToast(view, ToastHelper.LONG, String.format(getString(R.string.saveImportFailure),
+                    readResult), true);
+        }
     }
 
     public void exportSave(View view) {
-        String writeResult = StorageHelper.writeToSDFile(this);
+        String writeResult = StorageHelper.saveLocalSave(this);
         if (writeResult.startsWith("PixelBlacksmith")) {
             ToastHelper.showPositiveToast(view, ToastHelper.LONG, String.format(getString(R.string.saveExportSuccess),
                     writeResult), true);

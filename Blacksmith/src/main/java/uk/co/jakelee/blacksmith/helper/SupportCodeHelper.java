@@ -38,6 +38,10 @@ public class SupportCodeHelper {
         return plaintext;
     }
 
+    public static byte[] encode(byte[] plainBytes) {
+        return encode(new String(plainBytes)).getBytes();
+    }
+
     public static String encode(String plaintext) {
         String encrypted = "";
         try {

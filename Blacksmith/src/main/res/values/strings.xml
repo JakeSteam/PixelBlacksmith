@@ -398,6 +398,8 @@
     <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
     <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
+    <string name="saveImportSuccess">Successfully loaded local game save!</string>
+    <string name="saveImportFailure">An error occurred whilst loading save. Error: %s.</string>
 
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
