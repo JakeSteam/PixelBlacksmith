@@ -762,6 +762,46 @@
                     </LinearLayout>
                 </TableRow>
 
+                <TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="exportSave"
+                        android:orientation="vertical">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="@string/exportSaveText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="importSave"
+                        android:orientation="vertical">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="@string/importSaveText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </TableRow>
+
                 <!-- Google Play -->
                 <TableRow>
 

@@ -393,6 +393,12 @@
     <string name="longToastSettingText">Longer Messages</string>
     <string name="handleMaxSettingText">Use Max</string>
 
+    <string name="importSaveText">Import Save</string>
+    <string name="exportSaveText">Export Save</string>
+    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
+    <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
+    <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
+
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
 

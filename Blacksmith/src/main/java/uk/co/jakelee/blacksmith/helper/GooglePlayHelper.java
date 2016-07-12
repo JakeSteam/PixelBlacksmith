@@ -331,7 +331,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         return GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected();
     }
 
-    private static byte[] createBackup() {
+    public static byte[] createBackup() {
         Gson gson = new Gson();
         String backupString;
 
@@ -363,7 +363,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         return backupString.getBytes();
     }
 
-    private static void applyBackup(String backupData) {
+    public static void applyBackup(String backupData) {
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(backupData);
@@ -449,13 +449,14 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         DatabaseHelper.handlePatches();
 
-        callingActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
-            }
-        });
-
+        if (callingActivity != null) {
+            callingActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
+                }
+            });
+        }
     }
 
     private static Pair<Integer, Integer> getPrestigeAndXPFromSave(byte[] saveBytes) {
