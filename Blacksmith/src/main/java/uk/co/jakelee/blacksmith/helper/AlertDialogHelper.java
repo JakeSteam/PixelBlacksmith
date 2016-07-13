@@ -479,6 +479,48 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
+    public static void confirmWorseLocalLoad(final Activity activity, int localPrestige, int localXP, int filePrestige, int fileXP) {
+        int localLevel = Player_Info.convertXpToLevel(localXP);
+        int fileLevel = Player_Info.convertXpToLevel(fileXP);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(activity.getString(R.string.worseLocalSaveMessage),
+                localPrestige,
+                localLevel,
+                localXP,
+                filePrestige,
+                fileLevel,
+                fileXP));
+
+        alertDialog.setPositiveButton(activity.getString(R.string.worseLocalSaveLoad), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String readResult = StorageHelper.loadLocalSave(activity, false);
+                if (readResult.startsWith("PixelBlacksmith")) {
+                    ToastHelper.showPositiveToast(null, ToastHelper.LONG, activity.getString(R.string.saveImportLoadSuccess), true);
+                } else {
+                    ToastHelper.showErrorToast(null, ToastHelper.LONG, String.format(activity.getString(R.string.saveImportFailure),
+                            readResult), true);
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton(activity.getString(R.string.worseLocalSaveCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final Dialog dialog = alertDialog.create();
+                dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                dialog.show();
+                dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+            }
+        });
+    }
+
     public static void confirmWorseCloudLoad(final Context context, final Activity activity, int localPrestige, int localXP, int cloudPrestige, int cloudXP) {
         int localLevel = Player_Info.convertXpToLevel(localXP);
         int cloudLevel = Player_Info.convertXpToLevel(cloudXP);

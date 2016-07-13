@@ -355,8 +355,8 @@ public class SettingsActivity extends Activity {
     }
 
     public void importSave(View view) {
-        String readResult = StorageHelper.loadLocalSave();
-        if (readResult.equals("Success!")) {
+        String readResult = StorageHelper.loadLocalSave(this, true);
+        if (readResult.startsWith("PixelBlacksmith")) {
             ToastHelper.showPositiveToast(view, ToastHelper.LONG, getString(R.string.saveImportSuccess), true);
         } else {
             ToastHelper.showErrorToast(view, ToastHelper.LONG, String.format(getString(R.string.saveImportFailure),

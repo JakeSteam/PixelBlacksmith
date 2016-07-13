@@ -248,7 +248,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
 
-        if (!checkIsImprovement || cloudSaveIsBetter(cloudData)) {
+        if (!checkIsImprovement || newSaveIsBetter(cloudData)) {
             applyBackup(new String(cloudSaveData));
         } else {
             AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
@@ -459,7 +459,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
-    private static Pair<Integer, Integer> getPrestigeAndXPFromSave(byte[] saveBytes) {
+    public static Pair<Integer, Integer> getPrestigeAndXPFromSave(byte[] saveBytes) {
         int prestige = 0;
         int xp = 0;
         Gson gson = new Gson();
@@ -479,14 +479,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         return new Pair<>(prestige, xp);
     }
 
-    private static boolean cloudSaveIsBetter(Pair<Integer, Integer> cloudValues) {
-        boolean isCloudSaveBetter;
-        if (cloudValues.first <= Player_Info.getPrestige() && cloudValues.second <= Player_Info.getXp()) {
-            isCloudSaveBetter = false;
-        } else {
-            isCloudSaveBetter = true;
-        }
-        return isCloudSaveBetter;
+    public static boolean newSaveIsBetter(Pair<Integer, Integer> newValues) {
+        return !(newValues.first <= Player_Info.getPrestige() && newValues.second <= Player_Info.getXp());
     }
 
     private static String[] splitBackupData(String backupData) {

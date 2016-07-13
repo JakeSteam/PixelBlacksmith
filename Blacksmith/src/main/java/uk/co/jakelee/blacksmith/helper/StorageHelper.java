@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,6 +23,7 @@ import java.util.Collections;
 import java.util.Date;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class StorageHelper {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -60,7 +62,6 @@ public class StorageHelper {
             outputStream.close();
             return filename;
         } catch (IOException e) {
-            e.printStackTrace();
             return e.getMessage();
         }
     }
@@ -70,7 +71,7 @@ public class StorageHelper {
         return String.format(context.getString(R.string.saveNameFormat), date);
     }
 
-    public static String loadLocalSave(){
+    public static String loadLocalSave(Activity activity, boolean checkIsImprovement){
         File directory = new File(Environment.getExternalStorageDirectory().getPath() + "/PixelBlacksmith");
 
         // Get a list of all files
@@ -81,13 +82,23 @@ public class StorageHelper {
             }
         });
 
-        // Get the highest named save file, and apply it
         if (files.length > 0) {
             Arrays.sort(files, Collections.reverseOrder());
             String backupText = SupportCodeHelper.decode(getStringFromFile(files[0]));
 
             if (!backupText.equals("")) {
-                GooglePlayHelper.applyBackup(backupText);
+                Pair<Integer, Integer> cloudData = GooglePlayHelper.getPrestigeAndXPFromSave(backupText.getBytes());
+
+                if (!checkIsImprovement || GooglePlayHelper.newSaveIsBetter(cloudData)) {
+                    GooglePlayHelper.applyBackup(backupText);
+                } else {
+                    AlertDialogHelper.confirmWorseLocalLoad(activity,
+                            Player_Info.getPrestige(),
+                            Player_Info.getXp(),
+                            cloudData.first,
+                            cloudData.second);
+                }
+
                 return files[0].getName();
             }
         }
