@@ -82,7 +82,7 @@ public class StorageHelper {
             }
         });
 
-        if (files.length > 0) {
+        if (files != null && files.length > 0) {
             Arrays.sort(files, Collections.reverseOrder());
             String backupText = SupportCodeHelper.decode(getStringFromFile(files[0]));
 
