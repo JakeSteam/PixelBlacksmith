@@ -133,6 +133,10 @@ public class EquipmentSelectActivity extends Activity {
         int itemId = (int) (long) view.getTag(R.id.itemID);
         int itemState = (int) (long) view.getTag(R.id.itemState);
 
+        Inventory inventory = Inventory.getInventory(itemId, itemState);
+        inventory.setQuantity(inventory.getQuantity() - 1);
+        inventory.save();
+
         switch (itemType) {
             case ("food"):
                 hero.setFoodItem(itemId);

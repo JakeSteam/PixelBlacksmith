@@ -53,6 +53,7 @@ public class DatabaseHelper {
     public final static int DB_V1_7_0 = 12;
     public final static int DB_V1_7_2 = 13;
     public final static int DB_V1_7_4 = 14;
+    public final static int DB_V1_7_7 = 15;
 
 
     public static void handlePatches() {
@@ -121,6 +122,11 @@ public class DatabaseHelper {
         if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_2) {
             DatabaseHelper.patch172to174();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_4).apply();
+        }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_4) {
+            DatabaseHelper.patch174to177();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_7).apply();
         }
     }
 
@@ -676,6 +682,10 @@ public class DatabaseHelper {
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 1 WHERE tool_id BETWEEN 149 AND 160 AND resource_id BETWEEN 72 AND 76");
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 10 WHERE tool_id IN (73, 74, 75)");
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE tool_id IN (72, 76)");
+    }
+
+    private static void patch174to177() {
+        Hero_Resource.executeQuery("UPDATE heroresource SET adventure_id = 417 WHERE adventure_id = 416 AND resource_id IN (192, 149, 60)");
     }
 
     private static void createContributionGoals() {
