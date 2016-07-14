@@ -39,7 +39,7 @@ public class ToastHelper {
 
     public static void showToast(View targetView, int length, String text, boolean saveToLog, int color) {
         if (targetView == null) {
-            targetView = MainActivity.questContainer;
+            targetView = MainActivity.questContainer == null ? MainActivity.coins : MainActivity.questContainer;
         }
 
         final Snackbar snackbar = Snackbar.make(targetView, text, length);

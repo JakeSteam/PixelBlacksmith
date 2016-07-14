@@ -548,20 +548,25 @@ public class DisplayHelper {
     }
 
     public ImageView createImageView(String type, String value, int width, int height) {
+        ImageView image = new ImageView(context);
         int viewId = context.getResources().getIdentifier("img" + value, "id", context.getPackageName());
         int drawableId = context.getResources().getIdentifier(type + value, "drawable", context.getPackageName());
         int adjustedWidth = convertDpToPixel(width);
         int adjustedHeight = convertDpToPixel(height);
 
-        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
-        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
-        Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
+        try {
+            Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+            Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
+            Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
 
-        ImageView image = new ImageView(context);
-        image.setId(viewId);
-        image.setTag(type + value);
-        image.setImageDrawable(imageResource);
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+            image.setId(viewId);
+            image.setTag(type + value);
+            image.setImageDrawable(imageResource);
+            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        } catch (OutOfMemoryError e) {
+            ToastHelper.showErrorToast(null, ToastHelper.SHORT, "Failed to load image, due to low device memory...", true);
+        }
 
         return image;
     }
