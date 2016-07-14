@@ -23,6 +23,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.StorageHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -353,6 +354,26 @@ public class SettingsActivity extends Activity {
         GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
     }
 
+    public void importSave(View view) {
+        String readResult = StorageHelper.loadLocalSave(this, true);
+        if (readResult.startsWith("PixelBlacksmith")) {
+            ToastHelper.showPositiveToast(view, ToastHelper.LONG, getString(R.string.saveImportSuccess), true);
+        } else {
+            ToastHelper.showErrorToast(view, ToastHelper.LONG, String.format(getString(R.string.saveImportFailure),
+                    readResult), true);
+        }
+    }
+
+    public void exportSave(View view) {
+        String writeResult = StorageHelper.saveLocalSave(this);
+        if (writeResult.startsWith("PixelBlacksmith")) {
+            ToastHelper.showPositiveToast(view, ToastHelper.LONG, String.format(getString(R.string.saveExportSuccess),
+                    writeResult), true);
+        } else {
+            ToastHelper.showErrorToast(view, ToastHelper.LONG, String.format(getString(R.string.saveExportFailure),
+                    writeResult), true);
+        }
+    }
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);

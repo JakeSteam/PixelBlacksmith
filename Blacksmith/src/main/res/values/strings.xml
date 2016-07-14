@@ -240,6 +240,10 @@
     <string name="worseSaveLoad">Load</string>
     <string name="worseSaveCancel">Cancel</string>
 
+    <string name="worseLocalSaveMessage">Are you SURE you want to load this inferior imported save?\n\nCurrent save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nImported save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseLocalSaveLoad">Load</string>
+    <string name="worseLocalSaveCancel">Cancel</string>
+
     <string name="cloudSaveWarning">Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.</string>
     <string name="cloudSaveSave">Overwrite</string>
     <string name="cloudSaveCancel">Cancel</string>
@@ -392,6 +396,15 @@
     <string name="updateSlotsSettingText">Update Slots</string>
     <string name="longToastSettingText">Longer Messages</string>
     <string name="handleMaxSettingText">Use Max</string>
+
+    <string name="importSaveText">Import Save</string>
+    <string name="exportSaveText">Export Save</string>
+    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
+    <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
+    <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
+    <string name="saveImportSuccess">Successfully loaded local game save!</string>
+    <string name="saveImportLoadSuccess">Successfully loaded and imported local game save!</string>
+    <string name="saveImportFailure">An error occurred whilst loading save. Error: %s.</string>
 
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
