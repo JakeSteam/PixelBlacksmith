@@ -648,8 +648,7 @@ public class AlertDialogHelper {
                 List<Pair<Long, Integer>> items = new ArrayList<>();
 
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-                int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
-                totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+                int totalCost = itemStock.getStock() * itemValue;
 
                 if (totalCost <= coinStock.getQuantity()) {
                     int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
@@ -711,7 +710,7 @@ public class AlertDialogHelper {
             totalValue += (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
             itemCount += itemStock.getStock();
         }
-        totalValue = (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1) * totalValue;
+        totalValue = totalValue / (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
