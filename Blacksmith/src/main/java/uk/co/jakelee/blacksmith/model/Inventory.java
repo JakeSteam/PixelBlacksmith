@@ -223,7 +223,9 @@ public class Inventory extends SugarRecord implements Serializable {
         pageInventory.setQuantity(pageInventory.getQuantity() - (quantity * Constants.PAGE_EXCHANGE_QTY));
         pageInventory.save();
 
-        List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+        List<Item> pages = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_PAGE),
+                Condition.prop("id").notEq(pageInventory.getItem())).list();
         Item rewardPage = VisitorHelper.pickRandomItemFromList(pages);
         Inventory.addItem(rewardPage.getId(), Constants.STATE_NORMAL, quantity);
 
