@@ -541,7 +541,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnected(Bundle connectionHint) {
-        Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
+        if (GooglePlayHelper.IsConnected()) {
+            Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
+        }
     }
 
     @Override
