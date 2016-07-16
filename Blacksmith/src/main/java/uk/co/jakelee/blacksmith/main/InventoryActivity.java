@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -59,7 +60,6 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         dh.updateFullscreen(this);
         loadSelectedType();
 
-        final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
@@ -91,7 +91,8 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
     }
 
     private void loadSelectedType() {
-        long savedType = MainActivity.prefs.getLong("inventoryFilter", 0);
+        SharedPreferences prefs = MainActivity.prefs != null ? MainActivity.prefs : getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        long savedType = prefs.getLong("inventoryFilter", 0);
         if (savedType > 0) {
             selectedType = Type.findById(Type.class, savedType);
         } else {
