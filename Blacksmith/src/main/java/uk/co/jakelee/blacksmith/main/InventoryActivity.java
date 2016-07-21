@@ -219,7 +219,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         int itemId = (int) v.getTag();
         Item item = Item.findById(Item.class, itemId);
         Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
-        AlertDialogHelper.confirmPageExchange(this, this, v, inventory, item);
+        AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
     }
 
     private void clickSellButton(View view) {

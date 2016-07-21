@@ -125,8 +125,13 @@ public class TradeActivity extends Activity {
     }
 
     private void displayVisitorInfo() {
-        TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
-        visitorName.setText(visitorType.getName());
+        final TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visitorName.setText(visitorType.getName());
+            }
+        });
     }
 
     private void displayDemandInfo() {
