@@ -146,7 +146,7 @@ public class Pending_Inventory extends SugarRecord {
         newItem.save();
     }
 
-    public static long getTimeSlotAvailable(Long location) {
+    private static long getTimeSlotAvailable(Long location) {
         List<Pending_Inventory> pendingItems = getPendingItems(location, true);
         int numSlots = Slot.getUnlockedSlots(location);
 

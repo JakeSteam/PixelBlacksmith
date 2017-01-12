@@ -456,6 +456,7 @@
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
     <string name="notificationBonus">A bonus is ready to claim!</string>
+    <string name="notificationFinished">All items have been crafted!</string>
 
     <string name="clickChangeText">Quick Select</string>
 

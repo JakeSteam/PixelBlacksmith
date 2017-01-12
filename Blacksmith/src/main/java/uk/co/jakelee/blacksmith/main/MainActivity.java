@@ -42,6 +42,7 @@ import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
@@ -345,6 +346,10 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS) && !Player_Info.isBonusReady() && Player_Info.displayAds()) {
             NotificationHelper.addBonusNotification(getApplicationContext(), notificationSound);
+        }
+
+        if (Setting.getSafeBoolean(Constants.SETTING_FINISHED_NOTIFICATIONS) && Pending_Inventory.listAll(Pending_Inventory.class).size() > 0) {
+            NotificationHelper.addFinishedNotification(getApplicationContext(), notificationSound);
         }
 
         if (musicServiceIsStarted) {

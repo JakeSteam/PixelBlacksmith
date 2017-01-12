@@ -101,6 +101,7 @@ public class Constants {
     public static final int NOTIFICATION_RESTOCK = 2;
     public static final int NOTIFICATION_WORKER = 3;
     public static final int NOTIFICATION_BONUS = 4;
+    public static final int NOTIFICATION_FINISHED = 5;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
