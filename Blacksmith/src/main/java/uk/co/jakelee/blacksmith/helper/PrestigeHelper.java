@@ -21,17 +21,20 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class PrestigeHelper {
     public static void prestigeAccount() {
-        increasePrestige();
+        if (!MainActivity.vh.prestiging) {
+            MainActivity.vh.prestiging = true;
+            increasePrestige();
 
-        resetItems();
-        resetUpgrades();
-        resetXP();
-        resetAllVisitors();
-        resetTraders();
-        resetWorkers();
-        resetCraftingInterface();
+            resetItems();
+            resetUpgrades();
+            resetXP();
+            resetAllVisitors();
+            resetTraders();
+            resetWorkers();
+            resetCraftingInterface();
 
-        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TIMES_PRESTIGED, Player_Info.getPrestige() + 1);
+            GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TIMES_PRESTIGED, Player_Info.getPrestige() + 1);
+        }
     }
 
     private static void increasePrestige() {
