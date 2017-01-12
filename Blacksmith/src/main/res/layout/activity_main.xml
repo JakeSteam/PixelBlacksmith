@@ -266,6 +266,26 @@
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="44%" />
 
+            <LinearLayout
+                android:id="@+id/left_ledger"
+                android:layout_width="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="72dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="6%"
+                android:onClick="openMessages"
+                app:layout_marginTopPercent="68%" />
+
+            <LinearLayout
+                android:id="@+id/right_ledger"
+                android:layout_width="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="340dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="6%"
+                android:onClick="openMessages"
+                app:layout_marginTopPercent="68%" />
+
             <!-- Areas -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"

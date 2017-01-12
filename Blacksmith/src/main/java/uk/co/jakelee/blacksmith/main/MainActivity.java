@@ -510,6 +510,12 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    public void openMessages(View view) {
+        Intent intent = new Intent(this, MessagesActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(intent);
+    }
+
     public void clickBonusChest(View view) {
         if (Player_Info.isBonusReady()) {
             if (Player_Info.isPremium()) {
