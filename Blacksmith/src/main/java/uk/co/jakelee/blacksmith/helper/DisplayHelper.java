@@ -31,6 +31,7 @@ import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private final Context context;
     private boolean isProcessingPendingInventory = false;
+    private Picasso picasso;
 
     public ViewFlipper itemSelectionFlipper;
     public HorizontalDots itemSelectionDots;
@@ -78,6 +80,7 @@ public class DisplayHelper {
 
     public DisplayHelper(Context context) {
         this.context = context;
+        this.picasso = new Picasso.Builder(context).build();
     }
 
     public static DisplayHelper getInstance(Context ctx) {
@@ -222,7 +225,8 @@ public class DisplayHelper {
                             activity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                                    picasso.load(getItemDrawableID(context, pendingItem.getItem()))
+                                            .into(slotItem);
                                     slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
                                 }
                             });
@@ -798,11 +802,9 @@ public class DisplayHelper {
     }
 
     public static void updateBonusChest(ImageView chest) {
-        if (Player_Info.isBonusReady()) {
-            chest.setImageResource(R.drawable.bonus_chest_full);
-        } else {
-            chest.setImageResource(R.drawable.bonus_chest_empty);
-        }
+        Picasso.with(chest.getContext())
+                .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
+                .into(chest);
     }
 
 }

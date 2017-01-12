@@ -3,7 +3,7 @@
 -dontwarn com.google.**
 -dontwarn com.squareup.okhttp.**
 -keep class com.orm.** { *; }
--keep class uk.co.jakelee.pixelblacksmith.model.** { *; }
+-keep class uk.co.jakelee.blacksmith.model.** { *; }
 
 -keepclassmembers enum * {
     <fields>;

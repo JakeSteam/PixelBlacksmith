@@ -1,0 +1,24 @@
+diff a/Blacksmith/src/main/java/uk/co/jakelee/blacksmith/helper/DisplayHelper.java b/Blacksmith/src/main/java/uk/co/jakelee/blacksmith/helper/DisplayHelper.java	(rejected hunks)
+@@ -555,19 +555,13 @@
+         ImageView image = new ImageView(context);
+         int viewId = context.getResources().getIdentifier("img" + value, "id", context.getPackageName());
+         int drawableId = context.getResources().getIdentifier(type + value, "drawable", context.getPackageName());
+-        int adjustedWidth = convertDpToPixel(width);
+-        int adjustedHeight = convertDpToPixel(height);
+ 
+         try {
+-            Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+-            Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
+-            Drawable imageResource = new BitmapDrawable(context.getResources(), resizedImage);
+-
+-
++            Picasso.with(context)
++                    .load(drawableId)
++                    .into(image);
+             image.setId(viewId);
+             image.setTag(type + value);
+-            image.setImageDrawable(imageResource);
+-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+         } catch (OutOfMemoryError e) {
+             ToastHelper.showErrorToast(null, ToastHelper.SHORT, "Failed to load image, due to low device memory...", true);
+         }
