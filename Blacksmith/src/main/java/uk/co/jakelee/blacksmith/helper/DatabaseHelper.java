@@ -54,6 +54,7 @@ public class DatabaseHelper {
     public final static int DB_V1_7_2 = 13;
     public final static int DB_V1_7_4 = 14;
     public final static int DB_V1_7_7 = 15;
+    public final static int DB_V2_0_0 = 16;
 
 
     public static void handlePatches() {
@@ -128,6 +129,15 @@ public class DatabaseHelper {
             DatabaseHelper.patch174to177();
             MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_7).apply();
         }
+
+        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_7) {
+            DatabaseHelper.patch177to200();
+            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_0).apply();
+        }
+    }
+
+    private static void patch177to200() {
+        new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", false).save();
     }
 
     private static void initialSQL() {

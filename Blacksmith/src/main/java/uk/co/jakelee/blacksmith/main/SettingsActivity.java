@@ -142,6 +142,10 @@ public class SettingsActivity extends Activity {
         boolean bonusNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS);
         bonusNotificationToggle.setImageDrawable(bonusNotificationToggleValue ? tick : cross);
 
+        ImageView finishedNotificationToggle = (ImageView) findViewById(R.id.finishedNotificationToggleButton);
+        boolean finishedNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_FINISHED_NOTIFICATIONS);
+        finishedNotificationToggle.setImageDrawable(finishedNotificationToggleValue ? tick : cross);
+
         ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
         boolean notificationSoundToggleValue = Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS);
         notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
@@ -234,6 +238,10 @@ public class SettingsActivity extends Activity {
             case R.id.notificationSoundToggle:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
                 settingName = "Notification Sounds";
+                break;
+            case R.id.finishedNotificationToggle:
+                settingID = Constants.SETTING_FINISHED_NOTIFICATIONS;
+                settingName = "All Items Finished Notifications";
                 break;
             case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
