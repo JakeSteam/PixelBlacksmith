@@ -121,7 +121,8 @@ public class HelpActivity extends Activity {
 
     private void displayHelpCoins(LinearLayout layout) {
         layout.addView(dh.createTextView("Coins\n", 26));
-        layout.addView(dh.createTextView("Coins are earned and spent during normal gameplay. They can also be purchased if you're running a bit low!\n", 22));
+        layout.addView(dh.createTextView("Coins are earned and spent during normal gameplay. The buyable amount is dependant on your current player level.\n", 22));
+        layout.addView(dh.createTextView("The larger pack is also better value, so check out the two prices and see which works best for you!\n", 22));
     }
 
     private void displayHelpPrestige(LinearLayout layout) {

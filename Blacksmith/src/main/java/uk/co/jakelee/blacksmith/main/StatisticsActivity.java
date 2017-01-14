@@ -187,6 +187,8 @@ public class StatisticsActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(String.format(getString(R.string.statisticsLastPrestigedLowLevel), Constants.PRESTIGE_LEVEL_REQUIRED));
         }
 
+        ((TextViewPixel) findViewById(R.id.coinsPurchased)).setText("" + Player_Info.getCoinsPurchased());
+
         String version = String.format(getString(R.string.versionNumber), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
         ((TextViewPixel) findViewById(R.id.version)).setText(version);
     }

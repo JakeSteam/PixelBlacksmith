@@ -195,8 +195,10 @@
     <string name="contributeHeader">Rewards:</string>
 
     <string name="buyCoinsButton">%1$s coins</string>
+    <string name="buyCoinsSuccess">Successfully bought %1$d coins, enjoy!</string>
     <string name="buyCoinsDesc">Running low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
-\n\nToday is your lucky day! Two coin packs are available; the first is 1,000 x your level, the second is 5,000 x your level. Want to get more value for money? Level up!</string>
+\n\nToday is your lucky day! Two coin packs are available; the first is 500 x your level, the second is 3,000 x your level.
+\n\nWant to get more value for money? Buy the bigger pack or level up!</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
@@ -557,6 +559,7 @@
     <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
+    <string name="statisticsCoinsPurchased">Coins Purchased:</string>
     <string name="statisticsVersion">Game Version:</string>
 
     <string name="leaderboardsNoConnection">Viewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
@@ -570,7 +573,7 @@
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
-    <string name="versionNumber">%1$s (%2$d)</string>
+    <string name="versionNumber">V%1$s (#%2$d)</string>
     <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
 
     <string name="complete">Complete</string>
@@ -585,6 +588,7 @@
 \n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
 \n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
 \n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">leave the game a rating</a>. It\'s the best way to help the game grow!
+\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">City Flow</a>. I think it\'s rather fun!!
 \n\nYou could also read a few tips:</string>
 
     <string name="creditsOverall">Overall</string>
