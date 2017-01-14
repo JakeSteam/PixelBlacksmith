@@ -103,6 +103,9 @@
             android:name=".main.PremiumActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
+            android:name=".main.BuyCoinsActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
             android:name=".main.WorkerActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity

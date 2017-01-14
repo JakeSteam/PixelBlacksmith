@@ -506,6 +506,11 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void openBuyCoins(View view) {
+        Intent intent = new Intent(this, BuyCoinsActivity.class);
+        startActivity(intent);
+    }
+
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             Intent intent = new Intent(this, QuestActivity.class);

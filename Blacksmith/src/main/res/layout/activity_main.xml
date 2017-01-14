@@ -410,6 +410,13 @@
             android:textColor="@color/white"
             android:textSize="24sp" />
 
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_toRightOf="@id/coinCount"
+            android:src="@drawable/add"
+            android:onClick="openBuyCoins"/>
+
         <ProgressBar
             android:id="@+id/currentLevelProgress"
             style="?android:attr/progressBarStyleHorizontal"

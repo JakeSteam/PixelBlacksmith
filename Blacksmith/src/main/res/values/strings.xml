@@ -133,6 +133,7 @@
     <string name="helpText">Help</string>
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
+    <string name="buyCoinsText">Buy Coins</string>
     <string name="messagesText">Message Log</string>
     <string name="messagesShortText">Messages</string>
     <string name="socialMediaText">Social Media</string>
@@ -348,7 +349,7 @@
     <string name="trophyPreferencesUnknown">Preferences: ???</string>
 
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
-    <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>
+    <string name="sellSuccess">Began selling %1$dx %2$s for %3$d coin(s) each.</string>
 
     <string name="enchantingButtonText">%1$s (x%2$s)</string>
     <string name="genericQuantity">%1$dx %2$s</string>

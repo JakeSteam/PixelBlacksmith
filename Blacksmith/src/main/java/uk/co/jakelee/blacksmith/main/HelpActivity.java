@@ -114,7 +114,14 @@ public class HelpActivity extends Activity {
             displayHelpHeroEquipment(layout);
         } else if (topic == TOPICS.Hero_Visitors) {
             displayHelpHeroVisitors(layout);
+        } else if (topic == TOPICS.Coins) {
+            displayHelpCoins(layout);
         }
+    }
+
+    private void displayHelpCoins(LinearLayout layout) {
+        layout.addView(dh.createTextView("Coins\n", 26));
+        layout.addView(dh.createTextView("Coins are earned and spent during normal gameplay. They can also be purchased if you're running a bit low!\n", 22));
     }
 
     private void displayHelpPrestige(LinearLayout layout) {
@@ -464,5 +471,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Coins, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }
