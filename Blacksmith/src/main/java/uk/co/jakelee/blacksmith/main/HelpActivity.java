@@ -52,70 +52,39 @@ public class HelpActivity extends Activity {
     }
 
     private void displayHelp(LinearLayout layout, TOPICS topic) {
-        if (topic == TOPICS.Help) {
-            displayHelpHelp(layout);
-        } else if (topic == TOPICS.Tips_And_Tricks) {
-            displayTips(layout);
-        } else if (topic == TOPICS.Overview) {
-            displayHelpOverview(layout);
-        } else if (topic == TOPICS.Furnace) {
-            displayHelpFurnace(layout);
-        } else if (topic == TOPICS.Advertising) {
-            displayHelpAdvertising(layout);
-        } else if (topic == TOPICS.Anvil) {
-            displayHelpAnvil(layout);
-        } else if (topic == TOPICS.Inventory) {
-            displayHelpInventory(layout);
-        } else if (topic == TOPICS.Credits) {
-            displayHelpCredits(layout);
-        } else if (topic == TOPICS.Gem_Table) {
-            displayHelpGemTable(layout);
-        } else if (topic == TOPICS.Market) {
-            displayHelpMarket(layout);
-        } else if (topic == TOPICS.Messages) {
-            displayHelpMessages(layout);
-        } else if (topic == TOPICS.Settings) {
-            displayHelpSettings(layout);
-        } else if (topic == TOPICS.Trader) {
-            displayHelpTrader(layout);
-        } else if (topic == TOPICS.Statistics) {
-            displayHelpStatistics(layout);
-        } else if (topic == TOPICS.Table) {
-            displayHelpTable(layout);
-        } else if (topic == TOPICS.Trading) {
-            displayHelpTrading(layout);
-        } else if (topic == TOPICS.Trophy) {
-            displayHelpTrophy(layout);
-        } else if (topic == TOPICS.Visitor) {
-            displayHelpVisitor(layout);
-        } else if (topic == TOPICS.Upgrade) {
-            displayHelpUpgrade(layout);
-        }else if (topic == TOPICS.Super_Upgrade) {
-            displayHelpSuperUpgrade(layout);
-        } else if (topic == TOPICS.Premium) {
-            displayHelpPremium(layout);
-        } else if (topic == TOPICS.Helper) {
-            displayHelpHelper(layout);
-        } else if (topic == TOPICS.Helper_Tools) {
-            displayHelpTools(layout);
-        } else if (topic == TOPICS.Helper_Food) {
-            displayHelpFood(layout);
-        } else if (topic == TOPICS.Quests) {
-            displayHelpQuests(layout);
-        } else if (topic == TOPICS.Item_Picker) {
-            displayHelpItemPicker(layout);
-        } else if (topic == TOPICS.Prestige) {
-            displayHelpPrestige(layout);
-        } else if (topic == TOPICS.Hero) {
-            displayHelpHero(layout);
-        } else if (topic == TOPICS.Hero_Adventures) {
-            displayHelpHeroAdventures(layout);
-        } else if (topic == TOPICS.Hero_Equipment) {
-            displayHelpHeroEquipment(layout);
-        } else if (topic == TOPICS.Hero_Visitors) {
-            displayHelpHeroVisitors(layout);
-        } else if (topic == TOPICS.Coins) {
-            displayHelpCoins(layout);
+        switch (topic) {
+            case Advertising: displayHelpAdvertising(layout); break;
+            case Anvil: displayHelpAnvil(layout); break;
+            case Coins: displayHelpCoins(layout); break;
+            case Credits: displayHelpCredits(layout); break;
+            case Furnace: displayHelpFurnace(layout); break;
+            case Gem_Table: displayHelpGemTable(layout); break;
+            case Help: displayHelpHelp(layout); break;
+            case Helper: displayHelpHelper(layout); break;
+            case Helper_Food: displayHelpFood(layout); break;
+            case Helper_Tools: displayHelpTools(layout); break;
+            case Hero: displayHelpHero(layout); break;
+            case Hero_Adventures: displayHelpHeroAdventures(layout); break;
+            case Hero_Equipment: displayHelpHeroEquipment(layout); break;
+            case Hero_Visitors: displayHelpHeroVisitors(layout); break;
+            case Inventory: displayHelpInventory(layout); break;
+            case Item_Picker: displayHelpItemPicker(layout); break;
+            case Market: displayHelpMarket(layout); break;
+            case Messages: displayHelpMessages(layout); break;
+            case Overview: displayHelpOverview(layout); break;
+            case Premium: displayHelpPremium(layout); break;
+            case Prestige: displayHelpPrestige(layout); break;
+            case Quests: displayHelpQuests(layout); break;
+            case Settings: displayHelpSettings(layout); break;
+            case Statistics: displayHelpStatistics(layout); break;
+            case Super_Upgrade: displayHelpSuperUpgrade(layout); break;
+            case Table: displayHelpTable(layout); break;
+            case Tips_And_Tricks: displayTips(layout); break;
+            case Trader: displayHelpTrader(layout); break;
+            case Trading: displayHelpTrading(layout); break;
+            case Trophy: displayHelpTrophy(layout); break;
+            case Upgrade: displayHelpUpgrade(layout); break;
+            case Visitor: displayHelpVisitor(layout); break;
         }
     }
 
