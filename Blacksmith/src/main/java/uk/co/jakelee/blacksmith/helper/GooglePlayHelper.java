@@ -13,6 +13,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesStatusCodes;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestBuffer;
 import com.google.android.gms.games.quest.Quests;
@@ -195,33 +196,47 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
             @Override
             protected Integer doInBackground(Void... params) {
-                final Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
+                Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
 
-                if (result.getStatus().isSuccess()) {
-                    Snapshot snapshot = result.getSnapshot();
-                    try {
-                        if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
-                            cloudSaveData = snapshot.getSnapshotContents().readFully();
-                            loadFromCloud(true);
-                            currentTask = "loading";
-                        } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
-                            loadedSnapshot = snapshot;
-                            saveToCloud();
-                            currentTask = "saving";
-                        }
-                    } catch (final IOException e) {
-                        callingActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
-                            }
-                        });
-                    }
-                } else {
+                while (!result.getStatus().isSuccess()) {
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT), true);
+                        }
+                    });
+
+                    if (result.getStatus().getStatusCode() == GamesStatusCodes.STATUS_SNAPSHOT_CONFLICT) {
+                        Snapshot snapshot = result.getSnapshot();
+                        Snapshot conflictSnapshot = result.getConflictingSnapshot();
+                        Snapshot mResolvedSnapshot = snapshot;
+
+                        if (snapshot.getMetadata().getLastModifiedTimestamp() < conflictSnapshot.getMetadata().getLastModifiedTimestamp()) {
+                            mResolvedSnapshot = conflictSnapshot;
+                        }
+
+                        result = Games.Snapshots.resolveConflict(mGoogleApiClient, result.getConflictId(), mResolvedSnapshot).await();
+                    }
+                }
+
+                Snapshot snapshot = result.getSnapshot();
+                try {
+                    if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
+                        cloudSaveData = snapshot.getSnapshotContents().readFully();
+                        loadFromCloud(true);
+                        currentTask = "loading";
+                    } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
+                        loadedSnapshot = snapshot;
+                        saveToCloud();
+                        currentTask = "saving";
+                    }
+                } catch (final IOException e) {
+                    callingActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
                         }
                     });
                 }
@@ -237,14 +252,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-        callingActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!checkIsImprovement) {
+
+        if (!checkIsImprovement) {
+            callingActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
                     ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadBeginning), false);
                 }
-            }
-        });
+            });
+        }
 
         Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
 
@@ -298,6 +314,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
                         ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveSuccess), true);
                     }
                 });
@@ -453,6 +470,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             callingActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
                     ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
                 }
             });

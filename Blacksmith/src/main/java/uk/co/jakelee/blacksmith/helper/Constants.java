@@ -133,6 +133,7 @@ public class Constants {
     public static final int ERROR_BUSY = 13;
     public static final int ERROR_MAXIMUM_SUPER_UPGRADE = 14;
     public static final int ERROR_VISITOR_IN_USE = 15;
+    public static final int ERROR_RESOLVING_CONFLICT = 16;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
