@@ -118,85 +118,30 @@ public class SettingsActivity extends Activity {
         Drawable tick = dh.createDrawable(R.drawable.tick, 50, 50);
         Drawable cross = dh.createDrawable(R.drawable.cross, 50, 50);
 
-        ImageView soundToggle = (ImageView) findViewById(R.id.soundToggleButton);
-        boolean soundToggleValue = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
-        soundToggle.setImageDrawable(soundToggleValue ? tick : cross);
+        ((ImageView) findViewById(R.id.soundToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_SOUNDS) ? tick : cross);
+        ((ImageView) findViewById(R.id.musicToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_MUSIC) ? tick : cross);
+        ((ImageView) findViewById(R.id.restockNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_RESTOCK_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.visitorNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_VISITOR_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.workerNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.bonusNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.finishedNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_FINISHED_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.notificationSoundToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS) ? tick : cross);
+        ((ImageView) findViewById(R.id.turnOffAdsButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? tick : cross);
+        ((ImageView) findViewById(R.id.clickChangeToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE) ? tick : cross);
+        ((ImageView) findViewById(R.id.messageLogToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_MESSAGE_LOG) ? tick : cross);
+        ((ImageView) findViewById(R.id.autoRefreshToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH) ? tick : cross);
+        ((ImageView) findViewById(R.id.fullscreenCheckToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN) ? tick : cross);
+        ((ImageView) findViewById(R.id.updateSlotsToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_UPDATE_SLOTS) ? tick : cross);
+        ((ImageView) findViewById(R.id.fullscreenToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN) ? tick : cross);
+        ((ImageView) findViewById(R.id.longToastToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST) ? tick : cross);
+        ((ImageView) findViewById(R.id.handleMaxToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX) ? tick : cross);
+        ((ImageView) findViewById(R.id.bulkStackToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BULK_STACK) ? tick : cross);
 
-        ImageView musicToggle = (ImageView) findViewById(R.id.musicToggleButton);
-        boolean musicToggleValue = Setting.getSafeBoolean(Constants.SETTING_MUSIC);
-        musicToggle.setImageDrawable(musicToggleValue ? tick : cross);
-
-        ImageView restockNotificationToggle = (ImageView) findViewById(R.id.restockNotificationToggleButton);
-        boolean restockNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_RESTOCK_NOTIFICATIONS);
-        restockNotificationToggle.setImageDrawable(restockNotificationToggleValue ? tick : cross);
-
-        ImageView visitorNotificationToggle = (ImageView) findViewById(R.id.visitorNotificationToggleButton);
-        boolean visitorNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_VISITOR_NOTIFICATIONS);
-        visitorNotificationToggle.setImageDrawable(visitorNotificationToggleValue ? tick : cross);
-
-        ImageView workerNotificationToggle = (ImageView) findViewById(R.id.workerNotificationToggleButton);
-        boolean workerNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS);
-        workerNotificationToggle.setImageDrawable(workerNotificationToggleValue ? tick : cross);
-
-        ImageView bonusNotificationToggle = (ImageView) findViewById(R.id.bonusNotificationToggleButton);
-        boolean bonusNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS);
-        bonusNotificationToggle.setImageDrawable(bonusNotificationToggleValue ? tick : cross);
-
-        ImageView finishedNotificationToggle = (ImageView) findViewById(R.id.finishedNotificationToggleButton);
-        boolean finishedNotificationToggleValue = Setting.getSafeBoolean(Constants.SETTING_FINISHED_NOTIFICATIONS);
-        finishedNotificationToggle.setImageDrawable(finishedNotificationToggleValue ? tick : cross);
-
-        ImageView notificationSoundToggle = (ImageView) findViewById(R.id.notificationSoundToggleButton);
-        boolean notificationSoundToggleValue = Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS);
-        notificationSoundToggle.setImageDrawable(notificationSoundToggleValue ? tick : cross);
-
-        ImageView adToggle = (ImageView) findViewById(R.id.turnOffAdsButton);
-        boolean adToggleValue = Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS);
-        adToggle.setImageDrawable(adToggleValue ? tick : cross);
-
-        ImageView clickChangeToggle = (ImageView) findViewById(R.id.clickChangeToggleButton);
-        boolean clickChangeToggleValue = Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE);
-        clickChangeToggle.setImageDrawable(clickChangeToggleValue ? tick : cross);
-
-        ImageView messageLogToggle = (ImageView) findViewById(R.id.messageLogToggleButton);
-        boolean messageLogToggleValue = Setting.getSafeBoolean(Constants.SETTING_MESSAGE_LOG);
-        messageLogToggle.setImageDrawable(messageLogToggleValue ? tick : cross);
-
-        ImageView autoRefreshToggle = (ImageView) findViewById(R.id.autoRefreshToggleButton);
-        boolean autoRefreshToggleValue = Setting.getSafeBoolean(Constants.SETTING_AUTOREFRESH);
-        autoRefreshToggle.setImageDrawable(autoRefreshToggleValue ? tick : cross);
-
-        ImageView fullscreenCheckToggle = (ImageView) findViewById(R.id.fullscreenCheckToggleButton);
-        boolean fullscreenCheckToggleValue = Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN);
-        fullscreenCheckToggle.setImageDrawable(fullscreenCheckToggleValue ? tick : cross);
-
-        ImageView updateSlotsToggle = (ImageView) findViewById(R.id.updateSlotsToggleButton);
-        boolean updateSlotsToggleValue = Setting.getSafeBoolean(Constants.SETTING_UPDATE_SLOTS);
-        updateSlotsToggle.setImageDrawable(updateSlotsToggleValue ? tick : cross);
-
-        ImageView fullscreenToggle = (ImageView) findViewById(R.id.fullscreenToggleButton);
-        boolean fullscreenToggleValue = Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
-        fullscreenToggle.setImageDrawable(fullscreenToggleValue ? tick : cross);
-
-        ImageView longToastToggle = (ImageView) findViewById(R.id.longToastToggleButton);
-        boolean longToastToggleValue = Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST);
-        longToastToggle.setImageDrawable(longToastToggleValue ? tick : cross);
-
-        ImageView handleMaxToggle = (ImageView) findViewById(R.id.handleMaxToggleButton);
-        boolean handleMaxToggleValue = Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX);
-        handleMaxToggle.setImageDrawable(handleMaxToggleValue ? tick : cross);
-
-        ImageView bulkStackToggle = (ImageView) findViewById(R.id.bulkStackToggleButton);
-        boolean bulkStackToggleValue = Setting.getSafeBoolean(Constants.SETTING_BULK_STACK);
-        bulkStackToggle.setImageDrawable(bulkStackToggleValue ? tick : cross);
-
-        LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
-            prestigeButton.setVisibility(View.VISIBLE);
+            findViewById(R.id.prestigeButton).setVisibility(View.VISIBLE);
         }
 
-        TextView settingsCode = (TextView) findViewById(R.id.settingsCodeHeader);
-        settingsCode.setText(getSettingsCode());
+        ((TextView) findViewById(R.id.settingsCodeHeader)).setText(getSettingsCode());
     }
 
     public String getSettingsCode() {
