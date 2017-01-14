@@ -52,33 +52,33 @@
                     android:id="@+id/contributeDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="IAP description"
+                    android:text="@string/buyCoinsDesc"
                     android:textSize="20sp"
                     android:textColor="@color/black"/>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/coins1000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_margin="7dp"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:onClick="buy1000"
-                    android:text="1000 coins"
                     android:textColor="@color/black"
                     android:textSize="30sp"/>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/coins10000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_margin="7dp"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:onClick="buy10000"
-                    android:text="10000 coins"
                     android:textColor="@color/black"
                     android:textSize="30sp"/>
             </LinearLayout>

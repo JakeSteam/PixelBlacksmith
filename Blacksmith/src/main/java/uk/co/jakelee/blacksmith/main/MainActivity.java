@@ -314,6 +314,8 @@ public class MainActivity extends AppCompatActivity implements
                 startSeventhTutorial();
             }
         }
+
+        findViewById(R.id.buyCoins).setVisibility(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? View.INVISIBLE : View.VISIBLE);
     }
 
     public void exitTutorial(View v) {

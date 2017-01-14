@@ -194,6 +194,10 @@
     <string name="contributeTitle">%1$s (%2$d / %3$d)</string>
     <string name="contributeHeader">Rewards:</string>
 
+    <string name="buyCoinsButton">%1$s coins</string>
+    <string name="buyCoinsDesc">Running low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
+\n\nToday is your lucky day! Two coin packs are available; the first is 1,000 x your level, the second is 5,000 x your level. Want to get more value for money? Level up!</string>
+
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
     <string name="restoredPremium">Premium status restored! Make sure to transfer your cloud save too.</string>
@@ -427,7 +431,7 @@
 
     <string name="restockText">Restock</string>
     <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>
-    <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %s!</string>
+    <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %d!</string>
     <string name="restockTextNoTax">All traders have been restocked!</string>
     <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
     <string name="traderRestockQuestionAdvert">Restock \"%1$s\" for %2$d coins, or by watching an advert?</string>

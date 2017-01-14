@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+
+import java.text.NumberFormat;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -20,7 +23,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     BillingProcessor bp;
     boolean canBuyIAPs = false;
     private static final String SKU_COIN_1000 = "coin_pack_1";
-    private static final String SKU_COIN_10000 = "coin_pack_2";
+    private static final String SKU_COIN_5000 = "coin_pack_2";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
         }
+
+        int playerLevel = Player_Info.getPlayerLevel();
+        ((TextView)findViewById(R.id.coins1000)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * 1000)));
+        ((TextView)findViewById(R.id.coins10000)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * 10000)));
     }
 
     @Override
@@ -43,8 +50,8 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         int level = Player_Info.getPlayerLevel();
         if (sku.equals(SKU_COIN_1000)) {
             return 1000 * level;
-        } else if (sku.equals(SKU_COIN_10000)) {
-            return 10000 * level;
+        } else if (sku.equals(SKU_COIN_5000)) {
+            return 5000 * level;
         }
         return 0;
     }
@@ -84,7 +91,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     public void buy10000(View v) {
         if (canBuyIAPs) {
-            bp.purchase(this, SKU_COIN_10000);
+            bp.purchase(this, SKU_COIN_5000);
         } else {
             ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }

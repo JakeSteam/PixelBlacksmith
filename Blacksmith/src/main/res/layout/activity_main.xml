@@ -411,6 +411,7 @@
             android:textSize="24sp" />
 
         <ImageView
+            android:id="@+id/buyCoins"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_toRightOf="@id/coinCount"
