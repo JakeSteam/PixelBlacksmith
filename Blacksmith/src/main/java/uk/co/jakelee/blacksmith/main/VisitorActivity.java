@@ -288,6 +288,8 @@ public class VisitorActivity extends Activity {
             if (visitorStats.getVisits() >= Constants.VISITS_TROPHY && visitorStats.getTrophyAchieved() == 0) {
                 visitorStats.setTrophyAchieved(System.currentTimeMillis());
                 visitorStats.save();
+                visitorType.setWeighting(visitorType.getWeighting() / 2);
+                visitorType.save();
             }
 
             if (visitor.isVisitorFullyComplete()) {
