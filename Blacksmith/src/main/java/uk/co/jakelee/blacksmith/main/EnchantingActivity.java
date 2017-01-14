@@ -165,17 +165,25 @@ public class EnchantingActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < Constants.TIER_MAX) {
+        if (displayedTier < Constants.TIER_PREMIUM) {
+            if (displayedTier == Constants.TIER_MAX) {
+                displayedTier = Constants.TIER_PREMIUM;
+            } else {
+                displayedTier++;
+            }
             MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
-            displayedTier++;
             createEnchantingInterface(true);
         }
     }
 
     public void goDownTier(View view) {
         if (displayedTier > Constants.TIER_MIN) {
+            if (displayedTier == Constants.TIER_PREMIUM) {
+                displayedTier = Constants.TIER_MAX;
+            } else {
+                displayedTier--;
+            }
             MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
-            displayedTier--;
             createEnchantingInterface(true);
         }
     }
