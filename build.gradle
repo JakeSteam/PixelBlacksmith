@@ -12,7 +12,7 @@ buildscript {
 ext {
     apiVersion = 25
     compilerVersion = '25.0.1'
-    supportLibraryVersion = '25.1.0'
+    supportLibraryVersion = '23.4.0'
     playLibraryVersion = '10.0.1'
 }
 
