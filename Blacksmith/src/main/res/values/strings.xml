@@ -397,11 +397,12 @@
     <string name="finishedNotificationSettingText">Items\nDone</string>
     <string name="prestigeSettingText">Prestige\n(NG+)</string>
     <string name="fullscreenSettingText">Full Screen</string>
-    <string name="fullscreenCheckSettingText">Full Screen Check</string>
+    <string name="fullscreenCheckSettingText">Fullscr Check</string>
     <string name="autoRefreshSettingText">Auto Refresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
     <string name="longToastSettingText">Longer Messages</string>
-    <string name="handleMaxSettingText">Use Max</string>
+    <string name="handleMaxSettingText">Enable\nMax</string>
+    <string name="bulkStackSettingText">Bulk Craft\nStack</string>
 
     <string name="importSaveText">Import Save</string>
     <string name="exportSaveText">Export Save</string>

@@ -186,6 +186,10 @@ public class SettingsActivity extends Activity {
         boolean handleMaxToggleValue = Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX);
         handleMaxToggle.setImageDrawable(handleMaxToggleValue ? tick : cross);
 
+        ImageView bulkStackToggle = (ImageView) findViewById(R.id.bulkStackToggleButton);
+        boolean bulkStackToggleValue = Setting.getSafeBoolean(Constants.SETTING_BULK_STACK);
+        bulkStackToggle.setImageDrawable(bulkStackToggleValue ? tick : cross);
+
         LinearLayout prestigeButton = (LinearLayout) findViewById(R.id.prestigeButton);
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             prestigeButton.setVisibility(View.VISIBLE);
@@ -278,6 +282,10 @@ public class SettingsActivity extends Activity {
             case R.id.handleMaxToggle:
                 settingID = Constants.SETTING_HANDLE_MAX;
                 settingName = "Smelt / Craft / Sell Max";
+                break;
+            case R.id.bulkStackToggle:
+                settingID = Constants.SETTING_BULK_STACK;
+                settingName = "Single Stack Bulk Crafting";
                 break;
         }
 

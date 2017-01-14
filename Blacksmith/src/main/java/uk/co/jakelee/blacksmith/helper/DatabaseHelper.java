@@ -138,6 +138,7 @@ public class DatabaseHelper {
 
     private static void patch177to200() {
         new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", false).save();
+        new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", true).save();
     }
 
     private static void initialSQL() {

@@ -245,6 +245,9 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView("'Full Screen' enables a more immersive full screen mode.\n", 22));
         layout.addView(dh.createTextView("The 'Quick Select' functionality allows tapping the item image in a crafting interface to change item. Disabling 'Quick Select' will make swiping to change item easier.\n", 22));
         layout.addView(dh.createTextView("The 'Quick Log Access' option makes tapping a message open the message log instead of closing the current message.\n", 22));
+        layout.addView(dh.createTextView("The 'Longer Messages' option increases the time errors and alerts stay on screen.\n", 22));
+        layout.addView(dh.createTextView("The 'Use Max' option replaces 'Make 1000' buttons with 'Make Max'.\n", 22));
+        layout.addView(dh.createTextView("Enabling 'Bulk Craft Stack' causes items to stack up when bulk crafting. This means a lengthy process can carry on whilst short-term crafting is still possible.\n", 22));
         layout.addView(dh.createTextView("Performance Options:", 24));
         layout.addView(dh.createTextView("The 'Auto Refresh' option will enable auto refreshing on inventory and trade screens. This feature can cause performance issues, so is disabled by default.\n", 22));
         layout.addView(dh.createTextView("The 'Full Screen Check' option will enable check fullscreen status. If disabled, fullscreen mode will be less reliable, but performance will be improved.\n", 22));

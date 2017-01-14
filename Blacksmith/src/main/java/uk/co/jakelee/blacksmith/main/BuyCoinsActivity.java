@@ -22,8 +22,8 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     private static DisplayHelper dh;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
-    private static final String SKU_COIN_1000 = "coin_pack_1";
-    private static final String SKU_COIN_5000 = "coin_pack_2";
+    private static final String SKU_COIN_100 = "coin_pack_1";
+    private static final String SKU_COIN_1000 = "coin_pack_2";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,10 +48,10 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     private int getCoinsFromSku(String sku) {
         int level = Player_Info.getPlayerLevel();
-        if (sku.equals(SKU_COIN_1000)) {
+        if (sku.equals(SKU_COIN_100)) {
+            return 100 * level;
+        } else if (sku.equals(SKU_COIN_1000)) {
             return 1000 * level;
-        } else if (sku.equals(SKU_COIN_5000)) {
-            return 5000 * level;
         }
         return 0;
     }
@@ -83,7 +83,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     public void buy1000(View v) {
         if (canBuyIAPs) {
-            bp.purchase(this, SKU_COIN_1000);
+            bp.purchase(this, SKU_COIN_100);
         } else {
             ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }
@@ -91,7 +91,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     public void buy10000(View v) {
         if (canBuyIAPs) {
-            bp.purchase(this, SKU_COIN_5000);
+            bp.purchase(this, SKU_COIN_1000);
         } else {
             ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }

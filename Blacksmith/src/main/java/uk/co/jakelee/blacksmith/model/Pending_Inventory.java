@@ -112,7 +112,7 @@ public class Pending_Inventory extends SugarRecord {
 
 
     private static void processScheduledItems(final List<Pair<Long, Integer>> items, final long location) {
-        if (true) {
+        if (Setting.getSafeBoolean(Constants.SETTING_BULK_STACK)) {
             Pending_Inventory.addScheduledItem(items.get(0).first, items.get(0).second, items.size(), location);
         } else {
             for (Pair item : items) {

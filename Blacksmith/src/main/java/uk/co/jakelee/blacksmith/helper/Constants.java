@@ -166,6 +166,7 @@ public class Constants {
     public static final Long SETTING_LONG_TOAST = 18L;
     public static final Long SETTING_HANDLE_MAX = 19L;
     public static final Long SETTING_FINISHED_NOTIFICATIONS = 20L;
+    public static final Long SETTING_BULK_STACK = 21L;
 
     public static final int SU_DOUBLE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;
