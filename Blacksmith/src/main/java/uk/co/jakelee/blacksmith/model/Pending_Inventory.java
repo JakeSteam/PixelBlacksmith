@@ -112,8 +112,12 @@ public class Pending_Inventory extends SugarRecord {
 
 
     private static void processScheduledItems(final List<Pair<Long, Integer>> items, final long location) {
-        for (Pair item : items) {
-            Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
+        if (true) {
+            Pending_Inventory.addScheduledItem(items.get(0).first, items.get(0).second, items.size(), location);
+        } else {
+            for (Pair item : items) {
+                Pending_Inventory.addScheduledItem((long) item.first, (int) item.second, 1, location);
+            }
         }
     }
 
