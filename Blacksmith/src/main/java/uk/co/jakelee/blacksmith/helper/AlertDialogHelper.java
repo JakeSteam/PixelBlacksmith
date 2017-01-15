@@ -8,9 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Pair;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -28,15 +30,20 @@ import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.main.WorkerActivity;
 import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
+import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
+import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
+import uk.co.jakelee.blacksmith.model.Visitor_Stats;
+import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 public class AlertDialogHelper {
@@ -428,6 +435,45 @@ public class AlertDialogHelper {
         final Dialog dialog = alertDialog.create();
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
         dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void displayCompletion(final Context context, final Activity activity) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format("Level: %1$d / %2$d\n" +
+                "Upgrades: %3$d / %4$d\n" +
+                "Traders: %5$d / %6$d\n" +
+                "Slots: %7$d / %8$d\n" +
+                "Traders Stock: %9$d / %10$d\n" +
+                "Items Owned: %11$d / %12$d\n" +
+                "Visitor Prefs: %13$d / %14$d\n" +
+                "Trophies: %15$d / %16$d\n" +
+                "Workers: %17$d / %18$d\n" +
+                "Adventures: %19$d / %20$d\n" +
+                "Prestiges: %21$d = +%22$d%%",
+                Player_Info.getPlayerLevel(), Constants.PRESTIGE_LEVEL_REQUIRED,
+                Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue(), Upgrade.getMaximumUpgrades(),
+                Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count(), Trader.count(Trader.class),
+                Slot.getUnlockedCount(), Slot.count(Slot.class) - (int) Location.count(Location.class),
+                Trader_Stock.getUnlockedCount(), Trader_Stock.count(Trader_Stock.class),
+                Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory GROUP BY item").size(), Item.count(Item.class),
+                Visitor_Type.getTotalPreferencesDiscovered(), Visitor_Type.count(Visitor_Type.class) * 3,
+                Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count(), Visitor_Stats.count(Visitor_Stats.class),
+                Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count(), Worker.count(Worker.class),
+                Visitor_Type.getAdventureAttempts().second, Hero_Adventure.count(Hero_Adventure.class),
+                Player_Info.getPrestige(), Player_Info.getPrestige() * 100));
+
+        alertDialog.setPositiveButton(context.getString(R.string.updateClose), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        ((TextView)dialog.findViewById(android.R.id.message)).setGravity(Gravity.RIGHT);
         dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }

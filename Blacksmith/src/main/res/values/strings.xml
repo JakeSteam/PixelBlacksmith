@@ -334,7 +334,7 @@
 
     <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$,d coin(s), or up to %3$d for %4$d coin(s) each?</string>
     <string name="itemBuy1Confirm">Buy 1</string>
-    <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
+    <string name="itemBuyComplete">Began buying %1$dx %2$s for %3$d coin(s).</string>
     <string name="itemBuyCancel">Cancel</string>
     <string name="itemBuyAllConfirm">Buy All</string>
     <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$,d coins?</string>
