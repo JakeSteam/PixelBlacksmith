@@ -268,6 +268,13 @@ public class MainActivity extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
 
+        Setting setting = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION);
+        //noinspection ResourceType
+        if (setting != null && setting.getIntValue() != getRequestedOrientation()) {
+            //noinspection ResourceType
+            setRequestedOrientation(setting.getIntValue());
+        }
+
         new Thread(new Runnable() {
             public void run() {
                 newVisitors = VisitorHelper.tryCreateRequiredVisitors();

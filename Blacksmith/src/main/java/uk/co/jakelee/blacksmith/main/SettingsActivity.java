@@ -137,11 +137,22 @@ public class SettingsActivity extends Activity {
         ((ImageView) findViewById(R.id.handleMaxToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX) ? tick : cross);
         ((ImageView) findViewById(R.id.bulkStackToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BULK_STACK) ? tick : cross);
 
+        populateOrientation();
+
         if (Player_Info.getPlayerLevel() >= Constants.PRESTIGE_LEVEL_REQUIRED) {
             findViewById(R.id.prestigeButton).setVisibility(View.VISIBLE);
         }
 
         ((TextView) findViewById(R.id.settingsCodeHeader)).setText(getSettingsCode());
+    }
+
+    private void populateOrientation() {
+        Drawable tick = dh.createDrawable(R.drawable.tick, 50, 50);
+        Drawable cross = dh.createDrawable(R.drawable.cross, 50, 50);
+        int orientation = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION).getIntValue();
+        ((ImageView) findViewById(R.id.orientationAutoCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_AUTO ? tick : cross);
+        ((ImageView) findViewById(R.id.orientationPortraitCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_PORTRAIT ? tick : cross);
+        ((ImageView) findViewById(R.id.orientationLandscapeCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_LANDSCAPE ? tick : cross);
     }
 
     public String getSettingsCode() {
@@ -154,6 +165,13 @@ public class SettingsActivity extends Activity {
         return String.format(getString(R.string.settingsCode),
                 settings.size(),
                 Integer.valueOf(settingsCode, 2));
+    }
+
+    public void toggleOrientation(View v) {
+        Setting orientationSetting = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION);
+        orientationSetting.setIntValue(Integer.valueOf((String)v.getTag()));
+        orientationSetting.save();
+        populateOrientation();
     }
 
     public void toggleSetting(View v) {

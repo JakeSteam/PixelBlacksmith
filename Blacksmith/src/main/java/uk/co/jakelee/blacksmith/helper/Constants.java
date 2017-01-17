@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.content.pm.ActivityInfo;
+
 public class Constants {
     public static final int TRUE = 1;
 
@@ -51,6 +53,10 @@ public class Constants {
     public static final int MAXIMUM_REWARDS = 8;
     public static final int MINIMUM_COIN_REWARDS = 100;
     public static final int MAXIMUM_COIN_REWARDS = 700;
+
+    public static final int ORIENTATION_LANDSCAPE = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+    public static final int ORIENTATION_PORTRAIT = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
+    public static final int ORIENTATION_AUTO = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
 
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;
@@ -167,6 +173,7 @@ public class Constants {
     public static final Long SETTING_HANDLE_MAX = 19L;
     public static final Long SETTING_FINISHED_NOTIFICATIONS = 20L;
     public static final Long SETTING_BULK_STACK = 21L;
+    public static final Long SETTING_ORIENTATION = 22L;
 
     public static final int SU_DOUBLE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;

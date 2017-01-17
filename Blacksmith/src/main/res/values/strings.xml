@@ -405,6 +405,9 @@
     <string name="longToastSettingText">Longer Messages</string>
     <string name="handleMaxSettingText">Enable\nMax</string>
     <string name="bulkStackSettingText">Bulk Craft\nStack</string>
+    <string name="orientationAuto">Auto</string>
+    <string name="orientationPortrait">Portrait</string>
+    <string name="orientationLandscape">Landscape</string>
 
     <string name="importSaveText">Import Save</string>
     <string name="exportSaveText">Export Save</string>
@@ -422,6 +425,7 @@
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
     <string name="performanceSettingGroup">Performance Options</string>
+    <string name="orientationSettingGroup">Orientation Options</string>
     <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
     <string name="googlePlaySettingGroup">Google Play</string>

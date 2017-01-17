@@ -806,5 +806,4 @@ public class DisplayHelper {
                 .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
                 .into(chest);
     }
-
 }
