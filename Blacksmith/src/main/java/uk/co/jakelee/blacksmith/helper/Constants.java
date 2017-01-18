@@ -200,8 +200,10 @@ public class Constants {
     public static final int STATE_GREEN = 5;
     public static final int STATE_WHITE = 6;
     public static final int STATE_BLACK = 7;
+    public static final int STATE_PURPLE = 8;
+    public static final int STATE_YELLOW = 9;
     public static final int STATE_ENCHANTED_MIN = 3;
-    public static final int STATE_ENCHANTED_MAX = 7;
+    public static final int STATE_ENCHANTED_MAX = 9;
 
     public static final int TIER_MIN = 1;
     public static final int TIER_MAX = 7;

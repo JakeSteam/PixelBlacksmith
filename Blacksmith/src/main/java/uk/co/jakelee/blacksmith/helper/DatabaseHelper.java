@@ -136,13 +136,6 @@ public class DatabaseHelper {
         }
     }
 
-    private static void patch177to200() {
-        new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", false).save();
-        new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", true).save();
-        new Setting(Constants.SETTING_ORIENTATION, "Orientation", Constants.ORIENTATION_AUTO).save();
-        new Player_Info("CoinsPurchased", 0);
-    }
-
     private static void initialSQL() {
         createAchievement();
         createCategory();
@@ -699,6 +692,26 @@ public class DatabaseHelper {
 
     private static void patch174to177() {
         Hero_Resource.executeQuery("UPDATE heroresource SET adventure_id = 417 WHERE adventure_id = 416 AND resource_id IN (192, 149, 60)");
+    }
+
+    private static void patch177to200() {
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", false));
+        settings.add(new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", true));
+        settings.add(new Setting(Constants.SETTING_ORIENTATION, "Orientation", Constants.ORIENTATION_AUTO));
+        Setting.saveInTx(settings);
+
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(220L, "Amethyst", "A purple gem", 20, 11, 350, 20));
+        items.add(new Item(221L, "Citrine", "A yellow gem", 20, 11, 350, 20));
+        Item.saveInTx(items);
+
+        List<State> states = new ArrayList<>();
+        states.add(new State(8L, "Purple Enchant", "(purp)", 220L, 40, 10));
+        states.add(new State(9L, "Yellow Enchant", "(yellow)", 221L, 40, 10));
+        State.saveInTx(states);
+
+        new Player_Info("CoinsPurchased", 0);
     }
 
     private static void createContributionGoals() {
@@ -1448,6 +1461,42 @@ public class DatabaseHelper {
         // 5 apples & cheese
         inventories.add(new Inventory(77L, Constants.STATE_NORMAL, 5));
         inventories.add(new Inventory(78L, Constants.STATE_NORMAL, 5));
+
+
+        inventories.add(new Inventory(20L, Constants.STATE_RED, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_RED, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_RED, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_RED, 5));
+
+        inventories.add(new Inventory(20L, Constants.STATE_BLUE, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_BLUE, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_BLUE, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_BLUE, 5));
+
+        inventories.add(new Inventory(20L, Constants.STATE_GREEN, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_GREEN, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_GREEN, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_GREEN, 5));
+
+        inventories.add(new Inventory(20L, Constants.STATE_BLACK, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_BLACK, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_BLACK, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_BLACK, 5));
+
+        inventories.add(new Inventory(20L, Constants.STATE_WHITE, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_WHITE, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_WHITE, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_WHITE, 5));
+
+        inventories.add(new Inventory(20L, Constants.STATE_PURPLE, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_PURPLE, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_PURPLE, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_PURPLE, 5));
+
+        inventories.add(new Inventory(20L, Constants.STATE_YELLOW, 1));
+        inventories.add(new Inventory(69L, Constants.STATE_YELLOW, 30));
+        inventories.add(new Inventory(77L, Constants.STATE_YELLOW, 5));
+        inventories.add(new Inventory(78L, Constants.STATE_YELLOW, 5));
 
         Inventory.saveInTx(inventories);
     }

@@ -527,6 +527,10 @@ public class DisplayHelper {
                     break;
                 case Constants.STATE_BLACK: imageResource.setColorFilter(context.getResources().getColor(R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
+                case Constants.STATE_PURPLE: imageResource.setColorFilter(context.getResources().getColor(R.color.purpleOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_YELLOW: imageResource.setColorFilter(context.getResources().getColor(R.color.yellowOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
                 default: imageResource.clearColorFilter();
                     break;
             }

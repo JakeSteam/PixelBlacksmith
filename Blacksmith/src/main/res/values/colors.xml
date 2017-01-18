@@ -10,4 +10,6 @@
     <color name="greenOverlay">#8abc84</color>
     <color name="whiteOverlay">#e2e2e2</color>
     <color name="blackOverlay">#3d3d3d</color>
+    <color name="purpleOverlay">#b041ba</color>
+    <color name="yellowOverlay">#e2df0b</color>
 </resources>
