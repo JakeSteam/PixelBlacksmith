@@ -497,23 +497,43 @@ public class DisplayHelper {
     }
 
     public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
+        return createItemImage(itemId, Constants.STATE_NORMAL, width, height, haveSeen, canCreate);
+    }
+
+    public ImageView createItemImage(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
         ImageView image = new ImageView(context);
         image.setId(viewId);
         image.setTag(itemId);
-        image.setImageDrawable(createItemImageDrawable(itemId, width, height, haveSeen, canCreate));
+        image.setImageDrawable(createItemImageDrawable(itemId, itemState, width, height, haveSeen, canCreate));
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
     }
 
     public Drawable createItemImageDrawable(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
+        return createItemImageDrawable(itemId, Constants.STATE_NORMAL, width, height, haveSeen, canCreate);
+    }
+
+    private Drawable createItemImageDrawable(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
         int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
-
         if (haveSeen) {
-            imageResource.clearColorFilter();
+            switch (itemState) {
+                case Constants.STATE_RED: imageResource.setColorFilter(context.getResources().getColor(R.color.redOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_BLUE: imageResource.setColorFilter(context.getResources().getColor(R.color.blueOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_GREEN: imageResource.setColorFilter(context.getResources().getColor(R.color.greenOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_WHITE: imageResource.setColorFilter(context.getResources().getColor(R.color.whiteOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_BLACK: imageResource.setColorFilter(context.getResources().getColor(R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                default: imageResource.clearColorFilter();
+                    break;
+            }
         } else if (canCreate) {
             imageResource.setColorFilter(Color.DKGRAY, PorterDuff.Mode.MULTIPLY);
         } else {

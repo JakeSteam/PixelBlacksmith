@@ -155,7 +155,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            ImageView image = dh.createItemImage(item.getId(), 35, 35, inventoryItem.haveSeen(), true);
+            ImageView image = dh.createItemImage(item.getId(), (int)inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true);
 
             String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);

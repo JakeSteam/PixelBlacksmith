@@ -5,4 +5,9 @@
     <color name="grey">#808080</color>
     <color name="lightBrown">#ae6c37</color>
     <color name="defaultLink">#0000EE</color>
+    <color name="redOverlay">#ff7777</color>
+    <color name="blueOverlay">#9cb4fc</color>
+    <color name="greenOverlay">#8abc84</color>
+    <color name="whiteOverlay">#e2e2e2</color>
+    <color name="blackOverlay">#3d3d3d</color>
 </resources>

@@ -194,6 +194,11 @@ public class Constants {
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
+    public static final int STATE_RED = 3;
+    public static final int STATE_BLUE = 4;
+    public static final int STATE_GREEN = 5;
+    public static final int STATE_WHITE = 6;
+    public static final int STATE_BLACK = 7;
     public static final int STATE_ENCHANTED_MIN = 3;
     public static final int STATE_ENCHANTED_MAX = 7;
 
