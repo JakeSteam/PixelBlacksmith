@@ -48,49 +48,49 @@ public class EquipmentActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.totalStrength)).setText(String.format(getString(R.string.heroTotalStrength), WorkerHelper.getTotalStrength(hero, vType)));
 
         if (hero.getFoodItem() > 0) {
-            ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), hero.getFoodState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.foodStrength), hero.getFoodItem(), hero.getFoodState());
         }
 
         if (hero.getHelmetItem() > 0) {
-            ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), hero.getHelmetState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());
         }
 
         if (hero.getArmourItem() > 0) {
-            ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), hero.getArmourState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.armourStrength), hero.getArmourItem(), hero.getArmourState());
         }
 
         if (hero.getWeaponItem() > 0) {
-            ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), hero.getWeaponState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.weaponStrength), hero.getWeaponItem(), hero.getWeaponState());
         }
 
         if (hero.getVisitorId() > 0) {
-            ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(dh.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
+            ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(DisplayHelper.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
             ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
         } else {
             ((TextViewPixel) findViewById(R.id.heroName)).setText(R.string.workerStatusSelectHero);
         }
 
         if (hero.getShieldItem() > 0) {
-            ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), hero.getShieldState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.shieldStrength), hero.getShieldItem(), hero.getShieldState());
         }
 
         if (hero.getGlovesItem() > 0) {
-            ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), hero.getGlovesState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.glovesStrength), hero.getGlovesItem(), hero.getGlovesState());
         }
 
         if (hero.getBootsItem() > 0) {
-            ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), hero.getBootsState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.bootsStrength), hero.getBootsItem(), hero.getBootsState());
         }
 
         if (hero.getRingItem() > 0) {
-            ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), hero.getRingState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
         }
     }

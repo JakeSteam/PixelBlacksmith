@@ -189,7 +189,7 @@ public class TradeActivity extends Activity {
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
-                ImageView image = dh.createItemImage(inventory.getItem(), 35, 35, true, true);
+                ImageView image = dh.createItemImage(inventory.getItem(), (int)inventory.getState(), 35, 35, true, true);
 
                 String itemName = item.getPrefix(inventory.getState()) + item.getName();
                 TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);

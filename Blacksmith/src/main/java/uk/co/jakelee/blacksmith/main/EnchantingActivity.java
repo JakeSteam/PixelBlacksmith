@@ -227,7 +227,7 @@ public class EnchantingActivity extends Activity {
         itemButton.setBackgroundResource(R.drawable.button_extra_wide);
         itemButton.setGravity(Gravity.CENTER);
 
-        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, true, true);
+        ImageView itemImage = dh.createItemImage(item.getId(), Constants.STATE_NORMAL, 20, 20, true, true);
         itemImage.setPadding(dh.convertDpToPixel(16), 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 

@@ -357,7 +357,7 @@
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
     <string name="sellSuccess">Began selling %1$dx %2$s for %3$d coin(s) each.</string>
 
-    <string name="enchantingButtonText">%1$s (x%2$s)</string>
+    <string name="enchantingButtonText">%1$s (x%2$d)</string>
     <string name="genericQuantity">%1$dx %2$s</string>
 
     <string name="horizontalDotsSelected">x</string>

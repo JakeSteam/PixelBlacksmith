@@ -427,7 +427,7 @@ public class DisplayHelper {
 
         RelativeLayout itemBox = new RelativeLayout(context);
 
-        ImageView image = createItemImage(itemID, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
+        ImageView image = createItemImage(itemID, (int)state, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
         TextView count = createItemCount(itemID, state, Color.WHITE, Color.BLACK);
         count.setWidth(convertDpToPixel(80));
 
@@ -496,10 +496,6 @@ public class DisplayHelper {
         }
     }
 
-    public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
-        return createItemImage(itemId, Constants.STATE_NORMAL, width, height, haveSeen, canCreate);
-    }
-
     public ImageView createItemImage(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
@@ -516,7 +512,7 @@ public class DisplayHelper {
         return createItemImageDrawable(itemId, Constants.STATE_NORMAL, width, height, haveSeen, canCreate);
     }
 
-    private Drawable createItemImageDrawable(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
+    public Drawable createItemImageDrawable(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
         int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
         if (haveSeen) {
@@ -748,7 +744,7 @@ public class DisplayHelper {
                 }
             });
 
-            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
+            row.addView(createItemImage(ingredient.getIngredient(), (int)ingredient.getIngredientState(), 25, 25, true, true));
             row.addView(itemNameView);
             row.addView(createTextView(formatLargeNumber(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(formatLargeNumber(owned.getQuantity()), 22, Color.DKGRAY));
