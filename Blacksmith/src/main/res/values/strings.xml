@@ -486,7 +486,8 @@
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%s Trades</string>
 
-    <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
+    <string name="tradedItem">Traded %1$dx %2$s for %3$d coin(s)</string>
+    <string name="unsellableItem">Marked %1$s as %2$ssellable!</string>
 
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
     <string name="restockMarketTextAdvert">The marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>

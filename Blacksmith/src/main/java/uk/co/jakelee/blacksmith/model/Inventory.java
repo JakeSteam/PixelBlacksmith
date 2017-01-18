@@ -16,6 +16,7 @@ public class Inventory extends SugarRecord implements Serializable {
     private Long item;
     private int quantity;
     private long state;
+    private boolean unsellable;
 
     public Inventory() {
     }
@@ -24,6 +25,15 @@ public class Inventory extends SugarRecord implements Serializable {
         this.item = item;
         this.state = state;
         this.quantity = quantity;
+        this.unsellable = false;
+    }
+
+    public boolean isUnsellable() {
+        return unsellable;
+    }
+
+    public void setUnsellable(boolean unsellable) {
+        this.unsellable = unsellable;
     }
 
     public static void addItem(Pending_Inventory item, boolean rewardXp) {
@@ -249,7 +259,9 @@ public class Inventory extends SugarRecord implements Serializable {
             price = price * 2;
         }
 
-        if (itemStock.getQuantity() > 0) {
+        if (itemStock.isUnsellable()) {
+            return Constants.ERROR_UNSELLABLE;
+        } else if (itemStock.getQuantity() > 0) {
             itemStock.setQuantity(itemStock.getQuantity() - 1);
             itemStock.save();
             Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price);
