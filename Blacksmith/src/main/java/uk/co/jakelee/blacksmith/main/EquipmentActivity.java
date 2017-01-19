@@ -109,8 +109,8 @@ public class EquipmentActivity extends Activity {
         setContainer.removeAllViews();
         if (sets.size() > 0) {
             for (Hero_Set set : sets) {
-                View textView = dh.createTextView(String.format("+%1$d%% %2$s", set.getBonus(), set.getName()), 30);
-                textView.setTag(String.format("The %1$s set provides +%2$d%% bonus, activated by %3$s", set.getName(), set.getBonus(), set.getDescription()));
+                View textView = dh.createTextView(String.format("%1$s (+%2$s%%)", set.getName(), set.getBonus()), 30);
+                textView.setTag(String.format("The %1$s set provides +%2$d%% strength bonus, activated by %3$s", set.getName(), set.getBonus(), set.getDescription()));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

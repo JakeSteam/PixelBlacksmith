@@ -214,9 +214,16 @@ public class Constants {
 
     public static final int TIER_MIN = 1;
     public static final int TIER_MAX = 7;
-    public static final int TIER_PREMIUM = 10;
+    public static final int TIER_BRONZE = 1;
+    public static final int TIER_IRON = 2;
+    public static final int TIER_STEEL = 3;
+    public static final int TIER_MITHRIL = 4;
+    public static final int TIER_ADAMANT = 5;
+    public static final int TIER_RUNE = 6;
+    public static final int TIER_DRAGON = 7;
     public static final int TIER_SILVER = 8;
     public static final int TIER_GOLD = 9;
+    public static final int TIER_PREMIUM = 10;
     public static final int TIER_NONE = 11;
 
     public static final int TYPE_ANVIL_MIN = 3;
