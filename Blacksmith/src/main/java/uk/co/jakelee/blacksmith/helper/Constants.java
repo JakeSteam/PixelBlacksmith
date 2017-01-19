@@ -117,9 +117,13 @@ public class Constants {
     public static final int TROPHY_ITEM_REWARDS = 10;
     public static final int TROPHY_PAGE_REWARDS = 3;
 
+    public static final int HERO_RESULT_SUPER_SUCCESS = -1;
     public static final int HERO_RESULT_SUCCESS = 0;
     public static final int HERO_RESULT_MIN = 1;
     public static final int HERO_RESULT_MAX = 3;
+
+    public static final int SUPER_SUCCESS_MINIMUM = 110;
+    public static final int SUPER_SUCCESS_MAXIMUM = 250;
 
     public static final int ADVERT_TIMEOUT = 30000;
 

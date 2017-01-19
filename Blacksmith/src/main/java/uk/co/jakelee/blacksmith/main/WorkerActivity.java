@@ -169,7 +169,7 @@ public class WorkerActivity extends Activity {
                 public void onClick(View v) {
                     Hero hero = (Hero) v.getTag();
                     if (hero.isPurchased() && hero.getVisitorId() > 0) {
-                        List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure((int) hero.getCurrentAdventure());
+                        List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure(hero.getCurrentAdventure());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
                                 WorkerHelper.getRewardResourcesText(hero, resources, false)), false);
                     }
