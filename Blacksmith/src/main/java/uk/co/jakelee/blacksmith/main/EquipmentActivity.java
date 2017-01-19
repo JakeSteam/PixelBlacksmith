@@ -5,10 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.components.Hero_Set;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.HeroSetHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
@@ -41,6 +48,7 @@ public class EquipmentActivity extends Activity {
         vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
 
         populateEquipment();
+        populateSets();
         populatePreferences();
     }
 
@@ -92,6 +100,27 @@ public class EquipmentActivity extends Activity {
         if (hero.getRingItem() > 0) {
             ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), hero.getRingState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
+        }
+    }
+
+    private void populateSets() {
+        List<Hero_Set> sets = HeroSetHelper.getCurrentSets(hero);
+        LinearLayout setContainer = (LinearLayout) findViewById(R.id.heroSets);
+        setContainer.removeAllViews();
+        if (sets.size() > 0) {
+            for (Hero_Set set : sets) {
+                View textView = dh.createTextView(String.format("+%1$d%% %2$s", set.getBonus(), set.getName()), 30);
+                textView.setTag(String.format("The %1$s set provides +%2$d%% bonus, activated by %3$s", set.getName(), set.getBonus(), set.getDescription()));
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ToastHelper.showTipToast(view, Toast.LENGTH_SHORT, (String)view.getTag(), true);
+                    }
+                });
+                setContainer.addView(textView);
+            }
+        } else {
+            setContainer.addView(dh.createTextView("No sets currently active!", 35));
         }
     }
 

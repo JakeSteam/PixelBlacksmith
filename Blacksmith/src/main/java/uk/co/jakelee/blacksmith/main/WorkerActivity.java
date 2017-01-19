@@ -171,7 +171,7 @@ public class WorkerActivity extends Activity {
                     if (hero.isPurchased() && hero.getVisitorId() > 0) {
                         List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure(hero.getCurrentAdventure());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(hero, resources, false)), false);
+                                WorkerHelper.getRewardResourcesText(hero, resources, false, false)), false);
                     }
                 }
             });

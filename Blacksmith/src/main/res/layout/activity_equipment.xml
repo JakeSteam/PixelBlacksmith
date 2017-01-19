@@ -488,6 +488,24 @@
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:gravity="center"
+                            android:text="Set Bonuses"
+                            android:layout_span="3"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="26sp" />
+                    </TableRow>
+                    <LinearLayout
+                        android:id="@+id/heroSets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+
+                    <!-- Row 5 -->
+                    <TableRow>
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
                             android:text="Preferences"
                             android:layout_span="3"
                             android:layout_marginTop="10dp"

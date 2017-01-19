@@ -643,6 +643,8 @@ public class WorkerHelper {
         totalStrength += getAdjustedStrength(vType, hero.getBootsItem(), hero.getBootsState());
         totalStrength += getAdjustedStrength(vType, hero.getRingItem(), hero.getRingState());
 
+        totalStrength = (int)Math.ceil(((double)totalStrength) * HeroSetHelper.getMultiplier(hero));
+
         return totalStrength;
     }
 

@@ -282,7 +282,7 @@
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
     <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
-    <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$s of which were successful! For more details, view the message log.</string>
+    <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$d of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 
