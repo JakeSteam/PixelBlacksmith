@@ -702,14 +702,31 @@ public class DatabaseHelper {
         Setting.saveInTx(settings);
 
         List<Item> items = new ArrayList<>();
-        items.add(new Item(220L, "Amethyst", "A purple gem", 20, 11, 350, 20));
-        items.add(new Item(221L, "Citrine", "A yellow gem", 20, 11, 350, 20));
+            items.add(new Item(220L, "Amethyst", "A purple gem", 20, 11, 350, 20));
+            items.add(new Item(221L, "Citrine", "A yellow gem", 20, 11, 350, 20));
         Item.saveInTx(items);
 
         List<State> states = new ArrayList<>();
-        states.add(new State(8L, "Purple Enchant", "(purp)", 220L, 40, 10));
-        states.add(new State(9L, "Yellow Enchant", "(yellow)", 221L, 40, 10));
+            states.add(new State(8L, "Purple Enchant", "(purp)", 220L, 40, 10));
+            states.add(new State(9L, "Yellow Enchant", "(yellow)", 221L, 40, 10));
         State.saveInTx(states);
+
+        List<Trader_Stock> traderStocks = new ArrayList<>();
+            traderStocks.add(new Trader_Stock(16L, 220L, 1, 0, 5));
+            traderStocks.add(new Trader_Stock(16L, 221L, 1, 0, 5));
+            traderStocks.add(new Trader_Stock(48L, 220L, 1, 0, 3));
+            traderStocks.add(new Trader_Stock(48L, 221L, 1, 0, 3));
+        Trader_Stock.saveInTx(traderStocks);
+
+        Super_Upgrade oldDoubleCraft = Super_Upgrade.find(Constants.SU_DOUBLE_FURNACE_CRAFTS);
+        oldDoubleCraft.setName("2x Furnace Items");
+        oldDoubleCraft.save();
+
+        List<Super_Upgrade> superUpgrades = new ArrayList<>();
+            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ANVIL_CRAFTS, "2x Anvil Items", 1, false));
+            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TABLE_CRAFTS, "2x Table Items", 1, false));
+            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ENCHANT_CRAFTS, "2x Enchant Table Items", 1, false));
+        Super_Upgrade.saveInTx(superUpgrades);
 
         new Player_Info("CoinsPurchased", 0);
     }
@@ -730,7 +747,7 @@ public class DatabaseHelper {
         List<Super_Upgrade> upgrades = new ArrayList<>();
             upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 0, false));
             upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 0, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_FURNACE_CRAFTS, "2x Crafted Items", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false));
             upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 2, false));

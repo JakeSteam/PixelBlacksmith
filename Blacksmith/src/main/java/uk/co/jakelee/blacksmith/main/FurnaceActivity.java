@@ -231,7 +231,7 @@ public class FurnaceActivity extends Activity {
         } else if (canCreate == Constants.SUCCESS) {
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
 
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_FURNACE_CRAFTS)) {
                 quantity = quantity * 2;
             }
 

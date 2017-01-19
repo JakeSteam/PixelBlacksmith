@@ -253,7 +253,7 @@ public class TableActivity extends Activity {
         } else if (canCreate == Constants.SUCCESS) {
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
 
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS) && !booksSelected) {
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TABLE_CRAFTS) && !booksSelected) {
                 quantity = quantity * 2;
             }
 

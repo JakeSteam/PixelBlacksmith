@@ -259,7 +259,7 @@ public class AnvilActivity extends Activity {
         } else if (canCreate == Constants.SUCCESS) {
             Inventory.removeItemIngredients(itemID, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED, quantity);
 
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_ANVIL_CRAFTS)) {
                 quantity = quantity * 2;
             }
 

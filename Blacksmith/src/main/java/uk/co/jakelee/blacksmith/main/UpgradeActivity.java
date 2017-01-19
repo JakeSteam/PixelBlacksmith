@@ -83,7 +83,7 @@ public class UpgradeActivity extends Activity {
     }
 
     private void createSuperInterface() {
-        List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).orderBy("prestige_level ASC").list();
+        List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).orderBy("prestige_level, name ASC").list();
         TableLayout upgradeTable = (TableLayout) findViewById(R.id.upgradeTable);
         upgradeTable.removeAllViews();
 

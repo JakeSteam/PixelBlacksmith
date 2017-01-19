@@ -176,7 +176,7 @@ public class Constants {
     public static final Long SETTING_BULK_STACK = 21L;
     public static final Long SETTING_ORIENTATION = 22L;
 
-    public static final int SU_DOUBLE_CRAFTS = 1;
+    public static final int SU_DOUBLE_FURNACE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;
     public static final int SU_BONUS_XP = 3;
     public static final int SU_TRADER_STOCK = 4;
@@ -192,6 +192,9 @@ public class Constants {
     public static final int SU_QUEST_MED = 14;
     public static final int SU_QUEST_HARD = 15;
     public static final int SU_QUEST_ELITE = 16;
+    public static final int SU_DOUBLE_ANVIL_CRAFTS = 17;
+    public static final int SU_DOUBLE_TABLE_CRAFTS = 18;
+    public static final int SU_DOUBLE_ENCHANT_CRAFTS = 19;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
