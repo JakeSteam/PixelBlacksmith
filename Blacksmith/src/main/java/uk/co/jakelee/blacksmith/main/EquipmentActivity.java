@@ -141,21 +141,21 @@ public class EquipmentActivity extends Activity {
     public void tierClick(View view) {
         if (hero.getVisitorId() > 0) {
             String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
-            VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
+            VisitorHelper.displayPreference(this, view, R.string.tierPreferenceHero, preferred);
         }
     }
 
     public void typeClick(View view) {
         if (hero.getVisitorId() > 0) {
             String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
-            VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
+            VisitorHelper.displayPreference(this, view, R.string.typePreferenceHero, preferred);
         }
     }
 
     public void stateClick(View view) {
         if (hero.getVisitorId() > 0) {
             String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
-            VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+            VisitorHelper.displayPreference(this, view, R.string.statePreferenceHero, preferred);
         }
     }
 

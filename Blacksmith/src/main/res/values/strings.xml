@@ -176,6 +176,9 @@
     <string name="socialMediaTwitter">Twitter</string>
     <string name="socialMediaReddit">Reddit</string>
 
+    <string name="tierPreferenceHero">This hero will receive a %1$s boost for items made out of %2$s.</string>
+    <string name="typePreferenceHero">This hero will receive a %1$s boost for %2$ss.</string>
+    <string name="statePreferenceHero">This hero will receive a %1$s boost for items in a %2$s condition.</string>
     <string name="discoveredPreferences">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="tierPreference">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>

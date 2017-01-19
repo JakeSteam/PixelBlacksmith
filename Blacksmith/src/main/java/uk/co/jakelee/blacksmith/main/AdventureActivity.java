@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 public class AdventureActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static DisplayHelper dh;
     private Hero hero;
+    private boolean haveLoadedSavedSubs = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,19 +45,28 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         int heroID = intent.getIntExtra(WorkerHelper.INTENT_ID, 0);
         hero = Hero.findById(heroID);
 
-        createCategoryDropdown(false);
-        createCategoryDropdown(true);
         populateAdventures("Please select");
 
         TextView totalStrength = (TextView) findViewById(R.id.totalStrengthMessage);
         int heroStrength = WorkerHelper.getTotalStrength(hero, Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId()));
         totalStrength.setText(String.format(getString(R.string.heroTotalStrength), heroStrength));
+
+        createCategoryDropdown(false);
+        createCategoryDropdown(true);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         dh.updateFullscreen(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        prefs.edit().putInt("adventureCategory", ((Spinner)findViewById(R.id.adventureCategories)).getSelectedItemPosition()).apply();
+        prefs.edit().putInt("adventureSubcategory", ((Spinner)findViewById(R.id.adventureSubcategories)).getSelectedItemPosition()).apply();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -81,6 +92,9 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         categorySelector.setAdapter(adapter);
         categorySelector.setOnItemSelectedListener(this);
+        if (!subcategories) {
+            categorySelector.setSelection(getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("adventureCategory", 0), true);
+        }
     }
 
     private void populateSubcategories(String selectedCategory) {
@@ -97,6 +111,10 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
             adapter.setDropDownViewResource(R.layout.custom_spinner_item);
             categorySelector.setAdapter(adapter);
             categorySelector.setOnItemSelectedListener(this);
+            if (!haveLoadedSavedSubs) {
+                categorySelector.setSelection(getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("adventureSubcategory", 0), true);
+                haveLoadedSavedSubs = true;
+            }
         }
     }
 

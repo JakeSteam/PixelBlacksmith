@@ -24,13 +24,12 @@
         tools:context="uk.co.jakelee.blacksmith.main.VisitorSelectActivity">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/visitorTitle"
             android:layout_width="match_parent"
             app:layout_heightPercent="10%"
             app:layout_marginBottomPercent="9%"
             app:layout_marginTopPercent="3%"
             android:gravity="center"
-            android:text="@string/visitorText"
+            android:text="@string/heroText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
