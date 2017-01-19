@@ -1479,42 +1479,6 @@ public class DatabaseHelper {
         inventories.add(new Inventory(77L, Constants.STATE_NORMAL, 5));
         inventories.add(new Inventory(78L, Constants.STATE_NORMAL, 5));
 
-
-        inventories.add(new Inventory(20L, Constants.STATE_RED, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_RED, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_RED, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_RED, 5));
-
-        inventories.add(new Inventory(20L, Constants.STATE_BLUE, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_BLUE, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_BLUE, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_BLUE, 5));
-
-        inventories.add(new Inventory(20L, Constants.STATE_GREEN, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_GREEN, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_GREEN, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_GREEN, 5));
-
-        inventories.add(new Inventory(20L, Constants.STATE_BLACK, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_BLACK, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_BLACK, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_BLACK, 5));
-
-        inventories.add(new Inventory(20L, Constants.STATE_WHITE, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_WHITE, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_WHITE, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_WHITE, 5));
-
-        inventories.add(new Inventory(20L, Constants.STATE_PURPLE, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_PURPLE, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_PURPLE, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_PURPLE, 5));
-
-        inventories.add(new Inventory(20L, Constants.STATE_YELLOW, 1));
-        inventories.add(new Inventory(69L, Constants.STATE_YELLOW, 30));
-        inventories.add(new Inventory(77L, Constants.STATE_YELLOW, 5));
-        inventories.add(new Inventory(78L, Constants.STATE_YELLOW, 5));
-
         Inventory.saveInTx(inventories);
     }
 
