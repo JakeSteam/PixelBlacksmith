@@ -36,7 +36,7 @@ public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
     public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
     public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
-    public enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
+    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(

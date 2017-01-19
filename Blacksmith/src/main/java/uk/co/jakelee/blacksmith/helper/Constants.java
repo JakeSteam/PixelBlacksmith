@@ -119,7 +119,7 @@ public class Constants {
 
     public static final int HERO_RESULT_SUCCESS = 0;
     public static final int HERO_RESULT_MIN = 1;
-    public static final int HERO_RESULT_MAX = 5;
+    public static final int HERO_RESULT_MAX = 3;
 
     public static final int ADVERT_TIMEOUT = 30000;
 
