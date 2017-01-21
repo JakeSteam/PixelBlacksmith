@@ -139,6 +139,12 @@ public class Trader extends SugarRecord {
         }
     }
 
+    public static int getFixedCount() {
+        return (int)Select.from(Trader.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_MARKET),
+                Condition.prop("fixed").eq(1)).count();
+    }
+
     public static int getRestockAllCost() {
         return Upgrade.getValue("Restock All Cost");
     }

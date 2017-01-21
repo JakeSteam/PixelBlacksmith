@@ -66,18 +66,23 @@ public class MarketActivity extends Activity {
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
         marketLayout.removeAllViews();
 
+        int fixedTraders = Trader.getFixedCount();
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_MARKET),
                 Condition.prop("status").eq(Constants.TRADER_PRESENT)).orderBy("fixed DESC, name ASC").list();
-        boolean mixedFixedStatus = traders.size() > 0 && traders.get(0).isFixed();
+
+        boolean mixedFixedStatus = fixedTraders > 0;
         boolean haveDisplayedUnlockHeader = false;
         if (mixedFixedStatus) {
-            marketLayout.addView(dh.createTextView("Locked", 30));
+            marketLayout.addView(dh.createTextView(String.format("Fixed (%1$d / %2$d)",
+                    fixedTraders,
+                    Constants.TRADER_LOCK_MAX),
+                30));
         }
 
         for (Trader trader : traders) {
             if (mixedFixedStatus && !trader.isFixed() && !haveDisplayedUnlockHeader) {
-                marketLayout.addView(dh.createTextView("\nUnlocked", 30));
+                marketLayout.addView(dh.createTextView("\nTemporary", 30));
                 haveDisplayedUnlockHeader = true;
             }
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());

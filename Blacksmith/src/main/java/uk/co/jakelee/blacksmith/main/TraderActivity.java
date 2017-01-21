@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -23,6 +24,7 @@ import uk.co.jakelee.blacksmith.controls.AlertDialogCallback;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -156,7 +158,11 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
     }
 
     public void toggleTraderLock(View v) {
-        AlertDialogHelper.confirmTraderLock(this, trader);
+        if (!trader.isFixed() && Trader.getFixedCount() > (Constants.TRADER_LOCK_MAX - 1)) {
+            ToastHelper.showErrorToast(findViewById(R.id.trader), Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAX_LOCKED_TRADERS), false);
+        } else {
+            AlertDialogHelper.confirmTraderLock(this, trader);
+        }
     }
 
     public void toggleTraderLock() {
@@ -167,7 +173,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         }
         trader.setFixed(!trader.isFixed());
         trader.save();
-        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, getString(trader.isFixed() ? R.string.lockSuccess : R.string.unlockSuccess), true);
+        ToastHelper.showPositiveToast(findViewById(R.id.trader), ToastHelper.SHORT, getString(trader.isFixed() ? R.string.lockSuccess : R.string.unlockSuccess), true);
         updateLockStatus();
     }
 
