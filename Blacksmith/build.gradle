@@ -23,6 +23,13 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://maven.batch.com/release'
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -30,6 +37,7 @@ dependencies {
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:percent:$supportLibraryVersion"
     compile "com.google.android.gms:play-services-ads:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-gcm:$playLibraryVersion"
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.anjlab.android.iab.v3:library:1.0.31'
@@ -42,4 +50,5 @@ dependencies {
     compile files('libs/applovin-sdk-6.2.2.jar')
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.batch.android:batch-sdk:1.7+'
 }

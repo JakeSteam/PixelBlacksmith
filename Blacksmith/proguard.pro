@@ -35,3 +35,14 @@ public static final ** CREATOR;
 
 -keep public class com.ablar.android.common.* { public *; }
 -dontwarn com.ablar.android.common.**
+
+-keep class com.batch.** {
+  *;
+}
+-keep class com.google.android.gms.** {
+  *;
+}
+
+-dontwarn com.batch.android.mediation.**
+
+-dontwarn com.batch.android.BatchPushService
