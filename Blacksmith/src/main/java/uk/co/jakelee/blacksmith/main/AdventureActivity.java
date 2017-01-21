@@ -34,6 +34,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     private static DisplayHelper dh;
     private Hero hero;
     private boolean haveLoadedSavedSubs = false;
+    private int dropdownsToCreate = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,6 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         Intent intent = getIntent();
         int heroID = intent.getIntExtra(WorkerHelper.INTENT_ID, 0);
         hero = Hero.findById(heroID);
-
-        populateAdventures("Please select");
 
         TextView totalStrength = (TextView) findViewById(R.id.totalStrengthMessage);
         int heroStrength = WorkerHelper.getTotalStrength(hero, Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId()));
@@ -70,9 +69,12 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        if (dropdownsToCreate > 0) { return; }
         if (parent.getTag().equals("CategorySelect")) {
             String selectedItem = (String) parent.getItemAtPosition(pos);
-            populateSubcategories(selectedItem);
+            if (!selectedItem.equals("Please select")) {
+                populateSubcategories(selectedItem);
+            }
         } else if (parent.getTag().equals("SubcategorySelect")) {
             String selectedItem = (String) parent.getItemAtPosition(pos);
             populateAdventures(selectedItem);
@@ -81,6 +83,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
+        if (dropdownsToCreate > 0) { return; }
         populateAdventures("Please select");
     }
 
@@ -95,6 +98,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         if (!subcategories) {
             categorySelector.setSelection(getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("adventureCategory", 0), true);
         }
+        dropdownsToCreate--;
     }
 
     private void populateSubcategories(String selectedCategory) {
@@ -132,14 +136,16 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     private void populateAdventures(String selection) {
+        if (dropdownsToCreate > 0) { return; }
+
         TableLayout adventureHolder = (TableLayout) findViewById(R.id.adventureHolder);
         adventureHolder.removeAllViews();
 
         if (selection.equals("Please select")) {
-            (findViewById(R.id.selectCategoriesMessage)).setVisibility(View.VISIBLE);
+            findViewById(R.id.selectCategoriesMessage).setVisibility(View.VISIBLE);
             return;
         } else {
-            (findViewById(R.id.selectCategoriesMessage)).setVisibility(View.GONE);
+            findViewById(R.id.selectCategoriesMessage).setVisibility(View.GONE);
         }
 
         Hero_Category category = Select.from(Hero_Category.class).where(Condition.prop("name").eq(selection)).first();
