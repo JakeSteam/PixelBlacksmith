@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -517,19 +518,19 @@ public class DisplayHelper {
         Drawable imageResource = createDrawable(drawableId, width, height);
         if (haveSeen) {
             switch (itemState) {
-                case Constants.STATE_RED: imageResource.setColorFilter(context.getResources().getColor(R.color.redOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_RED: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.redOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_BLUE: imageResource.setColorFilter(context.getResources().getColor(R.color.blueOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_BLUE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blueOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_GREEN: imageResource.setColorFilter(context.getResources().getColor(R.color.greenOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_GREEN: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.greenOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_WHITE: imageResource.setColorFilter(context.getResources().getColor(R.color.whiteOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_WHITE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.whiteOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_BLACK: imageResource.setColorFilter(context.getResources().getColor(R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_BLACK: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_PURPLE: imageResource.setColorFilter(context.getResources().getColor(R.color.purpleOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_PURPLE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.purpleOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_YELLOW: imageResource.setColorFilter(context.getResources().getColor(R.color.yellowOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_YELLOW: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.yellowOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
                 default: imageResource.clearColorFilter();
                     break;
