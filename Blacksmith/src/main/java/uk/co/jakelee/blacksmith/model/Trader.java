@@ -53,7 +53,9 @@ public class Trader extends SugarRecord {
                     trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
                 }
                 trader.save();
-            } else {
+            }
+
+            if (!trader.isFixed()) {
                 numberOfTraders++;
             }
         }
