@@ -25,6 +25,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Character;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
@@ -78,6 +79,12 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
         TextView traderTrades = (TextView) findViewById(R.id.traderTrades);
         traderTrades.setText(String.format(getString(R.string.traderTrades), trader.getPurchases()));
+
+        updateLockStatus();
+    }
+
+    private void updateLockStatus() {
+        ((ImageView)findViewById(R.id.traderLockIndicator)).setImageDrawable(dh.createDrawable(trader.isFixed() ? R.drawable.tick : R.drawable.cross, 25, 25));
     }
 
     private void createItemList() {
@@ -137,16 +144,38 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
             } else {
                 AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
             }
+        } else if(trader.isFixed()) {
+            callbackRestock();
         } else {
             ToastHelper.showToast(findViewById(R.id.trader), ToastHelper.SHORT, getString(R.string.unnecessaryRestock), false);
         }
     }
 
     public void clickBuyAll(View v) {
-        AlertDialogHelper.confirmItemBuyAll(getApplicationContext(), this, trader);
+        AlertDialogHelper.confirmItemBuyAll(this, trader);
+    }
+
+    public void toggleTraderLock(View v) {
+        AlertDialogHelper.confirmTraderLock(this, trader);
+    }
+
+    public void toggleTraderLock() {
+        if (!trader.isFixed() && Inventory.getCoins() >= Constants.TRADER_LOCK_COST) {
+            Inventory coins = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+            coins.setQuantity(coins.getQuantity() - Constants.TRADER_LOCK_COST);
+            coins.save();
+        }
+        trader.setFixed(!trader.isFixed());
+        trader.save();
+        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, getString(trader.isFixed() ? R.string.lockSuccess : R.string.unlockSuccess), true);
+        updateLockStatus();
     }
 
     private int getRestockCost() {
+        if (trader.isFixed()) {
+            return 0;
+        }
+
         int itemsForSale = (int) Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1),
@@ -158,7 +187,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     private void clickBuy(View v) {
         Trader_Stock itemStock = (Trader_Stock) v.getTag();
-        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock);
+        AlertDialogHelper.confirmItemBuy(getApplicationContext(), this, itemStock, trader.isFixed());
     }
 
     public void callbackRestock() {

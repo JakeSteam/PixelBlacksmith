@@ -6,7 +6,6 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.Iterator;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -23,6 +22,7 @@ public class Trader extends SugarRecord {
     private int status;
     private int purchases;
     private int weighting;
+    private boolean fixed;
 
     public Trader() {
     }
@@ -36,27 +36,28 @@ public class Trader extends SugarRecord {
         this.status = status;
         this.purchases = purchases;
         this.weighting = weighting;
+        this.fixed = false;
     }
 
     public static void checkTraderStatus(Context context, long location) {
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(location),
                 Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
-        Iterator<Trader> tradersIter = traders.iterator();
-        int numberOfTraders = traders.size();
 
-        // Remove any completed traders
-        while (tradersIter.hasNext()) {
-            Trader trader = tradersIter.next();
+        int numberOfTraders = 0;
+        for (Trader trader : traders) {
             if (trader.isOutOfStock()) {
-                trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
+                if (trader.isFixed()) {
+                    trader.restock(0);
+                } else {
+                    trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
+                }
                 trader.save();
-                tradersIter.remove();
-                numberOfTraders--;
+            } else {
+                numberOfTraders++;
             }
         }
 
-        // Add any necessary new traders
         while (numberOfTraders < Upgrade.getValue("Maximum Traders")) {
             Trader.makeTraderAppear(context);
             numberOfTraders++;
@@ -202,6 +203,14 @@ public class Trader extends SugarRecord {
 
     public void setWeighting(int weighting) {
         this.weighting = weighting;
+    }
+
+    public boolean isFixed() {
+        return fixed;
+    }
+
+    public void setFixed(boolean fixed) {
+        this.fixed = fixed;
     }
 
     private boolean isOutOfStock() {

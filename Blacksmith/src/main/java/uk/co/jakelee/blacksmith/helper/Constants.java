@@ -49,6 +49,9 @@ public class Constants {
     public static final double QUEST_REWARD_MODIFIER_HARD = 2;
     public static final double QUEST_REWARD_MODIFIER_ELITE = 3;
 
+    public static final int TRADER_LOCK_COST = 500;
+    public static final double TRADER_LOCK_PRICE_MODIFIER = 1.5;
+
     public static final int MINIMUM_REWARDS = 4;
     public static final int MAXIMUM_REWARDS = 8;
     public static final int MINIMUM_COIN_REWARDS = 100;

@@ -327,6 +327,14 @@
     <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
+    <string name="unlockConfirm">Are you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
+    <string name="lockConfirm">"Are you sure you want to lock %1$s for %2$s coins?</string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="lockSuccess">Successfully locked trader!</string>
+    <string name="unlockSuccess">Successfully unlocked trader!</string>
+    <string name="lockCancel">Cancel</string>
+
     <string name="dismissQuestion">Would you like to pay a visitor %,d coins to leave immediately?</string>
     <string name="dismissQuestionAdvert">Would you like to pay %,d coins or watch an ad to make the visitor leave immediately?</string>
     <string name="dismissConfirm">Pay</string>
@@ -487,7 +495,7 @@
     <string name="genericPercent">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
-    <string name="traderTrades">%s Trades</string>
+    <string name="traderTrades">%1$d Trades</string>
 
     <string name="tradedItem">Traded %1$dx %2$s for %3$d coin(s)</string>
     <string name="unsellableItem">Marked %1$s as %2$ssellable!</string>
@@ -588,6 +596,7 @@
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
     <string name="tradeMax">Max?</string>
+    <string name="lockTrader">Lock?</string>
     <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
     <string name="noItemsInventory">You don\'t have any items in this category!</string>
     <string name="noItemsEquipment">You don\'t have any suitable equipment for this slot!</string>

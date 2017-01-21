@@ -376,6 +376,31 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
+    public static void confirmTraderLock(final TraderActivity activity, Trader trader) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(activity.getString(trader.isFixed() ? R.string.unlockConfirm : R.string.lockConfirm),
+                trader.getName(),
+                Constants.TRADER_LOCK_COST));
+
+        alertDialog.setPositiveButton(activity.getString(trader.isFixed() ? R.string.unlock : R.string.lock), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                activity.toggleTraderLock();
+            }
+        });
+
+        alertDialog.setNegativeButton(activity.getString(R.string.lockCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(Player_Info.displayAds() ?
@@ -658,14 +683,15 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock) {
+    public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock, boolean isFixed) {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
-        final int itemValue = item.getValue() / (item.getValue() > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
+        int itemValue = item.getValue() / (item.getValue() > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
+        final int finalItemValue = isFixed ? (int)Math.ceil((double)itemValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : itemValue;
         final String itemName = item.getFullName(Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.itemBuyQuestion), itemName, itemValue, itemStock.getStock(), itemValue));
+        alertDialog.setMessage(String.format(context.getString(R.string.itemBuyQuestion), itemName, finalItemValue, itemStock.getStock(), finalItemValue));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.itemBuy1Confirm), new DialogInterface.OnClickListener() {
@@ -674,7 +700,7 @@ public class AlertDialogHelper {
 
                 int buyResponse = Inventory.buyItem(itemStock);
                 if (buyResponse == Constants.SUCCESS) {
-                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, itemValue), false);
+                    ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, finalItemValue), false);
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
                     trader.setPurchases(trader.getPurchases() + quantity);
@@ -694,7 +720,7 @@ public class AlertDialogHelper {
                 List<Pair<Long, Integer>> items = new ArrayList<>();
 
                 Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-                int totalCost = itemStock.getStock() * itemValue;
+                int totalCost = itemStock.getStock() * finalItemValue;
 
                 if (totalCost <= coinStock.getQuantity()) {
                     int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
@@ -738,7 +764,7 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void confirmItemBuyAll(final Context context, final TraderActivity activity, final Trader trader) {
+    public static void confirmItemBuyAll(final TraderActivity activity, final Trader trader) {
         final List<Trader_Stock> itemStocks = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),
                 Condition.prop("stock").gt(0),
@@ -757,12 +783,13 @@ public class AlertDialogHelper {
             itemCount += itemStock.getStock();
         }
         totalValue = totalValue / (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
+        final int finalTotalValue = trader.isFixed() ? (int)Math.ceil((double)totalValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : totalValue;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
+        alertDialog.setMessage(String.format(activity.getString(R.string.itemBuyAllQuestion), itemCount, finalTotalValue));
         alertDialog.setIcon(R.drawable.item52);
 
-        alertDialog.setPositiveButton(context.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(activity.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int itemsBought = 0;
                 int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
@@ -793,7 +820,7 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyAllComplete), itemsBought), false);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(activity.getString(R.string.itemBuyAllComplete), itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
@@ -808,7 +835,7 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(activity.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

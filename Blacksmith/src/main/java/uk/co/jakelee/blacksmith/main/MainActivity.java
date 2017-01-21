@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Batch.Push.setGCMSenderId("484982205674");
-        Batch.setConfig(new Config("DEV587E86C2DC0F0FE0EE90C49321B"));
-        //Batch.setConfig(new Config("587E86C2DBE524C8EB318A0E517579"));
+        //Batch.setConfig(new Config("DEV587E86C2DC0F0FE0EE90C49321B"));
+        Batch.setConfig(new Config("587E86C2DBE524C8EB318A0E517579"));
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
