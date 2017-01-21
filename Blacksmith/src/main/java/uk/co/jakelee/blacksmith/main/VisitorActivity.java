@@ -227,6 +227,7 @@ public class VisitorActivity extends Activity {
                 Drawable statusDrawable = dh.createDrawable(statusDrawableID, 25, 25);
                 ImageView criteriaStatus = new ImageView(getApplicationContext());
                 criteriaStatus.setImageDrawable(statusDrawable);
+                criteriaStatus.setPadding(0, 6, 0, 0);
 
                 String criteriaText = String.format(getString(R.string.visitorDemand),
                         demand.getQuantity() - demand.getQuantityProvided(),
