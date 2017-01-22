@@ -47,22 +47,24 @@ import uk.co.jakelee.blacksmith.model.Worker_Resource;
 import static android.content.Context.MODE_PRIVATE;
 
 public class DatabaseHelper extends AsyncTask<String, String, String> {
-    public final static int DB_EMPTY = 0;
-    public final static int DB_V1_0_0 = 1;
-    public final static int DB_V1_0_1 = 2;
-    public final static int DB_V1_2_0 = 3;
-    public final static int DB_V1_2_1 = 4;
-    public final static int DB_V1_3_0 = 5;
-    public final static int DB_V1_4_0 = 6;
-    public final static int DB_V1_5_0 = 7;
-    public final static int DB_V1_5_4 = 9;
-    public final static int DB_V1_6_0 = 10;
-    public final static int DB_V1_6_1 = 11;
-    public final static int DB_V1_7_0 = 12;
-    public final static int DB_V1_7_2 = 13;
-    public final static int DB_V1_7_4 = 14;
-    public final static int DB_V1_7_7 = 15;
-    public final static int DB_V2_0_0 = 16;
+    private final static int DB_EMPTY = 0;
+    private final static int DB_V1_0_0 = 1;
+    private final static int DB_V1_0_1 = 2;
+    private final static int DB_V1_2_0 = 3;
+    private final static int DB_V1_2_1 = 4;
+    private final static int DB_V1_3_0 = 5;
+    private final static int DB_V1_4_0 = 6;
+    private final static int DB_V1_5_0 = 7;
+    private final static int DB_V1_5_4 = 9;
+    private final static int DB_V1_6_0 = 10;
+    private final static int DB_V1_6_1 = 11;
+    private final static int DB_V1_7_0 = 12;
+    private final static int DB_V1_7_2 = 13;
+    private final static int DB_V1_7_4 = 14;
+    private final static int DB_V1_7_7 = 15;
+    private final static int DB_V2_0_0 = 16;
+
+    public final static int DB_LATEST = DB_V2_0_0;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -90,92 +92,133 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
-            initialSQL();
-            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
+            setProgress("Achievements", 0);
+            createAchievement();
+            setProgress("Category", 2);
+            createCategory();
+            setProgress("Character", 5);
+            createCharacter();
+            setProgress("Criteria", 7);
+            createCriteria();
+            setProgress("Inventory", 10);
+            createInventory();
+            setProgress("Items", 12);
+            createItem();
+            setProgress("Locations", 15);
+            createLocation();
+            setProgress("Messages", 17);
+            createMessage();
+            setProgress("Statistics", 20);
+            createPlayerInfo();
+            setProgress("Recipes", 22);
+            createRecipe();
+            setProgress("Settings", 25);
+            createSetting();
+            setProgress("Slots", 27);
+            createSlot();
+            setProgress("States", 30);
+            createState();
+            setProgress("Tiers", 32);
+            createTier();
+            setProgress("Traders", 35);
+            createTrader();
+            setProgress("Types", 37);
+            createType();
+            setProgress("Upgrades", 40);
+            createUpgrade();
+            setProgress("Visitors", 42);
+            createVisitor();
+            setProgress("Visitor Demands", 45);
+            createVisitorDemand();
+            setProgress("Visitor Stats", 47);
+            createVisitorStats();
+            setProgress("Visitor Types", 50);
+            createVisitorType();
 
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
             TutorialHelper.currentlyInTutorial = true;
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_0) {
-            setProgress("1.0.1 Patch", 100);
+            setProgress("1.0.1 Patch", 52);
             patch100to101();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_1) {
-            setProgress("1.2.0 Patch", 100);
+            setProgress("1.2.0 Patch", 55);
             patch101to120();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_0) {
-            setProgress("1.2.1 Patch", 100);
+            setProgress("1.2.1 Patch", 57);
             patch120to121();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_1) {
-            setProgress("1.3.0 Patch", 100);
+            setProgress("1.3.0 Patch", 60);
             patch121to130();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_3_0) {
-            setProgress("1.4.0 Patch", 100);
+            setProgress("1.4.0 Patch", 62);
             patch130to140();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
-            setProgress("1.5.0 Patch", 100);
+            setProgress("1.5.0 Patch", 65);
             patch140to150();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
-            setProgress("1.5.4 Patch", 100);
+            setProgress("1.5.4 Patch", 67);
             patch150to154();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
-            setProgress("1.6.0 Patch", 100);
+            setProgress("1.6.0 Patch", 70);
             patch154to160();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_0) {
-            setProgress("1.6.1 Patch", 100);
+            setProgress("1.6.1 Patch", 72);
             patch160to161();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_1).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_1) {
-            setProgress("1.7.0 Patch", 100);
+            setProgress("1.7.0 Patch", 75);
             patch161to170();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_0).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_0) {
-            setProgress("1.7.2 Patch", 100);
+            setProgress("1.7.2 Patch", 77);
             patch170to172();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_2).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_2) {
-            setProgress("1.7.4 Patch", 100);
+            setProgress("1.7.4 Patch", 80);
             patch172to174();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_4).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_4) {
-            setProgress("1.7.7 Patch", 100);
+            setProgress("1.7.7 Patch", 82);
             patch174to177();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_7).apply();
         }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_7) {
-            setProgress("2.0.0 Patch", 100);
+            setProgress("2.0.0 Patch", 85);
             patch177to200();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_0).apply();
         }
@@ -189,52 +232,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onProgressUpdate(String... values) {
-        progressText.setText("Installing:\n" + values[0]);
+        progressText.setText("Installing\n" + values[0]);
     }
 
     private void initialSQL() {
-        setProgress("Achievements", 0);
-        createAchievement();
-        setProgress("Category", 5);
-        createCategory();
-        setProgress("Character", 10);
-        createCharacter();
-        setProgress("Criteria", 15);
-        createCriteria();
-        setProgress("Inventory", 20);
-        createInventory();
-        setProgress("Items", 25);
-        createItem();
-        setProgress("Locations", 30);
-        createLocation();
-        setProgress("Messages", 35);
-        createMessage();
-        setProgress("Statistics", 40);
-        createPlayerInfo();
-        setProgress("Recipes", 45);
-        createRecipe();
-        setProgress("Settings", 50);
-        createSetting();
-        setProgress("Slots", 55);
-        createSlot();
-        setProgress("States", 60);
-        createState();
-        setProgress("Tiers", 65);
-        createTier();
-        setProgress("Traders", 70);
-        createTrader();
-        setProgress("Types", 75);
-        createType();
-        setProgress("Upgrades", 80);
-        createUpgrade();
-        setProgress("Visitors", 85);
-        createVisitor();
-        setProgress("Visitor Demands", 90);
-        createVisitorDemand();
-        setProgress("Visitor Stats", 93);
-        createVisitorStats();
-        setProgress("Visitor Types", 95);
-        createVisitorType();
+
     }
 
     private void patch100to101() {

@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            android:id="@+id/imageDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/progressText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:padding="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="40sp" />
-
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="30dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:indeterminate="false"
             android:max="100" />
     </LinearLayout>

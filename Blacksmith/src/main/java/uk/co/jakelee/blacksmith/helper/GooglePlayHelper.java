@@ -364,7 +364,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         List<Worker> workers = Worker.listAll(Worker.class);
         List<Hero> heroes = Hero.listAll(Hero.class);
 
-        backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_V1_7_0) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_LATEST) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
