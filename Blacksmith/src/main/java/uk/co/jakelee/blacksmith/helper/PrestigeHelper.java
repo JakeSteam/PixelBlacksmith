@@ -54,7 +54,7 @@ public class PrestigeHelper {
         Inventory.executeQuery("DELETE FROM inventory WHERE item NOT IN (SELECT id FROM item WHERE type = " + Constants.TYPE_PAGE + " OR type = " + Constants.TYPE_BOOK + ")");
         Pending_Inventory.deleteAll(Pending_Inventory.class);
 
-        DatabaseHelper.createInventory();
+        new DatabaseHelper().createInventory();
     }
 
     private static void resetUpgrades() {

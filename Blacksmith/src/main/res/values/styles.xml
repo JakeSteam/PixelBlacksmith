@@ -7,10 +7,6 @@
         <item name="android:textColorPrimary">#FFFFFF</item> <!-- Main text -->
     </style>
 
-    <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Translucent" />
 
     <style name="Theme.AppCompat.Translucent">

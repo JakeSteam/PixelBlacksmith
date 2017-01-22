@@ -47,8 +47,7 @@
         <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
         <activity
-            android:name=".main.SplashScreenActivity"
-            android:theme="@style/AppTheme.Splash">
+            android:name=".main.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
