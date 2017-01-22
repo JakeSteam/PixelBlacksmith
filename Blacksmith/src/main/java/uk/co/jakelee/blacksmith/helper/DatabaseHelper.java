@@ -729,6 +729,18 @@ public class DatabaseHelper {
         Super_Upgrade.saveInTx(superUpgrades);
 
         new Player_Info("CoinsPurchased", 0);
+
+        Hero_Category.executeQuery("UPDATE herocategory SET name = printf('%s (%d-%d)', name," +
+                " (SELECT MIN(difficulty) FROM heroadventure WHERE subcategory = category_id)," +
+                " (SELECT MAX(difficulty) FROM heroadventure WHERE subcategory = category_id))" +
+                " WHERE parent > 0");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Gathering (10-150)\" WHERE category_id = 1");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Animal Hunting (100-250)\" WHERE category_id = 2");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Monster Hunting (190-600)\" WHERE category_id = 3");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Elite Challenges (700-1500)\" WHERE category_id = 4");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Guard Duty (100-300)\" WHERE category_id = 5");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Exploring (500-800)\" WHERE category_id = 6");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Escort (350-690)\" WHERE category_id = 7");
     }
 
     private static void createContributionGoals() {
