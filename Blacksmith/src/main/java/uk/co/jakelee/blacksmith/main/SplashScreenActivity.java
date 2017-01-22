@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -46,8 +47,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     public void startGame() {
-        /*Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finish();*/
+        finish();
     }
 }

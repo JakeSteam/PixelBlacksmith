@@ -222,6 +222,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             patch177to200();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_0).apply();
         }
+
+        setProgress("Complete", 100);
         return "";
     }
 
@@ -232,7 +234,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onProgressUpdate(String... values) {
-        progressText.setText("Installing\n" + values[0]);
+        progressText.setText(values[0].equals("Complete") ? "Starting Up\n" : ("Installing\n" + values[0]));
     }
 
     private void initialSQL() {
