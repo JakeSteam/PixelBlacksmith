@@ -801,15 +801,19 @@ public class DisplayHelper {
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {
+        drawArrows(current, min, max, downArrow, upArrow, false);
+    }
+
+    public void drawArrows(int current, int min, int max, View downArrow, View upArrow, boolean forceUpArrow) {
         if (current < min) {
             current = min;
         }
 
-        if (current > max) {
+        if (current > max && !forceUpArrow) {
             current = max;
         }
 
-        if (current == max) {
+        if (current == max && !forceUpArrow) {
             upArrow.setVisibility(View.INVISIBLE);
         } else {
             upArrow.setVisibility(View.VISIBLE);

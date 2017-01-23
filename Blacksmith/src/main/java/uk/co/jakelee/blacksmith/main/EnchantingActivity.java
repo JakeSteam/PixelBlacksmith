@@ -137,7 +137,7 @@ public class EnchantingActivity extends Activity {
         TableLayout gemsTable = (TableLayout) findViewById(R.id.itemsTable);
         createGemsTable(gemsTable);
 
-        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton), this.displayedTier == Constants.TIER_DRAGON);
     }
 
     private void createPowderInterface(boolean clearExisting) {
