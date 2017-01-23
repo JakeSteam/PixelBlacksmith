@@ -1,6 +1,10 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
 
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:background">#000000</item>
+    </style>
+
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#ae6c37</item>
         <item name="colorAccent">#000000</item>  <!--Buttons -->

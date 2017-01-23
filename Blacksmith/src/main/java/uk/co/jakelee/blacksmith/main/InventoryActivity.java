@@ -224,6 +224,9 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         int itemId = (int) v.getTag();
         Item item = Item.findById(Item.class, itemId);
         Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
+        if (inventory.isUnsellable()) {
+            canSell = Constants.ERROR_UNSELLABLE;
+        } else {
         AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
     }
 
@@ -239,7 +242,9 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         Inventory inventory = Inventory.getInventory(itemID, itemState);
 
         int canSell = Constants.ERROR_NOT_ENOUGH_ITEMS;
-        if (MainActivity.vh.inventoryBusy) {
+        if (inventory.isUnsellable()) {
+            canSell = Constants.ERROR_UNSELLABLE;
+        } else if (MainActivity.vh.inventoryBusy) {
             canSell = Constants.ERROR_BUSY;
         } else {
             if (inventory.getQuantity() < quantity || (quantity == 100 && Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX))) {

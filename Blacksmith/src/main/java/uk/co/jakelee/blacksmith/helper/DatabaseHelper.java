@@ -237,10 +237,6 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         progressText.setText(values[0].equals("Complete") ? "Starting Up\n" : ("Installing\n" + values[0]));
     }
 
-    private void initialSQL() {
-
-    }
-
     private void patch100to101() {
         // Add upgradeable restock cost
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
