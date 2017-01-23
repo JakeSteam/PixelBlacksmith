@@ -1551,7 +1551,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Criteria.saveInTx(criterias);
     }
 
-    public void createInventory() {
+    void createInventory() {
         List<Inventory> inventories = new ArrayList<>();
 
         // 200 gold
@@ -2773,7 +2773,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Type.saveInTx(types);
     }
 
-    public void createUpgrade() {
+    private void createUpgrade() {
         List<Upgrade> upgrades = new ArrayList<>();
 
         upgrades.add(new Upgrade("Visitor Spawn Time", "mins", 1000, 1, 25, 10, 25));
@@ -2788,12 +2788,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Upgrade.saveInTx(upgrades);
     }
 
-    public void createVisitor() {
+    private void createVisitor() {
         Visitor visitor = new Visitor(System.currentTimeMillis(), 33L);
         visitor.save();
     }
 
-    public void createVisitorDemand() {
+    private void createVisitorDemand() {
         List<Visitor_Demand> visitor_demands = new ArrayList<>();
         
         // Req: 2 ore, 1 bar, 1 unfinished, 1 finished
@@ -2807,7 +2807,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Visitor_Demand.saveInTx(visitor_demands);
     }
 
-    public void createVisitorStats() {
+    private void createVisitorStats() {
         List<Visitor_Stats> visitorStatses = new ArrayList<>();
         
         visitorStatses.add(new Visitor_Stats(1L, 0, 52L, 1L, 0, 0L, 0L));
@@ -2864,7 +2864,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Visitor_Stats.saveInTx(visitorStatses);
     }
 
-    public void createVisitorType() {
+    private void createVisitorType() {
         List<Visitor_Type> visitor_types = new ArrayList<>();
         
         visitor_types.add(new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3));
@@ -2921,7 +2921,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Visitor_Type.saveInTx(visitor_types);
     }
 
-    public void createWorkers() {
+    private void createWorkers() {
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker(1, 16, 1, 32L, 1, 0L, 0, false));
         workers.add(new Worker(2, 14, 10, 32L, 1, 0L, 0, false));
@@ -2933,7 +2933,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Worker.saveInTx(workers);
     }
 
-    public void createWorkerResources() {
+    private void createWorkerResources() {
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(32, 1, 1, 10)); // Bronze pickaxe
         workerResources.add(new Worker_Resource(32, 2, 1, 10)); // Bronze pickaxe

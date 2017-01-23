@@ -48,7 +48,6 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 public class TradeActivity extends Activity implements ItemTable {
     private static final Handler handler = new Handler();
     private static Visitor_Demand demand;
-    private static Visitor visitor;
     private static Visitor_Type visitorType;
     private static DisplayHelper dh;
     private static boolean tradeMax = false;
@@ -65,7 +64,7 @@ public class TradeActivity extends Activity implements ItemTable {
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
         if (demandId > 0) {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
-            visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
+            Visitor visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
             visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
 
             new Thread(new Runnable() {
