@@ -773,7 +773,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void patch177to200() {
         List<Setting> settings = new ArrayList<>();
-        settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", false));
+        settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", true));
         settings.add(new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", true));
         settings.add(new Setting(Constants.SETTING_ORIENTATION, "Orientation", Constants.ORIENTATION_AUTO));
         Setting.saveInTx(settings);
