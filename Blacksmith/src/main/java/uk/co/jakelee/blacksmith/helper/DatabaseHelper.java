@@ -784,8 +784,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Item.saveInTx(items);
 
         List<State> states = new ArrayList<>();
-            states.add(new State(8L, "Purple Enchant", "(purp)", 220L, 40, 10));
-            states.add(new State(9L, "Yellow Enchant", "(yellow)", 221L, 40, 10));
+            states.add(new State(8L, "Purple Enchant", "(purp) ", 220L, 40, 10));
+            states.add(new State(9L, "Yellow Enchant", "(yellow) ", 221L, 40, 10));
         State.saveInTx(states);
 
         List<Trader_Stock> traderStocks = new ArrayList<>();
