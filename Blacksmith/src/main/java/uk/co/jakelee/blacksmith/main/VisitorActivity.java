@@ -108,27 +108,27 @@ public class VisitorActivity extends Activity {
 
     private void startFirstTutorial() {
         // Stage 2
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_2_VISITOR);
-        th.addTutorial(this, findViewById(R.id.visitorPicture), R.string.tutorialVisitorPicture, R.string.tutorialVisitorPictureText, false);
-        th.addTutorial(this, findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.demandInfo), R.string.tutorialVisitorDemands, R.string.tutorialVisitorDemandsText, true, Gravity.BOTTOM);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_2_VISITOR);
+        th.addTutorial(findViewById(R.id.visitorPicture), R.string.tutorialVisitorPicture, R.string.tutorialVisitorPictureText, false);
+        th.addTutorial(findViewById(R.id.tierImage), R.string.tutorialVisitorPrefs, R.string.tutorialVisitorPrefsText, false);
+        th.addTutorialRectangle(findViewById(R.id.demandInfo), R.string.tutorialVisitorDemands, R.string.tutorialVisitorDemandsText, true, Gravity.BOTTOM);
+        th.start();
     }
 
     private void startSecondTutorial() {
         // Stage 4
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_4_VISITOR);
-        th.addTutorialRectangle(this, findViewById(R.id.demandsTable), R.string.tutorialVisitorDemandsLeft, R.string.tutorialVisitorDemandsLeftText, false, Gravity.TOP);
-        th.addTutorial(this, findViewById(R.id.close), R.string.tutorialVisitorClose, R.string.tutorialVisitorCloseText, true);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_4_VISITOR);
+        th.addTutorialRectangle(findViewById(R.id.demandsTable), R.string.tutorialVisitorDemandsLeft, R.string.tutorialVisitorDemandsLeftText, false, Gravity.TOP);
+        th.addTutorial(findViewById(R.id.close), R.string.tutorialVisitorClose, R.string.tutorialVisitorCloseText, true);
+        th.start();
     }
 
     private void startThirdTutorial() {
         // Stage 12
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_12_VISITOR);
-        th.addTutorialNoOverlay(this, findViewById(R.id.completeButton), R.string.tutorialVisitorFinishBtn, R.string.tutorialVisitorFinishBtnText, true, Gravity.TOP);
-        th.addTutorialRectangle(this, findViewById(R.id.demandsTable), R.string.tutorialVisitorFinish, R.string.tutorialVisitorFinishText, true, Gravity.TOP);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_12_VISITOR);
+        th.addTutorialNoOverlay(findViewById(R.id.completeButton), R.string.tutorialVisitorFinishBtn, R.string.tutorialVisitorFinishBtnText, true, Gravity.TOP);
+        th.addTutorialRectangle(findViewById(R.id.demandsTable), R.string.tutorialVisitorFinish, R.string.tutorialVisitorFinishText, true, Gravity.TOP);
+        th.start();
     }
 
     private void displayVisitorInfo() {

@@ -120,11 +120,11 @@ public class TableActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_10_TABLE);
-        th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialTable, R.string.tutorialTableText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialTableIngredients, R.string.tutorialTableIngredientsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.craft1), R.string.tutorialTableCraft, R.string.tutorialTableCraftText, true, Gravity.TOP);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_10_TABLE);
+        th.addTutorial(findViewById(R.id.viewFlipper), R.string.tutorialTable, R.string.tutorialTableText, false);
+        th.addTutorialRectangle(findViewById(R.id.ingredientsTable), R.string.tutorialTableIngredients, R.string.tutorialTableIngredientsText, false);
+        th.addTutorialRectangle(findViewById(R.id.craft1), R.string.tutorialTableCraft, R.string.tutorialTableCraftText, true, Gravity.TOP);
+        th.start();
     }
 
     private void createTableInterface(boolean clearExisting, boolean resetTier) {

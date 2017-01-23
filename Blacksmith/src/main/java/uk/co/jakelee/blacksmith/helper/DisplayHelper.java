@@ -602,13 +602,11 @@ public class DisplayHelper {
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
         ownedCoins.setQuantity(coins);
         ownedCoins.save();
-
-        updateCoinsGUI();
     }
 
-    public void updateCoinsGUI() {
+    public void updateCoinsGUI(TextView coins) {
         String coinCountString = String.format("%,d", Inventory.getCoins());
-        MainActivity.coins.setText(coinCountString);
+        coins.setText(coinCountString);
     }
 
     public static void updateQuest(int current, int max, String eventID) {
@@ -667,21 +665,16 @@ public class DisplayHelper {
         createItemIngredientsTable(currentItemID, state, ingredientsTable);
     }
 
-    public boolean updateLevelText(Context context) {
-        TextViewPixel levelCount = MainActivity.level;
-        levelCount.setText(String.format("%d", Player_Info.getPlayerLevel()));
-
-        ProgressBar levelProgress = MainActivity.levelProgress;
+    public boolean updateLevelText(TextView level, ProgressBar levelProgress, TextView levelPercent) {
+        level.setText(String.format("%d", Player_Info.getPlayerLevel()));
         levelProgress.setProgress(Player_Info.getLevelProgress());
-
-        TextViewPixel levelPercent = MainActivity.levelPercent;
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
         int highestLevel = Player_Info.getHighestLevel();
         int playerLevel = Player_Info.getPlayerLevel();
 
         if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(levelCount, ToastHelper.LONG, getLevelUpText(playerLevel), true);
+            ToastHelper.showPositiveToast(level, ToastHelper.LONG, getLevelUpText(playerLevel), true);
             Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
             if (playerLevel > highestLevel) {
                 Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);

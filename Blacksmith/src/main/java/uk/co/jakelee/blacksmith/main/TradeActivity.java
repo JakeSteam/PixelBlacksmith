@@ -111,10 +111,10 @@ public class TradeActivity extends Activity implements ItemTable {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_3_TRADE);
-        th.addTutorial(this, findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);
-        th.addTutorial(this, findViewById(R.id.finishTrade), R.string.tutorialTradeFinish, R.string.tutorialTradeFinishText, true, Gravity.TOP);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_3_TRADE);
+        th.addTutorial(findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);
+        th.addTutorial(findViewById(R.id.finishTrade), R.string.tutorialTradeFinish, R.string.tutorialTradeFinishText, true, Gravity.TOP);
+        th.start();
     }
 
     private void createTradeInterface() {

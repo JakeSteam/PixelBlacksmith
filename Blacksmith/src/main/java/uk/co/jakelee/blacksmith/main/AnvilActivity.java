@@ -116,12 +116,12 @@ public class AnvilActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_8_ANVIL);
-        th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialAnvil, R.string.tutorialAnvilText, false);
-        th.addTutorial(this, findViewById(R.id.upButton), R.string.tutorialAnvilUp, R.string.tutorialAnvilUpText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialAnvilIngredients, R.string.tutorialAnvilIngredientsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.craft1), R.string.tutorialAnvilCraft, R.string.tutorialAnvilCraftText, true, Gravity.TOP);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_8_ANVIL);
+        th.addTutorial(findViewById(R.id.viewFlipper), R.string.tutorialAnvil, R.string.tutorialAnvilText, false);
+        th.addTutorial(findViewById(R.id.upButton), R.string.tutorialAnvilUp, R.string.tutorialAnvilUpText, false);
+        th.addTutorialRectangle(findViewById(R.id.ingredientsTable), R.string.tutorialAnvilIngredients, R.string.tutorialAnvilIngredientsText, false);
+        th.addTutorialRectangle(findViewById(R.id.craft1), R.string.tutorialAnvilCraft, R.string.tutorialAnvilCraftText, true, Gravity.TOP);
+        th.start();
     }
 
     private void createAnvilInterface(boolean clearExisting, boolean resetTier) {
