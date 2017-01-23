@@ -747,5 +747,17 @@
         <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
         <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
         <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</item>
+        <item>Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</item>
+        <item>Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</item>
+        <item>Having trouble reaching 100%% completion? Tap your completion %% to see a breakdown of your progress.</item>
+        <item>The game can be locked in portrait or landscape if you prefer playing a certain way.</item>
+        <item>Enchanted items will have a coloured tint to them, to help easily identify them.</item>
+        <item>Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</item>
+        <item>The sheets on the table below the shop visitors can be tapped to quickly access the message log.</item>
+        <item>Running low on coins? Packs can be bought by tapping the plus button next to your coin count. The higher your level, the more coins you\'ll get!</item>
+        <item>Large quantities of item can be crafted in a single stack. This lets other items be crafted at the same time as a large order.</item>
+        <item>Once a visitor\'s trophy has been earned, the spawn chance is cut in half.</item>
+        <item>Heroes can \'super succeed\' if on an easy adventure, earning 1.1 to 2.5x the usual reward.</item>
+        <item>Heroes can be made more powerful for free by making use of sets, unique combinations of items that boost hero strength.</item>
     </string-array>
 </resources>
