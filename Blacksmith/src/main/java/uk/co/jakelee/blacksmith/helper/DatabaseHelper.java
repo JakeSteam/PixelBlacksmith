@@ -818,6 +818,16 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Guard Duty (100-300)\" WHERE category_id = 5");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Exploring (500-800)\" WHERE category_id = 6");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Escort (350-690)\" WHERE category_id = 7");
+
+        List<Visitor_Stats> visitorStats = new ArrayList<>();
+            visitorStats.add(new Visitor_Stats(51L, 0, 52L, 1L, 0, 0L, 0L));
+            visitorStats.add(new Visitor_Stats(52L, 0, 52L, 1L, 0, 0L, 0L));
+        Visitor_Stats.saveInTx(visitorStats);
+
+        List<Visitor_Type> visitorTypes = new ArrayList<>();
+            visitorTypes.add(new Visitor_Type(51L, "Mr Tentacles", "Want a burger?", 4L, 27L, 9L, 1.05, 1.35, 1.12, false, false, false, 15));
+            visitorTypes.add(new Visitor_Type(52L, "Bresh Bosh", "I's got all these coins but nuffin good. Whatchu got?", 6L, 14L, 3L, 1.39, 1.14, 1.20, false, false, false, 9));
+        Visitor_Type.saveInTx(visitorTypes);
     }
 
     private void createContributionGoals() {

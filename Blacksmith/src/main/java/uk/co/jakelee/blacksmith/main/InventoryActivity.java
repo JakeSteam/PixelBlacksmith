@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -225,9 +226,10 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         Item item = Item.findById(Item.class, itemId);
         Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         if (inventory.isUnsellable()) {
-            canSell = Constants.ERROR_UNSELLABLE;
+            ToastHelper.showErrorToast(v, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_UNSELLABLE), false);
         } else {
-        AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
+            AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
+        }
     }
 
     private void clickSellButton(View view) {
