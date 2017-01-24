@@ -351,34 +351,20 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
     public static byte[] createBackup() {
         Gson gson = new Gson();
-        String backupString;
 
-        List<Inventory> inventories = Inventory.listAll(Inventory.class);
-        List<Player_Info> player_infos = Player_Info.listAll(Player_Info.class);
-        List<Setting> settings = Setting.listAll(Setting.class);
-        List<Trader> traders = Trader.listAll(Trader.class);
-        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
-        List<Visitor> visitors = Visitor.listAll(Visitor.class);
-        List<Visitor_Stats> visitor_stats = Visitor_Stats.listAll(Visitor_Stats.class);
-        List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
-        List<Visitor_Demand> visitor_demands = Visitor_Demand.listAll(Visitor_Demand.class);
-        List<Worker> workers = Worker.listAll(Worker.class);
-        List<Hero> heroes = Hero.listAll(Hero.class);
-        List<Visitor_Log> visitorLogs = Visitor_Log.listAll(Visitor_Log.class);
-
-        backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_LATEST) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(traders) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(upgrades) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitors) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_types) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_demands) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(workers) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(heroes) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitorLogs) + GooglePlayHelper.SAVE_DELIMITER;
+        String backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_LATEST) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Inventory.listAll(Inventory.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Player_Info.listAll(Player_Info.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Setting.listAll(Setting.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Trader.listAll(Trader.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Upgrade.listAll(Upgrade.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor.listAll(Visitor.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Stats.listAll(Visitor_Stats.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Type.listAll(Visitor_Type.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Demand.listAll(Visitor_Demand.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Worker.listAll(Worker.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Hero.listAll(Hero.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Log.listAll(Visitor_Log.class)) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
