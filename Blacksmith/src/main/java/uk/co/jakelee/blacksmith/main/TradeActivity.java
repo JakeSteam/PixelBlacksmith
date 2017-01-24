@@ -43,6 +43,7 @@ import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
+import uk.co.jakelee.blacksmith.model.Visitor_Log;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
 public class TradeActivity extends Activity implements ItemTable {
@@ -186,13 +187,14 @@ public class TradeActivity extends Activity implements ItemTable {
             tableRows.add(headerRow);
 
             for (final Inventory inventory : matchingItems) {
+                boolean hasBeenTried = Visitor_Log.hasBeenTried(visitorType.getVisitorID(), inventory.getItem(), inventory.getState());
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
-                TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
+                TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20, hasBeenTried ? Color.GRAY : Color.BLACK);
                 ImageView image = dh.createItemImage(inventory.getItem(), (int)inventory.getState(), 35, 35, true, true, inventory.isUnsellable());
 
                 final String itemName = item.getPrefix(inventory.getState()) + item.getName();
-                TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
+                TextViewPixel name = dh.createTextView(itemName, 20, hasBeenTried ? Color.GRAY : Color.BLACK);
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
                 name.setTag(R.id.itemID, inventory.getItem());
@@ -264,6 +266,7 @@ public class TradeActivity extends Activity implements ItemTable {
 
         if (inventoryOfItem.getQuantity() > 0 && !currentlySelling) {
             currentlySelling = true;
+            new Visitor_Log(visitorType.getVisitorID(), itemID, itemState).save();
             int quantity = 1;
             if (MainActivity.prefs.getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();

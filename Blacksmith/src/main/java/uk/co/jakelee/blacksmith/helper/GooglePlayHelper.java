@@ -41,6 +41,7 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
+import uk.co.jakelee.blacksmith.model.Visitor_Log;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
@@ -363,6 +364,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         List<Visitor_Demand> visitor_demands = Visitor_Demand.listAll(Visitor_Demand.class);
         List<Worker> workers = Worker.listAll(Worker.class);
         List<Hero> heroes = Hero.listAll(Hero.class);
+        List<Visitor_Log> visitorLogs = Visitor_Log.listAll(Visitor_Log.class);
 
         backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_LATEST) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
@@ -376,6 +378,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         backupString += gson.toJson(visitor_demands) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(workers) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(heroes) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(visitorLogs) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
@@ -460,6 +463,16 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 Hero.deleteAll(Hero.class);
                 for (Hero hero : heroes) {
                     hero.save();
+                }
+            }
+        }
+
+        if (splitData.length > 12) {
+            Visitor_Log[] visitorLogs = gson.fromJson(splitData[12], Visitor_Log[].class);
+            if (visitorLogs.length > 0) {
+                Visitor_Log.deleteAll(Visitor_Log.class);
+                for (Visitor_Log visitorLog : visitorLogs) {
+                    visitorLog.save();
                 }
             }
         }
