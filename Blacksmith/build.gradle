@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion apiVersion
-        versionCode 58
-        versionName "1.7.9"
+        versionCode 59
+        versionName "2.0.0"
     }
     buildTypes {
         release {
