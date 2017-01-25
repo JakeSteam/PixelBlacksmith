@@ -137,7 +137,7 @@ public class EnchantingActivity extends Activity {
         TableLayout gemsTable = (TableLayout) findViewById(R.id.itemsTable);
         createGemsTable(gemsTable);
 
-        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton));
+        dh.drawArrows(this.displayedTier, Constants.TIER_MIN, Constants.TIER_MAX, findViewById(R.id.downButton), findViewById(R.id.upButton), this.displayedTier == Constants.TIER_DRAGON);
     }
 
     private void createPowderInterface(boolean clearExisting) {
@@ -165,17 +165,25 @@ public class EnchantingActivity extends Activity {
     }
 
     public void goUpTier(View view) {
-        if (displayedTier < Constants.TIER_MAX) {
+        if (displayedTier < Constants.TIER_PREMIUM) {
+            if (displayedTier == Constants.TIER_MAX) {
+                displayedTier = Constants.TIER_PREMIUM;
+            } else {
+                displayedTier++;
+            }
             MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
-            displayedTier++;
             createEnchantingInterface(true);
         }
     }
 
     public void goDownTier(View view) {
         if (displayedTier > Constants.TIER_MIN) {
+            if (displayedTier == Constants.TIER_PREMIUM) {
+                displayedTier = Constants.TIER_MAX;
+            } else {
+                displayedTier--;
+            }
             MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
-            displayedTier--;
             createEnchantingInterface(true);
         }
     }
@@ -219,7 +227,7 @@ public class EnchantingActivity extends Activity {
         itemButton.setBackgroundResource(R.drawable.button_extra_wide);
         itemButton.setGravity(Gravity.CENTER);
 
-        ImageView itemImage = dh.createItemImage(item.getId(), 20, 20, true, true);
+        ImageView itemImage = dh.createItemImage(item.getId(), Constants.STATE_NORMAL, 20, 20, true, true);
         itemImage.setPadding(dh.convertDpToPixel(16), 0, dh.convertDpToPixel(2), 0);
         itemButton.addView(itemImage);
 

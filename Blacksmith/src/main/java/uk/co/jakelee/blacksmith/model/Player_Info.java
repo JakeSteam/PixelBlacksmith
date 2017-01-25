@@ -141,6 +141,13 @@ public class Player_Info extends SugarRecord {
         return collections != null ? collections.getIntValue() : 0;
     }
 
+    public static int getCoinsPurchased() {
+        Player_Info coinsPurchased = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("CoinsPurchased")).first();
+
+        return coinsPurchased != null ? coinsPurchased.getIntValue() : 0;
+    }
+
     public static String getLastContributed() {
         Player_Info lastContributed = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("LastDonated")).first();
@@ -289,6 +296,6 @@ public class Player_Info extends SugarRecord {
     }
 
     public enum Statistic {
-        CollectionsCreated, HighestLevel, ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige, QuestsCompleted
+        CollectionsCreated, HighestLevel, ItemsSmelted, ItemsCrafted, ItemsTraded, ItemsEnchanted, ItemsBought, ItemsSold, VisitorsCompleted, CoinsEarned, SavedLevel, UpgradesBought, Prestige, QuestsCompleted, CoinsPurchased
     }
 }

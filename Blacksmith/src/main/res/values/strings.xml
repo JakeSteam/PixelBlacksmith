@@ -133,6 +133,7 @@
     <string name="helpText">Help</string>
     <string name="upgradeText">Upgrades</string>
     <string name="premiumText">Premium</string>
+    <string name="buyCoinsText">Buy Coins</string>
     <string name="messagesText">Message Log</string>
     <string name="messagesShortText">Messages</string>
     <string name="socialMediaText">Social Media</string>
@@ -175,6 +176,9 @@
     <string name="socialMediaTwitter">Twitter</string>
     <string name="socialMediaReddit">Reddit</string>
 
+    <string name="tierPreferenceHero">This hero will receive a %1$s boost for items made out of %2$s.</string>
+    <string name="typePreferenceHero">This hero will receive a %1$s boost for %2$ss.</string>
+    <string name="statePreferenceHero">This hero will receive a %1$s boost for items in a %2$s condition.</string>
     <string name="discoveredPreferences">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="tierPreference">This customer will pay %1$s extra for items made out of %2$s.</string>
     <string name="typePreference">This customer will pay %1$s extra for %2$ss.</string>
@@ -188,10 +192,16 @@
 
     <string name="buyContribute">Contribute</string>
     <string name="boughtContribute">Thank you for contributing! You\'re the best!</string>
-    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like.\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
+    <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like. If you\'re interested in buying more coins, coins can be bought (+ button next to coins).\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
     <string name="contributeStatus">\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
     <string name="contributeTitle">%1$s (%2$d / %3$d)</string>
     <string name="contributeHeader">Rewards:</string>
+
+    <string name="buyCoinsButton">%1$s coins</string>
+    <string name="buyCoinsSuccess">Successfully bought %1$d coins, enjoy!</string>
+    <string name="buyCoinsDesc">Running low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
+\n\nToday is your lucky day! Two coin packs are available; the first is 500 x your level, the second is 3,000 x your level.
+\n\nWant to get more value for money? Buy the bigger pack or level up!</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
@@ -272,7 +282,7 @@
     <string name="workerTool">Tool:\n%s</string>
     <string name="workerReturned">%1$s has returned, along with: %2$s.</string>
     <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
-    <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$s of which were successful! For more details, view the message log.</string>
+    <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$d of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
     <string name="workerFoodBonus">+</string>
 
@@ -317,6 +327,14 @@
     <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
+    <string name="unlockConfirm">Are you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
+    <string name="lockConfirm">"Are you sure you want to lock %1$s for %2$s coins?</string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="lockSuccess">Successfully locked trader!</string>
+    <string name="unlockSuccess">Successfully unlocked trader!</string>
+    <string name="lockCancel">Cancel</string>
+
     <string name="dismissQuestion">Would you like to pay a visitor %,d coins to leave immediately?</string>
     <string name="dismissQuestionAdvert">Would you like to pay %,d coins or watch an ad to make the visitor leave immediately?</string>
     <string name="dismissConfirm">Pay</string>
@@ -327,7 +345,7 @@
 
     <string name="itemBuyQuestion">Would you like to buy 1x %1$s for %2$,d coin(s), or up to %3$d for %4$d coin(s) each?</string>
     <string name="itemBuy1Confirm">Buy 1</string>
-    <string name="itemBuyComplete">Began buying %1$sx %2$s for %3$s coin(s).</string>
+    <string name="itemBuyComplete">Began buying %1$dx %2$s for %3$d coin(s).</string>
     <string name="itemBuyCancel">Cancel</string>
     <string name="itemBuyAllConfirm">Buy All</string>
     <string name="itemBuyAllQuestion">Would you like to buy all %1$d items for a total price of %2$,d coins?</string>
@@ -348,9 +366,9 @@
     <string name="trophyPreferencesUnknown">Preferences: ???</string>
 
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
-    <string name="sellSuccess">Began selling %1$sx %2$s for %3$s coin(s) each.</string>
+    <string name="sellSuccess">Began selling %1$dx %2$s for %3$d coin(s) each.</string>
 
-    <string name="enchantingButtonText">%1$s (x%2$s)</string>
+    <string name="enchantingButtonText">%1$s (x%2$d)</string>
     <string name="genericQuantity">%1$dx %2$s</string>
 
     <string name="horizontalDotsSelected">x</string>
@@ -389,13 +407,18 @@
     <string name="visitorNotificationSettingText">Visitor</string>
     <string name="workerNotificationSettingText">Worker</string>
     <string name="bonusNotificationSettingText">Bonus</string>
+    <string name="finishedNotificationSettingText">Items\nDone</string>
     <string name="prestigeSettingText">Prestige\n(NG+)</string>
     <string name="fullscreenSettingText">Full Screen</string>
-    <string name="fullscreenCheckSettingText">Full Screen Check</string>
+    <string name="fullscreenCheckSettingText">Fullscr Check</string>
     <string name="autoRefreshSettingText">Auto Refresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
     <string name="longToastSettingText">Longer Messages</string>
-    <string name="handleMaxSettingText">Use Max</string>
+    <string name="handleMaxSettingText">Enable\nMax</string>
+    <string name="bulkStackSettingText">Bulk Craft\nStack</string>
+    <string name="orientationAuto">Auto</string>
+    <string name="orientationPortrait">Portrait</string>
+    <string name="orientationLandscape">Landscape</string>
 
     <string name="importSaveText">Import Save</string>
     <string name="exportSaveText">Export Save</string>
@@ -413,6 +436,7 @@
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
     <string name="performanceSettingGroup">Performance Options</string>
+    <string name="orientationSettingGroup">Orientation Options</string>
     <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
     <string name="googlePlaySettingGroup">Google Play</string>
@@ -425,7 +449,7 @@
 
     <string name="restockText">Restock</string>
     <string name="unnecessaryRestock">There\'s no need to restock this trader!</string>
-    <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %s!</string>
+    <string name="restockTextWithTax">All traders have been restocked, and have paid a tax of %d!</string>
     <string name="restockTextNoTax">All traders have been restocked!</string>
     <string name="traderRestockQuestion">Restock \"%1$s\" for %2$d coins?</string>
     <string name="traderRestockQuestionAdvert">Restock \"%1$s\" for %2$d coins, or by watching an advert?</string>
@@ -455,6 +479,7 @@
     <string name="notificationVisitor">A new visitor has arrived!</string>
     <string name="notificationWorker">A worker has returned!</string>
     <string name="notificationBonus">A bonus is ready to claim!</string>
+    <string name="notificationFinished">All items have been crafted!</string>
 
     <string name="clickChangeText">Quick Select</string>
 
@@ -470,9 +495,10 @@
     <string name="genericPercent">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
-    <string name="traderTrades">%s Trades</string>
+    <string name="traderTrades">%1$d Trades</string>
 
-    <string name="tradedItem">Traded %1$sx %2$s for %3$s coin(s)</string>
+    <string name="tradedItem">Traded %1$dx %2$s for %3$d coin(s)</string>
+    <string name="unsellableItem">Marked %1$s as %2$ssellable!</string>
 
     <string name="restockMarketText">The marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
     <string name="restockMarketTextAdvert">The marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
@@ -549,6 +575,7 @@
     <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
+    <string name="statisticsCoinsPurchased">Coins Purchased:</string>
     <string name="statisticsVersion">Game Version:</string>
 
     <string name="leaderboardsNoConnection">Viewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
@@ -562,13 +589,14 @@
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
-    <string name="versionNumber">%1$s (%2$d)</string>
+    <string name="versionNumber">V%1$s (#%2$d)</string>
     <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
 
     <string name="complete">Complete</string>
     <string name="close" translatable="false">X</string>
     <string name="buy">Buy</string>
     <string name="tradeMax">Max?</string>
+    <string name="lockTrader">Lock?</string>
     <string name="noItemsMessage">You don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
     <string name="noItemsInventory">You don\'t have any items in this category!</string>
     <string name="noItemsEquipment">You don\'t have any suitable equipment for this slot!</string>
@@ -577,6 +605,7 @@
 \n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
 \n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
 \n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">leave the game a rating</a>. It\'s the best way to help the game grow!
+\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">City Flow</a>. I think it\'s rather fun!!
 \n\nYou could also read a few tips:</string>
 
     <string name="creditsOverall">Overall</string>
@@ -718,5 +747,17 @@
         <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
         <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
         <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</item>
+        <item>Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</item>
+        <item>Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</item>
+        <item>Having trouble reaching 100%% completion? Tap your completion %% to see a breakdown of your progress.</item>
+        <item>The game can be locked in portrait or landscape if you prefer playing a certain way.</item>
+        <item>Enchanted items will have a coloured tint to them, to help easily identify them.</item>
+        <item>Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</item>
+        <item>The sheets on the table below the shop visitors can be tapped to quickly access the message log.</item>
+        <item>Running low on coins? Packs can be bought by tapping the plus button next to your coin count. The higher your level, the more coins you\'ll get!</item>
+        <item>Large quantities of item can be crafted in a single stack. This lets other items be crafted at the same time as a large order.</item>
+        <item>Once a visitor\'s trophy has been earned, the spawn chance is cut in half.</item>
+        <item>Heroes can \'super succeed\' if on an easy adventure, earning 1.1 to 2.5x the usual reward.</item>
+        <item>Heroes can be made more powerful for free by making use of sets, unique combinations of items that boost hero strength.</item>
     </string-array>
 </resources>

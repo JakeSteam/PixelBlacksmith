@@ -19,6 +19,7 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Hero;
+import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
 import uk.co.jakelee.blacksmith.model.Upgrade;
@@ -73,6 +74,15 @@ public class NotificationHelper extends BroadcastReceiver {
         NotificationHelper.addNotification(context, bonusTime, Constants.NOTIFICATION_BONUS);
     }
 
+    public static void addFinishedNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
+        Pending_Inventory finalItem = Select.from(Pending_Inventory.class).orderBy("(time_created + craft_time) DESC").first();
+        if (finalItem != null) {
+            NotificationHelper.addNotification(context, finalItem.getTimeCreated() + finalItem.getCraftTime(), Constants.NOTIFICATION_FINISHED);
+        }
+    }
+
     private static void addNotification(Context context, long notificationTime, int notificationType) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
@@ -110,6 +120,8 @@ public class NotificationHelper extends BroadcastReceiver {
             notificationText = context.getString(R.string.notificationWorker);
         } else if (notificationType == Constants.NOTIFICATION_BONUS) {
             notificationText = context.getString(R.string.notificationBonus);
+        } else if (notificationType == Constants.NOTIFICATION_FINISHED) {
+            notificationText = context.getString(R.string.notificationFinished);
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

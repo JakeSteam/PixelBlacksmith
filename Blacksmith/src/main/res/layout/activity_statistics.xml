@@ -51,13 +51,16 @@
                 android:layout_marginRight="8dp"
                 android:columnCount="1">
 
-                <LinearLayout>
+                <LinearLayout >
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:id="@+id/totalCompletionTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="@string/statisticsCompletion"
                         android:textColor="@color/black"
+                        android:onClick="openCompletionPercent"
+                        android:clickable="true"
                         android:textSize="24sp" />
                     <ImageView
                         android:layout_width="25dp"
@@ -74,7 +77,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Blue"
+                    android:onClick="openCompletionPercent"
+                    android:clickable="true"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -643,6 +648,22 @@
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/lastPrestiged"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsCoinsPurchased"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/coinsPurchased"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"

@@ -48,10 +48,10 @@ public class MarketActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_14_MARKET);
-        th.addTutorialRectangle(this, findViewById(R.id.marketList), R.string.tutorialMarket, R.string.tutorialMarketText, false, Gravity.BOTTOM);
-        th.addTutorial(this, findViewById(R.id.close), R.string.tutorialMarketClose, R.string.tutorialMarketCloseText, true);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_14_MARKET);
+        th.addTutorialRectangle(findViewById(R.id.marketList), R.string.tutorialMarket, R.string.tutorialMarketText, false, Gravity.BOTTOM);
+        th.addTutorial(findViewById(R.id.close), R.string.tutorialMarketClose, R.string.tutorialMarketCloseText, true);
+        th.start();
     }
 
     @Override
@@ -66,11 +66,25 @@ public class MarketActivity extends Activity {
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
         marketLayout.removeAllViews();
 
+        int fixedTraders = Trader.getFixedCount();
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("status").eq(Constants.TRADER_PRESENT)).orderBy("name").list();
+                Condition.prop("status").eq(Constants.TRADER_PRESENT)).orderBy("fixed DESC, name ASC").list();
+
+        boolean mixedFixedStatus = fixedTraders > 0;
+        boolean haveDisplayedUnlockHeader = false;
+        if (mixedFixedStatus) {
+            marketLayout.addView(dh.createTextView(String.format("Fixed (%1$d / %2$d)",
+                    fixedTraders,
+                    Constants.TRADER_LOCK_MAX),
+                30));
+        }
 
         for (Trader trader : traders) {
+            if (mixedFixedStatus && !trader.isFixed() && !haveDisplayedUnlockHeader) {
+                marketLayout.addView(dh.createTextView("\nTemporary", 30));
+                haveDisplayedUnlockHeader = true;
+            }
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
             View inflatedView = inflater.inflate(R.layout.custom_trader_preview, null);
             TableRow traderRow = (TableRow) inflatedView.findViewById(R.id.traderRow);
@@ -126,7 +140,7 @@ public class MarketActivity extends Activity {
 
         for (Trader_Stock stock : traderOfferings) {
             boolean isUnlocked = trader.getPurchases() >= stock.getRequiredPurchases();
-            ImageView itemImage = dh.createItemImage(stock.getItemID(), 20, 20, isUnlocked, false);
+            ImageView itemImage = dh.createItemImage(stock.getItemID(), stock.getState(), 20, 20, isUnlocked, false);
             offeringsContainer.addView(itemImage);
         }
     }

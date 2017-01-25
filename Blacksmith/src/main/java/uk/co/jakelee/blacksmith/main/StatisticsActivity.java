@@ -2,6 +2,7 @@ package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -51,6 +53,7 @@ public class StatisticsActivity extends Activity {
     private void displayStatistics() {
         completionPercent = (Player_Info.getPrestige() * 100) + Player_Info.getCompletionPercent();
         ((TextViewPixel) findViewById(R.id.totalCompletion)).setText(String.format("%.2f%%", completionPercent));
+        ((TextViewPixel) findViewById(R.id.totalCompletion)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         int currentXP = Player_Info.getXp();
         ((TextViewPixel) findViewById(R.id.currentXP)).setText(String.format("%,d", currentXP));
@@ -187,6 +190,8 @@ public class StatisticsActivity extends Activity {
             ((TextViewPixel) findViewById(R.id.lastPrestiged)).setText(String.format(getString(R.string.statisticsLastPrestigedLowLevel), Constants.PRESTIGE_LEVEL_REQUIRED));
         }
 
+        ((TextViewPixel) findViewById(R.id.coinsPurchased)).setText("" + Player_Info.getCoinsPurchased());
+
         String version = String.format(getString(R.string.versionNumber), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
         ((TextViewPixel) findViewById(R.id.version)).setText(version);
     }
@@ -219,6 +224,10 @@ public class StatisticsActivity extends Activity {
         Intent intent = new Intent(this, HelpActivity.class);
         intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Statistics);
         startActivity(intent);
+    }
+
+    public void openCompletionPercent(View view) {
+        AlertDialogHelper.displayCompletion(this, this);
     }
 
     public void closePopup(View view) {

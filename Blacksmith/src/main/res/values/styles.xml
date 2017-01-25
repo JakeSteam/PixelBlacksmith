@@ -1,14 +1,14 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
 
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:background">#000000</item>
+    </style>
+
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#ae6c37</item>
         <item name="colorAccent">#000000</item>  <!--Buttons -->
         <item name="android:textColorPrimary">#FFFFFF</item> <!-- Main text -->
-    </style>
-
-    <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Translucent" />

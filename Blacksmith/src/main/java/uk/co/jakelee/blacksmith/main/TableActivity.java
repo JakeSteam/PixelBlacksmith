@@ -120,11 +120,11 @@ public class TableActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_10_TABLE);
-        th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialTable, R.string.tutorialTableText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialTableIngredients, R.string.tutorialTableIngredientsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.craft1), R.string.tutorialTableCraft, R.string.tutorialTableCraftText, true, Gravity.TOP);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_10_TABLE);
+        th.addTutorial(findViewById(R.id.viewFlipper), R.string.tutorialTable, R.string.tutorialTableText, false);
+        th.addTutorialRectangle(findViewById(R.id.ingredientsTable), R.string.tutorialTableIngredients, R.string.tutorialTableIngredientsText, false);
+        th.addTutorialRectangle(findViewById(R.id.craft1), R.string.tutorialTableCraft, R.string.tutorialTableCraftText, true, Gravity.TOP);
+        th.start();
     }
 
     private void createTableInterface(boolean clearExisting, boolean resetTier) {
@@ -253,7 +253,7 @@ public class TableActivity extends Activity {
         } else if (canCreate == Constants.SUCCESS) {
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
 
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS) && !booksSelected) {
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TABLE_CRAFTS) && !booksSelected) {
                 quantity = quantity * 2;
             }
 
@@ -265,8 +265,10 @@ public class TableActivity extends Activity {
             if (itemID.equals(Constants.ITEM_THE_COLLECTION)) {
                 Player_Info.increaseByX(Player_Info.Statistic.CollectionsCreated, quantity);
                 Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Collector")).first();
-                Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
-                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COLLECTIONS, Player_Info.getCollectionsCrafted());
+                if (GooglePlayHelper.IsConnected()) {
+                    Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COLLECTIONS, Player_Info.getCollectionsCrafted());
+                }
             }
         }
 

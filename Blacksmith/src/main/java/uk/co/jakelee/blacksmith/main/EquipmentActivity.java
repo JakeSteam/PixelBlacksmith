@@ -5,10 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.components.Hero_Set;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.HeroSetHelper;
+import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Hero;
@@ -41,6 +48,7 @@ public class EquipmentActivity extends Activity {
         vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
 
         populateEquipment();
+        populateSets();
         populatePreferences();
     }
 
@@ -48,50 +56,71 @@ public class EquipmentActivity extends Activity {
         ((TextViewPixel) findViewById(R.id.totalStrength)).setText(String.format(getString(R.string.heroTotalStrength), WorkerHelper.getTotalStrength(hero, vType)));
 
         if (hero.getFoodItem() > 0) {
-            ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.foodImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getFoodItem(), hero.getFoodState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.foodStrength), hero.getFoodItem(), hero.getFoodState());
         }
 
         if (hero.getHelmetItem() > 0) {
-            ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.helmetImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getHelmetItem(), hero.getHelmetState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.helmetStrength), hero.getHelmetItem(), hero.getHelmetState());
         }
 
         if (hero.getArmourItem() > 0) {
-            ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.armourImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getArmourItem(), hero.getArmourState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.armourStrength), hero.getArmourItem(), hero.getArmourState());
         }
 
         if (hero.getWeaponItem() > 0) {
-            ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.weaponImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getWeaponItem(), hero.getWeaponState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.weaponStrength), hero.getWeaponItem(), hero.getWeaponState());
         }
 
         if (hero.getVisitorId() > 0) {
-            ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(dh.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
+            ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(DisplayHelper.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
             ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
         } else {
             ((TextViewPixel) findViewById(R.id.heroName)).setText(R.string.workerStatusSelectHero);
         }
 
         if (hero.getShieldItem() > 0) {
-            ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.shieldImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getShieldItem(), hero.getShieldState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.shieldStrength), hero.getShieldItem(), hero.getShieldState());
         }
 
         if (hero.getGlovesItem() > 0) {
-            ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.glovesImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getGlovesItem(), hero.getGlovesState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.glovesStrength), hero.getGlovesItem(), hero.getGlovesState());
         }
 
         if (hero.getBootsItem() > 0) {
-            ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.bootsImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getBootsItem(), hero.getBootsState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.bootsStrength), hero.getBootsItem(), hero.getBootsState());
         }
 
         if (hero.getRingItem() > 0) {
-            ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), 25, 25, true, true));
+            ((ImageView) findViewById(R.id.ringImage)).setImageDrawable(dh.createItemImageDrawable((long) hero.getRingItem(), hero.getRingState(), 25, 25, true, true));
             WorkerHelper.setStrengthText(vType, (TextViewPixel) findViewById(R.id.ringStrength), hero.getRingItem(), hero.getRingState());
+        }
+    }
+
+    private void populateSets() {
+        List<Hero_Set> sets = HeroSetHelper.getCurrentSets(hero);
+        LinearLayout setContainer = (LinearLayout) findViewById(R.id.heroSets);
+        setContainer.removeAllViews();
+        if (sets.size() > 0) {
+            for (Hero_Set set : sets) {
+                View textView = dh.createTextView(String.format("%1$s (+%2$s%%)", set.getName(), set.getBonus()), 30);
+                textView.setTag(String.format("The %1$s set provides +%2$d%% strength bonus, activated by %3$s", set.getName(), set.getBonus(), set.getDescription()));
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ToastHelper.showTipToast(view, Toast.LENGTH_SHORT, (String)view.getTag(), true);
+                    }
+                });
+                setContainer.addView(textView);
+            }
+        } else {
+            setContainer.addView(dh.createTextView("No sets currently active!", 35));
         }
     }
 
@@ -141,21 +170,21 @@ public class EquipmentActivity extends Activity {
     public void tierClick(View view) {
         if (hero.getVisitorId() > 0) {
             String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
-            VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
+            VisitorHelper.displayPreference(this, view, R.string.tierPreferenceHero, preferred);
         }
     }
 
     public void typeClick(View view) {
         if (hero.getVisitorId() > 0) {
             String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
-            VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
+            VisitorHelper.displayPreference(this, view, R.string.typePreferenceHero, preferred);
         }
     }
 
     public void stateClick(View view) {
         if (hero.getVisitorId() > 0) {
             String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
-            VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
+            VisitorHelper.displayPreference(this, view, R.string.statePreferenceHero, preferred);
         }
     }
 

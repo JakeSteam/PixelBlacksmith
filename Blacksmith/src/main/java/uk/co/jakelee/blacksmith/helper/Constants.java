@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.content.pm.ActivityInfo;
+
 public class Constants {
     public static final int TRUE = 1;
 
@@ -47,10 +49,18 @@ public class Constants {
     public static final double QUEST_REWARD_MODIFIER_HARD = 2;
     public static final double QUEST_REWARD_MODIFIER_ELITE = 3;
 
+    public static final int TRADER_LOCK_COST = 500;
+    public static final double TRADER_LOCK_PRICE_MODIFIER = 1.5;
+    public static final int TRADER_LOCK_MAX = 3;
+
     public static final int MINIMUM_REWARDS = 4;
     public static final int MAXIMUM_REWARDS = 8;
     public static final int MINIMUM_COIN_REWARDS = 100;
     public static final int MAXIMUM_COIN_REWARDS = 700;
+
+    public static final int ORIENTATION_LANDSCAPE = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+    public static final int ORIENTATION_PORTRAIT = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
+    public static final int ORIENTATION_AUTO = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
 
     public static final Double LEVEL_MODIFIER = 0.1;
     public static final Double DEFAULT_BONUS = 1.00;
@@ -101,6 +111,7 @@ public class Constants {
     public static final int NOTIFICATION_RESTOCK = 2;
     public static final int NOTIFICATION_WORKER = 3;
     public static final int NOTIFICATION_BONUS = 4;
+    public static final int NOTIFICATION_FINISHED = 5;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
@@ -110,9 +121,13 @@ public class Constants {
     public static final int TROPHY_ITEM_REWARDS = 10;
     public static final int TROPHY_PAGE_REWARDS = 3;
 
+    public static final int HERO_RESULT_SUPER_SUCCESS = -1;
     public static final int HERO_RESULT_SUCCESS = 0;
     public static final int HERO_RESULT_MIN = 1;
-    public static final int HERO_RESULT_MAX = 5;
+    public static final int HERO_RESULT_MAX = 3;
+
+    public static final int SUPER_SUCCESS_MINIMUM = 110;
+    public static final int SUPER_SUCCESS_MAXIMUM = 250;
 
     public static final int ADVERT_TIMEOUT = 30000;
 
@@ -132,6 +147,9 @@ public class Constants {
     public static final int ERROR_BUSY = 13;
     public static final int ERROR_MAXIMUM_SUPER_UPGRADE = 14;
     public static final int ERROR_VISITOR_IN_USE = 15;
+    public static final int ERROR_RESOLVING_CONFLICT = 16;
+    public static final int ERROR_UNSELLABLE = 17;
+    public static final int ERROR_MAX_LOCKED_TRADERS = 18;
 
     // Information about lookup tables
     public static final Long ITEM_COINS = 52L;
@@ -163,8 +181,11 @@ public class Constants {
     public static final Long SETTING_UPDATE_SLOTS = 17L;
     public static final Long SETTING_LONG_TOAST = 18L;
     public static final Long SETTING_HANDLE_MAX = 19L;
+    public static final Long SETTING_FINISHED_NOTIFICATIONS = 20L;
+    public static final Long SETTING_BULK_STACK = 21L;
+    public static final Long SETTING_ORIENTATION = 22L;
 
-    public static final int SU_DOUBLE_CRAFTS = 1;
+    public static final int SU_DOUBLE_FURNACE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;
     public static final int SU_BONUS_XP = 3;
     public static final int SU_TRADER_STOCK = 4;
@@ -180,17 +201,34 @@ public class Constants {
     public static final int SU_QUEST_MED = 14;
     public static final int SU_QUEST_HARD = 15;
     public static final int SU_QUEST_ELITE = 16;
+    public static final int SU_DOUBLE_ANVIL_CRAFTS = 17;
+    public static final int SU_DOUBLE_TABLE_CRAFTS = 18;
+    public static final int SU_DOUBLE_ENCHANT_CRAFTS = 19;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;
+    public static final int STATE_RED = 3;
+    public static final int STATE_BLUE = 4;
+    public static final int STATE_GREEN = 5;
+    public static final int STATE_WHITE = 6;
+    public static final int STATE_BLACK = 7;
+    public static final int STATE_PURPLE = 8;
+    public static final int STATE_YELLOW = 9;
     public static final int STATE_ENCHANTED_MIN = 3;
-    public static final int STATE_ENCHANTED_MAX = 7;
+    public static final int STATE_ENCHANTED_MAX = 9;
 
     public static final int TIER_MIN = 1;
     public static final int TIER_MAX = 7;
-    public static final int TIER_PREMIUM = 10;
+    public static final int TIER_BRONZE = 1;
+    public static final int TIER_IRON = 2;
+    public static final int TIER_STEEL = 3;
+    public static final int TIER_MITHRIL = 4;
+    public static final int TIER_ADAMANT = 5;
+    public static final int TIER_RUNE = 6;
+    public static final int TIER_DRAGON = 7;
     public static final int TIER_SILVER = 8;
     public static final int TIER_GOLD = 9;
+    public static final int TIER_PREMIUM = 10;
     public static final int TIER_NONE = 11;
 
     public static final int TYPE_ANVIL_MIN = 3;

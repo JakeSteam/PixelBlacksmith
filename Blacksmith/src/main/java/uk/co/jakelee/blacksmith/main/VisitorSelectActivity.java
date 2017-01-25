@@ -56,8 +56,10 @@ public class VisitorSelectActivity extends Activity {
 
     private void populateVisitors() {
         final TableLayout visitorTable = (TableLayout) findViewById(R.id.visitorTable);
-        List<Visitor_Type> allVisitors = Visitor_Type.listAll(Visitor_Type.class);
-        List<TableRow> rows = new ArrayList<>();
+        List<Visitor_Type> allVisitors = Select.from(Visitor_Type.class).orderBy("name ASC").list();
+
+        List<TableRow> availableRows = new ArrayList<>();
+        List<TableRow> unavailableRows = new ArrayList<>();
 
         for (Visitor_Type visitor : allVisitors) {
             Visitor_Stats vStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getVisitorID());
@@ -87,15 +89,21 @@ public class VisitorSelectActivity extends Activity {
 
             visitorRow.addView(visitorImage);
             visitorRow.addView(visitorReqs);
-            rows.add(visitorRow);
+
+            if (canBeSelected) {
+                availableRows.add(visitorRow);
+            } else {
+                unavailableRows.add(visitorRow);
+            }
         }
 
-        final List<TableRow> rowsToAdd = rows;
+        availableRows.addAll(unavailableRows);
+        final List<TableRow> allRows = availableRows;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 visitorTable.removeAllViews();
-                for (TableRow row : rowsToAdd) {
+                for (TableRow row : allRows) {
                     visitorTable.addView(row);
                 }
             }

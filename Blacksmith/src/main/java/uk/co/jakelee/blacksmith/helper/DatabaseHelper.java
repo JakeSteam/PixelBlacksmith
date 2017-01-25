@@ -1,12 +1,18 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.SplashScreenActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
@@ -38,129 +44,206 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
-public class DatabaseHelper {
-    public final static int DB_EMPTY = 0;
-    public final static int DB_V1_0_0 = 1;
-    public final static int DB_V1_0_1 = 2;
-    public final static int DB_V1_2_0 = 3;
-    public final static int DB_V1_2_1 = 4;
-    public final static int DB_V1_3_0 = 5;
-    public final static int DB_V1_4_0 = 6;
-    public final static int DB_V1_5_0 = 7;
-    public final static int DB_V1_5_4 = 9;
-    public final static int DB_V1_6_0 = 10;
-    public final static int DB_V1_6_1 = 11;
-    public final static int DB_V1_7_0 = 12;
-    public final static int DB_V1_7_2 = 13;
-    public final static int DB_V1_7_4 = 14;
-    public final static int DB_V1_7_7 = 15;
+import static android.content.Context.MODE_PRIVATE;
 
+public class DatabaseHelper extends AsyncTask<String, String, String> {
+    private final static int DB_EMPTY = 0;
+    private final static int DB_V1_0_0 = 1;
+    private final static int DB_V1_0_1 = 2;
+    private final static int DB_V1_2_0 = 3;
+    private final static int DB_V1_2_1 = 4;
+    private final static int DB_V1_3_0 = 5;
+    private final static int DB_V1_4_0 = 6;
+    private final static int DB_V1_5_0 = 7;
+    private final static int DB_V1_5_4 = 9;
+    private final static int DB_V1_6_0 = 10;
+    private final static int DB_V1_6_1 = 11;
+    private final static int DB_V1_7_0 = 12;
+    private final static int DB_V1_7_2 = 13;
+    private final static int DB_V1_7_4 = 14;
+    private final static int DB_V1_7_7 = 15;
+    private final static int DB_V2_0_0 = 16;
 
-    public static void handlePatches() {
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
-            DatabaseHelper.initialSQL();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
+    public final static int DB_LATEST = DB_V2_0_0;
 
+    private SplashScreenActivity callingActivity;
+    private ProgressBar progressBar;
+    private TextView progressText;
+
+    public DatabaseHelper() {}
+
+    public DatabaseHelper(SplashScreenActivity activity, boolean runningFromMain) {
+        this.callingActivity = activity;
+        if (runningFromMain) {
+            this.progressText = (TextView) activity.findViewById(R.id.progressText);
+            this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
+        }
+    }
+
+    private void setProgress(String currentTask, int percentage) {
+        if (progressText != null && progressBar != null) {
+            publishProgress(currentTask);
+            progressBar.setProgress(percentage);
+        }
+    }
+
+    @Override
+    protected String doInBackground(String... params) {
+        SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
+            setProgress("Achievements", 0);
+            createAchievement();
+            setProgress("Category", 2);
+            createCategory();
+            setProgress("Character", 5);
+            createCharacter();
+            setProgress("Criteria", 7);
+            createCriteria();
+            setProgress("Inventory", 10);
+            createInventory();
+            setProgress("Items", 12);
+            createItem();
+            setProgress("Locations", 15);
+            createLocation();
+            setProgress("Messages", 17);
+            createMessage();
+            setProgress("Statistics", 20);
+            createPlayerInfo();
+            setProgress("Recipes", 22);
+            createRecipe();
+            setProgress("Settings", 25);
+            createSetting();
+            setProgress("Slots", 27);
+            createSlot();
+            setProgress("States", 30);
+            createState();
+            setProgress("Tiers", 32);
+            createTier();
+            setProgress("Traders", 35);
+            createTrader();
+            setProgress("Types", 37);
+            createType();
+            setProgress("Upgrades", 40);
+            createUpgrade();
+            setProgress("Visitors", 42);
+            createVisitor();
+            setProgress("Visitor Demands", 45);
+            createVisitorDemand();
+            setProgress("Visitor Stats", 47);
+            createVisitorStats();
+            setProgress("Visitor Types", 50);
+            createVisitorType();
+
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_0).apply();
             TutorialHelper.currentlyInTutorial = true;
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_0) {
-            DatabaseHelper.patch100to101();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_0) {
+            setProgress("1.0.1 Patch", 52);
+            patch100to101();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_0_1).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_1) {
-            DatabaseHelper.patch101to120();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_0_1) {
+            setProgress("1.2.0 Patch", 55);
+            patch101to120();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_0) {
-            DatabaseHelper.patch120to121();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_0) {
+            setProgress("1.2.1 Patch", 57);
+            patch120to121();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_2_1).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_1) {
-            DatabaseHelper.patch121to130();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_2_1) {
+            setProgress("1.3.0 Patch", 60);
+            patch121to130();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_3_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_3_0) {
-            DatabaseHelper.patch130to140();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_3_0) {
+            setProgress("1.4.0 Patch", 62);
+            patch130to140();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_4_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
-            DatabaseHelper.patch140to150();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_4_0) {
+            setProgress("1.5.0 Patch", 65);
+            patch140to150();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
-            DatabaseHelper.patch150to154();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_0) {
+            setProgress("1.5.4 Patch", 67);
+            patch150to154();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_5_4).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
-            DatabaseHelper.patch154to160();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_5_4) {
+            setProgress("1.6.0 Patch", 70);
+            patch154to160();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_0) {
-            DatabaseHelper.patch160to161();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_1).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_0) {
+            setProgress("1.6.1 Patch", 72);
+            patch160to161();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_6_1).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_1) {
-            DatabaseHelper.patch161to170();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_0).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_6_1) {
+            setProgress("1.7.0 Patch", 75);
+            patch161to170();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_0).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_0) {
-            DatabaseHelper.patch170to172();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_2).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_0) {
+            setProgress("1.7.2 Patch", 77);
+            patch170to172();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_2).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_2) {
-            DatabaseHelper.patch172to174();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_4).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_2) {
+            setProgress("1.7.4 Patch", 80);
+            patch172to174();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_4).apply();
         }
 
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_4) {
-            DatabaseHelper.patch174to177();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_7).apply();
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_4) {
+            setProgress("1.7.7 Patch", 82);
+            patch174to177();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V1_7_7).apply();
         }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V1_7_7) {
+            setProgress("2.0.0 Patch", 85);
+            patch177to200();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_0).apply();
+        }
+
+        setProgress("Complete", 100);
+        return "";
     }
 
-    private static void initialSQL() {
-        createAchievement();
-        createCategory();
-        createCharacter();
-        createCriteria();
-        createInventory();
-        createItem();
-        createLocation();
-        createMessage();
-        createPlayerInfo();
-        createRecipe();
-        createSetting();
-        createSlot();
-        createState();
-        createTier();
-        createTrader();
-        createType();
-        createUpgrade();
-        createVisitor();
-        createVisitorDemand();
-        createVisitorStats();
-        createVisitorType();
+    @Override
+    protected void onPostExecute(String result) {
+        callingActivity.startGame();
     }
 
-    private static void patch100to101() {
+    @Override
+    protected void onProgressUpdate(String... values) {
+        progressText.setText(values[0].equals("Complete") ? "Starting Up\n" : ("Installing\n" + values[0]));
+    }
+
+    private void patch100to101() {
         // Add upgradeable restock cost
         Upgrade restockAllCost = new Upgrade("Restock All Cost", "coins", 7, 50, 650, 50, 650);
         restockAllCost.save();
     }
 
-    private static void patch101to120() {
+    private void patch101to120() {
         // Updated mithril sword description
         Item mithrilLongsword = Item.findById(Item.class, 83L);
         if (mithrilLongsword != null) {
@@ -185,7 +268,7 @@ public class DatabaseHelper {
 
     }
 
-    private static void patch120to121() {
+    private void patch120to121() {
         Slot firstEnchantingSlot = Select.from(Slot.class).where(
                 Condition.prop("location").eq(Constants.LOCATION_ENCHANTING),
                 Condition.prop("level").eq(25)).first();
@@ -195,7 +278,7 @@ public class DatabaseHelper {
         }
     }
 
-    private static void patch121to130() {
+    private void patch121to130() {
         Upgrade upgrade = new Upgrade("Worker Time", "mins", 50, 30, 180, 30, 180);
         upgrade.save();
 
@@ -234,7 +317,7 @@ public class DatabaseHelper {
         Item.executeQuery("UPDATE item SET value = value - 1 WHERE tier = 1 OR id = 11");
     }
 
-    private static void patch130to140() {
+    private void patch130to140() {
         Trader_Stock.executeQuery("UPDATE traderstock SET item_id = item_id + 16 WHERE trader_type = 33");
         Item.executeQuery("UPDATE item SET value = 550 WHERE id = 140");
         Visitor_Type.executeQuery("UPDATE visitortype SET tier_preferred = 11 WHERE visitor_id = 11");
@@ -249,7 +332,7 @@ public class DatabaseHelper {
         }
     }
 
-    private static void patch140to150() {
+    private void patch140to150() {
         if (Upgrade.getValue("Minimum Visitor Rewards") == 0) {
             patch130to140();
         }
@@ -526,12 +609,12 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    private static void patch150to154() {
+    private void patch150to154() {
         Type.executeQuery("UPDATE type SET name = 'Cooked Food' WHERE id IN (27, 28)");
         Type.executeQuery("UPDATE type SET name = 'Raw Food' WHERE id = 21");
     }
 
-    private static void patch154to160() {
+    private void patch154to160() {
         // Fix collection + prestige achievements
         Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'CollectionsCreated') WHERE name = 'The Collector'");
         Achievement.executeQuery("UPDATE achievement SET player_info_id = (SELECT id FROM playerinfo WHERE name = 'Prestige') WHERE name = 'The Fun Never Stops'");
@@ -587,7 +670,7 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
 
-    private static void patch160to161() {
+    private void patch160to161() {
         Worker_Resource.executeQuery("DELETE FROM workerresource WHERE tool_id IN (72, 76)");
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(72, 129, 1, 2)); // Ruby
@@ -598,7 +681,7 @@ public class DatabaseHelper {
         Worker_Resource.saveInTx(workerResources);
     }
     
-    private static void patch161to170() {
+    private void patch161to170() {
         // Update prices of legendary hammer + half helmet to reflect part change
         Item.executeQuery("UPDATE item SET value = 3000 WHERE name IN (\"Legendary half helmet\",\"Legendary hammer\")");
 
@@ -655,7 +738,7 @@ public class DatabaseHelper {
         createSuperUpgrade();
     }
 
-    private static void patch170to172() {
+    private void patch170to172() {
         List<Hero_Resource> heroResources = new ArrayList<>();
             heroResources.add(new Hero_Resource(251, 91, Constants.STATE_NORMAL, 10));
             heroResources.add(new Hero_Resource(252, 107, Constants.STATE_NORMAL, 7));
@@ -675,7 +758,7 @@ public class DatabaseHelper {
         Super_Upgrade.executeQuery("UPDATE superupgrade SET name = \"2x Worker Resources\" WHERE super_upgrade_id = " + Constants.SU_WORKER_RESOURCES);
     }
 
-    private static void patch172to174() {
+    private void patch172to174() {
         Hero_Adventure.executeQuery("UPDATE heroadventure SET adventure_id = adventure_id + 1 WHERE name IN (\"Hunt Tarantula Spiders\",\"Hunt Black Widow Spiders\")");
         Hero_Resource.executeQuery("UPDATE heroresource SET adventure_id = 234 WHERE resource_id = 70 AND resource_quantity = 13");
 
@@ -684,11 +767,70 @@ public class DatabaseHelper {
         Worker_Resource.executeQuery("UPDATE workerresource SET resource_quantity = 5 WHERE tool_id IN (72, 76)");
     }
 
-    private static void patch174to177() {
+    private void patch174to177() {
         Hero_Resource.executeQuery("UPDATE heroresource SET adventure_id = 417 WHERE adventure_id = 416 AND resource_id IN (192, 149, 60)");
     }
 
-    private static void createContributionGoals() {
+    private void patch177to200() {
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", true));
+        settings.add(new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", false));
+        settings.add(new Setting(Constants.SETTING_ORIENTATION, "Orientation", Constants.ORIENTATION_AUTO));
+        Setting.saveInTx(settings);
+
+        List<Item> items = new ArrayList<>();
+            items.add(new Item(220L, "Amethyst", "A purple gem", 20, 11, 350, 20));
+            items.add(new Item(221L, "Citrine", "A yellow gem", 20, 11, 350, 20));
+        Item.saveInTx(items);
+
+        List<State> states = new ArrayList<>();
+            states.add(new State(8L, "Purple Enchant", "(purp) ", 220L, 40, 10));
+            states.add(new State(9L, "Yellow Enchant", "(yellow) ", 221L, 40, 10));
+        State.saveInTx(states);
+
+        List<Trader_Stock> traderStocks = new ArrayList<>();
+            traderStocks.add(new Trader_Stock(16L, 220L, 1, 0, 5));
+            traderStocks.add(new Trader_Stock(16L, 221L, 1, 0, 5));
+            traderStocks.add(new Trader_Stock(48L, 220L, 1, 0, 3));
+            traderStocks.add(new Trader_Stock(48L, 221L, 1, 0, 3));
+        Trader_Stock.saveInTx(traderStocks);
+
+        Super_Upgrade oldDoubleCraft = Super_Upgrade.find(Constants.SU_DOUBLE_FURNACE_CRAFTS);
+        oldDoubleCraft.setName("2x Furnace Items");
+        oldDoubleCraft.save();
+
+        List<Super_Upgrade> superUpgrades = new ArrayList<>();
+            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ANVIL_CRAFTS, "2x Anvil Items", 1, false));
+            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TABLE_CRAFTS, "2x Table Items", 1, false));
+            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ENCHANT_CRAFTS, "2x Enchant Table Items", 1, false));
+        Super_Upgrade.saveInTx(superUpgrades);
+
+        new Player_Info("CoinsPurchased", 0);
+
+        Hero_Category.executeQuery("UPDATE herocategory SET name = printf('%s (%d-%d)', name," +
+                " (SELECT MIN(difficulty) FROM heroadventure WHERE subcategory = category_id)," +
+                " (SELECT MAX(difficulty) FROM heroadventure WHERE subcategory = category_id))" +
+                " WHERE parent > 0");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Gathering (10-150)\" WHERE category_id = 1");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Animal Hunting (100-250)\" WHERE category_id = 2");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Monster Hunting (190-600)\" WHERE category_id = 3");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Elite Challenges (700-1500)\" WHERE category_id = 4");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Guard Duty (100-300)\" WHERE category_id = 5");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Exploring (500-800)\" WHERE category_id = 6");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = \"Escort (350-690)\" WHERE category_id = 7");
+
+        List<Visitor_Stats> visitorStats = new ArrayList<>();
+            visitorStats.add(new Visitor_Stats(51L, 0, 52L, 1L, 0, 0L, 0L));
+            visitorStats.add(new Visitor_Stats(52L, 0, 52L, 1L, 0, 0L, 0L));
+        Visitor_Stats.saveInTx(visitorStats);
+
+        List<Visitor_Type> visitorTypes = new ArrayList<>();
+            visitorTypes.add(new Visitor_Type(51L, "Mr Tentacles", "Want a burger?", 4L, 27L, 9L, 1.05, 1.35, 1.12, false, false, false, 15));
+            visitorTypes.add(new Visitor_Type(52L, "Bresh Bosh", "I's got all these coins but nuffin good. Whatchu got?", 6L, 14L, 3L, 1.39, 1.14, 1.20, false, false, false, 9));
+        Visitor_Type.saveInTx(visitorTypes);
+    }
+
+    private void createContributionGoals() {
         List<Contribution_Goal> goals = new ArrayList<>();
             goals.add(new Contribution_Goal(1, "Thank You", 1, "Get an extra little thank you.\n", "Thanks! Your contributions are what make further development on Pixel Blacksmith possible!\n"));
             goals.add(new Contribution_Goal(2, "Dev Queue", 3, "Get access to the Trello board used to plan / prioritise new features, changes, and bug fixes.", "<a href=\"https://trello.com/b/Zw01amFA/\">Trello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it'll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in."));
@@ -700,11 +842,11 @@ public class DatabaseHelper {
         Contribution_Goal.saveInTx(goals);
     }
 
-    private static void createSuperUpgrade() {
+    private void createSuperUpgrade() {
         List<Super_Upgrade> upgrades = new ArrayList<>();
             upgrades.add(new Super_Upgrade(Constants.SU_CONTRIBUTIONS, "100x Contribution Reward", 0, false));
             upgrades.add(new Super_Upgrade(Constants.SU_MARKET_RESTOCK, "Free Market Restock", 0, false));
-            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_CRAFTS, "2x Crafted Items", 1, false));
+            upgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_FURNACE_CRAFTS, "2x Crafted Items", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_WORKER_RESOURCES, "5x Worker Resources", 1, false));
             upgrades.add(new Super_Upgrade(Constants.SU_PAGE_CHANCE, "Guaranteed Pages", 2, false));
             upgrades.add(new Super_Upgrade(Constants.SU_HALF_BONUS_CHEST, "-50% Bonus Chest Time", 2, false));
@@ -721,7 +863,7 @@ public class DatabaseHelper {
         Super_Upgrade.saveInTx(upgrades);
     }
 
-    private static void createHero() {
+    private void createHero() {
         List<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero(1, 5));
         heroes.add(new Hero(2, 25));
@@ -1323,7 +1465,7 @@ public class DatabaseHelper {
         Hero_Resource.saveInTx(heroResources);
     }
 
-    private static void createAchievement() {
+    private void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
         
         achievements.add(new Achievement("Open For Business 1", "Completed a visitor", 1, 9, "CgkI6tnE2Y4OEAIQAg"));
@@ -1359,7 +1501,7 @@ public class DatabaseHelper {
         Achievement.saveInTx(achievements);
     }
 
-    private static void createCategory() {
+    private void createCategory() {
         List<Category> categories = new ArrayList<>();
         
         categories.add(new Category("Unknown", "Item type category could not be found."));
@@ -1372,7 +1514,7 @@ public class DatabaseHelper {
         Category.saveInTx(categories);
     }
 
-    private static void createCharacter() {
+    private void createCharacter() {
         List<Character> characters = new ArrayList<>();
         
         characters.add(new Character(1L, "Sean Keeper", "Greetings! See anything you like?"));
@@ -1399,7 +1541,7 @@ public class DatabaseHelper {
         Character.saveInTx(characters);
     }
 
-    private static void createCriteria() {
+    private void createCriteria() {
         List<Criteria> criterias = new ArrayList<>();
         
         criterias.add(new Criteria(1L, "State"));
@@ -1409,7 +1551,7 @@ public class DatabaseHelper {
         Criteria.saveInTx(criterias);
     }
 
-    public static void createInventory() {
+    void createInventory() {
         List<Inventory> inventories = new ArrayList<>();
 
         // 200 gold
@@ -1439,7 +1581,7 @@ public class DatabaseHelper {
         Inventory.saveInTx(inventories);
     }
 
-    private static void createItem() {
+    private void createItem() {
         List<Item> items = new ArrayList<>();
         
         items.add(new Item(1L, "Copper ore", "A piece of copper ore.", 1, 11, 2, 0));
@@ -1622,7 +1764,7 @@ public class DatabaseHelper {
         Item.saveInTx(items);
     }
 
-    private static void createLocation() {
+    private void createLocation() {
         List<Location> locations = new ArrayList<>();
         
         locations.add(new Location(1L, "Anvil"));
@@ -1635,12 +1777,12 @@ public class DatabaseHelper {
         Location.saveInTx(locations);
     }
 
-    private static void createMessage() {
+    private void createMessage() {
         Message introMessage = new Message(System.currentTimeMillis(), "This is the first message! After 99 other messages, you'll never see it again.");
         introMessage.save();
     }
 
-    private static void createPlayerInfo() {
+    private void createPlayerInfo() {
         List<Player_Info> player_infos = new ArrayList<>();
         
         player_infos.add(new Player_Info("XP", Constants.STARTING_XP));
@@ -1665,7 +1807,7 @@ public class DatabaseHelper {
         Player_Info.saveInTx(player_infos);
     }
 
-    private static void createRecipe() {
+    private void createRecipe() {
         List<Recipe> recipes = new ArrayList<>();
 
         // Powdered gems
@@ -2117,7 +2259,7 @@ public class DatabaseHelper {
         Recipe.saveInTx(recipes);
     }
 
-    private static void createSetting() {
+    private void createSetting() {
         List<Setting> settings = new ArrayList<>();
         
         settings.add(new Setting(1L, "Sounds", true));
@@ -2130,7 +2272,7 @@ public class DatabaseHelper {
         Setting.saveInTx(settings);
     }
 
-    private static void createSlot() {
+    private void createSlot() {
         List<Slot> slots = new ArrayList<>();
         
         slots.add(new Slot(1, 1, false));
@@ -2181,7 +2323,7 @@ public class DatabaseHelper {
         Slot.saveInTx(slots);
     }
 
-    private static void createState() {
+    private void createState() {
         List<State> states = new ArrayList<>();
 
         states.add(new State(1L, "Normal", "", 0L, 0, 15));
@@ -2195,7 +2337,7 @@ public class DatabaseHelper {
         State.saveInTx(states);
     }
 
-    private static void createTier() {
+    private void createTier() {
         List<Tier> tiers = new ArrayList<>();
         
         tiers.add(new Tier(1L, "Bronze", 1, 30));
@@ -2213,7 +2355,7 @@ public class DatabaseHelper {
         Tier.saveInTx(tiers);
     }
 
-    private static void createTrader() {
+    private void createTrader() {
         List<Trader> traders = new ArrayList<>();
         List<Trader_Stock> trader_stocks = new ArrayList<>();
         
@@ -2599,7 +2741,7 @@ public class DatabaseHelper {
         Trader_Stock.saveInTx(trader_stocks);
     }
 
-    private static void createType() {
+    private void createType() {
         List<Type> types = new ArrayList<>();
         
         types.add(new Type(1L, "Ore", 1, 1, 30));
@@ -2631,7 +2773,7 @@ public class DatabaseHelper {
         Type.saveInTx(types);
     }
 
-    public static void createUpgrade() {
+    private void createUpgrade() {
         List<Upgrade> upgrades = new ArrayList<>();
 
         upgrades.add(new Upgrade("Visitor Spawn Time", "mins", 1000, 1, 25, 10, 25));
@@ -2646,12 +2788,12 @@ public class DatabaseHelper {
         Upgrade.saveInTx(upgrades);
     }
 
-    public static void createVisitor() {
+    private void createVisitor() {
         Visitor visitor = new Visitor(System.currentTimeMillis(), 33L);
         visitor.save();
     }
 
-    public static void createVisitorDemand() {
+    private void createVisitorDemand() {
         List<Visitor_Demand> visitor_demands = new ArrayList<>();
         
         // Req: 2 ore, 1 bar, 1 unfinished, 1 finished
@@ -2665,7 +2807,7 @@ public class DatabaseHelper {
         Visitor_Demand.saveInTx(visitor_demands);
     }
 
-    public static void createVisitorStats() {
+    private void createVisitorStats() {
         List<Visitor_Stats> visitorStatses = new ArrayList<>();
         
         visitorStatses.add(new Visitor_Stats(1L, 0, 52L, 1L, 0, 0L, 0L));
@@ -2722,7 +2864,7 @@ public class DatabaseHelper {
         Visitor_Stats.saveInTx(visitorStatses);
     }
 
-    public static void createVisitorType() {
+    private void createVisitorType() {
         List<Visitor_Type> visitor_types = new ArrayList<>();
         
         visitor_types.add(new Visitor_Type(1L, "Senor Spicy Hot", "I like unfinished things, they burn better!", 1L, 14L, 2L, 1.1, 1.1, 3.0, false, false, false, 3));
@@ -2779,7 +2921,7 @@ public class DatabaseHelper {
         Visitor_Type.saveInTx(visitor_types);
     }
 
-    public static void createWorkers() {
+    private void createWorkers() {
         List<Worker> workers = new ArrayList<>();
         workers.add(new Worker(1, 16, 1, 32L, 1, 0L, 0, false));
         workers.add(new Worker(2, 14, 10, 32L, 1, 0L, 0, false));
@@ -2791,7 +2933,7 @@ public class DatabaseHelper {
         Worker.saveInTx(workers);
     }
 
-    public static void createWorkerResources() {
+    private void createWorkerResources() {
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(32, 1, 1, 10)); // Bronze pickaxe
         workerResources.add(new Worker_Resource(32, 2, 1, 10)); // Bronze pickaxe

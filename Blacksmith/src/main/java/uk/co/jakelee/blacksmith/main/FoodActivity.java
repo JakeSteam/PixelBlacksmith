@@ -57,7 +57,7 @@ public class FoodActivity extends Activity {
             noFoodMessage.setVisibility(View.GONE);
             for (Inventory food : foods) {
                 Item foodItem = Item.findById(Item.class, food.getItem());
-                ImageView itemImage = dh.createItemImage(food.getItem(), 25, 25, true, true);
+                ImageView itemImage = dh.createItemImage(food.getItem(), (int)food.getState(), 25, 25, true, true);
                 TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
                         food.getQuantity(),
                         foodItem.getName()), 26);

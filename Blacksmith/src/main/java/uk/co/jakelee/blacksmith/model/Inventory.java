@@ -16,6 +16,7 @@ public class Inventory extends SugarRecord implements Serializable {
     private Long item;
     private int quantity;
     private long state;
+    private boolean unsellable;
 
     public Inventory() {
     }
@@ -24,6 +25,15 @@ public class Inventory extends SugarRecord implements Serializable {
         this.item = item;
         this.state = state;
         this.quantity = quantity;
+        this.unsellable = false;
+    }
+
+    public boolean isUnsellable() {
+        return unsellable;
+    }
+
+    public void setUnsellable(boolean unsellable) {
+        this.unsellable = unsellable;
     }
 
     public static void addItem(Pending_Inventory item, boolean rewardXp) {
@@ -148,20 +158,14 @@ public class Inventory extends SugarRecord implements Serializable {
 
         removeItemIngredients(itemId, state);
 
-        if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+        if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_ENCHANT_CRAFTS)) {
             quantity = quantity * 2;
         }
 
         if (Slot.hasAvailableSlot(locationID)) {
             Pending_Inventory.addItem(itemId, state, quantity, locationID);
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
-                Pending_Inventory.addItem(itemId, state, quantity, locationID);
-            }
         } else {
             Pending_Inventory.addScheduledItem(itemId, state, quantity, locationID);
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
-                Pending_Inventory.addScheduledItem(itemId, state, quantity, locationID);
-            }
         }
 
         return Constants.SUCCESS;
@@ -189,12 +193,12 @@ public class Inventory extends SugarRecord implements Serializable {
 
             if (Slot.hasAvailableSlot(locationID)) {
                 Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
-                if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_ENCHANT_CRAFTS)) {
                     Pending_Inventory.addItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
                 }
             } else {
                 Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
-                if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+                if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_ENCHANT_CRAFTS)) {
                     Pending_Inventory.addScheduledItem(itemId, enchantedItemState.getId().intValue(), 1, locationID);
                 }
             }
@@ -249,7 +253,9 @@ public class Inventory extends SugarRecord implements Serializable {
             price = price * 2;
         }
 
-        if (itemStock.getQuantity() > 0) {
+        if (itemStock.isUnsellable()) {
+            return Constants.ERROR_UNSELLABLE;
+        } else if (itemStock.getQuantity() > 0) {
             itemStock.setQuantity(itemStock.getQuantity() - 1);
             itemStock.save();
             Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, price);

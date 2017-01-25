@@ -113,7 +113,7 @@ public class ItemSelectActivity extends Activity {
             itemName.setText(R.string.unknownText);
             itemCount.setText(R.string.unknownText);
         }
-        itemImage.setImageDrawable(dh.createItemImageDrawable(item.getId(), 40, 40, haveSeen, canCreate));
+        itemImage.setImageDrawable(dh.createItemImageDrawable(item.getId(), (int)dh.itemSelectionState, 40, 40, haveSeen, canCreate));
 
         return row;
     }

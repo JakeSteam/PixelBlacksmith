@@ -113,13 +113,13 @@ public class FurnaceActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_6_FURNACE);
-        th.addTutorial(this, findViewById(R.id.viewFlipper), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.horizontalIndicator), R.string.tutorialFurnaceScroll, R.string.tutorialFurnaceScrollText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.ingredientsTable), R.string.tutorialFurnaceIngredients, R.string.tutorialFurnaceIngredientsText, false);
-        th.addTutorialRectangle(this, findViewById(R.id.smelt1), R.string.tutorialFurnaceSmelt, R.string.tutorialFurnaceSmeltText, true, Gravity.TOP);
-        th.addTutorialRectangle(this, findViewById(R.id.close), R.string.tutorialFurnaceClose, R.string.tutorialFurnaceCloseText, true, Gravity.BOTTOM);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_6_FURNACE);
+        th.addTutorial(findViewById(R.id.viewFlipper), R.string.tutorialFurnaceItems, R.string.tutorialFurnaceItemsText, false);
+        th.addTutorialRectangle(findViewById(R.id.horizontalIndicator), R.string.tutorialFurnaceScroll, R.string.tutorialFurnaceScrollText, false);
+        th.addTutorialRectangle(findViewById(R.id.ingredientsTable), R.string.tutorialFurnaceIngredients, R.string.tutorialFurnaceIngredientsText, false);
+        th.addTutorialRectangle(findViewById(R.id.smelt1), R.string.tutorialFurnaceSmelt, R.string.tutorialFurnaceSmeltText, true, Gravity.TOP);
+        th.addTutorialRectangle(findViewById(R.id.close), R.string.tutorialFurnaceClose, R.string.tutorialFurnaceCloseText, true, Gravity.BOTTOM);
+        th.start();
     }
 
     private void createInterface(boolean clearExisting) {
@@ -231,7 +231,7 @@ public class FurnaceActivity extends Activity {
         } else if (canCreate == Constants.SUCCESS) {
             Inventory.removeItemIngredients(itemID, Constants.STATE_NORMAL, quantity);
 
-            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_CRAFTS)) {
+            if (Super_Upgrade.isEnabled(Constants.SU_DOUBLE_FURNACE_CRAFTS)) {
                 quantity = quantity * 2;
             }
 

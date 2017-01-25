@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.ItemTable;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -34,6 +36,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ListenerHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -44,7 +47,7 @@ import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Type;
 
-public class InventoryActivity extends Activity implements AdapterView.OnItemSelectedListener{
+public class InventoryActivity extends Activity implements ItemTable, AdapterView.OnItemSelectedListener{
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private LinearLayout sell1;
@@ -65,7 +68,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        updateInventoryTable();
+                        displayItemsTable();
                     }
                 }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
@@ -104,11 +107,11 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         selectedType = Select.from(Type.class).where(
                 Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
         dh.updateFullscreen(this);
-        updateInventoryTable();
+        displayItemsTable();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        updateInventoryTable();
+        displayItemsTable();
     }
 
     private void createDropdown() {
@@ -128,7 +131,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void updateInventoryTable() {
+    public void displayItemsTable() {
         final Activity activity = this;
         List<Inventory> allInventoryItems;
         if (selectedType != null) {
@@ -149,17 +152,19 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         findViewById(R.id.noItems).setVisibility(allInventoryItems.size() > 0 ? View.GONE : View.VISIBLE);
         findViewById(R.id.inventoryTable).setVisibility(allInventoryItems.size() > 0 ? View.VISIBLE : View.INVISIBLE);
 
-        for (Inventory inventoryItem : allInventoryItems) {
+        for (final Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
             final Item item = Item.findById(Item.class, inventoryItem.getItem());
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            ImageView image = dh.createItemImage(item.getId(), 35, 35, inventoryItem.haveSeen(), true);
+            ImageView image = dh.createItemImage(item.getId(), (int)inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true, inventoryItem.isUnsellable());
 
-            String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
+            final String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
+            name.setTag(R.id.itemID, inventoryItem.getItem());
+            name.setTag(R.id.itemState, inventoryItem.getState());
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
             name.setOnClickListener(new Button.OnClickListener() {
@@ -167,6 +172,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
                     ToastHelper.showToast(inventoryTable, ToastHelper.SHORT, item.getDescription(), false);
                 }
             });
+            name.setOnLongClickListener(ListenerHelper.getItemLongClick(this));
 
             itemRow.addView(count);
             itemRow.addView(image);
@@ -219,7 +225,11 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         int itemId = (int) v.getTag();
         Item item = Item.findById(Item.class, itemId);
         Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
-        AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
+        if (inventory.isUnsellable()) {
+            ToastHelper.showErrorToast(v, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_UNSELLABLE), false);
+        } else {
+            AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
+        }
     }
 
     private void clickSellButton(View view) {
@@ -234,7 +244,9 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         Inventory inventory = Inventory.getInventory(itemID, itemState);
 
         int canSell = Constants.ERROR_NOT_ENOUGH_ITEMS;
-        if (MainActivity.vh.inventoryBusy) {
+        if (inventory.isUnsellable()) {
+            canSell = Constants.ERROR_UNSELLABLE;
+        } else if (MainActivity.vh.inventoryBusy) {
             canSell = Constants.ERROR_BUSY;
         } else {
             if (inventory.getQuantity() < quantity || (quantity == 100 && Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX))) {
@@ -267,7 +279,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
         } else {
             ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(canSell), false);
         }
-        updateInventoryTable();
+        displayItemsTable();
         dh.updateCoins(Inventory.getCoins());
     }
 
@@ -302,7 +314,7 @@ public class InventoryActivity extends Activity implements AdapterView.OnItemSel
     }
 
     public void callback() {
-        updateInventoryTable();
+        displayItemsTable();
     }
 
     public void brightenButtons() {

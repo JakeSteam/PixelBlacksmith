@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ import android.widget.ViewFlipper;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +71,7 @@ public class DisplayHelper {
     private static DisplayHelper dhInstance = null;
     private final Context context;
     private boolean isProcessingPendingInventory = false;
+    private Picasso picasso;
 
     public ViewFlipper itemSelectionFlipper;
     public HorizontalDots itemSelectionDots;
@@ -78,6 +81,7 @@ public class DisplayHelper {
 
     public DisplayHelper(Context context) {
         this.context = context;
+        this.picasso = new Picasso.Builder(context).build();
     }
 
     public static DisplayHelper getInstance(Context ctx) {
@@ -222,7 +226,8 @@ public class DisplayHelper {
                             activity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    slotItem.setImageResource(getItemDrawableID(context, pendingItem.getItem()));
+                                    picasso.load(getItemDrawableID(context, pendingItem.getItem()))
+                                            .into(slotItem);
                                     slotCount.setText(String.format(slotContainer.getContext().getString(R.string.slotSeconds), seconds));
                                 }
                             });
@@ -423,7 +428,7 @@ public class DisplayHelper {
 
         RelativeLayout itemBox = new RelativeLayout(context);
 
-        ImageView image = createItemImage(itemID, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
+        ImageView image = createItemImage(itemID, (int)state, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
         TextView count = createItemCount(itemID, state, Color.WHITE, Color.BLACK);
         count.setWidth(convertDpToPixel(80));
 
@@ -492,24 +497,44 @@ public class DisplayHelper {
         }
     }
 
-    public ImageView createItemImage(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
+    public ImageView createItemImage(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
+        return createItemImage(itemId, itemState, width, height, haveSeen, canCreate, false);
+    }
+
+    public ImageView createItemImage(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate, boolean isUnsellable) {
         int viewId = context.getResources().getIdentifier("img" + Long.toString(itemId), "id", context.getPackageName());
 
         ImageView image = new ImageView(context);
         image.setId(viewId);
         image.setTag(itemId);
-        image.setImageDrawable(createItemImageDrawable(itemId, width, height, haveSeen, canCreate));
+        image.setImageDrawable(isUnsellable ? createDrawable(R.drawable.lock, width, height) : createItemImageDrawable(itemId, itemState, width, height, haveSeen, canCreate));
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
     }
 
-    public Drawable createItemImageDrawable(Long itemId, int width, int height, boolean haveSeen, boolean canCreate) {
+    public Drawable createItemImageDrawable(Long itemId, int itemState, int width, int height, boolean haveSeen, boolean canCreate) {
         int drawableId = getItemDrawableID(context, itemId);
         Drawable imageResource = createDrawable(drawableId, width, height);
-
         if (haveSeen) {
-            imageResource.clearColorFilter();
+            switch (itemState) {
+                case Constants.STATE_RED: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.redOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_BLUE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blueOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_GREEN: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.greenOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_WHITE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.whiteOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_BLACK: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_PURPLE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.purpleOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                case Constants.STATE_YELLOW: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.yellowOverlay), PorterDuff.Mode.MULTIPLY);
+                    break;
+                default: imageResource.clearColorFilter();
+                    break;
+            }
         } else if (canCreate) {
             imageResource.setColorFilter(Color.DKGRAY, PorterDuff.Mode.MULTIPLY);
         } else {
@@ -577,13 +602,11 @@ public class DisplayHelper {
                 Condition.prop("item").eq(Constants.ITEM_COINS)).first();
         ownedCoins.setQuantity(coins);
         ownedCoins.save();
-
-        updateCoinsGUI();
     }
 
-    public void updateCoinsGUI() {
+    public void updateCoinsGUI(TextView coins) {
         String coinCountString = String.format("%,d", Inventory.getCoins());
-        MainActivity.coins.setText(coinCountString);
+        coins.setText(coinCountString);
     }
 
     public static void updateQuest(int current, int max, String eventID) {
@@ -642,21 +665,16 @@ public class DisplayHelper {
         createItemIngredientsTable(currentItemID, state, ingredientsTable);
     }
 
-    public boolean updateLevelText(Context context) {
-        TextViewPixel levelCount = MainActivity.level;
-        levelCount.setText(String.format("%d", Player_Info.getPlayerLevel()));
-
-        ProgressBar levelProgress = MainActivity.levelProgress;
+    public boolean updateLevelText(TextView level, ProgressBar levelProgress, TextView levelPercent) {
+        level.setText(String.format("%d", Player_Info.getPlayerLevel()));
         levelProgress.setProgress(Player_Info.getLevelProgress());
-
-        TextViewPixel levelPercent = MainActivity.levelPercent;
         levelPercent.setText(String.format("%d%%", Player_Info.getLevelProgress()));
 
         int highestLevel = Player_Info.getHighestLevel();
         int playerLevel = Player_Info.getPlayerLevel();
 
         if (playerLevel > Player_Info.getPlayerLevelFromDB()) {
-            ToastHelper.showPositiveToast(levelCount, ToastHelper.LONG, getLevelUpText(playerLevel), true);
+            ToastHelper.showPositiveToast(level, ToastHelper.LONG, getLevelUpText(playerLevel), true);
             Player_Info.increaseByX(Player_Info.Statistic.SavedLevel, playerLevel - Player_Info.getPlayerLevelFromDB());
             if (playerLevel > highestLevel) {
                 Player_Info.increaseByX(Player_Info.Statistic.HighestLevel, playerLevel - highestLevel);
@@ -724,7 +742,7 @@ public class DisplayHelper {
                 }
             });
 
-            row.addView(createItemImage(ingredient.getIngredient(), 25, 25, true, true));
+            row.addView(createItemImage(ingredient.getIngredient(), (int)ingredient.getIngredientState(), 25, 25, true, true));
             row.addView(itemNameView);
             row.addView(createTextView(formatLargeNumber(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(formatLargeNumber(owned.getQuantity()), 22, Color.DKGRAY));
@@ -776,15 +794,19 @@ public class DisplayHelper {
     }
 
     public void drawArrows(int current, int min, int max, View downArrow, View upArrow) {
+        drawArrows(current, min, max, downArrow, upArrow, false);
+    }
+
+    public void drawArrows(int current, int min, int max, View downArrow, View upArrow, boolean forceUpArrow) {
         if (current < min) {
             current = min;
         }
 
-        if (current > max) {
+        if (current > max && !forceUpArrow) {
             current = max;
         }
 
-        if (current == max) {
+        if (current == max && !forceUpArrow) {
             upArrow.setVisibility(View.INVISIBLE);
         } else {
             upArrow.setVisibility(View.VISIBLE);
@@ -798,11 +820,8 @@ public class DisplayHelper {
     }
 
     public static void updateBonusChest(ImageView chest) {
-        if (Player_Info.isBonusReady()) {
-            chest.setImageResource(R.drawable.bonus_chest_full);
-        } else {
-            chest.setImageResource(R.drawable.bonus_chest_empty);
-        }
+        Picasso.with(chest.getContext())
+                .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
+                .into(chest);
     }
-
 }

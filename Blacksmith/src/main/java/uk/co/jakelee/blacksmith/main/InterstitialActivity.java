@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import uk.co.jakelee.blacksmith.R;
@@ -47,8 +49,17 @@ public class InterstitialActivity extends Activity {
         }
 
         String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        List<Integer> ints = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            root.addView(dh.createTextView("Tip " + i + ": " + tipArray[new Random().nextInt(tipArray.length)] + "\n", 22));
+            int newInt = new Random().nextInt(tipArray.length);
+            if (ints.contains(newInt)) {
+                newInt = new Random().nextInt(tipArray.length);
+            }
+            ints.add(newInt);
+        }
+
+        for (int i : ints) {
+            root.addView(dh.createTextView("Tip " + i + ": " + tipArray[i] + "\n", 22));
         }
     }
 

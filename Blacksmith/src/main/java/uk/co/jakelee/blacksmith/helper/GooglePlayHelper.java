@@ -13,6 +13,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesStatusCodes;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestBuffer;
 import com.google.android.gms.games.quest.Quests;
@@ -40,6 +41,7 @@ import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
+import uk.co.jakelee.blacksmith.model.Visitor_Log;
 import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
@@ -195,33 +197,47 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
             @Override
             protected Integer doInBackground(Void... params) {
-                final Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
+                Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
 
-                if (result.getStatus().isSuccess()) {
-                    Snapshot snapshot = result.getSnapshot();
-                    try {
-                        if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
-                            cloudSaveData = snapshot.getSnapshotContents().readFully();
-                            loadFromCloud(true);
-                            currentTask = "loading";
-                        } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
-                            loadedSnapshot = snapshot;
-                            saveToCloud();
-                            currentTask = "saving";
-                        }
-                    } catch (final IOException e) {
-                        callingActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
-                            }
-                        });
-                    }
-                } else {
+                while (!result.getStatus().isSuccess()) {
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudRemoteFailure), currentTask, result.getStatus().getStatusCode()), true);
+                            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT), true);
+                        }
+                    });
+
+                    if (result.getStatus().getStatusCode() == GamesStatusCodes.STATUS_SNAPSHOT_CONFLICT) {
+                        Snapshot snapshot = result.getSnapshot();
+                        Snapshot conflictSnapshot = result.getConflictingSnapshot();
+                        Snapshot mResolvedSnapshot = snapshot;
+
+                        if (snapshot.getMetadata().getLastModifiedTimestamp() < conflictSnapshot.getMetadata().getLastModifiedTimestamp()) {
+                            mResolvedSnapshot = conflictSnapshot;
+                        }
+
+                        result = Games.Snapshots.resolveConflict(mGoogleApiClient, result.getConflictId(), mResolvedSnapshot).await();
+                    }
+                }
+
+                Snapshot snapshot = result.getSnapshot();
+                try {
+                    if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
+                        cloudSaveData = snapshot.getSnapshotContents().readFully();
+                        loadFromCloud(true);
+                        currentTask = "loading";
+                    } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
+                        loadedSnapshot = snapshot;
+                        saveToCloud();
+                        currentTask = "saving";
+                    }
+                } catch (final IOException e) {
+                    callingActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
                         }
                     });
                 }
@@ -237,14 +253,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-        callingActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!checkIsImprovement) {
+
+        if (!checkIsImprovement) {
+            callingActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
                     ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadBeginning), false);
                 }
-            }
-        });
+            });
+        }
 
         Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
 
@@ -298,6 +315,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
                         ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveSuccess), true);
                     }
                 });
@@ -333,32 +351,20 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
     public static byte[] createBackup() {
         Gson gson = new Gson();
-        String backupString;
 
-        List<Inventory> inventories = Inventory.listAll(Inventory.class);
-        List<Player_Info> player_infos = Player_Info.listAll(Player_Info.class);
-        List<Setting> settings = Setting.listAll(Setting.class);
-        List<Trader> traders = Trader.listAll(Trader.class);
-        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
-        List<Visitor> visitors = Visitor.listAll(Visitor.class);
-        List<Visitor_Stats> visitor_stats = Visitor_Stats.listAll(Visitor_Stats.class);
-        List<Visitor_Type> visitor_types = Visitor_Type.listAll(Visitor_Type.class);
-        List<Visitor_Demand> visitor_demands = Visitor_Demand.listAll(Visitor_Demand.class);
-        List<Worker> workers = Worker.listAll(Worker.class);
-        List<Hero> heroes = Hero.listAll(Hero.class);
-
-        backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_V1_7_0) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(inventories) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(player_infos) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(traders) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(upgrades) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitors) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_stats) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_types) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(visitor_demands) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(workers) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(heroes) + GooglePlayHelper.SAVE_DELIMITER;
+        String backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.DB_LATEST) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Inventory.listAll(Inventory.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Player_Info.listAll(Player_Info.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Setting.listAll(Setting.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Trader.listAll(Trader.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Upgrade.listAll(Upgrade.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor.listAll(Visitor.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Stats.listAll(Visitor_Stats.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Type.listAll(Visitor_Type.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Demand.listAll(Visitor_Demand.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Worker.listAll(Worker.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Hero.listAll(Hero.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Visitor_Log.listAll(Visitor_Log.class)) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
@@ -447,12 +453,23 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
         }
 
-        DatabaseHelper.handlePatches();
+        if (splitData.length > 12) {
+            Visitor_Log[] visitorLogs = gson.fromJson(splitData[12], Visitor_Log[].class);
+            if (visitorLogs.length > 0) {
+                Visitor_Log.deleteAll(Visitor_Log.class);
+                for (Visitor_Log visitorLog : visitorLogs) {
+                    visitorLog.save();
+                }
+            }
+        }
+
+        new DatabaseHelper().execute();
 
         if (callingActivity != null) {
             callingActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
                     ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
                 }
             });

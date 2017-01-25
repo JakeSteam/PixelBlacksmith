@@ -22,12 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.controls.ItemTable;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ListenerHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -41,12 +43,12 @@ import uk.co.jakelee.blacksmith.model.State;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
+import uk.co.jakelee.blacksmith.model.Visitor_Log;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 
-public class TradeActivity extends Activity {
+public class TradeActivity extends Activity implements ItemTable {
     private static final Handler handler = new Handler();
     private static Visitor_Demand demand;
-    private static Visitor visitor;
     private static Visitor_Type visitorType;
     private static DisplayHelper dh;
     private static boolean tradeMax = false;
@@ -63,7 +65,7 @@ public class TradeActivity extends Activity {
         int demandId = Integer.parseInt(intent.getStringExtra(DisplayHelper.DEMAND_TO_LOAD));
         if (demandId > 0) {
             demand = Visitor_Demand.findById(Visitor_Demand.class, demandId);
-            visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
+            Visitor visitor = Visitor.findById(Visitor.class, demand.getVisitorID());
             visitorType = Visitor_Type.findById(Visitor_Type.class, visitor.getType());
 
             new Thread(new Runnable() {
@@ -77,13 +79,12 @@ public class TradeActivity extends Activity {
             startTutorial();
         }
 
-        final Activity activity = this;
         final Runnable every2Seconds = new Runnable() {
             @Override
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        displayItemsTable(activity);
+                        displayItemsTable();
                     }
                 }).start();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 2);
@@ -111,16 +112,16 @@ public class TradeActivity extends Activity {
     }
 
     private void startTutorial() {
-        TutorialHelper th = new TutorialHelper(Constants.STAGE_3_TRADE);
-        th.addTutorial(this, findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);
-        th.addTutorial(this, findViewById(R.id.finishTrade), R.string.tutorialTradeFinish, R.string.tutorialTradeFinishText, true, Gravity.TOP);
-        th.start(this);
+        TutorialHelper th = new TutorialHelper(this, Constants.STAGE_3_TRADE);
+        th.addTutorial(findViewById(R.id.itemsTable), R.string.tutorialTradeItems, R.string.tutorialTradeItemsText, true);
+        th.addTutorial(findViewById(R.id.finishTrade), R.string.tutorialTradeFinish, R.string.tutorialTradeFinishText, true, Gravity.TOP);
+        th.start();
     }
 
     private void createTradeInterface() {
         displayVisitorInfo();
         displayDemandInfo();
-        displayItemsTable(this);
+        displayItemsTable();
         updateMax();
     }
 
@@ -155,21 +156,21 @@ public class TradeActivity extends Activity {
         demandProgress.setProgress(demand.getQuantityProvided());
     }
 
-    private void displayItemsTable(final Activity activity) {
+    public void displayItemsTable() {
         List<TableRow> tableRows = new ArrayList<>();
         List<Inventory> matchingItems = demand.getMatchingInventory();
         final TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
 
         final TextView noItemsMessage = (TextView) findViewById(R.id.noItemsMessage);
         if (matchingItems.size() == 0) {
-            activity.runOnUiThread(new Runnable() {
+            this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     noItemsMessage.setVisibility(View.VISIBLE);
                 }
             });
         } else {
-            activity.runOnUiThread(new Runnable() {
+            this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     noItemsMessage.setVisibility(View.GONE);
@@ -185,22 +186,26 @@ public class TradeActivity extends Activity {
             headerRow.addView(dh.createTextView(" ", 22, Color.BLACK));
             tableRows.add(headerRow);
 
-            for (Inventory inventory : matchingItems) {
+            for (final Inventory inventory : matchingItems) {
+                boolean hasBeenTried = Visitor_Log.hasBeenTried(visitorType.getVisitorID(), inventory.getItem(), inventory.getState());
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
-                TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20);
-                ImageView image = dh.createItemImage(inventory.getItem(), 35, 35, true, true);
+                TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20, hasBeenTried ? Color.GRAY : Color.BLACK);
+                ImageView image = dh.createItemImage(inventory.getItem(), (int)inventory.getState(), 35, 35, true, true, inventory.isUnsellable());
 
-                String itemName = item.getPrefix(inventory.getState()) + item.getName();
-                TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
+                final String itemName = item.getPrefix(inventory.getState()) + item.getName();
+                TextViewPixel name = dh.createTextView(itemName, 20, hasBeenTried ? Color.GRAY : Color.BLACK);
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
+                name.setTag(R.id.itemID, inventory.getItem());
+                name.setTag(R.id.itemState, inventory.getState());
                 name.setSingleLine(false);
                 name.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         ToastHelper.showToast(itemsTable, ToastHelper.SHORT, item.getDescription(), false);
                     }
                 });
+                name.setOnLongClickListener(ListenerHelper.getItemLongClick(this));
 
                 itemRow.addView(quantity);
                 itemRow.addView(image);
@@ -240,7 +245,7 @@ public class TradeActivity extends Activity {
         }
 
         final List<TableRow> finalRows = tableRows;
-        activity.runOnUiThread(new Runnable() {
+        this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 itemsTable.removeAllViews();
@@ -261,6 +266,7 @@ public class TradeActivity extends Activity {
 
         if (inventoryOfItem.getQuantity() > 0 && !currentlySelling) {
             currentlySelling = true;
+            new Visitor_Log(visitorType.getVisitorID(), itemID, itemState).save();
             int quantity = 1;
             if (MainActivity.prefs.getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();
@@ -319,7 +325,7 @@ public class TradeActivity extends Activity {
             TableLayout itemsTable = (TableLayout) findViewById(R.id.itemsTable);
             itemsTable.setVisibility(View.GONE);
         } else {
-            displayItemsTable(this);
+            displayItemsTable();
         }
     }
 

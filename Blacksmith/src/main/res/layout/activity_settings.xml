@@ -291,6 +291,35 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="-5dp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/finishedNotificationToggle"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="toggleSetting"
+                        android:orientation="vertical">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/finishedNotificationToggleText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/finishedNotificationSettingText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/finishedNotificationToggleButton"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
                 </TableRow>
 
                 <!-- Gameplay -->
@@ -455,6 +484,35 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="-5dp" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bulkStackToggle"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="toggleSetting"
+                        android:orientation="vertical">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/bulkStackToggleText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/bulkStackSettingText"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/bulkStackToggleButton"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
                 </TableRow>
 
                 <!-- Performance -->
@@ -554,6 +612,106 @@
                         <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:tools="http://schemas.android.com/tools"
                             android:id="@+id/updateSlotsToggleButton"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
+                </TableRow>
+
+                <!-- Orientation -->
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_span="3"
+                        android:paddingTop="5dp"
+                        android:text="@string/orientationSettingGroup"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="toggleOrientation"
+                        android:tag="4"
+                        android:orientation="vertical">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/orientationAuto"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/orientationAutoCheckbox"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="toggleOrientation"
+                        android:orientation="vertical"
+                        android:tag="7">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/orientationPortrait"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/orientationPortraitCheckbox"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button"
+                        android:onClick="toggleOrientation"
+                        android:tag="6"
+                        android:orientation="vertical">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/orientationLandscape"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/orientationLandscapeCheckbox"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:layout_gravity="center_horizontal"

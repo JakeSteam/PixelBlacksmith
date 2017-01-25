@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="uk.co.jakelee.blacksmith"
     android:installLocation="auto">
 
@@ -7,6 +8,11 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="remove" />
 
     <application
         android:name="com.orm.SugarApp"
@@ -30,7 +36,7 @@
             android:value="blacksmith.db" />
         <meta-data
             android:name="VERSION"
-            android:value="4" />
+            android:value="5" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="false" />
@@ -103,6 +109,9 @@
             android:name=".main.PremiumActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
+            android:name=".main.BuyCoinsActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
             android:name=".main.WorkerActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
@@ -131,7 +140,8 @@
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.InterstitialActivity"
-            android:theme="@style/AppTheme.PopupOverlay" />
+            android:theme="@style/AppTheme.PopupOverlay"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
@@ -141,6 +151,20 @@
         </receiver>
 
         <service android:name=".service.MusicService" />
+
+        <service android:name="com.batch.android.BatchPushService" />
+        <receiver android:name="com.batch.android.BatchPushReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="uk.co.jakelee.blacksmith" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.batch.android.BatchPushInstanceIDService" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

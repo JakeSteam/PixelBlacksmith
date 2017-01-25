@@ -1,31 +1,43 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion apiVersion
+    buildToolsVersion compilerVersion
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 58
-        versionName "1.7.9"
+        targetSdkVersion apiVersion
+        versionCode 59
+        versionName "2.0.0"
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://maven.batch.com/release'
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:percent:23.4.0'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:percent:$supportLibraryVersion"
+    compile "com.google.android.gms:play-services-ads:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-gcm:$playLibraryVersion"
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.anjlab.android.iab.v3:library:1.0.31'
@@ -37,4 +49,6 @@ dependencies {
     compile project(':BaseGameUtils')
     compile files('libs/applovin-sdk-6.2.2.jar')
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.batch.android:batch-sdk:1.7+'
 }

@@ -36,7 +36,7 @@ public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
     public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
     public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
-    public enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
+    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
@@ -154,11 +154,11 @@ public class WorkerHelper {
                 int adventureResult = getAdventureResult(hero);
                 Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
 
-                if (adventureResult == Constants.HERO_RESULT_SUCCESS) {
+                if (adventureResult == Constants.HERO_RESULT_SUCCESS || adventureResult == Constants.HERO_RESULT_SUPER_SUCCESS) {
                     Player_Info.addXp(adventure.getDifficulty());
                     adventure.setCompleted(true);
                     adventure.save();
-                    lastResult = rewardResources(context, hero);
+                    lastResult = rewardResources(context, hero, adventureResult == Constants.HERO_RESULT_SUPER_SUCCESS);
                     heroesSuccessful++;
                 } else {
                     List<EQUIP_SLOTS> slotsToEmpty = getSlotsToEmpty(hero, adventureResult);
@@ -288,7 +288,9 @@ public class WorkerHelper {
         int difficulty = adventure.getDifficulty();
         int chanceOfSuccess = getAdventureSuccessChance(heroStrength, difficulty);
         boolean isSuccessful = VisitorHelper.getRandomBoolean(100 - chanceOfSuccess);
-        if (chanceOfSuccess >= 100 || isSuccessful) {
+        if (chanceOfSuccess >= 100) {
+            return Constants.HERO_RESULT_SUPER_SUCCESS;
+        } else if (isSuccessful) {
             return Constants.HERO_RESULT_SUCCESS;
         } else {
             return VisitorHelper.getRandomNumber(Constants.HERO_RESULT_MIN, Constants.HERO_RESULT_MAX);
@@ -389,15 +391,27 @@ public class WorkerHelper {
                 getRewardResourcesText(worker, resources, true));
     }
 
-    public static String rewardResources(Context context, Hero hero) {
+    private static String rewardResources(Context context, Hero hero, boolean superSuccess) {
         Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
         List<Hero_Resource> resources = getResourcesByAdventure(hero.getCurrentAdventure());
+        if (superSuccess) {
+            resources = superSuccessResources(resources);
+        }
         return String.format(context.getString(R.string.workerReturned),
                 vType.getName(),
-                getRewardResourcesText(hero, resources, true));
+                getRewardResourcesText(hero, resources, true, superSuccess));
     }
 
-    public static String getRewardResourcesText(Hero hero, List<Hero_Resource> resources, boolean addItems) {
+    private static List<Hero_Resource> superSuccessResources(List<Hero_Resource> resources) {
+        double modifier = (VisitorHelper.getRandomNumber(Constants.SUPER_SUCCESS_MINIMUM, Constants.SUPER_SUCCESS_MAXIMUM) / 100);
+        for (Hero_Resource resource : resources) {
+            double modifiedQuantity = ((double)resource.getResourceQuantity()) * modifier;
+            resource.setResourceQuantity((int)Math.ceil(modifiedQuantity));
+        }
+        return resources;
+    }
+
+    public static String getRewardResourcesText(Hero hero, List<Hero_Resource> resources, boolean addItems, boolean isSuperSuccess) {
         LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, hero.getFoodItem());
 
@@ -628,6 +642,8 @@ public class WorkerHelper {
         totalStrength += getAdjustedStrength(vType, hero.getGlovesItem(), hero.getGlovesState());
         totalStrength += getAdjustedStrength(vType, hero.getBootsItem(), hero.getBootsState());
         totalStrength += getAdjustedStrength(vType, hero.getRingItem(), hero.getRingState());
+
+        totalStrength = (int)Math.ceil(((double)totalStrength) * HeroSetHelper.getMultiplier(hero));
 
         return totalStrength;
     }
