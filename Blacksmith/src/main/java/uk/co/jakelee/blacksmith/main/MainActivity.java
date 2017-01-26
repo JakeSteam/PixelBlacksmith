@@ -628,10 +628,11 @@ public class MainActivity extends AppCompatActivity implements
     public void onRedeemAutomaticOffer(Offer offer)
     {
         // Give resources & features contained in the campaign to the user
+        String rewardMessage = offer.getOfferAdditionalParameters().get("reward_message");
         for(Resource resource : offer.getResources()) {
             if (resource.getReference().equals("LARGE_COIN_PACK")) {
                 Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 3000);
-                ToastHelper.showPositiveToast(null, Toast.LENGTH_SHORT, "Received 3000 free coins, thanks to AppGratis!", true);
+                ToastHelper.showPositiveToast(null, Toast.LENGTH_SHORT, rewardMessage != null ? rewardMessage : "1000 coins rewarded!", true);
             }
         }
     }
