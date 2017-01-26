@@ -807,10 +807,10 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
         new Player_Info("CoinsPurchased", 0);
 
-        Hero_Category.executeQuery("UPDATE herocategory SET name = printf('%s (%d-%d)', name," +
-                " (SELECT MIN(difficulty) FROM heroadventure WHERE subcategory = category_id)," +
-                " (SELECT MAX(difficulty) FROM heroadventure WHERE subcategory = category_id))" +
-                " WHERE parent > 0");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = (name || " +
+			"' (' || (SELECT MIN(difficulty) FROM heroadventure WHERE subcategory = category_id) || " +
+			"'-' || (SELECT MAX(difficulty) FROM heroadventure WHERE subcategory = category_id) || ')')" +
+			" WHERE parent > 0");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Gathering (10-150)\" WHERE category_id = 1");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Animal Hunting (100-250)\" WHERE category_id = 2");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Monster Hunting (190-600)\" WHERE category_id = 3");
