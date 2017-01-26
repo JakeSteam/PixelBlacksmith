@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.SplashScreenActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
 import uk.co.jakelee.blacksmith.model.Category;
@@ -90,7 +91,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        SharedPreferences prefs;
+        if (callingActivity != null) {
+            prefs = callingActivity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        } else {
+            prefs = MainActivity.prefs;
+        }
 
         if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_EMPTY) {
             setProgress("Achievements", 0);
@@ -779,7 +785,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     }
 
     private void patch177to200() {
-		if (Setting.get(Constants.SETTING_FINISHED_NOTIFICATIONS) == null) {
+		if (Setting.findById(Setting.class, Constants.SETTING_FINISHED_NOTIFICATIONS) == null) {
 			List<Setting> settings = new ArrayList<>();
 			settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", true));
 			settings.add(new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", false));
