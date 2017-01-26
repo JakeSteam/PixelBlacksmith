@@ -242,7 +242,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        callingActivity.startGame();
+        if (callingActivity != null) {
+            callingActivity.startGame();
+        }
     }
 
     @Override
