@@ -463,7 +463,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
         }
 
-        new DatabaseHelper(this, false).execute();
+        new DatabaseHelper().execute();
 
         if (callingActivity != null) {
             callingActivity.runOnUiThread(new Runnable() {
