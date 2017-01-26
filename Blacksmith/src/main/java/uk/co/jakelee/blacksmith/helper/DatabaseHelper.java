@@ -63,16 +63,15 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V1_7_4 = 14;
     private final static int DB_V1_7_7 = 15;
     private final static int DB_V2_0_0 = 16;
+    private final static int DB_V2_0_1 = 17;
 
-    public final static int DB_LATEST = DB_V2_0_0;
+    public final static int DB_LATEST = DB_V2_0_1;
 
-    private SplashScreenActivity callingActivity;
+    private Activity callingActivity;
     private ProgressBar progressBar;
     private TextView progressText;
 
-    public DatabaseHelper() {}
-
-    public DatabaseHelper(SplashScreenActivity activity, boolean runningFromMain) {
+    public DatabaseHelper(Activity activity, boolean runningFromMain) {
         this.callingActivity = activity;
         if (runningFromMain) {
             this.progressText = (TextView) activity.findViewById(R.id.progressText);
@@ -221,6 +220,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.0.0 Patch", 85);
             patch177to200();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_0).apply();
+        }
+		
+		if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V2_0_0) {
+            setProgress("2.0.1 Patch", 88);
+            patch200to201();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_1).apply();
         }
 
         setProgress("Complete", 100);
@@ -772,45 +777,45 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     }
 
     private void patch177to200() {
-        List<Setting> settings = new ArrayList<>();
-        settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", true));
-        settings.add(new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", false));
-        settings.add(new Setting(Constants.SETTING_ORIENTATION, "Orientation", Constants.ORIENTATION_AUTO));
-        Setting.saveInTx(settings);
+		if (Setting.get(Constants.SETTING_FINISHED_NOTIFICATIONS) == null) {
+			List<Setting> settings = new ArrayList<>();
+			settings.add(new Setting(Constants.SETTING_FINISHED_NOTIFICATIONS, "FinishedNotifications", true));
+			settings.add(new Setting(Constants.SETTING_BULK_STACK, "BulkCrafting", false));
+			settings.add(new Setting(Constants.SETTING_ORIENTATION, "Orientation", Constants.ORIENTATION_AUTO));
+			Setting.saveInTx(settings);
 
-        List<Item> items = new ArrayList<>();
-            items.add(new Item(220L, "Amethyst", "A purple gem", 20, 11, 350, 20));
-            items.add(new Item(221L, "Citrine", "A yellow gem", 20, 11, 350, 20));
-        Item.saveInTx(items);
+			List<Item> items = new ArrayList<>();
+				items.add(new Item(220L, "Amethyst", "A purple gem", 20, 11, 350, 20));
+				items.add(new Item(221L, "Citrine", "A yellow gem", 20, 11, 350, 20));
+			Item.saveInTx(items);
 
-        List<State> states = new ArrayList<>();
-            states.add(new State(8L, "Purple Enchant", "(purp) ", 220L, 40, 10));
-            states.add(new State(9L, "Yellow Enchant", "(yellow) ", 221L, 40, 10));
-        State.saveInTx(states);
+			List<State> states = new ArrayList<>();
+				states.add(new State(8L, "Purple Enchant", "(purp) ", 220L, 40, 10));
+				states.add(new State(9L, "Yellow Enchant", "(yellow) ", 221L, 40, 10));
+			State.saveInTx(states);
 
-        List<Trader_Stock> traderStocks = new ArrayList<>();
-            traderStocks.add(new Trader_Stock(16L, 220L, 1, 0, 5));
-            traderStocks.add(new Trader_Stock(16L, 221L, 1, 0, 5));
-            traderStocks.add(new Trader_Stock(48L, 220L, 1, 0, 3));
-            traderStocks.add(new Trader_Stock(48L, 221L, 1, 0, 3));
-        Trader_Stock.saveInTx(traderStocks);
+			List<Trader_Stock> traderStocks = new ArrayList<>();
+				traderStocks.add(new Trader_Stock(16L, 220L, 1, 0, 5));
+				traderStocks.add(new Trader_Stock(16L, 221L, 1, 0, 5));
+				traderStocks.add(new Trader_Stock(48L, 220L, 1, 0, 3));
+				traderStocks.add(new Trader_Stock(48L, 221L, 1, 0, 3));
+			Trader_Stock.saveInTx(traderStocks);
 
-        Super_Upgrade oldDoubleCraft = Super_Upgrade.find(Constants.SU_DOUBLE_FURNACE_CRAFTS);
-        oldDoubleCraft.setName("2x Furnace Items");
-        oldDoubleCraft.save();
+			Super_Upgrade oldDoubleCraft = Super_Upgrade.find(Constants.SU_DOUBLE_FURNACE_CRAFTS);
+			oldDoubleCraft.setName("2x Furnace Items");
+			oldDoubleCraft.save();
 
-        List<Super_Upgrade> superUpgrades = new ArrayList<>();
-            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ANVIL_CRAFTS, "2x Anvil Items", 1, false));
-            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TABLE_CRAFTS, "2x Table Items", 1, false));
-            superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ENCHANT_CRAFTS, "2x Enchant Table Items", 1, false));
-        Super_Upgrade.saveInTx(superUpgrades);
+			List<Super_Upgrade> superUpgrades = new ArrayList<>();
+				superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ANVIL_CRAFTS, "2x Anvil Items", 1, false));
+				superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_TABLE_CRAFTS, "2x Table Items", 1, false));
+				superUpgrades.add(new Super_Upgrade(Constants.SU_DOUBLE_ENCHANT_CRAFTS, "2x Enchant Table Items", 1, false));
+			Super_Upgrade.saveInTx(superUpgrades);
+		}
 
-        new Player_Info("CoinsPurchased", 0);
-
-        Hero_Category.executeQuery("UPDATE herocategory SET name = printf('%s (%d-%d)', name," +
-                " (SELECT MIN(difficulty) FROM heroadventure WHERE subcategory = category_id)," +
-                " (SELECT MAX(difficulty) FROM heroadventure WHERE subcategory = category_id))" +
-                " WHERE parent > 0");
+        Hero_Category.executeQuery("UPDATE herocategory SET name = (name || " +
+			"' (' || (SELECT MIN(difficulty) FROM heroadventure WHERE subcategory = category_id) || " +
+			"'-' || (SELECT MAX(difficulty) FROM heroadventure WHERE subcategory = category_id) || ')')" +
+			" WHERE parent > 0");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Gathering (10-150)\" WHERE category_id = 1");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Animal Hunting (100-250)\" WHERE category_id = 2");
         Hero_Category.executeQuery("UPDATE herocategory SET name = \"Monster Hunting (190-600)\" WHERE category_id = 3");
@@ -830,7 +835,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Visitor_Type.saveInTx(visitorTypes);
     }
 
-    private void createContributionGoals() {
+    private void patch200to201() {
+        new Player_Info("CoinsPurchased", 0).save();
+	}
+	
+	private void createContributionGoals() {
         List<Contribution_Goal> goals = new ArrayList<>();
             goals.add(new Contribution_Goal(1, "Thank You", 1, "Get an extra little thank you.\n", "Thanks! Your contributions are what make further development on Pixel Blacksmith possible!\n"));
             goals.add(new Contribution_Goal(2, "Dev Queue", 3, "Get access to the Trello board used to plan / prioritise new features, changes, and bug fixes.", "<a href=\"https://trello.com/b/Zw01amFA/\">Trello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it'll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in."));
