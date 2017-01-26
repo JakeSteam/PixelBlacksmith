@@ -517,7 +517,11 @@ public class WorkerHelper {
 
             result.append(String.format("%dx %s, ", value, key));
         }
-        return result.substring(0, result.length() - 2) + bonusText;
+
+        if (result.length() > 3) {
+            return result.substring(0, result.length() - 2) + bonusText;
+        }
+        return "Failed to lookup info, please let the developer know which worker this is!";
     }
 
     public static String getTimesCompletedString(Context context, Worker worker) {
