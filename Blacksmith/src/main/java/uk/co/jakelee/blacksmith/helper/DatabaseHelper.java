@@ -66,13 +66,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     public final static int DB_LATEST = DB_V2_0_0;
 
-    private SplashScreenActivity callingActivity;
+    private Activity callingActivity;
     private ProgressBar progressBar;
     private TextView progressText;
 
-    public DatabaseHelper() {}
-
-    public DatabaseHelper(SplashScreenActivity activity, boolean runningFromMain) {
+    public DatabaseHelper(Activity activity, boolean runningFromMain) {
         this.callingActivity = activity;
         if (runningFromMain) {
             this.progressText = (TextView) activity.findViewById(R.id.progressText);
