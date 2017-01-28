@@ -16,9 +16,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.orm.query.Condition;
-import com.orm.query.Select;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
@@ -30,6 +30,8 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
+
+import static com.orm.query.Select.from;
 
 public class MarketActivity extends Activity {
     public final static String TRADER_TO_LOAD = "uk.co.jakelee.blacksmith.tradertoload";
@@ -67,9 +69,11 @@ public class MarketActivity extends Activity {
         marketLayout.removeAllViews();
 
         int fixedTraders = Trader.getFixedCount();
-        List<Trader> traders = Select.from(Trader.class).where(
-                Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("status").eq(Constants.TRADER_PRESENT)).orderBy("fixed DESC, name ASC").list();
+        List<Trader> traders = Trader.find(Trader.class, String.format(Locale.ENGLISH,
+                "location = %1$d AND (status = %2$d OR fixed = %3$d) ORDER BY fixed DESC, name ASC",
+                Constants.LOCATION_MARKET,
+                Constants.TRADER_PRESENT,
+                Constants.TRUE));
 
         boolean mixedFixedStatus = fixedTraders > 0;
         boolean haveDisplayedUnlockHeader = false;
@@ -134,7 +138,7 @@ public class MarketActivity extends Activity {
     }
 
     private void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
-        List<Trader_Stock> traderOfferings = Select.from(Trader_Stock.class).where(
+        List<Trader_Stock> traderOfferings = from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()))
                 .orderBy("required_purchases ASC").list();
 
