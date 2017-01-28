@@ -16,6 +16,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,8 +31,6 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Trader;
 import uk.co.jakelee.blacksmith.model.Trader_Stock;
-
-import static com.orm.query.Select.from;
 
 public class MarketActivity extends Activity {
     public final static String TRADER_TO_LOAD = "uk.co.jakelee.blacksmith.tradertoload";
@@ -138,7 +137,7 @@ public class MarketActivity extends Activity {
     }
 
     private void populateTraderOfferings(LinearLayout offeringsContainer, Trader trader) {
-        List<Trader_Stock> traderOfferings = from(Trader_Stock.class).where(
+        List<Trader_Stock> traderOfferings = Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()))
                 .orderBy("required_purchases ASC").list();
 
