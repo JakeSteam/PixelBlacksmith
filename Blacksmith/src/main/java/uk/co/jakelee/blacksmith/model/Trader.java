@@ -46,16 +46,18 @@ public class Trader extends SugarRecord {
 
         int numberOfTraders = 0;
         for (Trader trader : traders) {
+            boolean restocking = false;
             if (trader.isOutOfStock()) {
                 if (trader.isFixed()) {
                     trader.restock(0);
                 } else {
                     trader.setStatus(Constants.TRADER_OUT_OF_STOCK);
+                    restocking = true;
                 }
                 trader.save();
             }
 
-            if (!trader.isFixed()) {
+            if (!trader.isFixed() && !restocking) {
                 numberOfTraders++;
             }
         }

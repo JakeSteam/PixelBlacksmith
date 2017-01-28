@@ -19,6 +19,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
@@ -67,9 +68,11 @@ public class MarketActivity extends Activity {
         marketLayout.removeAllViews();
 
         int fixedTraders = Trader.getFixedCount();
-        List<Trader> traders = Select.from(Trader.class).where(
-                Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("status").eq(Constants.TRADER_PRESENT)).orderBy("fixed DESC, name ASC").list();
+        List<Trader> traders = Trader.find(Trader.class, String.format(Locale.ENGLISH,
+                "location = %1$d AND (status = %2$d OR fixed = %3$d) ORDER BY fixed DESC, name ASC",
+                Constants.LOCATION_MARKET,
+                Constants.TRADER_PRESENT,
+                Constants.TRUE));
 
         boolean mixedFixedStatus = fixedTraders > 0;
         boolean haveDisplayedUnlockHeader = false;

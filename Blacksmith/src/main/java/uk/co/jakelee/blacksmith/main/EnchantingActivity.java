@@ -122,7 +122,8 @@ public class EnchantingActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("enchantingPosition", 0));
+                MainActivity.prefs.getInt("enchantingPosition", 0),
+                true);
 
         // Horizontal selector
         int currentItemPosition = mViewFlipper.getDisplayedChild();

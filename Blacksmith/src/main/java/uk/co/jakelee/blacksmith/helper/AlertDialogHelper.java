@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
@@ -58,6 +59,8 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 //String supportCode = SupportCodeHelper.encode("1466722799000|UPDATE playerinfo set int_value = 504100 WHERE name = 'XP';UPDATE playerinfo set int_value = 1 WHERE name = 'Premium';UPDATE slot SET premium = 0 WHERE level = 9999; UPDATE upgrade SET current = current + 20, maximum = maximum + 50 WHERE name IN ('Coins Bonus', 'XP Bonus')");
                 String supportCode = supportCodeBox.getText().toString().trim();
+
+                Log.d("Code", supportCode);
                 if (SupportCodeHelper.applyCode(supportCode)) {
                     ToastHelper.showPositiveToast(activity.findViewById(R.id.settings), ToastHelper.LONG, activity.getString(R.string.supportCodeComplete), true);
                 } else {

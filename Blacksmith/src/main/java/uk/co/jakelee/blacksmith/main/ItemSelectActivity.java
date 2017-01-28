@@ -47,8 +47,8 @@ public class ItemSelectActivity extends Activity {
         int itemIndex = 0;
         for (Item item : items) {
             if (!onlyDisplayAvailable ||
-                    (onlyDisplayAvailable && !enchantingOverride && Inventory.canCreateBulkItem(item.getId(), dh.itemSelectionState, 1) == Constants.SUCCESS) ||
-                    (onlyDisplayAvailable && enchantingOverride && Inventory.getInventory(item.getId(), dh.itemSelectionState).getQuantity() > 0)) {
+                    (!enchantingOverride && Inventory.canCreateBulkItem(item.getId(), dh.itemSelectionState, 1) == Constants.SUCCESS) ||
+                    (enchantingOverride && Inventory.getInventory(item.getId(), dh.itemSelectionState).getQuantity() > 0)) {
                 TableRow itemRow = createItemRow(item, itemIndex);
                 itemsContainer.addView(itemRow);
             }

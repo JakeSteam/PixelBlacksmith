@@ -149,10 +149,14 @@ public class SettingsActivity extends Activity {
     private void populateOrientation() {
         Drawable tick = dh.createDrawable(R.drawable.tick, 50, 50);
         Drawable cross = dh.createDrawable(R.drawable.cross, 50, 50);
-        int orientation = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION).getIntValue();
-        ((ImageView) findViewById(R.id.orientationAutoCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_AUTO ? tick : cross);
-        ((ImageView) findViewById(R.id.orientationPortraitCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_PORTRAIT ? tick : cross);
-        ((ImageView) findViewById(R.id.orientationLandscapeCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_LANDSCAPE ? tick : cross);
+        try {
+            int orientation = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION).getIntValue();
+            ((ImageView) findViewById(R.id.orientationAutoCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_AUTO ? tick : cross);
+            ((ImageView) findViewById(R.id.orientationPortraitCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_PORTRAIT ? tick : cross);
+            ((ImageView) findViewById(R.id.orientationLandscapeCheckbox)).setImageDrawable(orientation == Constants.ORIENTATION_LANDSCAPE ? tick : cross);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getSettingsCode() {
