@@ -88,7 +88,7 @@ public class PrestigeHelper {
     }
 
     private static void resetTraders() {
-        Trader.executeQuery("UPDATE trader SET purchases = 0");
+        Trader.executeQuery("UPDATE trader SET purchases = 0, fixed = 0");
         Trader_Stock.restockTraders();
     }
 
