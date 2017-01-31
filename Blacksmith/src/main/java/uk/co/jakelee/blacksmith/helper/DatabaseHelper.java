@@ -65,8 +65,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V1_7_7 = 15;
     private final static int DB_V2_0_0 = 16;
     private final static int DB_V2_0_1 = 17;
+    private final static int DB_V2_0_3 = 18;
 
-    public final static int DB_LATEST = DB_V2_0_1;
+    public final static int DB_LATEST = DB_V2_0_3;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -234,6 +235,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.0.1 Patch", 88);
             patch200to201();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_1).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V2_0_1) {
+            setProgress("2.0.3 Patch", 91);
+            patch201to203();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_3).apply();
         }
 
         setProgress("Complete", 100);
@@ -848,6 +855,13 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private void patch200to201() {
         new Player_Info("CoinsPurchased", 0).save();
 	}
+
+    private void patch201to203() {
+        List<Worker_Resource> workerResources = new ArrayList<>();
+            workerResources.add(new Worker_Resource(220, 130, 1, 8));
+            workerResources.add(new Worker_Resource(221, 131, 1, 8));
+        Worker_Resource.saveInTx(workerResources);
+    }
 	
 	private void createContributionGoals() {
         List<Contribution_Goal> goals = new ArrayList<>();
