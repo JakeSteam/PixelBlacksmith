@@ -63,7 +63,7 @@ public class QuestActivity extends Activity {
     }
 
     public void redditSchedule(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/comments/4ktv5h/quest_list/"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/wiki/quests"));
         startActivity(browserIntent);
     }
 
