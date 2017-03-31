@@ -803,7 +803,7 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     Item item = Item.findById(Item.class, itemStock.getItemID());
                     int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
-                    totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+                    totalCost = (int)Math.ceil((double)totalCost * Constants.TRADER_LOCK_PRICE_MODIFIER) / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
 
                     if (totalCost <= coinStock.getQuantity() && successful) {
                         int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
