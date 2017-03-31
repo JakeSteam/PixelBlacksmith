@@ -813,7 +813,8 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     Item item = Item.findById(Item.class, itemStock.getItemID());
                     int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
-                    totalCost = (int)Math.ceil((double)totalCost * Constants.TRADER_LOCK_PRICE_MODIFIER) / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+                    totalCost = trader.isFixed() ? (int)Math.ceil((double)totalCost * Constants.TRADER_LOCK_PRICE_MODIFIER) : totalCost;
+                    totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
 
                     if (totalCost <= coinStock.getQuantity() && successful) {
                         int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
@@ -841,6 +842,89 @@ public class AlertDialogHelper {
                     trader.save();
                 } else {
                     ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                }
+
+                Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
+                activity.alertDialogCallback();
+            }
+        });
+
+        alertDialog.setNegativeButton(activity.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void confirmMarketBuyAll(final MarketActivity activity) {
+        final List<Trader_Stock> itemStocks = Trader_Stock.findWithQuery(Trader_Stock.class, "SELECT ts.id, ts.default_stock, ts.item_id, ts.required_purchases, ts.state, ts.stock, ts.trader_type "
+                + "FROM traderstock AS ts "
+                + "INNER JOIN trader AS t ON ts.trader_type = t.id "
+                + "WHERE t.status = 1 "
+                + "AND ts.required_purchases <= t.purchases "
+                + "AND ts.stock > 0");
+
+        if (itemStocks.size() == 0) {
+            ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(R.string.itemBuyAllNoItems), false);
+            return;
+        }
+
+        int totalValue = 0;
+        int itemCount = 0;
+        for (Trader_Stock itemStock : itemStocks) {
+            Item item = Item.findById(Item.class, itemStock.getItemID());
+            totalValue += (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+            itemCount += itemStock.getStock();
+        }
+        totalValue = totalValue / (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(activity.getString(R.string.itemBuyAllQuestion), itemCount, totalValue));
+        alertDialog.setIcon(R.drawable.item52);
+
+        alertDialog.setPositiveButton(activity.getString(R.string.itemBuyAllConfirm), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                int itemsBought = 0;
+                int buyResponse = Constants.ERROR_NOT_ENOUGH_COINS;
+                boolean successful = true;
+                List<Pair<Long, Integer>> items = new ArrayList<>();
+
+                for (Trader_Stock itemStock : itemStocks) {
+                    Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                    Item item = Item.findById(Item.class, itemStock.getItemID());
+                    int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
+                    totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
+
+                    if (totalCost <= coinStock.getQuantity() && successful) {
+                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
+                        itemsBought += itemsToBuy;
+                        itemStock.setStock(0);
+                        itemStock.save();
+
+                        coinStock.setQuantity(coinStock.getQuantity() - totalCost);
+                        coinStock.save();
+
+                        for (int i = 1; i <= itemsToBuy; i++) {
+                            items.add(new Pair<>(itemStock.getItemID(), itemStock.getState()));
+                        }
+                    } else {
+                        successful = false;
+                    }
+                }
+
+                if (itemsBought > 0) {
+                    ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(activity.getString(R.string.itemBuyAllComplete), itemsBought), false);
+                    Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
+                } else {
+                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);

@@ -204,6 +204,8 @@ public class Constants {
     public static final int SU_DOUBLE_ANVIL_CRAFTS = 17;
     public static final int SU_DOUBLE_TABLE_CRAFTS = 18;
     public static final int SU_DOUBLE_ENCHANT_CRAFTS = 19;
+    public static final int SU_BUY_ALL_MARKET = 20;
+    public static final int SU_HALVE_TIMES = 21;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

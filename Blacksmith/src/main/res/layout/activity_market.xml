@@ -34,10 +34,27 @@
             android:textSize="60sp"
             app:layout_marginTopPercent="1%" />
 
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/buyAllButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_extra_wide"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="buyAll"
+            android:text="@string/itemBuyAllConfirm"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/marketScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/buyAllButton"
             android:layout_below="@id/marketTitle"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
@@ -58,6 +75,7 @@
             android:id="@+id/emptyMarket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/buyAllButton"
             android:layout_below="@id/marketTitle"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"

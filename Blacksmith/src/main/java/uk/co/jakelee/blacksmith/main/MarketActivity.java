@@ -60,6 +60,11 @@ public class MarketActivity extends Activity {
         super.onResume();
 
         populateTraderList();
+        findViewById(R.id.buyAllButton).setVisibility(Super_Upgrade.isEnabled(Constants.SU_BUY_ALL_MARKET) ? View.VISIBLE : View.GONE);
+    }
+
+    public void buyAll(View v) {
+        AlertDialogHelper.confirmMarketBuyAll(this);
     }
 
     private void populateTraderList() {

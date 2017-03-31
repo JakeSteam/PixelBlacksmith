@@ -913,6 +913,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             workerResources.add(new Worker_Resource(225, 18, 1, 6)); // Gold Bar
             workerResources.add(new Worker_Resource(225, 221, 1, 2)); // Citrine
         Worker_Resource.saveInTx(workerResources);
+
+        List<Super_Upgrade> superUpgrades = new ArrayList<>();
+            superUpgrades.add(new Super_Upgrade(Constants.SU_BUY_ALL_MARKET, "Buy All From Market", 2, false));
+            superUpgrades.add(new Super_Upgrade(Constants.SU_HALVE_TIMES, "Halve All Times", 4, false));
+        Super_Upgrade.saveInTx(superUpgrades);
     }
 	
 	private void createContributionGoals() {
