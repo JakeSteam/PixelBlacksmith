@@ -175,7 +175,7 @@ public class WorkerHelper {
                     }
                 }
                 heroNames.add(heroVisitor.getName());
-                completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS);
+                completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS || adventureResult == Constants.HERO_RESULT_SUPER_SUCCESS);
                 heroesFinished++;
                 Message.add(lastResult);
             }
