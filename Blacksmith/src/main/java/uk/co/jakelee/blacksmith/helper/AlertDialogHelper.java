@@ -692,6 +692,10 @@ public class AlertDialogHelper {
         final int finalItemValue = isFixed ? (int)Math.ceil((double)itemValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : itemValue;
         final String itemName = item.getFullName(Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
+        final int itemsToSell = (int)Select.from(Trader_Stock.class).where(
+                Condition.prop("trader_type").eq(trader.getId()),
+                Condition.prop("required_purchases").lt(trader.getPurchases() + 1),
+                Condition.prop("stock").gt(0)).count();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.itemBuyQuestion), itemName, finalItemValue, itemStock.getStock(), finalItemValue));
@@ -706,12 +710,14 @@ public class AlertDialogHelper {
                     ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), quantity, itemName, finalItemValue), false);
                     Player_Info.increaseByOne(Player_Info.Statistic.ItemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, 1);
+                    if (itemStock.getStock() == 1 && itemsToSell == 1) {
+                        GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
+                    }
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
                     ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
                 }
-
                 activity.alertDialogCallback();
             }
         });
@@ -743,6 +749,10 @@ public class AlertDialogHelper {
                     ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.itemBuyComplete), itemsBought, itemName, totalCost), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
+                    if (itemsToSell == 1) {
+                        // If this is the only item currently being sold
+                        GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
+                    }
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
