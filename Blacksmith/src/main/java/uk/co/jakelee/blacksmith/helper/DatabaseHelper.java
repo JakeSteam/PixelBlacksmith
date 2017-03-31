@@ -66,8 +66,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V2_0_0 = 16;
     private final static int DB_V2_0_1 = 17;
     private final static int DB_V2_0_3 = 18;
+    private final static int DB_V2_1_0 = 19;
 
-    public final static int DB_LATEST = DB_V2_0_3;
+    public final static int DB_LATEST = DB_V2_1_0;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -241,6 +242,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.0.3 Patch", 91);
             patch201to203();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_3).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V2_1_0) {
+            setProgress("2.1.0 Patch", 94);
+            patch203to210();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_1_0).apply();
         }
 
         setProgress("Complete", 100);
@@ -861,6 +868,40 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             workerResources.add(new Worker_Resource(220, 130, 1, 8));
             workerResources.add(new Worker_Resource(221, 131, 1, 8));
         Worker_Resource.saveInTx(workerResources);
+    }
+
+    private void patch203to210() {
+        List<Item> items = new ArrayList<>();
+            items.add(new Item(222L, "Silver amethyst ring", "A rather pretty silver and purple ring.", 24, 8, 385, 20));
+            items.add(new Item(223L, "Silver citrine ring", "An intriguing silver and yellow ring.", 24, 8, 385, 20));
+            items.add(new Item(224L, "Gold amethyst ring", "A rather pretty gold and purple ring.", 24, 8, 385, 20));
+            items.add(new Item(225L, "Gold citrine ring", "An intriguing gold and silver ring.", 24, 8, 385, 20));
+        Item.saveInTx(items);
+
+        List<Recipe> recipes = new ArrayList<>();
+            recipes.add(new Recipe(222L, 1L, 17L, 1L, 1));
+            recipes.add(new Recipe(222L, 1L, 220L, 1L, 1));
+            recipes.add(new Recipe(223L, 1L, 17L, 1L, 1));
+            recipes.add(new Recipe(223L, 1L, 221L, 1L, 1));
+            recipes.add(new Recipe(224L, 1L, 18L, 1L, 1));
+            recipes.add(new Recipe(224L, 1L, 220L, 1L, 1));
+            recipes.add(new Recipe(225L, 1L, 18L, 1L, 1));
+            recipes.add(new Recipe(225L, 1L, 221L, 1L, 1));
+        Recipe.saveInTx(recipes);
+
+        List<Worker_Resource> workerResources = new ArrayList<>();
+            workerResources.add(new Worker_Resource(222, 9, 1, 6)); // Silver Ore
+            workerResources.add(new Worker_Resource(222, 17, 1, 6)); // Silver Bar
+            workerResources.add(new Worker_Resource(222, 220, 1, 2)); // Amethyst
+            workerResources.add(new Worker_Resource(223, 9, 1, 6)); // Silver Ore
+            workerResources.add(new Worker_Resource(223, 17, 1, 6)); // Silver Bar
+            workerResources.add(new Worker_Resource(223, 221, 1, 2)); // Citrine
+            workerResources.add(new Worker_Resource(224, 8, 1, 6)); // Gold Ore
+            workerResources.add(new Worker_Resource(224, 18, 1, 6)); // Gold Bar
+            workerResources.add(new Worker_Resource(224, 220, 1, 2)); // Amethyst
+            workerResources.add(new Worker_Resource(225, 8, 1, 6)); // Gold Ore
+            workerResources.add(new Worker_Resource(225, 18, 1, 6)); // Gold Bar
+            workerResources.add(new Worker_Resource(225, 221, 1, 2)); // Citrine
     }
 	
 	private void createContributionGoals() {
