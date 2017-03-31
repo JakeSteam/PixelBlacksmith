@@ -77,7 +77,61 @@ public class HeroSetHelper {
             sets.add(new Hero_Set("Bare Inessentials", "having only the inessential slots filled (Gloves, Boots, Ring, Food).", 25));
         }
 
+        if (onlyCornerItems(hero)) {
+            sets.add(new Hero_Set("Corner The Market", "having only the corner slots filled in.", 10));
+        }
+
+        if (onlyMiddleItems(hero)) {
+            sets.add(new Hero_Set("The Plus Side", "having a \"plus\" (+) of equipped items.", 22));
+        }
+
+        if (itemsInMetalSlots(hero) && itemsAllSelectedTier(Constants.TIER_IRON, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Oh The Irony", "having all iron items equipped.", 30));
+        }
+
+        if (itemsInMetalSlots(hero) && itemsAllSelectedTier(Constants.TIER_STEEL, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Nerves Of Steel", "having all steel items equipped.", 27));
+        }
+
+        if (hero.getArmourItem() == 119) {
+            sets.add(new Hero_Set("Dragon Slayee", "have a rune chainmail equipped.", 1));
+        }
+
+        if (hero.getArmourItem() == 120) {
+            sets.add(new Hero_Set("Dragon Slayer", "have a rune platebody equipped.", 11));
+        }
+
+        if (itemsAllSelectedState(Constants.STATE_YELLOW, hero) && itemsInAllSlots(hero) && itemsAllSelectedTier(Constants.TIER_DRAGON, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Godlike", "have yellow enchanted legendary items in all slots.", 70));
+        }
+
+        if (itemsAllSelectedState(Constants.STATE_YELLOW, hero) && itemsInAllSlots(hero) && itemsAllSelectedTier(Constants.TIER_PREMIUM, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Godly", "have yellow-enchanted legendary items in all slots.", 100));
+        }
+
         return sets;
+    }
+
+    private static boolean onlyMiddleItems(Hero hero) {
+        return hero.getArmourItem() == 0
+                && hero.getBootsItem() > 0
+                && hero.getFoodItem() == 0
+                && hero.getGlovesItem() == 0
+                && hero.getHelmetItem() > 0
+                && hero.getRingItem() == 0
+                && hero.getShieldItem() > 0
+                && hero.getWeaponItem() > 0;
+    }
+
+    private static boolean onlyCornerItems(Hero hero) {
+        return hero.getArmourItem() > 0
+                && hero.getBootsItem() == 0
+                && hero.getFoodItem() > 0
+                && hero.getGlovesItem() > 0
+                && hero.getHelmetItem() == 0
+                && hero.getRingItem() > 0
+                && hero.getShieldItem() == 0
+                && hero.getWeaponItem() == 0;
     }
 
     private static boolean numberOfItemsEquipped(Hero hero, int desiredNumber) {
