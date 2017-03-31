@@ -132,10 +132,14 @@ public class AnvilActivity extends Activity {
         }
 
         if (ringsSelected) {
-            if (displayedTier < Constants.TIER_SILVER || displayedTier > Constants.TIER_GOLD) displayedTier = Constants.TIER_GOLD;
+            if (displayedTier < Constants.TIER_SILVER || displayedTier > Constants.TIER_GOLD) {
+                displayedTier = Constants.TIER_GOLD;
+            }
             createRingsInterface(clearExisting);
         } else {
-            if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
+            if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) {
+                displayedTier = Constants.TIER_MAX;
+            }
             createItemsInterface(clearExisting);
         }
 

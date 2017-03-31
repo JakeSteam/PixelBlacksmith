@@ -872,10 +872,10 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void patch203to210() {
         List<Item> items = new ArrayList<>();
-            items.add(new Item(222L, "Silver amethyst ring", "A rather pretty silver and purple ring.", 24, 8, 385, 20));
-            items.add(new Item(223L, "Silver citrine ring", "An intriguing silver and yellow ring.", 24, 8, 385, 20));
-            items.add(new Item(224L, "Gold amethyst ring", "A rather pretty gold and purple ring.", 24, 8, 385, 20));
-            items.add(new Item(225L, "Gold citrine ring", "An intriguing gold and silver ring.", 24, 8, 385, 20));
+            items.add(new Item(222L, "Silver amethyst ring", "A rather pretty silver and purple ring.", 24, 8, 385, 50));
+            items.add(new Item(223L, "Silver citrine ring", "An intriguing silver and yellow ring.", 24, 8, 385, 50));
+            items.add(new Item(224L, "Gold amethyst ring", "A rather pretty gold and purple ring.", 24, 9, 385, 50));
+            items.add(new Item(225L, "Gold citrine ring", "An intriguing gold and silver ring.", 24, 9, 385, 50));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();
@@ -902,6 +902,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             workerResources.add(new Worker_Resource(225, 8, 1, 6)); // Gold Ore
             workerResources.add(new Worker_Resource(225, 18, 1, 6)); // Gold Bar
             workerResources.add(new Worker_Resource(225, 221, 1, 2)); // Citrine
+        Worker_Resource.saveInTx(workerResources);
     }
 	
 	private void createContributionGoals() {
