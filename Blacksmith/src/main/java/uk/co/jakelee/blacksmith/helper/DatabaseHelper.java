@@ -876,6 +876,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             items.add(new Item(223L, "Silver citrine ring", "An intriguing silver and yellow ring.", 24, 8, 385, 50));
             items.add(new Item(224L, "Gold amethyst ring", "A rather pretty gold and purple ring.", 24, 9, 385, 50));
             items.add(new Item(225L, "Gold citrine ring", "An intriguing gold and silver ring.", 24, 9, 385, 50));
+            items.add(new Item(226L, "Rare Candy", "Unfortunately won't level you up.", 21, 11, 25, 30));
+            items.add(new Item(227L, "Bowl Of Water", "Thirst quenching, and rather wet.", 21, 11, 10, 1));
+            items.add(new Item(228L, "Soup", "Hearty and filling!", 27, 11, 25, 10));
+            items.add(new Item(229L, "Cereal", "The most important meal of the day, apparently.", 27, 11, 20, 10));
+            items.add(new Item(230L, "White Chocolate", "Mmmm, so sweet!", 21, 11, 7, 5));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();
@@ -887,6 +892,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             recipes.add(new Recipe(224L, 1L, 220L, 1L, 1));
             recipes.add(new Recipe(225L, 1L, 18L, 1L, 1));
             recipes.add(new Recipe(225L, 1L, 221L, 1L, 1));
+
+            recipes.add(new Recipe(228L, 1L, 227L, 1L, 1));
+            recipes.add(new Recipe(228L, 1L, 214L, 1L, 1));
+            recipes.add(new Recipe(229L, 1L, 227L, 1L, 1));
+            recipes.add(new Recipe(229L, 1L, 202L, 1L, 1));
         Recipe.saveInTx(recipes);
 
         List<Worker_Resource> workerResources = new ArrayList<>();
