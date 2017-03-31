@@ -56,6 +56,12 @@ public class QuestActivity extends Activity {
         }
     }
 
+    public void claimUnclaimed(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_COMPLETED_UNCLAIMED}), GooglePlayHelper.RC_QUESTS);
+        }
+    }
+
     public void upcomingQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
