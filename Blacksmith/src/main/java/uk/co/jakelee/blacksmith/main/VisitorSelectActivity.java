@@ -67,7 +67,7 @@ public class VisitorSelectActivity extends Activity {
             boolean canBeSelected = WorkerHelper.canBeSelectedAsHero(visitor, vStats);
             ImageView visitorImage = dh.createImageView("visitor", visitor.getVisitorID(), 60, 60);
             TextView visitorReqs = dh.createTextView(String.format(getString(R.string.visitorRequirements),
-                    visitor.getName(),
+                    visitor.getName(this),
                     vStats.getVisits(), Constants.HERO_MIN_VISITS,
                     vStats.getBestItemValue(), Constants.HERO_MIN_TRADE,
                     visitor.getPreferencesDiscovered(), Constants.HERO_MIN_PREFS), 20);

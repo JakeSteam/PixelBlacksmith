@@ -77,7 +77,7 @@ public class EquipmentActivity extends Activity {
 
         if (hero.getVisitorId() > 0) {
             ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(DisplayHelper.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
-            ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
+            ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName(this) + " (" + vType.getAdventuresCompleted() + ")");
         } else {
             ((TextViewPixel) findViewById(R.id.heroName)).setText(R.string.workerStatusSelectHero);
         }
@@ -169,21 +169,21 @@ public class EquipmentActivity extends Activity {
 
     public void tierClick(View view) {
         if (hero.getVisitorId() > 0) {
-            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.tierPreferenceHero, preferred);
         }
     }
 
     public void typeClick(View view) {
         if (hero.getVisitorId() > 0) {
-            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.typePreferenceHero, preferred);
         }
     }
 
     public void stateClick(View view) {
         if (hero.getVisitorId() > 0) {
-            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.statePreferenceHero, preferred);
         }
     }

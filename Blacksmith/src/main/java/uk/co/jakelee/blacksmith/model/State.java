@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class State extends SugarRecord {
     String prefix;
@@ -30,8 +34,8 @@ public class State extends SugarRecord {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("state_" + id);
     }
 
     public void setName(String name) {

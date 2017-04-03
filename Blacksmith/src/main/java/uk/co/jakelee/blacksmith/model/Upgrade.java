@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -7,6 +9,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Upgrade extends SugarRecord {
     private String name;
@@ -42,6 +45,10 @@ public class Upgrade extends SugarRecord {
 
     public String getName() {
         return name;
+    }
+
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("upgrade_" + getId());
     }
 
     public void setName(String name) {

@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
 import android.util.Pair;
 
 import com.orm.SugarRecord;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Visitor_Type extends SugarRecord {
     private Long visitorID;
@@ -55,16 +57,16 @@ public class Visitor_Type extends SugarRecord {
         this.visitorID = visitorID;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("visitor_name_" + visitorID);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDesc(Context context) {
+        return TextHelper.getInstance(context).getText("visitor_desc_" + visitorID);
     }
 
     public void setDesc(String desc) {

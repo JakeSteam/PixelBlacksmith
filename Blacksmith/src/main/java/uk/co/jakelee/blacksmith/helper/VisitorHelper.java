@@ -436,13 +436,13 @@ public class VisitorHelper {
         String state = context.getString(R.string.unknownText);
 
         if (vType.isTypeDiscovered()) {
-            type = Type.findById(Type.class, vType.getTypePreferred()).getName();
+            type = Type.findById(Type.class, vType.getTypePreferred()).getName(context);
         }
         if (vType.isTierDiscovered()) {
-            tier = Tier.findById(Tier.class, vType.getTierPreferred()).getName();
+            tier = Tier.findById(Tier.class, vType.getTierPreferred()).getName(context);
         }
         if (vType.isStateDiscovered()) {
-            state = State.findById(State.class, vType.getStatePreferred()).getName();
+            state = State.findById(State.class, vType.getStatePreferred()).getName(context);
         }
 
         return String.format(context.getString(R.string.trophyPreferences), type, tier, state);

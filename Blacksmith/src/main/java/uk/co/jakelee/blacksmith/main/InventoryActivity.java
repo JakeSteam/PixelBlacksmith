@@ -121,7 +121,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         typeSelector.setAdapter(adapter);
         typeSelector.setOnItemSelectedListener(this);
-        typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName()) : 0);
+        typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName(this)) : 0);
     }
 
     protected void onStop() {

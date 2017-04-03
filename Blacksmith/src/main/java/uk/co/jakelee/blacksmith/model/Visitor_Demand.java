@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 
 import java.util.List;
@@ -24,17 +26,17 @@ public class Visitor_Demand extends SugarRecord {
         this.required = required;
     }
 
-    public static String getCriteriaName(Visitor_Demand demand) {
+    public static String getCriteriaName(Context context, Visitor_Demand demand) {
         String demandText = "";
         if (demand.getCriteriaType() == 1L) {
             State demandState = State.findById(State.class, demand.getCriteriaValue());
-            demandText = demandState.getName();
+            demandText = demandState.getName(context);
         } else if (demand.getCriteriaType() == 2L) {
             Tier demandTier = Tier.findById(Tier.class, demand.getCriteriaValue());
-            demandText = demandTier.getName();
+            demandText = demandTier.getName(context);
         } else if (demand.getCriteriaType() == 3L) {
             Type demandType = Type.findById(Type.class, demand.getCriteriaValue());
-            demandText = demandType.getName();
+            demandText = demandType.getName(context);
         }
         return demandText;
     }

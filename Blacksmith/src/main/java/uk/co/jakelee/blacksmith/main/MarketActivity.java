@@ -98,10 +98,10 @@ public class MarketActivity extends Activity {
             TableRow traderRow = (TableRow) inflatedView.findViewById(R.id.traderRow);
 
             TextView traderName = (TextView) traderRow.findViewById(R.id.traderName);
-            traderName.setText(trader.getName());
+            traderName.setText(trader.getName(this));
 
             TextView traderDescription = (TextView) traderRow.findViewById(R.id.traderDescription);
-            traderDescription.setText(trader.getDescription());
+            traderDescription.setText(trader.getDescription(this));
 
             LinearLayout traderOfferingsContainer = (LinearLayout) traderRow.findViewById(R.id.traderOfferings);
             populateTraderOfferings(traderOfferingsContainer, trader);

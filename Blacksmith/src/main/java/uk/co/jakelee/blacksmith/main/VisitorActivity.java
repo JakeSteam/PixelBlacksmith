@@ -137,10 +137,10 @@ public class VisitorActivity extends Activity {
         visitorPicture.setImageResource(drawableId);
 
         TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
-        visitorName.setText(visitorType.getName());
+        visitorName.setText(visitorType.getName(this));
 
         TextViewPixel visitorDesc = (TextViewPixel) findViewById(R.id.visitorDesc);
-        visitorDesc.setText(visitorType.getDesc());
+        visitorDesc.setText(visitorType.getDesc(this));
 
         TextViewPixel visitorVisits = (TextViewPixel) findViewById(R.id.visitorVisits);
         visitorVisits.setText(String.format("Visits: %d", visitorStats.getVisits()));
@@ -232,7 +232,7 @@ public class VisitorActivity extends Activity {
                 String criteriaText = String.format(getString(R.string.visitorDemand),
                         demand.getQuantity() - demand.getQuantityProvided(),
                         demandCriteria.getName(this),
-                        Visitor_Demand.getCriteriaName(demand));
+                        Visitor_Demand.getCriteriaName(this, demand));
                 TextViewPixel criteriaValue = dh.createTextView(criteriaText, 20, (demand.isRequired() ? Color.BLACK : Color.GRAY));
                 criteriaValue.setHeight(dh.convertDpToPixel(35));
                 criteriaValue.setGravity(Gravity.CENTER_VERTICAL);
@@ -315,7 +315,7 @@ public class VisitorActivity extends Activity {
         if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
             ToastHelper.showToast(findViewById(R.id.visitor), ToastHelper.SHORT, getString(R.string.undiscoveredPreference), false);
         } else {
-            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.tierPreference, preferred);
         }
     }
@@ -324,7 +324,7 @@ public class VisitorActivity extends Activity {
         if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
             ToastHelper.showToast(findViewById(R.id.visitor), ToastHelper.SHORT, getString(R.string.undiscoveredPreference), false);
         } else {
-            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.typePreference, preferred);
         }
     }
@@ -333,7 +333,7 @@ public class VisitorActivity extends Activity {
         if (view.getTag(R.id.preferred) == null || view.getTag(R.id.multiplier) == null) {
             ToastHelper.showToast(findViewById(R.id.visitor), ToastHelper.SHORT, getString(R.string.undiscoveredPreference), false);
         } else {
-            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.statePreference, preferred);
         }
     }
@@ -349,7 +349,7 @@ public class VisitorActivity extends Activity {
             String bestItemName = Item.findById(Item.class, bestItemID).getFullName(bestItemState);
             ToastHelper.showToast(findViewById(R.id.visitor),
                     ToastHelper.SHORT, String.format(getString(R.string.bestItemMessage),
-                        visitorType.getName(),
+                        visitorType.getName(this),
                         bestItemName,
                         bestItemValue), false);
         }

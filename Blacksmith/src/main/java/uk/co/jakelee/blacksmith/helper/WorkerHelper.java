@@ -165,16 +165,16 @@ public class WorkerHelper {
                     String lastResultString = removeEquippedItems(hero, slotsToEmpty);
                     if (slotsToEmpty.size() > 0) {
                         lastResult = String.format(context.getString(R.string.heroFailText),
-                                heroVisitor.getName(),
+                                heroVisitor.getName(context),
                                 adventure.getName(),
                                 lastResultString);
                     } else {
                         lastResult = String.format(context.getString(R.string.heroFailNoItemsText),
-                                heroVisitor.getName(),
+                                heroVisitor.getName(context),
                                 adventure.getName());
                     }
                 }
-                heroNames.add(heroVisitor.getName());
+                heroNames.add(heroVisitor.getName(context));
                 completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS || adventureResult == Constants.HERO_RESULT_SUPER_SUCCESS);
                 heroesFinished++;
                 Message.add(lastResult);
@@ -343,7 +343,7 @@ public class WorkerHelper {
         for (Worker worker : workers) {
             if (getTimeRemaining(worker.getTimeStarted()) <= 0) {
                 rewardText = rewardResources(context, worker);
-                workerNames.add(Character.findById(Character.class, worker.getCharacterID()).getName());
+                workerNames.add(Character.findById(Character.class, worker.getCharacterID()).getName(context));
                 workersFinished++;
 
                 // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
@@ -387,7 +387,7 @@ public class WorkerHelper {
         Character workerCharacter = Character.findById(Character.class, worker.getCharacterID());
         List<Worker_Resource> resources = getResourcesByTool((int) worker.getToolUsed());
         return String.format(context.getString(R.string.workerReturned),
-                workerCharacter.getName(),
+                workerCharacter.getName(context),
                 getRewardResourcesText(worker, resources, true));
     }
 
@@ -398,7 +398,7 @@ public class WorkerHelper {
             resources = superSuccessResources(resources);
         }
         return String.format(context.getString(R.string.workerReturned),
-                vType.getName(),
+                vType.getName(context),
                 getRewardResourcesText(hero, resources, true, superSuccess));
     }
 
@@ -528,7 +528,7 @@ public class WorkerHelper {
         Character character = Character.findById(Character.class, worker.getCharacterID());
         Item foodUsed = Item.findById(Item.class, worker.getFoodUsed());
         return String.format(context.getString(R.string.workerTimesCompleted),
-                character.getName(),
+                character.getName(context),
                 worker.getTimesCompleted(),
                 foodUsed != null ? foodUsed.getName() : "nothing",
                 foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
@@ -538,7 +538,7 @@ public class WorkerHelper {
         Visitor_Type visitorType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
         Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, hero.getVisitorId());
         return String.format(context.getString(R.string.heroTimesCompleted),
-                visitorType.getName(),
+                visitorType.getName(context),
                 visitorStats.getAdventuresCompleted(),
                 WorkerHelper.getTotalStrength(hero, visitorType));
     }
@@ -547,7 +547,7 @@ public class WorkerHelper {
         Character character = Character.findById(Character.class, worker.getCharacterID());
         String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(worker.getTimeStarted()));
         return String.format(context.getString(R.string.workerReturnTime),
-                character.getName(),
+                character.getName(context),
                 timeRemaining);
     }
 
@@ -555,7 +555,7 @@ public class WorkerHelper {
         Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
         String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(hero.getTimeStarted()));
         return String.format(context.getString(R.string.workerReturnTime),
-                vType.getName(),
+                vType.getName(context),
                 timeRemaining);
     }
 

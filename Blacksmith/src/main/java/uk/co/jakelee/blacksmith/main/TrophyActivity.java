@@ -103,9 +103,9 @@ public class TrophyActivity extends Activity {
             int drawableId = this.getResources().getIdentifier("visitor" + visitorTypeID, "drawable", this.getPackageName());
 
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(dh.createDrawable(drawableId, 40, 40));
-            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
+            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName(this));
             ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(String.format(getString(R.string.trophyVisits), visitorStats.getVisits()));
-            ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc());
+            ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(visitorType.getDesc(this));
             ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(String.format(getString(R.string.trophyFirstSeen), firstSeenText));
             ((TextViewPixel) findViewById(R.id.visitor100thVisit)).setText(String.format(getString(R.string.trophy100thVisit), trophyAchievedText));
             ((TextViewPixel) findViewById(R.id.visitorBestItem)).setText(String.format(getString(R.string.trophyBestItem), bestItemText));
@@ -115,7 +115,7 @@ public class TrophyActivity extends Activity {
             String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
 
             ((ImageView) findViewById(R.id.visitorPicture)).setImageDrawable(new ColorDrawable(Color.BLACK));
-            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName());
+            ((TextViewPixel) findViewById(R.id.visitorName)).setText(visitorType.getName(this));
             ((TextViewPixel) findViewById(R.id.visitorVisits)).setText(String.format(getString(R.string.trophyVisits), visitorStats.getVisits()));
             ((TextViewPixel) findViewById(R.id.visitorDesc)).setText(R.string.unknownText);
             ((TextViewPixel) findViewById(R.id.visitorFirstSeen)).setText(String.format(getString(R.string.trophyFirstSeen), firstSeenText));

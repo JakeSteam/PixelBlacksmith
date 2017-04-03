@@ -85,7 +85,7 @@ public class AlertDialogHelper {
     public static void confirmUpgrade(final Context context, final UpgradeActivity activity, final Upgrade upgrade) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.upgradeQuestion),
-                upgrade.getName(),
+                upgrade.getName(context),
                 (upgrade.increases() ? upgrade.getCurrent() + upgrade.getIncrement() : upgrade.getCurrent() - upgrade.getIncrement()),
                 upgrade.getMaximum(),
                 upgrade.getUpgradeCost()));
@@ -95,7 +95,7 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 int upgradeResponse = upgrade.tryUpgrade();
                 if (upgradeResponse == Constants.SUCCESS) {
-                    ToastHelper.showPositiveToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName()), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, String.format(context.getString(R.string.upgradeSuccess), upgrade.getName(context)), true);
                     Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
                     activity.alertDialogCallback();
                 } else {
@@ -382,7 +382,7 @@ public class AlertDialogHelper {
     public static void confirmTraderLock(final TraderActivity activity, Trader trader) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(activity.getString(trader.isFixed() ? R.string.unlockConfirm : R.string.lockConfirm),
-                trader.getName(),
+                trader.getName(activity),
                 Constants.TRADER_LOCK_COST));
 
         alertDialog.setPositiveButton(activity.getString(trader.isFixed() ? R.string.unlock : R.string.lock), new DialogInterface.OnClickListener() {
@@ -407,8 +407,8 @@ public class AlertDialogHelper {
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(Player_Info.displayAds() ?
-                        String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(), restockCost) :
-                        String.format(context.getString(R.string.traderRestockQuestion), trader.getName(), restockCost));
+                        String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(context), restockCost) :
+                        String.format(context.getString(R.string.traderRestockQuestion), trader.getName(context), restockCost));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.traderRestockConfirm), new DialogInterface.OnClickListener() {

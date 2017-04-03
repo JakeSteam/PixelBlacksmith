@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Character extends SugarRecord {
     private Long id;
@@ -24,16 +28,16 @@ public class Character extends SugarRecord {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("character_name_" + id);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getIntro() {
-        return intro;
+    public String getIntro(Context context) {
+        return TextHelper.getInstance(context).getText("character_intro_" + id);
     }
 
     public void setIntro(String intro) {

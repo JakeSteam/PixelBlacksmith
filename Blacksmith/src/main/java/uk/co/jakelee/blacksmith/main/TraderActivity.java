@@ -74,10 +74,10 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         traderImage.setImageResource(drawableID);
 
         TextView traderName = (TextView) findViewById(R.id.traderName);
-        traderName.setText(traderCharacter.getName());
+        traderName.setText(traderCharacter.getName(this));
 
         TextView traderGreeting = (TextView) findViewById(R.id.traderGreeting);
-        traderGreeting.setText(traderCharacter.getIntro());
+        traderGreeting.setText(traderCharacter.getIntro(this));
 
         TextView traderTrades = (TextView) findViewById(R.id.traderTrades);
         traderTrades.setText(String.format(getString(R.string.traderTrades), trader.getPurchases()));

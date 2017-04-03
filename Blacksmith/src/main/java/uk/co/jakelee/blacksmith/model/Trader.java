@@ -10,6 +10,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 
@@ -70,11 +71,11 @@ public class Trader extends SugarRecord {
 
     private static void makeTraderAppear(Context context) {
         Trader traderToArrive = selectTraderType();
-        if (traderToArrive.getName() != null) {
+        if (traderToArrive.getName(context) != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
             if (!TutorialHelper.currentlyInTutorial) {
-                ToastHelper.showToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+                ToastHelper.showToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName(context)), true);
             }
         }
     }
@@ -167,16 +168,16 @@ public class Trader extends SugarRecord {
         this.location = location;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("trader_name_" + getId());
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescription(Context context) {
+        return TextHelper.getInstance(context).getText("trader_desc_" + getId());
     }
 
     public void setDescription(String description) {

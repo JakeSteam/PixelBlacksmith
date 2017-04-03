@@ -197,7 +197,7 @@ public class UpgradeActivity extends Activity {
     private String getUpgradeText(Upgrade upgrade) {
         if (!upgrade.isAtMaximum()) {
             return String.format(getString(R.string.upgradeDescription),
-                    upgrade.getName(),
+                    upgrade.getName(this),
                     upgrade.getCurrent(),
                     upgrade.getMaximum(),
                     upgrade.getUnits(),
@@ -207,7 +207,7 @@ public class UpgradeActivity extends Activity {
                     upgrade.getUpgradeCost());
         } else {
             return String.format(getString(R.string.upgradeCompletedDescription),
-                    upgrade.getName(),
+                    upgrade.getName(this),
                     upgrade.getCurrent(),
                     upgrade.getMaximum(),
                     upgrade.getUnits());

@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -127,10 +128,11 @@ public class TradeActivity extends Activity implements ItemTable {
 
     private void displayVisitorInfo() {
         final TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
+        final Context context = this;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visitorName.setText(visitorType.getName());
+                visitorName.setText(visitorType.getName(context));
             }
         });
     }
@@ -145,7 +147,7 @@ public class TradeActivity extends Activity implements ItemTable {
             public void run() {
                 demandTextView.setText(String.format(getString(R.string.demandText),
                         demandCriteria.getName(activity),
-                        Visitor_Demand.getCriteriaName(demand),
+                        Visitor_Demand.getCriteriaName(activity, demand),
                         demand.getQuantityProvided(),
                         demand.getQuantity()
                 ));
