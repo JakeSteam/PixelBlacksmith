@@ -139,11 +139,12 @@ public class TradeActivity extends Activity implements ItemTable {
         final Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
         final TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
 
+        final Activity activity = this;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 demandTextView.setText(String.format(getString(R.string.demandText),
-                        demandCriteria.getName(),
+                        demandCriteria.getName(activity),
                         Visitor_Demand.getCriteriaName(demand),
                         demand.getQuantityProvided(),
                         demand.getQuantity()

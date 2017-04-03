@@ -127,7 +127,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         for (Contribution_Goal contribution : contributions) {
             boolean unlocked = timesContributed >= contribution.getReqContributions();
             TextView contributeTitle = dh.createTextView(String.format(getString(R.string.contributeTitle),
-                    contribution.getName(),
+                    contribution.getName(this),
                     unlocked ? contribution.getReqContributions() : timesContributed,
                     contribution.getReqContributions()), 24);
             contributeTitle.setTextColor(unlocked ? Color.parseColor("#267c18") : Color.BLACK);
@@ -140,7 +140,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             contributeProgress.setPadding(0, 0, 15, 0);
 
             TextView contributeBody = new TextViewPixel(this);
-            contributeBody.setText(Html.fromHtml(unlocked ? contribution.getUnlockedText() : contribution.getTeaserText() + "<br><br>"));
+            contributeBody.setText(Html.fromHtml(unlocked ? contribution.getUnlockedText(this) : contribution.getTeaserText(this) + "<br><br>"));
             contributeBody.setTextSize(20);
             contributeBody.setMovementMethod(LinkMovementMethod.getInstance());
             contributeBody.setTextColor(Color.BLACK);

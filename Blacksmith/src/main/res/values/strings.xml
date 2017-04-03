@@ -7,6 +7,56 @@
     <string name="rate_dialog_cancel">Later</string>
     <string name="rate_dialog_no">Cancel</string>
 
+    <string name="con_name_1">Thank You</string>
+    <string name="con_name_2">Dev Queue</string>
+    <string name="con_name_3">Beta &amp; Credits</string>
+    <string name="con_name_4">Create Quest</string>
+    <string name="con_name_5">Create Item</string>
+    <string name="con_name_6">Create Visitor</string>
+    <string name="con_name_7">Create Feature</string>
+
+    <string name="con_teaser_1">Get an extra little thank you.</string>
+    <string name="con_teaser_2">Get access to the Trello board used to plan / prioritise new features, changes, and bug fixes.</string>
+    <string name="con_teaser_3">Get beta access to all releases at least 24hr in advance, and get your name / username in the credits.</string>
+    <string name="con_teaser_4">Create a quest and quest reward for a hero to be added to the game.</string>
+    <string name="con_teaser_5">Create an item (e.g. weapon, armour, ingredient) to be added to the game.</string>
+    <string name="con_teaser_6">Create a visitor, along with preferences.</string>
+    <string name="con_teaser_7">Suggest an entirely new feature (within reason!) for the game.</string>
+
+    <string name="con_unlocked_1">Thanks! Your contributions are what make further development on Pixel Blacksmith possible!</string>
+    <string name="con_unlocked_2"><a href="https://trello.com/b/Zw01amFA/">Trello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it\'ll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in.</string>
+    <string name="con_unlocked_3">Hey, send an email to <a href="mailto:i.am.now.a.beta.player@jakelee.co.uk">the beta address</a> and I'll get you added to the beta testing / credits!</string>
+    <string name="con_unlocked_4">Woo! Try and make your idea fit into an existing category, and email it to <a href="mailto:i.make.the.quests@jakelee.co.uk">the quest address</a>, and I'll put it in the game.</string>
+    <string name="con_unlocked_5">Hey! Email your item name, description, ingredients, and purpose to <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk">the item address</a>. We might have to make some changes to balance the item though!</string>
+    <string name="con_unlocked_6">You\'re a big fan of contributing, huh? Email a visitor name, description, and preferences to <a href="mailto:i.make.people.happen@jakelee.co.uk">the visitor address</a>, and we'll discuss the visitor's appearance etc.</string>
+    <string name="con_unlocked_7">Wow, that\'s impressive..! Send me an email to <a href="mailto:i.basically.make.the.game@jakelee.co.uk">the feature address</a>, and we'll work together to make the feature reality.</string>
+
+    <string name="criteria_1">State</string>
+    <string name="criteria_2">Tier</string>
+    <string name="criteria_3">Type</string>
+
+    <string name="su_1">2x Furnace Items</string>
+    <string name="su_2">2x Coin Earnings</string>
+    <string name="su_3">2x All XP</string>
+    <string name="su_4">2x Trader Items Purchased</string>
+    <string name="su_5">2x Worker Resources</string>
+    <string name="su_6">1 Demand Per Visitor</string>
+    <string name="su_7">Free Market Restock</string>
+    <string name="su_8">-50% Worker Time</string>
+    <string name="su_9">2x Trade Price</string>
+    <string name="su_10">-50% Market Buy Cost</string>
+    <string name="su_11">-50% Bonus Chest Time</string>
+    <string name="su_12">100x Contribution Reward</string>
+    <string name="su_13">Guaranteed Pages</string>
+    <string name="su_14">All Quests Medium+</string>
+    <string name="su_15">All Quests Hard+</string>
+    <string name="su_16">All Quests Elite</string>
+    <string name="su_17">2x Anvil Items</string>
+    <string name="su_18">2x Table Items</string>
+    <string name="su_19">2x Enchant Table Items</string>
+    <string name="su_20">Buy All From Market</string>
+    <string name="su_21">Halve All Times</string>
+
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>
     <string name="tutorialIntro">Blacksmith</string>

@@ -110,7 +110,7 @@ public class UpgradeActivity extends Activity {
     }
 
     private TextView createSuperUpgradeText(Super_Upgrade upgrade) {
-        TextView superUpgrade = dh.createTextView(upgrade.getName() + "\n", 24);
+        TextView superUpgrade = dh.createTextView(upgrade.getName(this) + "\n", 24);
         superUpgrade.setSingleLine(false);
         if (!upgrade.havePrestigeLevel()) {
             superUpgrade.setPaintFlags(superUpgrade.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
@@ -153,7 +153,7 @@ public class UpgradeActivity extends Activity {
         upgrade.setEnabled(!upgrade.isEnabled());
         upgrade.save();
         ToastHelper.showPositiveToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradeStatusChange),
-                upgrade.getName(),
+                upgrade.getName(this),
                 getString(upgrade.isEnabled() ? R.string.superUpgradeEnabled : R.string.superUpgradeDisabled)
         ), true);
 
