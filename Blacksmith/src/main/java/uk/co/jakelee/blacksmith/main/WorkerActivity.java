@@ -171,7 +171,7 @@ public class WorkerActivity extends Activity {
                     if (hero.isPurchased() && hero.getVisitorId() > 0) {
                         List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure(hero.getCurrentAdventure());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(hero, resources, false, false)), false);
+                                WorkerHelper.getRewardResourcesText(activity, hero, resources, false, false)), false);
                     }
                 }
             });
@@ -293,7 +293,7 @@ public class WorkerActivity extends Activity {
                     }
                 }
             });
-            workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
+            workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName(this)));
 
             workerResourceContainer.setTag(worker);
             workerResourceContainer.setOnClickListener(new Button.OnClickListener() {
@@ -302,7 +302,7 @@ public class WorkerActivity extends Activity {
                     if (worker.isPurchased()) {
                         List<Worker_Resource> resources = WorkerHelper.getResourcesByTool((int) worker.getToolUsed());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(worker, resources, false)), false);
+                                WorkerHelper.getRewardResourcesText(activity, worker, resources, false)), false);
                     }
                 }
             });

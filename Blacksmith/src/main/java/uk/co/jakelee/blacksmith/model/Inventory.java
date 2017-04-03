@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -223,7 +225,7 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
-    public static String exchangePages(Inventory pageInventory, int quantity) {
+    public static String exchangePages(Context context, Inventory pageInventory, int quantity) {
         pageInventory.setQuantity(pageInventory.getQuantity() - (quantity * Constants.PAGE_EXCHANGE_QTY));
         pageInventory.save();
 
@@ -233,7 +235,7 @@ public class Inventory extends SugarRecord implements Serializable {
         Item rewardPage = VisitorHelper.pickRandomItemFromList(pages);
         Inventory.addItem(rewardPage.getId(), Constants.STATE_NORMAL, quantity);
 
-        return rewardPage.getName();
+        return rewardPage.getName(context);
     }
 
     public static boolean haveSeen(long item, long state) {

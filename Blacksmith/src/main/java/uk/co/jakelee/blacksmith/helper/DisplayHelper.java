@@ -152,7 +152,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(context, location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -164,7 +164,7 @@ public class DisplayHelper {
                         slotOverflow.setVisibility(View.VISIBLE);
                         slotBackground.setOnClickListener(new Button.OnClickListener() {
                             public void onClick(View v) {
-                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(location.getId()), false);
+                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(context, location.getId()), false);
                             }
                         });
                         displayedNextSlot = true;
@@ -481,13 +481,13 @@ public class DisplayHelper {
         if (Inventory.haveSeen(itemID, state)) {
             itemName.setText(String.format("%s%s",
                     item.getPrefix(state),
-                    item.getName()));
-            itemDesc.setText(item.getDescription());
+                    item.getName(context)));
+            itemDesc.setText(item.getDescription(context));
             itemCount.setText(String.format("%d", numberOwned));
         } else if (Inventory.haveLevelFor(itemID)) {
             itemName.setText(String.format("%s%s",
                     item.getPrefix(state),
-                    item.getName()));
+                    item.getName(context)));
             itemDesc.setText(R.string.unknownText);
             itemCount.setText(R.string.unknownText);
         } else {
@@ -732,13 +732,13 @@ public class DisplayHelper {
             Inventory owned = Inventory.getInventory(ingredient.getIngredient(), ingredient.getIngredientState());
             TableRow row = new TableRow(context);
 
-            String itemName = itemIngredient.getPrefix(ingredient.getIngredientState()) + itemIngredient.getName();
+            String itemName = itemIngredient.getPrefix(ingredient.getIngredientState()) + itemIngredient.getName(context);
             TextViewPixel itemNameView = createTextView(itemName, 22, Color.BLACK);
             itemNameView.setSingleLine(false);
             itemNameView.setPadding(0, 10, 0, 0);
             itemNameView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(ingredientsTable, ToastHelper.SHORT, itemIngredient.getDescription(), false);
+                    ToastHelper.showToast(ingredientsTable, ToastHelper.SHORT, itemIngredient.getDescription(context), false);
                 }
             });
 

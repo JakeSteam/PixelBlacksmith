@@ -66,14 +66,14 @@ public class QuestHelper {
             return String.format(context.getString(R.string.questRewardPage),
                     xpAmount,
                     rewardItemCount,
-                    rewardItem.getName(),
+                    rewardItem.getName(context),
                     rewardPageCount,
-                    rewardPage.getName());
+                    rewardPage.getName(context));
         } else {
             return String.format(context.getString(R.string.questRewardNoPage),
                     xpAmount,
                     rewardItemCount,
-                    rewardItem.getName());
+                    rewardItem.getName(context));
         }
     }
 

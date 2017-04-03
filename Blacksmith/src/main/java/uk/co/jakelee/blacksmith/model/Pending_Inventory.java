@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
 import android.text.format.DateUtils;
 import android.util.Pair;
 
@@ -173,7 +174,7 @@ public class Pending_Inventory extends SugarRecord {
         }
     }
 
-    public static String getPendingItemsText(long locationID) {
+    public static String getPendingItemsText(Context context, long locationID) {
         List<Pending_Inventory> pendingItems = Select.from(Pending_Inventory.class).where(
                 Condition.prop("location_id").eq(locationID)).list();
         HashMap<String, Integer> data = new HashMap<>();
@@ -181,12 +182,12 @@ public class Pending_Inventory extends SugarRecord {
         for (Pending_Inventory pendingItem : pendingItems) {
             Item item = Item.findById(Item.class, pendingItem.getItem());
             Integer temp;
-            if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName())+pendingItem.getQuantity();
-                data.put(item.getName(),temp);
+            if(data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context))+pendingItem.getQuantity();
+                data.put(item.getName(context),temp);
             }
             else {
-                data.put(item.getName(),pendingItem.getQuantity());
+                data.put(item.getName(context),pendingItem.getQuantity());
             }
         }
 

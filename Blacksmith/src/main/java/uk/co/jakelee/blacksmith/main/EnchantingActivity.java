@@ -233,7 +233,7 @@ public class EnchantingActivity extends Activity {
         itemButton.addView(itemImage);
 
         int quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
-        String itemName = item.getName();
+        String itemName = item.getName(this);
         String buttonText = String.format(getString(R.string.enchantingButtonText), itemName, quantityOwned);
 
         int textSize = 30;
@@ -257,7 +257,7 @@ public class EnchantingActivity extends Activity {
         int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
+            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName(this)), false);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_POWDER, 1);
 
             dh.createCraftingInterface(
@@ -283,8 +283,8 @@ public class EnchantingActivity extends Activity {
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.enchantAdd),
-                    gem.getName(),
-                    item.getName()), false);
+                    gem.getName(this),
+                    item.getName(this)), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
 

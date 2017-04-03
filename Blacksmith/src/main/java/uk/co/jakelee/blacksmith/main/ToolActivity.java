@@ -82,7 +82,7 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
                 ImageView itemImage = dh.createItemImage(tool.getItem(), (int)tool.getState(), 25, 25, true, true);
                 TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
                         tool.getQuantity(),
-                        toolItem.getName()), 30);
+                        toolItem.getName(this)), 30);
                 ImageView selectImage = new ImageView(this);
                 selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
 

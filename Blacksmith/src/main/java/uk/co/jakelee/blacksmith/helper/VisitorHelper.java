@@ -380,12 +380,12 @@ public class VisitorHelper {
             Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1, false);
             ToastHelper.showToast(null, ToastHelper.LONG, String.format(rewardString,
                     numRewards,
-                    selectedItem.getName(),
-                    premiumItem.getFullName(Constants.STATE_UNFINISHED)), true);
+                    selectedItem.getName(context),
+                    premiumItem.getFullName(context, Constants.STATE_UNFINISHED)), true);
         } else {
             ToastHelper.showToast(null, ToastHelper.LONG, String.format(rewardString,
                     numRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL)), true);
+                    selectedItem.getFullName(context, Constants.STATE_NORMAL)), true);
         }
     }
 

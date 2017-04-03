@@ -199,12 +199,12 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             Inventory.addItem(legendaryItem.getId(), Constants.STATE_UNFINISHED, 1);
             rewardString = String.format(rewardString,
                     numberRewards,
-                    selectedItem.getName(),
-                    legendaryItem.getFullName(Constants.STATE_UNFINISHED));
+                    selectedItem.getName(context),
+                    legendaryItem.getFullName(context, Constants.STATE_UNFINISHED));
         } else {
             rewardString = String.format(rewardString,
                     numberRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL));
+                    selectedItem.getFullName(context, Constants.STATE_NORMAL));
         }
 
         // Append page earned if possible.
@@ -214,7 +214,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
             rewardString += (" " + String.format(context.getString(R.string.advertWatchedPageSuffix),
-                rewardedPage.getName()));
+                rewardedPage.getName(context)));
         }
 
         return rewardString;

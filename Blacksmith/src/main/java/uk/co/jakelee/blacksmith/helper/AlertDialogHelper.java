@@ -512,16 +512,16 @@ public class AlertDialogHelper {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(activity.getString(R.string.exchangePagesQuestion),
                 Constants.PAGE_EXCHANGE_QTY,
-                item.getName(),
+                item.getName(context),
                 maxNewPages * Constants.PAGE_EXCHANGE_QTY,
                 maxNewPages));
 
         alertDialog.setPositiveButton(context.getString(R.string.exchangePagesOne), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                String name = Inventory.exchangePages(inventory, 1);
+                String name = Inventory.exchangePages(activity, inventory, 1);
                 ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(context.getString(R.string.exchangePagesSuccess),
                         Constants.PAGE_EXCHANGE_QTY,
-                        item.getName(),
+                        item.getName(context),
                         1,
                         name), true);
                 activity.callback();
@@ -530,10 +530,10 @@ public class AlertDialogHelper {
 
         alertDialog.setNegativeButton(context.getString(R.string.exchangePagesAll), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                String name = Inventory.exchangePages(inventory, maxNewPages);
+                String name = Inventory.exchangePages(activity, inventory, maxNewPages);
                 ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(context.getString(R.string.exchangePagesSuccess),
                         maxNewPages * Constants.PAGE_EXCHANGE_QTY,
-                        item.getName(),
+                        item.getName(context),
                         maxNewPages,
                         name), true);
                 activity.callback();
@@ -690,7 +690,7 @@ public class AlertDialogHelper {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
         int itemValue = item.getValue() / (item.getValue() > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
         final int finalItemValue = isFixed ? (int)Math.ceil((double)itemValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : itemValue;
-        final String itemName = item.getFullName(Constants.STATE_NORMAL);
+        final String itemName = item.getFullName(context, Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
         final int itemsToSell = (int)Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),

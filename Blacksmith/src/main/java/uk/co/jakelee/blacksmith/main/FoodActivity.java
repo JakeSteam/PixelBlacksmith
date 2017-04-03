@@ -60,7 +60,7 @@ public class FoodActivity extends Activity {
                 ImageView itemImage = dh.createItemImage(food.getItem(), (int)food.getState(), 25, 25, true, true);
                 TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
                         food.getQuantity(),
-                        foodItem.getName()), 26);
+                        foodItem.getName(this)), 26);
                 ImageView selectImage = new ImageView(this);
                 selectImage.setImageDrawable(dh.createDrawable(R.drawable.open, 35, 35));
                 TextView itemBonus = createBonusTextView(foodItem, worker.isFavouriteFoodDiscovered());

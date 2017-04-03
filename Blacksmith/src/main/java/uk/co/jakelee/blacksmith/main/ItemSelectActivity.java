@@ -104,10 +104,10 @@ public class ItemSelectActivity extends Activity {
         boolean haveSeen = Inventory.haveSeen(item.getId(), dh.itemSelectionState);
         boolean canCreate = Inventory.haveLevelFor(item.getId());
         if (haveSeen) {
-            itemName.setText(String.format("%s", item.getFullName(dh.itemSelectionState)));
+            itemName.setText(String.format("%s", item.getFullName(this, dh.itemSelectionState)));
             itemCount.setText(String.format("%d", numberOwned));
         } else if (canCreate) {
-            itemName.setText(String.format("%s", item.getFullName(dh.itemSelectionState)));
+            itemName.setText(String.format("%s", item.getFullName(this, dh.itemSelectionState)));
             itemCount.setText(R.string.unknownText);
         } else {
             itemName.setText(R.string.unknownText);

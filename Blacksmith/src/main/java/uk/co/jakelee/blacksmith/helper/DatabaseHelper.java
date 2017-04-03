@@ -244,7 +244,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_0_3).apply();
         }
 
-        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V2_1_0) {
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) <= DatabaseHelper.DB_V2_0_3) {
             setProgress("2.1.0 Patch", 94);
             patch203to210();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_1_0).apply();

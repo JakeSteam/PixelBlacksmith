@@ -388,7 +388,7 @@ public class WorkerHelper {
         List<Worker_Resource> resources = getResourcesByTool((int) worker.getToolUsed());
         return String.format(context.getString(R.string.workerReturned),
                 workerCharacter.getName(context),
-                getRewardResourcesText(worker, resources, true));
+                getRewardResourcesText(context, worker, resources, true));
     }
 
     private static String rewardResources(Context context, Hero hero, boolean superSuccess) {
@@ -399,7 +399,7 @@ public class WorkerHelper {
         }
         return String.format(context.getString(R.string.workerReturned),
                 vType.getName(context),
-                getRewardResourcesText(hero, resources, true, superSuccess));
+                getRewardResourcesText(context, hero, resources, true, superSuccess));
     }
 
     private static List<Hero_Resource> superSuccessResources(List<Hero_Resource> resources) {
@@ -411,7 +411,7 @@ public class WorkerHelper {
         return resources;
     }
 
-    public static String getRewardResourcesText(Hero hero, List<Hero_Resource> resources, boolean addItems, boolean isSuperSuccess) {
+    public static String getRewardResourcesText(Context context, Hero hero, List<Hero_Resource> resources, boolean addItems, boolean isSuperSuccess) {
         LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, hero.getFoodItem());
 
@@ -425,11 +425,11 @@ public class WorkerHelper {
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
-            if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName()) + numberResources;
-                data.put(item.getName(), temp);
+            if(data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context)) + numberResources;
+                data.put(item.getName(context), temp);
             } else {
-                data.put(item.getName(), numberResources);
+                data.put(item.getName(context), numberResources);
             }
         }
 
@@ -442,7 +442,7 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+            bonusText = String.format(", and a rare %s", rewardedPage.getName(context));
         } else if (!addItems && foodItem != null) {
             bonusText = ", and possibly a rare page";
         }
@@ -457,7 +457,7 @@ public class WorkerHelper {
         return result.substring(0, result.length() - 2) + bonusText;
     }
 
-    public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {
+    public static String getRewardResourcesText(Context context, Worker worker, List<Worker_Resource> resources, boolean addItems) {
         LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, worker.getFoodUsed());
         boolean applyFoodBonus = worker.getFoodUsed() > 0 && (worker.getTimeStarted() > 0 || addItems);
@@ -483,11 +483,11 @@ public class WorkerHelper {
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
-            if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName()) + numberResources;
-                data.put(item.getName(), temp);
+            if(data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context)) + numberResources;
+                data.put(item.getName(context), temp);
             } else {
-                data.put(item.getName(), numberResources);
+                data.put(item.getName(context), numberResources);
             }
         }
 
@@ -500,7 +500,7 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+            bonusText = String.format(", and a rare %s", rewardedPage.getName(context));
         } else if (!addItems && foodItem != null) {
             // If checking resources
             if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
@@ -530,7 +530,7 @@ public class WorkerHelper {
         return String.format(context.getString(R.string.workerTimesCompleted),
                 character.getName(context),
                 worker.getTimesCompleted(),
-                foodUsed != null ? foodUsed.getName() : "nothing",
+                foodUsed != null ? foodUsed.getName(context) : "nothing",
                 foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
     }
 

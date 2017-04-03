@@ -97,7 +97,7 @@ public class TrophyActivity extends Activity {
         // Differing behaviour depending on trophy / seen / unseen state.
         if (visitorStats.getVisits() >= Constants.VISITS_TROPHY) {
             Item bestItem = Item.findById(Item.class, visitorStats.getBestItem());
-            String bestItemText = bestItem.getPrefix(visitorStats.getBestItemState()) + bestItem.getName();
+            String bestItemText = bestItem.getPrefix(visitorStats.getBestItemState()) + bestItem.getName(this);
             String firstSeenText = DateHelper.displayTime(visitorStats.getFirstSeen(), DateHelper.date);
             String trophyAchievedText = DateHelper.displayTime(visitorStats.getTrophyAchieved(), DateHelper.date);
             int drawableId = this.getResources().getIdentifier("visitor" + visitorTypeID, "drawable", this.getPackageName());

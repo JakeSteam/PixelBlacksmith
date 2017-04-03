@@ -115,7 +115,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
         TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
         itemStock.setText(String.format(getString(R.string.traderStock),
-                item.getFullName(itemForSale.getState()),
+                item.getFullName(this, itemForSale.getState()),
                 itemForSale.getStock(),
                 itemForSale.getDefaultStock()));
 

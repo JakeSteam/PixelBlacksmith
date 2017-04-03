@@ -160,7 +160,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
 
             ImageView image = dh.createItemImage(item.getId(), (int)inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true, inventoryItem.isUnsellable());
 
-            final String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
+            final String itemName = item.getPrefix(inventoryItem.getState()) + item.getName(this);
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
             name.setTag(R.id.itemID, inventoryItem.getItem());
@@ -169,10 +169,10 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
             name.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(inventoryTable, ToastHelper.SHORT, item.getDescription(), false);
+                    ToastHelper.showToast(inventoryTable, ToastHelper.SHORT, item.getDescription(activity), false);
                 }
             });
-            name.setOnLongClickListener(ListenerHelper.getItemLongClick(this));
+            name.setOnLongClickListener(ListenerHelper.getItemLongClick(this, this));
 
             itemRow.addView(count);
             itemRow.addView(image);
@@ -268,7 +268,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
 
         if (quantityToSell > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(view, ToastHelper.SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
+            ToastHelper.showToast(view, ToastHelper.SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(this), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue * quantityToSell);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_SOLD_ITEM, quantityToSell);

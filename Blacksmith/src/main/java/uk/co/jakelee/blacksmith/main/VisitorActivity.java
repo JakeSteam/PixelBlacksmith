@@ -282,8 +282,8 @@ public class VisitorActivity extends Activity {
                 Pair<Item, Integer> rewardedItem = rewards.get(0);
                 Pair<Item, Integer> rewardedPage = rewards.get(1);
                 ToastHelper.showToast(findViewById(R.id.visitor), ToastHelper.SHORT, String.format(getString(R.string.visitorTrophyEarned),
-                        rewardedItem.first.getFullName(rewardedItem.second),
-                        rewardedPage.first.getFullName(rewardedPage.second)), true);
+                        rewardedItem.first.getFullName(this, rewardedItem.second),
+                        rewardedPage.first.getFullName(this, rewardedPage.second)), true);
             }
 
             if (visitorStats.getVisits() >= Constants.VISITS_TROPHY && visitorStats.getTrophyAchieved() == 0) {
@@ -346,7 +346,7 @@ public class VisitorActivity extends Activity {
             long bestItemState = (long) view.getTag(R.id.bestItemState);
             int bestItemValue = (int) view.getTag(R.id.bestItemValue);
 
-            String bestItemName = Item.findById(Item.class, bestItemID).getFullName(bestItemState);
+            String bestItemName = Item.findById(Item.class, bestItemID).getFullName(this, bestItemState);
             ToastHelper.showToast(findViewById(R.id.visitor),
                     ToastHelper.SHORT, String.format(getString(R.string.bestItemMessage),
                         visitorType.getName(this),
