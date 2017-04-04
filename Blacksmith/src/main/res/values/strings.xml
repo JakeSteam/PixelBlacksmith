@@ -757,6 +757,13 @@
 
     <string name="language_1">English</string>
     <string name="language_2">French</string>
+    <string name="language_3">Russian</string>
+    <string name="language_4">Dutch</string>
+    <string name="language_5">Chinese</string>
+    <string name="language_6">Korean</string>
+    <string name="language_7">Japanese</string>
+    <string name="language_8">Spanish</string>
+    <string name="language_9">German</string>
 
     <string name="setting_1">Game Sound</string>
     <string name="setting_2">Game Music</string>
@@ -1737,37 +1744,6 @@
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
-
-    <string-array name="typesArray">
-        <item>All Items</item>
-        <item>Bar</item>
-        <item>Book</item>
-        <item>Boot</item>
-        <item>Bow</item>
-        <item>Chainmail</item>
-        <item>Cooked Food</item>
-        <item>Dagger</item>
-        <item>Fishing Rod</item>
-        <item>Full Helmet</item>
-        <item>Full Shield</item>
-        <item>Gem</item>
-        <item>Glove</item>
-        <item>Half Helmet</item>
-        <item>Half Shield</item>
-        <item>Hammer</item>
-        <item>Hatchet</item>
-        <item>Longsword</item>
-        <item>Ore</item>
-        <item>Page</item>
-        <item>Pickaxe</item>
-        <item>Platebody</item>
-        <item>Powder</item>
-        <item>Rare</item>
-        <item>Raw Food</item>
-        <item>Ring</item>
-        <item>Secondary</item>
-        <item>Sword</item>
-    </string-array>
 
     <string-array name='tipsArray'>
         <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>

@@ -1,0 +1,1861 @@
+<resources>
+    <string name="app_name" translatable="false">RUPixel Blacksmith</string>
+
+    <string name="rate_dialog_title">RURate Blacksmith</string>
+    <string name="rate_dialog_message">RUIf you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec!</string>
+    <string name="rate_dialog_ok">RURate</string>
+    <string name="rate_dialog_cancel">RULater</string>
+    <string name="rate_dialog_no">RUCancel</string>
+
+    <string name="character_intro_1">RUGreetings! See anything you like?</string>
+    <string name="character_intro_2">RULook, it\'s knight with a k, okay?</string>
+    <string name="character_intro_3">RUCan never have enough golden goldy gold. EVER.</string>
+    <string name="character_intro_4">RUWant clothing? You\'re gonna need some cloth!</string>
+    <string name="character_intro_5">RUHow much wood can I cut? Enough!</string>
+    <string name="character_intro_6">RUOog oog!!!</string>
+    <string name="character_intro_7">RUBzzt!</string>
+    <string name="character_intro_8">RUYou\'d better not have any weedkiller on you.</string>
+    <string name="character_intro_9">RUI am an exclusive trader.</string>
+    <string name="character_intro_10">RUHello dear! I hope you like my shop.</string>
+    <string name="character_intro_11">RUBoo! Only joking, I\'m not that scary.</string>
+    <string name="character_intro_12">RUMaybe I\'ve spent a little too long in the sun.</string>
+    <string name="character_intro_13">RUOrite matey, got any gold?</string>
+    <string name="character_intro_14">RUIt\'s rather hard carrying stock around y\'know.</string>
+    <string name="character_intro_15">RUHello there! Come, friend, trade away!</string>
+    <string name="character_intro_16">RUBloop bloop.</string>
+    <string name="character_intro_17">RUFloating in the stars forever.</string>
+    <string name="character_intro_18">RUFine, I\'ll trade if I have to. Hmph.</string>
+    <string name="character_intro_19">RUFlippity flappity, my friend.</string>
+    <string name="character_intro_20">RUAlso bloop. Even more so.</string>
+    <string name="character_intro_21">RUWhat do you think of my new paint job?</string>
+
+    <string name="character_name_1">RUSean Keeper</string>
+    <string name="character_name_2">RUThe Iron Knight</string>
+    <string name="character_name_3">RUThe Golden Warrior</string>
+    <string name="character_name_4">RUCloth King</string>
+    <string name="character_name_5">RUWoodchuck</string>
+    <string name="character_name_6">RUOog</string>
+    <string name="character_name_7">RUGemBot 5000</string>
+    <string name="character_name_8">RUFarmer\'s Little Friend</string>
+    <string name="character_name_9">RUDeath Beetle</string>
+    <string name="character_name_10">RUMiss Odds &amp; Ends</string>
+    <string name="character_name_11">RUDeathly Ghoul</string>
+    <string name="character_name_12">RUBleached Crab</string>
+    <string name="character_name_13">RUGoblin Warrior</string>
+    <string name="character_name_14">RUFloating Tradesman</string>
+    <string name="character_name_15">RUGoblin Businessman</string>
+    <string name="character_name_16">RUBlobette</string>
+    <string name="character_name_17">RURicky Stardust</string>
+    <string name="character_name_18">RUGrumblestiltskin</string>
+    <string name="character_name_19">RUOculus Lift</string>
+    <string name="character_name_20">RUBlob King</string>
+    <string name="character_name_21">RUFarmer\'s Evil Friend</string>
+
+    <string name="con_name_1">RUThank You</string>
+    <string name="con_name_2">RUDev Queue</string>
+    <string name="con_name_3">RUBeta &amp; Credits</string>
+    <string name="con_name_4">RUCreate Quest</string>
+    <string name="con_name_5">RUCreate Item</string>
+    <string name="con_name_6">RUCreate Visitor</string>
+    <string name="con_name_7">RUCreate Feature</string>
+
+    <string name="con_teaser_1">RUGet an extra little thank you.</string>
+    <string name="con_teaser_2">RUGet access to the Trello board used to plan / prioritise new features, changes, and bug fixes.</string>
+    <string name="con_teaser_3">RUGet beta access to all releases at least 24hr in advance, and get your name / username in the credits.</string>
+    <string name="con_teaser_4">RUCreate a quest and quest reward for a hero to be added to the game.</string>
+    <string name="con_teaser_5">RUCreate an item (e.g. weapon, armour, ingredient) to be added to the game.</string>
+    <string name="con_teaser_6">RUCreate a visitor, along with preferences.</string>
+    <string name="con_teaser_7">RUSuggest an entirely new feature (within reason!) for the game.</string>
+
+    <string name="con_unlocked_1">RUThanks! Your contributions are what make further development on Pixel Blacksmith possible!</string>
+    <string name="con_unlocked_2">RU<a href="https://trello.com/b/Zw01amFA/">RUTrello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it\'ll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in.</string>
+    <string name="con_unlocked_3">RUHey, send an email to <a href="mailto:i.am.now.a.beta.player@jakelee.co.uk">RUthe beta address</a> and I\'ll get you added to the beta testing / credits!</string>
+    <string name="con_unlocked_4">RUWoo! Try and make your idea fit into an existing category, and email it to <a href="mailto:i.make.the.quests@jakelee.co.uk">RUthe quest address</a>, and I\'ll put it in the game.</string>
+    <string name="con_unlocked_5">RUHey! Email your item name, description, ingredients, and purpose to <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk">RUthe item address</a>. We might have to make some changes to balance the item though!</string>
+    <string name="con_unlocked_6">RUYou\'re a big fan of contributing, huh? Email a visitor name, description, and preferences to <a href="mailto:i.make.people.happen@jakelee.co.uk">RUthe visitor address</a>, and we\'ll discuss the visitor\'s appearance etc.</string>
+    <string name="con_unlocked_7">RUWow, that\'s impressive..! Send me an email to <a href="mailto:i.basically.make.the.game@jakelee.co.uk">RUthe feature address</a>, and we\'ll work together to make the feature reality.</string>
+
+    <string name="criteria_1">RUState</string>
+    <string name="criteria_2">RUTier</string>
+    <string name="criteria_3">RUType</string>
+
+    <string name="hero_adventure_1">RUGather Red Weed</string>
+    <string name="hero_adventure_2">RUGather Nirnroot Herbs</string>
+    <string name="hero_adventure_3">RUGather Kyrt Herbs</string>
+    <string name="hero_adventure_4">RUGather Ants</string>
+    <string name="hero_adventure_5">RUGather Bees</string>
+    <string name="hero_adventure_6">RUGather Stick Insects</string>
+    <string name="hero_adventure_7">RUGather Hercules Beetles</string>
+    <string name="hero_adventure_8">RUGather Praying Mantis</string>
+    <string name="hero_adventure_9">RUGather Bird Bones</string>
+    <string name="hero_adventure_10">RUGather Rat Bones</string>
+    <string name="hero_adventure_11">RUGather Fish Bones</string>
+    <string name="hero_adventure_12">RUGather Monkey Bones</string>
+    <string name="hero_adventure_13">RUGather Shark Bones</string>
+    <string name="hero_adventure_14">RUGather Coal</string>
+    <string name="hero_adventure_15">RUGather Iron Ore</string>
+    <string name="hero_adventure_16">RUGather Silver Nuggets</string>
+    <string name="hero_adventure_17">RUGather Gold Nuggets</string>
+    <string name="hero_adventure_18">RUGather Mithril Ore</string>
+    <string name="hero_adventure_19">RUGather Adamantite Ore</string>
+    <string name="hero_adventure_20">RUGather Runite Ore</string>
+    <string name="hero_adventure_21">RUGather Dragonite Ore</string>
+    <string name="hero_adventure_22">RUGather Mice Corpses</string>
+    <string name="hero_adventure_23">RUGather Wolf Corpses</string>
+    <string name="hero_adventure_24">RUGather Human Corpses</string>
+    <string name="hero_adventure_25">RUGather Giant Corpses</string>
+    <string name="hero_adventure_26">RUGather Monster Corpses</string>
+    <string name="hero_adventure_27">RUGather Buried Coins</string>
+    <string name="hero_adventure_28">RUGather Buried Gems</string>
+    <string name="hero_adventure_29">RUGather Buried Chests</string>
+    <string name="hero_adventure_30">RUHunt Fruit Flies</string>
+    <string name="hero_adventure_31">RUHunt Blue Flies</string>
+    <string name="hero_adventure_32">RUHunt Mutant Flies</string>
+    <string name="hero_adventure_33">RUHunt Vampire Flies</string>
+    <string name="hero_adventure_34">RUHunt Scavenger Flies</string>
+    <string name="hero_adventure_35">RUHunt Slow Slugs</string>
+    <string name="hero_adventure_36">RUHunt Sticky Slugs</string>
+    <string name="hero_adventure_37">RUHunt Fancy Slugs</string>
+    <string name="hero_adventure_38">RUHunt Deadly Slugs</string>
+    <string name="hero_adventure_39">RUHunt Baby Spiders</string>
+    <string name="hero_adventure_40">RUHunt Daddy Long Legs Spiders</string>
+    <string name="hero_adventure_41">RUHunt Tarantula Spiders</string>
+    <string name="hero_adventure_42">RUHunt Black Widow Spiders</string>
+    <string name="hero_adventure_43">RUHunt Baby Frogs</string>
+    <string name="hero_adventure_44">RUHunt Jumping Frogs</string>
+    <string name="hero_adventure_45">RUHunt Skermit The Frogs</string>
+    <string name="hero_adventure_46">RUHunt Mr. Frogs</string>
+    <string name="hero_adventure_47">RUHunt Hypnofrogs</string>
+    <string name="hero_adventure_48">RUHunt White Rabbits</string>
+    <string name="hero_adventure_49">RUHunt Dwarf Rabbits</string>
+    <string name="hero_adventure_50">RUHunt Wooly Rabbits</string>
+    <string name="hero_adventure_51">RUHunt Wabbits</string>
+    <string name="hero_adventure_52">RUHunt Blue Hellcats</string>
+    <string name="hero_adventure_53">RUHunt Green Hellcats</string>
+    <string name="hero_adventure_54">RUHunt Red Hellcats</string>
+    <string name="hero_adventure_55">RUHunt White Hellcats</string>
+    <string name="hero_adventure_56">RUHunt Black Hellcats</string>
+    <string name="hero_adventure_57">RUHunt White Wolves</string>
+    <string name="hero_adventure_58">RUHunt Wargs</string>
+    <string name="hero_adventure_59">RUHunt Big Bad Wolves</string>
+    <string name="hero_adventure_60">RUHunt Direwolves</string>
+    <string name="hero_adventure_61">RUHunt Werewolves</string>
+    <string name="hero_adventure_62">RUHunt Bobo The Bears</string>
+    <string name="hero_adventure_63">RUHunt Panda Bears</string>
+    <string name="hero_adventure_64">RUHunt Pom Bears</string>
+    <string name="hero_adventure_65">RUHunt Black Bears</string>
+    <string name="hero_adventure_66">RUHunt Grizzly Bears</string>
+    <string name="hero_adventure_67">RUHunt Tiggers</string>
+    <string name="hero_adventure_68">RUHunt Young Tigers</string>
+    <string name="hero_adventure_69">RUHunt Gladiatorial Tigers</string>
+    <string name="hero_adventure_70">RUHunt Phony Tigers</string>
+    <string name="hero_adventure_71">RUHunt Shere Khan</string>
+    <string name="hero_adventure_72">RUHunt Poltergeists</string>
+    <string name="hero_adventure_73">RUHunt Victorian Ghosts</string>
+    <string name="hero_adventure_74">RUHunt Bloody Barons</string>
+    <string name="hero_adventure_75">RUHunt Black Knights</string>
+    <string name="hero_adventure_76">RUHunt Vampire Bats</string>
+    <string name="hero_adventure_77">RUHunt Vampire Counts</string>
+    <string name="hero_adventure_78">RUHunt Draugrs</string>
+    <string name="hero_adventure_79">RUHunt Loch Ness Monsters</string>
+    <string name="hero_adventure_80">RUHunt Leviathans</string>
+    <string name="hero_adventure_81">RUHunt Elder Gods</string>
+    <string name="hero_adventure_82">RUHunt Soft Ones</string>
+    <string name="hero_adventure_83">RUHunt Reapers</string>
+    <string name="hero_adventure_84">RUHunt Daleks</string>
+    <string name="hero_adventure_85">RUHunt Xenomorphs</string>
+    <string name="hero_adventure_86">RUHunt Moties</string>
+    <string name="hero_adventure_87">RUHunt Infected</string>
+    <string name="hero_adventure_88">RUHunt Crawlers</string>
+    <string name="hero_adventure_89">RUHunt Runners</string>
+    <string name="hero_adventure_90">RUHunt Spitters</string>
+    <string name="hero_adventure_91">RUHunt Boomers</string>
+    <string name="hero_adventure_92">RUKill Big Smoke</string>
+    <string name="hero_adventure_93">RUKill Big Daddy</string>
+    <string name="hero_adventure_94">RUKill Olmec</string>
+    <string name="hero_adventure_95">RUKill Handsome Jack</string>
+    <string name="hero_adventure_96">RUKill The Warrior</string>
+    <string name="hero_adventure_97">RUKill Nihilanth</string>
+    <string name="hero_adventure_98">RUKill GLaDOS</string>
+    <string name="hero_adventure_99">RUKill Netherlord</string>
+    <string name="hero_adventure_100">RUKill Doviculus</string>
+    <string name="hero_adventure_101">RUSurvive Blacksmith Horde</string>
+    <string name="hero_adventure_102">RUSurvive Spider Horde</string>
+    <string name="hero_adventure_103">RUSurvive Golem Horde</string>
+    <string name="hero_adventure_104">RUSurvive Angry Mob</string>
+    <string name="hero_adventure_105">RUSurvive Warrior Horde</string>
+    <string name="hero_adventure_106">RUAchieve Nirvana</string>
+    <string name="hero_adventure_107">RUCalculate Prime Number Formula</string>
+    <string name="hero_adventure_108">RULive Forever</string>
+    <string name="hero_adventure_109">RURaise The Dead</string>
+    <string name="hero_adventure_110">RUTurn Back Time</string>
+    <string name="hero_adventure_111">RUComplete All Adventures</string>
+    <string name="hero_adventure_112">RUGuard Butchers</string>
+    <string name="hero_adventure_113">RUGuard Bakers</string>
+    <string name="hero_adventure_114">RUGuard Sandwich Shop</string>
+    <string name="hero_adventure_115">RUGuard Fishmongers</string>
+    <string name="hero_adventure_116">RUGuard Pie Shop</string>
+    <string name="hero_adventure_117">RUGuard Fruit Stand</string>
+    <string name="hero_adventure_118">RUGuard Farmer\'s Stand</string>
+    <string name="hero_adventure_119">RUGuard Sweet Shop</string>
+    <string name="hero_adventure_120">RUGuard Local Market</string>
+    <string name="hero_adventure_121">RUGuard Farmer\'s Market</string>
+    <string name="hero_adventure_122">RUGuard County Market</string>
+    <string name="hero_adventure_123">RUGuard Food Processing Factory</string>
+    <string name="hero_adventure_124">RUGuard Smelting Factory</string>
+    <string name="hero_adventure_125">RUGuard Clothing Factory</string>
+    <string name="hero_adventure_126">RUGuard Gem Factory</string>
+    <string name="hero_adventure_127">RUGuard Local Bank</string>
+    <string name="hero_adventure_128">RUGuard Town Bank</string>
+    <string name="hero_adventure_129">RUGuard City Bank</string>
+    <string name="hero_adventure_130">RUGuard State Bank</string>
+    <string name="hero_adventure_131">RUGuard Federal Bank</string>
+    <string name="hero_adventure_132">RUGuard Princess</string>
+    <string name="hero_adventure_133">RUGuard Prince</string>
+    <string name="hero_adventure_134">RUGuard Queen</string>
+    <string name="hero_adventure_135">RUGuard King</string>
+    <string name="hero_adventure_136">RUExplore Shrubs</string>
+    <string name="hero_adventure_137">RUExplore Bushes</string>
+    <string name="hero_adventure_138">RUExplore Trees</string>
+    <string name="hero_adventure_139">RUExplore Treetops</string>
+    <string name="hero_adventure_140">RUExplore Sandwich</string>
+    <string name="hero_adventure_141">RUExplore Sandcastle</string>
+    <string name="hero_adventure_142">RUExplore Sand Dune</string>
+    <string name="hero_adventure_143">RUExplore Central City</string>
+    <string name="hero_adventure_144">RUExplore West City</string>
+    <string name="hero_adventure_145">RUExplore South City</string>
+    <string name="hero_adventure_146">RUExplore East City</string>
+    <string name="hero_adventure_147">RUExplore North City</string>
+    <string name="hero_adventure_148">RUExplore Coral Reef</string>
+    <string name="hero_adventure_149">RUExplore Mariana Trench</string>
+    <string name="hero_adventure_150">RUExplore Small Cave</string>
+    <string name="hero_adventure_151">RUExplore Medium Cave</string>
+    <string name="hero_adventure_152">RUExplore Large Cave</string>
+    <string name="hero_adventure_153">RUEscort Butcher</string>
+    <string name="hero_adventure_154">RUEscort Baker</string>
+    <string name="hero_adventure_155">RUEscort Fisherman</string>
+    <string name="hero_adventure_156">RUEscort Silk Trader</string>
+    <string name="hero_adventure_157">RUEscort Gem Trader</string>
+    <string name="hero_adventure_158">RUEscort Weapons Trader</string>
+    <string name="hero_adventure_159">RUEscort Armour Trader</string>
+    <string name="hero_adventure_160">RUEscort Day Visitor</string>
+    <string name="hero_adventure_161">RUEscort Night Visitor</string>
+    <string name="hero_adventure_162">RUEscort Winter Visitor</string>
+    <string name="hero_adventure_163">RUEscort Summer Visitor</string>
+    <string name="hero_adventure_164">RUEscort Autumn Visitor</string>
+    <string name="hero_adventure_165">RUEscort Spring Visitor</string>
+    <string name="hero_adventure_166">RUEscort Lost Courier</string>
+    <string name="hero_adventure_167">RUEscort Underground Soldier</string>
+    <string name="hero_adventure_168">RUEscort Shiny Soldier</string>
+    <string name="hero_adventure_169">RUEscort Elegant Soldier</string>
+
+    <string name="hero_category_1">RUGathering (10-150)</string>
+    <string name="hero_category_2">RUGather Plants (10-30)</string>
+    <string name="hero_category_3">RUGather Insects (25-95)</string>
+    <string name="hero_category_4">RUGather Bones (25-65)</string>
+    <string name="hero_category_5">RUGather Ore (15-125)</string>
+    <string name="hero_category_6">RUGather Corpses (50-150)</string>
+    <string name="hero_category_7">RUGather Buried Treasure (130-150)</string>
+    <string name="hero_category_8">RUAnimal Hunting (100-250)</string>
+    <string name="hero_category_9">RUFly Hunting (100-220)</string>
+    <string name="hero_category_10">RUSlug Hunting (130-190)</string>
+    <string name="hero_category_11">RUSpider Hunting (110-250)</string>
+    <string name="hero_category_12">RUFrog Hunting (110-250)</string>
+    <string name="hero_category_13">RURabbit Hunting (100-220)</string>
+    <string name="hero_category_14">RUHellcat Hunting (210-250)</string>
+    <string name="hero_category_15">RUWolf Hunting (160-240)</string>
+    <string name="hero_category_16">RUBear Hunting (100-250)</string>
+    <string name="hero_category_17">RUTiger Hunting (100-240)</string>
+    <string name="hero_category_18">RUMonster Hunting (190-600)</string>
+    <string name="hero_category_19">RUGhost Hunting (220-400)</string>
+    <string name="hero_category_20">RUVampire Hunting (310-390)</string>
+    <string name="hero_category_21">RUSea Monster Hunting (500-600)</string>
+    <string name="hero_category_22">RUAlien Hunting (190-590)</string>
+    <string name="hero_category_23">RUZombie Hunting (400-600)</string>
+    <string name="hero_category_24">RUElite Challenges (700-1500)</string>
+    <string name="hero_category_25">RUBosses (700-1020)</string>
+    <string name="hero_category_26">RUHordes (750-1100)</string>
+    <string name="hero_category_27">RUUnbeatable (1000-1500)</string>
+    <string name="hero_category_28">RUGuard Duty (100-300)</string>
+    <string name="hero_category_29">RUGuard Shops (100-170)</string>
+    <string name="hero_category_30">RUGuard Markets (100-300)</string>
+    <string name="hero_category_31">RUGuard Factories (150-300)</string>
+    <string name="hero_category_32">RUGuard Banks (190-240)</string>
+    <string name="hero_category_33">RUGuard Royalty (260-290)</string>
+    <string name="hero_category_34">RUExploring (500-800)</string>
+    <string name="hero_category_35">RUExplore Forest (500-600)</string>
+    <string name="hero_category_36">RUExplore Desert (500-700)</string>
+    <string name="hero_category_37">RUExplore City (600-760)</string>
+    <string name="hero_category_38">RUExplore Underwater (600-800)</string>
+    <string name="hero_category_39">RUExplore Caves (750-800)</string>
+    <string name="hero_category_40">RUEscort (350-690)</string>
+    <string name="hero_category_41">RUEscort Villagers (350-470)</string>
+    <string name="hero_category_42">RUEscort Visitors (500-620)</string>
+    <string name="hero_category_43">RUEscort Soldiers (630-690)</string>
+
+    <string name="item_name_1">RUCopper ore</string>
+    <string name="item_name_2">RUTin ore</string>
+    <string name="item_name_3">RUCoal</string>
+    <string name="item_name_4">RUIron ore</string>
+    <string name="item_name_5">RUMithril ore</string>
+    <string name="item_name_6">RUAdamantite ore</string>
+    <string name="item_name_7">RURunite ore</string>
+    <string name="item_name_8">RUGold nugget</string>
+    <string name="item_name_9">RUSilver nugget</string>
+    <string name="item_name_10">RUDragonite ore</string>
+    <string name="item_name_11">RUBronze bar</string>
+    <string name="item_name_12">RUIron bar</string>
+    <string name="item_name_13">RUSteel bar</string>
+    <string name="item_name_14">RUMithril bar</string>
+    <string name="item_name_15">RUAdamant bar</string>
+    <string name="item_name_16">RURune bar</string>
+    <string name="item_name_17">RUSilver bar</string>
+    <string name="item_name_18">RUGold bar</string>
+    <string name="item_name_19">RUDragon bar</string>
+    <string name="item_name_20">RUBronze dagger</string>
+    <string name="item_name_21">RUBronze sword</string>
+    <string name="item_name_22">RUBronze longsword</string>
+    <string name="item_name_23">RUBronze bow</string>
+    <string name="item_name_24">RUBronze half shield</string>
+    <string name="item_name_25">RUBronze full shield</string>
+    <string name="item_name_26">RUBronze chainmail</string>
+    <string name="item_name_27">RUBronze platebody</string>
+    <string name="item_name_28">RUBronze half helmet</string>
+    <string name="item_name_29">RUBronze full helmet</string>
+    <string name="item_name_30">RUBronze boots</string>
+    <string name="item_name_31">RUBronze gloves</string>
+    <string name="item_name_32">RUBronze pickaxe</string>
+    <string name="item_name_33">RUBronze hatchet</string>
+    <string name="item_name_34">RUBronze fishing rod</string>
+    <string name="item_name_35">RUBronze hammer</string>
+    <string name="item_name_36">RUIron dagger</string>
+    <string name="item_name_37">RUIron sword</string>
+    <string name="item_name_38">RUIron longsword</string>
+    <string name="item_name_39">RUIron bow</string>
+    <string name="item_name_40">RUIron half shield</string>
+    <string name="item_name_41">RUIron full shield</string>
+    <string name="item_name_42">RUIron chainmail</string>
+    <string name="item_name_43">RUIron platebody</string>
+    <string name="item_name_44">RUIron half helmet</string>
+    <string name="item_name_45">RUIron full helmet</string>
+    <string name="item_name_46">RUIron boots</string>
+    <string name="item_name_47">RUIron gloves</string>
+    <string name="item_name_48">RUIron pickaxe</string>
+    <string name="item_name_49">RUIron hatchet</string>
+    <string name="item_name_50">RUIron fishing rod</string>
+    <string name="item_name_51">RUIron hammer</string>
+    <string name="item_name_52">RUCoins</string>
+    <string name="item_name_53">RUSteel dagger</string>
+    <string name="item_name_54">RUSteel sword</string>
+    <string name="item_name_55">RUSteel longsword</string>
+    <string name="item_name_56">RUSteel bow</string>
+    <string name="item_name_57">RUSteel half shield</string>
+    <string name="item_name_58">RUSteel full shield</string>
+    <string name="item_name_59">RUSteel chainmail</string>
+    <string name="item_name_60">RUSteel platebody</string>
+    <string name="item_name_61">RUSteel half helmet</string>
+    <string name="item_name_62">RUSteel full helmet</string>
+    <string name="item_name_63">RUSteel boots</string>
+    <string name="item_name_64">RUSteel gloves</string>
+    <string name="item_name_65">RUSteel pickaxe</string>
+    <string name="item_name_66">RUSteel hatchet</string>
+    <string name="item_name_67">RUSteel fishing rod</string>
+    <string name="item_name_68">RUSteel hammer</string>
+    <string name="item_name_69">RUSpidersilk</string>
+    <string name="item_name_70">RUSilk</string>
+    <string name="item_name_71">RULogs</string>
+    <string name="item_name_72">RURuby</string>
+    <string name="item_name_73">RUSapphire</string>
+    <string name="item_name_74">RUEmerald</string>
+    <string name="item_name_75">RUDiamond</string>
+    <string name="item_name_76">RUOnyx</string>
+    <string name="item_name_77">RUApple</string>
+    <string name="item_name_78">RUCheese</string>
+    <string name="item_name_79">RUBread</string>
+    <string name="item_name_80">RURaw Meat</string>
+    <string name="item_name_81">RUMithril dagger</string>
+    <string name="item_name_82">RUMithril sword</string>
+    <string name="item_name_83">RUMithril longsword</string>
+    <string name="item_name_84">RUMithril bow</string>
+    <string name="item_name_85">RUMithril half shield</string>
+    <string name="item_name_86">RUMithril full shield</string>
+    <string name="item_name_87">RUMithril chainmail</string>
+    <string name="item_name_88">RUMithril platebody</string>
+    <string name="item_name_89">RUMithril half helmet</string>
+    <string name="item_name_90">RUMithril full helmet</string>
+    <string name="item_name_91">RUMithril boots</string>
+    <string name="item_name_92">RUMithril gloves</string>
+    <string name="item_name_93">RUMithril pickaxe</string>
+    <string name="item_name_94">RUMithril hatchet</string>
+    <string name="item_name_95">RUMithril fishing rod</string>
+    <string name="item_name_96">RUMithril hammer</string>
+    <string name="item_name_97">RUAdamant dagger</string>
+    <string name="item_name_98">RUAdamant sword</string>
+    <string name="item_name_99">RUAdamant longsword</string>
+    <string name="item_name_100">RUAdamant bow</string>
+    <string name="item_name_101">RUAdamant half shield</string>
+    <string name="item_name_102">RUAdamant full shield</string>
+    <string name="item_name_103">RUAdamant chainmail</string>
+    <string name="item_name_104">RUAdamant platebody</string>
+    <string name="item_name_105">RUAdamant half helmet</string>
+    <string name="item_name_106">RUAdamant full helmet</string>
+    <string name="item_name_107">RUAdamant boots</string>
+    <string name="item_name_108">RUAdamant gloves</string>
+    <string name="item_name_109">RUAdamant pickaxe</string>
+    <string name="item_name_110">RUAdamant hatchet</string>
+    <string name="item_name_111">RUAdamant fishing rod</string>
+    <string name="item_name_112">RUAdamant hammer</string>
+    <string name="item_name_113">RURune dagger</string>
+    <string name="item_name_114">RURune sword</string>
+    <string name="item_name_115">RURune longsword</string>
+    <string name="item_name_116">RURune bow</string>
+    <string name="item_name_117">RURune half shield</string>
+    <string name="item_name_118">RURune full shield</string>
+    <string name="item_name_119">RURune chainmail</string>
+    <string name="item_name_120">RURune platebody</string>
+    <string name="item_name_121">RURune half helmet</string>
+    <string name="item_name_122">RURune full helmet</string>
+    <string name="item_name_123">RURune boots</string>
+    <string name="item_name_124">RURune gloves</string>
+    <string name="item_name_125">RURune pickaxe</string>
+    <string name="item_name_126">RURune hatchet</string>
+    <string name="item_name_127">RURune fishing rod</string>
+    <string name="item_name_128">RURune hammer</string>
+    <string name="item_name_129">RUPowdered Sapphire</string>
+    <string name="item_name_130">RUPowdered Emerald</string>
+    <string name="item_name_131">RUPowdered Diamond</string>
+    <string name="item_name_132">RUDragon dagger</string>
+    <string name="item_name_133">RUDragon sword</string>
+    <string name="item_name_134">RUDragon longsword</string>
+    <string name="item_name_135">RUDragon bow</string>
+    <string name="item_name_136">RUDragon half shield</string>
+    <string name="item_name_137">RUDragon full shield</string>
+    <string name="item_name_138">RUDragon chainmail</string>
+    <string name="item_name_139">RUDragon platebody</string>
+    <string name="item_name_140">RUDragon half helmet</string>
+    <string name="item_name_141">RUDragon full helmet</string>
+    <string name="item_name_142">RUDragon boots</string>
+    <string name="item_name_143">RUDragon gloves</string>
+    <string name="item_name_144">RUDragon pickaxe</string>
+    <string name="item_name_145">RUDragon hatchet</string>
+    <string name="item_name_146">RUDragon fishing spear</string>
+    <string name="item_name_147">RUDragon hammer</string>
+    <string name="item_name_148">RUDraconic visage</string>
+    <string name="item_name_149">RUSilver ring</string>
+    <string name="item_name_150">RUSilver sapphire ring</string>
+    <string name="item_name_151">RUSilver emerald ring</string>
+    <string name="item_name_152">RUSilver ruby ring</string>
+    <string name="item_name_153">RUSilver diamond ring</string>
+    <string name="item_name_154">RUSilver onyx ring</string>
+    <string name="item_name_155">RUGold ring</string>
+    <string name="item_name_156">RUGold sapphire ring</string>
+    <string name="item_name_157">RUGold emerald ring</string>
+    <string name="item_name_158">RUGold ruby ring</string>
+    <string name="item_name_159">RUGold diamond ring</string>
+    <string name="item_name_160">RUGold onyx ring</string>
+    <string name="item_name_161">RULegendary dagger</string>
+    <string name="item_name_162">RULegendary sword</string>
+    <string name="item_name_163">RULegendary longsword</string>
+    <string name="item_name_164">RULegendary bow</string>
+    <string name="item_name_165">RULegendary half shield</string>
+    <string name="item_name_166">RULegendary full shield</string>
+    <string name="item_name_167">RULegendary chainmail</string>
+    <string name="item_name_168">RULegendary platebody</string>
+    <string name="item_name_169">RULegendary half helmet</string>
+    <string name="item_name_170">RULegendary full helmet</string>
+    <string name="item_name_171">RULegendary boots</string>
+    <string name="item_name_172">RULegendary gloves</string>
+    <string name="item_name_173">RULegendary pickaxe</string>
+    <string name="item_name_174">RULegendary hatchet</string>
+    <string name="item_name_175">RULegendary fishing spear</string>
+    <string name="item_name_176">RULegendary hammer</string>
+    <string name="item_name_177">RURed Page</string>
+    <string name="item_name_178">RURed Page (dirty)</string>
+    <string name="item_name_179">RUYellow Page</string>
+    <string name="item_name_180">RUYellow Page (dirty)</string>
+    <string name="item_name_181">RUGreen Page</string>
+    <string name="item_name_182">RUGreen Page (dirty)</string>
+    <string name="item_name_183">RUBlue Page</string>
+    <string name="item_name_184">RUBlue Page (dirty)</string>
+    <string name="item_name_185">RUPink Page</string>
+    <string name="item_name_186">RUPink Page (dirty)</string>
+    <string name="item_name_187">RUBrown Page</string>
+    <string name="item_name_188">RUBrown Page (dirty)</string>
+    <string name="item_name_189">RUBlack Page</string>
+    <string name="item_name_190">RUBlack Page (dirty)</string>
+    <string name="item_name_191">RUWhite Page</string>
+    <string name="item_name_192">RUWhite Page (dirty)</string>
+    <string name="item_name_193">RUBook of Strength</string>
+    <string name="item_name_194">RUBook of Agility</string>
+    <string name="item_name_195">RUBook of Nature</string>
+    <string name="item_name_196">RUBook of Water</string>
+    <string name="item_name_197">RUBook of Peace</string>
+    <string name="item_name_198">RUBook of Earth</string>
+    <string name="item_name_199">RUBook of War</string>
+    <string name="item_name_200">RUBook of Life</string>
+    <string name="item_name_201">RUThe Collection</string>
+    <string name="item_name_202">RUWheat</string>
+    <string name="item_name_203">RUEgg</string>
+    <string name="item_name_204">RUMilk</string>
+    <string name="item_name_205">RUBlueberry</string>
+    <string name="item_name_206">RUBanana</string>
+    <string name="item_name_207">RUOrange</string>
+    <string name="item_name_208">RUCherry</string>
+    <string name="item_name_209">RUCandy</string>
+    <string name="item_name_210">RUChocolate</string>
+    <string name="item_name_211">RURaw Fish</string>
+    <string name="item_name_212">RUFruit Salad</string>
+    <string name="item_name_213">RUCooked Fish</string>
+    <string name="item_name_214">RUCooked Meat</string>
+    <string name="item_name_215">RUHam + Cheese S\'wich</string>
+    <string name="item_name_216">RUHam Sandwich</string>
+    <string name="item_name_217">RUCheese Sandwich</string>
+    <string name="item_name_218">RUPie</string>
+    <string name="item_name_219">RUCookie</string>
+    <string name="item_name_220">RUAmethyst</string>
+    <string name="item_name_221">RUCitrine</string>
+    <string name="item_name_222">RUSilver amethyst ring</string>
+    <string name="item_name_223">RUSilver citrine ring</string>
+    <string name="item_name_224">RUGold amethyst ring</string>
+    <string name="item_name_225">RUGold citrine ring</string>
+    <string name="item_name_226">RURare Candy</string>
+    <string name="item_name_227">RUBowl Of Water</string>
+    <string name="item_name_228">RUSoup</string>
+    <string name="item_name_229">RUCereal</string>
+    <string name="item_name_230">RUWhite Chocolate</string>
+
+    <string name="item_desc_1">RUA piece of copper ore.</string>
+    <string name="item_desc_2">RUA piece of tin ore.</string>
+    <string name="item_desc_3">RUA piece of coal.</string>
+    <string name="item_desc_4">RUA piece of iron ore.</string>
+    <string name="item_desc_5">RUA piece of mithril ore.</string>
+    <string name="item_desc_6">RUA piece of adamantite ore.</string>
+    <string name="item_desc_7">RUA piece of runite ore.</string>
+    <string name="item_desc_8">RUA golden nugget.</string>
+    <string name="item_desc_9">RUA silver nugget.</string>
+    <string name="item_desc_10">RUA piece of dragonite ore.</string>
+    <string name="item_desc_11">RUA fresh bar of bronze.</string>
+    <string name="item_desc_12">RUA fresh bar of iron.</string>
+    <string name="item_desc_13">RUA fresh bar of steel.</string>
+    <string name="item_desc_14">RUA fresh bar of mithril.</string>
+    <string name="item_desc_15">RUA fresh bar of adamant.</string>
+    <string name="item_desc_16">RUA fresh bar of rune.</string>
+    <string name="item_desc_17">RUA fresh bar of silver.</string>
+    <string name="item_desc_18">RUA fresh bar of gold.</string>
+    <string name="item_desc_19">RUA fresh bar of dragon.</string>
+    <string name="item_desc_20">RUA blunt bronze dagger.</string>
+    <string name="item_desc_21">RUA fairly blunt bronze sword.</string>
+    <string name="item_desc_22">RUA longer bronze sword.</string>
+    <string name="item_desc_23">RUA bow with bronze elements.</string>
+    <string name="item_desc_24">RUA fairly weak bronze shield.</string>
+    <string name="item_desc_25">RUA slightly stronger bronze shield.</string>
+    <string name="item_desc_26">RUA light set of bronze body armour.</string>
+    <string name="item_desc_27">RUA heavy set of bronze body armour.</string>
+    <string name="item_desc_28">RUA no-frills approach to protection.</string>
+    <string name="item_desc_29">RUA frills approach to protection.</string>
+    <string name="item_desc_30">RUA set of boots for those that like the muddy look.</string>
+    <string name="item_desc_31">RUA set of gloves for those that like the muddy look.</string>
+    <string name="item_desc_32">RUA weak pickaxe for mining rocks.</string>
+    <string name="item_desc_33">RUA weak axe for cutting down trees.</string>
+    <string name="item_desc_34">RUA weak rod for catching fish.</string>
+    <string name="item_desc_35">RUA weak hammer who misses his anvil.</string>
+    <string name="item_desc_36">RUA blunt iron dagger.</string>
+    <string name="item_desc_37">RUA bluntish iron sword.</string>
+    <string name="item_desc_38">RUA longer iron sword.</string>
+    <string name="item_desc_39">RUA bow with iron elements.</string>
+    <string name="item_desc_40">RUAn iron half shield.</string>
+    <string name="item_desc_41">RUAn improved iron shield.</string>
+    <string name="item_desc_42">RUA light set of iron body armour.</string>
+    <string name="item_desc_43">RUA heavy set of iron body armour.</string>
+    <string name="item_desc_44">RUA tiny bit of frills approach to protection.</string>
+    <string name="item_desc_45">RUA very frilly approach to protection.</string>
+    <string name="item_desc_46">RUA set of boots for those that like the grey look.</string>
+    <string name="item_desc_47">RUA set of gloves for those that like the grey look.</string>
+    <string name="item_desc_48">RUA standard pickaxe for mining rocks.</string>
+    <string name="item_desc_49">RUA standard axe for cutting down trees.</string>
+    <string name="item_desc_50">RUA standard rod for catching fish.</string>
+    <string name="item_desc_51">RUA standard hammer who misses his anvil.</string>
+    <string name="item_desc_52">RUCoins! Glorious coins!</string>
+    <string name="item_desc_53">RUAn average steel dagger.</string>
+    <string name="item_desc_54">RUA slightly blunt steel sword.</string>
+    <string name="item_desc_55">RUAn even longer steel sword.</string>
+    <string name="item_desc_56">RUA bow with steel elements.</string>
+    <string name="item_desc_57">RUSteel shield, but only half.</string>
+    <string name="item_desc_58">RUSteel shield, the fullest.</string>
+    <string name="item_desc_59">RUA light set of steel body armour.</string>
+    <string name="item_desc_60">RUA heavy set of steel body armour.</string>
+    <string name="item_desc_61">RUA little bit frilly approach to protection.</string>
+    <string name="item_desc_62">RUA rather frilly approach to protection.</string>
+    <string name="item_desc_63">RUA set of boots for those that like the grey look, now with added shine.</string>
+    <string name="item_desc_64">RUA set of gloves for those that like the grey look, now with added shine.</string>
+    <string name="item_desc_65">RUA sharper pickaxe for mining rocks.</string>
+    <string name="item_desc_66">RUA sharper axe for cutting down trees.</string>
+    <string name="item_desc_67">RUA sturdier rod for catching fish.</string>
+    <string name="item_desc_68">RUA heavier hammer that tends to hit the anvil. Just.</string>
+    <string name="item_desc_69">RUA stand of spidersilk.</string>
+    <string name="item_desc_70">RUA fine strip of silk.</string>
+    <string name="item_desc_71">RUSome basic logs.</string>
+    <string name="item_desc_72">RUA red gem.</string>
+    <string name="item_desc_73">RUA blue gem.</string>
+    <string name="item_desc_74">RUA green gem.</string>
+    <string name="item_desc_75">RUA white gem.</string>
+    <string name="item_desc_76">RUA black gem.</string>
+    <string name="item_desc_77">RUA nice, shiny apple.</string>
+    <string name="item_desc_78">RUSmells a bit cheesy.</string>
+    <string name="item_desc_79">RUA bit stale, but edible.</string>
+    <string name="item_desc_80">RUStill dripping. Yuck.</string>
+    <string name="item_desc_81">RUA pretty good blue-tinted dagger.</string>
+    <string name="item_desc_82">RUA slightly sharp sword, with a blue hue.</string>
+    <string name="item_desc_83">RUThis is a sword? No, longer!</string>
+    <string name="item_desc_84">RUUse to fire arrows out of the blue.</string>
+    <string name="item_desc_85">RUA bl shi.</string>
+    <string name="item_desc_86">RUA blue shield.</string>
+    <string name="item_desc_87">RUA set of mithril chainmail, seemingly for the smaller gentleman.</string>
+    <string name="item_desc_88">RUA more complete approach to sword-stopping.</string>
+    <string name="item_desc_89">RUBlue on blue for you.</string>
+    <string name="item_desc_90">RUBlue on more blue, still for you.</string>
+    <string name="item_desc_91">RUNote: Despite appearances, you are not walking on water.</string>
+    <string name="item_desc_92">RUNote: Despite appearances, you are not washing your hands.</string>
+    <string name="item_desc_93">RUThis pick is no myth!</string>
+    <string name="item_desc_94">RUIt\'s a shame magical blue trees don\'t exist.</string>
+    <string name="item_desc_95">RUThe fish seem oddly attracted to the blue metal.</string>
+    <string name="item_desc_96">RUA heavier hammer that tends to hit the anvil. Just.</string>
+    <string name="item_desc_97">RUA scarily sharp green dagger.</string>
+    <string name="item_desc_98">RUA rather sharp sword, with a green tint.</string>
+    <string name="item_desc_99">RUI\'m adamant that this sword is longer.</string>
+    <string name="item_desc_100">RUA fine bow, with an intriguing green hue.</string>
+    <string name="item_desc_101">RUDon\'t let anyone know this shield looks like a pea.</string>
+    <string name="item_desc_102">RUA rather impressive green shield.</string>
+    <string name="item_desc_103">RUA fine set of chainmail, even considering the colour.</string>
+    <string name="item_desc_104">RUThe best platebody for those that can\'t kill dragons.</string>
+    <string name="item_desc_105">RUGreen on green, lookin\' mean.</string>
+    <string name="item_desc_106">RUGold on green, still lookin\' mean.</string>
+    <string name="item_desc_107">RUUgh, how do these even get so mould- ... oh!</string>
+    <string name="item_desc_108">RUMaybe you should take up gardening.</string>
+    <string name="item_desc_109">RUMean, green, mining machine.</string>
+    <string name="item_desc_110">RUPowerful, but has a habit of blending into the target.</string>
+    <string name="item_desc_111">RUThe green rod seems to lure the fishies in...</string>
+    <string name="item_desc_112">RUA very solid hammer, used for crafting powerful equipment.</string>
+    <string name="item_desc_113">RUA nifty little blade with a very sharp point.</string>
+    <string name="item_desc_114">RUThe rune rune rune, rune is the (s)word.</string>
+    <string name="item_desc_115">RUA very long, and very sharp, sword.</string>
+    <string name="item_desc_116">RUThe shortest of shortbows, the longest of longbows.</string>
+    <string name="item_desc_117">RULooks rather like a crystal, but isn\'t.</string>
+    <string name="item_desc_118">RUA very nice shield, used by professional adventurers.</string>
+    <string name="item_desc_119">RUWell, it\'s not a platebody, but it\'s still pretty good.</string>
+    <string name="item_desc_120">RUMade famous by DR4G0NK1LL3R, truly a brave adventurer.</string>
+    <string name="item_desc_121">RUA very protective helmet, without all the trimmings.</string>
+    <string name="item_desc_122">RUAn especially protective helmet, with all the trimmings.</string>
+    <string name="item_desc_123">RUWalk the streets in style with these super-comfy boots.</string>
+    <string name="item_desc_124">RUBrand new Rune gloves, now with extra protection!</string>
+    <string name="item_desc_125">RUA pickaxe any miner would be proud to use.</string>
+    <string name="item_desc_126">RUAn extremely sharp axe, for the mightiest of trees.</string>
+    <string name="item_desc_127">RUThe fish won\'t rune away from this rod!</string>
+    <string name="item_desc_128">RUThe mightiest of hammers! Or at least a very mighty one.</string>
+    <string name="item_desc_129">RUThis sapphire is in tiny shards.</string>
+    <string name="item_desc_130">RUThis emerald is in tiny shards.</string>
+    <string name="item_desc_131">RUThis diamond is in tiny shards.</string>
+    <string name="item_desc_132">RUThe deadliest dragon dagger!</string>
+    <string name="item_desc_133">RUSharp as a dragon\'s wit.</string>
+    <string name="item_desc_134">RUA very long, and very sharp, sword.</string>
+    <string name="item_desc_135">RUA striking red bow, with a hint of flames.</string>
+    <string name="item_desc_136">RUHalf shield or not, this will protect from a dragon\'s breath.</string>
+    <string name="item_desc_137">RURumoured to be forged from dragon remains.</string>
+    <string name="item_desc_138">RUUnusually, small insects seem to herd around the item.</string>
+    <string name="item_desc_139">RUThe ultimate in heavy duty protection.</string>
+    <string name="item_desc_140">RUThere\'ll be no headshots whilst this is worn.</string>
+    <string name="item_desc_141">RUThe helmet almost seems to repel arrows.</string>
+    <string name="item_desc_142">RUI don\'t think a dragon\'s foot would fit in these...</string>
+    <string name="item_desc_143">RUI\'m certain a dragon\'s claw wouldn\'t fit in here...</string>
+    <string name="item_desc_144">RUFor mining the toughest of ores.</string>
+    <string name="item_desc_145">RUFor felling the tallest great oaks</string>
+    <string name="item_desc_146">RULet\'s take the fight to the fishes!</string>
+    <string name="item_desc_147">RUWant to avoid getting hammered? Use this!</string>
+    <string name="item_desc_148">RUThe orb seems to pulsate with power.</string>
+    <string name="item_desc_149">RUA plain ring of silver.</string>
+    <string name="item_desc_150">RUA ring of silver, with a glittering blue gem.</string>
+    <string name="item_desc_151">RUAn emerald-embossed silver ring.</string>
+    <string name="item_desc_152">RUA silver ring with a fine ruby in.</string>
+    <string name="item_desc_153">RUA fine silver ring with a precious white gem.</string>
+    <string name="item_desc_154">RUA mildly ominous silver and black ring.</string>
+    <string name="item_desc_155">RUA plain ring of gold.</string>
+    <string name="item_desc_156">RUA golden ring, with a stunningly large sapphire.</string>
+    <string name="item_desc_157">RUA ring of fine gold, with a glittering emerald.</string>
+    <string name="item_desc_158">RUAn expensive looking gold and red ring.</string>
+    <string name="item_desc_159">RUAn intimidatingly opulent ring.</string>
+    <string name="item_desc_160">RUThe ultimate in finger decorations.</string>
+    <string name="item_desc_161">RUThe dagger whispers of murders past.</string>
+    <string name="item_desc_162">RUAn absurdly menacing blade.</string>
+    <string name="item_desc_163">RUFor long distance damage.</string>
+    <string name="item_desc_164">RUFired arrows seem to hone in on the target.</string>
+    <string name="item_desc_165">RUNo, two halves don\'t make a whole. Sorry.</string>
+    <string name="item_desc_166">RUMaximum protection, maximum style.</string>
+    <string name="item_desc_167">RUAll the protection, with all the mobility.</string>
+    <string name="item_desc_168">RUDistinctly better for not-dying than dragon armour.</string>
+    <string name="item_desc_169">RUFit for a king!</string>
+    <string name="item_desc_170">RUPossibly the comfiest helmet ever made.</string>
+    <string name="item_desc_171">RUThese boots were made for stomping. On enemies.</string>
+    <string name="item_desc_172">RUThese gloves seem to fuse to legendary weapons automatically.</string>
+    <string name="item_desc_173">RUFragments of ore seem to be drawn to the powerful blade.</string>
+    <string name="item_desc_174">RUTrees shake with fear when the axe draws closer.</string>
+    <string name="item_desc_175">RUArguably, this could be used as a weapon...</string>
+    <string name="item_desc_176">RUUsed for the forging of the mightiest equipment.</string>
+    <string name="item_desc_177">RUThe page seems to glow with power.</string>
+    <string name="item_desc_178">RUThe page seems to glow with dulled power.</string>
+    <string name="item_desc_179">RUThe page seems to vibrate.</string>
+    <string name="item_desc_180">RUThe page seems to vibrate slightly.</string>
+    <string name="item_desc_181">RUThe page emits strong, leafy smell.</string>
+    <string name="item_desc_182">RUThe page emits a faint flowery smell.</string>
+    <string name="item_desc_183">RUThe page is rather soggy.</string>
+    <string name="item_desc_184">RUThe page is slightly damp</string>
+    <string name="item_desc_185">RUThe page\'s appearance somehow cheers you up.</string>
+    <string name="item_desc_186">RUThe page makes you feel a little bit happier.</string>
+    <string name="item_desc_187">RUThe page is a little muddy.</string>
+    <string name="item_desc_188">RUThe page is covered in rather messy mud.</string>
+    <string name="item_desc_189">RUThe page whispers stories of battles long ended to you.</string>
+    <string name="item_desc_190">RUThe page\'s appearance makes you more irritable.</string>
+    <string name="item_desc_191">RUThe page\'s leaves have petals sprouting from them.</string>
+    <string name="item_desc_192">RUThe page has bugs crawling all over.</string>
+    <string name="item_desc_193">RUA powerful book, with information on combat techniques.</string>
+    <string name="item_desc_194">RUAn agile book, containing information on dodging techniques.</string>
+    <string name="item_desc_195">RUA natural book, containing information on gardening.</string>
+    <string name="item_desc_196">RUA wet book, containing information on sea creatures.</string>
+    <string name="item_desc_197">RUA relaxing book, helping to negotiate between others.</string>
+    <string name="item_desc_198">RUA brown book, containing information about Earth.</string>
+    <string name="item_desc_199">RUA deadly book, containing information on poisons.</string>
+    <string name="item_desc_200">RUA lively book, containing information on the world\'s species.</string>
+    <string name="item_desc_201">RUA collection of all books,the ultimate prize.</string>
+    <string name="item_desc_202">RUThe grain in game falls mainly in... here.</string>
+    <string name="item_desc_203">RUEgg-sactly what you need.</string>
+    <string name="item_desc_204">RUFreshly squeezed.</string>
+    <string name="item_desc_205">RULike a blackberry, but bluer.</string>
+    <string name="item_desc_206">RUNot split. Yet.</string>
+    <string name="item_desc_207">RUOrange you glad you bought this?</string>
+    <string name="item_desc_208">RUCherish this cherry. Or use it.</string>
+    <string name="item_desc_209">RUDon\'t eat too many!</string>
+    <string name="item_desc_210">RUDon\'t eat too much!</string>
+    <string name="item_desc_211">RUA very fishy dishy. Delishy!.</string>
+    <string name="item_desc_212">RUFresh, not from a can.</string>
+    <string name="item_desc_213">RUA less fishy dishy, still delishy!.</string>
+    <string name="item_desc_214">RUNot dripping any more. Phew!</string>
+    <string name="item_desc_215">RUA sandwich with all the insides inside(s).</string>
+    <string name="item_desc_216">RUHam, not spam!</string>
+    <string name="item_desc_217">RUNot grilled, unfortunately.</string>
+    <string name="item_desc_218">RUThis pie isn\'t.</string>
+    <string name="item_desc_219">RULook at the way it crumbles.</string>
+    <string name="item_desc_220">RUA purple gem.</string>
+    <string name="item_desc_221">RUA yellow gem.</string>
+    <string name="item_desc_222">RUA rather pretty silver and purple ring.</string>
+    <string name="item_desc_223">RUAn intriguing silver and yellow ring.</string>
+    <string name="item_desc_224">RUA rather pretty gold and purple ring.</string>
+    <string name="item_desc_225">RUAn intriguing gold and silver ring.</string>
+    <string name="item_desc_226">RUUnfortunately won\'t level you up.</string>
+    <string name="item_desc_227">RUThirst quenching, and rather wet.</string>
+    <string name="item_desc_228">RUHearty and filling!</string>
+    <string name="item_desc_229">RUThe most important meal of the day, apparently.</string>
+    <string name="item_desc_230">RUMmmm, so sweet!</string>
+
+    <string name="language_1">RUEnglish</string>
+    <string name="language_2">RUFrench</string>
+    <string name="language_3">RURussian</string>
+    <string name="language_4">RUDutch</string>
+    <string name="language_5">RUChinese</string>
+    <string name="language_6">RUKorean</string>
+    <string name="language_7">RUJapanese</string>
+    <string name="language_8">RUSpanish</string>
+    <string name="language_9">RUGerman</string>
+
+    <string name="setting_1">RUGame Sound</string>
+    <string name="setting_2">RUGame Music</string>
+    <string name="setting_3">RURestock Notifications</string>
+    <string name="setting_4">RUNotification Sounds</string>
+    <string name="setting_5">RUVisitor Notifications</string>
+    <string name="setting_6">RUAuto sign in</string>
+    <string name="setting_7">RUWorker Notifications</string>
+    <string name="setting_8">RUDisable Ads</string>
+    <string name="setting_9">RUBonus Notifications</string>
+    <string name="setting_10">RUWorker Autofeed</string>
+    <string name="setting_11">RUQuick Item Select</string>
+    <string name="setting_12">RUOnly Available Items</string>
+    <string name="setting_13">RUQuick Log Access</string>
+    <string name="setting_14">RUFullscreen Mode</string>
+    <string name="setting_15">RUItem Listing Auto Refresh</string>
+    <string name="setting_16">RUFullscreen Mode Checking</string>
+    <string name="setting_17">RUItem Slot Updating</string>
+    <string name="setting_18">RULonger Message Durations</string>
+    <string name="setting_19">RUSmelt / Craft / Sell Max</string>
+    <string name="setting_20">RUAll Items Finished Notifications</string>
+    <string name="setting_21">RUSingle Stack Bulk Crafting</string>
+    <string name="setting_22">RUOrientation</string>
+    <string name="setting_23">RULanguage</string>
+
+    <string name="state_1">RUNormal</string>
+    <string name="state_2">RUUnfinished</string>
+    <string name="state_3">RURed Enchant</string>
+    <string name="state_4">RUBlue Enchant</string>
+    <string name="state_5">RUGreen Enchant</string>
+    <string name="state_6">RUWhite Enchant</string>
+    <string name="state_7">RUBlack Enchant</string>
+    <string name="state_8">RUPurple Enchant</string>
+    <string name="state_9">RUYellow Enchant</string>
+
+    <string name="su_1">RU2x Furnace Items</string>
+    <string name="su_2">RU2x Coin Earnings</string>
+    <string name="su_3">RU2x All XP</string>
+    <string name="su_4">RU2x Trader Items Purchased</string>
+    <string name="su_5">RU2x Worker Resources</string>
+    <string name="su_6">RU1 Demand Per Visitor</string>
+    <string name="su_7">RUFree Market Restock</string>
+    <string name="su_8">RU-50% Worker Time</string>
+    <string name="su_9">RU2x Trade Price</string>
+    <string name="su_10">RU-50% Market Buy Cost</string>
+    <string name="su_11">RU-50% Bonus Chest Time</string>
+    <string name="su_12">RU100x Contribution Reward</string>
+    <string name="su_13">RUGuaranteed Pages</string>
+    <string name="su_14">RUAll Quests Medium+</string>
+    <string name="su_15">RUAll Quests Hard+</string>
+    <string name="su_16">RUAll Quests Elite</string>
+    <string name="su_17">RU2x Anvil Items</string>
+    <string name="su_18">RU2x Table Items</string>
+    <string name="su_19">RU2x Enchant Table Items</string>
+    <string name="su_20">RUBuy All From Market</string>
+    <string name="su_21">RUHalve All Times</string>
+
+    <string name="tier_1">RUBronze</string>
+    <string name="tier_2">RUIron</string>
+    <string name="tier_3">RUSteel</string>
+    <string name="tier_4">RUMithril</string>
+    <string name="tier_5">RUAdamant</string>
+    <string name="tier_6">RURune</string>
+    <string name="tier_7">RUDragon</string>
+    <string name="tier_8">RUSilver</string>
+    <string name="tier_9">RUGold</string>
+    <string name="tier_10">RULegendary</string>
+    <string name="tier_11">RUNone</string>
+
+    <string name="trader_name_1">RUThe Scraps</string>
+    <string name="trader_name_2">RULots More Ore</string>
+    <string name="trader_name_3">RUThe Off Cuts</string>
+    <string name="trader_name_4">RUThe Backbone</string>
+    <string name="trader_name_5">RUThe Prime Cuts</string>
+    <string name="trader_name_6">RUThe Iron Throne</string>
+    <string name="trader_name_7">RUThe Iron Fist</string>
+    <string name="trader_name_8">RUThe Nuggets</string>
+    <string name="trader_name_9">RUThe Nougat</string>
+    <string name="trader_name_10">RUThe Golden Boulders</string>
+    <string name="trader_name_11">RUA Straight Cut</string>
+    <string name="trader_name_12">RUA Finer Cut</string>
+    <string name="trader_name_13">RULogged In</string>
+    <string name="trader_name_14">RUOog</string>
+    <string name="trader_name_15">RUGemBooth 1000</string>
+    <string name="trader_name_16">RUGemEmporium 5000</string>
+    <string name="trader_name_17">RUGemCrusher 9000</string>
+    <string name="trader_name_18">RUFarmyard Funland</string>
+    <string name="trader_name_19">RUBaker\'s Dozen</string>
+    <string name="trader_name_20">RUThe Exclusive Emporium</string>
+    <string name="trader_name_21">RUThe Little Ore Shop</string>
+    <string name="trader_name_22">RUThe Little Bar Shop</string>
+    <string name="trader_name_23">RUThe Bigger Ore Shop</string>
+    <string name="trader_name_24">RUThe Bigger Bar Shop</string>
+    <string name="trader_name_25">RUThe Biggest Ore Shop</string>
+    <string name="trader_name_26">RUThe Biggest Bar Shop</string>
+    <string name="trader_name_27">RUThe Scary Silk Shop</string>
+    <string name="trader_name_28">RUThe Lethal Log Lair</string>
+    <string name="trader_name_29">RUThe Petrifying Powder Place</string>
+    <string name="trader_name_30">RUSurf and Steel</string>
+    <string name="trader_name_31">RUManatees and Mithril</string>
+    <string name="trader_name_32">RUAtolls and Adamant</string>
+    <string name="trader_name_33">RUReefs and Rune</string>
+    <string name="trader_name_34">RUDives and Dragon</string>
+    <string name="trader_name_35">RUSwords a\'plenty!</string>
+    <string name="trader_name_36">RUShields a\'plenty!</string>
+    <string name="trader_name_37">RUArmour a\'plenty!</string>
+    <string name="trader_name_38">RUThe Floating Fruitmonger</string>
+    <string name="trader_name_39">RUThe Fromage Fermenter</string>
+    <string name="trader_name_40">RUMill Hill</string>
+    <string name="trader_name_41">RUBloodsucker\'s Boxes</string>
+    <string name="trader_name_42">RURunic Remedies</string>
+    <string name="trader_name_43">RUDragon Delights</string>
+    <string name="trader_name_44">RUSilver Waistbands</string>
+    <string name="trader_name_45">RUGold Belts</string>
+    <string name="trader_name_46">RUSpace Ores</string>
+    <string name="trader_name_47">RUSpace Bars</string>
+    <string name="trader_name_48">RUSpace Gems</string>
+    <string name="trader_name_49">RUMy Stuff</string>
+    <string name="trader_name_50">RUStill My Stuff</string>
+    <string name="trader_name_51">RUOpticians</string>
+    <string name="trader_name_52">RUThe King\'s Armoury</string>
+    <string name="trader_name_53">RUThe King\'s Weapon Rack</string>
+    <string name="trader_name_54">RUThe Pre-Bakery</string>
+    <string name="trader_name_55">RUFruit Stand</string>
+    <string name="trader_name_56">RUThe Sweet Spot</string>
+
+    <string name="trader_desc_1">RUI was gonna chuck this stuff out.. you interested?</string>
+    <string name="trader_desc_2">RULots and lots and lots of ore!</string>
+    <string name="trader_desc_3">RUThis stuff isn\'t the best, but it\'ll do.</string>
+    <string name="trader_desc_4">RUYou\'re gonna like what I\'ve got. I think.</string>
+    <string name="trader_desc_5">RUMy very best stock, for the connoisseur.</string>
+    <string name="trader_desc_6">RUI rule my iron with an iron fist!</string>
+    <string name="trader_desc_7">RUI rule my iron from an iron throne!</string>
+    <string name="trader_desc_8">RUCheck out these lil shiners.</string>
+    <string name="trader_desc_9">RUPanned these all myself, honest!</string>
+    <string name="trader_desc_10">RUCheck out these lil shiners.</string>
+    <string name="trader_desc_11">RUDefinitely not off the back of a cart.</string>
+    <string name="trader_desc_12">RUReams upon reams of high quality cloth.</string>
+    <string name="trader_desc_13">RULOGS! LOOOGS! LOTSA LOOOOOOGS!!!</string>
+    <string name="trader_desc_14">RUOOG. OOG. OOG.</string>
+    <string name="trader_desc_15">RUBzzt! Buy gems!</string>
+    <string name="trader_desc_16">RUBzzt! Buy BETTER gems!</string>
+    <string name="trader_desc_17">RUBzzt! Buy BROKEN gems!</string>
+    <string name="trader_desc_18">RUAll the fun of the farm!</string>
+    <string name="trader_desc_19">RUWhat, a plant can\'t run a business?</string>
+    <string name="trader_desc_20">RUYou won\'t find any of this anywhere else!</string>
+    <string name="trader_desc_21">RUA little ore in store, you it is for!</string>
+    <string name="trader_desc_22">RUSome bars inside, no need to hide.</string>
+    <string name="trader_desc_23">RUOre? A lot, that\'s what I\'ve got.</string>
+    <string name="trader_desc_24">RULots more bars, don\'t go fars!</string>
+    <string name="trader_desc_25">RUOre to the max, racks and racks.</string>
+    <string name="trader_desc_26">RUSo many bars, enough to fill Mars.</string>
+    <string name="trader_desc_27">RUAbout as scary as regular silk.</string>
+    <string name="trader_desc_28">RUAbout as lethal as any old log.</string>
+    <string name="trader_desc_29">RUPowder can be scary! Course it can!</string>
+    <string name="trader_desc_30">RUDon\'t steal my steel.</string>
+    <string name="trader_desc_31">RUI won\'t mith my mithril. I mean miss.</string>
+    <string name="trader_desc_32">RUI\'m adamant you\'ll like my adamant.</string>
+    <string name="trader_desc_33">RUDon\'t rune away!</string>
+    <string name="trader_desc_34">RUForged from seadragon hide.</string>
+    <string name="trader_desc_35">RUGet your swords here!</string>
+    <string name="trader_desc_36">RUGet your shields here!</string>
+    <string name="trader_desc_37">RUGet your armour here!</string>
+    <string name="trader_desc_38">RUIt\'s all technically fruit!</string>
+    <string name="trader_desc_39">RUFinely fermented, frankly.</string>
+    <string name="trader_desc_40">RUBaker\'s dozens!</string>
+    <string name="trader_desc_41">RUDon\'t ask how I got this.</string>
+    <string name="trader_desc_42">RUThe finest rune resources in the land!</string>
+    <string name="trader_desc_43">RUAll 100% gen-u-ine dragon.</string>
+    <string name="trader_desc_44">RUFor blobs only!</string>
+    <string name="trader_desc_45">RUFor fancy blobs only!</string>
+    <string name="trader_desc_46">RUFresh off the asteroid.</string>
+    <string name="trader_desc_47">RUFrom the slightly more advanced asteroids.</string>
+    <string name="trader_desc_48">RUFormed when a space rock meets high G-forces.</string>
+    <string name="trader_desc_49">RUNot for sale. Go away.</string>
+    <string name="trader_desc_50">RUI\'m hanging onto this. Shoo.</string>
+    <string name="trader_desc_51">RUWell, they help protect your eyes at least.</string>
+    <string name="trader_desc_52">RUBuy the very best.</string>
+    <string name="trader_desc_53">RUBuy the very best.</string>
+    <string name="trader_desc_54">RUAll the ingredients, none of the bread!</string>
+    <string name="trader_desc_55">RUAll of your five a day.</string>
+    <string name="trader_desc_56">RUCareful, they\'ll rot your teeth.</string>
+
+    <string name="type_1">RUOre</string>
+    <string name="type_2">RUBar</string>
+    <string name="type_3">RUDagger</string>
+    <string name="type_4">RUSword</string>
+    <string name="type_5">RULongsword</string>
+    <string name="type_6">RUBow</string>
+    <string name="type_7">RUHalf Shield</string>
+    <string name="type_8">RUFull Shield</string>
+    <string name="type_9">RUChainmail</string>
+    <string name="type_10">RUPlatebody</string>
+    <string name="type_11">RUHalf Helmet</string>
+    <string name="type_12">RUFull Helmet</string>
+    <string name="type_13">RUBoot</string>
+    <string name="type_14">RUGlove</string>
+    <string name="type_15">RUPickaxe</string>
+    <string name="type_16">RUHatchet</string>
+    <string name="type_17">RUFishing Rod</string>
+    <string name="type_18">RUHammer</string>
+    <string name="type_19">RUSecondary</string>
+    <string name="type_20">RUGem</string>
+    <string name="type_21">RURaw Food</string>
+    <string name="type_22">RUPowder</string>
+    <string name="type_23">RURare</string>
+    <string name="type_24">RURing</string>
+    <string name="type_25">RUPage</string>
+    <string name="type_26">RUBook</string>
+    <string name="type_27">RUCooked Food</string>
+    <string name="type_28">RUInternal</string>
+
+    <string name="upgrade_1">RUVisitor Spawn Time</string>
+    <string name="upgrade_2">RUMarket Restock Time</string>
+    <string name="upgrade_3">RUMaximum Visitors</string>
+    <string name="upgrade_4">RUMaximum Traders</string>
+    <string name="upgrade_5">RUCoins Bonus</string>
+    <string name="upgrade_6">RUXP Bonus</string>
+    <string name="upgrade_7">RUCraft Time</string>
+    <string name="upgrade_8">RULegendary Chance</string>
+    <string name="upgrade_9">RURestock All Cost</string>
+    <string name="upgrade_10">RUWorker Time</string>
+    <string name="upgrade_11">RUMinimum Visitor Rewards</string>
+    <string name="upgrade_12">RUMaximum Visitor Rewards</string>
+
+    <string name="visitor_name_1">RUSenor Spicy Hot</string>
+    <string name="visitor_name_2">RUMister Hatchet</string>
+    <string name="visitor_name_3">RULord of the Junk</string>
+    <string name="visitor_name_4">RUMonsieur Fancypants</string>
+    <string name="visitor_name_5">RUGrumbling Rock</string>
+    <string name="visitor_name_6">RULarge Grumbling Rock</string>
+    <string name="visitor_name_7">RUR. De Couleur</string>
+    <string name="visitor_name_8">RUG. De Couleur</string>
+    <string name="visitor_name_9">RUB. De Couleur</string>
+    <string name="visitor_name_10">RUW. De Couleur</string>
+    <string name="visitor_name_11">RUB. De Couleur</string>
+    <string name="visitor_name_12">RUGelatinous Egg</string>
+    <string name="visitor_name_13">RUThe Great Cheese Menace</string>
+    <string name="visitor_name_14">RUThe Leech King</string>
+    <string name="visitor_name_15">RUMan of Magicka</string>
+    <string name="visitor_name_16">RURare Chest</string>
+    <string name="visitor_name_17">RUChest</string>
+    <string name="visitor_name_18">RUEye of Ender</string>
+    <string name="visitor_name_19">RUBRAINS</string>
+    <string name="visitor_name_20">RUAsterisk The Ghoul</string>
+    <string name="visitor_name_21">RUEye of Starter</string>
+    <string name="visitor_name_22">RUMarcell</string>
+    <string name="visitor_name_23">RUCrabby</string>
+    <string name="visitor_name_24">RUSoutherner</string>
+    <string name="visitor_name_25">RUMagical Mushroom</string>
+    <string name="visitor_name_26">RUOverwasp</string>
+    <string name="visitor_name_27">RUObelix The Ghoul</string>
+    <string name="visitor_name_28">RUWhippersnappette</string>
+    <string name="visitor_name_29">RUHatty</string>
+    <string name="visitor_name_30">RUArcher</string>
+    <string name="visitor_name_31">RUSteve</string>
+    <string name="visitor_name_32">RUWhippersnapper</string>
+    <string name="visitor_name_33">RUMr T Utorial</string>
+    <string name="visitor_name_34">RUSammy the Snake</string>
+    <string name="visitor_name_35">RUPower Orb</string>
+    <string name="visitor_name_36">RUFrankie Fire</string>
+    <string name="visitor_name_37">RUEmerald Giant</string>
+    <string name="visitor_name_38">RUPURPLEBOT9000</string>
+    <string name="visitor_name_39">RUWhirling Dervish</string>
+    <string name="visitor_name_40">RUStumps</string>
+    <string name="visitor_name_41">RUOctomum</string>
+    <string name="visitor_name_42">RUBattletoad</string>
+    <string name="visitor_name_43">RUCasper</string>
+    <string name="visitor_name_44">RUMummioso</string>
+    <string name="visitor_name_45">RUThe Black Knight</string>
+    <string name="visitor_name_46">RUMrs BRAINS</string>
+    <string name="visitor_name_47">RUSir Stumps</string>
+    <string name="visitor_name_48">RUThe Great Bread Menace</string>
+    <string name="visitor_name_49">RUBloody Mary</string>
+    <string name="visitor_name_50">RUCOLDBOT5000</string>
+    <string name="visitor_name_51">RUMr Tentacles</string>
+    <string name="visitor_name_52">RUBresh Bosh</string>
+
+    <string name="visitor_desc_1">RUI like unfinished things, they burn better!</string>
+    <string name="visitor_desc_2">RUIf only I was a woodcutter...</string>
+    <string name="visitor_desc_3">RUIt\'s not rubbish, it\'s treasure!</string>
+    <string name="visitor_desc_4">RUOnly the best for me, old chap.</string>
+    <string name="visitor_desc_5">RUMe hungry. Tummy rumbling.</string>
+    <string name="visitor_desc_6">RUMe very hungry. Tummy rumbling loud.</string>
+    <string name="visitor_desc_7">RUThey say I\'m the short-tempered one, but I just like the colour.</string>
+    <string name="visitor_desc_8">RUThey say I\'m the jealous one, but I just like the colour.</string>
+    <string name="visitor_desc_9">RUThey say I\'m the unhappy one, but I just like the colour.</string>
+    <string name="visitor_desc_10">RUThey say I\'m the scared one, but I just like the colour.</string>
+    <string name="visitor_desc_11">RUThey say I\'m the scary one, but I just like the colour.</string>
+    <string name="visitor_desc_12">RUSo what if I\'m not quite in shape?</string>
+    <string name="visitor_desc_13">RUYou there! Got any of the yellow stuff?</string>
+    <string name="visitor_desc_14">RUSlurp, slurp.</string>
+    <string name="visitor_desc_15">RUDo you like my outfit?</string>
+    <string name="visitor_desc_16">RUGive me your rare items, I\'ll look after them!</string>
+    <string name="visitor_desc_17">RUGive me your items, I\'ll look after them!</string>
+    <string name="visitor_desc_18">RUDon\'t worry, it\'s a coloured contact lens.</string>
+    <string name="visitor_desc_19">RUBRAINS</string>
+    <string name="visitor_desc_20">RUSeen Obelix anywhere?</string>
+    <string name="visitor_desc_21">RUI don\'t suppose you\'ve got any monocles?</string>
+    <string name="visitor_desc_22">RUI\'ve got shoes on.</string>
+    <string name="visitor_desc_23">RUSnippy, snippy!</string>
+    <string name="visitor_desc_24">RUFrom down south. No, REALLY south. REAAALLLY south.</string>
+    <string name="visitor_desc_25">RUNo nibbling.</string>
+    <string name="visitor_desc_26">RUYou know I can sting repeatedly, right?</string>
+    <string name="visitor_desc_27">RUSeen Asterisk anywhere?</string>
+    <string name="visitor_desc_28">RUDon\'t tell Steve, but his secret mine isn\'t so secret.</string>
+    <string name="visitor_desc_29">RUI wish my hair wasn\'t so exposed to the elements.</string>
+    <string name="visitor_desc_30">RUIt\'s all about the bullseye.</string>
+    <string name="visitor_desc_31">RUGotta dig deeper and deeper and deeper and...</string>
+    <string name="visitor_desc_32">RUDon\'t tell Steve, but his secret fish pond isn\'t so secret.</string>
+    <string name="visitor_desc_33">RUNeed a hand?</string>
+    <string name="visitor_desc_34">RUSsscared of sssnakesss?</string>
+    <string name="visitor_desc_35">RUI am all powerful. Okay, apart from equipment. Shh.</string>
+    <string name="visitor_desc_36">RUIs it hot in here?</string>
+    <string name="visitor_desc_37">RUI.. can.. barely.. move.</string>
+    <string name="visitor_desc_38">RUBZZ.. GIVE SILVER. PLZ.</string>
+    <string name="visitor_desc_39">RUI\'m a little bit dizzy. Actually, very dizzy.</string>
+    <string name="visitor_desc_40">RUSure is cold up there.</string>
+    <string name="visitor_desc_41">RUI am a completely normal human. Completely normal.</string>
+    <string name="visitor_desc_42">RUMake it quick, I\'ve got somewhere to be.</string>
+    <string name="visitor_desc_43">RUI hope I\'m not scaring you. I\'m so sorry if I am. Sorry.</string>
+    <string name="visitor_desc_44">RUI am more than a mere mummy, I am Mummioso!</string>
+    <string name="visitor_desc_45">RUIt\'s not even a scratch!</string>
+    <string name="visitor_desc_46">RUHello! Oh, also BRAINS.</string>
+    <string name="visitor_desc_47">RUMy bark is as good as my bite.</string>
+    <string name="visitor_desc_48">RUYou there! Got any of the yeasty stuff?</string>
+    <string name="visitor_desc_49">RUBloody Mary, Bloody Mary, Bloody Mary!</string>
+    <string name="visitor_desc_50">RUIt\'s freezerin\' time!</string>
+    <string name="visitor_desc_51">RUWant a burger?</string>
+    <string name="visitor_desc_52">RUI\'s got all these coins but nuffin good. Whatchu got?</string>
+
+    <!-- Stage 1 -->
+    <string name="tutorialText">RUTutorial</string>
+    <string name="tutorialIntro">RUBlacksmith</string>
+    <string name="tutorialIntroText">RUWelcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
+    <string name="tutorialCoins">RUCoins</string>
+    <string name="tutorialCoinsText">RUYour coins are used for buying... well, everything. They are earned by trading away items.</string>
+    <string name="tutorialQuest">RUQuests</string>
+    <string name="tutorialQuestText">RUThis is your current quest (if any). Quests are an excellent way to earn extra resources.</string>
+    <string name="tutorialLevel">RULevel</string>
+    <string name="tutorialLevelText">RUThis is your current level. XP is earned by crafting and trading items.</string>
+    <string name="tutorialVisitor">RUVisitor</string>
+    <string name="tutorialVisitorText">RUYour first visitor has arrived! Tap him to continue.</string>
+
+    <!-- Stage 2 -->
+    <string name="tutorialVisitorPicture">RUVisitor</string>
+    <string name="tutorialVisitorPictureText">RUAh, Mr T Utorial! How nice of you to stop by.</string>
+    <string name="tutorialVisitorPrefs">RUPreferences</string>
+    <string name="tutorialVisitorPrefsText">RUIt looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorDemands">RUDemands</string>
+    <string name="tutorialVisitorDemandsText">RUEach visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
+
+    <!-- Stage 3 -->
+    <string name="tutorialTradeItems">RUTradeable Items</string>
+    <string name="tutorialTradeItemsText">RULooks like you\'ve got 3 different ores to sell. How lucky! Sell any, and you\'ll get more than the coins listed due to the visitor\'s ore preference.</string>
+    <string name="tutorialTradeFinish">RUFinish Trading</string>
+    <string name="tutorialTradeFinishText">RUOnce any 2 ores have been traded, tap finish to return to the visitor overview.</string>
+
+    <!-- Stage 4 -->
+    <string name="tutorialVisitorDemandsLeft">RUDemands</string>
+    <string name="tutorialVisitorDemandsLeftText">RUHmm, looks like he also wants an unfinished item, and a finished item. We haven\'t got those yet!</string>
+    <string name="tutorialVisitorClose">RUClose</string>
+    <string name="tutorialVisitorCloseText">RULet\'s leave the visitor, and make our way to the furnace to make some bronze bars.</string>
+
+    <!-- Stage 5 -->
+    <string name="tutorialFurnaceSlots">RUSlots</string>
+    <string name="tutorialFurnaceSlotsText">RUAny bars that are currently being smelted in the furnace will appear here. If there\'s no space, bars will be queued up.</string>
+    <string name="tutorialFurnace">RUFurnace</string>
+    <string name="tutorialFurnaceText">RUTime to open up the furnace, and make a bar for Mr T Utorial.</string>
+
+    <!-- Stage 6 -->
+    <string name="tutorialFurnaceItems">RUItem</string>
+    <string name="tutorialFurnaceItemsText">RUItem information is shown here. Generally, item information can only be seen after being created, but the bronze bar has been unlocked for you.</string>
+    <string name="tutorialFurnaceScroll">RUChanging Items</string>
+    <string name="tutorialFurnaceScrollText">RUSwiping left and right or tapping the item image will change between available items. For now though, they\'ll mostly be hidden.</string>
+    <string name="tutorialFurnaceIngredients">RUIngredients</string>
+    <string name="tutorialFurnaceIngredientsText">RUSince this is a rather basic item, it only requires level 1. It also requires copper and tin ore, which we have plenty of.</string>
+    <string name="tutorialFurnaceSmelt">RUSmelting</string>
+    <string name="tutorialFurnaceSmeltText">RUCraft a few bronze bars, we\'ll need them for the unfinished items.</string>
+    <string name="tutorialFurnaceClose">RUClose</string>
+    <string name="tutorialFurnaceCloseText">RUClose the furnace, and we\'ll make our way to the anvil.</string>
+
+    <!-- Stage 7 -->
+    <string name="tutorialMainAnvil">RUAnvil</string>
+    <string name="tutorialMainAnvilText">RUTo make the bronze bars into the unfinished dagger, we only need to visit the anvil. As before, notice there\'s only 1 slot available for now.</string>
+
+    <!-- Stage 8 -->
+    <string name="tutorialAnvil">RUItems</string>
+    <string name="tutorialAnvilText">RUAs in the furnace, all items are currently hidden except a basic bronze dagger. Luckily, that\'s what we need to make.</string>
+    <string name="tutorialAnvilUp">RUTiers</string>
+    <string name="tutorialAnvilUpText">RUUnlike the furnace, there are different tiers of item in the anvil. Bronze is the lowest, then iron, all the way up to dragon and legendary items.</string>
+    <string name="tutorialAnvilIngredients">RUIngredients</string>
+    <string name="tutorialAnvilIngredientsText">RUHopefully, you\'ve got plenty of bronze bars made from the furnace. If not, better go back and make them!</string>
+    <string name="tutorialAnvilCraft">RUCrafting</string>
+    <string name="tutorialAnvilCraftText">RUMake a couple of unfinished bronze daggers. Notice that you gain XP for every crafted item.</string>
+
+    <!-- Stage 9 -->
+    <string name="tutorialMainTable">RUTable</string>
+    <string name="tutorialMainTableText">RUTo turn those unfinished daggers into finished daggers, we need to go to the table.</string>
+
+    <!-- Stage 10 -->
+    <string name="tutorialTable">RUTable</string>
+    <string name="tutorialTableText">RUThe table is similar to the anvil, but combines unfinished items and secondary ingredients to make finished items.</string>
+    <string name="tutorialTableIngredients">RUIngredients</string>
+    <string name="tutorialTableIngredientsText">RUTo finish up the dagger, we need a spidersilk. Luckily, we have plenty!</string>
+    <string name="tutorialTableCraft">RUCraft</string>
+    <string name="tutorialTableCraftText">RUCraft one, and the dagger will be ready in a second or so.</string>
+
+    <!-- Stage 11 -->
+    <string name="tutorialMainVisitorFinish">RUFinishing</string>
+    <string name="tutorialMainVisitorFinishText">RUNow, let\'s go give the visitor all of his items.</string>
+
+    <!-- Stage 12 -->
+    <string name="tutorialVisitorFinishBtn">RUComplete</string>
+    <string name="tutorialVisitorFinishBtnText">RUOnce all the items have been handed in, press the complete button. You\'ll get a tip from the visitor as a thank you!</string>
+    <string name="tutorialVisitorFinish">RUDemands</string>
+    <string name="tutorialVisitorFinishText">RUNow, give the visitor the rest of his items via the trade screens.</string>
+
+    <!-- Stage 13 -->
+    <string name="tutorialMainInfo">RULast Thing</string>
+    <string name="tutorialMainInfoText">RUAlmost finished. Before you give Mr T his items, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainWorker">RUWorker</string>
+    <string name="tutorialMainWorkerText">RULater on in the game, workers can be hired to find resources for you. For now though...</string>
+    <string name="tutorialMainMarket">RUMarket</string>
+    <string name="tutorialMainMarketText">RUWhilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.\nTap to enter.</string>
+
+    <!-- Stage 14 -->
+    <string name="tutorialMarket">RUMarket</string>
+    <string name="tutorialMarketText">RUThis is where your resources will come from! Traders will come and go over time, and purchasing from them will unlock better / more items for sale.</string>
+    <string name="tutorialMarketClose">RUClose</string>
+    <string name="tutorialMarketCloseText">RUThe tutorial is almost over! Close the market, and we\'ll take a look at the last few areas.</string>
+
+    <!-- Stage 15 -->
+    <string name="tutorialMainSettings">RUSettings</string>
+    <string name="tutorialMainSettingsText">RUSounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
+    <string name="tutorialMainInventory">RUInventory</string>
+    <string name="tutorialMainInventoryText">RUAll of your items can be seen here, and sold if necessary. It\'s a good way to keep track of everything!</string>
+    <string name="tutorialMainHelp">RUHelp</string>
+    <string name="tutorialMainHelpText">RUThe tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
+
+    <string name="marketText">RUMarket</string>
+    <string name="furnaceText">RUFurnace</string>
+    <string name="anvilText">RUAnvil</string>
+    <string name="inventoryText">RUInventory</string>
+    <string name="tableText">RUTable</string>
+    <string name="traderText">RUTrader</string>
+    <string name="visitorText">RUVisitor</string>
+    <string name="tradeText">RUTrade</string>
+    <string name="enchantingText">RUGem Table</string>
+    <string name="settingsText">RUSettings</string>
+    <string name="creditsText">RUCredits</string>
+    <string name="rateText">RURate App</string>
+    <string name="trophyText">RUTrophies</string>
+    <string name="statisticsText">RUStatistics</string>
+    <string name="helpText">RUHelp</string>
+    <string name="upgradeText">RUUpgrades</string>
+    <string name="premiumText">RUPremium</string>
+    <string name="buyCoinsText">RUBuy Coins</string>
+    <string name="messagesText">RUMessage Log</string>
+    <string name="messagesShortText">RUMessages</string>
+    <string name="socialMediaText">RUSocial Media</string>
+    <string name="workerText">RUWorkers</string>
+    <string name="helperText">RUHelpers</string>
+    <string name="heroText">RUHeroes</string>
+    <string name="toolText">RUTools</string>
+    <string name="foodText">RUFood</string>
+    <string name="itemsText">RUItems</string>
+    <string name="ringsText">RURings</string>
+    <string name="booksText">RUBooks</string>
+    <string name="enchantText">RUGems</string>
+    <string name="powderText">RUPowders</string>
+    <string name="questText">RUQuests</string>
+    <string name="itemSelectText">RUItems</string>
+    <string name="tipsText">RUTips</string>
+    <string name="messageLogToggleText">RUQuick Log Access</string>
+    <string name="adventureText">RUAdventures</string>
+    <string name="equipmentText">RUEquipment</string>
+    <string name="interstitialText">RUAdvert</string>
+
+    <string name="interstitialTimeLeft">RURemaining: %1$ds</string>
+
+    <string name="upgradeTabText">RUUpgrade</string>
+    <string name="superTabText">RUSuper</string>
+
+    <string name="superUpgradeStatusChange">RUSuper upgrade %1$s %2$s! For a description, see the help page.</string>
+    <string name="superUpgradeCollections">RUYou have completed %1$d collection(s), so can activate %1$d/%2$d super upgrades at a time.\n</string>
+    <string name="superUpgradePrestiges">RUYou have prestiged %1$d times, so have unlocked %2$d/%3$d super upgrades.\n</string>
+    <string name="superUpgradeEnabled">RUenabled</string>
+    <string name="superUpgradeDisabled">RUdisabled</string>
+    <string name="superUpgradePrestigeLevel">RUYou need to have prestiged %1$d times to unlock this Super Upgrade.</string>
+
+    <string name="slotLevel">RULv %d</string>
+    <string name="slotPremium">RUPrem</string>
+    <string name="slotSeconds">RU%ds</string>
+
+    <string name="socialMediaQuestion">RUWant to get in touch? You\'re in luck!\n\nReddit is the most active community, but any will get a quick response.</string>
+    <string name="socialMediaFacebook">RUFacebook</string>
+    <string name="socialMediaTwitter">RUTwitter</string>
+    <string name="socialMediaReddit">RUReddit</string>
+
+    <string name="tierPreferenceHero">RUThis hero will receive a %1$s boost for items made out of %2$s.</string>
+    <string name="typePreferenceHero">RUThis hero will receive a %1$s boost for %2$ss.</string>
+    <string name="statePreferenceHero">RUThis hero will receive a %1$s boost for items in a %2$s condition.</string>
+    <string name="discoveredPreferences">RUThis customer will pay %1$s extra for items made out of %2$s.</string>
+    <string name="tierPreference">RUThis customer will pay %1$s extra for items made out of %2$s.</string>
+    <string name="typePreference">RUThis customer will pay %1$s extra for %2$ss.</string>
+    <string name="statePreference">RUThis customer will pay %1$s extra for items in a %2$s condition.</string>
+    <string name="undiscoveredPreference">RUYou haven\'t discovered this preference yet! Try selling different items to discover them.</string>
+    <string name="noBestItem">RUYou haven\'t sold this visitor anything yet!</string>
+    <string name="bestItemMessage">RUThe highest value item sold to %1$s is a %2$s for %3$d coins.</string>
+
+    <string name="cannotBuyIAP">RUThis account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
+    <string name="buyingIAPError">RUAn error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
+
+    <string name="buyContribute">RUContribute</string>
+    <string name="boughtContribute">RUThank you for contributing! You\'re the best!</string>
+    <string name="contributeDescription">RUHey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like. If you\'re interested in buying more coins, coins can be bought (+ button next to coins).\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
+    <string name="contributeStatus">RU\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
+    <string name="contributeTitle">RU%1$s (%2$d / %3$d)</string>
+    <string name="contributeHeader">RURewards:</string>
+
+    <string name="buyCoinsButton">RU%1$s coins</string>
+    <string name="buyCoinsSuccess">RUSuccessfully bought %1$d coins, enjoy!</string>
+    <string name="buyCoinsDesc">RURunning low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
+\n\nToday is your lucky day! Two coin packs are available; the first is 500 x your level, the second is 3,000 x your level.
+\n\nWant to get more value for money? Buy the bigger pack or level up!</string>
+
+    <string name="buyPremium">RUGo Premium!</string>
+    <string name="boughtPremium">RUYou\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
+    <string name="restoredPremium">RUPremium status restored! Make sure to transfer your cloud save too.</string>
+    <string name="premiumStatusActive">RUCurrently premium!</string>
+    <string name="premiumStatusInactive">RUNot currently premium.</string>
+    <string name="premiumFeatures">RUPremium benefits:
+\n- Immediate +20% to bonus coins and bonus XP upgrades.
+\n- +50% maximum possible bonus coins and bonus XP upgrades (from 50% to 100%).
+\n- Easier access to extremely powerful Super Upgrades.
+\n- Ability to turn off all ads.
+\n- Access to 17 new extremely valuable legendary items.
+\n- Extra crafting slot for all areas.
+\n- Coins paid by all out of stock traders on automatic market restock.
+\n- Ability to prestige at level 70, and begin a New Game Plus with +50% coin earnings &amp; -25% XP!
+\n- Doubled bonus chest rewards, and reduced time between chest openings.
+\n- Ability to Contribute, which can unlock beta access and suggesting new items / visitors!
+\n- A big thank you from the developer!</string>
+
+    <string name="levelUpText">RULevelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
+    <string name="levelUpPrestigeText">RULevelled up to %d! Premium players can prestige, take a look at the settings menu!</string>
+    <string name="levelUpPremiumPrestigeText">RULevelled up to %d! You can now prestige (New Game +), take a look at the settings menu!</string>
+    <string name="overflowText">RU+ %d</string>
+
+    <string name="workerLocked">RULocked</string>
+    <string name="buyWorkerQuestion">RUAre you sure you would like to hire this helper for %,d coins?</string>
+    <string name="buyWorkerConfirm">RUHire</string>
+    <string name="buyWorkerComplete">RUSuccessfully hired helper!</string>
+    <string name="buyHeroQuestion">RUAre you sure you would like to hire this hero for %,d coins?</string>
+    <string name="buyHeroConfirm">RUHire</string>
+    <string name="buyHeroComplete">RUSuccessfully hired hero!</string>
+    <string name="buyWorkerCancel">RUCancel</string>
+
+    <string name="sendOutWorkers">RUSend Out\nAll</string>
+    <string name="sendOutWorkersToast">RU%d helpers excitedly jog out of the door, in search of resources.</string>
+    <string name="sendOutHeroesToast">RU%d heroes excitedly jog out of the door, in search of adventure.</string>
+    <string name="autofeedWorkers">RUAuto-feed\n</string>
+
+    <string name="onlyAvailable">RUShow All Items\n</string>
+
+    <string name="updateMessage">RUUpdated to version %s!\n\nA full changelist can be viewed on the /r/PixelBlacksmith subreddit.</string>
+    <string name="updateReddit">RUView Changes</string>
+    <string name="updateClose">RUClose</string>
+
+    <string name="worseSaveMessage">RUAre you SURE you want to load this inferior cloud save?\n\nLocal save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nCloud save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseSaveLoad">RULoad</string>
+    <string name="worseSaveCancel">RUCancel</string>
+
+    <string name="worseLocalSaveMessage">RUAre you SURE you want to load this inferior imported save?\n\nCurrent save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nImported save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseLocalSaveLoad">RULoad</string>
+    <string name="worseLocalSaveCancel">RUCancel</string>
+
+    <string name="cloudSaveWarning">RUAre you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.</string>
+    <string name="cloudSaveSave">RUOverwrite</string>
+    <string name="cloudSaveCancel">RUCancel</string>
+
+    <string name="cloudLocalFailure">RUA local error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudRemoteFailure">RUA remote error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudSaveBeginning">RUSaving game to cloud...</string>
+    <string name="cloudSaveSuccess">RUSave to cloud successful!</string>
+    <string name="cloudLoadBeginning">RULoading cloud save from remote server...</string>
+    <string name="cloudLoadSuccess">RULoad from cloud successful!</string>
+    <string name="cloudSaveCaption">RU%1$d Prestiges | Level %2$d | %3$,d coins | V%4$s</string>
+
+    <string name="windowClick">RUWhat was that!?</string>
+
+    <string name="buyWorker">RUPurchase Helper</string>
+    <string name="buyHero">RUPurchase Hero</string>
+    <string name="workerCoins">RU%,d coins</string>
+    <string name="workerLevel">RULev %d</string>
+    <string name="workerReturnTime">RU%1$s will return in %2$s.</string>
+    <string name="workerTimesCompleted">RU%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
+    <string name="heroTimesCompleted">RU%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
+    <string name="workerStatusReady">RUStatus:\nReady</string>
+    <string name="workerStatusBusy">RUStatus:\nBusy</string>
+    <string name="workerStatusSelectHero">RUSelect Hero</string>
+    <string name="workerStatusSelectAdventure">RUSelect Adventure</string>
+    <string name="workerTool">RUTool:\n%s</string>
+    <string name="workerReturned">RU%1$s has returned, along with: %2$s.</string>
+    <string name="workersReturned">RU%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
+    <string name="heroesReturned">RU%1$d heroes (%2$s) have returned from adventures, %3$d of which were successful! For more details, view the message log.</string>
+    <string name="workerResources">RUResources: %s.</string>
+    <string name="workerFoodBonus">RU+</string>
+
+    <string name="heroTotalStrength">RUTotal Strength: %d</string>
+    <string name="heroFailText">RU%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
+    <string name="heroFailNoItemsText">RU%1$s has failed whilst attempting to %2$s! They had no items, so lost nothing!</string>
+
+    <string name="bribeQuestion">RUWould you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestionAdvert">RUWould you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeConfirm">RUBribe</string>
+    <string name="bribeAdvert">RUWatch Ad</string>
+    <string name="bribeComplete">RUA visitor walks in, with %d coins. What a coincidence!</string>
+    <string name="bribeAdvertComplete">RUA visitor walks in, looks like the advert worked!</string>
+    <string name="bribeFailure">RUNot enough money to bribe a visitor.</string>
+    <string name="bribeCancel">RUCancel</string>
+
+    <string name="bonusTimeLeft">RUThe bonus chest will be ready to open in %s.</string>
+    <string name="bonusQuestion">RUThe bonus chest is ready! Would you like to open it?</string>
+    <string name="bonusWatch">RUWatch Ad</string>
+    <string name="bonusCancel">RUCancel</string>
+
+    <string name="exchangePagesText">RUExc</string>
+    <string name="exchangePagesQuestion">RUWould you like to exchange %1$dx %2$s for 1 random page, or exchange %3$dx for %4$d random pages?</string>
+    <string name="exchangePagesOne">RUOne</string>
+    <string name="exchangePagesAll">RUAll</string>
+    <string name="exchangePagesCancel">RUCancel</string>
+    <string name="exchangePagesSuccess">RUSuccessfully exchanged %1$dx %2$s for %3$dx %4$s.</string>
+
+    <string name="upgradeQuestion">RUWould you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
+    <string name="upgradeConfirm">RUUpgrade</string>
+    <string name="upgradeCancel">RUCancel</string>
+    <string name="upgradeSuccess">RUUpgraded %s!</string>
+    <string name="upgradeDescription">RU%1$s
+\n%2$d / %3$d %4$s
+\n%5$s%6$d %7$s: %8$,d coins</string>
+    <string name="upgradeCompletedDescription">RU%1$s
+\n%2$d / %3$d %4$s</string>
+
+    <string name="prestigeQuestion">RUPrestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50%% coin &amp; -25%% XP gains.
+\n\nThis CANNOT be undone.</string>
+    <string name="prestigeConfirm">RUPrestige</string>
+    <string name="prestigeComplete">RUPrestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
+    <string name="prestigeCancel">RUCancel</string>
+
+    <string name="unlockConfirm">RUAre you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
+    <string name="lockConfirm">RU"Are you sure you want to lock %1$s for %2$s coins?</string>
+    <string name="lock">RULock</string>
+    <string name="unlock">RUUnlock</string>
+    <string name="lockSuccess">RUSuccessfully locked trader!</string>
+    <string name="unlockSuccess">RUSuccessfully unlocked trader!</string>
+    <string name="lockCancel">RUCancel</string>
+
+    <string name="dismissQuestion">RUWould you like to pay a visitor %,d coins to leave immediately?</string>
+    <string name="dismissQuestionAdvert">RUWould you like to pay %,d coins or watch an ad to make the visitor leave immediately?</string>
+    <string name="dismissConfirm">RUPay</string>
+    <string name="dismissConfirmAdvert">RUWatch Ad</string>
+    <string name="dismissComplete">RUThe visitor leaves, a little bit grumpily.</string>
+    <string name="dismissFailure">RUNot enough money to dismiss a visitor.</string>
+    <string name="dismissCancel">RUCancel</string>
+
+    <string name="itemBuyQuestion">RUWould you like to buy 1x %1$s for %2$,d coin(s), or up to %3$d for %4$d coin(s) each?</string>
+    <string name="itemBuy1Confirm">RUBuy 1</string>
+    <string name="itemBuyComplete">RUBegan buying %1$dx %2$s for %3$d coin(s).</string>
+    <string name="itemBuyCancel">RUCancel</string>
+    <string name="itemBuyAllConfirm">RUBuy All</string>
+    <string name="itemBuyAllQuestion">RUWould you like to buy all %1$d items for a total price of %2$,d coins?</string>
+    <string name="itemBuyAllComplete">RUSuccessfully bought %d items!</string>
+    <string name="itemBuyAllNoItems">RUYou can\'t buy all of nothing!</string>
+
+    <string name="trophyVisits">RUVisits: %d</string>
+    <string name="trophyFirstSeen">RUFirst seen: %s</string>
+    <string name="trophy100thVisit">RU100th visit: %s</string>
+    <string name="trophyBestItem">RUBest item: %s</string>
+    <string name="trophyRarity">RUAppear chance: %d</string>
+    <string name="trophyPreferences">RUPreferences: %1$s / %2$s / %3$s</string>
+    <string name="trophyVisitsUnknown">RUVisits: ???</string>
+    <string name="trophyFirstSeenUnknown">RUFirst seen: ???</string>
+    <string name="trophy100thVisitUnknown">RU100th visit: ???</string>
+    <string name="trophyBestItemUnknown">RUBest item: ???</string>
+    <string name="trophyRarityUnknown">RUAppear chance: ???</string>
+    <string name="trophyPreferencesUnknown">RUPreferences: ???</string>
+
+    <string name="craftSuccess">RUSuccessfully added %1$dx %2$s to craft queue.</string>
+    <string name="sellSuccess">RUBegan selling %1$dx %2$s for %3$d coin(s) each.</string>
+
+    <string name="enchantingButtonText">RU%1$s (x%2$d)</string>
+    <string name="genericQuantity">RU%1$dx %2$s</string>
+
+    <string name="horizontalDotsSelected">RUx</string>
+    <string name="horizontalDotsUnselected">RUo</string>
+
+    <string name="demandText" translatable="false">RU%1$s: %2$s (%3$d/%4$d)</string>
+    <string name="visitorDemand" translatable="false">RU%1$dx %2$s: %3$s</string>
+
+    <string name="supportCode">RUSupport Code</string>
+
+    <string name="typeText">RUType</string>
+    <string name="tierText">RUTier</string>
+    <string name="stateText">RUState</string>
+    <string name="bestText">RUBest</string>
+    <string name="finishText">RUFinish</string>
+
+    <string name="cook1Text">RUCook 1</string>
+    <string name="smelt1Text">RUSmelt 1</string>
+    <string name="smelt10Text">RU10</string>
+    <string name="smelt100Text">RU100</string>
+    <string name="craft1Text">RUCraft 1</string>
+    <string name="craft10Text">RU10</string>
+    <string name="craft100Text">RU100</string>
+    <string name="sell1Text">RUSell 1</string>
+    <string name="sell10Text">RUSell 10</string>
+    <string name="sell100Text">RUSell 100</string>
+    <string name="sellMaxText">RUSell Max</string>
+    <string name="crushGemText">RUCrush Gem</string>
+    <string name="maxText">RUMax</string>
+
+    <string name="settingChanged">RUSetting \"%1$s\" successfully turned %2$s!</string>
+    <string name="soundSettingText">RUSounds</string>
+    <string name="musicSettingText">RUMusic</string>
+    <string name="notificationSoundSettingText">RUAlerts</string>
+    <string name="restockNotificationSettingText">RURestock</string>
+    <string name="visitorNotificationSettingText">RUVisitor</string>
+    <string name="workerNotificationSettingText">RUWorker</string>
+    <string name="bonusNotificationSettingText">RUBonus</string>
+    <string name="finishedNotificationSettingText">RUItems\nDone</string>
+    <string name="prestigeSettingText">RUPrestige\n(NG+)</string>
+    <string name="fullscreenSettingText">RUFull Screen</string>
+    <string name="fullscreenCheckSettingText">RUFullscr Check</string>
+    <string name="autoRefreshSettingText">RUAuto Refresh</string>
+    <string name="updateSlotsSettingText">RUUpdate Slots</string>
+    <string name="longToastSettingText">RULonger Messages</string>
+    <string name="handleMaxSettingText">RUEnable\nMax</string>
+    <string name="bulkStackSettingText">RUBulk Craft\nStack</string>
+    <string name="orientationAuto">RUAuto</string>
+    <string name="orientationPortrait">RUPortrait</string>
+    <string name="orientationLandscape">RULandscape</string>
+
+    <string name="importSaveText">RUImport Save</string>
+    <string name="exportSaveText">RUExport Save</string>
+    <string name="saveNameFormat">RUPixelBlacksmith%s.save</string>
+    <string name="saveExportSuccess">RUSuccessfully exported game save to %s on external storage!</string>
+    <string name="saveExportFailure">RUAn error occurred! Please check your storage is correctly connected. Error: %s.</string>
+    <string name="saveImportSuccess">RUSuccessfully loaded local game save!</string>
+    <string name="saveImportLoadSuccess">RUSuccessfully loaded and imported local game save!</string>
+    <string name="saveImportFailure">RUAn error occurred whilst loading save. Error: %s.</string>
+
+    <string name="exitTutorial">RUSkip Tutorial</string>
+    <string name="exitTutorialText">RUTutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
+
+    <string name="languageSettingGroup">RULanguage</string>
+    <string name="soundSettingGroup">RUSound Options</string>
+    <string name="notificationSettingGroup">RUNotification Options</string>
+    <string name="gameplaySettingGroup">RUGameplay Options</string>
+    <string name="performanceSettingGroup">RUPerformance Options</string>
+    <string name="orientationSettingGroup">RUOrientation Options</string>
+    <string name="premiumSettingGroup">RUPremium Options</string>
+    <string name="otherSettingGroup">RUExtras</string>
+    <string name="googlePlaySettingGroup">RUGoogle Play</string>
+    <string name="settingsCodeUnknown">RUSettings Code: ???</string>
+    <string name="settingsCode">RUSettings Code: %2$d</string>
+
+    <string name="unknownText">RU\???</string>
+
+    <string name="connectionFailure">RUCouldn\'t log in. Please try again later.</string>
+
+    <string name="restockText">RURestock</string>
+    <string name="unnecessaryRestock">RUThere\'s no need to restock this trader!</string>
+    <string name="restockTextWithTax">RUAll traders have been restocked, and have paid a tax of %d!</string>
+    <string name="restockTextNoTax">RUAll traders have been restocked!</string>
+    <string name="traderRestockQuestion">RURestock \"%1$s\" for %2$d coins?</string>
+    <string name="traderRestockQuestionAdvert">RURestock \"%1$s\" for %2$d coins, or by watching an advert?</string>
+    <string name="traderRestockConfirm">RUPay Coins</string>
+    <string name="traderRestockConfirmAdvert">RUWatch Ad</string>
+    <string name="traderRestockComplete">RURestocked trader for %d coins.</string>
+    <string name="traderRestockCompleteAdvert">RURestocked trader for free!</string>
+    <string name="traderRestockCancel">RUCancel</string>
+    <string name="traderBusy">RUThe traders are still busy fulfilling your last big order! Either wait a second, or leave the market and come back later.</string>
+
+    <string name="traderRestockAllQuestion">RURestock all traders for %d coins?</string>
+    <string name="traderRestockAllQuestionAdvert">RURestock all traders for %d coins / free with an advert?</string>
+    <string name="traderRestockAllConfirm">RUPay Coins</string>
+    <string name="traderRestockAllConfirmAdvert">RUWatch Ad</string>
+    <string name="traderRestockAllComplete">RURestocked all traders for %d coins.</string>
+    <string name="traderRestockAllCompleteAdvert">RURestocked all traders for free!</string>
+    <string name="traderRestockAllCancel">RUCancel</string>
+
+    <string name="supportCodeQuestion">RUPlease enter your support code (copy &amp; paste recommended!)</string>
+    <string name="supportCodeConfirm">RUEnter</string>
+    <string name="supportCodeComplete">RUApplied support code successfully.</string>
+    <string name="supportCodeFailed">RUError whilst applying code. Please contact support!</string>
+    <string name="supportCodeCancel">RUCancel</string>
+
+    <string name="loadingMessage">RUHold onto your hammers, loading..!</string>
+
+    <string name="notificationVisitor">RUA new visitor has arrived!</string>
+    <string name="notificationWorker">RUA worker has returned!</string>
+    <string name="notificationBonus">RUA bonus is ready to claim!</string>
+    <string name="notificationFinished">RUAll item queues are now empty!</string>
+
+    <string name="clickChangeText">RUQuick Select</string>
+
+    <string name="turnOffAdsText">RUDisable Adverts</string>
+    <string name="adFailedToLoad">RUNo advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
+
+    <string name="tableQuantity">RUQty</string>
+    <string name="tableItem">RUItem </string>
+    <string name="tableSell">RUSell</string>
+
+    <string name="genericProgress">RU%1$d / %2$d</string>
+    <string name="genericProgressPercent">RU%1$d / %2$d (%3$d%%)</string>
+    <string name="genericPercent">RU%1$s%2$d%%</string>
+
+    <string name="traderStock">RU%1$s\n%2$d / %3$d</string>
+    <string name="traderTrades">RU%1$d Trades</string>
+
+    <string name="tradedItem">RUTraded %1$dx %2$s for %3$d coin(s)</string>
+    <string name="unsellableItem">RUMarked %1$s as %2$ssellable!</string>
+
+    <string name="restockMarketText">RUThe marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
+    <string name="restockMarketTextAdvert">RUThe marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
+    <string name="restockMarketButton">RURestock</string>
+    <string name="enchantAdd">RUBegan embedding the %1$s into the %2$s.</string>
+    <string name="powderAdd">RUBegan crushing the gem into %s.</string>
+
+    <string name="traderArrived">RUTrader \"%s\" has arrived.</string>
+
+    <string name="visitorRequirements">RU%1$s\nVisits: %2$d / %3$d\nBest Trade: %4$d / %5$d\nPreferences: %6$d / %7$d</string>
+    <string name="visitorCompleteFailure">RUYou can\'t get rid of an unsatisfied customer!</string>
+    <string name="visitorTrophyEarned">RUThis visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item %1$s and 3x the super rare %2$s!</string>
+    <string name="visitorArrived">RU%d visitor(s) have arrived.</string>
+    <string name="visitorArriving">RUA visitor wanders into the shop...</string>
+    <string name="visitorsArriving">RU%d visitors wander into the shop...</string>
+    <string name="visitorsFullRestockTime">RUNever!</string>
+
+    <string name="visitorLeaves1">RUThe visitor waves good bye, and slips %1$dx %2$s under the counter.</string>
+    <string name="visitorLeaves2">RUThe visitor leaves, and drops %1$dx %2$s on the floor. Finders keepers!</string>
+    <string name="visitorLeaves3">RUThe visitor gratefully passes you %1$dx %2$s.</string>
+    <string name="visitorLeavesLegendary1">RUThe visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
+    <string name="visitorLeavesLegendary2">RUThe visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
+    <string name="visitorLeavesLegendary3">RUAs the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
+    <string name="visitorLeavesComplete1">RUThe visitor rewards you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
+    <string name="visitorLeavesComplete2">RUThe visitor\'s tip has been doubled to %1$dx %2$s!</string>
+    <string name="visitorLeavesComplete3">RUThe very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
+    <string name="visitorLeavesCompletePremium1">RUThe visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
+    <string name="visitorLeavesCompletePremium2">RUHey, what\'s this.. %1$dx %2$s and a rare %3$s? I\'ll hang onto these.</string>
+    <string name="visitorLeavesCompletePremium3">RUThe visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
+
+    <string name="advertWatched1">RUThe chest disappears, leaving %1$dx %2$s behind!</string>
+    <string name="advertWatched2">RUThe chest slowly opens, revealing %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">RUThe chest snaps open, and contains %1$dx %2$s alongside a rare %3$s!</string>
+    <string name="advertWatchedLegendary2">RUThe chest smokes slightly, then spits out %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedPremium1">RUThe chest creaks open, and contains %1$dx %2$s. Twice as many as usual!</string>
+    <string name="advertWatchedPremium2">RUHow strange, the chest\'s contents of %1$dx %2$s seem to be duplicated!</string>
+    <string name="advertWatchedLegendaryPremium1">RUThe chest is stuffed full of %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">RUHey, what\'s this in the corner of the chest... %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedPageSuffix">RUOh, and a %s!</string>
+
+    <string name="statisticsCompletion">RUCompletion:</string>
+    <string name="statisticsCurrentXP">RUCurrent XP:</string>
+    <string name="statisticsNextLevel">RUNext Level In:</string>
+    <string name="statisticsHighestLevel">RUHighest Level:</string>
+    <string name="statisticsSmelted">RUItems Smelted:</string>
+    <string name="statisticsCrafted">RUItems Crafted:</string>
+    <string name="statisticsTraded">RUItems Traded:</string>
+    <string name="statisticsEnchanted">RUGems Embedded:</string>
+    <string name="statisticsBought">RUItems Bought:</string>
+    <string name="statisticsSold">RUItems Sold:</string>
+    <string name="statisticsVisitors">RUVisitors Completed:</string>
+    <string name="statisticsCoins">RUCoins Earned:</string>
+    <string name="statisticsStarted">RUDate Started:</string>
+    <string name="statisticsRestock">RUNext Restock:</string>
+    <string name="statisticsNextVisitorCheck">RUNext Visitor:</string>
+    <string name="statisticsBiggestTrade">RUBiggest Trade:</string>
+    <string name="statisticsUpgradesBought">RUUpgrades Bought:</string>
+    <string name="statisticsTraders">RUTraders Unlocked:</string>
+    <string name="statisticsTraderStocks">RUTrader Stocks Unlocked:</string>
+    <string name="statisticsSlotsUnlocked">RUSlots Unlocked:</string>
+    <string name="statisticsItemsSeen">RUItems Seen:</string>
+    <string name="statisticsPreferencesDiscovered">RUPreferences Discovered:</string>
+    <string name="statisticsTrophies">RUTrophies:</string>
+    <string name="statisticsWorkersOwned">RUHelpers Owned:</string>
+    <string name="statisticsWorkersTrips">RUHelper\'s Trips:</string>
+    <string name="statisticsHeroAdventuresCompleted">RUAdventures Completed:</string>
+    <string name="statisticsHeroAdventuresSuccessful">RUSuccessful Adventures:</string>
+    <string name="statisticsCollectionsCrafted">RUCollections Crafted:</string>
+    <string name="statisticsQuestsCompleted">RUQuests Completed:</string>
+    <string name="statisticsTotalBonusGold">RUTotal Coins Bonus:</string>
+    <string name="statisticsTotalBonusXP">RUTotal XP Bonus:</string>
+    <string name="statisticsPrestige">RUPrestige Level:</string>
+    <string name="statisticsLastPrestiged">RULast Prestige:</string>
+    <string name="statisticsPrestigeValue">RU%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
+    <string name="statisticsLastPrestigedNever">RUNever!</string>
+    <string name="statisticsLastPrestigedLowLevel">RULevel %d+ required!</string>
+    <string name="statisticsCoinsPurchased">RUCoins Purchased:</string>
+    <string name="statisticsVersion">RUGame Version:</string>
+
+    <string name="leaderboardsNoConnection">RUViewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
+    <string name="questsNoConnection">RUParticipating in quests requires being connected to Google Play Games, via the settings menu!</string>
+
+    <string name="questsCompleted">RU%d quests completed.</string>
+
+    <string name="questComplete">RUCompleted \"%1$s\" and received a %2$s Reward: %3$s.</string>
+    <string name="questRewardNoPage">RU%1$d XP and %2$dx %3$s</string>
+    <string name="questRewardPage">RU%1$d XP, %2$dx %3$s, and %4$dx %5$s</string>
+    <string name="questInProgress">RUIn Progress</string>
+    <string name="questAvailable">RUAvailable</string>
+    <string name="questUpcoming">RUUpcoming</string>
+    <string name="questCompleted">RUCompleted</string>
+    <string name="questFailed">RUFailed</string>
+    <string name="questUnclaimed">RUClaim Unclaimed Rewards</string>
+    <string name="questSchedule">RUSchedule (on Reddit)</string>
+
+    <string name="signIn">RUSign In</string>
+    <string name="signOut">RUSign Out</string>
+    <string name="versionNumber">RUV%1$s (#%2$d)</string>
+    <string name="lowMemory">RUFailed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
+
+    <string name="complete">RUComplete</string>
+    <string name="close" translatable="false">RUX</string>
+    <string name="buy">RUBuy</string>
+    <string name="tradeMax">RUMax?</string>
+    <string name="lockTrader">RULock?</string>
+    <string name="noItemsMessage">RUYou don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
+    <string name="noItemsInventory">RUYou don\'t have any items in this category!</string>
+    <string name="noItemsEquipment">RUYou don\'t have any suitable equipment for this slot!</string>
+
+    <string name="interstitialLongText">RUNo advert could be loaded!
+\n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
+\n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
+\n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">RUleave the game a rating</a>. It\'s the best way to help the game grow!
+\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">RUConnext Quest</a>. I think it\'s rather fun!!
+\n\nYou could also read a few tips:</string>
+
+    <string name="creditsOverall">RUOverall</string>
+    <string name="creditsOverallDetails">RUHi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>pixel.blacksmith@jakelee.co.uk</a>.</string>
+    <string name="creditsMusic">RUMusic</string>
+    <string name="creditsMusicDetails" translatable="false">RU\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
+    <string name="creditsCCBY" translatable="false">RUModified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
+    <string name="creditsGraphics">RUGraphics</string>
+    <string name="creditsGraphicsDetails" translatable="false">RUSignificant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">RU@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">RU@MicheleBucelli</a>, and various folks from <a href="http://opengameart.org/">RUOpenGameArt</a>.</string>
+    <string name="creditsLibraries">RULibraries</string>
+    <string name="creditsLibrariesDetails" translatable="false">RU<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
+\n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
+\n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
+\n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+\n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
+\n<a href='https://batch.com/doc/android/sdk-integration/initial-setup.html'>Batch</a> - Free IAP promotions for AppGratis etc.
+\n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/square/picasso'>Picasso</a> - Used for image loading.
+\n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
+\n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
+    <string name="creditsSoftware">RUSoftware</string>
+    <string name="creditsSoftwareDetails">RU<a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
+\n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
+\n<a href='https://trello.com/'>Trello</a> - Project management.</string>
+    <string name="creditsMiscDetails">RUFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
+</string>
+
+    <string-array name="toolsArray">RU
+        <item>Pickaxe (Ore)</item>
+        <item>Hammer (Bar)</item>
+        <item>Fishing Rod (Food)</item>
+        <item>Hatchet (Wood)</item>
+        <item>Gloves (Silk)</item>
+        <item>Gem (Powder)</item>
+        <item>Silver Ring (Silver + Gems)</item>
+        <item>Gold Ring (Gold + Gems)</item>
+        <item>Visage (Coins)</item>
+    </string-array>
+    <string name="noToolsText">RUYou don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
+    <string name="noFoodText">RUYou don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+    <string name="selectAdventure">RUPlease select a category and subcategory of adventure using the dropdowns above.</string>
+
+    <string-array name="typesArray">RU
+        <item>All Items</item>
+        <item>Bar</item>
+        <item>Book</item>
+        <item>Boot</item>
+        <item>Bow</item>
+        <item>Chainmail</item>
+        <item>Cooked Food</item>
+        <item>Dagger</item>
+        <item>Fishing Rod</item>
+        <item>Full Helmet</item>
+        <item>Full Shield</item>
+        <item>Gem</item>
+        <item>Glove</item>
+        <item>Half Helmet</item>
+        <item>Half Shield</item>
+        <item>Hammer</item>
+        <item>Hatchet</item>
+        <item>Longsword</item>
+        <item>Ore</item>
+        <item>Page</item>
+        <item>Pickaxe</item>
+        <item>Platebody</item>
+        <item>Powder</item>
+        <item>Rare</item>
+        <item>Raw Food</item>
+        <item>Ring</item>
+        <item>Secondary</item>
+        <item>Sword</item>
+    </string-array>
+
+    <string-array name='tipsArray'>
+        <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
+        <item>The tutorial can be replayed from the Settings menu if you need a reminder.</item>
+        <item>Game sounds / music can be turned off in the Settings, along with notification sounds.</item>
+        <item>All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</item>
+        <item>A Visitor\'s Required Trades are listed in black.</item>
+        <item>A Visitor\'s Optional Trades are listed in grey.</item>
+        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
+        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
+        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
+        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
+        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
+        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
+        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
+        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
+        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
+        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
+        <item>Pages can be found by completing quests, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
+        <item>Premium players can disable all adverts from the settings menu.</item>
+        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
+        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
+        <item>The game\'s credits can be viewed in the Settings menu.</item>
+        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
+        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
+        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
+        <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
+        <item>Initially, you can only have up to 2 Visitors at the same time. This can be increased to 10 Visitors by upgrading "Maximum Visitors".</item>
+        <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
+        <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
+        <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
+        <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
+        <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
+        <item>Helpers and heroes initially take 3 hours to return with resources. This can be reduced to just 30 minutes by upgrading "Worker Time".</item>
+        <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
+        <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
+        <item>There are 7 different hirable Helpers that unlock as you level up.</item>
+        <item>You only have to pay to hire each different Helper once. After you\'ve hired a Helper, they will continue to work for you as long as you want to give them a job to do.</item>
+        <item>Helpers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
+        <item>There are 8 different types of Tools that Helpers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
+        <item>A Helper with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
+        <item>Equipping a Helper with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
+        <item>Once you\'ve equipped a Helper with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
+        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Helper a Food item to increase how much they will gather.</item>
+        <item>The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</item>
+        <item>Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
+        <item>Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+        <item>Heroes are a riskier way to earn items, but can be very profitable!</item>
+        <item>Make the most of a hero\'s item preferences to complete the trickier quests.</item>
+        <item>The worker notification will inform you when both heroes and helpers have returned.</item>
+        <item>When pressed, messages can either show the message log, or disappear. Change it in the settings!</item>
+        <item>Fullscreen mode provides a more immersive mode, but can drain battery faster!</item>
+        <item>If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</item>
+        <item>Messages disappearing too quickly? Enable longer messages in the settings.</item>
+        <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
+        <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
+        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</item>
+        <item>Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</item>
+        <item>Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</item>
+        <item>Having trouble reaching 100%% completion? Tap your completion %% to see a breakdown of your progress.</item>
+        <item>The game can be locked in portrait or landscape if you prefer playing a certain way.</item>
+        <item>Enchanted items will have a coloured tint to them, to help easily identify them.</item>
+        <item>Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</item>
+        <item>The sheets on the table below the shop visitors can be tapped to quickly access the message log.</item>
+        <item>Running low on coins? Packs can be bought by tapping the plus button next to your coin count. The higher your level, the more coins you\'ll get!</item>
+        <item>Large quantities of item can be crafted in a single stack. This lets other items be crafted at the same time as a large order.</item>
+        <item>Once a visitor\'s trophy has been earned, the spawn chance is cut in half.</item>
+        <item>Heroes can \'super succeed\' if on an easy adventure, earning 1.1 to 2.5x the usual reward.</item>
+        <item>Heroes can be made more powerful for free by making use of sets, unique combinations of items that boost hero strength.</item>
+    </string-array>
+</resources>

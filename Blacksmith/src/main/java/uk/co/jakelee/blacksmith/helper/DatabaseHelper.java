@@ -920,7 +920,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Super_Upgrade.saveInTx(superUpgrades);
 
         List<Setting> settings = new ArrayList<>();
-            settings.add(new Setting(Constants.SETTING_LANGUAGE, "Language", Constants.LANG_ENGLISH));
+            settings.add(new Setting(Constants.SETTING_LANGUAGE, "Language", LanguageHelper.getDefaultLanguage()));
         Setting.saveInTx(settings);
     }
 	

@@ -5,9 +5,16 @@ import android.content.pm.ActivityInfo;
 public class Constants {
     public static final int TRUE = 1;
 
-    public static final int NUM_LANGUAGES = 2;
+    public static final int NUM_LANGUAGES = 9;
     public static final int LANG_ENGLISH = 1;
     public static final int LANG_FRENCH = 2;
+    public static final int LANG_RUSSIAN = 3;
+    public static final int LANG_DUTCH = 4;
+    public static final int LANG_CHINESE = 5;
+    public static final int LANG_KOREAN = 6;
+    public static final int LANG_JAPANESE = 7;
+    public static final int LANG_SPANISH = 8;
+    public static final int LANG_GERMAN = 9;
 
     public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";

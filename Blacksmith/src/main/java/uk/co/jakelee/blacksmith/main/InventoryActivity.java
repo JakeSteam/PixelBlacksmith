@@ -21,7 +21,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.ArrayList;
@@ -104,8 +103,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        selectedType = Select.from(Type.class).where(
-                Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
+        selectedType = Type.findById(Type.class, pos + 1);
         dh.updateFullscreen(this);
         displayItemsTable();
     }
@@ -117,11 +115,23 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     private void createDropdown() {
         Spinner typeSelector = (Spinner) findViewById(R.id.itemTypes);
         typeSelector.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typesArray, R.layout.custom_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.custom_spinner, getTypeStrings());
         adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         typeSelector.setAdapter(adapter);
         typeSelector.setOnItemSelectedListener(this);
         typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName(this)) : 0);
+    }
+
+    private List<String> getTypeStrings() {
+        List<String> typeStrings = new ArrayList<>();
+        List<Type> types = Select.from(Type.class).list();
+        for (Type type : types) {
+            if (type.getId() <= Constants.TYPE_PROCESSED_FOOD) {
+                typeStrings.add(type.getName(this));
+            }
+        }
+        return typeStrings;
+
     }
 
     protected void onStop() {

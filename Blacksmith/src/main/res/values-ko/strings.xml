@@ -1,0 +1,1861 @@
+<resources>
+    <string name="app_name" translatable="false">KOPixel Blacksmith</string>
+
+    <string name="rate_dialog_title">KORate Blacksmith</string>
+    <string name="rate_dialog_message">KOIf you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec!</string>
+    <string name="rate_dialog_ok">KORate</string>
+    <string name="rate_dialog_cancel">KOLater</string>
+    <string name="rate_dialog_no">KOCancel</string>
+
+    <string name="character_intro_1">KOGreetings! See anything you like?</string>
+    <string name="character_intro_2">KOLook, it\'s knight with a k, okay?</string>
+    <string name="character_intro_3">KOCan never have enough golden goldy gold. EVER.</string>
+    <string name="character_intro_4">KOWant clothing? You\'re gonna need some cloth!</string>
+    <string name="character_intro_5">KOHow much wood can I cut? Enough!</string>
+    <string name="character_intro_6">KOOog oog!!!</string>
+    <string name="character_intro_7">KOBzzt!</string>
+    <string name="character_intro_8">KOYou\'d better not have any weedkiller on you.</string>
+    <string name="character_intro_9">KOI am an exclusive trader.</string>
+    <string name="character_intro_10">KOHello dear! I hope you like my shop.</string>
+    <string name="character_intro_11">KOBoo! Only joking, I\'m not that scary.</string>
+    <string name="character_intro_12">KOMaybe I\'ve spent a little too long in the sun.</string>
+    <string name="character_intro_13">KOOrite matey, got any gold?</string>
+    <string name="character_intro_14">KOIt\'s rather hard carrying stock around y\'know.</string>
+    <string name="character_intro_15">KOHello there! Come, friend, trade away!</string>
+    <string name="character_intro_16">KOBloop bloop.</string>
+    <string name="character_intro_17">KOFloating in the stars forever.</string>
+    <string name="character_intro_18">KOFine, I\'ll trade if I have to. Hmph.</string>
+    <string name="character_intro_19">KOFlippity flappity, my friend.</string>
+    <string name="character_intro_20">KOAlso bloop. Even more so.</string>
+    <string name="character_intro_21">KOWhat do you think of my new paint job?</string>
+
+    <string name="character_name_1">KOSean Keeper</string>
+    <string name="character_name_2">KOThe Iron Knight</string>
+    <string name="character_name_3">KOThe Golden Warrior</string>
+    <string name="character_name_4">KOCloth King</string>
+    <string name="character_name_5">KOWoodchuck</string>
+    <string name="character_name_6">KOOog</string>
+    <string name="character_name_7">KOGemBot 5000</string>
+    <string name="character_name_8">KOFarmer\'s Little Friend</string>
+    <string name="character_name_9">KODeath Beetle</string>
+    <string name="character_name_10">KOMiss Odds &amp; Ends</string>
+    <string name="character_name_11">KODeathly Ghoul</string>
+    <string name="character_name_12">KOBleached Crab</string>
+    <string name="character_name_13">KOGoblin Warrior</string>
+    <string name="character_name_14">KOFloating Tradesman</string>
+    <string name="character_name_15">KOGoblin Businessman</string>
+    <string name="character_name_16">KOBlobette</string>
+    <string name="character_name_17">KORicky Stardust</string>
+    <string name="character_name_18">KOGrumblestiltskin</string>
+    <string name="character_name_19">KOOculus Lift</string>
+    <string name="character_name_20">KOBlob King</string>
+    <string name="character_name_21">KOFarmer\'s Evil Friend</string>
+
+    <string name="con_name_1">KOThank You</string>
+    <string name="con_name_2">KODev Queue</string>
+    <string name="con_name_3">KOBeta &amp; Credits</string>
+    <string name="con_name_4">KOCreate Quest</string>
+    <string name="con_name_5">KOCreate Item</string>
+    <string name="con_name_6">KOCreate Visitor</string>
+    <string name="con_name_7">KOCreate Feature</string>
+
+    <string name="con_teaser_1">KOGet an extra little thank you.</string>
+    <string name="con_teaser_2">KOGet access to the Trello board used to plan / prioritise new features, changes, and bug fixes.</string>
+    <string name="con_teaser_3">KOGet beta access to all releases at least 24hr in advance, and get your name / username in the credits.</string>
+    <string name="con_teaser_4">KOCreate a quest and quest reward for a hero to be added to the game.</string>
+    <string name="con_teaser_5">KOCreate an item (e.g. weapon, armour, ingredient) to be added to the game.</string>
+    <string name="con_teaser_6">KOCreate a visitor, along with preferences.</string>
+    <string name="con_teaser_7">KOSuggest an entirely new feature (within reason!) for the game.</string>
+
+    <string name="con_unlocked_1">KOThanks! Your contributions are what make further development on Pixel Blacksmith possible!</string>
+    <string name="con_unlocked_2">KO<a href="https://trello.com/b/Zw01amFA/">KOTrello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it\'ll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in.</string>
+    <string name="con_unlocked_3">KOHey, send an email to <a href="mailto:i.am.now.a.beta.player@jakelee.co.uk">KOthe beta address</a> and I\'ll get you added to the beta testing / credits!</string>
+    <string name="con_unlocked_4">KOWoo! Try and make your idea fit into an existing category, and email it to <a href="mailto:i.make.the.quests@jakelee.co.uk">KOthe quest address</a>, and I\'ll put it in the game.</string>
+    <string name="con_unlocked_5">KOHey! Email your item name, description, ingredients, and purpose to <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk">KOthe item address</a>. We might have to make some changes to balance the item though!</string>
+    <string name="con_unlocked_6">KOYou\'re a big fan of contributing, huh? Email a visitor name, description, and preferences to <a href="mailto:i.make.people.happen@jakelee.co.uk">KOthe visitor address</a>, and we\'ll discuss the visitor\'s appearance etc.</string>
+    <string name="con_unlocked_7">KOWow, that\'s impressive..! Send me an email to <a href="mailto:i.basically.make.the.game@jakelee.co.uk">KOthe feature address</a>, and we\'ll work together to make the feature reality.</string>
+
+    <string name="criteria_1">KOState</string>
+    <string name="criteria_2">KOTier</string>
+    <string name="criteria_3">KOType</string>
+
+    <string name="hero_adventure_1">KOGather Red Weed</string>
+    <string name="hero_adventure_2">KOGather Nirnroot Herbs</string>
+    <string name="hero_adventure_3">KOGather Kyrt Herbs</string>
+    <string name="hero_adventure_4">KOGather Ants</string>
+    <string name="hero_adventure_5">KOGather Bees</string>
+    <string name="hero_adventure_6">KOGather Stick Insects</string>
+    <string name="hero_adventure_7">KOGather Hercules Beetles</string>
+    <string name="hero_adventure_8">KOGather Praying Mantis</string>
+    <string name="hero_adventure_9">KOGather Bird Bones</string>
+    <string name="hero_adventure_10">KOGather Rat Bones</string>
+    <string name="hero_adventure_11">KOGather Fish Bones</string>
+    <string name="hero_adventure_12">KOGather Monkey Bones</string>
+    <string name="hero_adventure_13">KOGather Shark Bones</string>
+    <string name="hero_adventure_14">KOGather Coal</string>
+    <string name="hero_adventure_15">KOGather Iron Ore</string>
+    <string name="hero_adventure_16">KOGather Silver Nuggets</string>
+    <string name="hero_adventure_17">KOGather Gold Nuggets</string>
+    <string name="hero_adventure_18">KOGather Mithril Ore</string>
+    <string name="hero_adventure_19">KOGather Adamantite Ore</string>
+    <string name="hero_adventure_20">KOGather Runite Ore</string>
+    <string name="hero_adventure_21">KOGather Dragonite Ore</string>
+    <string name="hero_adventure_22">KOGather Mice Corpses</string>
+    <string name="hero_adventure_23">KOGather Wolf Corpses</string>
+    <string name="hero_adventure_24">KOGather Human Corpses</string>
+    <string name="hero_adventure_25">KOGather Giant Corpses</string>
+    <string name="hero_adventure_26">KOGather Monster Corpses</string>
+    <string name="hero_adventure_27">KOGather Buried Coins</string>
+    <string name="hero_adventure_28">KOGather Buried Gems</string>
+    <string name="hero_adventure_29">KOGather Buried Chests</string>
+    <string name="hero_adventure_30">KOHunt Fruit Flies</string>
+    <string name="hero_adventure_31">KOHunt Blue Flies</string>
+    <string name="hero_adventure_32">KOHunt Mutant Flies</string>
+    <string name="hero_adventure_33">KOHunt Vampire Flies</string>
+    <string name="hero_adventure_34">KOHunt Scavenger Flies</string>
+    <string name="hero_adventure_35">KOHunt Slow Slugs</string>
+    <string name="hero_adventure_36">KOHunt Sticky Slugs</string>
+    <string name="hero_adventure_37">KOHunt Fancy Slugs</string>
+    <string name="hero_adventure_38">KOHunt Deadly Slugs</string>
+    <string name="hero_adventure_39">KOHunt Baby Spiders</string>
+    <string name="hero_adventure_40">KOHunt Daddy Long Legs Spiders</string>
+    <string name="hero_adventure_41">KOHunt Tarantula Spiders</string>
+    <string name="hero_adventure_42">KOHunt Black Widow Spiders</string>
+    <string name="hero_adventure_43">KOHunt Baby Frogs</string>
+    <string name="hero_adventure_44">KOHunt Jumping Frogs</string>
+    <string name="hero_adventure_45">KOHunt Skermit The Frogs</string>
+    <string name="hero_adventure_46">KOHunt Mr. Frogs</string>
+    <string name="hero_adventure_47">KOHunt Hypnofrogs</string>
+    <string name="hero_adventure_48">KOHunt White Rabbits</string>
+    <string name="hero_adventure_49">KOHunt Dwarf Rabbits</string>
+    <string name="hero_adventure_50">KOHunt Wooly Rabbits</string>
+    <string name="hero_adventure_51">KOHunt Wabbits</string>
+    <string name="hero_adventure_52">KOHunt Blue Hellcats</string>
+    <string name="hero_adventure_53">KOHunt Green Hellcats</string>
+    <string name="hero_adventure_54">KOHunt Red Hellcats</string>
+    <string name="hero_adventure_55">KOHunt White Hellcats</string>
+    <string name="hero_adventure_56">KOHunt Black Hellcats</string>
+    <string name="hero_adventure_57">KOHunt White Wolves</string>
+    <string name="hero_adventure_58">KOHunt Wargs</string>
+    <string name="hero_adventure_59">KOHunt Big Bad Wolves</string>
+    <string name="hero_adventure_60">KOHunt Direwolves</string>
+    <string name="hero_adventure_61">KOHunt Werewolves</string>
+    <string name="hero_adventure_62">KOHunt Bobo The Bears</string>
+    <string name="hero_adventure_63">KOHunt Panda Bears</string>
+    <string name="hero_adventure_64">KOHunt Pom Bears</string>
+    <string name="hero_adventure_65">KOHunt Black Bears</string>
+    <string name="hero_adventure_66">KOHunt Grizzly Bears</string>
+    <string name="hero_adventure_67">KOHunt Tiggers</string>
+    <string name="hero_adventure_68">KOHunt Young Tigers</string>
+    <string name="hero_adventure_69">KOHunt Gladiatorial Tigers</string>
+    <string name="hero_adventure_70">KOHunt Phony Tigers</string>
+    <string name="hero_adventure_71">KOHunt Shere Khan</string>
+    <string name="hero_adventure_72">KOHunt Poltergeists</string>
+    <string name="hero_adventure_73">KOHunt Victorian Ghosts</string>
+    <string name="hero_adventure_74">KOHunt Bloody Barons</string>
+    <string name="hero_adventure_75">KOHunt Black Knights</string>
+    <string name="hero_adventure_76">KOHunt Vampire Bats</string>
+    <string name="hero_adventure_77">KOHunt Vampire Counts</string>
+    <string name="hero_adventure_78">KOHunt Draugrs</string>
+    <string name="hero_adventure_79">KOHunt Loch Ness Monsters</string>
+    <string name="hero_adventure_80">KOHunt Leviathans</string>
+    <string name="hero_adventure_81">KOHunt Elder Gods</string>
+    <string name="hero_adventure_82">KOHunt Soft Ones</string>
+    <string name="hero_adventure_83">KOHunt Reapers</string>
+    <string name="hero_adventure_84">KOHunt Daleks</string>
+    <string name="hero_adventure_85">KOHunt Xenomorphs</string>
+    <string name="hero_adventure_86">KOHunt Moties</string>
+    <string name="hero_adventure_87">KOHunt Infected</string>
+    <string name="hero_adventure_88">KOHunt Crawlers</string>
+    <string name="hero_adventure_89">KOHunt Runners</string>
+    <string name="hero_adventure_90">KOHunt Spitters</string>
+    <string name="hero_adventure_91">KOHunt Boomers</string>
+    <string name="hero_adventure_92">KOKill Big Smoke</string>
+    <string name="hero_adventure_93">KOKill Big Daddy</string>
+    <string name="hero_adventure_94">KOKill Olmec</string>
+    <string name="hero_adventure_95">KOKill Handsome Jack</string>
+    <string name="hero_adventure_96">KOKill The Warrior</string>
+    <string name="hero_adventure_97">KOKill Nihilanth</string>
+    <string name="hero_adventure_98">KOKill GLaDOS</string>
+    <string name="hero_adventure_99">KOKill Netherlord</string>
+    <string name="hero_adventure_100">KOKill Doviculus</string>
+    <string name="hero_adventure_101">KOSurvive Blacksmith Horde</string>
+    <string name="hero_adventure_102">KOSurvive Spider Horde</string>
+    <string name="hero_adventure_103">KOSurvive Golem Horde</string>
+    <string name="hero_adventure_104">KOSurvive Angry Mob</string>
+    <string name="hero_adventure_105">KOSurvive Warrior Horde</string>
+    <string name="hero_adventure_106">KOAchieve Nirvana</string>
+    <string name="hero_adventure_107">KOCalculate Prime Number Formula</string>
+    <string name="hero_adventure_108">KOLive Forever</string>
+    <string name="hero_adventure_109">KORaise The Dead</string>
+    <string name="hero_adventure_110">KOTurn Back Time</string>
+    <string name="hero_adventure_111">KOComplete All Adventures</string>
+    <string name="hero_adventure_112">KOGuard Butchers</string>
+    <string name="hero_adventure_113">KOGuard Bakers</string>
+    <string name="hero_adventure_114">KOGuard Sandwich Shop</string>
+    <string name="hero_adventure_115">KOGuard Fishmongers</string>
+    <string name="hero_adventure_116">KOGuard Pie Shop</string>
+    <string name="hero_adventure_117">KOGuard Fruit Stand</string>
+    <string name="hero_adventure_118">KOGuard Farmer\'s Stand</string>
+    <string name="hero_adventure_119">KOGuard Sweet Shop</string>
+    <string name="hero_adventure_120">KOGuard Local Market</string>
+    <string name="hero_adventure_121">KOGuard Farmer\'s Market</string>
+    <string name="hero_adventure_122">KOGuard County Market</string>
+    <string name="hero_adventure_123">KOGuard Food Processing Factory</string>
+    <string name="hero_adventure_124">KOGuard Smelting Factory</string>
+    <string name="hero_adventure_125">KOGuard Clothing Factory</string>
+    <string name="hero_adventure_126">KOGuard Gem Factory</string>
+    <string name="hero_adventure_127">KOGuard Local Bank</string>
+    <string name="hero_adventure_128">KOGuard Town Bank</string>
+    <string name="hero_adventure_129">KOGuard City Bank</string>
+    <string name="hero_adventure_130">KOGuard State Bank</string>
+    <string name="hero_adventure_131">KOGuard Federal Bank</string>
+    <string name="hero_adventure_132">KOGuard Princess</string>
+    <string name="hero_adventure_133">KOGuard Prince</string>
+    <string name="hero_adventure_134">KOGuard Queen</string>
+    <string name="hero_adventure_135">KOGuard King</string>
+    <string name="hero_adventure_136">KOExplore Shrubs</string>
+    <string name="hero_adventure_137">KOExplore Bushes</string>
+    <string name="hero_adventure_138">KOExplore Trees</string>
+    <string name="hero_adventure_139">KOExplore Treetops</string>
+    <string name="hero_adventure_140">KOExplore Sandwich</string>
+    <string name="hero_adventure_141">KOExplore Sandcastle</string>
+    <string name="hero_adventure_142">KOExplore Sand Dune</string>
+    <string name="hero_adventure_143">KOExplore Central City</string>
+    <string name="hero_adventure_144">KOExplore West City</string>
+    <string name="hero_adventure_145">KOExplore South City</string>
+    <string name="hero_adventure_146">KOExplore East City</string>
+    <string name="hero_adventure_147">KOExplore North City</string>
+    <string name="hero_adventure_148">KOExplore Coral Reef</string>
+    <string name="hero_adventure_149">KOExplore Mariana Trench</string>
+    <string name="hero_adventure_150">KOExplore Small Cave</string>
+    <string name="hero_adventure_151">KOExplore Medium Cave</string>
+    <string name="hero_adventure_152">KOExplore Large Cave</string>
+    <string name="hero_adventure_153">KOEscort Butcher</string>
+    <string name="hero_adventure_154">KOEscort Baker</string>
+    <string name="hero_adventure_155">KOEscort Fisherman</string>
+    <string name="hero_adventure_156">KOEscort Silk Trader</string>
+    <string name="hero_adventure_157">KOEscort Gem Trader</string>
+    <string name="hero_adventure_158">KOEscort Weapons Trader</string>
+    <string name="hero_adventure_159">KOEscort Armour Trader</string>
+    <string name="hero_adventure_160">KOEscort Day Visitor</string>
+    <string name="hero_adventure_161">KOEscort Night Visitor</string>
+    <string name="hero_adventure_162">KOEscort Winter Visitor</string>
+    <string name="hero_adventure_163">KOEscort Summer Visitor</string>
+    <string name="hero_adventure_164">KOEscort Autumn Visitor</string>
+    <string name="hero_adventure_165">KOEscort Spring Visitor</string>
+    <string name="hero_adventure_166">KOEscort Lost Courier</string>
+    <string name="hero_adventure_167">KOEscort Underground Soldier</string>
+    <string name="hero_adventure_168">KOEscort Shiny Soldier</string>
+    <string name="hero_adventure_169">KOEscort Elegant Soldier</string>
+
+    <string name="hero_category_1">KOGathering (10-150)</string>
+    <string name="hero_category_2">KOGather Plants (10-30)</string>
+    <string name="hero_category_3">KOGather Insects (25-95)</string>
+    <string name="hero_category_4">KOGather Bones (25-65)</string>
+    <string name="hero_category_5">KOGather Ore (15-125)</string>
+    <string name="hero_category_6">KOGather Corpses (50-150)</string>
+    <string name="hero_category_7">KOGather Buried Treasure (130-150)</string>
+    <string name="hero_category_8">KOAnimal Hunting (100-250)</string>
+    <string name="hero_category_9">KOFly Hunting (100-220)</string>
+    <string name="hero_category_10">KOSlug Hunting (130-190)</string>
+    <string name="hero_category_11">KOSpider Hunting (110-250)</string>
+    <string name="hero_category_12">KOFrog Hunting (110-250)</string>
+    <string name="hero_category_13">KORabbit Hunting (100-220)</string>
+    <string name="hero_category_14">KOHellcat Hunting (210-250)</string>
+    <string name="hero_category_15">KOWolf Hunting (160-240)</string>
+    <string name="hero_category_16">KOBear Hunting (100-250)</string>
+    <string name="hero_category_17">KOTiger Hunting (100-240)</string>
+    <string name="hero_category_18">KOMonster Hunting (190-600)</string>
+    <string name="hero_category_19">KOGhost Hunting (220-400)</string>
+    <string name="hero_category_20">KOVampire Hunting (310-390)</string>
+    <string name="hero_category_21">KOSea Monster Hunting (500-600)</string>
+    <string name="hero_category_22">KOAlien Hunting (190-590)</string>
+    <string name="hero_category_23">KOZombie Hunting (400-600)</string>
+    <string name="hero_category_24">KOElite Challenges (700-1500)</string>
+    <string name="hero_category_25">KOBosses (700-1020)</string>
+    <string name="hero_category_26">KOHordes (750-1100)</string>
+    <string name="hero_category_27">KOUnbeatable (1000-1500)</string>
+    <string name="hero_category_28">KOGuard Duty (100-300)</string>
+    <string name="hero_category_29">KOGuard Shops (100-170)</string>
+    <string name="hero_category_30">KOGuard Markets (100-300)</string>
+    <string name="hero_category_31">KOGuard Factories (150-300)</string>
+    <string name="hero_category_32">KOGuard Banks (190-240)</string>
+    <string name="hero_category_33">KOGuard Royalty (260-290)</string>
+    <string name="hero_category_34">KOExploring (500-800)</string>
+    <string name="hero_category_35">KOExplore Forest (500-600)</string>
+    <string name="hero_category_36">KOExplore Desert (500-700)</string>
+    <string name="hero_category_37">KOExplore City (600-760)</string>
+    <string name="hero_category_38">KOExplore Underwater (600-800)</string>
+    <string name="hero_category_39">KOExplore Caves (750-800)</string>
+    <string name="hero_category_40">KOEscort (350-690)</string>
+    <string name="hero_category_41">KOEscort Villagers (350-470)</string>
+    <string name="hero_category_42">KOEscort Visitors (500-620)</string>
+    <string name="hero_category_43">KOEscort Soldiers (630-690)</string>
+
+    <string name="item_name_1">KOCopper ore</string>
+    <string name="item_name_2">KOTin ore</string>
+    <string name="item_name_3">KOCoal</string>
+    <string name="item_name_4">KOIron ore</string>
+    <string name="item_name_5">KOMithril ore</string>
+    <string name="item_name_6">KOAdamantite ore</string>
+    <string name="item_name_7">KORunite ore</string>
+    <string name="item_name_8">KOGold nugget</string>
+    <string name="item_name_9">KOSilver nugget</string>
+    <string name="item_name_10">KODragonite ore</string>
+    <string name="item_name_11">KOBronze bar</string>
+    <string name="item_name_12">KOIron bar</string>
+    <string name="item_name_13">KOSteel bar</string>
+    <string name="item_name_14">KOMithril bar</string>
+    <string name="item_name_15">KOAdamant bar</string>
+    <string name="item_name_16">KORune bar</string>
+    <string name="item_name_17">KOSilver bar</string>
+    <string name="item_name_18">KOGold bar</string>
+    <string name="item_name_19">KODragon bar</string>
+    <string name="item_name_20">KOBronze dagger</string>
+    <string name="item_name_21">KOBronze sword</string>
+    <string name="item_name_22">KOBronze longsword</string>
+    <string name="item_name_23">KOBronze bow</string>
+    <string name="item_name_24">KOBronze half shield</string>
+    <string name="item_name_25">KOBronze full shield</string>
+    <string name="item_name_26">KOBronze chainmail</string>
+    <string name="item_name_27">KOBronze platebody</string>
+    <string name="item_name_28">KOBronze half helmet</string>
+    <string name="item_name_29">KOBronze full helmet</string>
+    <string name="item_name_30">KOBronze boots</string>
+    <string name="item_name_31">KOBronze gloves</string>
+    <string name="item_name_32">KOBronze pickaxe</string>
+    <string name="item_name_33">KOBronze hatchet</string>
+    <string name="item_name_34">KOBronze fishing rod</string>
+    <string name="item_name_35">KOBronze hammer</string>
+    <string name="item_name_36">KOIron dagger</string>
+    <string name="item_name_37">KOIron sword</string>
+    <string name="item_name_38">KOIron longsword</string>
+    <string name="item_name_39">KOIron bow</string>
+    <string name="item_name_40">KOIron half shield</string>
+    <string name="item_name_41">KOIron full shield</string>
+    <string name="item_name_42">KOIron chainmail</string>
+    <string name="item_name_43">KOIron platebody</string>
+    <string name="item_name_44">KOIron half helmet</string>
+    <string name="item_name_45">KOIron full helmet</string>
+    <string name="item_name_46">KOIron boots</string>
+    <string name="item_name_47">KOIron gloves</string>
+    <string name="item_name_48">KOIron pickaxe</string>
+    <string name="item_name_49">KOIron hatchet</string>
+    <string name="item_name_50">KOIron fishing rod</string>
+    <string name="item_name_51">KOIron hammer</string>
+    <string name="item_name_52">KOCoins</string>
+    <string name="item_name_53">KOSteel dagger</string>
+    <string name="item_name_54">KOSteel sword</string>
+    <string name="item_name_55">KOSteel longsword</string>
+    <string name="item_name_56">KOSteel bow</string>
+    <string name="item_name_57">KOSteel half shield</string>
+    <string name="item_name_58">KOSteel full shield</string>
+    <string name="item_name_59">KOSteel chainmail</string>
+    <string name="item_name_60">KOSteel platebody</string>
+    <string name="item_name_61">KOSteel half helmet</string>
+    <string name="item_name_62">KOSteel full helmet</string>
+    <string name="item_name_63">KOSteel boots</string>
+    <string name="item_name_64">KOSteel gloves</string>
+    <string name="item_name_65">KOSteel pickaxe</string>
+    <string name="item_name_66">KOSteel hatchet</string>
+    <string name="item_name_67">KOSteel fishing rod</string>
+    <string name="item_name_68">KOSteel hammer</string>
+    <string name="item_name_69">KOSpidersilk</string>
+    <string name="item_name_70">KOSilk</string>
+    <string name="item_name_71">KOLogs</string>
+    <string name="item_name_72">KORuby</string>
+    <string name="item_name_73">KOSapphire</string>
+    <string name="item_name_74">KOEmerald</string>
+    <string name="item_name_75">KODiamond</string>
+    <string name="item_name_76">KOOnyx</string>
+    <string name="item_name_77">KOApple</string>
+    <string name="item_name_78">KOCheese</string>
+    <string name="item_name_79">KOBread</string>
+    <string name="item_name_80">KORaw Meat</string>
+    <string name="item_name_81">KOMithril dagger</string>
+    <string name="item_name_82">KOMithril sword</string>
+    <string name="item_name_83">KOMithril longsword</string>
+    <string name="item_name_84">KOMithril bow</string>
+    <string name="item_name_85">KOMithril half shield</string>
+    <string name="item_name_86">KOMithril full shield</string>
+    <string name="item_name_87">KOMithril chainmail</string>
+    <string name="item_name_88">KOMithril platebody</string>
+    <string name="item_name_89">KOMithril half helmet</string>
+    <string name="item_name_90">KOMithril full helmet</string>
+    <string name="item_name_91">KOMithril boots</string>
+    <string name="item_name_92">KOMithril gloves</string>
+    <string name="item_name_93">KOMithril pickaxe</string>
+    <string name="item_name_94">KOMithril hatchet</string>
+    <string name="item_name_95">KOMithril fishing rod</string>
+    <string name="item_name_96">KOMithril hammer</string>
+    <string name="item_name_97">KOAdamant dagger</string>
+    <string name="item_name_98">KOAdamant sword</string>
+    <string name="item_name_99">KOAdamant longsword</string>
+    <string name="item_name_100">KOAdamant bow</string>
+    <string name="item_name_101">KOAdamant half shield</string>
+    <string name="item_name_102">KOAdamant full shield</string>
+    <string name="item_name_103">KOAdamant chainmail</string>
+    <string name="item_name_104">KOAdamant platebody</string>
+    <string name="item_name_105">KOAdamant half helmet</string>
+    <string name="item_name_106">KOAdamant full helmet</string>
+    <string name="item_name_107">KOAdamant boots</string>
+    <string name="item_name_108">KOAdamant gloves</string>
+    <string name="item_name_109">KOAdamant pickaxe</string>
+    <string name="item_name_110">KOAdamant hatchet</string>
+    <string name="item_name_111">KOAdamant fishing rod</string>
+    <string name="item_name_112">KOAdamant hammer</string>
+    <string name="item_name_113">KORune dagger</string>
+    <string name="item_name_114">KORune sword</string>
+    <string name="item_name_115">KORune longsword</string>
+    <string name="item_name_116">KORune bow</string>
+    <string name="item_name_117">KORune half shield</string>
+    <string name="item_name_118">KORune full shield</string>
+    <string name="item_name_119">KORune chainmail</string>
+    <string name="item_name_120">KORune platebody</string>
+    <string name="item_name_121">KORune half helmet</string>
+    <string name="item_name_122">KORune full helmet</string>
+    <string name="item_name_123">KORune boots</string>
+    <string name="item_name_124">KORune gloves</string>
+    <string name="item_name_125">KORune pickaxe</string>
+    <string name="item_name_126">KORune hatchet</string>
+    <string name="item_name_127">KORune fishing rod</string>
+    <string name="item_name_128">KORune hammer</string>
+    <string name="item_name_129">KOPowdered Sapphire</string>
+    <string name="item_name_130">KOPowdered Emerald</string>
+    <string name="item_name_131">KOPowdered Diamond</string>
+    <string name="item_name_132">KODragon dagger</string>
+    <string name="item_name_133">KODragon sword</string>
+    <string name="item_name_134">KODragon longsword</string>
+    <string name="item_name_135">KODragon bow</string>
+    <string name="item_name_136">KODragon half shield</string>
+    <string name="item_name_137">KODragon full shield</string>
+    <string name="item_name_138">KODragon chainmail</string>
+    <string name="item_name_139">KODragon platebody</string>
+    <string name="item_name_140">KODragon half helmet</string>
+    <string name="item_name_141">KODragon full helmet</string>
+    <string name="item_name_142">KODragon boots</string>
+    <string name="item_name_143">KODragon gloves</string>
+    <string name="item_name_144">KODragon pickaxe</string>
+    <string name="item_name_145">KODragon hatchet</string>
+    <string name="item_name_146">KODragon fishing spear</string>
+    <string name="item_name_147">KODragon hammer</string>
+    <string name="item_name_148">KODraconic visage</string>
+    <string name="item_name_149">KOSilver ring</string>
+    <string name="item_name_150">KOSilver sapphire ring</string>
+    <string name="item_name_151">KOSilver emerald ring</string>
+    <string name="item_name_152">KOSilver ruby ring</string>
+    <string name="item_name_153">KOSilver diamond ring</string>
+    <string name="item_name_154">KOSilver onyx ring</string>
+    <string name="item_name_155">KOGold ring</string>
+    <string name="item_name_156">KOGold sapphire ring</string>
+    <string name="item_name_157">KOGold emerald ring</string>
+    <string name="item_name_158">KOGold ruby ring</string>
+    <string name="item_name_159">KOGold diamond ring</string>
+    <string name="item_name_160">KOGold onyx ring</string>
+    <string name="item_name_161">KOLegendary dagger</string>
+    <string name="item_name_162">KOLegendary sword</string>
+    <string name="item_name_163">KOLegendary longsword</string>
+    <string name="item_name_164">KOLegendary bow</string>
+    <string name="item_name_165">KOLegendary half shield</string>
+    <string name="item_name_166">KOLegendary full shield</string>
+    <string name="item_name_167">KOLegendary chainmail</string>
+    <string name="item_name_168">KOLegendary platebody</string>
+    <string name="item_name_169">KOLegendary half helmet</string>
+    <string name="item_name_170">KOLegendary full helmet</string>
+    <string name="item_name_171">KOLegendary boots</string>
+    <string name="item_name_172">KOLegendary gloves</string>
+    <string name="item_name_173">KOLegendary pickaxe</string>
+    <string name="item_name_174">KOLegendary hatchet</string>
+    <string name="item_name_175">KOLegendary fishing spear</string>
+    <string name="item_name_176">KOLegendary hammer</string>
+    <string name="item_name_177">KORed Page</string>
+    <string name="item_name_178">KORed Page (dirty)</string>
+    <string name="item_name_179">KOYellow Page</string>
+    <string name="item_name_180">KOYellow Page (dirty)</string>
+    <string name="item_name_181">KOGreen Page</string>
+    <string name="item_name_182">KOGreen Page (dirty)</string>
+    <string name="item_name_183">KOBlue Page</string>
+    <string name="item_name_184">KOBlue Page (dirty)</string>
+    <string name="item_name_185">KOPink Page</string>
+    <string name="item_name_186">KOPink Page (dirty)</string>
+    <string name="item_name_187">KOBrown Page</string>
+    <string name="item_name_188">KOBrown Page (dirty)</string>
+    <string name="item_name_189">KOBlack Page</string>
+    <string name="item_name_190">KOBlack Page (dirty)</string>
+    <string name="item_name_191">KOWhite Page</string>
+    <string name="item_name_192">KOWhite Page (dirty)</string>
+    <string name="item_name_193">KOBook of Strength</string>
+    <string name="item_name_194">KOBook of Agility</string>
+    <string name="item_name_195">KOBook of Nature</string>
+    <string name="item_name_196">KOBook of Water</string>
+    <string name="item_name_197">KOBook of Peace</string>
+    <string name="item_name_198">KOBook of Earth</string>
+    <string name="item_name_199">KOBook of War</string>
+    <string name="item_name_200">KOBook of Life</string>
+    <string name="item_name_201">KOThe Collection</string>
+    <string name="item_name_202">KOWheat</string>
+    <string name="item_name_203">KOEgg</string>
+    <string name="item_name_204">KOMilk</string>
+    <string name="item_name_205">KOBlueberry</string>
+    <string name="item_name_206">KOBanana</string>
+    <string name="item_name_207">KOOrange</string>
+    <string name="item_name_208">KOCherry</string>
+    <string name="item_name_209">KOCandy</string>
+    <string name="item_name_210">KOChocolate</string>
+    <string name="item_name_211">KORaw Fish</string>
+    <string name="item_name_212">KOFruit Salad</string>
+    <string name="item_name_213">KOCooked Fish</string>
+    <string name="item_name_214">KOCooked Meat</string>
+    <string name="item_name_215">KOHam + Cheese S\'wich</string>
+    <string name="item_name_216">KOHam Sandwich</string>
+    <string name="item_name_217">KOCheese Sandwich</string>
+    <string name="item_name_218">KOPie</string>
+    <string name="item_name_219">KOCookie</string>
+    <string name="item_name_220">KOAmethyst</string>
+    <string name="item_name_221">KOCitrine</string>
+    <string name="item_name_222">KOSilver amethyst ring</string>
+    <string name="item_name_223">KOSilver citrine ring</string>
+    <string name="item_name_224">KOGold amethyst ring</string>
+    <string name="item_name_225">KOGold citrine ring</string>
+    <string name="item_name_226">KORare Candy</string>
+    <string name="item_name_227">KOBowl Of Water</string>
+    <string name="item_name_228">KOSoup</string>
+    <string name="item_name_229">KOCereal</string>
+    <string name="item_name_230">KOWhite Chocolate</string>
+
+    <string name="item_desc_1">KOA piece of copper ore.</string>
+    <string name="item_desc_2">KOA piece of tin ore.</string>
+    <string name="item_desc_3">KOA piece of coal.</string>
+    <string name="item_desc_4">KOA piece of iron ore.</string>
+    <string name="item_desc_5">KOA piece of mithril ore.</string>
+    <string name="item_desc_6">KOA piece of adamantite ore.</string>
+    <string name="item_desc_7">KOA piece of runite ore.</string>
+    <string name="item_desc_8">KOA golden nugget.</string>
+    <string name="item_desc_9">KOA silver nugget.</string>
+    <string name="item_desc_10">KOA piece of dragonite ore.</string>
+    <string name="item_desc_11">KOA fresh bar of bronze.</string>
+    <string name="item_desc_12">KOA fresh bar of iron.</string>
+    <string name="item_desc_13">KOA fresh bar of steel.</string>
+    <string name="item_desc_14">KOA fresh bar of mithril.</string>
+    <string name="item_desc_15">KOA fresh bar of adamant.</string>
+    <string name="item_desc_16">KOA fresh bar of rune.</string>
+    <string name="item_desc_17">KOA fresh bar of silver.</string>
+    <string name="item_desc_18">KOA fresh bar of gold.</string>
+    <string name="item_desc_19">KOA fresh bar of dragon.</string>
+    <string name="item_desc_20">KOA blunt bronze dagger.</string>
+    <string name="item_desc_21">KOA fairly blunt bronze sword.</string>
+    <string name="item_desc_22">KOA longer bronze sword.</string>
+    <string name="item_desc_23">KOA bow with bronze elements.</string>
+    <string name="item_desc_24">KOA fairly weak bronze shield.</string>
+    <string name="item_desc_25">KOA slightly stronger bronze shield.</string>
+    <string name="item_desc_26">KOA light set of bronze body armour.</string>
+    <string name="item_desc_27">KOA heavy set of bronze body armour.</string>
+    <string name="item_desc_28">KOA no-frills approach to protection.</string>
+    <string name="item_desc_29">KOA frills approach to protection.</string>
+    <string name="item_desc_30">KOA set of boots for those that like the muddy look.</string>
+    <string name="item_desc_31">KOA set of gloves for those that like the muddy look.</string>
+    <string name="item_desc_32">KOA weak pickaxe for mining rocks.</string>
+    <string name="item_desc_33">KOA weak axe for cutting down trees.</string>
+    <string name="item_desc_34">KOA weak rod for catching fish.</string>
+    <string name="item_desc_35">KOA weak hammer who misses his anvil.</string>
+    <string name="item_desc_36">KOA blunt iron dagger.</string>
+    <string name="item_desc_37">KOA bluntish iron sword.</string>
+    <string name="item_desc_38">KOA longer iron sword.</string>
+    <string name="item_desc_39">KOA bow with iron elements.</string>
+    <string name="item_desc_40">KOAn iron half shield.</string>
+    <string name="item_desc_41">KOAn improved iron shield.</string>
+    <string name="item_desc_42">KOA light set of iron body armour.</string>
+    <string name="item_desc_43">KOA heavy set of iron body armour.</string>
+    <string name="item_desc_44">KOA tiny bit of frills approach to protection.</string>
+    <string name="item_desc_45">KOA very frilly approach to protection.</string>
+    <string name="item_desc_46">KOA set of boots for those that like the grey look.</string>
+    <string name="item_desc_47">KOA set of gloves for those that like the grey look.</string>
+    <string name="item_desc_48">KOA standard pickaxe for mining rocks.</string>
+    <string name="item_desc_49">KOA standard axe for cutting down trees.</string>
+    <string name="item_desc_50">KOA standard rod for catching fish.</string>
+    <string name="item_desc_51">KOA standard hammer who misses his anvil.</string>
+    <string name="item_desc_52">KOCoins! Glorious coins!</string>
+    <string name="item_desc_53">KOAn average steel dagger.</string>
+    <string name="item_desc_54">KOA slightly blunt steel sword.</string>
+    <string name="item_desc_55">KOAn even longer steel sword.</string>
+    <string name="item_desc_56">KOA bow with steel elements.</string>
+    <string name="item_desc_57">KOSteel shield, but only half.</string>
+    <string name="item_desc_58">KOSteel shield, the fullest.</string>
+    <string name="item_desc_59">KOA light set of steel body armour.</string>
+    <string name="item_desc_60">KOA heavy set of steel body armour.</string>
+    <string name="item_desc_61">KOA little bit frilly approach to protection.</string>
+    <string name="item_desc_62">KOA rather frilly approach to protection.</string>
+    <string name="item_desc_63">KOA set of boots for those that like the grey look, now with added shine.</string>
+    <string name="item_desc_64">KOA set of gloves for those that like the grey look, now with added shine.</string>
+    <string name="item_desc_65">KOA sharper pickaxe for mining rocks.</string>
+    <string name="item_desc_66">KOA sharper axe for cutting down trees.</string>
+    <string name="item_desc_67">KOA sturdier rod for catching fish.</string>
+    <string name="item_desc_68">KOA heavier hammer that tends to hit the anvil. Just.</string>
+    <string name="item_desc_69">KOA stand of spidersilk.</string>
+    <string name="item_desc_70">KOA fine strip of silk.</string>
+    <string name="item_desc_71">KOSome basic logs.</string>
+    <string name="item_desc_72">KOA red gem.</string>
+    <string name="item_desc_73">KOA blue gem.</string>
+    <string name="item_desc_74">KOA green gem.</string>
+    <string name="item_desc_75">KOA white gem.</string>
+    <string name="item_desc_76">KOA black gem.</string>
+    <string name="item_desc_77">KOA nice, shiny apple.</string>
+    <string name="item_desc_78">KOSmells a bit cheesy.</string>
+    <string name="item_desc_79">KOA bit stale, but edible.</string>
+    <string name="item_desc_80">KOStill dripping. Yuck.</string>
+    <string name="item_desc_81">KOA pretty good blue-tinted dagger.</string>
+    <string name="item_desc_82">KOA slightly sharp sword, with a blue hue.</string>
+    <string name="item_desc_83">KOThis is a sword? No, longer!</string>
+    <string name="item_desc_84">KOUse to fire arrows out of the blue.</string>
+    <string name="item_desc_85">KOA bl shi.</string>
+    <string name="item_desc_86">KOA blue shield.</string>
+    <string name="item_desc_87">KOA set of mithril chainmail, seemingly for the smaller gentleman.</string>
+    <string name="item_desc_88">KOA more complete approach to sword-stopping.</string>
+    <string name="item_desc_89">KOBlue on blue for you.</string>
+    <string name="item_desc_90">KOBlue on more blue, still for you.</string>
+    <string name="item_desc_91">KONote: Despite appearances, you are not walking on water.</string>
+    <string name="item_desc_92">KONote: Despite appearances, you are not washing your hands.</string>
+    <string name="item_desc_93">KOThis pick is no myth!</string>
+    <string name="item_desc_94">KOIt\'s a shame magical blue trees don\'t exist.</string>
+    <string name="item_desc_95">KOThe fish seem oddly attracted to the blue metal.</string>
+    <string name="item_desc_96">KOA heavier hammer that tends to hit the anvil. Just.</string>
+    <string name="item_desc_97">KOA scarily sharp green dagger.</string>
+    <string name="item_desc_98">KOA rather sharp sword, with a green tint.</string>
+    <string name="item_desc_99">KOI\'m adamant that this sword is longer.</string>
+    <string name="item_desc_100">KOA fine bow, with an intriguing green hue.</string>
+    <string name="item_desc_101">KODon\'t let anyone know this shield looks like a pea.</string>
+    <string name="item_desc_102">KOA rather impressive green shield.</string>
+    <string name="item_desc_103">KOA fine set of chainmail, even considering the colour.</string>
+    <string name="item_desc_104">KOThe best platebody for those that can\'t kill dragons.</string>
+    <string name="item_desc_105">KOGreen on green, lookin\' mean.</string>
+    <string name="item_desc_106">KOGold on green, still lookin\' mean.</string>
+    <string name="item_desc_107">KOUgh, how do these even get so mould- ... oh!</string>
+    <string name="item_desc_108">KOMaybe you should take up gardening.</string>
+    <string name="item_desc_109">KOMean, green, mining machine.</string>
+    <string name="item_desc_110">KOPowerful, but has a habit of blending into the target.</string>
+    <string name="item_desc_111">KOThe green rod seems to lure the fishies in...</string>
+    <string name="item_desc_112">KOA very solid hammer, used for crafting powerful equipment.</string>
+    <string name="item_desc_113">KOA nifty little blade with a very sharp point.</string>
+    <string name="item_desc_114">KOThe rune rune rune, rune is the (s)word.</string>
+    <string name="item_desc_115">KOA very long, and very sharp, sword.</string>
+    <string name="item_desc_116">KOThe shortest of shortbows, the longest of longbows.</string>
+    <string name="item_desc_117">KOLooks rather like a crystal, but isn\'t.</string>
+    <string name="item_desc_118">KOA very nice shield, used by professional adventurers.</string>
+    <string name="item_desc_119">KOWell, it\'s not a platebody, but it\'s still pretty good.</string>
+    <string name="item_desc_120">KOMade famous by DR4G0NK1LL3R, truly a brave adventurer.</string>
+    <string name="item_desc_121">KOA very protective helmet, without all the trimmings.</string>
+    <string name="item_desc_122">KOAn especially protective helmet, with all the trimmings.</string>
+    <string name="item_desc_123">KOWalk the streets in style with these super-comfy boots.</string>
+    <string name="item_desc_124">KOBrand new Rune gloves, now with extra protection!</string>
+    <string name="item_desc_125">KOA pickaxe any miner would be proud to use.</string>
+    <string name="item_desc_126">KOAn extremely sharp axe, for the mightiest of trees.</string>
+    <string name="item_desc_127">KOThe fish won\'t rune away from this rod!</string>
+    <string name="item_desc_128">KOThe mightiest of hammers! Or at least a very mighty one.</string>
+    <string name="item_desc_129">KOThis sapphire is in tiny shards.</string>
+    <string name="item_desc_130">KOThis emerald is in tiny shards.</string>
+    <string name="item_desc_131">KOThis diamond is in tiny shards.</string>
+    <string name="item_desc_132">KOThe deadliest dragon dagger!</string>
+    <string name="item_desc_133">KOSharp as a dragon\'s wit.</string>
+    <string name="item_desc_134">KOA very long, and very sharp, sword.</string>
+    <string name="item_desc_135">KOA striking red bow, with a hint of flames.</string>
+    <string name="item_desc_136">KOHalf shield or not, this will protect from a dragon\'s breath.</string>
+    <string name="item_desc_137">KORumoured to be forged from dragon remains.</string>
+    <string name="item_desc_138">KOUnusually, small insects seem to herd around the item.</string>
+    <string name="item_desc_139">KOThe ultimate in heavy duty protection.</string>
+    <string name="item_desc_140">KOThere\'ll be no headshots whilst this is worn.</string>
+    <string name="item_desc_141">KOThe helmet almost seems to repel arrows.</string>
+    <string name="item_desc_142">KOI don\'t think a dragon\'s foot would fit in these...</string>
+    <string name="item_desc_143">KOI\'m certain a dragon\'s claw wouldn\'t fit in here...</string>
+    <string name="item_desc_144">KOFor mining the toughest of ores.</string>
+    <string name="item_desc_145">KOFor felling the tallest great oaks</string>
+    <string name="item_desc_146">KOLet\'s take the fight to the fishes!</string>
+    <string name="item_desc_147">KOWant to avoid getting hammered? Use this!</string>
+    <string name="item_desc_148">KOThe orb seems to pulsate with power.</string>
+    <string name="item_desc_149">KOA plain ring of silver.</string>
+    <string name="item_desc_150">KOA ring of silver, with a glittering blue gem.</string>
+    <string name="item_desc_151">KOAn emerald-embossed silver ring.</string>
+    <string name="item_desc_152">KOA silver ring with a fine ruby in.</string>
+    <string name="item_desc_153">KOA fine silver ring with a precious white gem.</string>
+    <string name="item_desc_154">KOA mildly ominous silver and black ring.</string>
+    <string name="item_desc_155">KOA plain ring of gold.</string>
+    <string name="item_desc_156">KOA golden ring, with a stunningly large sapphire.</string>
+    <string name="item_desc_157">KOA ring of fine gold, with a glittering emerald.</string>
+    <string name="item_desc_158">KOAn expensive looking gold and red ring.</string>
+    <string name="item_desc_159">KOAn intimidatingly opulent ring.</string>
+    <string name="item_desc_160">KOThe ultimate in finger decorations.</string>
+    <string name="item_desc_161">KOThe dagger whispers of murders past.</string>
+    <string name="item_desc_162">KOAn absurdly menacing blade.</string>
+    <string name="item_desc_163">KOFor long distance damage.</string>
+    <string name="item_desc_164">KOFired arrows seem to hone in on the target.</string>
+    <string name="item_desc_165">KONo, two halves don\'t make a whole. Sorry.</string>
+    <string name="item_desc_166">KOMaximum protection, maximum style.</string>
+    <string name="item_desc_167">KOAll the protection, with all the mobility.</string>
+    <string name="item_desc_168">KODistinctly better for not-dying than dragon armour.</string>
+    <string name="item_desc_169">KOFit for a king!</string>
+    <string name="item_desc_170">KOPossibly the comfiest helmet ever made.</string>
+    <string name="item_desc_171">KOThese boots were made for stomping. On enemies.</string>
+    <string name="item_desc_172">KOThese gloves seem to fuse to legendary weapons automatically.</string>
+    <string name="item_desc_173">KOFragments of ore seem to be drawn to the powerful blade.</string>
+    <string name="item_desc_174">KOTrees shake with fear when the axe draws closer.</string>
+    <string name="item_desc_175">KOArguably, this could be used as a weapon...</string>
+    <string name="item_desc_176">KOUsed for the forging of the mightiest equipment.</string>
+    <string name="item_desc_177">KOThe page seems to glow with power.</string>
+    <string name="item_desc_178">KOThe page seems to glow with dulled power.</string>
+    <string name="item_desc_179">KOThe page seems to vibrate.</string>
+    <string name="item_desc_180">KOThe page seems to vibrate slightly.</string>
+    <string name="item_desc_181">KOThe page emits strong, leafy smell.</string>
+    <string name="item_desc_182">KOThe page emits a faint flowery smell.</string>
+    <string name="item_desc_183">KOThe page is rather soggy.</string>
+    <string name="item_desc_184">KOThe page is slightly damp</string>
+    <string name="item_desc_185">KOThe page\'s appearance somehow cheers you up.</string>
+    <string name="item_desc_186">KOThe page makes you feel a little bit happier.</string>
+    <string name="item_desc_187">KOThe page is a little muddy.</string>
+    <string name="item_desc_188">KOThe page is covered in rather messy mud.</string>
+    <string name="item_desc_189">KOThe page whispers stories of battles long ended to you.</string>
+    <string name="item_desc_190">KOThe page\'s appearance makes you more irritable.</string>
+    <string name="item_desc_191">KOThe page\'s leaves have petals sprouting from them.</string>
+    <string name="item_desc_192">KOThe page has bugs crawling all over.</string>
+    <string name="item_desc_193">KOA powerful book, with information on combat techniques.</string>
+    <string name="item_desc_194">KOAn agile book, containing information on dodging techniques.</string>
+    <string name="item_desc_195">KOA natural book, containing information on gardening.</string>
+    <string name="item_desc_196">KOA wet book, containing information on sea creatures.</string>
+    <string name="item_desc_197">KOA relaxing book, helping to negotiate between others.</string>
+    <string name="item_desc_198">KOA brown book, containing information about Earth.</string>
+    <string name="item_desc_199">KOA deadly book, containing information on poisons.</string>
+    <string name="item_desc_200">KOA lively book, containing information on the world\'s species.</string>
+    <string name="item_desc_201">KOA collection of all books,the ultimate prize.</string>
+    <string name="item_desc_202">KOThe grain in game falls mainly in... here.</string>
+    <string name="item_desc_203">KOEgg-sactly what you need.</string>
+    <string name="item_desc_204">KOFreshly squeezed.</string>
+    <string name="item_desc_205">KOLike a blackberry, but bluer.</string>
+    <string name="item_desc_206">KONot split. Yet.</string>
+    <string name="item_desc_207">KOOrange you glad you bought this?</string>
+    <string name="item_desc_208">KOCherish this cherry. Or use it.</string>
+    <string name="item_desc_209">KODon\'t eat too many!</string>
+    <string name="item_desc_210">KODon\'t eat too much!</string>
+    <string name="item_desc_211">KOA very fishy dishy. Delishy!.</string>
+    <string name="item_desc_212">KOFresh, not from a can.</string>
+    <string name="item_desc_213">KOA less fishy dishy, still delishy!.</string>
+    <string name="item_desc_214">KONot dripping any more. Phew!</string>
+    <string name="item_desc_215">KOA sandwich with all the insides inside(s).</string>
+    <string name="item_desc_216">KOHam, not spam!</string>
+    <string name="item_desc_217">KONot grilled, unfortunately.</string>
+    <string name="item_desc_218">KOThis pie isn\'t.</string>
+    <string name="item_desc_219">KOLook at the way it crumbles.</string>
+    <string name="item_desc_220">KOA purple gem.</string>
+    <string name="item_desc_221">KOA yellow gem.</string>
+    <string name="item_desc_222">KOA rather pretty silver and purple ring.</string>
+    <string name="item_desc_223">KOAn intriguing silver and yellow ring.</string>
+    <string name="item_desc_224">KOA rather pretty gold and purple ring.</string>
+    <string name="item_desc_225">KOAn intriguing gold and silver ring.</string>
+    <string name="item_desc_226">KOUnfortunately won\'t level you up.</string>
+    <string name="item_desc_227">KOThirst quenching, and rather wet.</string>
+    <string name="item_desc_228">KOHearty and filling!</string>
+    <string name="item_desc_229">KOThe most important meal of the day, apparently.</string>
+    <string name="item_desc_230">KOMmmm, so sweet!</string>
+
+    <string name="language_1">KOEnglish</string>
+    <string name="language_2">KOFrench</string>
+    <string name="language_3">KORussian</string>
+    <string name="language_4">KODutch</string>
+    <string name="language_5">KOChinese</string>
+    <string name="language_6">KOKorean</string>
+    <string name="language_7">KOJapanese</string>
+    <string name="language_8">KOSpanish</string>
+    <string name="language_9">KOGerman</string>
+
+    <string name="setting_1">KOGame Sound</string>
+    <string name="setting_2">KOGame Music</string>
+    <string name="setting_3">KORestock Notifications</string>
+    <string name="setting_4">KONotification Sounds</string>
+    <string name="setting_5">KOVisitor Notifications</string>
+    <string name="setting_6">KOAuto sign in</string>
+    <string name="setting_7">KOWorker Notifications</string>
+    <string name="setting_8">KODisable Ads</string>
+    <string name="setting_9">KOBonus Notifications</string>
+    <string name="setting_10">KOWorker Autofeed</string>
+    <string name="setting_11">KOQuick Item Select</string>
+    <string name="setting_12">KOOnly Available Items</string>
+    <string name="setting_13">KOQuick Log Access</string>
+    <string name="setting_14">KOFullscreen Mode</string>
+    <string name="setting_15">KOItem Listing Auto Refresh</string>
+    <string name="setting_16">KOFullscreen Mode Checking</string>
+    <string name="setting_17">KOItem Slot Updating</string>
+    <string name="setting_18">KOLonger Message Durations</string>
+    <string name="setting_19">KOSmelt / Craft / Sell Max</string>
+    <string name="setting_20">KOAll Items Finished Notifications</string>
+    <string name="setting_21">KOSingle Stack Bulk Crafting</string>
+    <string name="setting_22">KOOrientation</string>
+    <string name="setting_23">KOLanguage</string>
+
+    <string name="state_1">KONormal</string>
+    <string name="state_2">KOUnfinished</string>
+    <string name="state_3">KORed Enchant</string>
+    <string name="state_4">KOBlue Enchant</string>
+    <string name="state_5">KOGreen Enchant</string>
+    <string name="state_6">KOWhite Enchant</string>
+    <string name="state_7">KOBlack Enchant</string>
+    <string name="state_8">KOPurple Enchant</string>
+    <string name="state_9">KOYellow Enchant</string>
+
+    <string name="su_1">KO2x Furnace Items</string>
+    <string name="su_2">KO2x Coin Earnings</string>
+    <string name="su_3">KO2x All XP</string>
+    <string name="su_4">KO2x Trader Items Purchased</string>
+    <string name="su_5">KO2x Worker Resources</string>
+    <string name="su_6">KO1 Demand Per Visitor</string>
+    <string name="su_7">KOFree Market Restock</string>
+    <string name="su_8">KO-50% Worker Time</string>
+    <string name="su_9">KO2x Trade Price</string>
+    <string name="su_10">KO-50% Market Buy Cost</string>
+    <string name="su_11">KO-50% Bonus Chest Time</string>
+    <string name="su_12">KO100x Contribution Reward</string>
+    <string name="su_13">KOGuaranteed Pages</string>
+    <string name="su_14">KOAll Quests Medium+</string>
+    <string name="su_15">KOAll Quests Hard+</string>
+    <string name="su_16">KOAll Quests Elite</string>
+    <string name="su_17">KO2x Anvil Items</string>
+    <string name="su_18">KO2x Table Items</string>
+    <string name="su_19">KO2x Enchant Table Items</string>
+    <string name="su_20">KOBuy All From Market</string>
+    <string name="su_21">KOHalve All Times</string>
+
+    <string name="tier_1">KOBronze</string>
+    <string name="tier_2">KOIron</string>
+    <string name="tier_3">KOSteel</string>
+    <string name="tier_4">KOMithril</string>
+    <string name="tier_5">KOAdamant</string>
+    <string name="tier_6">KORune</string>
+    <string name="tier_7">KODragon</string>
+    <string name="tier_8">KOSilver</string>
+    <string name="tier_9">KOGold</string>
+    <string name="tier_10">KOLegendary</string>
+    <string name="tier_11">KONone</string>
+
+    <string name="trader_name_1">KOThe Scraps</string>
+    <string name="trader_name_2">KOLots More Ore</string>
+    <string name="trader_name_3">KOThe Off Cuts</string>
+    <string name="trader_name_4">KOThe Backbone</string>
+    <string name="trader_name_5">KOThe Prime Cuts</string>
+    <string name="trader_name_6">KOThe Iron Throne</string>
+    <string name="trader_name_7">KOThe Iron Fist</string>
+    <string name="trader_name_8">KOThe Nuggets</string>
+    <string name="trader_name_9">KOThe Nougat</string>
+    <string name="trader_name_10">KOThe Golden Boulders</string>
+    <string name="trader_name_11">KOA Straight Cut</string>
+    <string name="trader_name_12">KOA Finer Cut</string>
+    <string name="trader_name_13">KOLogged In</string>
+    <string name="trader_name_14">KOOog</string>
+    <string name="trader_name_15">KOGemBooth 1000</string>
+    <string name="trader_name_16">KOGemEmporium 5000</string>
+    <string name="trader_name_17">KOGemCrusher 9000</string>
+    <string name="trader_name_18">KOFarmyard Funland</string>
+    <string name="trader_name_19">KOBaker\'s Dozen</string>
+    <string name="trader_name_20">KOThe Exclusive Emporium</string>
+    <string name="trader_name_21">KOThe Little Ore Shop</string>
+    <string name="trader_name_22">KOThe Little Bar Shop</string>
+    <string name="trader_name_23">KOThe Bigger Ore Shop</string>
+    <string name="trader_name_24">KOThe Bigger Bar Shop</string>
+    <string name="trader_name_25">KOThe Biggest Ore Shop</string>
+    <string name="trader_name_26">KOThe Biggest Bar Shop</string>
+    <string name="trader_name_27">KOThe Scary Silk Shop</string>
+    <string name="trader_name_28">KOThe Lethal Log Lair</string>
+    <string name="trader_name_29">KOThe Petrifying Powder Place</string>
+    <string name="trader_name_30">KOSurf and Steel</string>
+    <string name="trader_name_31">KOManatees and Mithril</string>
+    <string name="trader_name_32">KOAtolls and Adamant</string>
+    <string name="trader_name_33">KOReefs and Rune</string>
+    <string name="trader_name_34">KODives and Dragon</string>
+    <string name="trader_name_35">KOSwords a\'plenty!</string>
+    <string name="trader_name_36">KOShields a\'plenty!</string>
+    <string name="trader_name_37">KOArmour a\'plenty!</string>
+    <string name="trader_name_38">KOThe Floating Fruitmonger</string>
+    <string name="trader_name_39">KOThe Fromage Fermenter</string>
+    <string name="trader_name_40">KOMill Hill</string>
+    <string name="trader_name_41">KOBloodsucker\'s Boxes</string>
+    <string name="trader_name_42">KORunic Remedies</string>
+    <string name="trader_name_43">KODragon Delights</string>
+    <string name="trader_name_44">KOSilver Waistbands</string>
+    <string name="trader_name_45">KOGold Belts</string>
+    <string name="trader_name_46">KOSpace Ores</string>
+    <string name="trader_name_47">KOSpace Bars</string>
+    <string name="trader_name_48">KOSpace Gems</string>
+    <string name="trader_name_49">KOMy Stuff</string>
+    <string name="trader_name_50">KOStill My Stuff</string>
+    <string name="trader_name_51">KOOpticians</string>
+    <string name="trader_name_52">KOThe King\'s Armoury</string>
+    <string name="trader_name_53">KOThe King\'s Weapon Rack</string>
+    <string name="trader_name_54">KOThe Pre-Bakery</string>
+    <string name="trader_name_55">KOFruit Stand</string>
+    <string name="trader_name_56">KOThe Sweet Spot</string>
+
+    <string name="trader_desc_1">KOI was gonna chuck this stuff out.. you interested?</string>
+    <string name="trader_desc_2">KOLots and lots and lots of ore!</string>
+    <string name="trader_desc_3">KOThis stuff isn\'t the best, but it\'ll do.</string>
+    <string name="trader_desc_4">KOYou\'re gonna like what I\'ve got. I think.</string>
+    <string name="trader_desc_5">KOMy very best stock, for the connoisseur.</string>
+    <string name="trader_desc_6">KOI rule my iron with an iron fist!</string>
+    <string name="trader_desc_7">KOI rule my iron from an iron throne!</string>
+    <string name="trader_desc_8">KOCheck out these lil shiners.</string>
+    <string name="trader_desc_9">KOPanned these all myself, honest!</string>
+    <string name="trader_desc_10">KOCheck out these lil shiners.</string>
+    <string name="trader_desc_11">KODefinitely not off the back of a cart.</string>
+    <string name="trader_desc_12">KOReams upon reams of high quality cloth.</string>
+    <string name="trader_desc_13">KOLOGS! LOOOGS! LOTSA LOOOOOOGS!!!</string>
+    <string name="trader_desc_14">KOOOG. OOG. OOG.</string>
+    <string name="trader_desc_15">KOBzzt! Buy gems!</string>
+    <string name="trader_desc_16">KOBzzt! Buy BETTER gems!</string>
+    <string name="trader_desc_17">KOBzzt! Buy BROKEN gems!</string>
+    <string name="trader_desc_18">KOAll the fun of the farm!</string>
+    <string name="trader_desc_19">KOWhat, a plant can\'t run a business?</string>
+    <string name="trader_desc_20">KOYou won\'t find any of this anywhere else!</string>
+    <string name="trader_desc_21">KOA little ore in store, you it is for!</string>
+    <string name="trader_desc_22">KOSome bars inside, no need to hide.</string>
+    <string name="trader_desc_23">KOOre? A lot, that\'s what I\'ve got.</string>
+    <string name="trader_desc_24">KOLots more bars, don\'t go fars!</string>
+    <string name="trader_desc_25">KOOre to the max, racks and racks.</string>
+    <string name="trader_desc_26">KOSo many bars, enough to fill Mars.</string>
+    <string name="trader_desc_27">KOAbout as scary as regular silk.</string>
+    <string name="trader_desc_28">KOAbout as lethal as any old log.</string>
+    <string name="trader_desc_29">KOPowder can be scary! Course it can!</string>
+    <string name="trader_desc_30">KODon\'t steal my steel.</string>
+    <string name="trader_desc_31">KOI won\'t mith my mithril. I mean miss.</string>
+    <string name="trader_desc_32">KOI\'m adamant you\'ll like my adamant.</string>
+    <string name="trader_desc_33">KODon\'t rune away!</string>
+    <string name="trader_desc_34">KOForged from seadragon hide.</string>
+    <string name="trader_desc_35">KOGet your swords here!</string>
+    <string name="trader_desc_36">KOGet your shields here!</string>
+    <string name="trader_desc_37">KOGet your armour here!</string>
+    <string name="trader_desc_38">KOIt\'s all technically fruit!</string>
+    <string name="trader_desc_39">KOFinely fermented, frankly.</string>
+    <string name="trader_desc_40">KOBaker\'s dozens!</string>
+    <string name="trader_desc_41">KODon\'t ask how I got this.</string>
+    <string name="trader_desc_42">KOThe finest rune resources in the land!</string>
+    <string name="trader_desc_43">KOAll 100% gen-u-ine dragon.</string>
+    <string name="trader_desc_44">KOFor blobs only!</string>
+    <string name="trader_desc_45">KOFor fancy blobs only!</string>
+    <string name="trader_desc_46">KOFresh off the asteroid.</string>
+    <string name="trader_desc_47">KOFrom the slightly more advanced asteroids.</string>
+    <string name="trader_desc_48">KOFormed when a space rock meets high G-forces.</string>
+    <string name="trader_desc_49">KONot for sale. Go away.</string>
+    <string name="trader_desc_50">KOI\'m hanging onto this. Shoo.</string>
+    <string name="trader_desc_51">KOWell, they help protect your eyes at least.</string>
+    <string name="trader_desc_52">KOBuy the very best.</string>
+    <string name="trader_desc_53">KOBuy the very best.</string>
+    <string name="trader_desc_54">KOAll the ingredients, none of the bread!</string>
+    <string name="trader_desc_55">KOAll of your five a day.</string>
+    <string name="trader_desc_56">KOCareful, they\'ll rot your teeth.</string>
+
+    <string name="type_1">KOOre</string>
+    <string name="type_2">KOBar</string>
+    <string name="type_3">KODagger</string>
+    <string name="type_4">KOSword</string>
+    <string name="type_5">KOLongsword</string>
+    <string name="type_6">KOBow</string>
+    <string name="type_7">KOHalf Shield</string>
+    <string name="type_8">KOFull Shield</string>
+    <string name="type_9">KOChainmail</string>
+    <string name="type_10">KOPlatebody</string>
+    <string name="type_11">KOHalf Helmet</string>
+    <string name="type_12">KOFull Helmet</string>
+    <string name="type_13">KOBoot</string>
+    <string name="type_14">KOGlove</string>
+    <string name="type_15">KOPickaxe</string>
+    <string name="type_16">KOHatchet</string>
+    <string name="type_17">KOFishing Rod</string>
+    <string name="type_18">KOHammer</string>
+    <string name="type_19">KOSecondary</string>
+    <string name="type_20">KOGem</string>
+    <string name="type_21">KORaw Food</string>
+    <string name="type_22">KOPowder</string>
+    <string name="type_23">KORare</string>
+    <string name="type_24">KORing</string>
+    <string name="type_25">KOPage</string>
+    <string name="type_26">KOBook</string>
+    <string name="type_27">KOCooked Food</string>
+    <string name="type_28">KOInternal</string>
+
+    <string name="upgrade_1">KOVisitor Spawn Time</string>
+    <string name="upgrade_2">KOMarket Restock Time</string>
+    <string name="upgrade_3">KOMaximum Visitors</string>
+    <string name="upgrade_4">KOMaximum Traders</string>
+    <string name="upgrade_5">KOCoins Bonus</string>
+    <string name="upgrade_6">KOXP Bonus</string>
+    <string name="upgrade_7">KOCraft Time</string>
+    <string name="upgrade_8">KOLegendary Chance</string>
+    <string name="upgrade_9">KORestock All Cost</string>
+    <string name="upgrade_10">KOWorker Time</string>
+    <string name="upgrade_11">KOMinimum Visitor Rewards</string>
+    <string name="upgrade_12">KOMaximum Visitor Rewards</string>
+
+    <string name="visitor_name_1">KOSenor Spicy Hot</string>
+    <string name="visitor_name_2">KOMister Hatchet</string>
+    <string name="visitor_name_3">KOLord of the Junk</string>
+    <string name="visitor_name_4">KOMonsieur Fancypants</string>
+    <string name="visitor_name_5">KOGrumbling Rock</string>
+    <string name="visitor_name_6">KOLarge Grumbling Rock</string>
+    <string name="visitor_name_7">KOR. De Couleur</string>
+    <string name="visitor_name_8">KOG. De Couleur</string>
+    <string name="visitor_name_9">KOB. De Couleur</string>
+    <string name="visitor_name_10">KOW. De Couleur</string>
+    <string name="visitor_name_11">KOB. De Couleur</string>
+    <string name="visitor_name_12">KOGelatinous Egg</string>
+    <string name="visitor_name_13">KOThe Great Cheese Menace</string>
+    <string name="visitor_name_14">KOThe Leech King</string>
+    <string name="visitor_name_15">KOMan of Magicka</string>
+    <string name="visitor_name_16">KORare Chest</string>
+    <string name="visitor_name_17">KOChest</string>
+    <string name="visitor_name_18">KOEye of Ender</string>
+    <string name="visitor_name_19">KOBRAINS</string>
+    <string name="visitor_name_20">KOAsterisk The Ghoul</string>
+    <string name="visitor_name_21">KOEye of Starter</string>
+    <string name="visitor_name_22">KOMarcell</string>
+    <string name="visitor_name_23">KOCrabby</string>
+    <string name="visitor_name_24">KOSoutherner</string>
+    <string name="visitor_name_25">KOMagical Mushroom</string>
+    <string name="visitor_name_26">KOOverwasp</string>
+    <string name="visitor_name_27">KOObelix The Ghoul</string>
+    <string name="visitor_name_28">KOWhippersnappette</string>
+    <string name="visitor_name_29">KOHatty</string>
+    <string name="visitor_name_30">KOArcher</string>
+    <string name="visitor_name_31">KOSteve</string>
+    <string name="visitor_name_32">KOWhippersnapper</string>
+    <string name="visitor_name_33">KOMr T Utorial</string>
+    <string name="visitor_name_34">KOSammy the Snake</string>
+    <string name="visitor_name_35">KOPower Orb</string>
+    <string name="visitor_name_36">KOFrankie Fire</string>
+    <string name="visitor_name_37">KOEmerald Giant</string>
+    <string name="visitor_name_38">KOPURPLEBOT9000</string>
+    <string name="visitor_name_39">KOWhirling Dervish</string>
+    <string name="visitor_name_40">KOStumps</string>
+    <string name="visitor_name_41">KOOctomum</string>
+    <string name="visitor_name_42">KOBattletoad</string>
+    <string name="visitor_name_43">KOCasper</string>
+    <string name="visitor_name_44">KOMummioso</string>
+    <string name="visitor_name_45">KOThe Black Knight</string>
+    <string name="visitor_name_46">KOMrs BRAINS</string>
+    <string name="visitor_name_47">KOSir Stumps</string>
+    <string name="visitor_name_48">KOThe Great Bread Menace</string>
+    <string name="visitor_name_49">KOBloody Mary</string>
+    <string name="visitor_name_50">KOCOLDBOT5000</string>
+    <string name="visitor_name_51">KOMr Tentacles</string>
+    <string name="visitor_name_52">KOBresh Bosh</string>
+
+    <string name="visitor_desc_1">KOI like unfinished things, they burn better!</string>
+    <string name="visitor_desc_2">KOIf only I was a woodcutter...</string>
+    <string name="visitor_desc_3">KOIt\'s not rubbish, it\'s treasure!</string>
+    <string name="visitor_desc_4">KOOnly the best for me, old chap.</string>
+    <string name="visitor_desc_5">KOMe hungry. Tummy rumbling.</string>
+    <string name="visitor_desc_6">KOMe very hungry. Tummy rumbling loud.</string>
+    <string name="visitor_desc_7">KOThey say I\'m the short-tempered one, but I just like the colour.</string>
+    <string name="visitor_desc_8">KOThey say I\'m the jealous one, but I just like the colour.</string>
+    <string name="visitor_desc_9">KOThey say I\'m the unhappy one, but I just like the colour.</string>
+    <string name="visitor_desc_10">KOThey say I\'m the scared one, but I just like the colour.</string>
+    <string name="visitor_desc_11">KOThey say I\'m the scary one, but I just like the colour.</string>
+    <string name="visitor_desc_12">KOSo what if I\'m not quite in shape?</string>
+    <string name="visitor_desc_13">KOYou there! Got any of the yellow stuff?</string>
+    <string name="visitor_desc_14">KOSlurp, slurp.</string>
+    <string name="visitor_desc_15">KODo you like my outfit?</string>
+    <string name="visitor_desc_16">KOGive me your rare items, I\'ll look after them!</string>
+    <string name="visitor_desc_17">KOGive me your items, I\'ll look after them!</string>
+    <string name="visitor_desc_18">KODon\'t worry, it\'s a coloured contact lens.</string>
+    <string name="visitor_desc_19">KOBRAINS</string>
+    <string name="visitor_desc_20">KOSeen Obelix anywhere?</string>
+    <string name="visitor_desc_21">KOI don\'t suppose you\'ve got any monocles?</string>
+    <string name="visitor_desc_22">KOI\'ve got shoes on.</string>
+    <string name="visitor_desc_23">KOSnippy, snippy!</string>
+    <string name="visitor_desc_24">KOFrom down south. No, REALLY south. REAAALLLY south.</string>
+    <string name="visitor_desc_25">KONo nibbling.</string>
+    <string name="visitor_desc_26">KOYou know I can sting repeatedly, right?</string>
+    <string name="visitor_desc_27">KOSeen Asterisk anywhere?</string>
+    <string name="visitor_desc_28">KODon\'t tell Steve, but his secret mine isn\'t so secret.</string>
+    <string name="visitor_desc_29">KOI wish my hair wasn\'t so exposed to the elements.</string>
+    <string name="visitor_desc_30">KOIt\'s all about the bullseye.</string>
+    <string name="visitor_desc_31">KOGotta dig deeper and deeper and deeper and...</string>
+    <string name="visitor_desc_32">KODon\'t tell Steve, but his secret fish pond isn\'t so secret.</string>
+    <string name="visitor_desc_33">KONeed a hand?</string>
+    <string name="visitor_desc_34">KOSsscared of sssnakesss?</string>
+    <string name="visitor_desc_35">KOI am all powerful. Okay, apart from equipment. Shh.</string>
+    <string name="visitor_desc_36">KOIs it hot in here?</string>
+    <string name="visitor_desc_37">KOI.. can.. barely.. move.</string>
+    <string name="visitor_desc_38">KOBZZ.. GIVE SILVER. PLZ.</string>
+    <string name="visitor_desc_39">KOI\'m a little bit dizzy. Actually, very dizzy.</string>
+    <string name="visitor_desc_40">KOSure is cold up there.</string>
+    <string name="visitor_desc_41">KOI am a completely normal human. Completely normal.</string>
+    <string name="visitor_desc_42">KOMake it quick, I\'ve got somewhere to be.</string>
+    <string name="visitor_desc_43">KOI hope I\'m not scaring you. I\'m so sorry if I am. Sorry.</string>
+    <string name="visitor_desc_44">KOI am more than a mere mummy, I am Mummioso!</string>
+    <string name="visitor_desc_45">KOIt\'s not even a scratch!</string>
+    <string name="visitor_desc_46">KOHello! Oh, also BRAINS.</string>
+    <string name="visitor_desc_47">KOMy bark is as good as my bite.</string>
+    <string name="visitor_desc_48">KOYou there! Got any of the yeasty stuff?</string>
+    <string name="visitor_desc_49">KOBloody Mary, Bloody Mary, Bloody Mary!</string>
+    <string name="visitor_desc_50">KOIt\'s freezerin\' time!</string>
+    <string name="visitor_desc_51">KOWant a burger?</string>
+    <string name="visitor_desc_52">KOI\'s got all these coins but nuffin good. Whatchu got?</string>
+
+    <!-- Stage 1 -->
+    <string name="tutorialText">KOTutorial</string>
+    <string name="tutorialIntro">KOBlacksmith</string>
+    <string name="tutorialIntroText">KOWelcome to Blacksmith! This short tutorial will help you get started, and you\'ll be blacksmithing in no time.</string>
+    <string name="tutorialCoins">KOCoins</string>
+    <string name="tutorialCoinsText">KOYour coins are used for buying... well, everything. They are earned by trading away items.</string>
+    <string name="tutorialQuest">KOQuests</string>
+    <string name="tutorialQuestText">KOThis is your current quest (if any). Quests are an excellent way to earn extra resources.</string>
+    <string name="tutorialLevel">KOLevel</string>
+    <string name="tutorialLevelText">KOThis is your current level. XP is earned by crafting and trading items.</string>
+    <string name="tutorialVisitor">KOVisitor</string>
+    <string name="tutorialVisitorText">KOYour first visitor has arrived! Tap him to continue.</string>
+
+    <!-- Stage 2 -->
+    <string name="tutorialVisitorPicture">KOVisitor</string>
+    <string name="tutorialVisitorPictureText">KOAh, Mr T Utorial! How nice of you to stop by.</string>
+    <string name="tutorialVisitorPrefs">KOPreferences</string>
+    <string name="tutorialVisitorPrefsText">KOIt looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorDemands">KODemands</string>
+    <string name="tutorialVisitorDemandsText">KOEach visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
+
+    <!-- Stage 3 -->
+    <string name="tutorialTradeItems">KOTradeable Items</string>
+    <string name="tutorialTradeItemsText">KOLooks like you\'ve got 3 different ores to sell. How lucky! Sell any, and you\'ll get more than the coins listed due to the visitor\'s ore preference.</string>
+    <string name="tutorialTradeFinish">KOFinish Trading</string>
+    <string name="tutorialTradeFinishText">KOOnce any 2 ores have been traded, tap finish to return to the visitor overview.</string>
+
+    <!-- Stage 4 -->
+    <string name="tutorialVisitorDemandsLeft">KODemands</string>
+    <string name="tutorialVisitorDemandsLeftText">KOHmm, looks like he also wants an unfinished item, and a finished item. We haven\'t got those yet!</string>
+    <string name="tutorialVisitorClose">KOClose</string>
+    <string name="tutorialVisitorCloseText">KOLet\'s leave the visitor, and make our way to the furnace to make some bronze bars.</string>
+
+    <!-- Stage 5 -->
+    <string name="tutorialFurnaceSlots">KOSlots</string>
+    <string name="tutorialFurnaceSlotsText">KOAny bars that are currently being smelted in the furnace will appear here. If there\'s no space, bars will be queued up.</string>
+    <string name="tutorialFurnace">KOFurnace</string>
+    <string name="tutorialFurnaceText">KOTime to open up the furnace, and make a bar for Mr T Utorial.</string>
+
+    <!-- Stage 6 -->
+    <string name="tutorialFurnaceItems">KOItem</string>
+    <string name="tutorialFurnaceItemsText">KOItem information is shown here. Generally, item information can only be seen after being created, but the bronze bar has been unlocked for you.</string>
+    <string name="tutorialFurnaceScroll">KOChanging Items</string>
+    <string name="tutorialFurnaceScrollText">KOSwiping left and right or tapping the item image will change between available items. For now though, they\'ll mostly be hidden.</string>
+    <string name="tutorialFurnaceIngredients">KOIngredients</string>
+    <string name="tutorialFurnaceIngredientsText">KOSince this is a rather basic item, it only requires level 1. It also requires copper and tin ore, which we have plenty of.</string>
+    <string name="tutorialFurnaceSmelt">KOSmelting</string>
+    <string name="tutorialFurnaceSmeltText">KOCraft a few bronze bars, we\'ll need them for the unfinished items.</string>
+    <string name="tutorialFurnaceClose">KOClose</string>
+    <string name="tutorialFurnaceCloseText">KOClose the furnace, and we\'ll make our way to the anvil.</string>
+
+    <!-- Stage 7 -->
+    <string name="tutorialMainAnvil">KOAnvil</string>
+    <string name="tutorialMainAnvilText">KOTo make the bronze bars into the unfinished dagger, we only need to visit the anvil. As before, notice there\'s only 1 slot available for now.</string>
+
+    <!-- Stage 8 -->
+    <string name="tutorialAnvil">KOItems</string>
+    <string name="tutorialAnvilText">KOAs in the furnace, all items are currently hidden except a basic bronze dagger. Luckily, that\'s what we need to make.</string>
+    <string name="tutorialAnvilUp">KOTiers</string>
+    <string name="tutorialAnvilUpText">KOUnlike the furnace, there are different tiers of item in the anvil. Bronze is the lowest, then iron, all the way up to dragon and legendary items.</string>
+    <string name="tutorialAnvilIngredients">KOIngredients</string>
+    <string name="tutorialAnvilIngredientsText">KOHopefully, you\'ve got plenty of bronze bars made from the furnace. If not, better go back and make them!</string>
+    <string name="tutorialAnvilCraft">KOCrafting</string>
+    <string name="tutorialAnvilCraftText">KOMake a couple of unfinished bronze daggers. Notice that you gain XP for every crafted item.</string>
+
+    <!-- Stage 9 -->
+    <string name="tutorialMainTable">KOTable</string>
+    <string name="tutorialMainTableText">KOTo turn those unfinished daggers into finished daggers, we need to go to the table.</string>
+
+    <!-- Stage 10 -->
+    <string name="tutorialTable">KOTable</string>
+    <string name="tutorialTableText">KOThe table is similar to the anvil, but combines unfinished items and secondary ingredients to make finished items.</string>
+    <string name="tutorialTableIngredients">KOIngredients</string>
+    <string name="tutorialTableIngredientsText">KOTo finish up the dagger, we need a spidersilk. Luckily, we have plenty!</string>
+    <string name="tutorialTableCraft">KOCraft</string>
+    <string name="tutorialTableCraftText">KOCraft one, and the dagger will be ready in a second or so.</string>
+
+    <!-- Stage 11 -->
+    <string name="tutorialMainVisitorFinish">KOFinishing</string>
+    <string name="tutorialMainVisitorFinishText">KONow, let\'s go give the visitor all of his items.</string>
+
+    <!-- Stage 12 -->
+    <string name="tutorialVisitorFinishBtn">KOComplete</string>
+    <string name="tutorialVisitorFinishBtnText">KOOnce all the items have been handed in, press the complete button. You\'ll get a tip from the visitor as a thank you!</string>
+    <string name="tutorialVisitorFinish">KODemands</string>
+    <string name="tutorialVisitorFinishText">KONow, give the visitor the rest of his items via the trade screens.</string>
+
+    <!-- Stage 13 -->
+    <string name="tutorialMainInfo">KOLast Thing</string>
+    <string name="tutorialMainInfoText">KOAlmost finished. Before you give Mr T his items, we\'ll just cover a couple more key areas, then you can explore the game and figure it out yourself.</string>
+    <string name="tutorialMainWorker">KOWorker</string>
+    <string name="tutorialMainWorkerText">KOLater on in the game, workers can be hired to find resources for you. For now though...</string>
+    <string name="tutorialMainMarket">KOMarket</string>
+    <string name="tutorialMainMarketText">KOWhilst resources can be earned by completing visitors, most of your resources will come from buying things from traders in the market.\nTap to enter.</string>
+
+    <!-- Stage 14 -->
+    <string name="tutorialMarket">KOMarket</string>
+    <string name="tutorialMarketText">KOThis is where your resources will come from! Traders will come and go over time, and purchasing from them will unlock better / more items for sale.</string>
+    <string name="tutorialMarketClose">KOClose</string>
+    <string name="tutorialMarketCloseText">KOThe tutorial is almost over! Close the market, and we\'ll take a look at the last few areas.</string>
+
+    <!-- Stage 15 -->
+    <string name="tutorialMainSettings">KOSettings</string>
+    <string name="tutorialMainSettingsText">KOSounds, music, and notifications can be turned on &amp; off here, and the tutorial can be replayed. A message history is also available, along with optional google play achievements, leaderboards, and cloud saves.</string>
+    <string name="tutorialMainInventory">KOInventory</string>
+    <string name="tutorialMainInventoryText">KOAll of your items can be seen here, and sold if necessary. It\'s a good way to keep track of everything!</string>
+    <string name="tutorialMainHelp">KOHelp</string>
+    <string name="tutorialMainHelpText">KOThe tutorial is over! If you get stuck, you can tap the "Help" icon on any screen to get more information, or replay the tutorial from the settings menu. Happy blacksmithing!</string>
+
+    <string name="marketText">KOMarket</string>
+    <string name="furnaceText">KOFurnace</string>
+    <string name="anvilText">KOAnvil</string>
+    <string name="inventoryText">KOInventory</string>
+    <string name="tableText">KOTable</string>
+    <string name="traderText">KOTrader</string>
+    <string name="visitorText">KOVisitor</string>
+    <string name="tradeText">KOTrade</string>
+    <string name="enchantingText">KOGem Table</string>
+    <string name="settingsText">KOSettings</string>
+    <string name="creditsText">KOCredits</string>
+    <string name="rateText">KORate App</string>
+    <string name="trophyText">KOTrophies</string>
+    <string name="statisticsText">KOStatistics</string>
+    <string name="helpText">KOHelp</string>
+    <string name="upgradeText">KOUpgrades</string>
+    <string name="premiumText">KOPremium</string>
+    <string name="buyCoinsText">KOBuy Coins</string>
+    <string name="messagesText">KOMessage Log</string>
+    <string name="messagesShortText">KOMessages</string>
+    <string name="socialMediaText">KOSocial Media</string>
+    <string name="workerText">KOWorkers</string>
+    <string name="helperText">KOHelpers</string>
+    <string name="heroText">KOHeroes</string>
+    <string name="toolText">KOTools</string>
+    <string name="foodText">KOFood</string>
+    <string name="itemsText">KOItems</string>
+    <string name="ringsText">KORings</string>
+    <string name="booksText">KOBooks</string>
+    <string name="enchantText">KOGems</string>
+    <string name="powderText">KOPowders</string>
+    <string name="questText">KOQuests</string>
+    <string name="itemSelectText">KOItems</string>
+    <string name="tipsText">KOTips</string>
+    <string name="messageLogToggleText">KOQuick Log Access</string>
+    <string name="adventureText">KOAdventures</string>
+    <string name="equipmentText">KOEquipment</string>
+    <string name="interstitialText">KOAdvert</string>
+
+    <string name="interstitialTimeLeft">KORemaining: %1$ds</string>
+
+    <string name="upgradeTabText">KOUpgrade</string>
+    <string name="superTabText">KOSuper</string>
+
+    <string name="superUpgradeStatusChange">KOSuper upgrade %1$s %2$s! For a description, see the help page.</string>
+    <string name="superUpgradeCollections">KOYou have completed %1$d collection(s), so can activate %1$d/%2$d super upgrades at a time.\n</string>
+    <string name="superUpgradePrestiges">KOYou have prestiged %1$d times, so have unlocked %2$d/%3$d super upgrades.\n</string>
+    <string name="superUpgradeEnabled">KOenabled</string>
+    <string name="superUpgradeDisabled">KOdisabled</string>
+    <string name="superUpgradePrestigeLevel">KOYou need to have prestiged %1$d times to unlock this Super Upgrade.</string>
+
+    <string name="slotLevel">KOLv %d</string>
+    <string name="slotPremium">KOPrem</string>
+    <string name="slotSeconds">KO%ds</string>
+
+    <string name="socialMediaQuestion">KOWant to get in touch? You\'re in luck!\n\nReddit is the most active community, but any will get a quick response.</string>
+    <string name="socialMediaFacebook">KOFacebook</string>
+    <string name="socialMediaTwitter">KOTwitter</string>
+    <string name="socialMediaReddit">KOReddit</string>
+
+    <string name="tierPreferenceHero">KOThis hero will receive a %1$s boost for items made out of %2$s.</string>
+    <string name="typePreferenceHero">KOThis hero will receive a %1$s boost for %2$ss.</string>
+    <string name="statePreferenceHero">KOThis hero will receive a %1$s boost for items in a %2$s condition.</string>
+    <string name="discoveredPreferences">KOThis customer will pay %1$s extra for items made out of %2$s.</string>
+    <string name="tierPreference">KOThis customer will pay %1$s extra for items made out of %2$s.</string>
+    <string name="typePreference">KOThis customer will pay %1$s extra for %2$ss.</string>
+    <string name="statePreference">KOThis customer will pay %1$s extra for items in a %2$s condition.</string>
+    <string name="undiscoveredPreference">KOYou haven\'t discovered this preference yet! Try selling different items to discover them.</string>
+    <string name="noBestItem">KOYou haven\'t sold this visitor anything yet!</string>
+    <string name="bestItemMessage">KOThe highest value item sold to %1$s is a %2$s for %3$d coins.</string>
+
+    <string name="cannotBuyIAP">KOThis account cannot use Google in-app purchases. Please check you have a payment method, and are on the latest version of Google Play Services.</string>
+    <string name="buyingIAPError">KOAn error occurred whilst trying to purchase. Please try again later, hopefully it\'ll work!</string>
+
+    <string name="buyContribute">KOContribute</string>
+    <string name="boughtContribute">KOThank you for contributing! You\'re the best!</string>
+    <string name="contributeDescription">KOHey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like. If you\'re interested in buying more coins, coins can be bought (+ button next to coins).\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
+    <string name="contributeStatus">KO\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
+    <string name="contributeTitle">KO%1$s (%2$d / %3$d)</string>
+    <string name="contributeHeader">KORewards:</string>
+
+    <string name="buyCoinsButton">KO%1$s coins</string>
+    <string name="buyCoinsSuccess">KOSuccessfully bought %1$d coins, enjoy!</string>
+    <string name="buyCoinsDesc">KORunning low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
+\n\nToday is your lucky day! Two coin packs are available; the first is 500 x your level, the second is 3,000 x your level.
+\n\nWant to get more value for money? Buy the bigger pack or level up!</string>
+
+    <string name="buyPremium">KOGo Premium!</string>
+    <string name="boughtPremium">KOYou\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
+    <string name="restoredPremium">KOPremium status restored! Make sure to transfer your cloud save too.</string>
+    <string name="premiumStatusActive">KOCurrently premium!</string>
+    <string name="premiumStatusInactive">KONot currently premium.</string>
+    <string name="premiumFeatures">KOPremium benefits:
+\n- Immediate +20% to bonus coins and bonus XP upgrades.
+\n- +50% maximum possible bonus coins and bonus XP upgrades (from 50% to 100%).
+\n- Easier access to extremely powerful Super Upgrades.
+\n- Ability to turn off all ads.
+\n- Access to 17 new extremely valuable legendary items.
+\n- Extra crafting slot for all areas.
+\n- Coins paid by all out of stock traders on automatic market restock.
+\n- Ability to prestige at level 70, and begin a New Game Plus with +50% coin earnings &amp; -25% XP!
+\n- Doubled bonus chest rewards, and reduced time between chest openings.
+\n- Ability to Contribute, which can unlock beta access and suggesting new items / visitors!
+\n- A big thank you from the developer!</string>
+
+    <string name="levelUpText">KOLevelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
+    <string name="levelUpPrestigeText">KOLevelled up to %d! Premium players can prestige, take a look at the settings menu!</string>
+    <string name="levelUpPremiumPrestigeText">KOLevelled up to %d! You can now prestige (New Game +), take a look at the settings menu!</string>
+    <string name="overflowText">KO+ %d</string>
+
+    <string name="workerLocked">KOLocked</string>
+    <string name="buyWorkerQuestion">KOAre you sure you would like to hire this helper for %,d coins?</string>
+    <string name="buyWorkerConfirm">KOHire</string>
+    <string name="buyWorkerComplete">KOSuccessfully hired helper!</string>
+    <string name="buyHeroQuestion">KOAre you sure you would like to hire this hero for %,d coins?</string>
+    <string name="buyHeroConfirm">KOHire</string>
+    <string name="buyHeroComplete">KOSuccessfully hired hero!</string>
+    <string name="buyWorkerCancel">KOCancel</string>
+
+    <string name="sendOutWorkers">KOSend Out\nAll</string>
+    <string name="sendOutWorkersToast">KO%d helpers excitedly jog out of the door, in search of resources.</string>
+    <string name="sendOutHeroesToast">KO%d heroes excitedly jog out of the door, in search of adventure.</string>
+    <string name="autofeedWorkers">KOAuto-feed\n</string>
+
+    <string name="onlyAvailable">KOShow All Items\n</string>
+
+    <string name="updateMessage">KOUpdated to version %s!\n\nA full changelist can be viewed on the /r/PixelBlacksmith subreddit.</string>
+    <string name="updateReddit">KOView Changes</string>
+    <string name="updateClose">KOClose</string>
+
+    <string name="worseSaveMessage">KOAre you SURE you want to load this inferior cloud save?\n\nLocal save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nCloud save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseSaveLoad">KOLoad</string>
+    <string name="worseSaveCancel">KOCancel</string>
+
+    <string name="worseLocalSaveMessage">KOAre you SURE you want to load this inferior imported save?\n\nCurrent save:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nImported save:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseLocalSaveLoad">KOLoad</string>
+    <string name="worseLocalSaveCancel">KOCancel</string>
+
+    <string name="cloudSaveWarning">KOAre you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.</string>
+    <string name="cloudSaveSave">KOOverwrite</string>
+    <string name="cloudSaveCancel">KOCancel</string>
+
+    <string name="cloudLocalFailure">KOA local error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudRemoteFailure">KOA remote error occurred whilst %1$s from cloud: %2$s</string>
+    <string name="cloudSaveBeginning">KOSaving game to cloud...</string>
+    <string name="cloudSaveSuccess">KOSave to cloud successful!</string>
+    <string name="cloudLoadBeginning">KOLoading cloud save from remote server...</string>
+    <string name="cloudLoadSuccess">KOLoad from cloud successful!</string>
+    <string name="cloudSaveCaption">KO%1$d Prestiges | Level %2$d | %3$,d coins | V%4$s</string>
+
+    <string name="windowClick">KOWhat was that!?</string>
+
+    <string name="buyWorker">KOPurchase Helper</string>
+    <string name="buyHero">KOPurchase Hero</string>
+    <string name="workerCoins">KO%,d coins</string>
+    <string name="workerLevel">KOLev %d</string>
+    <string name="workerReturnTime">KO%1$s will return in %2$s.</string>
+    <string name="workerTimesCompleted">KO%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
+    <string name="heroTimesCompleted">KO%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
+    <string name="workerStatusReady">KOStatus:\nReady</string>
+    <string name="workerStatusBusy">KOStatus:\nBusy</string>
+    <string name="workerStatusSelectHero">KOSelect Hero</string>
+    <string name="workerStatusSelectAdventure">KOSelect Adventure</string>
+    <string name="workerTool">KOTool:\n%s</string>
+    <string name="workerReturned">KO%1$s has returned, along with: %2$s.</string>
+    <string name="workersReturned">KO%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
+    <string name="heroesReturned">KO%1$d heroes (%2$s) have returned from adventures, %3$d of which were successful! For more details, view the message log.</string>
+    <string name="workerResources">KOResources: %s.</string>
+    <string name="workerFoodBonus">KO+</string>
+
+    <string name="heroTotalStrength">KOTotal Strength: %d</string>
+    <string name="heroFailText">KO%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
+    <string name="heroFailNoItemsText">KO%1$s has failed whilst attempting to %2$s! They had no items, so lost nothing!</string>
+
+    <string name="bribeQuestion">KOWould you like to bribe a visitor %1$,d coins to come in immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeQuestionAdvert">KOWould you like to pay %1$,d coins or watch an ad to make a visitor appear immediately?\n\nOne will arrive for free in %2$s.</string>
+    <string name="bribeConfirm">KOBribe</string>
+    <string name="bribeAdvert">KOWatch Ad</string>
+    <string name="bribeComplete">KOA visitor walks in, with %d coins. What a coincidence!</string>
+    <string name="bribeAdvertComplete">KOA visitor walks in, looks like the advert worked!</string>
+    <string name="bribeFailure">KONot enough money to bribe a visitor.</string>
+    <string name="bribeCancel">KOCancel</string>
+
+    <string name="bonusTimeLeft">KOThe bonus chest will be ready to open in %s.</string>
+    <string name="bonusQuestion">KOThe bonus chest is ready! Would you like to open it?</string>
+    <string name="bonusWatch">KOWatch Ad</string>
+    <string name="bonusCancel">KOCancel</string>
+
+    <string name="exchangePagesText">KOExc</string>
+    <string name="exchangePagesQuestion">KOWould you like to exchange %1$dx %2$s for 1 random page, or exchange %3$dx for %4$d random pages?</string>
+    <string name="exchangePagesOne">KOOne</string>
+    <string name="exchangePagesAll">KOAll</string>
+    <string name="exchangePagesCancel">KOCancel</string>
+    <string name="exchangePagesSuccess">KOSuccessfully exchanged %1$dx %2$s for %3$dx %4$s.</string>
+
+    <string name="upgradeQuestion">KOWould you like to upgrade %1$s to %2$d / %3$d for %4$,d coins?</string>
+    <string name="upgradeConfirm">KOUpgrade</string>
+    <string name="upgradeCancel">KOCancel</string>
+    <string name="upgradeSuccess">KOUpgraded %s!</string>
+    <string name="upgradeDescription">KO%1$s
+\n%2$d / %3$d %4$s
+\n%5$s%6$d %7$s: %8$,d coins</string>
+    <string name="upgradeCompletedDescription">KO%1$s
+\n%2$d / %3$d %4$s</string>
+
+    <string name="prestigeQuestion">KOPrestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50%% coin &amp; -25%% XP gains.
+\n\nThis CANNOT be undone.</string>
+    <string name="prestigeConfirm">KOPrestige</string>
+    <string name="prestigeComplete">KOPrestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
+    <string name="prestigeCancel">KOCancel</string>
+
+    <string name="unlockConfirm">KOAre you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
+    <string name="lockConfirm">KO"Are you sure you want to lock %1$s for %2$s coins?</string>
+    <string name="lock">KOLock</string>
+    <string name="unlock">KOUnlock</string>
+    <string name="lockSuccess">KOSuccessfully locked trader!</string>
+    <string name="unlockSuccess">KOSuccessfully unlocked trader!</string>
+    <string name="lockCancel">KOCancel</string>
+
+    <string name="dismissQuestion">KOWould you like to pay a visitor %,d coins to leave immediately?</string>
+    <string name="dismissQuestionAdvert">KOWould you like to pay %,d coins or watch an ad to make the visitor leave immediately?</string>
+    <string name="dismissConfirm">KOPay</string>
+    <string name="dismissConfirmAdvert">KOWatch Ad</string>
+    <string name="dismissComplete">KOThe visitor leaves, a little bit grumpily.</string>
+    <string name="dismissFailure">KONot enough money to dismiss a visitor.</string>
+    <string name="dismissCancel">KOCancel</string>
+
+    <string name="itemBuyQuestion">KOWould you like to buy 1x %1$s for %2$,d coin(s), or up to %3$d for %4$d coin(s) each?</string>
+    <string name="itemBuy1Confirm">KOBuy 1</string>
+    <string name="itemBuyComplete">KOBegan buying %1$dx %2$s for %3$d coin(s).</string>
+    <string name="itemBuyCancel">KOCancel</string>
+    <string name="itemBuyAllConfirm">KOBuy All</string>
+    <string name="itemBuyAllQuestion">KOWould you like to buy all %1$d items for a total price of %2$,d coins?</string>
+    <string name="itemBuyAllComplete">KOSuccessfully bought %d items!</string>
+    <string name="itemBuyAllNoItems">KOYou can\'t buy all of nothing!</string>
+
+    <string name="trophyVisits">KOVisits: %d</string>
+    <string name="trophyFirstSeen">KOFirst seen: %s</string>
+    <string name="trophy100thVisit">KO100th visit: %s</string>
+    <string name="trophyBestItem">KOBest item: %s</string>
+    <string name="trophyRarity">KOAppear chance: %d</string>
+    <string name="trophyPreferences">KOPreferences: %1$s / %2$s / %3$s</string>
+    <string name="trophyVisitsUnknown">KOVisits: ???</string>
+    <string name="trophyFirstSeenUnknown">KOFirst seen: ???</string>
+    <string name="trophy100thVisitUnknown">KO100th visit: ???</string>
+    <string name="trophyBestItemUnknown">KOBest item: ???</string>
+    <string name="trophyRarityUnknown">KOAppear chance: ???</string>
+    <string name="trophyPreferencesUnknown">KOPreferences: ???</string>
+
+    <string name="craftSuccess">KOSuccessfully added %1$dx %2$s to craft queue.</string>
+    <string name="sellSuccess">KOBegan selling %1$dx %2$s for %3$d coin(s) each.</string>
+
+    <string name="enchantingButtonText">KO%1$s (x%2$d)</string>
+    <string name="genericQuantity">KO%1$dx %2$s</string>
+
+    <string name="horizontalDotsSelected">KOx</string>
+    <string name="horizontalDotsUnselected">KOo</string>
+
+    <string name="demandText" translatable="false">KO%1$s: %2$s (%3$d/%4$d)</string>
+    <string name="visitorDemand" translatable="false">KO%1$dx %2$s: %3$s</string>
+
+    <string name="supportCode">KOSupport Code</string>
+
+    <string name="typeText">KOType</string>
+    <string name="tierText">KOTier</string>
+    <string name="stateText">KOState</string>
+    <string name="bestText">KOBest</string>
+    <string name="finishText">KOFinish</string>
+
+    <string name="cook1Text">KOCook 1</string>
+    <string name="smelt1Text">KOSmelt 1</string>
+    <string name="smelt10Text">KO10</string>
+    <string name="smelt100Text">KO100</string>
+    <string name="craft1Text">KOCraft 1</string>
+    <string name="craft10Text">KO10</string>
+    <string name="craft100Text">KO100</string>
+    <string name="sell1Text">KOSell 1</string>
+    <string name="sell10Text">KOSell 10</string>
+    <string name="sell100Text">KOSell 100</string>
+    <string name="sellMaxText">KOSell Max</string>
+    <string name="crushGemText">KOCrush Gem</string>
+    <string name="maxText">KOMax</string>
+
+    <string name="settingChanged">KOSetting \"%1$s\" successfully turned %2$s!</string>
+    <string name="soundSettingText">KOSounds</string>
+    <string name="musicSettingText">KOMusic</string>
+    <string name="notificationSoundSettingText">KOAlerts</string>
+    <string name="restockNotificationSettingText">KORestock</string>
+    <string name="visitorNotificationSettingText">KOVisitor</string>
+    <string name="workerNotificationSettingText">KOWorker</string>
+    <string name="bonusNotificationSettingText">KOBonus</string>
+    <string name="finishedNotificationSettingText">KOItems\nDone</string>
+    <string name="prestigeSettingText">KOPrestige\n(NG+)</string>
+    <string name="fullscreenSettingText">KOFull Screen</string>
+    <string name="fullscreenCheckSettingText">KOFullscr Check</string>
+    <string name="autoRefreshSettingText">KOAuto Refresh</string>
+    <string name="updateSlotsSettingText">KOUpdate Slots</string>
+    <string name="longToastSettingText">KOLonger Messages</string>
+    <string name="handleMaxSettingText">KOEnable\nMax</string>
+    <string name="bulkStackSettingText">KOBulk Craft\nStack</string>
+    <string name="orientationAuto">KOAuto</string>
+    <string name="orientationPortrait">KOPortrait</string>
+    <string name="orientationLandscape">KOLandscape</string>
+
+    <string name="importSaveText">KOImport Save</string>
+    <string name="exportSaveText">KOExport Save</string>
+    <string name="saveNameFormat">KOPixelBlacksmith%s.save</string>
+    <string name="saveExportSuccess">KOSuccessfully exported game save to %s on external storage!</string>
+    <string name="saveExportFailure">KOAn error occurred! Please check your storage is correctly connected. Error: %s.</string>
+    <string name="saveImportSuccess">KOSuccessfully loaded local game save!</string>
+    <string name="saveImportLoadSuccess">KOSuccessfully loaded and imported local game save!</string>
+    <string name="saveImportFailure">KOAn error occurred whilst loading save. Error: %s.</string>
+
+    <string name="exitTutorial">KOSkip Tutorial</string>
+    <string name="exitTutorialText">KOTutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
+
+    <string name="languageSettingGroup">KOLanguage</string>
+    <string name="soundSettingGroup">KOSound Options</string>
+    <string name="notificationSettingGroup">KONotification Options</string>
+    <string name="gameplaySettingGroup">KOGameplay Options</string>
+    <string name="performanceSettingGroup">KOPerformance Options</string>
+    <string name="orientationSettingGroup">KOOrientation Options</string>
+    <string name="premiumSettingGroup">KOPremium Options</string>
+    <string name="otherSettingGroup">KOExtras</string>
+    <string name="googlePlaySettingGroup">KOGoogle Play</string>
+    <string name="settingsCodeUnknown">KOSettings Code: ???</string>
+    <string name="settingsCode">KOSettings Code: %2$d</string>
+
+    <string name="unknownText">KO\???</string>
+
+    <string name="connectionFailure">KOCouldn\'t log in. Please try again later.</string>
+
+    <string name="restockText">KORestock</string>
+    <string name="unnecessaryRestock">KOThere\'s no need to restock this trader!</string>
+    <string name="restockTextWithTax">KOAll traders have been restocked, and have paid a tax of %d!</string>
+    <string name="restockTextNoTax">KOAll traders have been restocked!</string>
+    <string name="traderRestockQuestion">KORestock \"%1$s\" for %2$d coins?</string>
+    <string name="traderRestockQuestionAdvert">KORestock \"%1$s\" for %2$d coins, or by watching an advert?</string>
+    <string name="traderRestockConfirm">KOPay Coins</string>
+    <string name="traderRestockConfirmAdvert">KOWatch Ad</string>
+    <string name="traderRestockComplete">KORestocked trader for %d coins.</string>
+    <string name="traderRestockCompleteAdvert">KORestocked trader for free!</string>
+    <string name="traderRestockCancel">KOCancel</string>
+    <string name="traderBusy">KOThe traders are still busy fulfilling your last big order! Either wait a second, or leave the market and come back later.</string>
+
+    <string name="traderRestockAllQuestion">KORestock all traders for %d coins?</string>
+    <string name="traderRestockAllQuestionAdvert">KORestock all traders for %d coins / free with an advert?</string>
+    <string name="traderRestockAllConfirm">KOPay Coins</string>
+    <string name="traderRestockAllConfirmAdvert">KOWatch Ad</string>
+    <string name="traderRestockAllComplete">KORestocked all traders for %d coins.</string>
+    <string name="traderRestockAllCompleteAdvert">KORestocked all traders for free!</string>
+    <string name="traderRestockAllCancel">KOCancel</string>
+
+    <string name="supportCodeQuestion">KOPlease enter your support code (copy &amp; paste recommended!)</string>
+    <string name="supportCodeConfirm">KOEnter</string>
+    <string name="supportCodeComplete">KOApplied support code successfully.</string>
+    <string name="supportCodeFailed">KOError whilst applying code. Please contact support!</string>
+    <string name="supportCodeCancel">KOCancel</string>
+
+    <string name="loadingMessage">KOHold onto your hammers, loading..!</string>
+
+    <string name="notificationVisitor">KOA new visitor has arrived!</string>
+    <string name="notificationWorker">KOA worker has returned!</string>
+    <string name="notificationBonus">KOA bonus is ready to claim!</string>
+    <string name="notificationFinished">KOAll item queues are now empty!</string>
+
+    <string name="clickChangeText">KOQuick Select</string>
+
+    <string name="turnOffAdsText">KODisable Adverts</string>
+    <string name="adFailedToLoad">KONo advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
+
+    <string name="tableQuantity">KOQty</string>
+    <string name="tableItem">KOItem </string>
+    <string name="tableSell">KOSell</string>
+
+    <string name="genericProgress">KO%1$d / %2$d</string>
+    <string name="genericProgressPercent">KO%1$d / %2$d (%3$d%%)</string>
+    <string name="genericPercent">KO%1$s%2$d%%</string>
+
+    <string name="traderStock">KO%1$s\n%2$d / %3$d</string>
+    <string name="traderTrades">KO%1$d Trades</string>
+
+    <string name="tradedItem">KOTraded %1$dx %2$s for %3$d coin(s)</string>
+    <string name="unsellableItem">KOMarked %1$s as %2$ssellable!</string>
+
+    <string name="restockMarketText">KOThe marketplace is empty!\n\nThe traders will return in %1$s, alternatively press the button below to restock them all immediately for %2$d coins.</string>
+    <string name="restockMarketTextAdvert">KOThe marketplace is empty! The traders will return in %1$s.\n\nPress the button below to restock them all immediately for %2$d coins or for free by watching an advert.</string>
+    <string name="restockMarketButton">KORestock</string>
+    <string name="enchantAdd">KOBegan embedding the %1$s into the %2$s.</string>
+    <string name="powderAdd">KOBegan crushing the gem into %s.</string>
+
+    <string name="traderArrived">KOTrader \"%s\" has arrived.</string>
+
+    <string name="visitorRequirements">KO%1$s\nVisits: %2$d / %3$d\nBest Trade: %4$d / %5$d\nPreferences: %6$d / %7$d</string>
+    <string name="visitorCompleteFailure">KOYou can\'t get rid of an unsatisfied customer!</string>
+    <string name="visitorTrophyEarned">KOThis visitor has visited enough to reward you with a trophy! Additionally, you have been given 10x this visitor\'s favourite item %1$s and 3x the super rare %2$s!</string>
+    <string name="visitorArrived">KO%d visitor(s) have arrived.</string>
+    <string name="visitorArriving">KOA visitor wanders into the shop...</string>
+    <string name="visitorsArriving">KO%d visitors wander into the shop...</string>
+    <string name="visitorsFullRestockTime">KONever!</string>
+
+    <string name="visitorLeaves1">KOThe visitor waves good bye, and slips %1$dx %2$s under the counter.</string>
+    <string name="visitorLeaves2">KOThe visitor leaves, and drops %1$dx %2$s on the floor. Finders keepers!</string>
+    <string name="visitorLeaves3">KOThe visitor gratefully passes you %1$dx %2$s.</string>
+    <string name="visitorLeavesLegendary1">KOThe visitor skips away, putting %1$dx %2$s and a rare %3$s in your tip jar!</string>
+    <string name="visitorLeavesLegendary2">KOThe visitor looks around shiftily, then passes %1$dx %2$s and a rare %3$s under the counter!</string>
+    <string name="visitorLeavesLegendary3">KOAs the visitor leaves, you notice %1$dx %2$s in your inventory, along with a rare %3$s!</string>
+    <string name="visitorLeavesComplete1">KOThe visitor rewards you with a tip of %1$dx %2$s, doubled due to all demands being met!</string>
+    <string name="visitorLeavesComplete2">KOThe visitor\'s tip has been doubled to %1$dx %2$s!</string>
+    <string name="visitorLeavesComplete3">KOThe very grateful visitor leaves %1$dx %2$s (doubled!) as a tip.</string>
+    <string name="visitorLeavesCompletePremium1">KOThe visitor walks away satisfied, leaving %1$dx %2$s (doubled!) and a rare %3$s.</string>
+    <string name="visitorLeavesCompletePremium2">KOHey, what\'s this.. %1$dx %2$s and a rare %3$s? I\'ll hang onto these.</string>
+    <string name="visitorLeavesCompletePremium3">KOThe visitor leaves, minus %1$dx %2$s and a rare %3$s!</string>
+
+    <string name="advertWatched1">KOThe chest disappears, leaving %1$dx %2$s behind!</string>
+    <string name="advertWatched2">KOThe chest slowly opens, revealing %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">KOThe chest snaps open, and contains %1$dx %2$s alongside a rare %3$s!</string>
+    <string name="advertWatchedLegendary2">KOThe chest smokes slightly, then spits out %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedPremium1">KOThe chest creaks open, and contains %1$dx %2$s. Twice as many as usual!</string>
+    <string name="advertWatchedPremium2">KOHow strange, the chest\'s contents of %1$dx %2$s seem to be duplicated!</string>
+    <string name="advertWatchedLegendaryPremium1">KOThe chest is stuffed full of %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">KOHey, what\'s this in the corner of the chest... %1$dx %2$s and a rare %3$s!</string>
+    <string name="advertWatchedPageSuffix">KOOh, and a %s!</string>
+
+    <string name="statisticsCompletion">KOCompletion:</string>
+    <string name="statisticsCurrentXP">KOCurrent XP:</string>
+    <string name="statisticsNextLevel">KONext Level In:</string>
+    <string name="statisticsHighestLevel">KOHighest Level:</string>
+    <string name="statisticsSmelted">KOItems Smelted:</string>
+    <string name="statisticsCrafted">KOItems Crafted:</string>
+    <string name="statisticsTraded">KOItems Traded:</string>
+    <string name="statisticsEnchanted">KOGems Embedded:</string>
+    <string name="statisticsBought">KOItems Bought:</string>
+    <string name="statisticsSold">KOItems Sold:</string>
+    <string name="statisticsVisitors">KOVisitors Completed:</string>
+    <string name="statisticsCoins">KOCoins Earned:</string>
+    <string name="statisticsStarted">KODate Started:</string>
+    <string name="statisticsRestock">KONext Restock:</string>
+    <string name="statisticsNextVisitorCheck">KONext Visitor:</string>
+    <string name="statisticsBiggestTrade">KOBiggest Trade:</string>
+    <string name="statisticsUpgradesBought">KOUpgrades Bought:</string>
+    <string name="statisticsTraders">KOTraders Unlocked:</string>
+    <string name="statisticsTraderStocks">KOTrader Stocks Unlocked:</string>
+    <string name="statisticsSlotsUnlocked">KOSlots Unlocked:</string>
+    <string name="statisticsItemsSeen">KOItems Seen:</string>
+    <string name="statisticsPreferencesDiscovered">KOPreferences Discovered:</string>
+    <string name="statisticsTrophies">KOTrophies:</string>
+    <string name="statisticsWorkersOwned">KOHelpers Owned:</string>
+    <string name="statisticsWorkersTrips">KOHelper\'s Trips:</string>
+    <string name="statisticsHeroAdventuresCompleted">KOAdventures Completed:</string>
+    <string name="statisticsHeroAdventuresSuccessful">KOSuccessful Adventures:</string>
+    <string name="statisticsCollectionsCrafted">KOCollections Crafted:</string>
+    <string name="statisticsQuestsCompleted">KOQuests Completed:</string>
+    <string name="statisticsTotalBonusGold">KOTotal Coins Bonus:</string>
+    <string name="statisticsTotalBonusXP">KOTotal XP Bonus:</string>
+    <string name="statisticsPrestige">KOPrestige Level:</string>
+    <string name="statisticsLastPrestiged">KOLast Prestige:</string>
+    <string name="statisticsPrestigeValue">KO%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
+    <string name="statisticsLastPrestigedNever">KONever!</string>
+    <string name="statisticsLastPrestigedLowLevel">KOLevel %d+ required!</string>
+    <string name="statisticsCoinsPurchased">KOCoins Purchased:</string>
+    <string name="statisticsVersion">KOGame Version:</string>
+
+    <string name="leaderboardsNoConnection">KOViewing leaderboards requires being connected to Google Play Games, via the settings menu!</string>
+    <string name="questsNoConnection">KOParticipating in quests requires being connected to Google Play Games, via the settings menu!</string>
+
+    <string name="questsCompleted">KO%d quests completed.</string>
+
+    <string name="questComplete">KOCompleted \"%1$s\" and received a %2$s Reward: %3$s.</string>
+    <string name="questRewardNoPage">KO%1$d XP and %2$dx %3$s</string>
+    <string name="questRewardPage">KO%1$d XP, %2$dx %3$s, and %4$dx %5$s</string>
+    <string name="questInProgress">KOIn Progress</string>
+    <string name="questAvailable">KOAvailable</string>
+    <string name="questUpcoming">KOUpcoming</string>
+    <string name="questCompleted">KOCompleted</string>
+    <string name="questFailed">KOFailed</string>
+    <string name="questUnclaimed">KOClaim Unclaimed Rewards</string>
+    <string name="questSchedule">KOSchedule (on Reddit)</string>
+
+    <string name="signIn">KOSign In</string>
+    <string name="signOut">KOSign Out</string>
+    <string name="versionNumber">KOV%1$s (#%2$d)</string>
+    <string name="lowMemory">KOFailed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
+
+    <string name="complete">KOComplete</string>
+    <string name="close" translatable="false">KOX</string>
+    <string name="buy">KOBuy</string>
+    <string name="tradeMax">KOMax?</string>
+    <string name="lockTrader">KOLock?</string>
+    <string name="noItemsMessage">KOYou don\'t have any suitable items to trade!\n\nHead to the furnace, anvil, table, or gem table to make some.</string>
+    <string name="noItemsInventory">KOYou don\'t have any items in this category!</string>
+    <string name="noItemsEquipment">KOYou don\'t have any suitable equipment for this slot!</string>
+
+    <string name="interstitialLongText">KONo advert could be loaded!
+\n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
+\n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
+\n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">KOleave the game a rating</a>. It\'s the best way to help the game grow!
+\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">KOConnext Quest</a>. I think it\'s rather fun!!
+\n\nYou could also read a few tips:</string>
+
+    <string name="creditsOverall">KOOverall</string>
+    <string name="creditsOverallDetails">KOHi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>pixel.blacksmith@jakelee.co.uk</a>.</string>
+    <string name="creditsMusic">KOMusic</string>
+    <string name="creditsMusicDetails" translatable="false">KO\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
+    <string name="creditsCCBY" translatable="false">KOModified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
+    <string name="creditsGraphics">KOGraphics</string>
+    <string name="creditsGraphicsDetails" translatable="false">KOSignificant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">KO@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">KO@MicheleBucelli</a>, and various folks from <a href="http://opengameart.org/">KOOpenGameArt</a>.</string>
+    <string name="creditsLibraries">KOLibraries</string>
+    <string name="creditsLibrariesDetails" translatable="false">KO<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
+\n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
+\n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
+\n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
+\n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
+\n<a href='https://batch.com/doc/android/sdk-integration/initial-setup.html'>Batch</a> - Free IAP promotions for AppGratis etc.
+\n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/square/picasso'>Picasso</a> - Used for image loading.
+\n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
+\n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
+    <string name="creditsSoftware">KOSoftware</string>
+    <string name="creditsSoftwareDetails">KO<a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
+\n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
+\n<a href='https://trello.com/'>Trello</a> - Project management.</string>
+    <string name="creditsMiscDetails">KOFinally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
+</string>
+
+    <string-array name="toolsArray">KO
+        <item>Pickaxe (Ore)</item>
+        <item>Hammer (Bar)</item>
+        <item>Fishing Rod (Food)</item>
+        <item>Hatchet (Wood)</item>
+        <item>Gloves (Silk)</item>
+        <item>Gem (Powder)</item>
+        <item>Silver Ring (Silver + Gems)</item>
+        <item>Gold Ring (Gold + Gems)</item>
+        <item>Visage (Coins)</item>
+    </string-array>
+    <string name="noToolsText">KOYou don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
+    <string name="noFoodText">KOYou don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
+    <string name="selectAdventure">KOPlease select a category and subcategory of adventure using the dropdowns above.</string>
+
+    <string-array name="typesArray">KO
+        <item>All Items</item>
+        <item>Bar</item>
+        <item>Book</item>
+        <item>Boot</item>
+        <item>Bow</item>
+        <item>Chainmail</item>
+        <item>Cooked Food</item>
+        <item>Dagger</item>
+        <item>Fishing Rod</item>
+        <item>Full Helmet</item>
+        <item>Full Shield</item>
+        <item>Gem</item>
+        <item>Glove</item>
+        <item>Half Helmet</item>
+        <item>Half Shield</item>
+        <item>Hammer</item>
+        <item>Hatchet</item>
+        <item>Longsword</item>
+        <item>Ore</item>
+        <item>Page</item>
+        <item>Pickaxe</item>
+        <item>Platebody</item>
+        <item>Powder</item>
+        <item>Rare</item>
+        <item>Raw Food</item>
+        <item>Ring</item>
+        <item>Secondary</item>
+        <item>Sword</item>
+    </string-array>
+
+    <string-array name='tipsArray'>
+        <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
+        <item>The tutorial can be replayed from the Settings menu if you need a reminder.</item>
+        <item>Game sounds / music can be turned off in the Settings, along with notification sounds.</item>
+        <item>All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</item>
+        <item>A Visitor\'s Required Trades are listed in black.</item>
+        <item>A Visitor\'s Optional Trades are listed in grey.</item>
+        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
+        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
+        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
+        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
+        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
+        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
+        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
+        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
+        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
+        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
+        <item>Pages can be found by completing quests, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
+        <item>Premium players can disable all adverts from the settings menu.</item>
+        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
+        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
+        <item>The game\'s credits can be viewed in the Settings menu.</item>
+        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
+        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
+        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
+        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
+        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
+        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
+        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
+        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
+        <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
+        <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
+        <item>Initially, you can only have up to 2 Visitors at the same time. This can be increased to 10 Visitors by upgrading "Maximum Visitors".</item>
+        <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
+        <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
+        <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
+        <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
+        <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
+        <item>Helpers and heroes initially take 3 hours to return with resources. This can be reduced to just 30 minutes by upgrading "Worker Time".</item>
+        <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
+        <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
+        <item>There are 7 different hirable Helpers that unlock as you level up.</item>
+        <item>You only have to pay to hire each different Helper once. After you\'ve hired a Helper, they will continue to work for you as long as you want to give them a job to do.</item>
+        <item>Helpers need Tools. You can either craft Tools or buy them from the Market.</item>
+        <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
+        <item>There are 8 different types of Tools that Helpers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
+        <item>A Helper with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
+        <item>Equipping a Helper with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
+        <item>Once you\'ve equipped a Helper with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
+        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Helper a Food item to increase how much they will gather.</item>
+        <item>The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</item>
+        <item>Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
+        <item>Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
+        <item>Heroes are a riskier way to earn items, but can be very profitable!</item>
+        <item>Make the most of a hero\'s item preferences to complete the trickier quests.</item>
+        <item>The worker notification will inform you when both heroes and helpers have returned.</item>
+        <item>When pressed, messages can either show the message log, or disappear. Change it in the settings!</item>
+        <item>Fullscreen mode provides a more immersive mode, but can drain battery faster!</item>
+        <item>If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</item>
+        <item>Messages disappearing too quickly? Enable longer messages in the settings.</item>
+        <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
+        <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
+        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</item>
+        <item>Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</item>
+        <item>Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</item>
+        <item>Having trouble reaching 100%% completion? Tap your completion %% to see a breakdown of your progress.</item>
+        <item>The game can be locked in portrait or landscape if you prefer playing a certain way.</item>
+        <item>Enchanted items will have a coloured tint to them, to help easily identify them.</item>
+        <item>Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</item>
+        <item>The sheets on the table below the shop visitors can be tapped to quickly access the message log.</item>
+        <item>Running low on coins? Packs can be bought by tapping the plus button next to your coin count. The higher your level, the more coins you\'ll get!</item>
+        <item>Large quantities of item can be crafted in a single stack. This lets other items be crafted at the same time as a large order.</item>
+        <item>Once a visitor\'s trophy has been earned, the spawn chance is cut in half.</item>
+        <item>Heroes can \'super succeed\' if on an easy adventure, earning 1.1 to 2.5x the usual reward.</item>
+        <item>Heroes can be made more powerful for free by making use of sets, unique combinations of items that boost hero strength.</item>
+    </string-array>
+</resources>
