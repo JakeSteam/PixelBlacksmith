@@ -1022,7 +1022,7 @@
     <string name="setting_7">Notifications de travailleur</string>
     <string name="setting_8">Désactiver les annonces</string>
     <string name="setting_9">Notifications de bonus</string>
-    <string name="settingsCode">Paramètres Code: %2$d</string>
+    <string name="settingsCode">Paramètres Code: %1$d</string>
     <string name="settingsCodeUnknown">Paramètres Code: ???</string>
     <string name="settingsText">Paramètres</string>
     <string name="signIn">Se connecter</string>

@@ -1575,7 +1575,7 @@
     <string name="otherSettingGroup">Extras</string>
     <string name="googlePlaySettingGroup" translatable="false">Google Play</string>
     <string name="settingsCodeUnknown">Settings Code: ???</string>
-    <string name="settingsCode">Settings Code: %2$d</string>
+    <string name="settingsCode">Settings Code: %1$d</string>
 
     <string name="unknownText">\???</string>
 

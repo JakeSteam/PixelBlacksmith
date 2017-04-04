@@ -213,7 +213,6 @@ public class SettingsActivity extends Activity {
         }
 
         return String.format(getString(R.string.settingsCode),
-                settings.size(),
                 Integer.valueOf(settingsCode, 2));
     }
 

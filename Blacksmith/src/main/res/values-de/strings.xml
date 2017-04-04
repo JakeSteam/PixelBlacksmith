@@ -986,7 +986,7 @@
     <string name="setting_7">Worker-Benachrichtigungen</string>
     <string name="setting_8">Anzeigen deaktivieren</string>
     <string name="setting_9">Bonus-Benachrichtigungen</string>
-    <string name="settingsCode">Einstellungen Code: %2$d</string>
+    <string name="settingsCode">Einstellungen Code: %1$d</string>
     <string name="settingsCodeUnknown">Einstellungen Code: ???</string>
     <string name="settingsText">Einstellungen</string>
     <string name="signIn">Anmelden</string>

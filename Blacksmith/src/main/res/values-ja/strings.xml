@@ -1022,7 +1022,7 @@
     <string name="setting_7">労働者の通知</string>
     <string name="setting_8">Adsを無効にする</string>
     <string name="setting_9">ボーナス通知</string>
-    <string name="settingsCode">設定コード：%2$d</string>
+    <string name="settingsCode">設定コード：%1$d</string>
     <string name="settingsCodeUnknown">設定コード：???</string>
     <string name="settingsText">設定</string>
     <string name="signIn">サインイン</string>

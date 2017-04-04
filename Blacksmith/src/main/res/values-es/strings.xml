@@ -1061,7 +1061,7 @@
     <string name="setting_7">Notificaciones de los trabajadores</string>
     <string name="setting_8">Desactivar anuncios</string>
     <string name="setting_9">Notificaciones de bonificación</string>
-    <string name="settingsCode">Código de configuración: %2$d</string>
+    <string name="settingsCode">Código de configuración: %1$d</string>
     <string name="settingsCodeUnknown">Código de configuración: ???</string>
     <string name="settingsText">Ajustes</string>
     <string name="signIn">Registrarse</string>
