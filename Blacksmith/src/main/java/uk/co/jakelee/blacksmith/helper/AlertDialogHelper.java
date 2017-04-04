@@ -99,7 +99,7 @@ public class AlertDialogHelper {
                     Player_Info.increaseByOne(Player_Info.Statistic.UpgradesBought);
                     activity.alertDialogCallback();
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(upgradeResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.upgradeTitle), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(upgradeResponse)), true);
                 }
             }
         });
@@ -166,7 +166,7 @@ public class AlertDialogHelper {
                     ToastHelper.showPositiveToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, context.getString(R.string.buyHeroComplete), true);
                     activity.scheduledTask();
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, activity.getString(R.string.error_not_enough_coins), false);
                 }
             }
         });
@@ -201,7 +201,7 @@ public class AlertDialogHelper {
                     ToastHelper.showPositiveToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, context.getString(R.string.buyWorkerComplete), true);
                     activity.scheduledTask();
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_NOT_ENOUGH_COINS), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.workerTitle), ToastHelper.SHORT, activity.getString(R.string.error_not_enough_coins), false);
                 }
             }
         });
@@ -352,7 +352,7 @@ public class AlertDialogHelper {
                 if (traderResponse == Constants.SUCCESS) {
                     ToastHelper.showPositiveToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockAllComplete), restockCost), true);
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.marketTitle), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(traderResponse)), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -417,7 +417,7 @@ public class AlertDialogHelper {
                 if (traderResponse == Constants.SUCCESS) {
                     ToastHelper.showPositiveToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, String.format(context.getString(R.string.traderRestockComplete), restockCost), true);
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(traderResponse), true);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(traderResponse)), true);
                 }
                 activity.alertDialogCallback();
             }
@@ -469,17 +469,7 @@ public class AlertDialogHelper {
 
     public static void displayCompletion(final Context context, final Activity activity) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format("Level: %1$d / %2$d\n" +
-                "Upgrades: %3$d / %4$d\n" +
-                "Traders: %5$d / %6$d\n" +
-                "Slots: %7$d / %8$d\n" +
-                "Traders Stock: %9$d / %10$d\n" +
-                "Items Owned: %11$d / %12$d\n" +
-                "Visitor Prefs: %13$d / %14$d\n" +
-                "Trophies: %15$d / %16$d\n" +
-                "Workers: %17$d / %18$d\n" +
-                "Adventures: %19$d / %20$d\n" +
-                "Prestiges: %21$d = +%22$d%%",
+        alertDialog.setMessage(String.format(activity.getString(R.string.completion_breakdown),
                 Player_Info.getPlayerLevel(), Constants.PRESTIGE_LEVEL_REQUIRED,
                 Select.from(Player_Info.class).where(Condition.prop("name").eq("UpgradesBought")).first().getIntValue(), Upgrade.getMaximumUpgrades(),
                 Select.from(Trader.class).where(Condition.prop("level").lt(Player_Info.getPlayerLevel() + 1)).count(), Trader.count(Trader.class),
@@ -716,7 +706,7 @@ public class AlertDialogHelper {
                     trader.setPurchases(trader.getPurchases() + quantity);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(buyResponse)), false);
                 }
                 activity.alertDialogCallback();
             }
@@ -756,7 +746,7 @@ public class AlertDialogHelper {
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(buyResponse)), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
@@ -841,7 +831,7 @@ public class AlertDialogHelper {
                     trader.setPurchases(trader.getPurchases() + itemsBought);
                     trader.save();
                 } else {
-                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(buyResponse)), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
@@ -924,7 +914,7 @@ public class AlertDialogHelper {
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                 } else {
-                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, ErrorHelper.errors.get(buyResponse), false);
+                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(buyResponse)), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);

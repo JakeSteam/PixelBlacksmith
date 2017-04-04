@@ -252,7 +252,7 @@ public class FurnaceActivity extends Activity {
             MainActivity.vh.furnaceBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
         }
     }
 

@@ -159,7 +159,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     public void toggleTraderLock(View v) {
         if (!trader.isFixed() && Trader.getFixedCount() > (Constants.TRADER_LOCK_MAX - 1)) {
-            ToastHelper.showErrorToast(findViewById(R.id.trader), Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAX_LOCKED_TRADERS), false);
+            ToastHelper.showErrorToast(findViewById(R.id.trader), Toast.LENGTH_SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAX_LOCKED_TRADERS)), false);
         } else {
             AlertDialogHelper.confirmTraderLock(this, trader);
         }

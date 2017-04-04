@@ -285,7 +285,7 @@ public class TableActivity extends Activity {
             MainActivity.vh.tableBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.table), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.table), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
         }
 
     }

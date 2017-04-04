@@ -236,7 +236,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         Item item = Item.findById(Item.class, itemId);
         Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         if (inventory.isUnsellable()) {
-            ToastHelper.showErrorToast(v, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_UNSELLABLE), false);
+            ToastHelper.showErrorToast(v, Toast.LENGTH_SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_UNSELLABLE)), false);
         } else {
             AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
         }
@@ -287,7 +287,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
             MainActivity.vh.inventoryBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(canSell), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(ErrorHelper.errors.get(canSell)), false);
         }
         displayItemsTable();
         dh.updateCoins(Inventory.getCoins());

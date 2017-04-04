@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.main.AnvilActivity;
 import uk.co.jakelee.blacksmith.main.FurnaceActivity;
@@ -192,7 +193,7 @@ public class Pending_Inventory extends SugarRecord {
         }
 
         if (data.size() == 0) {
-            return "No pending items.";
+            return context.getString(R.string.pending_items_none);
         } else {
             StringBuilder result = new StringBuilder();
             for (Map.Entry<String, Integer> entry : data.entrySet()) {
@@ -201,7 +202,7 @@ public class Pending_Inventory extends SugarRecord {
 
                 result.append(String.format("%dx %s, ", value, key));
             }
-            return String.format("Pending items: %s.", result.substring(0, result.length() - 2));
+            return String.format(context.getString(R.string.pending_items) + " %s.", result.substring(0, result.length() - 2));
         }
     }
 

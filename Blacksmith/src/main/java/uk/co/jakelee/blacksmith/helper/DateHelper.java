@@ -23,14 +23,14 @@ public class DateHelper {
         int minutes = (int) ((timestamp / (1000*60)) % 60);
         int hours   = (int) ((timestamp / (1000*60*60)) % 24);
 
-        return hours + " hr " + minutes + " min";
+        return hours + "h " + minutes + " m";
     }
 
     public static String getMinsSecsRemaining(Long timestamp) {
         int seconds = (int) (timestamp / 1000) % 60 ;
         int minutes = (int) ((timestamp / (1000*60)) % 60);
 
-        return minutes + " min " + seconds + " s";
+        return minutes + "m " + seconds + "s";
     }
 
     public static String getHoursMinsSecsRemaining(Long timestamp) {
@@ -38,7 +38,7 @@ public class DateHelper {
         int minutes = (int) ((timestamp / (1000*60)) % 60);
         int hours   = (int) ((timestamp / (1000*60*60)) % 24);
 
-        return hours + " hr " + minutes + " min " + seconds + " s";
+        return hours + "h " + minutes + "m " + seconds + "s";
     }
 
     public static int minutesToMilliseconds(int minutes) {

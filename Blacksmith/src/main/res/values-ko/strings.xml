@@ -1,5 +1,4 @@
 <resources>
-    <string name="temp"></string>
     <string name="advertWatchedPageSuffix">아, 그리고  %s에!</string>
     <string name="advertWatchedPremium1">가슴이 열려 삐걱 거리, 그리고  %1$dx  %2$s에 포함되어 있습니다. 평소와 같이 두 배!</string>
     <string name="advertWatchedPremium2">어떻게 이상한  %1$dx  %2$s의 SCCM의 가슴의 내용이 중복 될 수 있습니다!</string>

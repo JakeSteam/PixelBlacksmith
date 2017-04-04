@@ -1,5 +1,4 @@
 <resources>
-    <string name="temp"></string>
     <string name="adFailedToLoad">Keine Anzeige konnte geladen werden. Dies kann durch ein schlechtes Internet verursacht werden, oder durch kürzlich re-Enabling Anzeigen. Versuchen Sie es später noch einmal?</string>
     <string name="adventureText">Abenteuer</string>
     <string name="advertWatched1">Die Brust verschwindet und lässt %1$dx %2$s zurück!</string>

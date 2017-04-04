@@ -95,25 +95,25 @@ public class WorkerHelper {
         return hero.getLevelUnlocked() * Constants.HERO_COST_MULTIPLIER;
     }
 
-    public static String getButtonText(Worker worker) {
+    public static String getButtonText(Context context, Worker worker) {
         if (isReady(worker)) {
-            return "Start Gathering";
+            return context.getString(R.string.worker_start_gathering);
         } else {
-            return "Returns in " + WorkerHelper.getTimeRemainingString(worker.getTimeStarted());
+            return context.getString(R.string.worker_returns_in) + WorkerHelper.getTimeRemainingString(worker.getTimeStarted());
         }
     }
 
-    public static String getButtonText(Hero hero) {
+    public static String getButtonText(Context context, Hero hero) {
         if (isReady(hero)) {
             Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
             Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
-            return "Start Adventure (" + getAdventureSuccessChance(getTotalStrength(hero, vType), adventure.getDifficulty()) + "%)";
+            return context.getString(R.string.worker_start_adventure) + " (" + getAdventureSuccessChance(getTotalStrength(hero, vType), adventure.getDifficulty()) + "%)";
         } else if (hero.getVisitorId() == 0) {
-            return "Select Hero";
+            return context.getString(R.string.worker_select_hero);
         } else if (hero.getCurrentAdventure() == 0) {
-            return "Select Adventure";
+            return context.getString(R.string.worker_select_adventure);
         } else {
-            return "Returns in " + WorkerHelper.getTimeRemainingString(hero.getTimeStarted());
+            return context.getString(R.string.worker_returns_in) + WorkerHelper.getTimeRemainingString(hero.getTimeStarted());
         }
     }
 
@@ -442,9 +442,9 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = String.format(", and a rare %s", rewardedPage.getName(context));
+            bonusText = ", " + context.getString(R.string.fragment_and_a_rare) + " %s" + rewardedPage.getName(context);
         } else if (!addItems && foodItem != null) {
-            bonusText = ", and possibly a rare page";
+            bonusText = ", " + context.getString(R.string.fragment_and_a_page);
         }
 
         StringBuilder result = new StringBuilder();
@@ -500,13 +500,13 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = String.format(", and a rare %s", rewardedPage.getName(context));
+            bonusText = ", " + context.getString(R.string.fragment_and_a_rare) + rewardedPage.getName(context);
         } else if (!addItems && foodItem != null) {
             // If checking resources
             if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
-                bonusText = ", and very possibly a rare page";
+                bonusText = ", " + context.getString(R.string.fragment_and_a_page_very);
             } else {
-                bonusText = ", and possibly a rare page";
+                bonusText = ", " + context.getString(R.string.fragment_and_a_page);
             }
         }
 
@@ -521,7 +521,7 @@ public class WorkerHelper {
         if (result.length() > 3) {
             return result.substring(0, result.length() - 2) + bonusText;
         }
-        return "Failed to lookup info, please let the developer know which worker this is!";
+        return "";
     }
 
     public static String getTimesCompletedString(Context context, Worker worker) {
@@ -530,7 +530,7 @@ public class WorkerHelper {
         return String.format(context.getString(R.string.workerTimesCompleted),
                 character.getName(context),
                 worker.getTimesCompleted(),
-                foodUsed != null ? foodUsed.getName(context) : "nothing",
+                foodUsed != null ? foodUsed.getName(context) : "N/A",
                 foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
     }
 

@@ -590,7 +590,7 @@ public class DisplayHelper {
             image.setImageDrawable(imageResource);
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         } catch (OutOfMemoryError e) {
-            ToastHelper.showErrorToast(null, ToastHelper.SHORT, "Failed to load image, due to low device memory...", true);
+            ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.error_image_load_fail), true);
         }
 
         return image;
@@ -713,15 +713,15 @@ public class DisplayHelper {
         TableRow headerRow = new TableRow(context);
         headerRow.addView(createTextView("", 22, Color.BLACK));
         headerRow.addView(createTextView("", 22, Color.BLACK));
-        headerRow.addView(createTextView("Need ", 22, Color.BLACK));
-        headerRow.addView(createTextView("Have", 22, Color.BLACK));
+        headerRow.addView(createTextView(context.getString(R.string.need) + " ", 22, Color.BLACK));
+        headerRow.addView(createTextView(context.getString(R.string.have) + " ", 22, Color.BLACK));
         ingredientsTable.addView(headerRow);
 
         // Add the level requirement row
         TableRow levelRow = new TableRow(context);
         Item item = Item.findById(Item.class, itemID);
         levelRow.addView(createImageView("levels", "", 25, 25));
-        levelRow.addView(createTextView("Level", 22, Color.BLACK));
+        levelRow.addView(createTextView(context.getString(R.string.level), 22, Color.BLACK));
         levelRow.addView(createTextView(Integer.toString(item.getLevel()), 22, Color.DKGRAY));
         levelRow.addView(createTextView(Integer.toString(Player_Info.getPlayerLevel()), 22, Color.DKGRAY));
         ingredientsTable.addView(levelRow);

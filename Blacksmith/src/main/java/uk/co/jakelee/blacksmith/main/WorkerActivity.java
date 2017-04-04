@@ -177,7 +177,7 @@ public class WorkerActivity extends Activity {
             });
             WorkerHelper.populateResources(dh, heroResourceContainer, hero.getCurrentAdventure());
 
-            heroButton.setText(WorkerHelper.getButtonText(hero));
+            heroButton.setText(WorkerHelper.getButtonText(this, hero));
             heroButton.setTag(hero);
             heroButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -308,7 +308,7 @@ public class WorkerActivity extends Activity {
             });
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
 
-            workerButton.setText(WorkerHelper.getButtonText(worker));
+            workerButton.setText(WorkerHelper.getButtonText(this, worker));
             workerButton.setTag(worker);
             workerButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

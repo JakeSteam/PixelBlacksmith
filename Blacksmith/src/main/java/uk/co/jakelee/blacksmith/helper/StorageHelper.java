@@ -102,7 +102,7 @@ public class StorageHelper {
                 return files[0].getName();
             }
         }
-        return "Couldn't find a save.";
+        return activity.getString(R.string.error_no_save_found);
     }
 
     public static String getStringFromFile(File file) {

@@ -82,7 +82,7 @@ public class MarketActivity extends Activity {
         boolean mixedFixedStatus = fixedTraders > 0;
         boolean haveDisplayedUnlockHeader = false;
         if (mixedFixedStatus) {
-            marketLayout.addView(dh.createTextView(String.format("Fixed (%1$d / %2$d)",
+            marketLayout.addView(dh.createTextView(getString(R.string.fixed) + String.format(" (%1$d / %2$d)",
                     fixedTraders,
                     Constants.TRADER_LOCK_MAX),
                 30));
@@ -90,7 +90,7 @@ public class MarketActivity extends Activity {
 
         for (Trader trader : traders) {
             if (mixedFixedStatus && !trader.isFixed() && !haveDisplayedUnlockHeader) {
-                marketLayout.addView(dh.createTextView("\nTemporary", 30));
+                marketLayout.addView(dh.createTextView("\n" + getString(R.string.temporary), 30));
                 haveDisplayedUnlockHeader = true;
             }
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());

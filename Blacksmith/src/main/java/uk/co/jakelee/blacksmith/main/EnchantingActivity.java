@@ -266,7 +266,7 @@ public class EnchantingActivity extends Activity {
                     mViewFlipper,
                     Constants.STATE_NORMAL);
         } else {
-            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(powderResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(powderResponse)), false);
         }
     }
 
@@ -291,7 +291,7 @@ public class EnchantingActivity extends Activity {
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((TableLayout) findViewById(R.id.itemsTable));
         } else {
-            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(enchantResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(enchantResponse)), false);
         }
     }
 

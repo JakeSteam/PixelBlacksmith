@@ -18,7 +18,7 @@ public class ListenerHelper {
                 Inventory inventory = Inventory.getInventory(itemId, itemState);
                 Item item = Item.findById(Item.class, inventory.getItem());
 
-                ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format("Marked %1$s as %2$ssellable!",
+                ToastHelper.showPositiveToast(view, ToastHelper.SHORT, String.format(activity.getString(R.string.alert_marked_unsellable),
                         item.getFullName(activity, inventory.getState()),
                         inventory.isUnsellable() ? "" : "un"), true);
                 inventory.setUnsellable(!inventory.isUnsellable());

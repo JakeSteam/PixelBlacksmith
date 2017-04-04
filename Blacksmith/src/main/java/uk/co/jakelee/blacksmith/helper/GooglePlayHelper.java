@@ -204,7 +204,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                         @Override
                         public void run() {
                             DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
-                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT), true);
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, context.getString(ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT)), true);
                         }
                     });
 

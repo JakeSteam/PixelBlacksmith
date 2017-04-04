@@ -118,7 +118,7 @@ public class VisitorSelectActivity extends Activity {
 
 
         if (alreadyInUse) {
-            ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_VISITOR_IN_USE), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_VISITOR_IN_USE)), false);
         } else {
             hero.setVisitorId(visitorId);
             hero.save();

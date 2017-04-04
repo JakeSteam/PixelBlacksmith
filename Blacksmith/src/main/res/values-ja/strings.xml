@@ -1,5 +1,4 @@
 <resources>
-    <string name="temp"></string>
     <string name="adFailedToLoad">いいえ広告がロードされない可能性があります。これは、貧しいインターネットによって引き起こされる、または最近で広告を再度有効にすることができます。後でもう一度お試しください！</string>
     <string name="adventureText">冒険</string>
     <string name="advertWatched1">胸は%1$dx %2$sの後ろに残して、消え！</string>

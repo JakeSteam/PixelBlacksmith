@@ -316,7 +316,7 @@ public class TradeActivity extends Activity implements ItemTable {
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(tradeResponse), false);
+            ToastHelper.showErrorToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, getString(ErrorHelper.errors.get(tradeResponse)), false);
         }
 
         dh.updateCoins(Inventory.getCoins());

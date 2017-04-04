@@ -132,7 +132,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     break;
             }
         } else {
-            ToastHelper.showErrorToast(null, ToastHelper.LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, context.getString(R.string.error_ad_unverified), false);
         }
         // Begin loading next advert.
         advert.preload(null);

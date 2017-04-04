@@ -1,5 +1,4 @@
 <resources>
-    <string name="temp"></string>
     <string name="adFailedToLoad">没有广告可以加载。这可以通过互联网不佳造成的，或者最近重新启用广告。请稍后再试？</string>
     <string name="adventureText">冒险</string>
     <string name="advertWatched1">胸部消失，剩下 %1$dx %2$s s的身后！</string>
@@ -8,7 +7,7 @@
     <string name="advertWatchedLegendary2">胸部轻微冒烟，然后吐出%1$dx %2$s和具有罕见%3$s！</string>
     <string name="advertWatchedLegendaryPremium1">胸部被塞得满满的%1$dx %2$s和具有罕见%3$s！</string>
     <string name="advertWatchedLegendaryPremium2">嘿，这是什么在胸前的角落...%1$dx %2$s和具有罕见%3$s！</string>
-    <string name="advertWatchedPageSuffix">哦，还有一个%S！</string>
+    <string name="advertWatchedPageSuffix">哦，还有一个%s！</string>
     <string name="advertWatchedPremium1">胸部吱嘎声打开，并且包含%1$dx %2$s。两倍多像往常一样！</string>
     <string name="advertWatchedPremium2">真奇怪，%1$dx %2$s的SCCM的胸部的内容被复制！</string>
     <string name="anvilText">砧</string>

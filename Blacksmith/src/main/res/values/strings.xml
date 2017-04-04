@@ -1,6 +1,50 @@
 <resources>
     <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
+    <string name="alert_marked_unsellable">Marked %1$s as %2$ssellable!</string>
+    <string name="error_no_save_found">Couldn\'t find a save.</string>
+    <string name="error_ad_unverified">Something went wrong, and the ad view couldn\'t be verified. Sorry!</string>
+    <string name="error_image_load_fail">Failed to load image, due to low device memory...</string>
+    <string name="error_player_level">This item requires a higher level!</string>
+    <string name="error_undiscovered">This item\'s recipe has not been discovered yet!</string>
+    <string name="error_trader_run_out">This trader has run out of stock for this item!</string>
+    <string name="error_not_enough_ingredients">The item cannot be created without all ingredients!</string>
+    <string name="error_not_enough_coins">You don\'t have enough money to do that!</string>
+    <string name="error_not_enough_items">You don\'t have enough of these to sell!</string>
+    <string name="error_no_spare_slots">There are no slots currently available.</string>
+    <string name="error_no_items">You cannot enchant an item you do not have!</string>
+    <string name="error_no_gems">You cannot enchant an item using non-existent gems!</string>
+    <string name="error_maximum_upgrade">There\'s no further upgrades to purchase!</string>
+    <string name="error_no_slots_enchanting">There\'s no gem table slots unlocked! The first one unlocks at level 10.</string>
+    <string name="error_busy">Currently calculating... please try again!</string>
+    <string name="error_maximum_super_upgrade">No more super upgrades can be enabled! Create another collection to increase the maximum, or disable an enabled super upgrade.</string>
+    <string name="error_visitor_in_use">This visitor is already in use by another hero slot!</string>
+    <string name="error_resolving_conflict">Cloud save conflict detected! Resolving, please wait, this might take a while...</string>
+    <string name="error_unsellable">This item is marked as unsellable! Long press it to turn off.</string>
+    <string name="error_max_locked_traders">The maximum number of traders have already been locked!</string>
+    <string name="need">Need</string>
+    <string name="have">Have</string>
+    <string name="fragment_and_a_rare">and a rare</string>
+    <string name="fragment_and_a_page">and possibly a rare page</string>
+    <string name="fragment_and_a_page_very">and very possibly a rare page</string>
+    <string name="please_select">Please select</string>
+    <string name="adventure">Adventure</string>
+    <string name="difficulty_short">Diff.</string>
+    <string name="hero_set_bonus">The %1$s set provides +%2$d%% strength bonus, activated by %3$s</string>
+    <string name="hero_no_set_bonus">No sets currently active!</string>
+    <string name="fixed">Fixed</string>
+    <string name="temporary">Temporary</string>
+    <string name="pending_items_none">Pending items:</string>
+    <string name="pending_items">No pending items.</string>
+
+    <string name="worker_start_gathering">Start Gathering</string>
+    <string name="worker_returns_in">Returns in </string>
+    <string name="worker_start_adventure">Start Adventure</string>
+    <string name="worker_select_hero">Select Hero</string>
+    <string name="worker_select_adventure">Select Adventure</string>
+
+    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nTraders: %5$d / %6$d\nSlots: %7$d / %8$d\nTraders Stock: %9$d / %10$d\nItems Owned: %11$d / %12$d\nVisitor Prefs: %13$d / %14$d\nTrophies: %15$d / %16$d\nWorkers: %17$d / %18$d\nAdventures: %19$d / %20$d\nPrestiges: %21$d = +%22$d%%</string>
+
     <string name="rate_dialog_title">Rate Blacksmith</string>
     <string name="rate_dialog_message">If you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec!</string>
     <string name="rate_dialog_ok">Rate</string>

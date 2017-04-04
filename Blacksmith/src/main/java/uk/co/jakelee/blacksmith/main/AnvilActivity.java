@@ -286,7 +286,7 @@ public class AnvilActivity extends Activity {
             MainActivity.vh.anvilBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
         }
     }
 

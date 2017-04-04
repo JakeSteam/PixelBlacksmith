@@ -93,7 +93,7 @@ public class SettingsActivity extends Activity {
                     setting.save();
 
                     LanguageHelper.changeLanguage(activity, position + 1);
-                    ToastHelper.showPositiveToast(parentView, ToastHelper.SHORT, "Changed language to " + parentView.getSelectedItem().toString(), true);
+                    ToastHelper.showPositiveToast(parentView, ToastHelper.SHORT, parentView.getSelectedItem().toString(), true);
                     onResume();
                 }
             }
@@ -226,79 +226,60 @@ public class SettingsActivity extends Activity {
 
     public void toggleSetting(View v) {
         Long settingID = null;
-        String settingName = "";
         switch (v.getId()) {
             case R.id.soundToggle:
                 settingID = Constants.SETTING_SOUNDS;
-                settingName = "Game Sound";
                 break;
             case R.id.musicToggle:
                 settingID = Constants.SETTING_MUSIC;
-                settingName = "Game Music";
                 break;
             case R.id.restockNotificationToggle:
                 settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
-                settingName = "Restock Notifications";
                 break;
             case R.id.workerNotificationToggle:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
-                settingName = "Worker Notifications";
                 break;
             case R.id.visitorNotificationToggle:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
-                settingName = "Visitor Notifications";
                 break;
             case R.id.bonusNotificationToggle:
                 settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
-                settingName = "Bonus Notifications";
                 break;
             case R.id.notificationSoundToggle:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
-                settingName = "Notification Sounds";
                 break;
             case R.id.finishedNotificationToggle:
                 settingID = Constants.SETTING_FINISHED_NOTIFICATIONS;
-                settingName = "All Items Finished Notifications";
                 break;
             case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
-                settingName = "Disable Ads";
                 break;
             case R.id.clickChangeToggle:
                 settingID = Constants.SETTING_CLICK_CHANGE;
-                settingName = "Quick Item Select";
                 break;
             case R.id.messageLogToggle:
                 settingID = Constants.SETTING_MESSAGE_LOG;
-                settingName = "Quick Log Access";
                 break;
             case R.id.fullscreenToggle:
                 settingID = Constants.SETTING_FULLSCREEN;
-                settingName = "Fullscreen Mode";
                 break;
             case R.id.autoRefreshToggle:
                 settingID = Constants.SETTING_AUTOREFRESH;
-                settingName = "Item Listing Auto Refresh";
                 break;
             case R.id.fullscreenCheckToggle:
                 settingID = Constants.SETTING_CHECK_FULLSCREEN;
-                settingName = "Fullscreen Mode Checking";
                 break;
             case R.id.updateSlotsToggle:
                 settingID = Constants.SETTING_UPDATE_SLOTS;
-                settingName = "Item Slot Updating";
                 break;
             case R.id.longToastToggle:
                 settingID = Constants.SETTING_LONG_TOAST;
-                settingName = "Longer Message Durations";
                 break;
             case R.id.handleMaxToggle:
                 settingID = Constants.SETTING_HANDLE_MAX;
-                settingName = "Smelt / Craft / Sell Max";
                 break;
             case R.id.bulkStackToggle:
                 settingID = Constants.SETTING_BULK_STACK;
-                settingName = "Single Stack Bulk Crafting";
                 break;
         }
 

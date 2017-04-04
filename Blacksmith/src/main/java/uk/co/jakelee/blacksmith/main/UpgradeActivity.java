@@ -146,7 +146,7 @@ public class UpgradeActivity extends Activity {
             ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradePrestigeLevel), upgrade.getPrestigeLevel()), false);
             return;
         } else if (!upgrade.isEnabled() && (Super_Upgrade.totalEnabled() >= Super_Upgrade.maxEnabled())) {
-            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_SUPER_UPGRADE), false);
+            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_SUPER_UPGRADE)), false);
             return;
         }
 
@@ -219,7 +219,7 @@ public class UpgradeActivity extends Activity {
         if (!selectedUpgrade.isAtMaximum()){
             AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.upgradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
+            ToastHelper.showErrorToast(findViewById(R.id.upgradeTitle), ToastHelper.SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE)), false);
         }
     }
 

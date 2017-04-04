@@ -1,5 +1,4 @@
 <resources>
-    <string name="temp"></string>
     <string name="adFailedToLoad">No se ha podido cargar el anuncio. Esto puede ser causado por la falta de Internet, o mediante recientemente volver a habilitar anuncios. Inténtelo de nuevo más tarde?</string>
     <string name="adventureText">Aventuras</string>
     <string name="advertWatched1">El pecho desaparece, dejando %1$dx %2$s atrás!</string>

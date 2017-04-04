@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.components.Hero_Set;
@@ -110,7 +111,7 @@ public class EquipmentActivity extends Activity {
         if (sets.size() > 0) {
             for (Hero_Set set : sets) {
                 View textView = dh.createTextView(String.format("%1$s (+%2$s%%)", set.getName(), set.getBonus()), 30);
-                textView.setTag(String.format("The %1$s set provides +%2$d%% strength bonus, activated by %3$s", set.getName(), set.getBonus(), set.getDescription()));
+                textView.setTag(String.format(Locale.ENGLISH, getString(R.string.hero_set_bonus), set.getName(), set.getBonus(), set.getDescription()));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -120,7 +121,7 @@ public class EquipmentActivity extends Activity {
                 setContainer.addView(textView);
             }
         } else {
-            setContainer.addView(dh.createTextView("No sets currently active!", 35));
+            setContainer.addView(dh.createTextView(getString(R.string.hero_no_set_bonus), 35));
         }
     }
 
