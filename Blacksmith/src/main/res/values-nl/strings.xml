@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="adFailedToLoad">Geen advertentie kan worden geladen. Dit kan worden veroorzaakt door een slechte internet, of door het onlangs opnieuw inschakelen advertenties. Probeer het later opnieuw?</string>
+    <string name="adventureText">Adventures</string>
+    <string name="advertWatched1">De borstkas Verdwijnt, waardoor %1$dx %2$s achter!</string>
+    <string name="advertWatched2">De borst langzaam gaat open %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">De borst openklikt, en bevat %1$dx %2$s heeft Naast ongewoon %3$s!</string>
+    <string name="advertWatchedLegendary2">De borst Iets rookt, spuugt vervolgens uit %1$dx %2$s en heeft ongewoon %3$s!</string>
+    <string name="advertWatchedLegendaryPremium1">De kist wordt gevuld vol %1$dx %2$s en heeft ongewoon %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">Hé, wat is dit in de hoek van de borst ... %1$dx %2$s en heeft ongewoon %3$s!</string>
+    <string name="advertWatchedPageSuffix">Oh, en een %s!</string>
+    <string name="advertWatchedPremium1">De borst kraakt open en bevat %1$dx %2$s. Twee keer zoveel als gebruikelijk!</string>
+    <string name="advertWatchedPremium2">Hoe vreemd, inhoud van %1$dx %2$s SCCM de borst om te worden gedupliceerd!</string>
+    <string name="anvilText">Aambeeld</string>
+    <string name="autoRefreshSettingText">Auto-Herladen</string>
 </resources>

@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="adFailedToLoad">No se ha podido cargar el anuncio. Esto puede ser causado por la falta de Internet, o mediante recientemente volver a habilitar anuncios. Inténtelo de nuevo más tarde?</string>
+    <string name="adventureText">Aventuras</string>
+    <string name="advertWatched1">El pecho desaparece, dejando %1$dx %2$s atrás!</string>
+    <string name="advertWatched2">El pecho se abre lentamente, revelando %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">El encaje en el pecho abierto, y contiene 1 %$ dx %2$s ha Junto raro %3$s!</string>
+    <string name="advertWatchedLegendary2">El pecho fuma un poco y luego escupe %1$dx %2$s raro y tiene %3$s!</string>
+    <string name="advertWatchedLegendaryPremium1">El pecho se llena de relleno %1$dx %2$s raro y tiene %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">Oye, ¿qué es esto en la esquina del pecho ... %1$dx %2$s %y tiene poco frecuentes 3$s!</string>
+    <string name="advertWatchedPageSuffix">Ah, y un %s!</string>
+    <string name="advertWatchedPremium1">El pecho cruje abierta, y contiene 1 %$ dx %2$s. El doble que de costumbre!</string>
+    <string name="advertWatchedPremium2">Qué extraño, el contenido del pecho de %1$dx %2$s SCCM para ser duplicados!</string>
+    <string name="anvilText">Yunque</string>
+    <string name="autoRefreshSettingText">Actualización Automática</string>
 </resources>

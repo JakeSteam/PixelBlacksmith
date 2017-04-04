@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="adFailedToLoad">Keine Anzeige konnte geladen werden. Dies kann durch ein schlechtes Internet verursacht werden, oder durch kürzlich re-Enabling Anzeigen. Versuchen Sie es später noch einmal?</string>
+    <string name="adventureText">Abenteuer</string>
+    <string name="advertWatched1">Die Brust verschwindet und lässt %1$dx %2$s zurück!</string>
+    <string name="advertWatched2">Die Brust öffnet sich langsam und zeigt %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">Die Brust schnappt offen und enthält %1$dx %2$s neben einem seltenen %3$s!</string>
+    <string name="advertWatchedLegendary2">Die Brust raucht leicht, dann spuckt %1$dx %2$s und eine seltene %3$s!</string>
+    <string name="advertWatchedLegendaryPremium1">Die Brust ist voll von %1$dx %2$s und eine seltene %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">Hey, was ist das in der Ecke der Brust ... %1$dx %2$s und eine seltene %3$s!</string>
+    <string name="advertWatchedPageSuffix">Oh, und ein %s!</string>
+    <string name="advertWatchedPremium1">Die Brust knarrt auf und enthält %1$dx %2$s. Doppelt so viele wie üblich!</string>
+    <string name="advertWatchedPremium2">Wie seltsam, der Inhalt der Brust von %1$dx %2$s scheint dupliziert zu werden!</string>
+    <string name="anvilText">Amboss</string>
+    <string name="autoRefreshSettingText">Automatische Aktualisierung</string>
 </resources>

@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="advertWatchedPageSuffix">아, 그리고  %s에!</string>
+    <string name="advertWatchedPremium1">가슴이 열려 삐걱 거리, 그리고  %1$dx  %2$s에 포함되어 있습니다. 평소와 같이 두 배!</string>
+    <string name="advertWatchedPremium2">어떻게 이상한  %1$dx  %2$s의 SCCM의 가슴의 내용이 중복 될 수 있습니다!</string>
+    <string name="anvilText">모루</string>
+    <string name="autoRefreshSettingText">자동 새로 고침</string>
+    <string name="adFailedToLoad">어떤 고라는로드 할 수 없습니다. 이것은 가난한 인터넷에 의한, 또는 최근에 의해 광고를 다시 활성화 할 수 있습니다. 나중에 다시 시도?</string>
+    <string name="adventureText">모험</string>
+    <string name="advertWatched1">가슴 %1$dx %2$s 남기고 사라진다!</string>
+    <string name="advertWatched2">가슴 천천히 %1$dx %2$s를 공개 열립니다!</string>
+    <string name="advertWatchedLegendary1">가슴이 열려 스냅 및 %1$dx %2$s 거의 %3$s 없다 외에도 포함!</string>
+    <string name="advertWatchedLegendary2">약간 연기 가슴, 그런 %1$dx %2$s을 뱉어 거의 %3$s 없다!</string>
+    <string name="advertWatchedLegendaryPremium1">가슴 %1$dx %2$s 의 전체 박제 거의 %3$s 없다!</string>
+    <string name="advertWatchedLegendaryPremium2">이봐, 무슨 가슴의 모서리에이 그리고 드문 ... %1$dx %2$s 의 %3$s이있다!</string>
 </resources>

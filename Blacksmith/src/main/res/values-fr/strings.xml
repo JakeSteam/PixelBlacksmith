@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="adFailedToLoad">Aucune annonce ne peut être chargée. Cela peut être causé par une mauvaise Internet, ou par la réactivation récente de publicités. Réessayez plus tard?</string>
+    <string name="adventureText">Aventures</string>
+    <string name="advertWatched1">La poitrine disparaît, laissant %1$dx %2$s derrière!</string>
+    <string name="advertWatched2">La poitrine s\'ouvre lentement, révélant %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">La poitrine s\'arrête ouverte et contient %1$dx %2$s à côté d\'un rare %3$s!</string>
+    <string name="advertWatchedLegendary2">La poitrine fume légèrement, puis crache %1$dx %2$s et un rare %3$s!</string>
+    <string name="advertWatchedLegendaryPremium1">La poitrine est remplie de %1$dx %2$s et un rare %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">Hé, qu\'est-ce que c\'est dans le coin de la poitrine ... %1$dx %2$s et un rare %3$s!</string>
+    <string name="advertWatchedPageSuffix">Oh, et un %s!</string>
+    <string name="advertWatchedPremium1">La poitrine crews s\'ouvre et contient %1$dx %2$s. Deux fois plus que d\'habitude!</string>
+    <string name="advertWatchedPremium2">Quel étrange, le contenu de la poitrine de %1$dx %2$s semble être dupliqué!</string>
+    <string name="anvilText">Enclume</string>
+    <string name="autoRefreshSettingText">Actualisation automatique</string>
 </resources>

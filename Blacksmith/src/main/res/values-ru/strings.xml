@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="adFailedToLoad">Нет объявление не может быть загружен. Это может быть вызвано плохим доступом в Интернет, или в последнее время повторного включения рекламы. Попробуйте еще раз позже?</string>
+    <string name="adventureText">Приключения</string>
+    <string name="advertWatched1">Грудь Исчезает, оставляя %1$dx %2$s!</string>
+    <string name="advertWatched2">Грудь медленно открывается, обнажая %1$dx %2$s!</string>
+    <string name="advertWatchedLegendary1">Грудь щелкает открыто, и содержит %1$dx %2$s имеет Наряду редкость %3$s!</string>
+    <string name="advertWatchedLegendary2">Грудь слегка дымит, потом выплевывает %1$dx %2$s и имеет незаурядное %3$s!</string>
+    <string name="advertWatchedLegendaryPremium1">Грудь набитая %1$dx %2$s и имеет незаурядный %3$s!</string>
+    <string name="advertWatchedLegendaryPremium2">Эй, что это в углу груди ... %1$dx %2$s и имеет незаурядные %3$s!</string>
+    <string name="advertWatchedPageSuffix">О, и %s!</string>
+    <string name="advertWatchedPremium1">Грудь скрипит открыта, и содержит %1$dx %2$s. Вдвое больше, чем обычно!</string>
+    <string name="advertWatchedPremium2">Как странно, содержание грудной клетки в %1$dx %2$s станд дублироваться!</string>
+    <string name="anvilText">наковальня</string>
+    <string name="autoRefreshSettingText">Автоматическое обновление</string>
 </resources>

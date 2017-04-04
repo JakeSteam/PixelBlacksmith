@@ -1,3 +1,16 @@
 <resources>
     <string name="temp"></string>
+    <string name="adFailedToLoad">いいえ広告がロードされない可能性があります。これは、貧しいインターネットによって引き起こされる、または最近で広告を再度有効にすることができます。後でもう一度お試しください！</string>
+    <string name="adventureText">冒険</string>
+    <string name="advertWatched1">胸は%1$dx %2$sの後ろに残して、消え！</string>
+    <string name="advertWatched2">胸がゆっくり%1$dx %2$sに明らかに、オープン！</string>
+    <string name="advertWatchedLegendary1">胸がカチッと開く、と持って並んで珍しい%3$sの%1$dx %2$sに含まれています！</string>
+    <string name="advertWatchedLegendary2">胸少し煙は、次に%1$dx %2$sのを吐くと珍しい%3$sにしています！</string>
+    <string name="advertWatchedLegendaryPremium1">胸は%1$dx %2$sをいっぱい詰めや珍しい%3$sのを持っています！</string>
+    <string name="advertWatchedLegendaryPremium2">ねえ、何...%1$dx%2$sの胸の片隅に、このだと珍しい%3$sにしています！</string>
+    <string name="advertWatchedPageSuffix">ああ、%sの！</string>
+    <string name="advertWatchedPremium1">胸元が開い軋み、および%1$dx %2$sの含まれています。通常の2倍の！</string>
+    <string name="advertWatchedPremium2">どのように奇妙な、%1$dx %2$sのSCCMの胸の内容を複製します！</string>
+    <string name="anvilText">アンヴィル</string>
+    <string name="autoRefreshSettingText">自動更新</string>
 </resources>

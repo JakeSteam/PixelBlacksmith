@@ -1255,9 +1255,9 @@
     <string name="superUpgradeDisabled">disabled</string>
     <string name="superUpgradePrestigeLevel">You need to have prestiged %1$d times to unlock this Super Upgrade.</string>
 
-    <string name="slotLevel">Lv %d</string>
+    <string name="slotLevel" translatable="false">Lv %d</string>
     <string name="slotPremium">Prem</string>
-    <string name="slotSeconds">%ds</string>
+    <string name="slotSeconds" translatable="false">%ds</string>
 
     <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!\n\nReddit is the most active community, but any will get a quick response.</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -1282,7 +1282,7 @@
     <string name="boughtContribute">Thank you for contributing! You\'re the best!</string>
     <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like. If you\'re interested in buying more coins, coins can be bought (+ button next to coins).\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
     <string name="contributeStatus">\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
-    <string name="contributeTitle">%1$s (%2$d / %3$d)</string>
+    <string name="contributeTitle" translatable="false">%1$s (%2$d / %3$d)</string>
     <string name="contributeHeader">Rewards:</string>
 
     <string name="buyCoinsButton">%1$s coins</string>
@@ -1312,7 +1312,7 @@
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
     <string name="levelUpPrestigeText">Levelled up to %d! Premium players can prestige, take a look at the settings menu!</string>
     <string name="levelUpPremiumPrestigeText">Levelled up to %d! You can now prestige (New Game +), take a look at the settings menu!</string>
-    <string name="overflowText">+ %d</string>
+    <string name="overflowText" translatable="false">+ %d</string>
 
     <string name="workerLocked">Locked</string>
     <string name="buyWorkerQuestion">Are you sure you would like to hire this helper for %,d coins?</string>
@@ -1416,7 +1416,7 @@
     <string name="prestigeCancel">Cancel</string>
 
     <string name="unlockConfirm">Are you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
-    <string name="lockConfirm">"Are you sure you want to lock %1$s for %2$s coins?</string>
+    <string name="lockConfirm">Are you sure you want to lock %1$s for %2$s coins?</string>
     <string name="lock">Lock</string>
     <string name="unlock">Unlock</string>
     <string name="lockSuccess">Successfully locked trader!</string>
@@ -1456,11 +1456,11 @@
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
     <string name="sellSuccess">Began selling %1$dx %2$s for %3$d coin(s) each.</string>
 
-    <string name="enchantingButtonText">%1$s (x%2$d)</string>
-    <string name="genericQuantity">%1$dx %2$s</string>
+    <string name="enchantingButtonText" translatable="false">%1$s (x%2$d)</string>
+    <string name="genericQuantity" translatable="false">%1$dx %2$s</string>
 
-    <string name="horizontalDotsSelected">x</string>
-    <string name="horizontalDotsUnselected">o</string>
+    <string name="horizontalDotsSelected" translatable="false">x</string>
+    <string name="horizontalDotsUnselected" translatable="false">o</string>
 
     <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
     <string name="visitorDemand" translatable="false">%1$dx %2$s: %3$s</string>
@@ -1475,11 +1475,11 @@
 
     <string name="cook1Text">Cook 1</string>
     <string name="smelt1Text">Smelt 1</string>
-    <string name="smelt10Text">10</string>
-    <string name="smelt100Text">100</string>
+    <string name="smelt10Text" translatable="false">10</string>
+    <string name="smelt100Text" translatable="false">100</string>
     <string name="craft1Text">Craft 1</string>
-    <string name="craft10Text">10</string>
-    <string name="craft100Text">100</string>
+    <string name="craft10Text" translatable="false">10</string>
+    <string name="craft100Text" translatable="false">100</string>
     <string name="sell1Text">Sell 1</string>
     <string name="sell10Text">Sell 10</string>
     <string name="sell100Text">Sell 100</string>
@@ -1499,7 +1499,7 @@
     <string name="prestigeSettingText">Prestige\n(NG+)</string>
     <string name="fullscreenSettingText">Full Screen</string>
     <string name="fullscreenCheckSettingText">Fullscr Check</string>
-    <string name="autoRefreshSettingText">Auto Refresh</string>
+    <string name="autoRefreshSettingText">No advert could be loaded. This can be caused by poor internet, or by recently re-enabling adverts. Try again later?</string>
     <string name="updateSlotsSettingText">Update Slots</string>
     <string name="longToastSettingText">Longer Messages</string>
     <string name="handleMaxSettingText">Enable\nMax</string>
@@ -1579,9 +1579,9 @@
     <string name="tableItem">Item </string>
     <string name="tableSell">Sell</string>
 
-    <string name="genericProgress">%1$d / %2$d</string>
-    <string name="genericProgressPercent">%1$d / %2$d (%3$d%%)</string>
-    <string name="genericPercent">%1$s%2$d%%</string>
+    <string name="genericProgress" translatable="false">%1$d / %2$d</string>
+    <string name="genericProgressPercent" translatable="false">%1$d / %2$d (%3$d%%)</string>
+    <string name="genericPercent" translatable="false">%1$s%2$d%%</string>
 
     <string name="traderStock">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%1$d Trades</string>
@@ -1685,7 +1685,7 @@
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
-    <string name="versionNumber">V%1$s (#%2$d)</string>
+    <string name="versionNumber" translatable="false">V%1$s (#%2$d)</string>
     <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
 
     <string name="complete">Complete</string>
