@@ -395,10 +395,10 @@
     <string name="itemBuyAllComplete">Erfolgreich gekauft %d Artikel!</string>
     <string name="itemBuyAllConfirm">Alles kaufen</string>
     <string name="itemBuyAllNoItems">Sie können nicht alles kaufen!</string>
-    <string name="itemBuyAllQuestion">Möchten Sie alle %1$d Artikel für einen Gesamtpreis von %2 $, d Münzen kaufen?</string>
+    <string name="itemBuyAllQuestion">Möchten Sie alle %1$d Artikel für einen Gesamtpreis von %2$,d Münzen kaufen?</string>
     <string name="itemBuyCancel">Stornieren</string>
     <string name="itemBuyComplete">Begann den Kauf von %1$dx %2$s für %3$d Münze (n).</string>
-    <string name="itemBuyQuestion">Möchten Sie 1x %1$s für %2 $, d Münze (n) oder bis zu %3$d für %4$d Münze (n) kaufen?</string>
+    <string name="itemBuyQuestion">Möchten Sie 1x %1$s für %2$,d Münze (n) oder bis zu %3$d für %4$d Münze (n) kaufen?</string>
     <string name="itemSelectText">Artikel</string>
     <string name="item_desc_1">Ein Stück Kupfererz.</string>
     <string name="item_desc_10">Ein Stück Drachen-Erz.</string>
@@ -918,7 +918,7 @@
     <string name="prestigeCancel">Stornieren</string>
     <string name="prestigeComplete">Prestige erfolgreich, alle Münzeneinnahmen + %1$d%% &amp; XP Gewinne - %2$d%%! Viel Glück!</string>
     <string name="prestigeConfirm">Prestige</string>
-    <string name="prestigeQuestion">Prestiging setzt alle Artikel zurück (außer Seiten + Bücher) / Münzen / Upgrades / Arbeiter im Gegenzug für + 50% %Münze &amp; -25 % %XP Gewinne.\n\nDas kann nicht rückgängig gemacht werden.</string>
+    <string name="prestigeQuestion">Prestiging setzt alle Artikel zurück (außer Seiten + Bücher) / Münzen / Upgrades / Arbeiter im Gegenzug für + 50%% Münze &amp; -25%% XP Gewinne.\n\nDas kann nicht rückgängig gemacht werden.</string>
     <string name="prestigeSettingText">Prestige (NG+)</string>
     <string name="questAvailable">Verfügbar</string>
     <string name="questComplete">Abgeschlossen \"%1$s\" und erhielt einen %2$s Belohnung: %3$s.</string>
@@ -1331,8 +1331,8 @@
     <string name="tutorialVisitorPrefs">Präferenzen</string>
     <string name="tutorialVisitorPrefsText">Es sieht so aus, als ob dieser Besucher Bronzeartikel und Erz bevorzugt, und gibt einen 5% Bonus, wenn sie gehandelt werden.</string>
     <string name="tutorialVisitorText">Ihr erster Besucher ist da! Tipp ihn an, um fortzufahren.</string>
-    <string name="typePreference">Dieser Kunde zahlt% 1 $ s extra für% 2 $ ss.</string>
-    <string name="typePreferenceHero">Dieser Held erhält einen% 1 $ s Schub für% 2 $ ss.</string>
+    <string name="typePreference">Dieser Kunde zahlt %1$s extra für %2$ss.</string>
+    <string name="typePreferenceHero">Dieser Held erhält einen %1$s Schub für %2$ss.</string>
     <string name="typeText">Art</string>
     <string name="type_1">Erz</string>
     <string name="type_10">Platebody</string>
@@ -1377,8 +1377,8 @@
     <string name="upgradeCancel">Stornieren</string>
     <string name="upgradeCompletedDescription">%1$s\n%2$d / %3$d %4$s</string>
     <string name="upgradeConfirm">Aktualisierung</string>
-    <string name="upgradeDescription">%1$s\n%2$d / %3$d %4$s\n%5$s %6$d %7$s: %8 $, d Münzen</string>
-    <string name="upgradeQuestion">Möchten Sie %1$s auf %2$d / %3$d für %4 $, d Münzen aktualisieren?</string>
+    <string name="upgradeDescription">%1$s\n%2$d / %3$d %4$s\n%5$s %6$d %7$s: %8$,d Münzen</string>
+    <string name="upgradeQuestion">Möchten Sie %1$s auf %2$d / %3$d für %4$,d Münzen aktualisieren?</string>
     <string name="upgradeSuccess">Upgrade %s!</string>
     <string name="upgradeTabText">Aktualisierung</string>
     <string name="upgradeText">Upgrades</string>
@@ -1398,7 +1398,7 @@
     <string name="visitorArriving">Ein Besucher wandert in den Laden ...</string>
     <string name="visitorLeaves1">Der Besucher weht sich ab und rutscht %1$dx %2$s unter den Ladentisch.</string>
     <string name="visitorLeaves2">Der Besucher verlässt und fällt %1$dx %2$s auf den Boden. Wer es findet darf es behalten!</string>
-    <string name="visitorLeaves3">Der Besucher hat Ihnen dankbar 1 %dx %2$s.</string>
+    <string name="visitorLeaves3">Der Besucher hat Ihnen dankbar %1$dx %2$s.</string>
     <string name="visitorLeavesComplete1">Der Besucher belohnt Sie mit einer Spitze von %1$dx %2$s, verdoppelt aufgrund aller Forderungen erfüllt!</string>
     <string name="visitorLeavesComplete2">Der Besucher-Tipp wurde auf %1$dx %2$s verdoppelt!</string>
     <string name="visitorLeavesComplete3">Der sehr dankbare Besucher verlässt %1$dx %2$s (verdoppelt!) Als Trinkgeld.</string>
