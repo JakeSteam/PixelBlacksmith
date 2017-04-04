@@ -166,12 +166,12 @@ public class WorkerHelper {
                     if (slotsToEmpty.size() > 0) {
                         lastResult = String.format(context.getString(R.string.heroFailText),
                                 heroVisitor.getName(context),
-                                adventure.getName(),
+                                adventure.getName(context),
                                 lastResultString);
                     } else {
                         lastResult = String.format(context.getString(R.string.heroFailNoItemsText),
                                 heroVisitor.getName(context),
-                                adventure.getName());
+                                adventure.getName(context));
                     }
                 }
                 heroNames.add(heroVisitor.getName(context));

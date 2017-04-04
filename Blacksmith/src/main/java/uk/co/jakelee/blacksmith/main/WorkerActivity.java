@@ -150,7 +150,7 @@ public class WorkerActivity extends Activity {
 
             if (adventure != null) {
                 heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
-                heroAdventureText.setText(adventure.getName());
+                heroAdventureText.setText(adventure.getName(this));
             }
             heroAdventure.setTag(hero);
             heroAdventure.setOnClickListener(new Button.OnClickListener() {

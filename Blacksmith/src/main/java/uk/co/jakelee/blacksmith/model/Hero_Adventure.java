@@ -1,10 +1,14 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Hero_Adventure extends SugarRecord {
     private int adventureId;
@@ -32,8 +36,8 @@ public class Hero_Adventure extends SugarRecord {
         this.adventureId = adventureId;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("hero_adventure_" + adventureId);
     }
 
     public void setName(String name) {

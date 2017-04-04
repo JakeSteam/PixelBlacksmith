@@ -129,7 +129,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
 
         categoryNames.add("Please select");
         for (Hero_Category category : categories) {
-            categoryNames.add(category.getName());
+            categoryNames.add(category.getName(this));
         }
 
         return categoryNames;
@@ -160,7 +160,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
 
         for (Hero_Adventure adventure : adventures) {
             TextView difficulty = dh.createTextView(Integer.toString(adventure.getDifficulty()), 30);
-            TextView name = dh.createTextView(adventure.getName(), 20);
+            TextView name = dh.createTextView(adventure.getName(this), 20);
             if (adventure.isCompleted()) {
                 name.setPaintFlags(name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
