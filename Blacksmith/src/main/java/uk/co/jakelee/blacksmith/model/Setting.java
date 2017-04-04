@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Setting extends SugarRecord {
     private long settingId;
@@ -74,5 +78,9 @@ public class Setting extends SugarRecord {
         Setting setting = Setting.findById(Setting.class, settingId);
 
         return setting != null && setting.getBoolValue();
+    }
+
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("setting_" + settingId);
     }
 }

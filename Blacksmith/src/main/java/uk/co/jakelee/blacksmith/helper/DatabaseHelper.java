@@ -918,6 +918,10 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             superUpgrades.add(new Super_Upgrade(Constants.SU_BUY_ALL_MARKET, "Buy All From Market", 2, false));
             superUpgrades.add(new Super_Upgrade(Constants.SU_HALVE_TIMES, "Halve All Times", 4, false));
         Super_Upgrade.saveInTx(superUpgrades);
+
+        List<Setting> settings = new ArrayList<>();
+            settings.add(new Setting(Constants.SETTING_LANGUAGE, "Language", Constants.LANG_ENGLISH));
+        Setting.saveInTx(settings);
     }
 	
 	private void createContributionGoals() {

@@ -46,16 +46,36 @@
 
             <TableLayout
                 android:id="@+id/settingsTable"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:shrinkColumns="*"
                 android:stretchColumns="*">
 
+                <!-- Language -->
+                <TableRow>
+                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_span="3"
+                        android:text="@string/languageSettingGroup"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+                </TableRow>
+                <TableRow>
+                    <Spinner
+                        android:id="@+id/languagePicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp"
+                        android:spinnerMode="dialog"
+                        android:layout_span="3"/>
+                </TableRow>
+
                 <!-- Sounds -->
                 <TableRow>
-
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -67,7 +87,6 @@
                 </TableRow>
 
                 <TableRow>
-
                     <LinearLayout
                         android:id="@+id/soundToggle"
                         android:layout_width="match_parent"

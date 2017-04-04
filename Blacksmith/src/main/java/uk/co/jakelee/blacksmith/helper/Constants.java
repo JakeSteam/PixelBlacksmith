@@ -5,6 +5,10 @@ import android.content.pm.ActivityInfo;
 public class Constants {
     public static final int TRUE = 1;
 
+    public static final int NUM_LANGUAGES = 2;
+    public static final int LANG_ENGLISH = 1;
+    public static final int LANG_FRENCH = 2;
+
     public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";
     public static final String LEADERBOARD_TROPHIES = "CgkI6tnE2Y4OEAIQIQ";
@@ -184,6 +188,7 @@ public class Constants {
     public static final Long SETTING_FINISHED_NOTIFICATIONS = 20L;
     public static final Long SETTING_BULK_STACK = 21L;
     public static final Long SETTING_ORIENTATION = 22L;
+    public static final Long SETTING_LANGUAGE = 23L;
 
     public static final int SU_DOUBLE_FURNACE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;

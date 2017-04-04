@@ -39,6 +39,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements
         gph = new GooglePlayHelper();
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        LanguageHelper.updateLanguage(getApplicationContext());
 
         if (prefs.getInt("tutorialStage", 0) > 0) {
             TutorialHelper.currentlyInTutorial = true;

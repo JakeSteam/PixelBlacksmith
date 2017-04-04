@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
@@ -23,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.StorageHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -32,6 +36,8 @@ import uk.co.jakelee.blacksmith.model.Setting;
 public class SettingsActivity extends Activity {
     private static DisplayHelper dh;
     final Handler handler = new Handler();
+    private int spinnersInitialised = 0;
+    private int totalSpinners = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,46 @@ public class SettingsActivity extends Activity {
         handler.post(everySecond);
 
         updateAdToggleVisibility();
+        spinnersInitialised = 0;
+        createLanguagePicker((Spinner)findViewById(R.id.languagePicker));
+    }
+
+    private void createLanguagePicker(Spinner spinner) {
+        Setting setting = Setting.findById(Setting.class, Constants.SETTING_LANGUAGE);
+        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner);
+        envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
+
+        for (int i = 1; i <= Constants.NUM_LANGUAGES; i++) {
+            String text = LanguageHelper.getFlagById(i) + " " + LanguageHelper.getLanguageById(this, i);
+            envAdapter.add(text);
+        }
+
+        spinner.setAdapter(envAdapter);
+        spinner.setSelection(setting.getIntValue() - 1);
+        spinner.setOnItemSelectedListener(getListener(setting));
+    }
+
+    private AdapterView.OnItemSelectedListener getListener(final Setting setting) {
+        final Activity activity = this;
+        return new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (spinnersInitialised < totalSpinners) {
+                    spinnersInitialised++;
+                } else {
+                    setting.setIntValue(position + 1);
+                    setting.save();
+
+                    LanguageHelper.changeLanguage(activity, position + 1);
+                    ToastHelper.showPositiveToast(parentView, ToastHelper.SHORT, "Changed language to " + parentView.getSelectedItem().toString(), true);
+                    onResume();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        };
     }
 
     @Override
@@ -262,7 +308,7 @@ public class SettingsActivity extends Activity {
             settingToToggle.save();
 
             ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(getString(R.string.settingChanged),
-                    settingName,
+                    settingToToggle.getName(this),
                     settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
         }

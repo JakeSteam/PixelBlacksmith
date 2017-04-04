@@ -755,6 +755,33 @@
     <string name="item_desc_229">The most important meal of the day, apparently.</string>
     <string name="item_desc_230">Mmmm, so sweet!</string>
 
+    <string name="language_1">English</string>
+    <string name="language_2">French</string>
+
+    <string name="setting_1">Game Sound</string>
+    <string name="setting_2">Game Music</string>
+    <string name="setting_3">Restock Notifications</string>
+    <string name="setting_4">Notification Sounds</string>
+    <string name="setting_5">Visitor Notifications</string>
+    <string name="setting_6">Auto sign in</string>
+    <string name="setting_7">Worker Notifications</string>
+    <string name="setting_8">Disable Ads</string>
+    <string name="setting_9">Bonus Notifications</string>
+    <string name="setting_10">Worker Autofeed</string>
+    <string name="setting_11">Quick Item Select</string>
+    <string name="setting_12">Only Available Items</string>
+    <string name="setting_13">Quick Log Access</string>
+    <string name="setting_14">Fullscreen Mode</string>
+    <string name="setting_15">Item Listing Auto Refresh</string>
+    <string name="setting_16">Fullscreen Mode Checking</string>
+    <string name="setting_17">Item Slot Updating</string>
+    <string name="setting_18">Longer Message Durations</string>
+    <string name="setting_19">Smelt / Craft / Sell Max</string>
+    <string name="setting_20">All Items Finished Notifications</string>
+    <string name="setting_21">Single Stack Bulk Crafting</string>
+    <string name="setting_22">Orientation</string>
+    <string name="setting_23">Language</string>
+
     <string name="state_1">Normal</string>
     <string name="state_2">Unfinished</string>
     <string name="state_3">Red Enchant</string>
@@ -1486,6 +1513,7 @@
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
 
+    <string name="languageSettingGroup">Language</string>
     <string name="soundSettingGroup">Sound Options</string>
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
@@ -1670,7 +1698,7 @@
 \n\nYou could also read a few tips:</string>
 
     <string name="creditsOverall">Overall</string>
-    <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>
+    <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>pixel.blacksmith@jakelee.co.uk</a>.</string>
     <string name="creditsMusic">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
@@ -1683,7 +1711,9 @@
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
+\n<a href='https://batch.com/doc/android/sdk-integration/initial-setup.html'>Batch</a> - Free IAP promotions for AppGratis etc.
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/square/picasso'>Picasso</a> - Used for image loading.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
     <string name="creditsSoftware">Software</string>
