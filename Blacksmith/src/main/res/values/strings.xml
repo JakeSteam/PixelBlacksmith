@@ -1214,7 +1214,7 @@
     <string name="tradeText">Trade</string>
     <string name="enchantingText">Gem Table</string>
     <string name="settingsText">Settings</string>
-    <string name="creditsText">Credits</string>
+    <string name="creditsText" translatable="false">Credits</string>
     <string name="rateText">Rate App</string>
     <string name="trophyText">Trophies</string>
     <string name="statisticsText">Statistics</string>
@@ -1528,7 +1528,7 @@
     <string name="orientationSettingGroup">Orientation Options</string>
     <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
-    <string name="googlePlaySettingGroup">Google Play</string>
+    <string name="googlePlaySettingGroup" translatable="false">Google Play</string>
     <string name="settingsCodeUnknown">Settings Code: ???</string>
     <string name="settingsCode">Settings Code: %2$d</string>
 
@@ -1583,7 +1583,7 @@
     <string name="genericProgressPercent" translatable="false">%1$d / %2$d (%3$d%%)</string>
     <string name="genericPercent" translatable="false">%1$s%2$d%%</string>
 
-    <string name="traderStock">%1$s\n%2$d / %3$d</string>
+    <string name="traderStock" translatable="false">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%1$d Trades</string>
 
     <string name="tradedItem">Traded %1$dx %2$s for %3$d coin(s)</string>
@@ -1701,18 +1701,18 @@
 \n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
 \n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
 \n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">leave the game a rating</a>. It\'s the best way to help the game grow!
-\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">Connext Quest</a>. I think it\'s rather fun!!
+\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.cityflow">Connect Quest</a>. I think it\'s rather fun!
 \n\nYou could also read a few tips:</string>
 
-    <string name="creditsOverall">Overall</string>
-    <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>pixel.blacksmith@jakelee.co.uk</a>.</string>
-    <string name="creditsMusic">Music</string>
+    <string name="creditsOverall" translatable="false">Overall</string>
+    <string name="creditsOverallDetails" translatable="false">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>pixel.blacksmith@jakelee.co.uk</a>.</string>
+    <string name="creditsMusic" translatable="false">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
-    <string name="creditsGraphics">Graphics</string>
+    <string name="creditsGraphics" translatable="false">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
-    <string name="creditsLibraries">Libraries</string>
+    <string name="creditsLibraries" translatable="false">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
@@ -1723,11 +1723,11 @@
 \n<a href='https://github.com/square/picasso'>Picasso</a> - Used for image loading.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
-    <string name="creditsSoftware">Software</string>
-    <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
+    <string name="creditsSoftware" translatable="false">Software</string>
+    <string name="creditsSoftwareDetails" translatable="false"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
 \n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
-    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
+    <string name="creditsMiscDetails" translatable="false">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
 </string>
 
     <string-array name="toolsArray">
