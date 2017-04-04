@@ -125,7 +125,7 @@
     <string name="con_unlocked_2"><a href="https://trello.com/b/Zw01amFA/"> Tablero de Trello </a> En cada categoría de Trello, cuanto más alto sea el elemento, mayor será la prioridad y cuanto antes trabajado en. Los elementos también se marcan con la liberación (por ejemplo, 1.7.0) en la que se encontrará.</string>
     <string name="con_unlocked_3">Oye, envía un correo electrónico a <a href="mailto:i.am.now.a.beta.player@jakelee.co.uk"> la dirección beta </a> y te enviaré a la prueba beta / Créditos!</string>
     <string name="con_unlocked_4">¡Cortejar! Intenta que tu idea encaje en una categoría existente y envíala por correo electrónico a <a href="mailto:i.make.the.quests@jakelee.co.uk"> la dirección de la misión </a>, y pondré En el juego.</string>
-    <string name="con_unlocked_5">¡Oye! Envíe por correo electrónico su nombre, descripción, ingredientes, y propósito del artículo a <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk"> la dirección del artículo </a>. Podríamos tener que hacer algunos cambios para equilibrar el tema sin embargo!</string>
+    <string name="con_unlocked_5">¡Oye! Envíe por correo electrónico su nombre, descripción, ingredientes, y propósito del artículo a <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk"> la dirección del artículo </a>. Podríamos tener que hacer algunos cambios para equilibrar el tema sin embargo!</string>
     <string name="con_unlocked_6">Eres un gran fan de contribuir, ¿eh? Envíe por correo electrónico un nombre, descripción y preferencias de visitante a <a href="mailto:i.make.people.happen@jakelee.co.uk"> la dirección de visitante </a> y discutiremos la apariencia del visitante, etc.</string>
     <string name="con_unlocked_7">Wow, eso es impresionante ..! Envíeme un correo electrónico a <a href="mailto:i.basically.make.the.game@jakelee.co.uk"> la dirección de la función </a>, y trabajaremos juntos para hacer realidad la característica.</string>
     <string name="connectionFailure">No se pudo iniciar sesión. Vuelve a intentarlo más tarde.</string>
@@ -177,7 +177,7 @@
     <string name="exchangePagesOne">Uno</string>
     <string name="exchangePagesQuestion">¿Le gustaría cambiar %1$dx %2$s por 1 página aleatoria, o cambiar %3$dx por %4$d páginas al azar?</string>
     <string name="exchangePagesSuccess">Se ha cambiado satisfactoriamente %1$dx %2$s para %3$dx %4$s.</string>
-    <string name="exchangePagesText">Excª</string>
+    <string name="exchangePagesText">Exc</string>
     <string name="exitTutorial">Saltar tutorial</string>
     <string name="exitTutorialText">Tutorial omitido! Puede repetirse a través del menú \'Ajustes\' (icono de rueda dentada).</string>
     <string name="exportSaveText">Exportar Guardar</string>
@@ -415,7 +415,7 @@
     <string name="hero_category_9">Caza de moscas (100-220)</string>
     <string name="hero_no_set_bonus">No hay juegos actualmente activos!</string>
     <string name="hero_set_bonus">El conjunto %1$s proporciona bono de fuerza + %2$d %%, activado por %3$s</string>
-    <string name="heroesReturned">" %1$d héroes ( %2$s) han regresado de aventuras, %3$d de los cuales fueron exitosos! Para más detalles, vea el registro de mensajes."</string>
+    <string name="heroesReturned">%1$d héroes ( %2$s) han regresado de aventuras, %3$d de los cuales fueron exitosos! Para más detalles, vea el registro de mensajes.</string>
     <string name="importSaveText">Importar Guardar</string>
     <string name="interstitialLongText">¡Ningún anuncio podría ser cargado!\n\nEsto puede deberse a Internet deficiente, anuncios que permiten recientemente o a ningún anunciante que esté publicando actualmente en su área.\n\nSi espera hasta que la cuenta regresiva en la parte superior llegue a 0 y se vuelva verde, cerrar esta ventana proporcionará el bonificador / temporizador saltar / etc.\n\nMientras esperas, puedes <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith"> dejar la clasificación </a>. ¡Es la mejor manera de ayudar al juego a crecer!\n\nO incluso echa un vistazo a mi nuevo juego, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.cityflow"> Connect Quest </a>. Creo que es bastante divertido!\n\nTambién puede leer algunos consejos:</string>
     <string name="interstitialText">Anuncio</string>
@@ -1429,7 +1429,7 @@
     <string name="upgrade_7">Tiempo del arte</string>
     <string name="upgrade_8">Oportunidad legendaria</string>
     <string name="upgrade_9">Reponer todo el costo</string>
-    <string name="visitorArrived">" %D visitante (s) han llegado."</string>
+    <string name="visitorArrived">%d visitante (s) han llegado.</string>
     <string name="visitorArriving">Un visitante entra en la tienda ...</string>
     <string name="visitorCompleteFailure">Usted no puede deshacerse de un cliente insatisfecho!</string>
     <string name="visitorLeaves1">El visitante agita adiós y se desliza %1$dx %2$s bajo el mostrador.</string>
@@ -1563,23 +1563,24 @@
     <string name="workerResources">Recursos: %s.</string>
     <string name="workerReturnTime">%1$s volverá en %2$s.</string>
     <string name="workerReturned">%1$s ha regresado, junto con: %2$s.</string>
-    <string name="workerStatusBusy">Estado:</string>
-    <string name="workerStatusReady">Ocupado</string>
-    <string name="workerStatusSelectAdventure">Estado:</string>
-    <string name="workerStatusSelectHero">Listo</string>
-    <string name="workerText">Seleccione Aventura</string>
-    <string name="workerTimesCompleted">Seleccione Héroe</string>
-    <string name="workerTool">Trabajadores</string>
-    <string name="worker_returns_in">%1$s ha completado %2$d viajes, y actualmente está comiendo %3$s (+ %4$d %%).</string>
-    <string name="worker_select_adventure">Herramienta:</string>
-    <string name="worker_select_hero">S</string>
-    <string name="worker_start_adventure">Devuelve en</string>
-    <string name="worker_start_gathering">Seleccione Aventura</string>
-    <string name="workersReturned">Seleccione Héroe</string>
-    <string name="worseLocalSaveCancel">Comenzar Aventura</string>
-    <string name="worseLocalSaveLoad">Iniciar reunión</string>
-    <string name="worseLocalSaveMessage">%1$d ayudantes (%2$s) han regresado, cargado de recursos! Para más detalles, vea el registro de mensajes.</string>
+    <string name="workerStatusBusy">Estado:\nOcupado</string>
+    <string name="workerStatusReady">Estado:\nListo</string>
+    <string name="workerStatusSelectAdventure">Seleccione Aventura</string>
+    <string name="workerStatusSelectHero">Seleccione Héroe</string>
+    <string name="workerText">Trabajadores</string>
+    <string name="workerTimesCompleted">%1$s ha completado %2$d viajes, y actualmente está comiendo %3$s (+ %4$d %%).</string>
+    <string name="workerTool">Herramienta:\n%s</string>
+    <string name="worker_returns_in">Devuelve en</string>
+    <string name="worker_select_adventure">Seleccione Aventura</string>
+    <string name="worker_select_hero">Seleccione Héroe</string>
+    <string name="worker_start_adventure">Comenzar Aventura</string>
+    <string name="worker_start_gathering">Iniciar reunión</string>
+    <string name="workersReturned">%1$d ayudantes (%2$s) han regresado, cargado de recursos! Para más detalles, vea el registro de mensajes.</string>
+    <string name="worseLocalSaveCancel">Cancelar</string>
+    <string name="worseLocalSaveLoad">Carga</string>
+    <string name="worseLocalSaveMessage">¿Está seguro de que desea cargar este ahorro importado inferior?</string>
+    <string name="level">Nivel</string>
     <string name="worseSaveCancel">Cancelar</string>
     <string name="worseSaveLoad">Carga</string>
-    <string name="worseSaveMessage">¿Está seguro de que desea cargar este ahorro importado inferior?\n\nAhorro actual:\nPrestiges: %1$d, Nivel: %2$d, XP: %3$d.\n\nImportado guardar:\nPrestiges: %4$d, Nivel: %5$d, XP: %6$d.</string>
+    <string name="worseSaveMessage">¿Está seguro de que desea cargar esta nube inferior guardar?\n\nAhorro local:\nPrestiges:%1$d, Nivel:%2$d, XP:%3$d.\n\nAhorro de la nube:\nPrestiges:%4$d, Nivel:%5$d, XP:%6$d.</string>
 </resources>

@@ -122,7 +122,7 @@
     <string name="con_unlocked_2"><a href="https://trello.com/b/Zw01amFA/"> Trello-Brett. </a> Unter jeder Trello-Kategorie ist das höhere ein Element, die höhere Priorität ist es, und je früher es sein wird arbeitete an. Gegenstände werden auch mit dem Release (z. B. 1.7.0) markiert.</string>
     <string name="con_unlocked_3">Hey, senden Sie eine E-Mail an <a href="mailto:i.am.now.a.beta.player@jakelee.co.uk"> die Beta-Adresse </a> und ich werde Sie hinzugefügt, um die Beta-Tests / Credits!</string>
     <string name="con_unlocked_4">Umwerben! Versuchen Sie, Ihre Idee in eine bestehende Kategorie zu passen, und schicken Sie sie an <a href="mailto:i.make.the.quests@jakelee.co.uk"> die Questadresse </a>, und ich werde setzen Es im Spiel.</string>
-    <string name="con_unlocked_5">Hallo! E-Mail Ihre Artikel Name, Beschreibung, Zutaten und Zweck zu <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk@jakelee.co.uk"> die Artikel Adresse </a> Aufrechtzuerhalten. Möglicherweise müssen wir einige Änderungen vornehmen, um den Artikel auszugleichen!</string>
+    <string name="con_unlocked_5">Hallo! E-Mail Ihre Artikel Name, Beschreibung, Zutaten und Zweck zu <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk"> die Artikel Adresse </a> Aufrechtzuerhalten. Möglicherweise müssen wir einige Änderungen vornehmen, um den Artikel auszugleichen!</string>
     <string name="con_unlocked_6">Du bist ein großer Fan von beitragen, huh? E-Mail einen Besuchernamen, eine Beschreibung und Vorlieben zu <a href="mailto:i.make.people.happen@jakelee.co.uk"> die Besucheradresse </a>, und wir besprechen das Erscheinungsbild des Besuchers</string>
     <string name="con_unlocked_7">Wow, das ist beeindruckend ..! Schicken Sie mir eine E-Mail an <a href="mailto:i.basically.make.the.game@jakelee.co.uk"> die Feature-Adresse </a>, und wir werden zusammenarbeiten, um das Feature Realität zu machen.</string>
     <string name="connectionFailure">Konnte nicht einloggen. Bitte versuchen Sie es später noch einmal.</string>
@@ -1581,4 +1581,6 @@
     <string name="worker_start_adventure">Start Abenteuer</string>
     <string name="worker_start_gathering">Starten Sie das Sammeln</string>
     <string name="worseSaveMessage">Sind Sie sicher, dass Sie diese minderwertige Wolke speichern wollen?\\n\\nLokales Speichern:\\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\\n\\nCloud speichern:\\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="visitorCompleteFailure">Sie können einen unzufriedenen Kunden nicht loswerden!</string>
+    <string name="level">Ebene</string>
 </resources>
