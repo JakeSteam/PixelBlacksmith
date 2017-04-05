@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
+    <string name="pet_name_1">Numero Uno</string>
+    <string name="pet_name_2">Numero Dos</string>
+    <string name="pet_name_3">Numero Tres</string>
+
+    <string name="pet_desc_1">A firey pet, probably into fire.</string>
+    <string name="pet_desc_2">A grass pet, not bulbasaur.</string>
+    <string name="pet_desc_3">A water pet, maybe even squirtle.</string>
+
+    <string name="petTitle">Pets</string>
+    <string name="petSelect">Select</string>
+    <string name="petDeselect">Deselect</string>
+    <string name="petLocked">Locked</string>
+    <string name="petAlertSelected">Selected pet \"%1$s\"!</string>
+    <string name="petAlertLocked">You can\'t select a locked pet!</string>
+
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
     <string name="tool_fishing_rod">Fishing Rod (Food)</string>

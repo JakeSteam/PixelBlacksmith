@@ -75,6 +75,7 @@ public class HelpActivity extends Activity {
             case Market: displayHelpMarket(layout); break;
             case Messages: displayHelpMessages(layout); break;
             case Overview: displayHelpOverview(layout); break;
+            case Pets: displayHelpPets(layout); break;
             case Premium: displayHelpPremium(layout); break;
             case Prestige: displayHelpPrestige(layout); break;
             case Quests: displayHelpQuests(layout); break;
@@ -89,6 +90,10 @@ public class HelpActivity extends Activity {
             case Upgrade: displayHelpUpgrade(layout); break;
             case Visitor: displayHelpVisitor(layout); break;
         }
+    }
+
+    private void displayHelpPets(LinearLayout layout) {
+
     }
 
     private void displayHelpCoins(LinearLayout layout) {
@@ -268,5 +273,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Coins, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Coins, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Pets, Premium, Prestige, Quests, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }

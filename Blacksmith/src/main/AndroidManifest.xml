@@ -140,6 +140,9 @@
             android:name=".main.VisitorSelectActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
+            android:name=".main.PetActivity"
+            android:theme="@style/AppTheme.PopupOverlay" />
+        <activity
             android:name=".main.InterstitialActivity"
             android:theme="@style/AppTheme.PopupOverlay"
             android:configChanges="keyboardHidden|orientation|screenSize"/>

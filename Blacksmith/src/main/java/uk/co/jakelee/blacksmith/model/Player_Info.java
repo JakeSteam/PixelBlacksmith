@@ -7,6 +7,8 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
+import static uk.co.jakelee.blacksmith.R.id.coinsPurchased;
+
 public class Player_Info extends SugarRecord {
     private String name;
     private String textValue;
@@ -146,6 +148,13 @@ public class Player_Info extends SugarRecord {
                 Condition.prop("name").eq("CoinsPurchased")).first();
 
         return coinsPurchased != null ? coinsPurchased.getIntValue() : 0;
+    }
+
+    public static int getActivePet() {
+        Player_Info activePet = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("ActivePet")).first();
+
+        return activePet != null ? activePet.getIntValue() : 0;
     }
 
     public static String getLastContributed() {

@@ -107,6 +107,10 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("visitor" + visitor, "drawable", context.getPackageName());
     }
 
+    public static int getPetDrawableID(Context context, int pet) {
+        return context.getResources().getIdentifier("pet" + pet, "drawable", context.getPackageName());
+    }
+
     private static RelativeLayout createSlotRoot(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflatedView = inflater.inflate(R.layout.custom_slot, null);

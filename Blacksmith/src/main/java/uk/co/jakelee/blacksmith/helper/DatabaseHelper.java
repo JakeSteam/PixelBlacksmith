@@ -27,6 +27,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Message;
+import uk.co.jakelee.blacksmith.model.Pet;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -922,6 +923,22 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         List<Setting> settings = new ArrayList<>();
             settings.add(new Setting(Constants.SETTING_LANGUAGE, "Language", LanguageHelper.getDefaultLanguage()));
         Setting.saveInTx(settings);
+
+        List<Player_Info> statistics = new ArrayList<>();
+            statistics.add(new Player_Info("ActivePet", 0));
+            statistics.add(new Player_Info("LastPetClaim", 0L));
+        Player_Info.saveInTx(statistics);
+
+
+        createPets();
+    }
+
+    private void createPets() {
+        List<Pet> pets = new ArrayList<>();
+            pets.add(new Pet(1, 0.75, 0, 5, System.currentTimeMillis()));
+            pets.add(new Pet(2, 0.95, 1200, 3, System.currentTimeMillis()));
+            pets.add(new Pet(3, 0.55, 0, 10, 0L));
+        Pet.saveInTx(pets);
     }
 	
 	private void createContributionGoals() {

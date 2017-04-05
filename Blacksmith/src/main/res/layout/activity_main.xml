@@ -286,6 +286,16 @@
                 android:onClick="openMessages"
                 app:layout_marginTopPercent="68%" />
 
+            <ImageView
+                android:id="@+id/pets_container"
+                android:layout_width="125dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="290dp"
+                android:onClick="openPets"
+                android:src="@drawable/pet1"
+                app:layout_heightPercent="11%"
+                app:layout_marginTopPercent="22%" />
+
             <!-- Areas -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"

@@ -521,6 +521,11 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    public void openPets(View view) {
+        Intent intent = new Intent(this, PetActivity.class);
+        startActivity(intent);
+    }
+
     public void openWorkers(View view) {
         Intent intent = new Intent(this, WorkerActivity.class);
         startActivity(intent);
