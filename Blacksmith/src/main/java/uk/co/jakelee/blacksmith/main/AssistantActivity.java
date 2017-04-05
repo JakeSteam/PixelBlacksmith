@@ -23,36 +23,36 @@ import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
-import uk.co.jakelee.blacksmith.model.Pet;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
-public class PetActivity extends Activity {
+public class AssistantActivity extends Activity {
     private DisplayHelper dh;
     private ViewPager mViewPager;
-    private PetPagerAdapter mCustomPagerAdapter;
-    private int numPets = 0;
-    private int selectedPet = 1;
+    private AssistantPagerAdapter mCustomPagerAdapter;
+    private int numAssistants = 0;
+    private int selectedAssistant = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet);
+        setContentView(R.layout.activity_assistant);
         dh = DisplayHelper.getInstance(this);
         dh.updateFullscreen(this);
 
-        mCustomPagerAdapter = new PetPagerAdapter(this);
-        numPets = (int)Pet.count(Pet.class);
+        mCustomPagerAdapter = new AssistantPagerAdapter(this);
+        numAssistants = (int) Assistant.count(Assistant.class);
 
-        mViewPager = (ViewPager) findViewById(R.id.petScroller);
+        mViewPager = (ViewPager) findViewById(R.id.assistantScroller);
         mViewPager.setClipToPadding(false);
         mViewPager.setPadding(30, 20, 30, 20);
         mViewPager.setPageMargin(-200);
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             public void onPageSelected(int position) {
-                selectedPet = position + 1;
-                displayPetInfo();
+                selectedAssistant = position + 1;
+                displayAssistantInfo();
             }
         });
         mViewPager.setAdapter(mCustomPagerAdapter);
@@ -61,52 +61,54 @@ public class PetActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        displayPetInfo();
+        displayAssistantInfo();
     }
 
     public void buttonClick(View v) {
-        Pet pet = Pet.get(selectedPet);
-        if (pet.getObtained() > 0) {
-            Player_Info activePet = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActivePet")).first();
-            activePet.setIntValue(selectedPet);
-            activePet.save();
-            displayPetInfo();
-            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.petAlertSelected), pet.getName(this)), true);
+        Assistant assistant = Assistant.get(selectedAssistant);
+        if (selectedAssistant == assistant.getAssistantId()) {
+
+        } else if (assistant.getObtained() > 0) {
+            Player_Info activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
+            activeAssistant.setIntValue(selectedAssistant);
+            activeAssistant.save();
+            displayAssistantInfo();
+            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantAlertSelected), assistant.getName(this)), true);
         } else {
-            if (pet.getCoinsRequired() > Inventory.getCoins()) {
+            if (assistant.getCoinsRequired() > Inventory.getCoins()) {
                 ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(R.string.error_not_enough_coins), false);
             } else {
-                AlertDialogHelper.confirmBuyPet(this, this, pet);
+                AlertDialogHelper.confirmBuyAssistant(this, this, assistant);
             }
         }
     }
 
-    public void displayPetInfo() {
-        Pet pet = Pet.get(selectedPet);
-        ((TextView)findViewById(R.id.petName)).setText(TextHelper.getInstance(this).getText("pet_name_" + selectedPet));
-        ((TextView)findViewById(R.id.petDesc)).setText(TextHelper.getInstance(this).getText("pet_desc_" + selectedPet));
-        ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(pet));
+    public void displayAssistantInfo() {
+        Assistant assistant = Assistant.get(selectedAssistant);
+        ((TextView)findViewById(R.id.assistantName)).setText(TextHelper.getInstance(this).getText("assistant_name_" + selectedAssistant));
+        ((TextView)findViewById(R.id.assistantDesc)).setText(TextHelper.getInstance(this).getText("assistant_desc_" + selectedAssistant));
+        ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
     }
 
-    private String getButtonText(Pet pet) {
-        if (pet.getObtained() == 0) {
-            if (pet.getLevelRequired() > Player_Info.getPlayerLevel()) {
-                return getString(R.string.petButtonLockedLevel) + " " + pet.getLevelRequired();
+    private String getButtonText(Assistant assistant) {
+        if (assistant.getObtained() == 0) {
+            if (assistant.getLevelRequired() > Player_Info.getPlayerLevel()) {
+                return getString(R.string.assistantButtonLockedLevel) + " " + assistant.getLevelRequired();
             } else {
-                return getString(R.string.petButtonLockedCoins) + " " + pet.getCoinsRequired();
+                return getString(R.string.assistantButtonLockedCoins) + " " + assistant.getCoinsRequired();
             }
         } else {
-            if (Player_Info.getActivePet() == selectedPet) {
-                return getString(R.string.petButtonDeselect);
+            if (Player_Info.getActivePet() == selectedAssistant) {
+                return getString(R.string.assistantButtonSelected);
             } else {
-                return getString(R.string.petButtonSelect);
+                return getString(R.string.assistantButtonSelect);
             }
         }
     }
 
     public void openHelp(View view) {
         Intent intent = new Intent(this, HelpActivity.class);
-        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Pets);
+        intent.putExtra(HelpActivity.INTENT_ID, HelpActivity.TOPICS.Assistants);
         startActivity(intent);
     }
 
@@ -114,18 +116,18 @@ public class PetActivity extends Activity {
         finish();
     }
 
-    class PetPagerAdapter extends PagerAdapter {
+    class AssistantPagerAdapter extends PagerAdapter {
         Context mContext;
         LayoutInflater mLayoutInflater;
 
-        public PetPagerAdapter(Context context) {
+        public AssistantPagerAdapter(Context context) {
             mContext = context;
             mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return numPets;
+            return numAssistants;
         }
 
         @Override
@@ -138,7 +140,7 @@ public class PetActivity extends Activity {
             View itemView = mLayoutInflater.inflate(R.layout.custom_pager_item, container, false);
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            imageView.setImageResource(DisplayHelper.getPetDrawableID(container.getContext(), position+1));
+            imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), position+1));
 
             container.addView(itemView);
 

@@ -292,7 +292,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="290dp"
                 android:onClick="openPets"
-                android:src="@drawable/pet1"
+                android:src="@drawable/assistant1"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="22%" />
 

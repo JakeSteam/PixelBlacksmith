@@ -140,7 +140,7 @@
             android:name=".main.VisitorSelectActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
-            android:name=".main.PetActivity"
+            android:name=".main.AssistantActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.InterstitialActivity"

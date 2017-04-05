@@ -15,6 +15,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.SplashScreenActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Category;
 import uk.co.jakelee.blacksmith.model.Character;
 import uk.co.jakelee.blacksmith.model.Contribution_Goal;
@@ -27,7 +28,6 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Message;
-import uk.co.jakelee.blacksmith.model.Pet;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Recipe;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -925,8 +925,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Setting.saveInTx(settings);
 
         List<Player_Info> statistics = new ArrayList<>();
-            statistics.add(new Player_Info("ActivePet", 0));
-            statistics.add(new Player_Info("LastPetClaim", 0L));
+            statistics.add(new Player_Info("ActiveAssistant", 0));
+            statistics.add(new Player_Info("LastAssistantClaim", 0L));
         Player_Info.saveInTx(statistics);
 
 
@@ -934,11 +934,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     }
 
     private void createPets() {
-        List<Pet> pets = new ArrayList<>();
-            pets.add(new Pet(1, 10, 5000, 0.75, 0, 5, 0L));
-            pets.add(new Pet(2, 1, 100, 0.95, 1200, 3, 0L));
-            pets.add(new Pet(3, 99, 1000, 0.55, 0, 10, 0L));
-        Pet.saveInTx(pets);
+        List<Assistant> assistants = new ArrayList<>();
+            assistants.add(new Assistant(1, 10, 5000, 0.75, 0, 5, 0L));
+            assistants.add(new Assistant(2, 1, 100, 0.95, 1200, 3, 0L));
+            assistants.add(new Assistant(3, 99, 1000, 0.55, 0, 10, 0L));
+        Assistant.saveInTx(assistants);
     }
 	
 	private void createContributionGoals() {
@@ -1896,7 +1896,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private void createPlayerInfo() {
         List<Player_Info> player_infos = new ArrayList<>();
         
-        player_infos.add(new Player_Info("XP", 234324));
+        player_infos.add(new Player_Info("XP", Constants.STARTING_XP));
         player_infos.add(new Player_Info("", 0));
         player_infos.add(new Player_Info("ItemsSmelted", 0, 0));
         player_infos.add(new Player_Info("ItemsCrafted", 0));

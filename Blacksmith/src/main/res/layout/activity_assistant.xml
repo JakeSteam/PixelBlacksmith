@@ -21,30 +21,30 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:weightSum="2"
-        tools:context="uk.co.jakelee.blacksmith.main.PetActivity">
+        tools:context="uk.co.jakelee.blacksmith.main.AssistantActivity">
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-            android:id="@+id/petTitle"
+            android:id="@+id/assistantTitle"
             android:layout_width="match_parent"
             app:layout_heightPercent="10%"
             app:layout_marginTopPercent="1%"
             app:layout_marginBottomPercent="8%"
             android:gravity="center"
-            android:text="@string/petTitle"
+            android:text="@string/assistantTitle"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="55sp" />
 
         <android.support.percent.PercentRelativeLayout
-            android:id="@+id/petLayout"
+            android:id="@+id/assistantLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/petTitle"
+            android:layout_below="@id/assistantTitle"
             android:orientation="vertical"
             android:padding="5dp">
             <android.support.v4.view.ViewPager
-                android:id="@+id/petScroller"
+                android:id="@+id/assistantScroller"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_heightPercent="30%"
@@ -54,7 +54,7 @@
                 android:id="@+id/mainButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
+                android:layout_margin="7dp"
                 android:background="@drawable/button_extra_wide"
                 android:clickable="true"
                 android:gravity="center"
@@ -63,23 +63,23 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="25sp" />
             <ScrollView
-                android:id="@+id/petInfo"
+                android:id="@+id/assistantInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/petScroller"
+                android:layout_below="@id/assistantScroller"
                 android:layout_above="@id/mainButton">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/petName"
+                        android:id="@+id/assistantName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="28sp"/>
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/petDesc"
+                        android:id="@+id/assistantDesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"

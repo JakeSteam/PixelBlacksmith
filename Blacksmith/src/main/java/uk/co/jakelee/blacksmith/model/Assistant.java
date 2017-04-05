@@ -8,8 +8,8 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.blacksmith.helper.TextHelper;
 
-public class Pet extends SugarRecord {
-    private int petId;
+public class Assistant extends SugarRecord {
+    private int assistantId;
     private int levelRequired;
     private int coinsRequired;
     private double levelModifier;
@@ -17,11 +17,11 @@ public class Pet extends SugarRecord {
     private int maxLevel;
     private long obtained;
 
-    public Pet() {
+    public Assistant() {
     }
 
-    public Pet(int petId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained) {
-        this.petId = petId;
+    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained) {
+        this.assistantId = assistantId;
         this.levelRequired = levelRequired;
         this.coinsRequired = coinsRequired;
         this.levelModifier = levelModifier;
@@ -30,24 +30,24 @@ public class Pet extends SugarRecord {
         this.obtained = obtained;
     }
 
-    public static Pet get(int petId) {
-        return Select.from(Pet.class).where(Condition.prop("pet_id").eq(petId)).first();
+    public static Assistant get(int assistantId) {
+        return Select.from(Assistant.class).where(Condition.prop("assistant_id").eq(assistantId)).first();
     }
 
     public String getName(Context context) {
-        return TextHelper.getInstance(context).getText("pet_name_" + petId);
+        return TextHelper.getInstance(context).getText("assistant_name_" + assistantId);
     }
 
     public String getDesc(Context context) {
-        return TextHelper.getInstance(context).getText("pet_desc_" + petId);
+        return TextHelper.getInstance(context).getText("assistant_desc_" + assistantId);
     }
 
-    public int getPetId() {
-        return petId;
+    public int getAssistantId() {
+        return assistantId;
     }
 
-    public void setPetId(int petId) {
-        this.petId = petId;
+    public void setAssistantId(int assistantId) {
+        this.assistantId = assistantId;
     }
 
     public int getLevelRequired() {

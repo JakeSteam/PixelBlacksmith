@@ -27,18 +27,18 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.InventoryActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
-import uk.co.jakelee.blacksmith.main.PetActivity;
+import uk.co.jakelee.blacksmith.main.AssistantActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
 import uk.co.jakelee.blacksmith.main.WorkerActivity;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Hero_Adventure;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
-import uk.co.jakelee.blacksmith.model.Pet;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
@@ -447,20 +447,20 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void confirmBuyPet(final Context context, final PetActivity activity, final Pet pet) {
+    public static void confirmBuyAssistant(final Context context, final AssistantActivity activity, final Assistant assistant) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(Locale.ENGLISH, activity.getString(R.string.petBuyQuestion), pet.getName(activity), pet.getCoinsRequired()));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, activity.getString(R.string.assistantBuyQuestion), assistant.getName(activity), assistant.getCoinsRequired()));
 
         alertDialog.setPositiveButton(context.getString(R.string.buy), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                if (pet.getCoinsRequired() <= Inventory.getCoins()) {
+                if (assistant.getCoinsRequired() <= Inventory.getCoins()) {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-                    coinStock.setQuantity(coinStock.getQuantity() - pet.getCoinsRequired());
+                    coinStock.setQuantity(coinStock.getQuantity() - assistant.getCoinsRequired());
                     coinStock.save();
-                    pet.setObtained(System.currentTimeMillis());
-                    pet.save();
+                    assistant.setObtained(System.currentTimeMillis());
+                    assistant.save();
                 }
-                activity.displayPetInfo();
+                activity.displayAssistantInfo();
             }
         });
 

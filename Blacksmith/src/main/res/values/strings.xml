@@ -1,22 +1,21 @@
 <resources>
     <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
-    <string name="pet_name_1">Numero Uno</string>
-    <string name="pet_name_2">Numero Dos</string>
-    <string name="pet_name_3">Numero Tres</string>
+    <string name="assistant_name_1">Elven Lord</string>
+    <string name="assistant_name_2">Troll Rebel</string>
+    <string name="assistant_name_3">Skeleton</string>
 
-    <string name="pet_desc_1">This pet should provide 5-15%% XP boost and 100 bronze ore every hour. It requires level 10, and has a 10k unlock cost.</string>
-    <string name="pet_desc_2">A grass pet, not bulbasaur.</string>
-    <string name="pet_desc_3">A water pet, maybe even squirtle.</string>
+    <string name="assistant_desc_1">I should provide some sort of XP boost and hourly bonus. I do not currently. Sorry.</string>
+    <string name="assistant_desc_2">I provide something else probably.</string>
+    <string name="assistant_desc_3">I am a skeleton.</string>
 
-    <string name="petTitle">Pets</string>
-    <string name="petAlertSelected">Selected pet \"%1$s\"!</string>
-    <string name="petN">Selected pet \"%1$s\"!</string>
-    <string name="petButtonSelect">Select</string>
-    <string name="petButtonDeselect">Deselect</string>
-    <string name="petButtonLockedLevel">Req. Lev </string>
-    <string name="petButtonLockedCoins">Unlock for </string>
-    <string name="petBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
+    <string name="assistantTitle">Assistant</string>
+    <string name="assistantAlertSelected">Selected assistant \"%1$s\"!</string>
+    <string name="assistantButtonSelect">Select</string>
+    <string name="assistantButtonSelected">Selected!</string>
+    <string name="assistantButtonLockedLevel">Req. Lev </string>
+    <string name="assistantButtonLockedCoins">Unlock for </string>
+    <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
