@@ -19,9 +19,11 @@ import com.orm.query.Select;
 import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
+import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pet;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
@@ -37,6 +39,7 @@ public class PetActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet);
         dh = DisplayHelper.getInstance(this);
+        dh.updateFullscreen(this);
 
         mCustomPagerAdapter = new PetPagerAdapter(this);
         numPets = (int)Pet.count(Pet.class);
@@ -61,25 +64,44 @@ public class PetActivity extends Activity {
         displayPetInfo();
     }
 
-    public void setActive(View v) {
+    public void buttonClick(View v) {
         Pet pet = Pet.get(selectedPet);
         if (pet.getObtained() > 0) {
             Player_Info activePet = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActivePet")).first();
             activePet.setIntValue(selectedPet);
             activePet.save();
             displayPetInfo();
-            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.petAlertSelected), pet.getName(this, selectedPet)), true);
+            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.petAlertSelected), pet.getName(this)), true);
         } else {
-            ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(R.string.petAlertLocked), false);
+            if (pet.getCoinsRequired() > Inventory.getCoins()) {
+                ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(R.string.error_not_enough_coins), false);
+            } else {
+                AlertDialogHelper.confirmBuyPet(this, this, pet);
+            }
         }
     }
 
-    private void displayPetInfo() {
+    public void displayPetInfo() {
         Pet pet = Pet.get(selectedPet);
         ((TextView)findViewById(R.id.petName)).setText(TextHelper.getInstance(this).getText("pet_name_" + selectedPet));
         ((TextView)findViewById(R.id.petDesc)).setText(TextHelper.getInstance(this).getText("pet_desc_" + selectedPet));
-        ((TextView)findViewById(R.id.activeButton)).setText(pet.getObtained() == 0 ? R.string.petLocked :
-                Player_Info.getActivePet() == selectedPet ? R.string.petDeselect : R.string.petSelect);
+        ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(pet));
+    }
+
+    private String getButtonText(Pet pet) {
+        if (pet.getObtained() == 0) {
+            if (pet.getLevelRequired() > Player_Info.getPlayerLevel()) {
+                return getString(R.string.petButtonLockedLevel) + " " + pet.getLevelRequired();
+            } else {
+                return getString(R.string.petButtonLockedCoins) + " " + pet.getCoinsRequired();
+            }
+        } else {
+            if (Player_Info.getActivePet() == selectedPet) {
+                return getString(R.string.petButtonDeselect);
+            } else {
+                return getString(R.string.petButtonSelect);
+            }
+        }
     }
 
     public void openHelp(View view) {

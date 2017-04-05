@@ -51,14 +51,14 @@
                 android:background="@color/white"
                 android:padding="5dp" />
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                android:id="@+id/activeButton"
+                android:id="@+id/mainButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:background="@drawable/button"
+                android:background="@drawable/button_extra_wide"
                 android:clickable="true"
                 android:gravity="center"
-                android:onClick="setActive"
+                android:onClick="buttonClick"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="25sp" />
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/petScroller"
-                android:layout_above="@id/activeButton">
+                android:layout_above="@id/mainButton">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

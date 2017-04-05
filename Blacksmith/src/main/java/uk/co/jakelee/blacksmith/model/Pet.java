@@ -10,6 +10,8 @@ import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Pet extends SugarRecord {
     private int petId;
+    private int levelRequired;
+    private int coinsRequired;
     private double levelModifier;
     private int currentXp;
     private int maxLevel;
@@ -18,8 +20,10 @@ public class Pet extends SugarRecord {
     public Pet() {
     }
 
-    public Pet(int petId, double levelModifier, int currentXp, int maxLevel, long obtained) {
+    public Pet(int petId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained) {
         this.petId = petId;
+        this.levelRequired = levelRequired;
+        this.coinsRequired = coinsRequired;
         this.levelModifier = levelModifier;
         this.currentXp = currentXp;
         this.maxLevel = maxLevel;
@@ -30,11 +34,11 @@ public class Pet extends SugarRecord {
         return Select.from(Pet.class).where(Condition.prop("pet_id").eq(petId)).first();
     }
 
-    public String getName(Context context, int petId) {
+    public String getName(Context context) {
         return TextHelper.getInstance(context).getText("pet_name_" + petId);
     }
 
-    public String getDesc(Context context, int petId) {
+    public String getDesc(Context context) {
         return TextHelper.getInstance(context).getText("pet_desc_" + petId);
     }
 
@@ -44,6 +48,22 @@ public class Pet extends SugarRecord {
 
     public void setPetId(int petId) {
         this.petId = petId;
+    }
+
+    public int getLevelRequired() {
+        return levelRequired;
+    }
+
+    public void setLevelRequired(int levelRequired) {
+        this.levelRequired = levelRequired;
+    }
+
+    public int getCoinsRequired() {
+        return coinsRequired;
+    }
+
+    public void setCoinsRequired(int coinsRequired) {
+        this.coinsRequired = coinsRequired;
     }
 
     public double getLevelModifier() {

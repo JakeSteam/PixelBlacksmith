@@ -935,9 +935,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void createPets() {
         List<Pet> pets = new ArrayList<>();
-            pets.add(new Pet(1, 0.75, 0, 5, System.currentTimeMillis()));
-            pets.add(new Pet(2, 0.95, 1200, 3, System.currentTimeMillis()));
-            pets.add(new Pet(3, 0.55, 0, 10, 0L));
+            pets.add(new Pet(1, 10, 5000, 0.75, 0, 5, 0L));
+            pets.add(new Pet(2, 1, 100, 0.95, 1200, 3, 0L));
+            pets.add(new Pet(3, 99, 1000, 0.55, 0, 10, 0L));
         Pet.saveInTx(pets);
     }
 	
@@ -1896,7 +1896,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private void createPlayerInfo() {
         List<Player_Info> player_infos = new ArrayList<>();
         
-        player_infos.add(new Player_Info("XP", Constants.STARTING_XP));
+        player_infos.add(new Player_Info("XP", 234324));
         player_infos.add(new Player_Info("", 0));
         player_infos.add(new Player_Info("ItemsSmelted", 0, 0));
         player_infos.add(new Player_Info("ItemsCrafted", 0));

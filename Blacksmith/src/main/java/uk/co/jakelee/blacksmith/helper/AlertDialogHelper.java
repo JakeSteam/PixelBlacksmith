@@ -20,12 +20,14 @@ import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.InventoryActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
+import uk.co.jakelee.blacksmith.main.PetActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
@@ -36,6 +38,7 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
+import uk.co.jakelee.blacksmith.model.Pet;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
@@ -436,6 +439,36 @@ public class AlertDialogHelper {
                 }
             });
         }
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void confirmBuyPet(final Context context, final PetActivity activity, final Pet pet) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(Locale.ENGLISH, activity.getString(R.string.petBuyQuestion), pet.getName(activity), pet.getCoinsRequired()));
+
+        alertDialog.setPositiveButton(context.getString(R.string.buy), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (pet.getCoinsRequired() <= Inventory.getCoins()) {
+                    Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+                    coinStock.setQuantity(coinStock.getQuantity() - pet.getCoinsRequired());
+                    coinStock.save();
+                    pet.setObtained(System.currentTimeMillis());
+                    pet.save();
+                }
+                activity.displayPetInfo();
+            }
+        });
+
+        alertDialog.setNegativeButton(context.getString(R.string.itemBuyCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
 
         final Dialog dialog = alertDialog.create();
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
