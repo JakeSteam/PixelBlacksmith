@@ -41,13 +41,13 @@
     <string name="buyHero">Kauf Held</string>
     <string name="buyHeroComplete">Erfolgreicher Held!</string>
     <string name="buyHeroConfirm">Mieten</string>
-    <string name="buyHeroQuestion">Bist du sicher, dass du diesen Helden für%, d-Münzen mieten möchtest?</string>
+    <string name="buyHeroQuestion">Bist du sicher, dass du diesen Helden für%,d-Münzen mieten möchtest?</string>
     <string name="buyPremium">Gehen Sie Premium!</string>
     <string name="buyWorker">Kaufhelfer kaufen</string>
     <string name="buyWorkerCancel">Stornieren</string>
     <string name="buyWorkerComplete">Erfolgreicher Helfer!</string>
     <string name="buyWorkerConfirm">Mieten</string>
-    <string name="buyWorkerQuestion">Sind Sie sicher, dass Sie diesen Helfer für%, d Münzen mieten möchten?</string>
+    <string name="buyWorkerQuestion">Sind Sie sicher, dass Sie diesen Helfer für%,d Münzen mieten möchten?</string>
     <string name="buyingIAPError">Beim Kauf ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal, hoffentlich wird es funktionieren!</string>
     <string name="cannotBuyIAP">Dieses Konto kann Google-In-App-Käufe nicht verwenden. Bitte überprüfen Sie, ob Sie eine Zahlungsmethode haben und sind auf der neuesten Version von Google Play Services.</string>
     <string name="character_intro_1">Grüße! Sehen Sie alles, was Sie mögen?</string>
@@ -143,7 +143,7 @@
     <string name="dismissConfirmAdvert">Ad anzeigen</string>
     <string name="dismissFailure">Nicht genug Geld, um einen Besucher zu entlassen.</string>
     <string name="dismissQuestion">Möchten Sie einen Besucher %bezahlen, d Münzen sofort verlassen?</string>
-    <string name="dismissQuestionAdvert">Möchten Sie%, d Münzen bezahlen oder eine Anzeige sehen, um den Besucher sofort zu verlassen?</string>
+    <string name="dismissQuestionAdvert">Möchten Sie%,d Münzen bezahlen oder eine Anzeige sehen, um den Besucher sofort zu verlassen?</string>
     <string name="enchantAdd">Begann die Einbettung der %1$s in die %2$s.</string>
     <string name="enchantText">Edelsteine</string>
     <string name="enchantingText">Gem Tisch</string>

@@ -146,8 +146,8 @@
     <string name="dismissConfirm">Betalen</string>
     <string name="dismissConfirmAdvert">Kijk Ad</string>
     <string name="dismissFailure">Niet genoeg geld om een ​​bezoeker te ontslaan.</string>
-    <string name="dismissQuestion">Wilt u een bezoeker %te betalen, d munten onmiddellijk te vertrekken?</string>
-    <string name="dismissQuestionAdvert">Wilt u%, d munten betalen of kijken naar een advertentie naar de bezoeker onmiddellijk te verlaten?</string>
+    <string name="dismissQuestion">Wilt u een bezoeker %,d te betalen, munten onmiddellijk te vertrekken?</string>
+    <string name="dismissQuestionAdvert">Wilt u%,d munten betalen of kijken naar een advertentie naar de bezoeker onmiddellijk te verlaten?</string>
     <string name="enchantAdd">Begon het inbedden van de %1$s in de %2$s.</string>
     <string name="enchantText">Gems</string>
     <string name="enchantingText">gem Table</string>
@@ -1088,8 +1088,8 @@
     <string name="statisticsWorkersOwned">Helpers Owned:</string>
     <string name="statisticsWorkersTrips">Helper\'s Trips:</string>
     <string name="su_1">2x Furnace Items</string>
-    <string name="su_10">-50 %Market Koop Cost</string>
-    <string name="su_11">-50 %Bonus Borst Time</string>
+    <string name="su_10">-50%%Market Koop Cost</string>
+    <string name="su_11">-50%%Bonus Borst Time</string>
     <string name="su_12">100x Bijdrage Beloning</string>
     <string name="su_13">gegarandeerd Pages</string>
     <string name="su_14">Alle Quests Medium +</string>
@@ -1106,7 +1106,7 @@
     <string name="su_5">2x Worker Resources</string>
     <string name="su_6">1 vraag per bezoeker</string>
     <string name="su_7">Vrije Markt Restock</string>
-    <string name="su_8">-50 %Worker Time</string>
+    <string name="su_8">-50%%Worker Time</string>
     <string name="su_9">2x Handel Prijs</string>
     <string name="superTabText">Super</string>
     <string name="superUpgradeCollections">Je hebt voltooid %1$d collectie (s), dus kan %1$d / %2$d super upgrades tegelijk activeren.\n</string>
@@ -1200,7 +1200,7 @@
     <string name="trader_desc_40">Baker\'s tientallen!</string>
     <string name="trader_desc_41">Vraag niet hoe ik dit.</string>
     <string name="trader_desc_42">De fijnste rune middelen in het land!</string>
-    <string name="trader_desc_43">Alle 100% gen-u-ine dragon.</string>
+    <string name="trader_desc_43">Alle 100%% gen-u-ine dragon.</string>
     <string name="trader_desc_44">Voor slechts blobs!</string>
     <string name="trader_desc_45">Voor chique blobs only!</string>
     <string name="trader_desc_46">Vers van de asteroïde.</string>
@@ -1366,7 +1366,7 @@
     <string name="tutorialVisitorPicture">Bezoeker</string>
     <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! Hoe aardig van je om te stoppen door.</string>
     <string name="tutorialVisitorPrefs">voorkeuren</string>
-    <string name="tutorialVisitorPrefsText">Het lijkt erop dat deze bezoeker verkiest bronzen voorwerpen, en erts, en geeft een bonus van 5 %als ze worden verhandeld.</string>
+    <string name="tutorialVisitorPrefsText">Het lijkt erop dat deze bezoeker verkiest bronzen voorwerpen, en erts, en geeft een bonus van 5%%als ze worden verhandeld.</string>
     <string name="tutorialVisitorText">Uw eerste bezoeker is gearriveerd! Tik hem om verder te gaan.</string>
     <string name="typePreference">Deze klant betaalt %1$s extra voor %2$ss.</string>
     <string name="typePreferenceHero">Deze held zal een %1$s boost voor %2$ss ontvangen.</string>
@@ -1402,7 +1402,7 @@
     <string name="undiscoveredPreference">Je bent nog niet ontdekt deze voorkeur! Probeer de verkoop van verschillende items om ze te ontdekken.</string>
     <string name="unknownText">\???</string>
     <string name="unlock">ontsluiten</string>
-    <string name="unlockConfirm">Weet u zeker dat u wilt ontgrendelen %1$s? Unlocking is gratis, maar het zal %kost 2$d munten om weer te vergrendelen.</string>
+    <string name="unlockConfirm">Weet u zeker dat u wilt ontgrendelen %1$s? Unlocking is gratis, maar het zal kost %2$d munten om weer te vergrendelen.</string>
     <string name="unlockSuccess">Met succes ontgrendeld trader!</string>
     <string name="unnecessaryRestock">Er is geen noodzaak om deze handelaar weer te vullen!</string>
     <string name="unsellableItem">Gemarkeerd %1$s in %2$ssellable!</string>

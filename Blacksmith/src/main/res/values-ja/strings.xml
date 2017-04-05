@@ -147,7 +147,7 @@
     <string name="dismissConfirmAdvert">ウォッチ広告</string>
     <string name="dismissFailure">訪問者を却下するのに十分な資金がありません。</string>
     <string name="dismissQuestion">あなたは訪問者%dコインをすぐに出すように支払いますか？</string>
-    <string name="dismissQuestionAdvert">訪問者がすぐに出るように%コインや広告を見たいですか？</string>
+    <string name="dismissQuestionAdvert">訪問者がすぐに出るように%%コインや広告を見たいですか？</string>
     <string name="enchantAdd">%1$sを%2$sに埋め込み始めました。</string>
     <string name="enchantText">宝石類</string>
     <string name="enchantingText">宝石テーブル</string>
@@ -945,7 +945,7 @@
     <string name="please_select">選んでください</string>
     <string name="powderAdd">宝石を%sに粉砕し始めました。</string>
     <string name="powderText">パウダー</string>
-    <string name="premiumFeatures">プレミアムメリット：\n\nボーナスコインとボーナスXPのアップグレードに即時+ 20%%。\n\n- 最大50%の可能なボーナスコインとボーナスXPアップグレード（50%%から100%%）\n\n- 非常に強力なスーパーアップグレードへの簡単なアクセス。\n\n- すべての広告をオフにする機能。\n\n- 17の非常に貴重な伝説的なアイテムへのアクセス。\n\n- すべての領域の余分な製作用スロット。\n\n- 自動在庫補充のためにすべての在庫切れのトレーダーによって支払われたコイン。\n\n- レベル70で威信を持ち、+ 50%%硬貨収入&amp; -25%%XP！\n\n- ボーナス胸の報酬を2倍にし、胸の開け間の時間を短縮しました。\n\n- ベータ版のアクセスを解除し、新しいアイテム/訪問者を提案できるContributeへのアビリティ！\n\n- 開発者から大きな感謝を！</string>
+    <string name="premiumFeatures">プレミアムメリット：\n\nボーナスコインとボーナスXPのアップグレードに即時+ 20%%。\n\n- 最大50%%の可能なボーナスコインとボーナスXPアップグレード（50%%から100%%）\n\n- 非常に強力なスーパーアップグレードへの簡単なアクセス。\n\n- すべての広告をオフにする機能。\n\n- 17の非常に貴重な伝説的なアイテムへのアクセス。\n\n- すべての領域の余分な製作用スロット。\n\n- 自動在庫補充のためにすべての在庫切れのトレーダーによって支払われたコイン。\n\n- レベル70で威信を持ち、+ 50%%硬貨収入&amp; -25%%XP！\n\n- ボーナス胸の報酬を2倍にし、胸の開け間の時間を短縮しました。\n\n- ベータ版のアクセスを解除し、新しいアイテム/訪問者を提案できるContributeへのアビリティ！\n\n- 開発者から大きな感謝を！</string>
     <string name="premiumSettingGroup">プレミアムオプション</string>
     <string name="premiumStatusActive">現在はプレミアム！</string>
     <string name="premiumStatusInactive">現在はプレミアムではありません。</string>
@@ -953,7 +953,7 @@
     <string name="prestigeCancel">キャンセル</string>
     <string name="prestigeComplete">プレステージ成功、すべてのコイン収益+%1$d %%＆amp; XPの利益 - %2$d %%！がんばろう！</string>
     <string name="prestigeConfirm">威信</string>
-    <string name="prestigeQuestion">Prestigingは、+50%%coin&amp; +50% %coin &amp;の代わりにすべてのアイテム（ページ+書籍を除く）/コイン/アップグレード/ワーカーをリセットします。 -25 %%XPが得られます。\n\nこれは、元に戻すことはできません。</string>
+    <string name="prestigeQuestion">Prestigingは、+50%%coin&amp; +50%%coin &amp;の代わりにすべてのアイテム（ページ+書籍を除く）/コイン/アップグレード/ワーカーをリセットします。 -25 %%XPが得られます。\n\nこれは、元に戻すことはできません。</string>
     <string name="prestigeSettingText">威信\n（NG+）</string>
     <string name="questAvailable">利用可能</string>
     <string name="questComplete">\"%1$s\"を完了し、%2$s報酬を受け取りました：%3$s。</string>
@@ -1088,8 +1088,8 @@
     <string name="statisticsWorkersOwned">ヘルパーの所有：</string>
     <string name="statisticsWorkersTrips">ヘルパーズトリップ：</string>
     <string name="su_1">2倍炉のアイテム</string>
-    <string name="su_10">-50%市場購入コスト</string>
-    <string name="su_11">ボーナス胸囲：50%</string>
+    <string name="su_10">-50%%市場購入コスト</string>
+    <string name="su_11">ボーナス胸囲：50%%</string>
     <string name="su_12">貢献報酬100倍</string>
     <string name="su_13">保証されたページ</string>
     <string name="su_14">すべてのクエストMedium +</string>
@@ -1106,7 +1106,7 @@
     <string name="su_5">2倍のワーカーリソース</string>
     <string name="su_6">訪問者1人当たりの需要</string>
     <string name="su_7">フリーマーケット再入荷</string>
-    <string name="su_8">-50%の労働時間</string>
+    <string name="su_8">-50%%の労働時間</string>
     <string name="su_9">2倍の貿易価格</string>
     <string name="superTabText">スーパー</string>
     <string name="superUpgradeCollections">%1$d個のコレクションを完了しましたので、一度に%1$d /%2$d個のスーパーアップグレードを有効にすることができます。\n</string>

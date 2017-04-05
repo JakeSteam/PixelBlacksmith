@@ -43,7 +43,7 @@
     <string name="buyHero">购买英雄</string>
     <string name="buyHeroComplete">成功聘请英雄！</string>
     <string name="buyHeroConfirm">聘请</string>
-    <string name="buyHeroQuestion">你确定要雇用这个英雄的%，d硬币吗？</string>
+    <string name="buyHeroQuestion">你确定要雇用这个英雄的%,d硬币吗？</string>
     <string name="buyPremium">去高价！</string>
     <string name="buyWorker">购买助手</string>
     <string name="buyWorkerCancel">取消</string>
@@ -146,8 +146,8 @@
     <string name="dismissConfirm">工资</string>
     <string name="dismissConfirmAdvert">观看广告</string>
     <string name="dismissFailure">没有足够的钱来解雇一个访客。</string>
-    <string name="dismissQuestion">你要支付访问者%，d硬币立即离开？</string>
-    <string name="dismissQuestionAdvert">您要支付%，d硬币还是观看广告，让访客立即离开？</string>
+    <string name="dismissQuestion">你要支付访问者%,d硬币立即离开？</string>
+    <string name="dismissQuestionAdvert">您要支付%,d硬币还是观看广告，让访客立即离开？</string>
     <string name="enchantAdd">开始将%1$s嵌入到%2$s中。</string>
     <string name="enchantText">宝石</string>
     <string name="enchantingText">宝石桌</string>
@@ -1366,7 +1366,7 @@
     <string name="tutorialVisitorPicture">游客</string>
     <string name="tutorialVisitorPictureText">啊，T Utorial先生！你好多好停下来</string>
     <string name="tutorialVisitorPrefs">优先</string>
-    <string name="tutorialVisitorPrefsText">看起来这个访客喜欢青铜物品和矿石，如果交易得到5%的奖金。</string>
+    <string name="tutorialVisitorPrefsText">看起来这个访客喜欢青铜物品和矿石，如果交易得到5%%的奖金。</string>
     <string name="tutorialVisitorText">你的第一个访客到了！点击他继续。</string>
     <string name="typePreference">该客户将为%2$ss支付%1$s的额外费用。</string>
     <string name="typePreferenceHero">这个英雄将获得%2$ss的%1$s提升。</string>

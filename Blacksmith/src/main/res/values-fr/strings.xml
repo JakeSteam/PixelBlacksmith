@@ -43,13 +43,13 @@
     <string name="buyHero">Achetez un héros</string>
     <string name="buyHeroComplete">Héritier engagé avec succès!</string>
     <string name="buyHeroConfirm">Louer</string>
-    <string name="buyHeroQuestion">Êtes-vous sûr de vouloir embaucher ce héros pour les pièces en%, d?</string>
+    <string name="buyHeroQuestion">Êtes-vous sûr de vouloir embaucher ce héros pour les pièces en%,d?</string>
     <string name="buyPremium">Passer en Premium!</string>
     <string name="buyWorker">Assistant d\'achat</string>
     <string name="buyWorkerCancel">Annuler</string>
     <string name="buyWorkerComplete">Employé avec succès!</string>
     <string name="buyWorkerConfirm">Louer</string>
-    <string name="buyWorkerQuestion">Êtes-vous sûr de vouloir embaucher cette aide pour les pièces%, d?</string>
+    <string name="buyWorkerQuestion">Êtes-vous sûr de vouloir embaucher cette aide pour les pièces%,d?</string>
     <string name="buyingIAPError">Une erreur s\'est produite lors de l\'achat. Réessayez plus tard, j\'espère qu\'il fonctionnera!</string>
     <string name="cannotBuyIAP">Ce compte ne peut pas utiliser les achats dans l\'application Google. Vérifiez que vous avez un mode de paiement et que vous utilisez la dernière version de Google Play Services.</string>
     <string name="character_intro_1">Salutations! Voir tout ce que vous aimez?</string>
@@ -146,8 +146,8 @@
     <string name="dismissConfirm">Payer</string>
     <string name="dismissConfirmAdvert">Regarder l\'annonce</string>
     <string name="dismissFailure">Pas assez d\'argent pour renvoyer un visiteur.</string>
-    <string name="dismissQuestion">Voulez-vous payer un visiteur%, d pièces pour partir immédiatement?</string>
-    <string name="dismissQuestionAdvert">Voulez-vous payer des pièces en%, d ou regarder une annonce pour que le visiteur quitte immédiatement?</string>
+    <string name="dismissQuestion">Voulez-vous payer un visiteur%,d pièces pour partir immédiatement?</string>
+    <string name="dismissQuestionAdvert">Voulez-vous payer des pièces en%,d ou regarder une annonce pour que le visiteur quitte immédiatement?</string>
     <string name="enchantAdd">Commencé à incorporer le %1$s dans %2$s.</string>
     <string name="enchantText">Gemmes</string>
     <string name="enchantingText">Tableau de gemme</string>

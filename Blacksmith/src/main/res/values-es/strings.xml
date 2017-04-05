@@ -43,13 +43,13 @@
     <string name="buyHero">Héroe de la compra</string>
     <string name="buyHeroComplete">Héroe contratado con éxito!</string>
     <string name="buyHeroConfirm">Alquiler</string>
-    <string name="buyHeroQuestion">¿Estás seguro de que quieres contratar a este héroe para%, d monedas?</string>
+    <string name="buyHeroQuestion">¿Estás seguro de que quieres contratar a este héroe para%,d monedas?</string>
     <string name="buyPremium">¡Hazte Premium!</string>
     <string name="buyWorker">Ayudante de compras</string>
     <string name="buyWorkerCancel">Cancelar</string>
     <string name="buyWorkerComplete">Contratado con éxito ayudante!</string>
     <string name="buyWorkerConfirm">Alquiler</string>
-    <string name="buyWorkerQuestion">¿Estás seguro de que quieres contratar a este ayudante para%, d monedas?</string>
+    <string name="buyWorkerQuestion">¿Estás seguro de que quieres contratar a este ayudante para%,d monedas?</string>
     <string name="buyingIAPError">Se ha producido un error al intentar comprar. Por favor, inténtelo de nuevo más tarde, espero que funcione!</string>
     <string name="cannotBuyIAP">Esta cuenta no puede utilizar las compras en la aplicación de Google. Comprueba que tienes un método de pago y estás en la última versión de Google Play Services.</string>
     <string name="character_intro_1">¡Saludos! ¿Ves lo que quieras?</string>
@@ -146,8 +146,8 @@
     <string name="dismissConfirm">Paga</string>
     <string name="dismissConfirmAdvert">Ver anuncio</string>
     <string name="dismissFailure">No hay suficiente dinero para despedir a un visitante.</string>
-    <string name="dismissQuestion">¿Le gustaría pagar a un visitante%, d monedas para salir inmediatamente?</string>
-    <string name="dismissQuestionAdvert">¿Le gustaría pagar%, d monedas o ver un anuncio para hacer que el visitante deje de inmediato?</string>
+    <string name="dismissQuestion">¿Le gustaría pagar a un visitante%,d monedas para salir inmediatamente?</string>
+    <string name="dismissQuestionAdvert">¿Le gustaría pagar%,d monedas o ver un anuncio para hacer que el visitante deje de inmediato?</string>
     <string name="enchantAdd">Comenzó a incrustar el %1$s en el %2$s.</string>
     <string name="enchantText">Gemas</string>
     <string name="enchantingText">Mesa de gemas</string>

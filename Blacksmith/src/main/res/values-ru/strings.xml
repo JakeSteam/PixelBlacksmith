@@ -43,13 +43,13 @@
     <string name="buyHero">Покупка героя</string>
     <string name="buyHeroComplete">Успешно нанятый герой!</string>
     <string name="buyHeroConfirm">нанять</string>
-    <string name="buyHeroQuestion">Вы уверены, что хотите нанять этого героя для%, d монет?</string>
+    <string name="buyHeroQuestion">Вы уверены, что хотите нанять этого героя для%,d монет?</string>
     <string name="buyPremium">Пойдите Премиум!</string>
     <string name="buyWorker">Помощник по покупке</string>
     <string name="buyWorkerCancel">Отмена</string>
     <string name="buyWorkerComplete">Успешно нанятый помощник!</string>
     <string name="buyWorkerConfirm">нанять</string>
-    <string name="buyWorkerQuestion">Вы уверены, что хотите нанять этого помощника для%, d монет?</string>
+    <string name="buyWorkerQuestion">Вы уверены, что хотите нанять этого помощника для%,d монет?</string>
     <string name="buyingIAPError">При попытке покупки произошла ошибка. Повторите попытку позже, надеюсь, это сработает!</string>
     <string name="cannotBuyIAP">Эта учетная запись не может использовать покупки в приложении для Google. Проверьте, есть ли у вас способ оплаты, и вы используете последнюю версию сервисов Google Play.</string>
     <string name="character_intro_1">Приветствую! Видишь что хочешь?</string>
@@ -146,7 +146,7 @@
     <string name="dismissConfirm">Оплатить</string>
     <string name="dismissConfirmAdvert">Смотреть объявление</string>
     <string name="dismissFailure">Не хватает денег, чтобы уволить посетителя.</string>
-    <string name="dismissQuestion">Вы хотите заплатить посетителю%, d монеты, чтобы немедленно уехать?</string>
+    <string name="dismissQuestion">Вы хотите заплатить посетителю%,d монеты, чтобы немедленно уехать?</string>
     <string name="dismissQuestionAdvert">Вы хотите заплатить%,d монеты или посмотреть объявление, чтобы посетитель немедленно уехал?</string>
     <string name="enchantAdd">Началось встраивание %1$s в %2$s.</string>
     <string name="enchantText">Драгоценные камни</string>
@@ -1088,8 +1088,8 @@
     <string name="statisticsWorkersOwned">Помощники:</string>
     <string name="statisticsWorkersTrips">Поездки помощника:</string>
     <string name="su_1">2x Печные Предметы</string>
-    <string name="su_10">-50 %Рыночная стоимость покупки</string>
-    <string name="su_11">-50 %Бонус сундук времени</string>
+    <string name="su_10">-50%%Рыночная стоимость покупки</string>
+    <string name="su_11">-50%%Бонус сундук времени</string>
     <string name="su_12">Вознаграждение за участие 100x</string>
     <string name="su_13">Гарантированные страницы</string>
     <string name="su_14">Все квесты Medium +</string>
@@ -1106,7 +1106,7 @@
     <string name="su_5">2 рабочих ресурсов</string>
     <string name="su_6">1 Спрос на посетителя</string>
     <string name="su_7">Пополнение свободного рынка</string>
-    <string name="su_8">-50 %рабочего времени</string>
+    <string name="su_8">-50%%рабочего времени</string>
     <string name="su_9">2x торговая цена</string>
     <string name="superTabText">Супер</string>
     <string name="superUpgradeCollections">Вы завершили сбор (-ы) для %1$d, поэтому можете одновременно активировать супер-обновления %1$d / %2$d.\n</string>
@@ -1366,7 +1366,7 @@
     <string name="tutorialVisitorPicture">Посетитель</string>
     <string name="tutorialVisitorPictureText">Ах, мистер T Utorial! Как мило с твоей стороны зайти.</string>
     <string name="tutorialVisitorPrefs">Настройки</string>
-    <string name="tutorialVisitorPrefsText">Похоже, этот посетитель предпочитает бронзовые предметы и руду, и дает 5 %бонус, если они торгуются.</string>
+    <string name="tutorialVisitorPrefsText">Похоже, этот посетитель предпочитает бронзовые предметы и руду, и дает 5\%бонус, если они торгуются.</string>
     <string name="tutorialVisitorText">Ваш первый посетитель прибыл! Нажмите его, чтобы продолжить.</string>
     <string name="typePreference">Этот клиент будет платить %1$s дополнительно за %2$ss.</string>
     <string name="typePreferenceHero">Этот герой получит %1$s boost для %2$ss.</string>
