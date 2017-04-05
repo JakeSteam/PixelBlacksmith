@@ -14,6 +14,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
@@ -59,14 +60,29 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
     private void createDropdown() {
         Spinner toolSelector = (Spinner) findViewById(R.id.toolTypes);
         toolSelector.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.toolsArray, R.layout.custom_spinner);
+        List<String> tools = getToolStrings();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.custom_spinner, tools);
         adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         toolSelector.setAdapter(adapter);
         toolSelector.setOnItemSelectedListener(this);
     }
 
+    private List<String> getToolStrings() {
+        List<String> toolStrings = new ArrayList<>();
+        toolStrings.add(getString(R.string.tool_pickaxe));
+        toolStrings.add(getString(R.string.tool_hammer));
+        toolStrings.add(getString(R.string.tool_fishing_rod));
+        toolStrings.add(getString(R.string.tool_hatchet));
+        toolStrings.add(getString(R.string.tool_gloves));
+        toolStrings.add(getString(R.string.tool_gem));
+        toolStrings.add(getString(R.string.tool_silver_ring));
+        toolStrings.add(getString(R.string.tool_gold_ring));
+        toolStrings.add(getString(R.string.tool_visage));
+        return toolStrings;
+    }
+
     private void populateTools() {
-        populateTools("Pickaxe (Ore)");
+        populateTools(getString(R.string.tool_pickaxe));
     }
 
     private void populateTools(String selection) {
@@ -74,7 +90,7 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
         toolHolder.removeAllViews();
         TextView noToolsMessage = (TextView)findViewById(R.id.noTools);
 
-        List<Inventory> tools = WorkerHelper.getTools(selection);
+        List<Inventory> tools = WorkerHelper.getTools(this, selection);
         if (tools.size() > 0) {
             noToolsMessage.setVisibility(View.GONE);
             for (Inventory tool : tools) {

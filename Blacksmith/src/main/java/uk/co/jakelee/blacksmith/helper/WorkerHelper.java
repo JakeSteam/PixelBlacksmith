@@ -559,25 +559,25 @@ public class WorkerHelper {
                 timeRemaining);
     }
 
-    public static List<Inventory> getTools(String selection) {
+    public static List<Inventory> getTools(Context context, String selection) {
         String whereClause = "1 > 2";
-        if (selection.equals("Pickaxe (Ore)")) {
+        if (selection.equals(context.getString(R.string.tool_pickaxe))) {
             whereClause = "type = 15";
-        } else if (selection.equals("Hammer (Bar)")) {
+        } else if (selection.equals(context.getString(R.string.tool_hammer))) {
             whereClause = "type = 18";
-        } else if (selection.equals("Fishing Rod (Food)")) {
+        } else if (selection.equals(context.getString(R.string.tool_fishing_rod))) {
             whereClause = "type = 17";
-        } else if (selection.equals("Hatchet (Wood)")) {
+        } else if (selection.equals(context.getString(R.string.tool_hatchet))) {
             whereClause = "type = 16";
-        } else if (selection.equals("Gloves (Silk)")) {
+        } else if (selection.equals(context.getString(R.string.tool_gloves))) {
             whereClause = "type = 14";
-        } else if (selection.equals("Gem (Powder)")) {
+        } else if (selection.equals(context.getString(R.string.tool_gem))) {
             whereClause = "type = 20";
-        } else if (selection.equals("Silver Ring (Silver + Gems)")) {
+        } else if (selection.equals(context.getString(R.string.tool_silver_ring))) {
             whereClause = "type = 24 AND tier = 8";
-        } else if (selection.equals("Gold Ring (Gold + Gems)")) {
+        } else if (selection.equals(context.getString(R.string.tool_gold_ring))) {
             whereClause = "type = 24 AND tier = 9";
-        } else if (selection.equals("Visage (Coins)")) {
+        } else if (selection.equals(context.getString(R.string.tool_visage))) {
             whereClause = "id = 148";
         }
         List<Item> items = Item.find(Item.class, whereClause);
