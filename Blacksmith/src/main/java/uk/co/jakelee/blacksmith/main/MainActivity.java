@@ -30,6 +30,8 @@ import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
@@ -42,6 +44,7 @@ import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
@@ -562,12 +565,12 @@ public class MainActivity extends AppCompatActivity implements
 
     public void clickBookcase(View view) {
         int thisTip = prefs.getInt("nextTip", 0);
-        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
-        if (thisTip >= tipArray.length) {
+        List<String> tips = TextHelper.getTips(this);
+        if (thisTip >= tips.size()) {
             thisTip = 0;
         }
 
-        String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
+        String tipMessage = "Tip " + (thisTip + 1) + "/" + tips.size() + ": " + tips.get(thisTip);
         ToastHelper.showTipToast(null, ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
     }

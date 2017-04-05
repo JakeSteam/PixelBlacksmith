@@ -7,9 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.List;
+
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class HelpActivity extends Activity {
     public static final String INTENT_ID = "uk.co.jakelee.blacksmith.helptoload";
@@ -108,7 +111,7 @@ public class HelpActivity extends Activity {
     private void displayTips(LinearLayout layout) {
         layout.addView(dh.createTextView("Tips And Tricks\n", 26));
 
-        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        List<String> tipArray = TextHelper.getTips(this);
         int i = 1;
         for (String tip : tipArray) {
             layout.addView(dh.createTextView(i + ": " + tip + "\n", 22));

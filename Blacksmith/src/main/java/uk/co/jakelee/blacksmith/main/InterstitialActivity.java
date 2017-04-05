@@ -21,6 +21,7 @@ import uk.co.jakelee.blacksmith.helper.AdvertHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class InterstitialActivity extends Activity {
     private static DisplayHelper dh;
@@ -48,18 +49,18 @@ public class InterstitialActivity extends Activity {
             }
         }
 
-        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        List<String> tips = TextHelper.getTips(this);
         List<Integer> ints = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            int newInt = new Random().nextInt(tipArray.length);
+            int newInt = new Random().nextInt(tips.size());
             if (ints.contains(newInt)) {
-                newInt = new Random().nextInt(tipArray.length);
+                newInt = new Random().nextInt(tips.size());
             }
             ints.add(newInt);
         }
 
         for (int i : ints) {
-            root.addView(dh.createTextView("Tip " + i + ": " + tipArray[i] + "\n", 22));
+            root.addView(dh.createTextView(getString(R.string.tip) + " " + i + ": " + tips.get(i) + "\n", 22));
         }
     }
 
