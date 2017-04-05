@@ -1578,7 +1578,7 @@
     <string name="workersReturned">%1$d ayudantes (%2$s) han regresado, cargado de recursos! Para más detalles, vea el registro de mensajes.</string>
     <string name="worseLocalSaveCancel">Cancelar</string>
     <string name="worseLocalSaveLoad">Carga</string>
-    <string name="worseLocalSaveMessage">¿Está seguro de que desea cargar este ahorro importado inferior?</string>
+    <string name="worseLocalSaveMessage">¿Está seguro de que desea cargar este ahorro importado inferior? Ahorro actual: \nPrestiges: %1$d, Nivel: %2$d, XP: %3$d. \n \nImportado save: \nPrestiges: %1$d, 4$d, Nivel: %5$d, XP: %6$d.</string>
     <string name="level">Nivel</string>
     <string name="worseSaveCancel">Cancelar</string>
     <string name="worseSaveLoad">Carga</string>

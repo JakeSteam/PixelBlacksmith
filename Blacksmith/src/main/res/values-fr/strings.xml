@@ -985,7 +985,7 @@
     <string name="ringsText">Anneaux</string>
     <string name="saveExportFailure">Une erreur s\'est produite! Vérifiez que votre stockage est correctement connecté. Les erreurs.</string>
     <string name="saveExportSuccess">Le jeu exporté avec succès a sauvegardé en %s sur le stockage externe!</string>
-    <string name="saveImportFailure">Une erreur s\'est produite lors du chargement des sauvegardes. Les erreurs.</string>
+    <string name="saveImportFailure">Une erreur %s est produite lors du chargement des sauvegardes. Les erreurs.</string>
     <string name="saveImportLoadSuccess">Les sauvegardes locales sauvegardées et importées avec succès!</string>
     <string name="saveImportSuccess">Sauvegardez le jeu local avec succès!</string>
     <string name="saveNameFormat">PixelBlacksmith %s.save</string>

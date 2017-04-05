@@ -428,7 +428,7 @@
     <string name="itemBuyAllQuestion">Вы хотите купить все товары %1$d по общей цене %2$,d монеты?</string>
     <string name="itemBuyCancel">Отмена</string>
     <string name="itemBuyComplete">Началась покупка %1$dx %2$s для монет (ы) %3$d.</string>
-    <string name="itemBuyQuestion">Хотите купить 1x %1$s за %2$,d монету или до %3$d за каждые 4 доллара монетки?</string>
+    <string name="itemBuyQuestion">Хотите купить 1x %1$s за %2$,d монету или до %3$d за каждые %4$d доллара монетки?</string>
     <string name="itemSelectText">Предметы</string>
     <string name="item_desc_1">Кусок медной руды.</string>
     <string name="item_desc_10">Кусок драконитовой руды.</string>
