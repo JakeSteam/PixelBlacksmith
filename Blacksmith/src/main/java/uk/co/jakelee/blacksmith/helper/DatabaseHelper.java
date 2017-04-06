@@ -938,6 +938,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             assistants.add(new Assistant(1, 10, 5000, 0.75, 0, 5, 0L));
             assistants.add(new Assistant(2, 1, 100, 0.95, 1200, 3, 0L));
             assistants.add(new Assistant(3, 99, 1000, 0.55, 0, 10, 0L));
+            assistants.add(new Assistant(4, 99, 1000, 0.55, 0, 10, 0L));
+            assistants.add(new Assistant(5, 99, 1000, 0.55, 0, 10, 0L));
+            assistants.add(new Assistant(6, 99, 1000, 0.55, 0, 10, 0L));
         Assistant.saveInTx(assistants);
     }
 	

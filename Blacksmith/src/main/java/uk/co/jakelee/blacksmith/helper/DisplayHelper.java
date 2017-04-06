@@ -107,8 +107,8 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("visitor" + visitor, "drawable", context.getPackageName());
     }
 
-    public static int getAssistantDrawableID(Context context, int pet) {
-        return context.getResources().getIdentifier("assistant" + pet, "drawable", context.getPackageName());
+    public static int getAssistantDrawableID(Context context, int assistant, int tier) {
+        return context.getResources().getIdentifier("assistant" + assistant + "_" + tier, "drawable", context.getPackageName());
     }
 
     private static RelativeLayout createSlotRoot(Context context) {

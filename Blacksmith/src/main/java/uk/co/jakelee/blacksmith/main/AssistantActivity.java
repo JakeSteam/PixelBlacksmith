@@ -140,7 +140,7 @@ public class AssistantActivity extends Activity {
             View itemView = mLayoutInflater.inflate(R.layout.custom_pager_item, container, false);
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), position+1));
+            imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), position+1, 1));
 
             container.addView(itemView);
 
