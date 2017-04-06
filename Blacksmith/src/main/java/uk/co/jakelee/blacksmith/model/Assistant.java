@@ -16,11 +16,17 @@ public class Assistant extends SugarRecord {
     private int currentXp;
     private int maxLevel;
     private long obtained;
+    private String name;
+    private int rewardItem;
+    private int rewardState;
+    private int rewardQuantity;
+    private int rewardFrequency;
+    private int xpBoost;
 
     public Assistant() {
     }
 
-    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained) {
+    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained, int rewardItem, int rewardState, int rewardQuantity, int rewardFrequency, int xpBoost) {
         this.assistantId = assistantId;
         this.levelRequired = levelRequired;
         this.coinsRequired = coinsRequired;
@@ -28,13 +34,19 @@ public class Assistant extends SugarRecord {
         this.currentXp = currentXp;
         this.maxLevel = maxLevel;
         this.obtained = obtained;
+        this.name = "";
+        this.rewardItem = rewardItem;
+        this.rewardState = rewardState;
+        this.rewardQuantity = rewardQuantity;
+        this.rewardFrequency = rewardFrequency;
+        this.xpBoost = xpBoost;
     }
 
     public static Assistant get(int assistantId) {
         return Select.from(Assistant.class).where(Condition.prop("assistant_id").eq(assistantId)).first();
     }
 
-    public String getName(Context context) {
+    public String getTypeName(Context context) {
         return TextHelper.getInstance(context).getText("assistant_name_" + assistantId);
     }
 
@@ -96,5 +108,63 @@ public class Assistant extends SugarRecord {
 
     public void setObtained(long obtained) {
         this.obtained = obtained;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRewardItem() {
+        return rewardItem;
+    }
+
+    public void setRewardItem(int rewardItem) {
+        this.rewardItem = rewardItem;
+    }
+
+    public int getRewardState() {
+        return rewardState;
+    }
+
+    public void setRewardState(int rewardState) {
+        this.rewardState = rewardState;
+    }
+
+    public int getRewardQuantity() {
+        return rewardQuantity;
+    }
+
+    public void setRewardQuantity(int rewardQuantity) {
+        this.rewardQuantity = rewardQuantity;
+    }
+
+    public int getRewardFrequency() {
+        return rewardFrequency;
+    }
+
+    public void setRewardFrequency(int rewardFrequency) {
+        this.rewardFrequency = rewardFrequency;
+    }
+
+    public int getXpBoost() {
+        return xpBoost;
+    }
+
+    public void setXpBoost(int xpBoost) {
+        this.xpBoost = xpBoost;
+    }
+
+    public int getLevel() {
+        int level = (int) (getLevelModifier() * Math.sqrt(getCurrentXp()));
+        return level > maxLevel ? maxLevel : level;
+    }
+
+    public int getTier() {
+        int level = getLevel();
+        return (level > getMaxLevel() ? getMaxLevel() : level) / 10;
     }
 }

@@ -449,7 +449,7 @@ public class AlertDialogHelper {
 
     public static void confirmBuyAssistant(final Context context, final AssistantActivity activity, final Assistant assistant) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(Locale.ENGLISH, activity.getString(R.string.assistantBuyQuestion), assistant.getName(activity), assistant.getCoinsRequired()));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, activity.getString(R.string.assistantBuyQuestion), assistant.getTypeName(activity), assistant.getCoinsRequired()));
 
         alertDialog.setPositiveButton(context.getString(R.string.buy), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

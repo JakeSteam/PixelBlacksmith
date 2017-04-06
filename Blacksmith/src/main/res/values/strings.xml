@@ -1,19 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
-    <string name="assistant_name_1">Mr Pig</string>
-    <string name="assistant_name_2">Troll Rebel</string>
+    <string name="assistant_name_1">Pig</string>
+    <string name="assistant_name_2">Troll</string>
     <string name="assistant_name_3">Skeleton</string>
     <string name="assistant_name_4">Human</string>
-    <string name="assistant_name_5">Elven Lord</string>
+    <string name="assistant_name_5">Elf</string>
     <string name="assistant_name_6">Orc</string>
-
-    <string name="assistant_desc_1">Oink.</string>
-    <string name="assistant_desc_2">I am a troll. Hi.</string>
-    <string name="assistant_desc_3">I am a skeleton.</string>
-    <string name="assistant_desc_4">I am a human.</string>
-    <string name="assistant_desc_5">I am an elf.</string>
-    <string name="assistant_desc_6">I am an orc.</string>
 
     <string name="assistantTitle">Assistant</string>
     <string name="assistantAlertSelected">Selected assistant \"%1$s\"!</string>
@@ -22,6 +15,8 @@
     <string name="assistantButtonLockedLevel">Req. Lev </string>
     <string name="assistantButtonLockedCoins">Unlock for </string>
     <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
+    <string name="assistantSpecs">Lev %1$d/%2$d (Tier %3$d) %4$s</string>
+    <string name="assistantDesc">Rewards %1$dx %2$s every %3$s.\nProvides a +%4$d%% XP boost.</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>

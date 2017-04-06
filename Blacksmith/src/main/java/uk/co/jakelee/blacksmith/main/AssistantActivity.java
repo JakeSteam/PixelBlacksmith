@@ -21,10 +21,10 @@ import java.util.Locale;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
-import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class AssistantActivity extends Activity {
@@ -66,14 +66,14 @@ public class AssistantActivity extends Activity {
 
     public void buttonClick(View v) {
         Assistant assistant = Assistant.get(selectedAssistant);
-        if (selectedAssistant == assistant.getAssistantId()) {
-
-        } else if (assistant.getObtained() > 0) {
-            Player_Info activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
-            activeAssistant.setIntValue(selectedAssistant);
-            activeAssistant.save();
-            displayAssistantInfo();
-            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantAlertSelected), assistant.getName(this)), true);
+        Player_Info activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
+        if (assistant.getObtained() > 0) {
+            if (assistant.getAssistantId() == activeAssistant.getIntValue()) {
+                activeAssistant.setIntValue(selectedAssistant);
+                activeAssistant.save();
+                displayAssistantInfo();
+                ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantAlertSelected), assistant.getTypeName(this)), true);
+            }
         } else {
             if (assistant.getCoinsRequired() > Inventory.getCoins()) {
                 ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(R.string.error_not_enough_coins), false);
@@ -85,8 +85,18 @@ public class AssistantActivity extends Activity {
 
     public void displayAssistantInfo() {
         Assistant assistant = Assistant.get(selectedAssistant);
-        ((TextView)findViewById(R.id.assistantName)).setText(TextHelper.getInstance(this).getText("assistant_name_" + selectedAssistant));
-        ((TextView)findViewById(R.id.assistantDesc)).setText(TextHelper.getInstance(this).getText("assistant_desc_" + selectedAssistant));
+        Item rewardItem = Item.findById(Item.class, assistant.getRewardItem());
+        ((TextView)findViewById(R.id.assistantName)).setText(assistant.getName().equals("") ? assistant.getTypeName(this) : assistant.getName());
+        ((TextView)findViewById(R.id.assistantSpecs)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantSpecs),
+                assistant.getLevel(),
+                assistant.getMaxLevel(),
+                assistant.getTier(),
+                assistant.getTypeName(this)));
+        ((TextView)findViewById(R.id.assistantDesc)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantDesc),
+                assistant.getRewardQuantity(),
+                rewardItem.getFullName(this, assistant.getRewardState()),
+                "" + assistant.getRewardFrequency(),
+                assistant.getXpBoost()));
         ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
     }
 
@@ -138,9 +148,10 @@ public class AssistantActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View itemView = mLayoutInflater.inflate(R.layout.custom_pager_item, container, false);
+            Assistant assistant = Assistant.get(position + 1);
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), position+1, 1));
+            imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), assistant));
 
             container.addView(itemView);
 

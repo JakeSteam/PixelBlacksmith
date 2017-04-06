@@ -43,6 +43,7 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.main.ItemSelectActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Location;
@@ -107,8 +108,8 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("visitor" + visitor, "drawable", context.getPackageName());
     }
 
-    public static int getAssistantDrawableID(Context context, int assistant, int tier) {
-        return context.getResources().getIdentifier("assistant" + assistant + "_" + tier, "drawable", context.getPackageName());
+    public static int getAssistantDrawableID(Context context, Assistant assistant) {
+        return context.getResources().getIdentifier("assistant" + assistant.getAssistantId() + "_" + assistant.getTier(), "drawable", context.getPackageName());
     }
 
     private static RelativeLayout createSlotRoot(Context context) {
