@@ -50,6 +50,7 @@ import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -409,6 +410,7 @@ public class MainActivity extends AppCompatActivity implements
                     ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
+                DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
                 gph.UpdateQuest();
 
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
@@ -459,6 +461,20 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateVisitors() {
         dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout)findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
+    }
+
+    public void claimAssistant(View v) {
+        Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first();
+        Player_Info totalClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("TotalAssistantClaims")).first();
+        Assistant assistant = Assistant.get(Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue());
+        if (assistant != null && lastClaimed != null && lastClaimed.getLongValue() + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
+            Inventory.addItem((long)assistant.getRewardItem(), assistant.getRewardState(), assistant.getRewardQuantity(), false);
+            lastClaimed.setLongValue(System.currentTimeMillis());
+            lastClaimed.save();
+            totalClaimed.setIntValue(totalClaimed.getIntValue() + 1);
+            totalClaimed.save();
+            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, "Claimed!", true);
+        }
     }
 
     public void openMarket(View view) {
@@ -521,7 +537,7 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
-    public void openPets(View view) {
+    public void openAssistants(View view) {
         Intent intent = new Intent(this, AssistantActivity.class);
         startActivity(intent);
     }

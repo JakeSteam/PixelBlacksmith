@@ -927,8 +927,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         List<Player_Info> statistics = new ArrayList<>();
             statistics.add(new Player_Info("ActiveAssistant", 0));
             statistics.add(new Player_Info("LastAssistantClaim", 0L));
+            statistics.add(new Player_Info("TotalAssistantClaims", 0));
         Player_Info.saveInTx(statistics);
-
 
         createPets();
     }

@@ -20,7 +20,7 @@ public class Assistant extends SugarRecord {
     private int rewardItem;
     private int rewardState;
     private int rewardQuantity;
-    private int rewardFrequency;
+    private long rewardFrequency;
     private int xpBoost;
 
     public Assistant() {
@@ -142,11 +142,11 @@ public class Assistant extends SugarRecord {
         this.rewardQuantity = rewardQuantity;
     }
 
-    public int getRewardFrequency() {
+    public long getRewardFrequency() {
         return rewardFrequency;
     }
 
-    public void setRewardFrequency(int rewardFrequency) {
+    public void setRewardFrequency(long rewardFrequency) {
         this.rewardFrequency = rewardFrequency;
     }
 

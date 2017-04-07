@@ -20,6 +20,7 @@ import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
+import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Assistant;
@@ -90,12 +91,12 @@ public class AssistantActivity extends Activity {
         ((TextView)findViewById(R.id.assistantSpecs)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantSpecs),
                 assistant.getLevel(),
                 assistant.getMaxLevel(),
-                assistant.getTier(),
+                assistant.getTier() + 1,
                 assistant.getTypeName(this)));
         ((TextView)findViewById(R.id.assistantDesc)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantDesc),
                 assistant.getRewardQuantity(),
                 rewardItem.getFullName(this, assistant.getRewardState()),
-                "" + assistant.getRewardFrequency(),
+                DateHelper.getHoursMinsRemaining(assistant.getRewardFrequency()),
                 assistant.getXpBoost()));
         ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
     }

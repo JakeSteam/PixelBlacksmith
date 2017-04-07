@@ -829,4 +829,25 @@ public class DisplayHelper {
                 .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
                 .into(chest);
     }
+
+    public static void updateAssistantDisplay(RelativeLayout assistantContainer) {
+        int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
+        long lastClaimTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first().getLongValue();
+        if (activeAssistant > 0) {
+            Assistant assistant = Assistant.get(activeAssistant);
+            ((ImageView) assistantContainer.findViewById(R.id.assistant_image)).setImageResource(DisplayHelper.getAssistantDrawableID(
+                    assistantContainer.getContext(),
+                    assistant));
+
+            String timeLeftText;
+            if (lastClaimTime + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
+                timeLeftText = "Ready!";
+            } else {
+                timeLeftText = DateHelper.getHoursMinsRemaining(lastClaimTime + assistant.getRewardFrequency());
+            }
+            ((TextView)assistantContainer.findViewById(R.id.assistant_time)).setText(timeLeftText);
+        } else {
+            // Set imageview + button to placeholder
+        }
+    }
 }
