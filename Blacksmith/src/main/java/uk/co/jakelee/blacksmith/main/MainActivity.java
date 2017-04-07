@@ -31,6 +31,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
+import java.util.Locale;
 
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.blacksmith.BuildConfig;
@@ -52,6 +53,7 @@ import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
 import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -467,13 +469,23 @@ public class MainActivity extends AppCompatActivity implements
         Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first();
         Player_Info totalClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("TotalAssistantClaims")).first();
         Assistant assistant = Assistant.get(Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue());
-        if (assistant != null && lastClaimed != null && lastClaimed.getLongValue() + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
-            Inventory.addItem((long)assistant.getRewardItem(), assistant.getRewardState(), assistant.getRewardQuantity(), false);
-            lastClaimed.setLongValue(System.currentTimeMillis());
-            lastClaimed.save();
-            totalClaimed.setIntValue(totalClaimed.getIntValue() + 1);
-            totalClaimed.save();
-            ToastHelper.showPositiveToast(v, ToastHelper.SHORT, "Claimed!", true);
+        if (assistant != null && lastClaimed != null) {
+            if (lastClaimed.getLongValue() + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
+                Inventory.addItem((long) assistant.getRewardItem(), assistant.getRewardState(), assistant.getRewardQuantity(), false);
+                lastClaimed.setLongValue(System.currentTimeMillis());
+                lastClaimed.save();
+                totalClaimed.setIntValue(totalClaimed.getIntValue() + 1);
+                totalClaimed.save();
+
+                Item item = Item.findById(Item.class, assistant.getRewardItem());
+                ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantClaimed),
+                        assistant.getRewardQuantity(),
+                        item.getFullName(this, assistant.getRewardState())), true);
+                DisplayHelper.updateAssistantDisplay((RelativeLayout) findViewById(R.id.assistant_container));
+            } else {
+                ToastHelper.showTipToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantTimeLeft),
+                        DateHelper.getHoursMinsSecsRemaining(((lastClaimed.getLongValue() + assistant.getRewardFrequency()) - System.currentTimeMillis()))), false);
+            }
         }
     }
 

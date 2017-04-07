@@ -150,13 +150,6 @@ public class Player_Info extends SugarRecord {
         return coinsPurchased != null ? coinsPurchased.getIntValue() : 0;
     }
 
-    public static int getActivePet() {
-        Player_Info activePet = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("ActivePet")).first();
-
-        return activePet != null ? activePet.getIntValue() : 0;
-    }
-
     public static String getLastContributed() {
         Player_Info lastContributed = Select.from(Player_Info.class).where(
                 Condition.prop("name").eq("LastDonated")).first();

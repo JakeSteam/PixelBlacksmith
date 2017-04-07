@@ -103,7 +103,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        selectedType = Type.findById(Type.class, pos + 1);
+        selectedType = Type.findById(Type.class, pos);
         dh.updateFullscreen(this);
         displayItemsTable();
     }
@@ -125,6 +125,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     private List<String> getTypeStrings() {
         List<String> typeStrings = new ArrayList<>();
         List<Type> types = Select.from(Type.class).list();
+        typeStrings.add(getString(R.string.exchangePagesAll));
         for (Type type : types) {
             if (type.getId() <= Constants.TYPE_PROCESSED_FOOD) {
                 typeStrings.add(type.getName(this));

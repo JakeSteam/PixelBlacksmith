@@ -69,14 +69,16 @@ public class AssistantActivity extends Activity {
         Assistant assistant = Assistant.get(selectedAssistant);
         Player_Info activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
         if (assistant.getObtained() > 0) {
-            if (assistant.getAssistantId() == activeAssistant.getIntValue()) {
+            if (assistant.getAssistantId() != activeAssistant.getIntValue()) {
                 activeAssistant.setIntValue(selectedAssistant);
                 activeAssistant.save();
                 displayAssistantInfo();
                 ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantAlertSelected), assistant.getTypeName(this)), true);
             }
         } else {
-            if (assistant.getCoinsRequired() > Inventory.getCoins()) {
+            if (assistant.getLevelRequired() > Player_Info.getPlayerLevel()) {
+                ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(R.string.error_player_level), false);
+            } else if (assistant.getCoinsRequired() > Inventory.getCoins()) {
                 ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(R.string.error_not_enough_coins), false);
             } else {
                 AlertDialogHelper.confirmBuyAssistant(this, this, assistant);
@@ -109,7 +111,7 @@ public class AssistantActivity extends Activity {
                 return getString(R.string.assistantButtonLockedCoins) + " " + assistant.getCoinsRequired();
             }
         } else {
-            if (Player_Info.getActivePet() == selectedAssistant) {
+            if (Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue() == selectedAssistant) {
                 return getString(R.string.assistantButtonSelected);
             } else {
                 return getString(R.string.assistantButtonSelect);

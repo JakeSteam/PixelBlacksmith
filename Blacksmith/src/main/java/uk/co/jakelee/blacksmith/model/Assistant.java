@@ -26,7 +26,7 @@ public class Assistant extends SugarRecord {
     public Assistant() {
     }
 
-    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained, int rewardItem, int rewardState, int rewardQuantity, int rewardFrequency, int xpBoost) {
+    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained, int rewardItem, int rewardState, int rewardQuantity, long rewardFrequency, int xpBoost) {
         this.assistantId = assistantId;
         this.levelRequired = levelRequired;
         this.coinsRequired = coinsRequired;
@@ -151,7 +151,7 @@ public class Assistant extends SugarRecord {
     }
 
     public int getXpBoost() {
-        return xpBoost;
+        return getLevel() * xpBoost;
     }
 
     public void setXpBoost(int xpBoost) {

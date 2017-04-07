@@ -843,7 +843,7 @@ public class DisplayHelper {
             if (lastClaimTime + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
                 timeLeftText = "Ready!";
             } else {
-                timeLeftText = DateHelper.getHoursMinsRemaining(lastClaimTime + assistant.getRewardFrequency());
+                timeLeftText = DateHelper.getHoursMinsRemaining((lastClaimTime + assistant.getRewardFrequency()) - System.currentTimeMillis());
             }
             ((TextView)assistantContainer.findViewById(R.id.assistant_time)).setText(timeLeftText);
         } else {

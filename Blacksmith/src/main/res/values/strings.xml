@@ -17,6 +17,8 @@
     <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
     <string name="assistantSpecs">Lev %1$d/%2$d (Tier %3$d) %4$s</string>
     <string name="assistantDesc">Rewards %1$dx %2$s every %3$s.\nProvides a +%4$d%% XP boost.</string>
+    <string name="assistantClaimed">Received %1$dx %2$s!</string>
+    <string name="assistantTimeLeft">Assistant bonus ready to claim in %1$s.</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
@@ -178,7 +180,7 @@
     <string name="error_no_save_found">Couldn\'t find a save.</string>
     <string name="error_ad_unverified">Something went wrong, and the ad view couldn\'t be verified. Sorry!</string>
     <string name="error_image_load_fail">Failed to load image, due to low device memory...</string>
-    <string name="error_player_level">This item requires a higher level!</string>
+    <string name="error_player_level">This requires a higher level!</string>
     <string name="error_undiscovered">This item\'s recipe has not been discovered yet!</string>
     <string name="error_trader_run_out">This trader has run out of stock for this item!</string>
     <string name="error_not_enough_ingredients">The item cannot be created without all ingredients!</string>

@@ -300,10 +300,13 @@
                     android:layout_height="match_parent" />
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/assistant_time"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:onClick="claimAssistant"/>
+                    android:layout_centerHorizontal="true"
+                    android:textSize="24sp"
+                    android:onClick="claimAssistant"
+                    android:background="@color/black"/>
             </RelativeLayout>
 
             <!-- Areas -->
