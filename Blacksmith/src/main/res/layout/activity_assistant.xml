@@ -48,7 +48,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_heightPercent="30%"
-                android:background="@color/white" />
+                android:background="@color/lightBrown"
+                android:fadeScrollbars="false" />
+            <ProgressBar
+                android:id="@+id/assistantProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/assistantScroller"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/progress_bar"
+                android:max="100"/>
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/assistantOverallProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/assistantScroller"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true" />
+            <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                android:id="@+id/assistantProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/assistantProgress"
+                android:layout_alignBottom="@id/assistantProgress"
+                android:textColor="@color/lightBrown"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true" />
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/mainButton"
                 android:layout_width="wrap_content"
@@ -76,7 +103,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:textSize="28sp"/>
+                        android:textSize="28sp"
+                        android:onClick="nameChange"/>
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/assistantSpecs"
                         android:layout_width="match_parent"

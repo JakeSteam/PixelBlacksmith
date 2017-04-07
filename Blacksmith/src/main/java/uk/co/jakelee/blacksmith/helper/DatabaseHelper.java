@@ -935,12 +935,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void createPets() {
         List<Assistant> assistants = new ArrayList<>();
-            assistants.add(new Assistant(1, 10, 5000, 0.75, 99999999, 19, 0L, 52, 1, 100, 300000, 5));
-            assistants.add(new Assistant(2, 1, 100, 0.95, 1200, 19, 0L, 20, 2, 123, 300000, 10));
-            assistants.add(new Assistant(3, 99, 1000, 0.55, 0, 19, 0L, 39, 4, 100, 300000, 15));
-            assistants.add(new Assistant(4, 99, 1000, 0.55, 0, 19, 0L, 39, 4, 100, 300000, 15));
-            assistants.add(new Assistant(5, 99, 1000, 0.55, 0, 19, 0L, 39, 4, 100, 300000, 15));
-            assistants.add(new Assistant(6, 99, 1000, 0.55, 0, 19, 0L, 39, 4, 100, 300000, 15));
+            assistants.add(new Assistant(1, 1, 100, 1.00, 19, 0L, 52, 1, 100, 300000, 0.05));
+            assistants.add(new Assistant(2, 1, 100, 0.95, 19, 0L, 20, 2, 123, 300000, 0.05));
+            assistants.add(new Assistant(3, 99, 1000, 0.55, 19, 0L, 39, 4, 100, 300000, 0.05));
+            assistants.add(new Assistant(4, 99, 1000, 0.55, 19, 0L, 39, 4, 100, 300000, 0.05));
+            assistants.add(new Assistant(5, 99, 1000, 0.55, 19, 0L, 39, 4, 100, 300000, 0.05));
+            assistants.add(new Assistant(6, 99, 1000, 0.55, 19, 0L, 39, 4, 100, 300000, 0.05));
         Assistant.saveInTx(assistants);
     }
 	

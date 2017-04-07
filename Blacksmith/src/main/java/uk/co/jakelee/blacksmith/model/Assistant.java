@@ -21,17 +21,17 @@ public class Assistant extends SugarRecord {
     private int rewardState;
     private int rewardQuantity;
     private long rewardFrequency;
-    private int xpBoost;
+    private double xpBoost;
 
     public Assistant() {
     }
 
-    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int currentXp, int maxLevel, long obtained, int rewardItem, int rewardState, int rewardQuantity, long rewardFrequency, int xpBoost) {
+    public Assistant(int assistantId, int levelRequired, int coinsRequired, double levelModifier, int maxLevel, long obtained, int rewardItem, int rewardState, int rewardQuantity, long rewardFrequency, double xpBoost) {
         this.assistantId = assistantId;
         this.levelRequired = levelRequired;
         this.coinsRequired = coinsRequired;
         this.levelModifier = levelModifier;
-        this.currentXp = currentXp;
+        this.currentXp = getXpForLevel(levelModifier, 1);
         this.maxLevel = maxLevel;
         this.obtained = obtained;
         this.name = "";
@@ -150,11 +150,11 @@ public class Assistant extends SugarRecord {
         this.rewardFrequency = rewardFrequency;
     }
 
-    public int getXpBoost() {
+    public double getXpBoost() {
         return getLevel() * xpBoost;
     }
 
-    public void setXpBoost(int xpBoost) {
+    public void setXpBoost(double xpBoost) {
         this.xpBoost = xpBoost;
     }
 
@@ -167,4 +167,20 @@ public class Assistant extends SugarRecord {
         int level = getLevel();
         return (level > getMaxLevel() ? getMaxLevel() : level) / 10;
     }
+
+    public int getLevelProgress() {
+        int currentXP = getCurrentXp();
+        int currentLevelXP = getXpForLevel(getLevelModifier(), getLevel());
+        int nextLevelXP = getXpForLevel(getLevelModifier(), getLevel() + 1);
+
+        double neededXP = nextLevelXP - currentLevelXP;
+        double earnedXP = nextLevelXP - currentXP;
+
+        return 100 - (int) Math.ceil((earnedXP / neededXP) * 100);
+    }
+
+    public static int getXpForLevel(double levelModifier, int level) {
+        return (int) Math.ceil(Math.pow(level / levelModifier, 2));
+    }
+
 }

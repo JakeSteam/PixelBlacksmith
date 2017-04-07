@@ -15,10 +15,14 @@
     <string name="assistantButtonLockedLevel">Req. Lev </string>
     <string name="assistantButtonLockedCoins">Unlock for </string>
     <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
-    <string name="assistantSpecs">Lev %1$d/%2$d (Tier %3$d) %4$s</string>
+    <string name="assistantSpecs">Tier %1$d %2$s</string>
     <string name="assistantDesc">Rewards %1$dx %2$s every %3$s.\nProvides a +%4$d%% XP boost.</string>
     <string name="assistantClaimed">Received %1$dx %2$s!</string>
     <string name="assistantTimeLeft">Assistant bonus ready to claim in %1$s.</string>
+    <string name="assistantProgressText">Lev %1$d/%2$d (%3$d%%)</string>
+    <string name="assistantOverallProgressText">Assistant %1$d/%2$d</string>
+    <string name="assistantName">%1$s [Edit?]</string>
+    <string name="assistantEditNamePrompt">What would you like to rename \"%1$s\" to (maximum 30 characters)?</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>

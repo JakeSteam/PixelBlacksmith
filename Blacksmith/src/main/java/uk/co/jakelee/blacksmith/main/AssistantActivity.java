@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.orm.query.Condition;
@@ -40,7 +41,6 @@ public class AssistantActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assistant);
         dh = DisplayHelper.getInstance(this);
-        dh.updateFullscreen(this);
 
         mCustomPagerAdapter = new AssistantPagerAdapter(this);
         numAssistants = (int) Assistant.count(Assistant.class);
@@ -62,6 +62,7 @@ public class AssistantActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+        dh.updateFullscreen(this);
         displayAssistantInfo();
     }
 
@@ -89,18 +90,35 @@ public class AssistantActivity extends Activity {
     public void displayAssistantInfo() {
         Assistant assistant = Assistant.get(selectedAssistant);
         Item rewardItem = Item.findById(Item.class, assistant.getRewardItem());
-        ((TextView)findViewById(R.id.assistantName)).setText(assistant.getName().equals("") ? assistant.getTypeName(this) : assistant.getName());
+        ((TextView)findViewById(R.id.assistantName)).setText(assistant.getObtained() == 0L ?
+                assistant.getTypeName(this) :
+                String.format(Locale.ENGLISH, getString(R.string.assistantName),
+                    assistant.getName().equals("") ? assistant.getTypeName(this) : assistant.getName()));
+        int progress = assistant.getLevelProgress();
         ((TextView)findViewById(R.id.assistantSpecs)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantSpecs),
-                assistant.getLevel(),
-                assistant.getMaxLevel(),
                 assistant.getTier() + 1,
                 assistant.getTypeName(this)));
+        ((TextView)findViewById(R.id.assistantOverallProgress)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantOverallProgressText),
+                assistant.getAssistantId(),
+                Assistant.count(Assistant.class)));
+        ((ProgressBar)findViewById(R.id.assistantProgress)).setProgress(progress);
+        ((TextView)findViewById(R.id.assistantProgressText)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantProgressText),
+                assistant.getLevel(),
+                assistant.getMaxLevel(),
+                progress));
         ((TextView)findViewById(R.id.assistantDesc)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantDesc),
                 assistant.getRewardQuantity(),
                 rewardItem.getFullName(this, assistant.getRewardState()),
                 DateHelper.getHoursMinsRemaining(assistant.getRewardFrequency()),
-                assistant.getXpBoost()));
+                (int)Math.ceil(assistant.getXpBoost() * 100d)));
         ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
+    }
+
+    public void nameChange(View v) {
+        Assistant assistant = Assistant.get(selectedAssistant);
+        if (assistant != null && assistant.getObtained() > 0) {
+            AlertDialogHelper.enterAssistantName(this, Assistant.get(selectedAssistant));
+        }
     }
 
     private String getButtonText(Assistant assistant) {

@@ -7,8 +7,6 @@ import com.orm.query.Select;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 
-import static uk.co.jakelee.blacksmith.R.id.coinsPurchased;
-
 public class Player_Info extends SugarRecord {
     private String name;
     private String textValue;
@@ -231,6 +229,14 @@ public class Player_Info extends SugarRecord {
 
         if (Super_Upgrade.isEnabled(Constants.SU_BONUS_XP)) {
             modifiedXp = modifiedXp * 2;
+        }
+
+        int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
+        if (activeAssistant > 0) {
+            Assistant assistant = Assistant.get(activeAssistant);
+            modifiedXp = (int)Math.ceil(modifiedXp * (1 + assistant.getXpBoost()));
+            assistant.setCurrentXp(assistant.getCurrentXp() + modifiedXp);
+            assistant.save();
         }
 
         xpInfo.setIntValue(xpInfo.getIntValue() + modifiedXp);
