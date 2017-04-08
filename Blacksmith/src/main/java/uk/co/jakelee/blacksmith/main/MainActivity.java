@@ -471,7 +471,7 @@ public class MainActivity extends AppCompatActivity implements
         Assistant assistant = Assistant.get(Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue());
         if (assistant != null && lastClaimed != null) {
             if (lastClaimed.getLongValue() + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
-                Inventory.addItem((long) assistant.getRewardItem(), assistant.getRewardState(), assistant.getRewardQuantity(), false);
+                Inventory.addItem((long) assistant.getRewardItem(), assistant.getRewardState(), assistant.getRewardQuantity() * assistant.getLevel(), false);
                 lastClaimed.setLongValue(System.currentTimeMillis());
                 lastClaimed.save();
                 totalClaimed.setIntValue(totalClaimed.getIntValue() + 1);
@@ -479,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 Item item = Item.findById(Item.class, assistant.getRewardItem());
                 ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantClaimed),
-                        assistant.getRewardQuantity(),
+                        assistant.getRewardQuantity() * assistant.getLevel(),
                         item.getFullName(this, assistant.getRewardState())), true);
                 DisplayHelper.updateAssistantDisplay((RelativeLayout) findViewById(R.id.assistant_container));
             } else {

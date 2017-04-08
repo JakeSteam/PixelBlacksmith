@@ -31,7 +31,7 @@ public class Assistant extends SugarRecord {
         this.levelRequired = levelRequired;
         this.coinsRequired = coinsRequired;
         this.levelModifier = levelModifier;
-        this.currentXp = getXpForLevel(levelModifier, 1);
+        this.currentXp = 0;
         this.maxLevel = maxLevel;
         this.obtained = obtained;
         this.name = "";

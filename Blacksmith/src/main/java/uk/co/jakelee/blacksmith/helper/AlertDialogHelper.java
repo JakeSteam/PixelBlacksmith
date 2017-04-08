@@ -489,6 +489,7 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     coinStock.setQuantity(coinStock.getQuantity() - assistant.getCoinsRequired());
                     coinStock.save();
+                    assistant.setCurrentXp(Assistant.getXpForLevel(assistant.getLevelModifier(), 1));
                     assistant.setObtained(System.currentTimeMillis());
                     assistant.save();
 
