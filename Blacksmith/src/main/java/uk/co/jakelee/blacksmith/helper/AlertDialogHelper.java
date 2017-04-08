@@ -491,8 +491,9 @@ public class AlertDialogHelper {
                     coinStock.save();
                     assistant.setObtained(System.currentTimeMillis());
                     assistant.save();
+
+                    activity.unlockAssistant();
                 }
-                activity.displayAssistantInfo();
             }
         });
 

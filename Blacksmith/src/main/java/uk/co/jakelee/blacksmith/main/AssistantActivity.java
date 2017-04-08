@@ -3,6 +3,7 @@ package uk.co.jakelee.blacksmith.main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -90,6 +91,7 @@ public class AssistantActivity extends Activity {
     public void displayAssistantInfo() {
         Assistant assistant = Assistant.get(selectedAssistant);
         Item rewardItem = Item.findById(Item.class, assistant.getRewardItem());
+
         ((TextView)findViewById(R.id.assistantName)).setText(assistant.getObtained() == 0L ?
                 assistant.getTypeName(this) :
                 String.format(Locale.ENGLISH, getString(R.string.assistantName),
@@ -119,6 +121,22 @@ public class AssistantActivity extends Activity {
         if (assistant != null && assistant.getObtained() > 0) {
             AlertDialogHelper.enterAssistantName(this, Assistant.get(selectedAssistant));
         }
+    }
+
+    public void unlockAssistant() {
+        mViewPager.setAdapter(mCustomPagerAdapter);
+        mViewPager.setCurrentItem(selectedAssistant - 1);
+        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantUnlockAlert),
+                Assistant.get(selectedAssistant).getTypeName(this)), true);
+        displayAssistantInfo();
+    }
+
+    public void displayAssistantProgress(View v) {
+        Assistant assistant = Assistant.get(selectedAssistant);
+        ToastHelper.showTipToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantProgressAlert),
+                assistant.getLevel() + 1,
+                assistant.getCurrentXp(),
+                Assistant.getXpForLevel(assistant.getLevelModifier(), assistant.getLevel() + 1)), false);
     }
 
     private String getButtonText(Assistant assistant) {
@@ -173,6 +191,12 @@ public class AssistantActivity extends Activity {
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
             imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), assistant));
+
+            if (assistant.getObtained() > 0L) {
+                imageView.clearColorFilter();
+            } else {
+                imageView.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            }
 
             container.addView(itemView);
 

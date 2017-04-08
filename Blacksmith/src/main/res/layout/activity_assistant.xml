@@ -75,6 +75,7 @@
                 android:layout_alignBottom="@id/assistantProgress"
                 android:textColor="@color/lightBrown"
                 android:textSize="20sp"
+                android:onClick="displayAssistantProgress"
                 android:layout_centerHorizontal="true" />
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/mainButton"

@@ -23,6 +23,8 @@
     <string name="assistantOverallProgressText">Assistant %1$d/%2$d</string>
     <string name="assistantName">%1$s [Edit?]</string>
     <string name="assistantEditNamePrompt">What would you like to rename \"%1$s\" to (maximum 30 characters)?</string>
+    <string name="assistantUnlockAlert">Unlocked assistant \"%1$s\"!</string>
+    <string name="assistantProgressAlert">Progress towards level %1$d: %2$d/%3$d XP</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
