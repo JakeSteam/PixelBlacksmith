@@ -749,6 +749,7 @@
     <string name="item_name_228">Soup</string>
     <string name="item_name_229">Cereal</string>
     <string name="item_name_230">White Chocolate</string>
+    <string name="item_name_231">Golden Egg</string>
 
     <string name="item_desc_1">A piece of copper ore.</string>
     <string name="item_desc_2">A piece of tin ore.</string>
@@ -980,6 +981,7 @@
     <string name="item_desc_228">Hearty and filling!</string>
     <string name="item_desc_229">The most important meal of the day, apparently.</string>
     <string name="item_desc_230">Mmmm, so sweet!</string>
+    <string name="item_desc_231">So pretty! So golden! So eggy!</string>
 
     <string name="language_1">English</string>
     <string name="language_2">French</string>
@@ -1937,7 +1939,7 @@
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
     <string name="creditsGraphics" translatable="false">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
-\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
     <string name="creditsLibraries" translatable="false">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.

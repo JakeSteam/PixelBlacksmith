@@ -882,6 +882,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             items.add(new Item(228L, "Soup", "Hearty and filling!", 27, 11, 25, 10));
             items.add(new Item(229L, "Cereal", "The most important meal of the day, apparently.", 27, 11, 20, 10));
             items.add(new Item(230L, "White Chocolate", "Mmmm, so sweet!", 21, 11, 7, 5));
+            items.add(new Item(231L, "Golden Egg", "So pretty! So golden! So eggy!", 27, 11, 600, 1));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();
@@ -898,6 +899,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             recipes.add(new Recipe(228L, 1L, 214L, 1L, 1));
             recipes.add(new Recipe(229L, 1L, 227L, 1L, 1));
             recipes.add(new Recipe(229L, 1L, 202L, 1L, 1));
+
+            recipes.add(new Recipe(231L, 1L, 203L, 1L, 100));
         Recipe.saveInTx(recipes);
 
         List<Worker_Resource> workerResources = new ArrayList<>();
@@ -929,6 +932,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             statistics.add(new Player_Info("LastAssistantClaim", 0L));
             statistics.add(new Player_Info("TotalAssistantClaims", 0));
         Player_Info.saveInTx(statistics);
+
+        new Visitor_Type(153L, "Easter Bunny", "Here to spread Easter joy!", 11L, 27L, 1L, 1.24, 1.24, 1.24, false, false, false, 30).save();
 
         createPets();
     }

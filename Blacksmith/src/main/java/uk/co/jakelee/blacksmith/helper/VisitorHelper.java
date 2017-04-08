@@ -355,7 +355,8 @@ public class VisitorHelper {
         Player_Info.addXp(Player_Info.getPlayerLevel() * (isFullyComplete ? Constants.QUEST_XP_MODIFIER_MEDIUM : Constants.QUEST_XP_MODIFIER_EASY));
     }
 
-    public static void createVisitorReward(Context context, boolean isFullyComplete) {
+    public static void createVisitorReward(Context context, Visitor visitor) {
+        boolean isFullyComplete = visitor.isVisitorFullyComplete();
         int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
         int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
         if (minimumRewards == 0 || maximumRewards == 0) {
@@ -363,13 +364,22 @@ public class VisitorHelper {
             maximumRewards = 5;
         }
 
-        int numRewards = (isFullyComplete ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
+
         boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
-        int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
+
 
         // Get normal reward
-        List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
-        Item selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
+        Item selectedItem;
+        int numRewards = (isFullyComplete ? 2 : 1);
+        if (visitor.getId() == 153) {
+            // Easter bunny provides eggs!
+            selectedItem = Item.findById(Item.class, 231);
+        } else {
+            numRewards =  numRewards * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
+            int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
+            List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
+            selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
+        }
         Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numRewards, false);
         String rewardString = VisitorHelper.getRewardString(context, rewardLegendary, isFullyComplete);
 
