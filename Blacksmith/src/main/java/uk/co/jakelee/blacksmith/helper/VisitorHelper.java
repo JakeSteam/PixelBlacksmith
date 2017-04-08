@@ -372,7 +372,7 @@ public class VisitorHelper {
         Item selectedItem;
         int numRewards = (isFullyComplete ? 2 : 1);
         if (visitor.getId() == 153) {
-            // Easter bunny provides eggs!
+            // Easter bunny provides golden eggs!
             selectedItem = Item.findById(Item.class, 231);
         } else {
             numRewards =  numRewards * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);

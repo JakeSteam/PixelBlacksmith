@@ -882,7 +882,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             items.add(new Item(228L, "Soup", "Hearty and filling!", 27, 11, 25, 10));
             items.add(new Item(229L, "Cereal", "The most important meal of the day, apparently.", 27, 11, 20, 10));
             items.add(new Item(230L, "White Chocolate", "Mmmm, so sweet!", 21, 11, 7, 5));
-            items.add(new Item(231L, "Golden Egg", "So pretty! So golden! So eggy!", 27, 11, 600, 1));
+            items.add(new Item(231L, "Golden Egg", "So pretty! So golden! So eggy!", 27, 11, 20000, 1));
         Item.saveInTx(items);
 
         List<Recipe> recipes = new ArrayList<>();

@@ -41,6 +41,7 @@ import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.EventHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
@@ -437,6 +438,7 @@ public class MainActivity extends AppCompatActivity implements
                     Trader_Stock.restockTraders();
                     ToastHelper.showPositiveToast(null, ToastHelper.LONG, getRestockText(taxPaid), true);
                 }
+                EventHelper.checkForEasterEggs(activity);
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
                 WorkerHelper.checkForFinishedHeroes(activity);

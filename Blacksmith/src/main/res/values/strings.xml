@@ -26,6 +26,8 @@
     <string name="assistantUnlockAlert">Unlocked assistant \"%1$s\"!</string>
     <string name="assistantProgressAlert">Progress towards level %1$d: %2$d/%3$d XP</string>
 
+    <string name="eventEasterItem">You found a %1$s! Look for the Golden Egg recipe in the food section of the furnace to unlock a valuable item &amp; unique achievement!</string>
+
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
     <string name="tool_fishing_rod">Fishing Rod (Food)</string>
