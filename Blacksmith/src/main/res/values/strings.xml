@@ -216,8 +216,8 @@
     <string name="hero_no_set_bonus">No sets currently active!</string>
     <string name="fixed">Fixed</string>
     <string name="temporary">Temporary</string>
-    <string name="pending_items_none">Pending items:</string>
-    <string name="pending_items">No pending items.</string>
+    <string name="pending_items_none">No pending items.</string>
+    <string name="pending_items">Pending items:</string>
 
     <string name="worker_start_gathering">Start Gathering</string>
     <string name="worker_returns_in">Returns in </string>
@@ -1939,7 +1939,7 @@
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
     <string name="creditsGraphics" translatable="false">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
-\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, <a href="https://opengameart.org/users/sufan02">Sufan02</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
     <string name="creditsLibraries" translatable="false">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.

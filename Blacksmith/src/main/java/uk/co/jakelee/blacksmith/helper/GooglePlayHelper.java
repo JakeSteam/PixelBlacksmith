@@ -178,6 +178,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
+    public static void UnlockAchievement(String achievementID) {
+        if (mGoogleApiClient.isConnected()) {
+            Games.Achievements.unlock(mGoogleApiClient, achievementID);
+        }
+    }
+
     private static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
         if (currentValue > lastSentValue && mGoogleApiClient.isConnected()) {
             statistic.setLastSentValue(currentValue);

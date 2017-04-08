@@ -901,6 +901,13 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             recipes.add(new Recipe(229L, 1L, 202L, 1L, 1));
 
             recipes.add(new Recipe(231L, 1L, 203L, 1L, 100));
+            recipes.add(new Recipe(231L, 1L, 203L, 3L, 10));
+            recipes.add(new Recipe(231L, 1L, 203L, 4L, 10));
+            recipes.add(new Recipe(231L, 1L, 203L, 5L, 10));
+            recipes.add(new Recipe(231L, 1L, 203L, 6L, 10));
+            recipes.add(new Recipe(231L, 1L, 203L, 7L, 10));
+            recipes.add(new Recipe(231L, 1L, 203L, 8L, 10));
+            recipes.add(new Recipe(231L, 1L, 203L, 9L, 10));
         Recipe.saveInTx(recipes);
 
         List<Worker_Resource> workerResources = new ArrayList<>();
@@ -933,7 +940,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             statistics.add(new Player_Info("TotalAssistantClaims", 0));
         Player_Info.saveInTx(statistics);
 
-        new Visitor_Type(153L, "Easter Bunny", "Here to spread Easter joy!", 11L, 27L, 1L, 1.24, 1.24, 1.24, false, false, false, 30).save();
+        new Visitor_Type(153L, "Easter Bunny", "Here to spread Easter joy!", 11L, 27L, 1L, 1.24, 1.24, 1.24, false, false, false, 8).save();
 
         createPets();
     }
@@ -1696,6 +1703,15 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         // 5 apples & cheese
         inventories.add(new Inventory(77L, Constants.STATE_NORMAL, 5));
         inventories.add(new Inventory(78L, Constants.STATE_NORMAL, 5));
+
+        inventories.add(new Inventory(203L, 1, 999));
+        inventories.add(new Inventory(203L, 3, 20));
+        inventories.add(new Inventory(203L, 4, 20));
+        inventories.add(new Inventory(203L, 5, 20));
+        inventories.add(new Inventory(203L, 6, 20));
+        inventories.add(new Inventory(203L, 7, 20));
+        inventories.add(new Inventory(203L, 8, 20));
+        inventories.add(new Inventory(203L, 9, 20));
 
         Inventory.saveInTx(inventories);
     }

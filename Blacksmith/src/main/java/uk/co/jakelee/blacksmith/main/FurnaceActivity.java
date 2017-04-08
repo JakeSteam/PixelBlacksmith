@@ -242,6 +242,10 @@ public class FurnaceActivity extends Activity {
         }
 
         if (quantitySmelted > 0) {
+            if (itemID.equals(231L)) {
+                // Golden egg achievement
+                GooglePlayHelper.UnlockAchievement("CgkI6tnE2Y4OEAIQWw");
+            }
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
             ToastHelper.showToast(findViewById(R.id.furnace), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(this, Constants.STATE_NORMAL)), false);
