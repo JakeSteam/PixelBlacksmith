@@ -415,7 +415,6 @@ public class MainActivity extends AppCompatActivity implements
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
                 DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
                 gph.UpdateQuest();
-
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
@@ -438,10 +437,10 @@ public class MainActivity extends AppCompatActivity implements
                     Trader_Stock.restockTraders();
                     ToastHelper.showPositiveToast(null, ToastHelper.LONG, getRestockText(taxPaid), true);
                 }
-                EventHelper.checkForEasterEggs(activity);
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
                 WorkerHelper.checkForFinishedHeroes(activity);
+                EventHelper.checkForEasterEggs(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };

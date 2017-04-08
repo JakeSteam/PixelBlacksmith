@@ -1704,15 +1704,6 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         inventories.add(new Inventory(77L, Constants.STATE_NORMAL, 5));
         inventories.add(new Inventory(78L, Constants.STATE_NORMAL, 5));
 
-        inventories.add(new Inventory(203L, 1, 999));
-        inventories.add(new Inventory(203L, 3, 20));
-        inventories.add(new Inventory(203L, 4, 20));
-        inventories.add(new Inventory(203L, 5, 20));
-        inventories.add(new Inventory(203L, 6, 20));
-        inventories.add(new Inventory(203L, 7, 20));
-        inventories.add(new Inventory(203L, 8, 20));
-        inventories.add(new Inventory(203L, 9, 20));
-
         Inventory.saveInTx(inventories);
     }
 
