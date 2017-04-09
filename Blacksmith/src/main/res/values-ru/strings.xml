@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">Сохранить в облаке успешно!</string>
     <string name="cloudSaveWarning">Вы уверены, что хотите ПОСТОЯННО перезаписать облачное сохранение:\n\n%1$s\nСоздано в %2$s на вашем %3$s.</string>
     <string name="complete">Завершить</string>
-    <string name="completion_breakdown">Уровень: %1$d / %2$d\nМодернизация: %3$d / %4$d\nТрейдеры: %5$d / %6$d\nСлоты: %7$d / %8$d\nКоличество трейдеров: %9$d / %10$d\nПредметы, принадлежащие: %11$d / %12$d\nПрейскурант посетителей: %13$d / %14$d\nТрофеи: %15$d / %16$d\nРабочие: %17$d / %18$d\nПриключения: %19$d / %20$d\nПрестиж: %21$d = + %22$d%%</string>
+    <string name="completion_breakdown">Уровень: %1$d / %2$d\nМодернизация: %3$d / %4$d\nТрейдеры: %5$d / %6$d\nСлоты: %7$d / %8$d\nКоличество трейдеров: %9$d / %10$d\nПредметы, принадлежащие: %11$d / %12$d\nПрейскурант посетителей: %13$d / %14$d\nТрофеи: %15$d / %16$d\nРабочие: %17$d / %18$d\nПриключения: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">Спасибо</string>
     <string name="con_name_2">Dev Queue</string>
     <string name="con_name_3">Beta &amp; Кредиты</string>

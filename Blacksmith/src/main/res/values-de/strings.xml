@@ -1541,7 +1541,7 @@
     <string name="worseSaveLoad">Belastung</string>
     <string name="adventure">Abenteuer</string>
     <string name="alert_marked_unsellable">Markiert %1$s als %2$ssellable!</string>
-    <string name="completion_breakdown">Level: %1$d / %2$d\\nUpgrades: %3$d / %4$d\\nHändler: %5$d / %6$d\\nSlots: %7$d / %8$d\\nTrader Lagerbestand: %9$d / %10$d\\nGegenstände: %11$d / %12$d\\nBesucher Prefs: %13$d / %14$d\\nTrophäen: %15$d / %16$d\\nArbeiter: %17$d / %18$d\\nAbenteuer: %19$d / %20$d\\nPrestiges: %21$d = +%22$d%%</string>
+    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nHändler: %5$d / %6$d\nSlots: %7$d / %8$d\nTrader Lagerbestand: %9$d / %10$d\nGegenstände: %11$d / %12$d\nBesucher Prefs: %13$d / %14$d\nTrophäen: %15$d / %16$d\nArbeiter: %17$d / %18$d\nAbenteuer: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="difficulty_short">Schw.</string>
     <string name="error_ad_unverified">Etwas ging schief, und die Anzeigenansicht konnte nicht überprüft werden. Es tut uns leid!</string>
     <string name="error_busy">Derzeit berechnen ... bitte versuchen Sie es erneut!</string>
@@ -1580,7 +1580,7 @@
     <string name="worker_select_hero">Wähle Held</string>
     <string name="worker_start_adventure">Start Abenteuer</string>
     <string name="worker_start_gathering">Starten Sie das Sammeln</string>
-    <string name="worseSaveMessage">Sind Sie sicher, dass Sie diese minderwertige Wolke speichern wollen?\\n\\nLokales Speichern:\\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\\n\\nCloud speichern:\\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
+    <string name="worseSaveMessage">Sind Sie sicher, dass Sie diese minderwertige Wolke speichern wollen?\n\nLokales Speichern:\nPrestiges: %1$d, Level: %2$d, XP: %3$d.\n\nCloud speichern:\nPrestiges: %4$d, Level: %5$d, XP: %6$d.</string>
     <string name="visitorCompleteFailure">Sie können einen unzufriedenen Kunden nicht loswerden!</string>
     <string name="level">Ebene</string>
     <string name="tip_1">Tippen Sie auf die rote \'?\' In der oberen linken Seite eines Bildschirms für detaillierte Informationen und Hilfe.</string>

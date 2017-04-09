@@ -228,7 +228,7 @@
     <string name="worker_select_hero">Select Hero</string>
     <string name="worker_select_adventure">Select Adventure</string>
 
-    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nTraders: %5$d / %6$d\nSlots: %7$d / %8$d\nTraders Stock: %9$d / %10$d\nItems Owned: %11$d / %12$d\nVisitor Prefs: %13$d / %14$d\nTrophies: %15$d / %16$d\nWorkers: %17$d / %18$d\nAdventures: %19$d / %20$d\nPrestiges: %21$d = +%22$d%%</string>
+    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nTraders: %5$d / %6$d\nSlots: %7$d / %8$d\nTraders Stock: %9$d / %10$d\nItems Owned: %11$d / %12$d\nVisitor Prefs: %13$d / %14$d\nTrophies: %15$d / %16$d\nWorkers: %17$d / %18$d\nAdventures: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
 
     <string name="rate_dialog_title">Rate Blacksmith</string>
     <string name="rate_dialog_message">If you\'re enjoying Pixel Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec!</string>

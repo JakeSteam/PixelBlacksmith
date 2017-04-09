@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">¡Ahorre en la nube con éxito!</string>
     <string name="cloudSaveWarning">¿Está seguro de que desea sobrescribir PERMANENTEMENTE su almacenamiento en la nube:\n\n%1$s\nCreado en %2$s en su %3$s.</string>
     <string name="complete">Completar</string>
-    <string name="completion_breakdown">Nivel: %1$d / %2$d\nActualizaciones: %3$d / %4$d\nComerciantes: %5$d / %6$d\nTragamonedas: %7$d / %8$d\nAcciones de los comerciantes: %9$d / %10$d\nArtículos poseídos: %11$d / %12$d\nPrefs del visitante: %13$d / %14$d\nTrofeos: %15$d / %16$d\nTrabajadores: %17$d / %18$d\nAventuras: %19$d / %20$d\nPrestiges: %21$d = +%22$d%%</string>
+    <string name="completion_breakdown">Nivel: %1$d / %2$d\nActualizaciones: %3$d / %4$d\nComerciantes: %5$d / %6$d\nTragamonedas: %7$d / %8$d\nAcciones de los comerciantes: %9$d / %10$d\nArtículos poseídos: %11$d / %12$d\nPrefs del visitante: %13$d / %14$d\nTrofeos: %15$d / %16$d\nTrabajadores: %17$d / %18$d\nAventuras: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">Gracias</string>
     <string name="con_name_2">Cola de Dev</string>
     <string name="con_name_3">Beta &amp; Créditos</string>

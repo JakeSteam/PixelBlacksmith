@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">Enregistrer sur un nuage réussie!</string>
     <string name="cloudSaveWarning">Êtes-vous sûr de vouloir remplacer PERMANENT votre sauvegarde en nuage:\n\n%1$s\nCréé sur %2$s sur votre %3$s.</string>
     <string name="complete">Achevée</string>
-    <string name="completion_breakdown">Niveau: %1$d / %2$d\nMises à niveau: %3$d / %4$d\nTraders: %5$d / %6$d\nMachines à sous: %7$d / %8$d\nStock des commerçants: %9$d / %10$d\nArticles détenus: %11$d / %12$d\nVisitor Prefs: %13$d / %14$d\nTrophées: %15$d / %16$d\nTravailleurs: %17$d / %18$d\nAventures: %19$d / %20$d\nPrestiges: %21$d = + %22$d %%</string>
+    <string name="completion_breakdown">Niveau: %1$d / %2$d\nMises à niveau: %3$d / %4$d\nTraders: %5$d / %6$d\nMachines à sous: %7$d / %8$d\nStock des commerçants: %9$d / %10$d\nArticles détenus: %11$d / %12$d\nVisitor Prefs: %13$d / %14$d\nTrophées: %15$d / %16$d\nTravailleurs: %17$d / %18$d\nAventures: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">Je vous remercie</string>
     <string name="con_name_2">Dev Queue</string>
     <string name="con_name_3">Beta &amp; Crédits</string>

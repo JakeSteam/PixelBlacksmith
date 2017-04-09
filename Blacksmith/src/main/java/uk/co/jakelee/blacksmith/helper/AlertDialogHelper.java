@@ -564,6 +564,7 @@ public class AlertDialogHelper {
                 Select.from(Visitor_Stats.class).where(Condition.prop("trophy_achieved").gt(0)).count(), Visitor_Stats.count(Visitor_Stats.class),
                 Select.from(Worker.class).where(Condition.prop("purchased").eq(1)).count(), Worker.count(Worker.class),
                 Visitor_Type.getAdventureAttempts().second, Hero_Adventure.count(Hero_Adventure.class),
+                Select.from(Assistant.class).where(Condition.prop("obtained").gt(0)).count(), Assistant.count(Assistant.class),
                 Player_Info.getPrestige(), Player_Info.getPrestige() * 100));
 
         alertDialog.setPositiveButton(context.getString(R.string.updateClose), new DialogInterface.OnClickListener() {

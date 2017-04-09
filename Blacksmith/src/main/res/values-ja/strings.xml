@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">クラウドに保存成功！</string>
     <string name="cloudSaveWarning">クラウドを完全に上書き保存してもよろしいですか？\n\n%1$s\n%3$sに%2$sで作成されました。</string>
     <string name="complete">コンプリート</string>
-    <string name="completion_breakdown">レベル：%1$d /%2$d\nアップグレード：%3$d /%4$d\nトレーダー：%5$d /%6$d\nスロット：%7$d /%8$d\nトレーダー在庫：%9$d /%10$d\n所有アイテム：%11$d /%12$d\n訪問者のプレースメント：%13$d /%14$d\nトロフィー：%15$d /%16$d\n労働者：%17$d /%18$d\n冒険：%19$d /%20$d\n威信：%21$d = +%22$d %%</string>
+    <string name="completion_breakdown">レベル：%1$d /%2$d\nアップグレード：%3$d /%4$d\nトレーダー：%5$d /%6$d\nスロット：%7$d /%8$d\nトレーダー在庫：%9$d /%10$d\n所有アイテム：%11$d /%12$d\n訪問者のプレースメント：%13$d /%14$d\nトロフィー：%15$d /%16$d\n労働者：%17$d /%18$d\n冒険：%19$d /%20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">ありがとうございました</string>
     <string name="con_name_2">デベロッパーキュー</string>
     <string name="con_name_3">ベータ&amp;クレジット</string>

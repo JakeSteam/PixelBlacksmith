@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">Sla succesvol naar cloud!</string>
     <string name="cloudSaveWarning">Weet u zeker dat u permanent overschrijven uw cloud op te slaan:\n\n%1$s\nGemaakt op %2$s op uw %3$s.</string>
     <string name="complete">Compleet</string>
-    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nHandelaren: %5$d / %6$d\nSlots: %7$d / %8$d\nHandelaren Stock: %9$d / %10$d\nItems Owned: %11$d / %12$d\nBezoeker Prefs: %13$d / %14$d\nTrofeeën: %15$d / %16$d\nWerknemers: %17$d / %18$d\nAdventures: %19$d / %20$d\nPrestiges: %21$d = + %22$d %%</string>
+    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nHandelaren: %5$d / %6$d\nSlots: %7$d / %8$d\nHandelaren Stock: %9$d / %10$d\nItems Owned: %11$d / %12$d\nBezoeker Prefs: %13$d / %14$d\nTrofeeën: %15$d / %16$d\nWerknemers: %17$d / %18$d\nAdventures: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">Dank je</string>
     <string name="con_name_2">dev Queue</string>
     <string name="con_name_3">Beta &amp; credits</string>

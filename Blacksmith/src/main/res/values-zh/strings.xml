@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">保存到云成功！</string>
     <string name="cloudSaveWarning">您确定要永久覆盖云端保存：\n\n%1$s\n在%3$s上创建%2$s。</string>
     <string name="complete">完成</string>
-    <string name="completion_breakdown">级别：%1$d /%2$d\n升级：%3$d /%4$d\n交易者：%5$d /%6$d\n老虎机：%7$d /%8$d\n交易商库存：%9$d /%10$d\n所有商品：%11$d /%12$d\n游客资料：%13$d /%14$d\n奖杯：%15$d /%16$d\n工人：%17$d /%18$d\n冒险：%19$d /%20$d\nPrestiges：%21$d = +%22$d %%</string>
+    <string name="completion_breakdown">级别：%1$d /%2$d\n升级：%3$d /%4$d\n交易者：%5$d /%6$d\n老虎机：%7$d /%8$d\n交易商库存：%9$d /%10$d\n所有商品：%11$d /%12$d\n游客资料：%13$d /%14$d\n奖杯：%15$d /%16$d\n工人：%17$d /%18$d\n冒险：%19$d /%20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">谢谢</string>
     <string name="con_name_2">开发队列</string>
     <string name="con_name_3">Beta＆amp;积分</string>

@@ -106,7 +106,7 @@
     <string name="cloudSaveSuccess">클라우드에 성공적으로 저장하십시오!</string>
     <string name="cloudSaveWarning">영구적으로 클라우드 저장을 덮어 쓰시겠습니까?\n\n%1$s\n%3$s에  %2$s에 생성되었습니다.</string>
     <string name="complete">완전한</string>
-    <string name="completion_breakdown">수준 :  %1$d /  %2$d\n업그레이드 :  %3$d /  %4$d\n거래자 :  %5$d /  %6$d\n슬롯 :  %7$d /  %8$d\n거래자 인 주식 :  %9$d /  %10$d\n소유 된 항목 :  %11$d /  %12$d\n방문자 환경 설정 :  %13$d /  %14$d\n트로피 :  %15$d /  %16$d\n근로자 :  %17$d /  %18$d\n모험 :  %19$d /  %20$d\n명성 :  %21$d = +  %22$d%%</string>
+    <string name="completion_breakdown">수준 :  %1$d /  %2$d\n업그레이드 :  %3$d /  %4$d\n거래자 :  %5$d /  %6$d\n슬롯 :  %7$d /  %8$d\n거래자 인 주식 :  %9$d /  %10$d\n소유 된 항목 :  %11$d /  %12$d\n방문자 환경 설정 :  %13$d /  %14$d\n트로피 :  %15$d /  %16$d\n근로자 :  %17$d /  %18$d\n모험 :  %19$d /  %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="con_name_1">고맙습니다</string>
     <string name="con_name_2">개발 대기열</string>
     <string name="con_name_3">베타 &amp; 크레딧</string>
