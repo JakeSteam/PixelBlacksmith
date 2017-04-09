@@ -462,6 +462,10 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    public void openEventInfo(View v) {
+        AlertDialogHelper.displayEventInfo(this);
+    }
+
     private void updateVisitors() {
         dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout)findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
     }

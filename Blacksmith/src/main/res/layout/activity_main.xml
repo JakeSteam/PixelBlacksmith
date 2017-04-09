@@ -510,6 +510,27 @@
                 android:progressDrawable="@drawable/level_progress"
                 android:progress="0"/>
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/eventContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/questContainer"
+            android:layout_marginRight="10dp"
+            android:onClick="openEventInfo">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/levelbackground" />
+            <ImageView
+                android:id="@+id/eventIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/item231"/>
+        </RelativeLayout>
     </RelativeLayout>
 
     <uk.co.jakelee.blacksmith.controls.TextViewPixel
