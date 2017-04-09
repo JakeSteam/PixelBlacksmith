@@ -940,7 +940,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             statistics.add(new Player_Info("TotalAssistantClaims", 0));
         Player_Info.saveInTx(statistics);
 
-        new Visitor_Type(53L, "Easter Bunny", "Here to spread Easter joy!", 11L, 27L, 1L, 1.24, 1.24, 1.24, false, false, false, 8).save();
+        new Visitor_Type(53L, "Easter Bunny", "Here to spread Easter joy!", 11L, 27L, 1L, 1.24, 1.24, 1.24, false, false, false, 40).save();
         new Visitor_Stats(53L, 0, 52L, 1L, 0, 0L, 0L).save();
 
         createPets();

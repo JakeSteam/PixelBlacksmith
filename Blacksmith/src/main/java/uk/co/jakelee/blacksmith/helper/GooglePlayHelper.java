@@ -33,6 +33,7 @@ import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -371,6 +372,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         backupString += gson.toJson(Worker.listAll(Worker.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Hero.listAll(Hero.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Visitor_Log.listAll(Visitor_Log.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Assistant.listAll(Assistant.class)) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
@@ -465,6 +467,16 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 Visitor_Log.deleteAll(Visitor_Log.class);
                 for (Visitor_Log visitorLog : visitorLogs) {
                     visitorLog.save();
+                }
+            }
+        }
+
+        if (splitData.length > 13) {
+            Assistant[] assistants = gson.fromJson(splitData[13], Assistant[].class);
+            if (assistants.length > 0) {
+                Assistant.deleteAll(Assistant.class);
+                for (Assistant assistant : assistants) {
+                    assistant.save();
                 }
             }
         }
