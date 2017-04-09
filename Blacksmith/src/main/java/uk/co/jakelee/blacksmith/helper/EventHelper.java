@@ -1,7 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
 import android.app.Activity;
-import android.util.Log;
 
 import java.util.Locale;
 
@@ -17,9 +16,6 @@ public class EventHelper {
             Inventory.addItem(item.getId(), state, 1, false);
             ToastHelper.showPositiveToast(null, ToastHelper.EXTRALONG, String.format(Locale.ENGLISH, activity.getString(R.string.eventEasterItem),
                     item.getFullName(activity, state)), true);
-            Log.d("Egg", "Yes!");
-        } else {
-            Log.d("Egg", "No!");
         }
     }
 }

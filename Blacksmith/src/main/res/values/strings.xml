@@ -1272,6 +1272,7 @@
     <string name="visitor_name_50">COLDBOT5000</string>
     <string name="visitor_name_51">Mr Tentacles</string>
     <string name="visitor_name_52">Bresh Bosh</string>
+    <string name="visitor_name_53">Easter Bunny</string>
 
     <string name="visitor_desc_1">I like unfinished things, they burn better!</string>
     <string name="visitor_desc_2">If only I was a woodcutter...</string>
@@ -1325,6 +1326,7 @@
     <string name="visitor_desc_50">It\'s freezerin\' time!</string>
     <string name="visitor_desc_51">Want a burger?</string>
     <string name="visitor_desc_52">I\'s got all these coins but nuffin good. Whatchu got?</string>
+    <string name="visitor_desc_53">Here to spread Easter joy!</string>
 
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>
