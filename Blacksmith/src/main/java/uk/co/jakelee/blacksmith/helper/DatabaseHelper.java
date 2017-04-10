@@ -1682,7 +1682,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         List<Inventory> inventories = new ArrayList<>();
 
         // 200 gold
-        inventories.add(new Inventory(52L, Constants.STATE_NORMAL, 207890));
+        inventories.add(new Inventory(52L, Constants.STATE_NORMAL, 200));
 
         // 150 copper, tin, iron.
         inventories.add(new Inventory(1L, Constants.STATE_NORMAL, 150));
@@ -1912,7 +1912,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private void createPlayerInfo() {
         List<Player_Info> player_infos = new ArrayList<>();
         
-        player_infos.add(new Player_Info("XP", 123123));
+        player_infos.add(new Player_Info("XP", Constants.STARTING_XP));
         player_infos.add(new Player_Info("", 0));
         player_infos.add(new Player_Info("ItemsSmelted", 0, 0));
         player_infos.add(new Player_Info("ItemsCrafted", 0));

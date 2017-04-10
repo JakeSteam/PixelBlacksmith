@@ -68,8 +68,8 @@ public class MarketActivity extends Activity {
     }
 
     private void populateTraderList() {
-        Trader.checkTraderStatus(this, Constants.LOCATION_MARKET);
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
+        Trader.checkTraderStatus(this, marketLayout, Constants.LOCATION_MARKET);
         marketLayout.removeAllViews();
 
         int fixedTraders = Trader.getFixedCount();

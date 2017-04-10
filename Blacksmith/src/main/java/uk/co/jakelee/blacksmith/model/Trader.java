@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
 import android.content.Context;
+import android.widget.TableLayout;
 
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -40,7 +41,7 @@ public class Trader extends SugarRecord {
         this.fixed = false;
     }
 
-    public static void checkTraderStatus(Context context, long location) {
+    public static void checkTraderStatus(Context context, TableLayout marketLayout, long location) {
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(location),
                 Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
@@ -64,18 +65,18 @@ public class Trader extends SugarRecord {
         }
 
         while (numberOfTraders < Upgrade.getValue("Maximum Traders")) {
-            Trader.makeTraderAppear(context);
+            Trader.makeTraderAppear(context, marketLayout);
             numberOfTraders++;
         }
     }
 
-    private static void makeTraderAppear(Context context) {
+    private static void makeTraderAppear(Context context, TableLayout marketLayout) {
         Trader traderToArrive = selectTraderType();
         if (traderToArrive.getName(context) != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
             if (!TutorialHelper.currentlyInTutorial) {
-                ToastHelper.showToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName(context)), true);
+                ToastHelper.showToast(marketLayout, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName(context)), true);
             }
         }
     }

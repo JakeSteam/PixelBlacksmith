@@ -72,10 +72,8 @@ public class MainActivity extends AppCompatActivity implements
         BatchUnlockListener {
     private static final Handler handler = new Handler();
     public static RelativeLayout questContainer;
-    private static DisplayHelper dh;
+    private DisplayHelper dh;
     public static VariableHelper vh;
-    private static LinearLayout visitorContainer;
-    private static LinearLayout visitorContainerOverflow;
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
@@ -327,6 +325,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         findViewById(R.id.buyCoins).setVisibility(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? View.INVISIBLE : View.VISIBLE);
+        DisplayHelper.updateAssistantDisplay((RelativeLayout)findViewById(R.id.assistant_container));
     }
 
     public void exitTutorial(View v) {
@@ -388,7 +387,6 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 dh.createAllSlots(activity);
-                DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
             }
         });
 
@@ -422,7 +420,6 @@ public class MainActivity extends AppCompatActivity implements
                     ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
-                DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
                 gph.UpdateQuest();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
@@ -442,6 +439,7 @@ public class MainActivity extends AppCompatActivity implements
                 WorkerHelper.checkForFinishedHeroes(activity);
                 EventHelper.checkForEasterEggs(activity);
                 dh.createAllSlots(activity);
+                DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };

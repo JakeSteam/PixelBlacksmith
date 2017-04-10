@@ -1925,6 +1925,7 @@
     <string name="signOut">Sign Out</string>
     <string name="versionNumber" translatable="false">V%1$s (#%2$d)</string>
     <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
+    <string name="unknownError">An unknown error occurred! If it happens again, please email pixel.blacksmith@jakelee.co.uk with as much info as possible!</string>
 
     <string name="complete">Complete</string>
     <string name="close" translatable="false">X</string>

@@ -512,7 +512,11 @@ public class DisplayHelper {
         ImageView image = new ImageView(context);
         image.setId(viewId);
         image.setTag(itemId);
-        image.setImageDrawable(isUnsellable ? createDrawable(R.drawable.lock, width, height) : createItemImageDrawable(itemId, itemState, width, height, haveSeen, canCreate));
+        try {
+            image.setImageDrawable(isUnsellable ? createDrawable(R.drawable.lock, width, height) : createItemImageDrawable(itemId, itemState, width, height, haveSeen, canCreate));
+        } catch (Exception e) {
+            image.setImageResource(R.drawable.help);
+        }
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         return image;
@@ -558,8 +562,10 @@ public class DisplayHelper {
             return new BitmapDrawable(context.getResources(), resizedImage);
         } catch (OutOfMemoryError e) {
             ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.lowMemory), false);
-            return new BitmapDrawable();
+        } catch (NullPointerException e) {
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, context.getString(R.string.unknownError), false);
         }
+        return new BitmapDrawable();
     }
 
     public int convertDpToPixel(int dp) {
