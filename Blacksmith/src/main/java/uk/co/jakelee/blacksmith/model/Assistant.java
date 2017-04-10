@@ -154,6 +154,10 @@ public class Assistant extends SugarRecord {
         return getLevel() * boost;
     }
 
+    public double getBoost(int level) {
+        return level * boost;
+    }
+
     public void setBoost(double boost) {
         this.boost = boost;
     }

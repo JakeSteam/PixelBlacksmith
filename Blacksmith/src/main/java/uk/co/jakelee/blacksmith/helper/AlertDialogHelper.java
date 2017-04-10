@@ -118,6 +118,7 @@ public class AlertDialogHelper {
                 }
                 assistant.setName(name);
                 assistant.save();
+
                 activity.displayAssistantInfo();
             }
         });
@@ -507,9 +508,14 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     coinStock.setQuantity(coinStock.getQuantity() - assistant.getCoinsRequired());
                     coinStock.save();
+
                     assistant.setCurrentXp(Assistant.getXpForLevel(assistant.getLevelModifier(), 1));
                     assistant.setObtained(System.currentTimeMillis());
                     assistant.save();
+
+                    Player_Info activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
+                    activeAssistant.setIntValue(assistant.getAssistantId());
+                    activeAssistant.save();
 
                     activity.unlockAssistant();
                 }

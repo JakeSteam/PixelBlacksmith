@@ -16,7 +16,7 @@
     <string name="assistantButtonLockedCoins">Unlock for </string>
     <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
     <string name="assistantSpecs">Tier %1$d %2$s</string>
-    <string name="assistantDesc">Per level:\n%1$dx %2$s per %3$s.\n+%4$d%% XP / coin boost.\n\nTotal:\n%5$dx %2$s per %3$s.\n+%6$d%% XP / coin boost.</string>
+    <string name="assistantDesc">Per level:\n%1$dx %2$s per %3$s.\n+%4$.0f%% XP / coin boost.\n\nCurrent:\n%5$dx %2$s per %3$s.\n+%6$.0f%% XP / coin boost.</string>
     <string name="assistantClaimed">Received %1$dx %2$s!</string>
     <string name="assistantTimeLeft">Assistant bonus ready to claim in %1$s.</string>
     <string name="assistantProgressText">Lev %1$d/%2$d (%3$d%%)</string>
