@@ -109,10 +109,12 @@ public class AssistantActivity extends Activity {
                 assistant.getMaxLevel(),
                 progress));
         ((TextView)findViewById(R.id.assistantDesc)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantDesc),
-                assistant.getRewardQuantity() * assistant.getLevel(),
+                assistant.getRewardQuantity(),
                 rewardItem.getFullName(this, assistant.getRewardState()),
                 DateHelper.getHoursMinsRemaining(assistant.getRewardFrequency()),
-                (int)Math.ceil(assistant.getXpBoost() * 100d)));
+                (int)Math.ceil(assistant.getBoost() * 100d),
+                assistant.getRewardQuantity() *  assistant.getLevel(),
+                (int)Math.ceil(assistant.getBoost() * 100d) * assistant.getLevel()));
         ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
     }
 

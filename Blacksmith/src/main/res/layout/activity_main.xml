@@ -290,14 +290,15 @@
                 android:id="@+id/assistant_container"
                 android:layout_width="125dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="290dp"
+                android:layout_marginLeft="933dp"
                 android:onClick="openAssistants"
-                app:layout_heightPercent="11%"
-                app:layout_marginTopPercent="22%">
+                app:layout_heightPercent="15%"
+                app:layout_marginTopPercent="11%">
                 <ImageView
                     android:id="@+id/assistant_image"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:paddingBottom="20dp"/>
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/assistant_time"
                     android:layout_width="wrap_content"
@@ -305,6 +306,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:textSize="24sp"
+                    android:padding="3dp"
+                    android:gravity="center_horizontal"
                     android:onClick="claimAssistant"
                     android:background="@color/black"/>
             </RelativeLayout>

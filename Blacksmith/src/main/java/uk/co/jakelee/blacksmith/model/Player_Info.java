@@ -238,7 +238,7 @@ public class Player_Info extends SugarRecord {
         int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
         if (activeAssistant > 0) {
             Assistant assistant = Assistant.get(activeAssistant);
-            modifiedXp = (int)Math.ceil(modifiedXp * (1 + assistant.getXpBoost()));
+            modifiedXp = (int)Math.ceil(modifiedXp * (1 + assistant.getBoost()));
             assistant.setCurrentXp(assistant.getCurrentXp() + modifiedXp);
             assistant.save();
         }

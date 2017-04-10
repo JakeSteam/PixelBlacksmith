@@ -118,6 +118,7 @@ public class AlertDialogHelper {
                 }
                 assistant.setName(name);
                 assistant.save();
+                activity.displayAssistantInfo();
             }
         });
 

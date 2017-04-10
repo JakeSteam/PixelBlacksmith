@@ -943,17 +943,17 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         new Visitor_Type(53L, "Easter Bunny", "Here to spread Easter joy!", 11L, 27L, 1L, 1.24, 1.24, 1.24, false, false, false, 40).save();
         new Visitor_Stats(53L, 0, 52L, 1L, 0, 0L, 0L).save();
 
-        createPets();
+        createAssistants();
     }
 
-    private void createPets() {
+    private void createAssistants() {
         List<Assistant> assistants = new ArrayList<>();
-            assistants.add(new Assistant(1, 1, 100, 0.1, 19, 0L, 52, 1, 100, 300000, 0.05));
-            assistants.add(new Assistant(2, 1, 100, 0.1, 19, 0L, 20, 2, 123, 300000, 0.05));
-            assistants.add(new Assistant(3, 99, 1000, 0.1, 19, 0L, 39, 4, 100, 300000, 0.05));
-            assistants.add(new Assistant(4, 99, 1000, 0.1, 19, 0L, 39, 4, 100, 300000, 0.05));
-            assistants.add(new Assistant(5, 99, 1000, 0.1, 19, 0L, 39, 4, 100, 300000, 0.05));
-            assistants.add(new Assistant(6, 99, 1000, 0.1, 19, 0L, 39, 4, 100, 300000, 0.05));
+            assistants.add(new Assistant(1, 5, 1000, 0.3, 19, 0, 70, 1, 100, 600000, 1));
+            assistants.add(new Assistant(2, 12, 5000, 0.15, 19, 0, 71, 1, 220, 600000, 1.15));
+            assistants.add(new Assistant(3, 20, 12000, 0.07, 19, 0, 52, 1, 3000, 900000, 1.22));
+            assistants.add(new Assistant(4, 27, 20000, 0.05, 19, 0, 75, 1, 30, 2100000, 1.4));
+            assistants.add(new Assistant(5, 33, 35000, 0.035, 19, 0, 148, 1, 50, 3600000, 1.65));
+            assistants.add(new Assistant(6, 45, 60000, 0.02, 19, 0, 52, 1, 30000, 3600000, 1.76));
         Assistant.saveInTx(assistants);
     }
 	

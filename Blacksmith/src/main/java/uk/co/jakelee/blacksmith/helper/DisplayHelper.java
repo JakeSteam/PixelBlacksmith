@@ -833,21 +833,22 @@ public class DisplayHelper {
     public static void updateAssistantDisplay(RelativeLayout assistantContainer) {
         int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
         long lastClaimTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first().getLongValue();
+
+        String timeLeftText;
         if (activeAssistant > 0) {
             Assistant assistant = Assistant.get(activeAssistant);
             ((ImageView) assistantContainer.findViewById(R.id.assistant_image)).setImageResource(DisplayHelper.getAssistantDrawableID(
                     assistantContainer.getContext(),
                     assistant));
 
-            String timeLeftText;
             if (lastClaimTime + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
-                timeLeftText = "Ready!";
+                timeLeftText = assistantContainer.getContext().getString(R.string.assistantReady);
             } else {
-                timeLeftText = DateHelper.getHoursMinsRemaining((lastClaimTime + assistant.getRewardFrequency()) - System.currentTimeMillis());
+                timeLeftText = assistantContainer.getContext().getString(R.string.assistantNotReady) + DateHelper.getHoursMinsRemaining((lastClaimTime + assistant.getRewardFrequency()) - System.currentTimeMillis());
             }
-            ((TextView)assistantContainer.findViewById(R.id.assistant_time)).setText(timeLeftText);
         } else {
-            // Set imageview + button to placeholder
+            timeLeftText = assistantContainer.getContext().getString(R.string.assistantTeaser);
         }
+        ((TextView)assistantContainer.findViewById(R.id.assistant_time)).setText(timeLeftText);
     }
 }

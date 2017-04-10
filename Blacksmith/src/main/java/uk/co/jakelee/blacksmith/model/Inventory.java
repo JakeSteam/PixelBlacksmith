@@ -255,6 +255,12 @@ public class Inventory extends SugarRecord implements Serializable {
             price = price * 2;
         }
 
+        int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
+        if (activeAssistant > 0) {
+            Assistant assistant = Assistant.get(activeAssistant);
+            price = (int)Math.floor((double)price * (1 + assistant.getBoost()));
+        }
+
         if (itemStock.isUnsellable()) {
             return Constants.ERROR_UNSELLABLE;
         } else if (itemStock.getQuantity() > 0) {

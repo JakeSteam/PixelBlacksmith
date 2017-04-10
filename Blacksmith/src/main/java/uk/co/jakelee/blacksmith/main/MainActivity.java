@@ -383,6 +383,15 @@ public class MainActivity extends AppCompatActivity implements
         final ProgressBar levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
         final TextView levelPercent = (TextView) findViewById(R.id.currentLevelPercent);
         final TextView coinCount = (TextView) findViewById(R.id.coinCount);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                dh.createAllSlots(activity);
+                DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
+            }
+        });
+
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
@@ -420,15 +429,6 @@ public class MainActivity extends AppCompatActivity implements
         };
         handler.postDelayed(everyTenSeconds, DateHelper.MILLISECONDS_IN_SECOND * 10);
 
-        final Runnable everyMinuteImmediate = new Runnable() {
-            @Override
-            public void run() {
-                dh.createAllSlots(activity);
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
-            }
-        };
-        handler.post(everyMinuteImmediate);
-
         final Runnable everyMinute = new Runnable() {
             @Override
             public void run() {
@@ -441,6 +441,7 @@ public class MainActivity extends AppCompatActivity implements
                 WorkerHelper.checkForFinishedWorkers(activity);
                 WorkerHelper.checkForFinishedHeroes(activity);
                 EventHelper.checkForEasterEggs(activity);
+                dh.createAllSlots(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
@@ -491,88 +492,74 @@ public class MainActivity extends AppCompatActivity implements
                 ToastHelper.showTipToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantTimeLeft),
                         DateHelper.getHoursMinsSecsRemaining(((lastClaimed.getLongValue() + assistant.getRewardFrequency()) - System.currentTimeMillis()))), false);
             }
+        } else {
+            startActivity(new Intent(this, AssistantActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
         }
     }
 
     public void openMarket(View view) {
-        Intent intent = new Intent(this, MarketActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, MarketActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openInventory(View view) {
-        Intent intent = new Intent(this, InventoryActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, InventoryActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openFurnace(View view) {
-        Intent intent = new Intent(this, FurnaceActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, FurnaceActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openAnvil(View view) {
-        Intent intent = new Intent(this, AnvilActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, AnvilActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openTable(View view) {
-        Intent intent = new Intent(this, TableActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, TableActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openEnchanting(View view) {
-        Intent intent = new Intent(this, EnchantingActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, EnchantingActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openSettings(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openTrophies(View view) {
-        Intent intent = new Intent(this, TrophyActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, TrophyActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openStatistics(View view) {
-        Intent intent = new Intent(this, StatisticsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, StatisticsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openHelp(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, HelpActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openUpgrades(View view) {
-        Intent intent = new Intent(this, UpgradeActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, UpgradeActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openPremium(View view) {
-        Intent intent = new Intent(this, PremiumActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, PremiumActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openAssistants(View view) {
-        Intent intent = new Intent(this, AssistantActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, AssistantActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openWorkers(View view) {
-        Intent intent = new Intent(this, WorkerActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, WorkerActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openBuyCoins(View view) {
-        Intent intent = new Intent(this, BuyCoinsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, BuyCoinsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            Intent intent = new Intent(this, QuestActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, QuestActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
         } else {
             ToastHelper.showErrorToast(null, ToastHelper.LONG, getString(R.string.questsNoConnection), false);
         }
