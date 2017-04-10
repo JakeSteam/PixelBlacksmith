@@ -93,7 +93,8 @@ public class HelpActivity extends Activity {
     }
 
     private void displayHelpAssistants(LinearLayout layout) {
-
+        layout.addView(dh.createTextView(getString(R.string.help_assistants), 26));
+        layout.addView(dh.createTextView(getString(R.string.help_assistants_text), 22));
     }
 
     private void displayHelpCoins(LinearLayout layout) {

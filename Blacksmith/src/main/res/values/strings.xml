@@ -42,6 +42,8 @@
     <string name="tool_gold_ring">Gold Ring (Gold + Gems)</string>
     <string name="tool_visage">Visage (Coins)</string>
 
+    <string name="help_assistants">Assistants</string>
+    <string name="help_assistants_text">Assistants can be recruited (for a cost) after certain levels, and will provide regular income alongside passive XP &amp; gold bonuses.\n\nHigher level assistants will provide better bonuses, make sure to claim the bonus items regularly!</string>
     <string name="help_coins">Coins</string>
     <string name="help_coins_text">Coins are earned and spent during normal gameplay. The buyable amount is dependent on your current player level.\nThe larger pack is also better value, so check out the two prices and see which works best for you!\n</string>
     <string name="help_prestige">Prestige</string>
