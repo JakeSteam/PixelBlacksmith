@@ -329,6 +329,10 @@ public class SettingsActivity extends Activity {
         startActivity(intent);
     }
 
+    public void launchHotfixes(View view) {
+        AlertDialogHelper.hotfixMenu(this);
+    }
+
     public void openAchievements(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);

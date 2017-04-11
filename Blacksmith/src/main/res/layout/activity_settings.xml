@@ -400,6 +400,7 @@
 
                     <LinearLayout
                         style="@style/SettingPanel"
+                        android:onClick="toggleOrientation"
                         android:tag="4">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -413,6 +414,7 @@
 
                     <LinearLayout
                         style="@style/SettingPanel"
+                        android:onClick="toggleOrientation"
                         android:tag="7">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -426,6 +428,7 @@
 
                     <LinearLayout
                         style="@style/SettingPanel"
+                        android:onClick="toggleOrientation"
                         android:tag="6">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -570,6 +573,15 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:text="@string/importSaveText"
+                            style="@style/SettingText" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/SettingPanel"
+                        android:onClick="launchHotfixes">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:text="@string/launchHotfixes"
                             style="@style/SettingText" />
                     </LinearLayout>
                 </TableRow>

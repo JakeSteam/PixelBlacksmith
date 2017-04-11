@@ -289,6 +289,10 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
+    public static void clearDuplicates() {
+        Inventory.executeQuery("DELETE FROM inventory WHERE quantity = 0 AND item IN (SELECT i2.item FROM inventory AS i2 GROUP BY i2.item, i2.state HAVING COUNT(*) > 1)");
+    }
+
     public static int buyItem(Trader_Stock itemStock) {
         int canBuyResponse = canBuyItem(itemStock);
         if (canBuyResponse != Constants.SUCCESS) {

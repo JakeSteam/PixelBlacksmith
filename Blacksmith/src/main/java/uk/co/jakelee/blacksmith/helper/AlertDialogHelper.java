@@ -50,6 +50,8 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
+import static uk.co.jakelee.blacksmith.R.id.trader;
+
 public class AlertDialogHelper {
     public static void enterSupportCode(final Context context, final Activity activity) {
         final EditText supportCodeBox = new EditText(context);
@@ -425,6 +427,29 @@ public class AlertDialogHelper {
                 }
             });
         }
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    public static void hotfixMenu(final Activity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(R.string.hotfixDesc);
+
+        alertDialog.setPositiveButton(R.string.hotfixDuplicate, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Inventory.clearDuplicates();
+            }
+        });
+
+        alertDialog.setNegativeButton(activity.getString(R.string.lockCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
 
         final Dialog dialog = alertDialog.create();
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
@@ -953,7 +978,7 @@ public class AlertDialogHelper {
                 + "AND ts.stock > 0");
 
         if (itemStocks.size() == 0) {
-            ToastHelper.showToast(activity.findViewById(R.id.trader), ToastHelper.SHORT, activity.getString(R.string.itemBuyAllNoItems), false);
+            ToastHelper.showToast(activity.findViewById(trader), ToastHelper.SHORT, activity.getString(R.string.itemBuyAllNoItems), false);
             return;
         }
 
