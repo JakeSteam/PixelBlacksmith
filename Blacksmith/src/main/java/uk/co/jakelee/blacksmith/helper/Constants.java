@@ -123,6 +123,7 @@ public class Constants {
     public static final int NOTIFICATION_WORKER = 3;
     public static final int NOTIFICATION_BONUS = 4;
     public static final int NOTIFICATION_FINISHED = 5;
+    public static final int NOTIFICATION_ASSISTANT = 6;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
@@ -196,6 +197,7 @@ public class Constants {
     public static final Long SETTING_BULK_STACK = 21L;
     public static final Long SETTING_ORIENTATION = 22L;
     public static final Long SETTING_LANGUAGE = 23L;
+    public static final Long SETTING_ASSISTANT_NOTIFICATIONS = 24L;
 
     public static final int SU_DOUBLE_FURNACE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;

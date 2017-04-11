@@ -932,6 +932,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
         List<Setting> settings = new ArrayList<>();
             settings.add(new Setting(Constants.SETTING_LANGUAGE, "Language", LanguageHelper.getDefaultLanguage()));
+            settings.add(new Setting(Constants.SETTING_ASSISTANT_NOTIFICATIONS, "AssistantNotifications", true));
         Setting.saveInTx(settings);
 
         List<Player_Info> statistics = new ArrayList<>();

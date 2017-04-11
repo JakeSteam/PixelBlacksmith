@@ -219,6 +219,20 @@
                             android:id="@+id/finishedNotificationToggleButton"
                             style="@style/SettingButton" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/assistantNotificationToggle"
+                        style="@style/SettingPanel">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/assistantNotificationToggleText"
+                            android:text="@string/assistantNotificationSettingText"
+                            style="@style/SettingText"/>
+
+                        <ImageView
+                            android:id="@+id/assistantNotificationToggleButton"
+                            style="@style/SettingButton" />
+                    </LinearLayout>
                 </TableRow>
 
                 <!-- Gameplay -->

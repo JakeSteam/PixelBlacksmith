@@ -365,6 +365,10 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addFinishedNotification(getApplicationContext(), notificationSound);
         }
 
+        if (Setting.getSafeBoolean(Constants.SETTING_ASSISTANT_NOTIFICATIONS)) {
+            NotificationHelper.addAssistantNotification(getApplicationContext(), notificationSound);
+        }
+
         if (musicServiceIsStarted) {
             stopService(musicService);
             musicServiceIsStarted = false;

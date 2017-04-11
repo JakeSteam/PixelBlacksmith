@@ -171,6 +171,7 @@ public class SettingsActivity extends Activity {
         ((ImageView) findViewById(R.id.workerNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS) ? tick : cross);
         ((ImageView) findViewById(R.id.bonusNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS) ? tick : cross);
         ((ImageView) findViewById(R.id.finishedNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_FINISHED_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.assistantNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_ASSISTANT_NOTIFICATIONS) ? tick : cross);
         ((ImageView) findViewById(R.id.notificationSoundToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS) ? tick : cross);
         ((ImageView) findViewById(R.id.turnOffAdsButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? tick : cross);
         ((ImageView) findViewById(R.id.clickChangeToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE) ? tick : cross);
@@ -249,6 +250,9 @@ public class SettingsActivity extends Activity {
                 break;
             case R.id.finishedNotificationToggle:
                 settingID = Constants.SETTING_FINISHED_NOTIFICATIONS;
+                break;
+            case R.id.assistantNotificationToggle:
+                settingID = Constants.SETTING_ASSISTANT_NOTIFICATIONS;
                 break;
             case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
