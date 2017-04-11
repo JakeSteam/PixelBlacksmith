@@ -1569,6 +1569,7 @@
 
     <string name="onlyAvailable">Show All Items\n</string>
 
+    <string name="translationHelp"><u>Fix?</u></string>
     <string name="updateMessage">Updated to version %s!\n\nMain changes:\n- Easter Event! Collect eggs to craft a valuable Golden Egg!\n- Assistants! Unlock assistants to get XP, coin, and item bonuses!\n- Languages! 8 new languages added, with improvements coming!\n- New food, rings, hero sets, super upgrades, and bugfixes!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
@@ -1746,7 +1747,7 @@
     <string name="bulkStackSettingText">Bulk Craft\nStack</string>
     <string name="orientationAuto">Auto</string>
     <string name="orientationPortrait">Portrait</string>
-    <string name="orientationLandscape">Landscape</string>
+    <string name="orientationLandscape">Landsc.</string>
     <string name="launchHotfixes">Bug\nFixes</string>
     <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!</string>
     <string name="hotfixDuplicate">Fix Unsellable</string>

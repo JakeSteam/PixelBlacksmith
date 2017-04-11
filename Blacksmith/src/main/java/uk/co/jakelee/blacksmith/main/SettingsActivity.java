@@ -405,4 +405,9 @@ public class SettingsActivity extends Activity {
     public void closePopup(View view) {
         finish();
     }
+
+    public void openTranslationSheet(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/spreadsheets/d/1SIvUBTR2kT1UFBcVbXrpMxF5A1jBZz5rVFCgVgyRMnE/"));
+        startActivity(browserIntent);
+    }
 }

@@ -65,13 +65,26 @@
                         android:textSize="28sp" />
                 </TableRow>
                 <TableRow>
-                    <Spinner
-                        android:id="@+id/languagePicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="3dp"
-                        android:spinnerMode="dialog"
-                        android:layout_span="3"/>
+                    <RelativeLayout android:layout_span="3">
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/translationButton"
+                            android:text="@string/translationHelp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:onClick="openTranslationSheet"
+                            android:textColor="@color/defaultLink"
+                            style="@style/SettingText" />
+                        <Spinner
+                            android:id="@+id/languagePicker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:spinnerMode="dialog"
+                            android:layout_toLeftOf="@id/translationButton"/>
+                    </RelativeLayout>
+
+
                 </TableRow>
 
                 <!-- Sounds -->
