@@ -1407,7 +1407,7 @@
     <string name="unnecessaryRestock">このトレーダーを補充する必要はありません！</string>
     <string name="unsellableItem">%1$sを%2$ssellableとしてマークしました！</string>
     <string name="updateClose">閉じる</string>
-    <string name="updateMessage">バージョン%sに更新されました！\n\nフルチェンジリストは、/ r / PixelBlacksmithサブディレクトリで見ることができます。</string>
+    <string name="updateMessage">バージョン%sに更新されました！\\n\\n主な変更点：\\n- イースターイベント！ 貴重なゴールデンエッグを作るために卵を集める！\\n- アシスタント！ アシスタントのロックを解除してXP、コイン、アイテムボーナスを手に入れよう！\\n- 言語！ 8つの新しい言語が追加されました。\\n- 新しい食品、リング、ヒーローセット、スーパーアップグレード、バグ修正！</string>
     <string name="updateReddit">変更を表示</string>
     <string name="updateSlotsSettingText">スロットの更新</string>
     <string name="upgradeCancel">キャンセル</string>

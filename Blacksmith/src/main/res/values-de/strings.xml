@@ -1370,7 +1370,7 @@
     <string name="unnecessaryRestock">Es gibt keine Notwendigkeit, diesen Händler wieder aufzufüllen!</string>
     <string name="unsellableItem">Markiert %1$s als %2$ssellable!</string>
     <string name="updateClose">Schließen</string>
-    <string name="updateMessage">Aktualisiert auf Version %s!\n\nEine vollständige Änderungsliste kann auf der / r / PixelBlacksmith subreddit eingesehen werden.</string>
+    <string name="updateMessage">Aktualisiert auf Version%s!\\n\\nHauptänderungen:\\n- Oster-Event! Sammle Eier, um ein wertvolles goldenes Ei zu fertigen!\\n- Assistenten! Unlock Assistenten zu bekommen XP, Münze und Artikel Boni!\\n- Sprachen! 8 neue Sprachen hinzugefügt, mit Verbesserungen kommen!\\n- Neues Essen, Ringe, Helden-Sets, Super-Upgrades und Bugfixes!</string>
     <string name="updateReddit">Änderungen anzeigen</string>
     <string name="updateSlotsSettingText">Slots aktualisieren</string>
     <string name="upgradeCancel">Stornieren</string>
