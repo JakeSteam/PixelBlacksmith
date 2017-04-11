@@ -94,17 +94,17 @@ public class HelpActivity extends Activity {
 
     private void displayHelpAssistants(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_assistants), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_assistants_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_assistants), 22));
     }
 
     private void displayHelpCoins(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_coins), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_coins_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_coins), 22));
     }
 
     private void displayHelpPrestige(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_prestige), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_prestige_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_prestige), 22));
     }
 
     private void displayTips(LinearLayout layout) {
@@ -120,147 +120,147 @@ public class HelpActivity extends Activity {
 
     private void displayHelpHelp(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_help), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_help_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_help), 22));
     }
 
     private void displayHelpAdvertising(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_advertising), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_advertising_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_advertising), 22));
     }
 
     private void displayHelpOverview(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_overview), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_overview_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_overview), 22));
     }
 
     private void displayHelpFurnace(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_furnace), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_furnace_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_furnace), 22));
     }
 
     private void displayHelpAnvil(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_anvil), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_anvil_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_anvil), 22));
     }
 
     private void displayHelpInventory(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_inventory), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_inventory_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_inventory), 22));
     }
 
     private void displayHelpFood(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_food), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_food_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_food), 22));
     }
 
     private void displayHelpCredits(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_credits), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_credits_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_credits), 22));
     }
 
     private void displayHelpGemTable(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_gem), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_gem_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_gem), 22));
     }
 
     private void displayHelpMarket(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_market), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_market_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_market), 22));
     }
 
     private void displayHelpSettings(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_settings), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_settings_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_settings), 22));
         }
 
     private void displayHelpTrader(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_trader), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_trader_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_trader), 22));
     }
 
     private void displayHelpStatistics(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_statistics), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_statistics_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_statistics), 22));
     }
 
     private void displayHelpTable(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_table), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_table_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_table), 22));
     }
 
     private void displayHelpTrading(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_trade), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_trade_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_trade), 22));
     }
 
     private void displayHelpTrophy(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_trophy), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_trophy_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_trophy), 22));
     }
 
     private void displayHelpVisitor(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_visitor), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_visitor_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_visitor), 22));
     }
 
     private void displayHelpUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_upgrade), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_upgrade_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_upgrade), 22));
     }
 
     private void displayHelpPremium(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_premium), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_premium_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_premium), 22));
     }
 
     private void displayHelpMessages(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_messages), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_messages_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_messages), 22));
     }
 
     private void displayHelpHelper(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_helper), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_helper_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_helper), 22));
     }
 
     private void displayHelpHero(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_hero), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_hero_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_hero), 22));
     }
 
     private void displayHelpTools(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_tools), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_tools_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_tools), 22));
     }
 
     private void displayHelpQuests(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_quest), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_quest_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_quest), 22));
     }
 
     private void displayHelpItemPicker(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_item_picker), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_item_picker_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_item_picker), 22));
     }
 
     private void displayHelpHeroAdventures(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_hero_adventures), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_hero_adventures_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_hero_adventures), 22));
     }
 
     private void displayHelpHeroEquipment(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_hero_equipment), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_hero_equipment_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_hero_equipment), 22));
     }
 
     private void displayHelpHeroVisitors(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_hero_visitors), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_hero_visitors_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_hero_visitors), 22));
     }
 
     private void displayHelpSuperUpgrade(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_super_upgrade), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_super_upgrade_text), 22));
+        layout.addView(dh.createTextView(getString(R.string.help_text_super_upgrade), 22));
     }
 
     public void openHelp(View view) {

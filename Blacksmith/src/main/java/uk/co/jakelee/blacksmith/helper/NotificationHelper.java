@@ -62,7 +62,7 @@ public class NotificationHelper extends BroadcastReceiver {
         Assistant assistant = Assistant.get(Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue());
         long lastClaimTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first().getLongValue();
 
-        if (assistant.getObtained() > 0) {
+        if (assistant != null && assistant.getObtained() > 0) {
             long nextClaimTime = lastClaimTime + assistant.getRewardFrequency();
             if (nextClaimTime > System.currentTimeMillis()) {
                 NotificationHelper.addNotification(context, nextClaimTime, Constants.NOTIFICATION_ASSISTANT);
