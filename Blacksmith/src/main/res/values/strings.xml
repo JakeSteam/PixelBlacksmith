@@ -1733,8 +1733,8 @@
     <string name="visitorNotificationSettingText">Visitor</string>
     <string name="workerNotificationSettingText">Worker</string>
     <string name="bonusNotificationSettingText">Bonus</string>
-    <string name="finishedNotificationSettingText">Items\nDone</string>
-    <string name="prestigeSettingText">Prestige\n(NG+)</string>
+    <string name="finishedNotificationSettingText">Items Done</string>
+    <string name="prestigeSettingText">Prestige (NG+)</string>
     <string name="fullscreenSettingText">Full Screen</string>
     <string name="fullscreenCheckSettingText">Fullscr Check</string>
     <string name="autoRefreshSettingText">Auto\nRefresh</string>
