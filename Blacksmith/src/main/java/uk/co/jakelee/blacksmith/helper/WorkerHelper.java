@@ -36,7 +36,7 @@ public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
     public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
     public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
-    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
+    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring}
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
@@ -336,8 +336,7 @@ public class WorkerHelper {
                 Condition.prop("time_started").notEq(0)).list();
         int workersFinished = 0;
         List<String> workerNames = new ArrayList<>();
-        String rewardText = "";
-
+        String rewardText;
         boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
 
         for (Worker worker : workers) {

@@ -74,7 +74,6 @@
             android:layout_alignLeft="@id/visitorName"
             android:layout_below="@id/visitorName"
             android:paddingLeft="5dp"
-            android:singleLine="false"
             android:text="@string/unknownText"
             android:textColor="@color/black"
             android:textSize="18sp"

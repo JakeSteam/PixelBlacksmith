@@ -179,7 +179,7 @@
     <string name="tip_68">Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</string>
     <string name="tip_69">Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</string>
     <string name="tip_70">Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</string>
-    <string name="tip_71">Having trouble reaching 100%% completion? Tap your completion %% to see a breakdown of your progress.</string>
+    <string name="tip_71">Having trouble reaching 100% completion? Tap your completion %% to see a breakdown of your progress.</string>
     <string name="tip_72">The game can be locked in portrait or landscape if you prefer playing a certain way.</string>
     <string name="tip_73">Enchanted items will have a coloured tint to them, to help easily identify them.</string>
     <string name="tip_74">Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</string>
@@ -1046,7 +1046,7 @@
     <string name="su_8">-50% Worker Time</string>
     <string name="su_9">2x Trade Price</string>
     <string name="su_10">-50% Market Buy Cost</string>
-    <string name="su_11">-50% Bonus Chest Time</string>
+    <string name="su_11">-50%% Bonus Chest Time</string>
     <string name="su_12">100x Contribution Reward</string>
     <string name="su_13">Guaranteed Pages</string>
     <string name="su_14">All Quests Medium+</string>
@@ -1169,7 +1169,7 @@
     <string name="trader_desc_40">Baker\'s dozens!</string>
     <string name="trader_desc_41">Don\'t ask how I got this.</string>
     <string name="trader_desc_42">The finest rune resources in the land!</string>
-    <string name="trader_desc_43">All 100% gen-u-ine dragon.</string>
+    <string name="trader_desc_43">All 100%% gen-u-ine dragon.</string>
     <string name="trader_desc_44">For blobs only!</string>
     <string name="trader_desc_45">For fancy blobs only!</string>
     <string name="trader_desc_46">Fresh off the asteroid.</string>
@@ -1351,7 +1351,7 @@
     <string name="tutorialVisitorPicture">Visitor</string>
     <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
     <string name="tutorialVisitorPrefs">Preferences</string>
-    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5%% bonus if they are traded.</string>
     <string name="tutorialVisitorDemands">Demands</string>
     <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
 
@@ -1569,7 +1569,7 @@
 
     <string name="onlyAvailable">Show All Items\n</string>
 
-    <string name="translationHelp"><u>Fix?</u></string>
+    <string name="translationHelp" translatable="false"><u>Fix?</u></string>
     <string name="updateMessage">Updated to version %s!\n\nMain changes:\n- Easter Event! Collect eggs to craft a valuable Golden Egg!\n- Assistants! Unlock assistants to get XP, coin, and item bonuses!\n- Languages! 8 new languages added, with improvements coming!\n- New food, rings, hero sets, super upgrades, and bugfixes!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>

@@ -24,7 +24,6 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class InterstitialActivity extends Activity {
-    private static DisplayHelper dh;
     private AdvertHelper.advertPurpose purpose;
     private boolean timerEnded = false;
     private boolean calledCallback = false;
@@ -33,7 +32,7 @@ public class InterstitialActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interstitial);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         Intent intent = getIntent();

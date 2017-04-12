@@ -1570,7 +1570,7 @@
     <string name="workerStatusSelectHero">영웅 선택</string>
     <string name="workerText">노동자</string>
     <string name="workerTimesCompleted">%1$s이 (가) %2$d 여행을 완료했으며 현재  %3$s (+ %4$d%%)를 먹고 있습니다.</string>
-    <string name="workerTool">수단:\\s</string>
+    <string name="workerTool">수단:\n%s</string>
     <string name="worker_returns_in">안으로 돌려 보낸다.</string>
     <string name="worker_select_adventure">어드벤처 선택</string>
     <string name="worker_select_hero">영웅 선택</string>

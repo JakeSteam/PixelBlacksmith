@@ -91,7 +91,7 @@
             android:layout_below="@id/anvilTitle"
             android:layout_marginLeft="5dp"
             android:padding="5dp"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="25sp"

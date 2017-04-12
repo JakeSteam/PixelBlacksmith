@@ -1366,7 +1366,7 @@
     <string name="tutorialVisitorPicture">Посетитель</string>
     <string name="tutorialVisitorPictureText">Ах, мистер T Utorial! Как мило с твоей стороны зайти.</string>
     <string name="tutorialVisitorPrefs">Настройки</string>
-    <string name="tutorialVisitorPrefsText">Похоже, этот посетитель предпочитает бронзовые предметы и руду, и дает 5\%бонус, если они торгуются.</string>
+    <string name="tutorialVisitorPrefsText">Похоже, этот посетитель предпочитает бронзовые предметы и руду, и дает 5\% бонус, если они торгуются.</string>
     <string name="tutorialVisitorText">Ваш первый посетитель прибыл! Нажмите его, чтобы продолжить.</string>
     <string name="typePreference">Этот клиент будет платить %1$s дополнительно за %2$ss.</string>
     <string name="typePreferenceHero">Этот герой получит %1$s boost для %2$ss.</string>

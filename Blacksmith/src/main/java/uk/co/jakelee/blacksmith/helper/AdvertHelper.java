@@ -29,8 +29,8 @@ import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
-    public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox};
-    public AppLovinIncentivizedInterstitial advert;
+    public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox}
+    private AppLovinIncentivizedInterstitial advert;
     private final Context context;
     private MainActivity mainActivity;
     private MarketActivity marketActivity;
@@ -226,13 +226,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (rewardLegendary && isPremium) {
             strings.add(context.getString(R.string.advertWatchedLegendaryPremium1));
             strings.add(context.getString(R.string.advertWatchedLegendaryPremium2));
-        } else if (rewardLegendary && !isPremium) {
+        } else if (rewardLegendary) {
             strings.add(context.getString(R.string.advertWatchedLegendary1));
             strings.add(context.getString(R.string.advertWatchedLegendary2));
-        }else if (!rewardLegendary && isPremium) {
+        }else if (isPremium) {
             strings.add(context.getString(R.string.advertWatchedPremium1));
             strings.add(context.getString(R.string.advertWatchedPremium2));
-        }else if (!rewardLegendary && !isPremium) {
+        }else {
             strings.add(context.getString(R.string.advertWatched1));
             strings.add(context.getString(R.string.advertWatched2));
         }

@@ -1052,8 +1052,8 @@
     <string name="statisticsWorkersOwned">Helfer im Besitz:</string>
     <string name="statisticsWorkersTrips">Helper\'s Reisen:</string>
     <string name="su_1">2x Ofenstücke</string>
-    <string name="su_10">-50 %Markt kaufen Kosten</string>
-    <string name="su_11">-50 %Bonus Chest Zeit</string>
+    <string name="su_10">-50%% Markt kaufen Kosten</string>
+    <string name="su_11">-50%% Bonus Chest Zeit</string>
     <string name="su_12">100x Beitragszahlung</string>
     <string name="su_13">Garantierte Seiten</string>
     <string name="su_14">Alle Quests Mittel +</string>
@@ -1070,7 +1070,7 @@
     <string name="su_5">2x Worker Resources</string>
     <string name="su_6">1 Bedarf pro Besucher</string>
     <string name="su_7">Free Market Restock</string>
-    <string name="su_8">-50 %Arbeitszeit</string>
+    <string name="su_8">-50% Arbeitszeit</string>
     <string name="su_9">2x Handelspreis</string>
     <string name="superTabText">Super</string>
     <string name="superUpgradeCollections">Sie haben %1$d Sammlung (s) abgeschlossen, so können %1$d / %2$d Super Upgrades zu einem Zeitpunkt aktivieren.\n</string>
@@ -1163,7 +1163,7 @@
     <string name="trader_desc_40">Bakers Dutzende!</string>
     <string name="trader_desc_41">Frage nicht, wie ich das habe</string>
     <string name="trader_desc_42">Die schönsten Runenressourcen im Land!</string>
-    <string name="trader_desc_43">Alle 100% gen-u-ine Drachen.</string>
+    <string name="trader_desc_43">Alle 100%% gen-u-ine Drachen.</string>
     <string name="trader_desc_44">Nur für blobs!</string>
     <string name="trader_desc_45">Für fancy blobs nur!</string>
     <string name="trader_desc_46">Frisch vom Asteroiden</string>
@@ -1328,7 +1328,7 @@
     <string name="tutorialVisitorPicture">Gast</string>
     <string name="tutorialVisitorPictureText">Ah, Herr T Utorial! Wie schön von dir, um zu stoppen.</string>
     <string name="tutorialVisitorPrefs">Präferenzen</string>
-    <string name="tutorialVisitorPrefsText">Es sieht so aus, als ob dieser Besucher Bronzeartikel und Erz bevorzugt, und gibt einen 5% Bonus, wenn sie gehandelt werden.</string>
+    <string name="tutorialVisitorPrefsText">Es sieht so aus, als ob dieser Besucher Bronzeartikel und Erz bevorzugt, und gibt einen 5%% Bonus, wenn sie gehandelt werden.</string>
     <string name="tutorialVisitorText">Ihr erster Besucher ist da! Tipp ihn an, um fortzufahren.</string>
     <string name="typePreference">Dieser Kunde zahlt %1$s extra für %2$ss.</string>
     <string name="typePreferenceHero">Dieser Held erhält einen %1$s Schub für %2$ss.</string>

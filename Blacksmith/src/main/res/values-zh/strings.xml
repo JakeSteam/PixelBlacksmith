@@ -3,7 +3,7 @@
     <string name="adventureText">冒险</string>
     <string name="advertWatched1">胸部消失，剩下 %1$dx %2$s s的身后！</string>
     <string name="advertWatched2">胸部缓缓打开，露出%1$dx %2$s！</string>
-    <string name="advertWatchedLegendary1">胸部突然打开，并含有％1$dX％2$s曾与罕见%3$s！</string>
+    <string name="advertWatchedLegendary1">胸部突然打开，并含有%1$dX%2$s曾与罕见%3$s！</string>
     <string name="advertWatchedLegendary2">胸部轻微冒烟，然后吐出%1$dx %2$s和具有罕见%3$s！</string>
     <string name="advertWatchedLegendaryPremium1">胸部被塞得满满的%1$dx %2$s和具有罕见%3$s！</string>
     <string name="advertWatchedLegendaryPremium2">嘿，这是什么在胸前的角落...%1$dx %2$s和具有罕见%3$s！</string>
@@ -31,8 +31,8 @@
     <string name="bribeComplete">一个访客走进去，带有%d个硬币。什么巧合！</string>
     <string name="bribeConfirm">贿赂</string>
     <string name="bribeFailure">没有足够的钱贿赂访客。</string>
-    <string name="bribeQuestion">你想贿赂一个访客%1$，d硬币立即进来？\n\n一个人将免费到达%2$s。</string>
-    <string name="bribeQuestionAdvert">您要支付%1$，d个硬币还是观看广告，使访问者立即出现？\n\n一个人将免费到达%2$s。</string>
+    <string name="bribeQuestion">你想贿赂一个访客%1$,d硬币立即进来？\n\n一个人将免费到达%2$s。</string>
+    <string name="bribeQuestionAdvert">您要支付%1$,d个硬币还是观看广告，使访问者立即出现？\n\n一个人将免费到达%2$s。</string>
     <string name="bulkStackSettingText">散装工艺\n堆栈</string>
     <string name="buy">购买</string>
     <string name="buyCoinsButton">%1$s的硬币</string>
@@ -1200,7 +1200,7 @@
     <string name="trader_desc_40">贝克的几十个！</string>
     <string name="trader_desc_41">不要问我怎么了</string>
     <string name="trader_desc_42">最好的符文资源在土地！</string>
-    <string name="trader_desc_43">所有100％的生命龙。</string>
+    <string name="trader_desc_43">所有100% 的生命龙。</string>
     <string name="trader_desc_44">只有斑点！</string>
     <string name="trader_desc_45">只有花式斑点！</string>
     <string name="trader_desc_46">新鲜的小行星。</string>
@@ -1767,7 +1767,7 @@
     <string name="help_text_prestige">Prestiging重置游戏的许多方面，只能由高级玩家在70级执行。\n\n优点：\n+ 50 %%硬币加值。\n-25 %% XP加值。\n+ 100 %%到完成百分比。\n成就第一威信。\n\n重启：\n所有项目（页面和图书除外）。\n所有升级（保费优惠除外）。\n所有插槽。\nXP / Level。\n当前访客。\n额外交易者库存解锁。\n所有工人。\n\n保持：\n发现访客偏好。\n游客奖杯进度。\n最高级统计。\n冶炼/制造/交易/买/卖＆ 宝石嵌入统计。\n硬币获得统计。\n最大的贸易统计\n助手的行程统计。\n任务完成统计。</string>
     <string name="help_text_quest">任务是玩耍时收集更多奖励的绝佳方式。\n一旦接受任务，相关图标和当前进度将出现在指标中。 如果选择了多个，将显示下一个结束。\n可以接收/即将到来/完成/失败的任务的列表，以及所有事件的时间表。\n所有任务奖励XP，0-2页和2-24项/ 50-2100硬币。\nXP由乘数*当前级别计算。 乘数的值为：Easy 9，Medium 15，Hard 35，Elite 75。\nEasy的页面几率为25 %%，Medium为50 %%，Hard为100 %%，Elite为200 %%（2页！）。\n奖励的物品/硬币的数量为Easy减少一半，Medium不变，Hard为一倍，为Elite增加了三倍。\n接受的任务（辅助任务除外）将在结束前24小时通过Google Play游戏发出提醒通知。</string>
     <string name="help_text_settings">游戏设置可以在这里更改，一旦设置界面关闭，更改就会发生。\n声音选项：\n这里可以启用/禁用所有的游戏声音，游戏音乐和通知声音。\n通知选项：\n可以启用/禁用市场补货，访客产卵，工人回报，制作的项目和奖金胸部补充通知。\n游戏选项：\n“全屏”可以实现更加身临其境的全屏模式。\n“快速选择”功能允许在制作界面中点击项目图像来更改项目。禁用“快速选择”将使滑动更容易更改项目。\n“快速登录访问”选项可以点击消息打开消息日志，而不是关闭当前消息。\n“更长的消息”选项会增加时间错误和警报停留在屏幕上。\n“使用最大值”选项用“Make Max”替换“Make 1000”按钮。\n启用“散装工艺堆栈”会导致批量制作时堆叠物品。这意味着一个漫长的过程可以进行，而短期工艺仍然是可能的。\n性能选项：\n“自动刷新”选项将在库存和交易屏幕上启用自动刷新。此功能可能会导致性能问题，因此默认情况下禁用。\n“全屏检查”选项将启用检查全屏状态。如果禁用，全屏模式将不太可靠，但性能将会提高。\n“更新插槽”选项将启用更新项目插槽。不建议禁用它，但可以稍微提高性能。\n高级选项：\n高级玩家可以禁止所有提及的广告和声望他们的帐户。 Prestiging重置所有项目（页面和书籍除外），XP，硬币，升级和交易者进度，但保留统计和高级奖金。\n作为回到1级的回报，您将获得+ 50 %%的硬币收益，-25 %%到XP收益。\n其他：\n消息日志将显示最后100个重要的游戏消息。\n教程按钮将重播游戏教程，而学分按钮将更多地告诉您有关为游戏做出贡献的人员和技术。\n费率应用按钮将链接到游戏的Play商店列表进行评分，而社交媒体按钮可在线提供Pixel Blacksmith的链接。\n如果您已经从客户支持部门收到支持代码，也可以在此处输入。\n您的游戏保存也可以从您的设备导入/导出。保存存储在ExternalStorage / PixelBlacksmith / PixelBlacksmith（date＆amp; time）.save中。\nGoogle Play：\n也可以在这里访问Google Play游戏服务，包括云端保存，成就，排行榜和任务。\n设置代码：\n设置代码是您当前设置的指标。更改任何设置将生成新的唯一代码。它可以用于帮助诊断问题，或者快速检查两个设备具有相同的设置。</string>
-    <string name="help_text_statistics">有用的统计数据，如下次restock /访问者的时间到这里。\n此外，可以使用显示的统计信息以及其他杂项信息跟踪各项成就的进展。\n完成百分比也可见。 许多因素有助于这一百分比：\n- 级别\n- 升级\n- 交易者解锁\n- 交易者股票解锁\n- 插槽解锁\n- 看到的物品\n- 发现访客偏好\n- 奖杯解锁\n- 帮手买了\n请注意，每个声望（70级以上）都将被视为额外的100％。\n总硬币百分比计算为：硬币升级+（0.5 *威望等级）），然后从乘数转换为百分比。\nXP的XP百分比计算为：XP升级*（0.75 ^威望级别）），然后从乘数转换为百分比。</string>
+    <string name="help_text_statistics">有用的统计数据，如下次restock /访问者的时间到这里。\n此外，可以使用显示的统计信息以及其他杂项信息跟踪各项成就的进展。\n完成百分比也可见。 许多因素有助于这一百分比：\n- 级别\n- 升级\n- 交易者解锁\n- 交易者股票解锁\n- 插槽解锁\n- 看到的物品\n- 发现访客偏好\n- 奖杯解锁\n- 帮手买了\n请注意，每个声望（70级以上）都将被视为额外的100% 。\n总硬币百分比计算为：硬币升级+（0.5 *威望等级）），然后从乘数转换为百分比。\nXP的XP百分比计算为：XP升级*（0.75 ^威望级别）），然后从乘数转换为百分比。</string>
     <string name="help_text_super_upgrade">超级升级是更强大的升级，只能由完成集合的玩家使用。\n集合可以从制作表的“图书”选项卡中的图书创建。\nPrestiging将解锁更多超级升级，而完成集合将增加一次可以启用的最大值。\n\'100x贡献奖励\'增加1337个硬币，通常是通过贡献一个惊人的133,700个硬币。\n“自由市场回收”使市场和交易者自由重新放置，完美的排空交易商！\n\'2x ____项目\'从制作过程中收到的项目数量翻了一番。请注意，页面+图书不包括在内。\n“2x工作人员资源”使从助手任务和英雄冒险获得的资源翻番。\n“保证页面”保证有食物，看广告和任务的工作人员都会奖励页面。\n\'-50％奖金胸部时间\'奖金胸部重新填充所需的时间减半。\n“每位访客需求”强制每个访客只有1个需求。\n\'-50％市场购买成本\'将使市场上所有商品的价格减半。\n\'-50％工人时间\'将有一个帮助者或英雄完成任务所需的时间。\n“2x贸易价格”将使每一笔交易的收入翻番。\n“2x Trader Items Purchased”将使从交易者购买的所有商品加倍。\n“2x所有XP”会将所有XP（加上其他奖金后）加倍。\n“2倍硬币收益”将使所有获得的硬币数量翻一番（在应用其他奖金之后）。\n“所有任务中/硬/精英”将最低追求奖励提高到指定水平。</string>
     <string name="help_text_table">该表是项目创建过程的重要部分，将未完成的项目转换成成品，并添加次要成分。\n此后，项目可以可选地在gem表中嵌入宝石。\n此外，罕见的页面可以在这里制作成书籍。 制作一本书需要10页，还有许多其他成分。 页面是从各种来源获得的：\n- 访客奖杯解锁时，3页被奖励。\n- 35 %%打开奖金胸部时有机会收到。\n- 0-90 %%根据使用的食物接收来自工人的机会（参见工作人员帮助了解更多信息）。\n向左和向右滑动以更改项目。 使用向上和向下箭头更改层。</string>
     <string name="help_text_tools">通过首先选择一个类别，然后选择一个项目，为辅助工具选择一个工具。\n将只显示当前拥有的项目。 请注意，较高层次的工具将提供更好/更多的资源。\n工具不会降级，并且可以通过向帮助者提供替换工具来回收工具。</string>

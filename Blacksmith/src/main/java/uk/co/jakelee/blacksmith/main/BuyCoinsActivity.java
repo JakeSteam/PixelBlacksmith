@@ -19,7 +19,6 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class BuyCoinsActivity extends Activity implements BillingProcessor.IBillingHandler {
-    private static DisplayHelper dh;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
     private static final String SKU_COIN_1 = "coin_pack_1";
@@ -31,7 +30,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_coins);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);

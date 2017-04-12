@@ -36,13 +36,12 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
     private double completionPercent = 0.00;
-    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         displayStatistics();

@@ -50,14 +50,6 @@
                 android:orientation="vertical"
                 android:padding="5dp">
 
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="34sp"
-                    android:textColor="@color/black"
-                    android:text="@string/tipsText"
-                    android:layout_marginBottom="8dp"
-                    android:onClick="openTips"/>
             </LinearLayout>
 
         </ScrollView>
