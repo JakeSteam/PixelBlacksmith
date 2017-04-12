@@ -68,7 +68,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:gravity="center"
-                            android:text="Equipment"
+                            android:text="@string/equipmentText"
                             android:layout_span="3"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"
@@ -159,7 +159,7 @@
                                 android:layout_alignLeft="@id/helmetImage"
                                 android:layout_alignRight="@id/helmetImage"
                                 android:gravity="center"
-                                android:text="Helmet"
+                                android:text="@string/helmetText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -202,7 +202,7 @@
                                 android:layout_alignLeft="@id/armourImage"
                                 android:layout_alignRight="@id/armourImage"
                                 android:gravity="center"
-                                android:text="Armour"
+                                android:text="@string/armourText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -253,7 +253,7 @@
                                 android:layout_alignLeft="@id/weaponImage"
                                 android:layout_alignRight="@id/weaponImage"
                                 android:gravity="center"
-                                android:text="Weapon"
+                                android:text="@string/weaponText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -294,7 +294,7 @@
                                 android:layout_below="@id/heroImage"
                                 android:layout_alignRight="@id/heroImage"
                                 android:gravity="center"
-                                android:text="Hero"
+                                android:text="@string/help_hero"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -337,7 +337,7 @@
                                 android:layout_alignLeft="@id/shieldImage"
                                 android:layout_alignRight="@id/shieldImage"
                                 android:gravity="center"
-                                android:text="Shield"
+                                android:text="@string/shieldText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -388,7 +388,7 @@
                                 android:layout_alignLeft="@id/glovesImage"
                                 android:layout_alignRight="@id/glovesImage"
                                 android:gravity="center"
-                                android:text="Gloves"
+                                android:text="@string/glovesText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -431,7 +431,7 @@
                                 android:layout_alignLeft="@id/bootsImage"
                                 android:layout_alignRight="@id/bootsImage"
                                 android:gravity="center"
-                                android:text="Boots"
+                                android:text="@string/bootsText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -474,7 +474,7 @@
                                 android:layout_alignLeft="@id/ringImage"
                                 android:layout_alignRight="@id/ringImage"
                                 android:gravity="center"
-                                android:text="Ring"
+                                android:text="@string/ringsText"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 app:layout_widthPercent="30%" />
@@ -488,7 +488,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:gravity="center"
-                            android:text="Set Bonuses"
+                            android:text="@string/setBonuses"
                             android:layout_span="3"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"
@@ -506,7 +506,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:gravity="center"
-                            android:text="Preferences"
+                            android:text="@string/tutorialVisitorPrefs"
                             android:layout_span="3"
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"

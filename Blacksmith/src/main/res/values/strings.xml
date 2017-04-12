@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
+
+
     <string name="assistant_name_1">Pig</string>
     <string name="assistant_name_2">Troll</string>
     <string name="assistant_name_3">Skeleton</string>
@@ -1480,6 +1482,13 @@
     <string name="messageLogToggleText">Quick Log Access</string>
     <string name="adventureText">Adventures</string>
     <string name="equipmentText">Equipment</string>
+    <string name="helmetText">Helmet</string>
+    <string name="armourText">Armour</string>
+    <string name="weaponText">Weapon</string>
+    <string name="shieldText">Shield</string>
+    <string name="glovesText">Gloves</string>
+    <string name="bootsText">Boots</string>
+    <string name="setBonuses">Set Bonuses</string>
     <string name="interstitialText">Advert</string>
 
     <string name="interstitialTimeLeft">Remaining: %1$ds</string>
