@@ -949,12 +949,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void createAssistants() {
         List<Assistant> assistants = new ArrayList<>();
-            assistants.add(new Assistant(1, 5, 1000, 0.3, 19, 0, 70, 1, 100, 600000, 0.05));
-            assistants.add(new Assistant(2, 12, 5000, 0.15, 19, 0, 71, 1, 220, 600000, 0.15));
-            assistants.add(new Assistant(3, 20, 12000, 0.07, 19, 0, 52, 1, 3000, 900000, 0.22));
-            assistants.add(new Assistant(4, 27, 20000, 0.05, 19, 0, 75, 1, 30, 2100000, 0.4));
-            assistants.add(new Assistant(5, 33, 35000, 0.035, 19, 0, 148, 1, 50, 3600000, 0.65));
-            assistants.add(new Assistant(6, 45, 60000, 0.02, 19, 0, 52, 1, 30000, 3600000, 0.76));
+            assistants.add(new Assistant(1, 5, 1000, 0.1, 19, 0, 70, 1, 100, 600000, 0.01));
+            assistants.add(new Assistant(2, 12, 5000, 0.07, 19, 0, 71, 1, 220, 600000, 0.02));
+            assistants.add(new Assistant(3, 20, 12000, 0.05, 19, 0, 52, 1, 3000, 900000, 0.03));
+            assistants.add(new Assistant(4, 27, 20000, 0.02, 19, 0, 75, 1, 30, 2100000, 0.04));
+            assistants.add(new Assistant(5, 33, 35000, 0.01, 19, 0, 148, 1, 50, 3600000, 0.06));
+            assistants.add(new Assistant(6, 45, 60000, 0.008, 19, 0, 52, 1, 30000, 3600000, 0.07));
         Assistant.saveInTx(assistants);
     }
 	
