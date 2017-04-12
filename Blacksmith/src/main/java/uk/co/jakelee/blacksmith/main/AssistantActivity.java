@@ -115,7 +115,7 @@ public class AssistantActivity extends Activity {
                 DateHelper.getHoursMinsRemaining(assistant.getRewardFrequency()),
                 assistant.getBoost(1) * 100d,
                 assistant.getRewardQuantity() *  assistant.getLevel(),
-                (assistant.getBoost() * 100d) * assistant.getLevel()));
+                assistant.getBoost() * 100d));
         ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
     }
 
