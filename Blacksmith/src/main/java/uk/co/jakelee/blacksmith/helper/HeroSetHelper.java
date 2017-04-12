@@ -44,11 +44,11 @@ public class HeroSetHelper {
         if (numberOfItemsEquipped(hero, 1)) {
             sets.add(new Hero_Set("One Itemer", "having only one item equipped.", 40));
         }
-        
+
         if (itemsInAllSlots(hero)) {
             sets.add(new Hero_Set("Fully Loaded", "having an item in every slot.", 20));
         }
-        
+
         if (onlyFoodEquipped(hero)) {
             sets.add(new Hero_Set("Hungry", "only having a food item equipped.", 10));
         }
@@ -56,7 +56,7 @@ public class HeroSetHelper {
         if (itemsInNoSlots(hero)) {
             sets.add(new Hero_Set("Broke", "having no items equipped.", 0));
         }
-        
+
         if (itemsAllSameState(hero) && itemsInAllSlots(hero)) {
             sets.add(new Hero_Set("State Of Mind", "having all equipped items of the same state.", 20));
         }
@@ -136,14 +136,30 @@ public class HeroSetHelper {
 
     private static boolean numberOfItemsEquipped(Hero hero, int desiredNumber) {
         int actualNumber = 0;
-        if (hero.getFoodItem() > 0) { actualNumber++; }
-        if (hero.getRingItem() > 0) { actualNumber++; }
-        if (hero.getArmourItem() > 0) { actualNumber++; }
-        if (hero.getBootsItem() > 0) { actualNumber++; }
-        if (hero.getGlovesItem() > 0) { actualNumber++; }
-        if (hero.getHelmetItem() > 0) { actualNumber++; }
-        if (hero.getShieldItem() > 0) { actualNumber++; }
-        if (hero.getWeaponItem() > 0) { actualNumber++; }
+        if (hero.getFoodItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getRingItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getArmourItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getBootsItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getGlovesItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getHelmetItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getShieldItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getWeaponItem() > 0) {
+            actualNumber++;
+        }
 
         return actualNumber == desiredNumber;
     }
@@ -243,6 +259,6 @@ public class HeroSetHelper {
         for (Hero_Set set : sets) {
             bonus += set.getBonus();
         }
-        return 1 + ((double)bonus / 100);
+        return 1 + ((double) bonus / 100);
     }
 }

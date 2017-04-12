@@ -33,11 +33,11 @@ import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
+    private static final String SKU_PREMIUM = "premium";
+    private static final String SKU_CONTRIBUTE = "contribute";
     private static DisplayHelper dh;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
-    private static final String SKU_PREMIUM = "premium";
-    private static final String SKU_CONTRIBUTE = "contribute";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
         }
-        
+
         updatePremiumStatus();
         updateContributeStatus();
     }
@@ -86,7 +86,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onPurchaseHistoryRestored() {}
+    public void onPurchaseHistoryRestored() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -134,7 +135,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
             contributeTitle.setPadding(0, 0, 15, 0);
 
             ProgressBar contributeProgress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
-            contributeProgress.getProgressDrawable().setColorFilter(0xFF267c18,android.graphics.PorterDuff.Mode.MULTIPLY);
+            contributeProgress.getProgressDrawable().setColorFilter(0xFF267c18, android.graphics.PorterDuff.Mode.MULTIPLY);
             contributeProgress.setProgress(unlocked ? contribution.getReqContributions() : timesContributed);
             contributeProgress.setMax(contribution.getReqContributions());
             contributeProgress.setPadding(0, 0, 15, 0);
@@ -182,7 +183,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     private String getPublicKey() {
-        String[] keyArray = new String[] {
+        String[] keyArray = new String[]{
                 "MIIBIjANBgkqhki",
                 "G9w0BAQEFAAOCAQ",
                 "8AMIIBCgKCAQEAlONTh/sroNhFQ",

@@ -5,27 +5,32 @@
     android:installLocation="auto">
 
     <uses-permission android:name="com.android.vending.BILLING" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <uses-permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="remove" />
+    <permission
+        android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE" />
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK"
+        tools:node="remove" />
 
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="false"
         android:largeHeap="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme">
 
         <meta-data
             android:name="applovin.sdk.key"
-            android:value="d8B0h7p58eRdbK8r8r6cntx7TDbAl2WMBiNtqAyypOaPikFsTLSKCNSgb3rL5MiG347uE4r2SPSA7h0g1S_ErR"  />
+            android:value="d8B0h7p58eRdbK8r8r6cntx7TDbAl2WMBiNtqAyypOaPikFsTLSKCNSgb3rL5MiG347uE4r2SPSA7h0g1S_ErR" />
         <meta-data
             android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/app_id" />
@@ -56,8 +61,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".main.MainActivity"/>
+        <activity android:name=".main.MainActivity" />
         <activity
             android:name=".main.InventoryActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
@@ -144,8 +148,9 @@
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
             android:name=".main.InterstitialActivity"
-            android:theme="@style/AppTheme.PopupOverlay"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.PopupOverlay" />
+
         <receiver android:name=".helper.NotificationHelper">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
@@ -157,16 +162,21 @@
         <service android:name=".service.MusicService" />
 
         <service android:name="com.batch.android.BatchPushService" />
-        <receiver android:name="com.batch.android.BatchPushReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+
+        <receiver
+            android:name="com.batch.android.BatchPushReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="uk.co.jakelee.blacksmith" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.batch.android.BatchPushInstanceIDService" android:exported="true">
+        <service
+            android:name="com.batch.android.BatchPushInstanceIDService"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
     </application>

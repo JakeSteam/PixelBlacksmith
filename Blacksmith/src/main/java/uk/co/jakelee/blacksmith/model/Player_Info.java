@@ -184,7 +184,7 @@ public class Player_Info extends SugarRecord {
         int maxLevelPoints = (100 * Constants.PRESTIGE_LEVEL_REQUIRED);
         int maxUpgradePoints = (10 * Upgrade.getMaximumUpgrades());
         int maxTraderPoints = (10 * (int) Trader.count(Trader.class));
-        int maxSlotPoints = (10 * ((int) Slot.count(Slot.class) - (int)Location.count(Location.class))); // 1 overflow slot per location
+        int maxSlotPoints = (10 * ((int) Slot.count(Slot.class) - (int) Location.count(Location.class))); // 1 overflow slot per location
         int maxTraderStockPoints = (int) Trader_Stock.count(Trader_Stock.class);
         int maxItemPoints = (int) Item.count(Item.class);
         int maxPreferencePoints = (int) Visitor_Type.count(Visitor_Type.class) * 3;
@@ -192,7 +192,7 @@ public class Player_Info extends SugarRecord {
         int maxWorkerPoints = (int) Worker.count(Worker.class);
         int maxAdventurePoints = (int) Hero_Adventure.count(Hero_Adventure.class);
         int maxAssistantPoints = 10 * (int) Assistant.count(Assistant.class);
-        
+
         int adjustedLevelPoints = currentLevelPoints > maxLevelPoints ? maxLevelPoints : currentLevelPoints;
         int adjustedUpgradePoints = currentUpgradePoints > maxUpgradePoints ? maxUpgradePoints : currentUpgradePoints;
         int adjustedTraderPoints = currentTraderPoints > maxTraderPoints ? maxTraderPoints : currentTraderPoints;
@@ -238,7 +238,7 @@ public class Player_Info extends SugarRecord {
         int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
         if (activeAssistant > 0) {
             Assistant assistant = Assistant.get(activeAssistant);
-            modifiedXp = (int)Math.ceil(modifiedXp * (1 + assistant.getBoost()));
+            modifiedXp = (int) Math.ceil(modifiedXp * (1 + assistant.getBoost()));
             assistant.setCurrentXp(assistant.getCurrentXp() + modifiedXp);
             assistant.save();
         }

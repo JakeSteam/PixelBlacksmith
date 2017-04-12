@@ -56,7 +56,7 @@ public class FurnaceActivity extends Activity {
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
-        
+
         gh = new GestureHelper(getApplicationContext());
         foodSelected = MainActivity.prefs.getBoolean("furnaceTab", false);
 

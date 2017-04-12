@@ -46,7 +46,7 @@ import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Type;
 
-public class InventoryActivity extends Activity implements ItemTable, AdapterView.OnItemSelectedListener{
+public class InventoryActivity extends Activity implements ItemTable, AdapterView.OnItemSelectedListener {
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private LinearLayout sell1;
@@ -169,7 +169,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            ImageView image = dh.createItemImage(item.getId(), (int)inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true, inventoryItem.isUnsellable());
+            ImageView image = dh.createItemImage(item.getId(), (int) inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true, inventoryItem.isUnsellable());
 
             final String itemName = item.getPrefix(inventoryItem.getState()) + item.getName(this);
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
@@ -210,7 +210,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
                 tradeBtn.setTag((int) (long) item.getId());
                 tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                    clickExchangeButton(v);
+                        clickExchangeButton(v);
                     }
                 });
             }

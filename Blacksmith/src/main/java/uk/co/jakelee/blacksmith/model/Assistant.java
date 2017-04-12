@@ -46,6 +46,10 @@ public class Assistant extends SugarRecord {
         return Select.from(Assistant.class).where(Condition.prop("assistant_id").eq(assistantId)).first();
     }
 
+    public static int getXpForLevel(double levelModifier, int level) {
+        return (int) Math.ceil(Math.pow(level / levelModifier, 2));
+    }
+
     public String getTypeName(Context context) {
         return TextHelper.getInstance(context).getText("assistant_name_" + assistantId);
     }
@@ -154,12 +158,12 @@ public class Assistant extends SugarRecord {
         return getLevel() * boost;
     }
 
-    public double getBoost(int level) {
-        return level * boost;
-    }
-
     public void setBoost(double boost) {
         this.boost = boost;
+    }
+
+    public double getBoost(int level) {
+        return level * boost;
     }
 
     public int getLevel() {
@@ -181,10 +185,6 @@ public class Assistant extends SugarRecord {
         double earnedXP = nextLevelXP - currentXP;
 
         return 100 - (int) Math.ceil((earnedXP / neededXP) * 100);
-    }
-
-    public static int getXpForLevel(double levelModifier, int level) {
-        return (int) Math.ceil(Math.pow(level / levelModifier, 2));
     }
 
 }

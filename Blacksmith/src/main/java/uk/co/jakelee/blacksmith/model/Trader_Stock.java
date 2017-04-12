@@ -45,13 +45,13 @@ public class Trader_Stock extends SugarRecord {
     }
 
     public static void restockTraders() {
-            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
-            Trader.executeQuery("UPDATE trader SET status = 0");
+        Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
+        Trader.executeQuery("UPDATE trader SET status = 0");
 
-            Player_Info dateRefreshed = Select.from(Player_Info.class).where(
-                    Condition.prop("name").eq("DateRestocked")).first();
-            dateRefreshed.setLongValue(System.currentTimeMillis());
-            dateRefreshed.save();
+        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateRestocked")).first();
+        dateRefreshed.setLongValue(System.currentTimeMillis());
+        dateRefreshed.save();
     }
 
     public static int getUnlockedCount() {

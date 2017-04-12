@@ -55,6 +55,7 @@
 
                 <!-- Language -->
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,24 +65,28 @@
                         android:textColor="@color/black"
                         android:textSize="28sp" />
                 </TableRow>
+
                 <TableRow>
+
                     <RelativeLayout android:layout_span="3">
+
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/translationButton"
-                            android:text="@string/translationHelp"
-                            android:layout_alignParentRight="true"
+                            style="@style/SettingText"
                             android:layout_width="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:onClick="openTranslationSheet"
-                            android:textColor="@color/defaultLink"
-                            style="@style/SettingText" />
+                            android:text="@string/translationHelp"
+                            android:textColor="@color/defaultLink" />
+
                         <Spinner
                             android:id="@+id/languagePicker"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@id/translationButton"
                             android:padding="3dp"
-                            android:spinnerMode="dialog"
-                            android:layout_toLeftOf="@id/translationButton"/>
+                            android:spinnerMode="dialog" />
                     </RelativeLayout>
 
 
@@ -89,6 +94,7 @@
 
                 <!-- Sounds -->
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -100,18 +106,19 @@
                 </TableRow>
 
                 <TableRow>
+
                     <LinearLayout
                         android:id="@+id/soundToggle"
                         style="@style/SettingPanel">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/soundToggleText"
-                            android:text="@string/soundSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/soundSettingText" />
 
                         <ImageView
                             android:id="@+id/soundToggleButton"
-                            style="@style/SettingButton"/>
+                            style="@style/SettingButton" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -134,8 +141,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/notificationSoundToggleText"
-                            android:text="@string/notificationSoundSettingText"
-                            style="@style/SettingText"/>
+                            style="@style/SettingText"
+                            android:text="@string/notificationSoundSettingText" />
 
                         <ImageView
                             android:id="@+id/notificationSoundToggleButton"
@@ -166,8 +173,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/restockNotificationToggleText"
-                            android:text="@string/restockNotificationSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/restockNotificationSettingText" />
 
                         <ImageView
                             android:id="@+id/restockNotificationToggleButton"
@@ -180,8 +187,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/visitorNotificationToggleText"
-                            android:text="@string/visitorNotificationSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/visitorNotificationSettingText" />
 
                         <ImageView
                             android:id="@+id/visitorNotificationToggleButton"
@@ -194,12 +201,12 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/workerNotificationToggleText"
-                            android:text="@string/workerNotificationSettingText"
-                            style="@style/SettingText"/>
+                            style="@style/SettingText"
+                            android:text="@string/workerNotificationSettingText" />
 
                         <ImageView
                             android:id="@+id/workerNotificationToggleButton"
-                            style="@style/SettingButton"/>
+                            style="@style/SettingButton" />
                     </LinearLayout>
                 </TableRow>
 
@@ -211,12 +218,12 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/bonusNotificationToggleText"
-                            android:text="@string/bonusNotificationSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/bonusNotificationSettingText" />
 
                         <ImageView
                             android:id="@+id/bonusNotificationToggleButton"
-                            style="@style/SettingButton"/>
+                            style="@style/SettingButton" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -225,8 +232,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/finishedNotificationToggleText"
-                            android:text="@string/finishedNotificationSettingText"
-                            style="@style/SettingText"/>
+                            style="@style/SettingText"
+                            android:text="@string/finishedNotificationSettingText" />
 
                         <ImageView
                             android:id="@+id/finishedNotificationToggleButton"
@@ -239,8 +246,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/assistantNotificationToggleText"
-                            android:text="@string/assistantNotificationSettingText"
-                            style="@style/SettingText"/>
+                            style="@style/SettingText"
+                            android:text="@string/assistantNotificationSettingText" />
 
                         <ImageView
                             android:id="@+id/assistantNotificationToggleButton"
@@ -270,8 +277,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/fullscreenToggleText"
-                            android:text="@string/fullscreenSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/fullscreenSettingText" />
 
                         <ImageView
                             android:id="@+id/fullscreenToggleButton"
@@ -284,12 +291,12 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/clickChangeToggleText"
-                            android:text="@string/clickChangeText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/clickChangeText" />
 
                         <ImageView
                             android:id="@+id/clickChangeToggleButton"
-                            style="@style/SettingButton"/>
+                            style="@style/SettingButton" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -298,8 +305,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/messageLogToggleText"
-                            android:text="@string/messageLogToggleText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/messageLogToggleText" />
 
                         <ImageView
                             android:id="@+id/messageLogToggleButton"
@@ -308,14 +315,15 @@
                 </TableRow>
 
                 <TableRow>
+
                     <LinearLayout
                         android:id="@+id/longToastToggle"
                         style="@style/SettingPanel">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/longToastToggleText"
-                            android:text="@string/longToastSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/longToastSettingText" />
 
                         <ImageView
                             android:id="@+id/longToastToggleButton"
@@ -328,8 +336,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/handleMaxToggleText"
-                            android:text="@string/handleMaxSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/handleMaxSettingText" />
 
                         <ImageView
                             android:id="@+id/handleMaxToggleButton"
@@ -342,8 +350,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/bulkStackToggleText"
-                            android:text="@string/bulkStackSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/bulkStackSettingText" />
 
                         <ImageView
                             android:id="@+id/bulkStackToggleButton"
@@ -373,8 +381,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/autoRefreshToggleText"
-                            android:text="@string/autoRefreshSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/autoRefreshSettingText" />
 
                         <ImageView
                             android:id="@+id/autoRefreshToggleButton"
@@ -387,8 +395,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/fullscreenCheckToggleText"
-                            android:text="@string/fullscreenCheckSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/fullscreenCheckSettingText" />
 
                         <ImageView
                             android:id="@+id/fullscreenCheckToggleButton"
@@ -401,8 +409,8 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/updateSlotsToggleText"
-                            android:text="@string/updateSlotsSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/updateSlotsSettingText" />
 
                         <ImageView
                             android:id="@+id/updateSlotsToggleButton"
@@ -412,6 +420,7 @@
 
                 <!-- Orientation -->
                 <TableRow>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -431,12 +440,12 @@
                         android:tag="4">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/orientationAuto"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/orientationAuto" />
 
                         <ImageView
                             android:id="@+id/orientationAutoCheckbox"
-                            style="@style/SettingButton"/>
+                            style="@style/SettingButton" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -445,8 +454,8 @@
                         android:tag="7">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/orientationPortrait"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/orientationPortrait" />
 
                         <ImageView
                             android:id="@+id/orientationPortraitCheckbox"
@@ -459,8 +468,8 @@
                         android:tag="6">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/orientationLandscape"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/orientationLandscape" />
 
                         <ImageView
                             android:id="@+id/orientationLandscapeCheckbox"
@@ -490,12 +499,12 @@
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
                             android:id="@+id/turnOffAdsText"
-                            android:text="@string/turnOffAdsText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/turnOffAdsText" />
 
                         <ImageView
                             android:id="@+id/turnOffAdsButton"
-                            style="@style/SettingButton"/>
+                            style="@style/SettingButton" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -505,8 +514,8 @@
                         android:visibility="gone">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/prestigeSettingText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/prestigeSettingText" />
                     </LinearLayout>
                 </TableRow>
 
@@ -531,8 +540,8 @@
                         android:onClick="openMessages">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/messagesText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/messagesText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -540,8 +549,8 @@
                         android:onClick="openTutorial">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/tutorialText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/tutorialText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -549,8 +558,8 @@
                         android:onClick="openCredits">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/creditsText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/creditsText" />
                     </LinearLayout>
                 </TableRow>
 
@@ -561,8 +570,8 @@
                         android:onClick="openRating">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/rateText"
-                            style="@style/SettingText"/>
+                            style="@style/SettingText"
+                            android:text="@string/rateText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -570,8 +579,8 @@
                         android:onClick="openSocialMedia">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/socialMediaText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/socialMediaText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -579,19 +588,20 @@
                         android:onClick="openSupportCode">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/supportCode"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/supportCode" />
                     </LinearLayout>
                 </TableRow>
 
                 <TableRow>
+
                     <LinearLayout
                         style="@style/SettingPanel"
                         android:onClick="exportSave">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/exportSaveText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/exportSaveText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -599,8 +609,8 @@
                         android:onClick="importSave">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/importSaveText"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/importSaveText" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -608,8 +618,8 @@
                         android:onClick="launchHotfixes">
 
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:text="@string/launchHotfixes"
-                            style="@style/SettingText" />
+                            style="@style/SettingText"
+                            android:text="@string/launchHotfixes" />
                     </LinearLayout>
                 </TableRow>
 

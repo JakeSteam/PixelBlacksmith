@@ -43,16 +43,30 @@ public class Upgrade extends SugarRecord {
         }
     }
 
+    public static int getMaximumUpgrades() {
+        int possibleUpgrades = 0;
+        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
+        for (Upgrade upgrade : upgrades) {
+            if (upgrade.increases()) {
+                possibleUpgrades += ((upgrade.getMaximum() - upgrade.getMinimum()) / upgrade.getIncrement());
+            } else {
+                possibleUpgrades += ((upgrade.getMinimum() - upgrade.getMaximum()) / upgrade.getIncrement());
+            }
+        }
+
+        return possibleUpgrades;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getName(Context context) {
-        return TextHelper.getInstance(context).getText("upgrade_" + getId());
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("upgrade_" + getId());
     }
 
     public String getUnits() {
@@ -109,20 +123,6 @@ public class Upgrade extends SugarRecord {
         } else {
             return ((current - minimum) + increment) * modifier;
         }
-    }
-
-    public static int getMaximumUpgrades() {
-        int possibleUpgrades = 0;
-        List<Upgrade> upgrades = Upgrade.listAll(Upgrade.class);
-        for (Upgrade upgrade : upgrades) {
-            if (upgrade.increases()) {
-                possibleUpgrades += ((upgrade.getMaximum() - upgrade.getMinimum()) / upgrade.getIncrement());
-            } else {
-                possibleUpgrades += ((upgrade.getMinimum() - upgrade.getMaximum()) / upgrade.getIncrement());
-            }
-        }
-
-        return possibleUpgrades;
     }
 
     public boolean increases() {

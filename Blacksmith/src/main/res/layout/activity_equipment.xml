@@ -26,15 +26,15 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/equipmentTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/equipmentText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/totalStrength"
@@ -42,19 +42,19 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="26sp"
-            app:layout_marginTopPercent="21%"/>
+            app:layout_marginTopPercent="21%" />
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_marginTopPercent="25%"
-            app:layout_marginBottomPercent="2%">
+            app:layout_marginBottomPercent="2%"
+            app:layout_marginTopPercent="25%">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="5dp">
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -64,16 +64,18 @@
 
                     <!-- Row 1 -->
                     <TableRow>
+
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:layout_height="wrap_content"
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_span="3"
                             android:gravity="center"
                             android:text="@string/equipmentText"
-                            android:layout_span="3"
-                            android:layout_marginTop="10dp"
                             android:textColor="@color/black"
                             android:textSize="26sp" />
                     </TableRow>
+
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -81,22 +83,23 @@
 
                         <!-- Food -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/foodImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
-                                android:onClick="equipmentClick"
-                                android:tag="food"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
-                                android:padding="5dp"/>
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
+                                android:padding="5dp"
+                                android:tag="food"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/foodStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/foodImage"
                                 android:layout_alignLeft="@id/foodImage"
                                 android:layout_alignRight="@id/foodImage"
@@ -110,11 +113,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/foodTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/foodImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/foodImage"
                                 android:layout_alignRight="@id/foodImage"
+                                android:layout_below="@id/foodImage"
                                 android:gravity="center"
                                 android:text="@string/foodText"
                                 android:textColor="@color/black"
@@ -124,22 +127,23 @@
 
                         <!-- Helmet -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/helmetImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
                                 android:padding="5dp"
                                 android:tag="helmet"
-                                android:onClick="equipmentClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/helmetStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/helmetImage"
                                 android:layout_alignLeft="@id/helmetImage"
                                 android:layout_alignRight="@id/helmetImage"
@@ -153,11 +157,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/helmetTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/helmetImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/helmetImage"
                                 android:layout_alignRight="@id/helmetImage"
+                                android:layout_below="@id/helmetImage"
                                 android:gravity="center"
                                 android:text="@string/helmetText"
                                 android:textColor="@color/black"
@@ -167,22 +171,23 @@
 
                         <!-- Armour -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/armourImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
                                 android:padding="5dp"
                                 android:tag="armour"
-                                android:onClick="equipmentClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/armourStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/armourImage"
                                 android:layout_alignLeft="@id/armourImage"
                                 android:layout_alignRight="@id/armourImage"
@@ -196,11 +201,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/armourTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/armourImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/armourImage"
                                 android:layout_alignRight="@id/armourImage"
+                                android:layout_below="@id/armourImage"
                                 android:gravity="center"
                                 android:text="@string/armourText"
                                 android:textColor="@color/black"
@@ -218,22 +223,23 @@
 
                         <!-- Weapon -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/weaponImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
-                                android:tag="weapon"
-                                android:onClick="equipmentClick"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
-                                android:padding="5dp"/>
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
+                                android:padding="5dp"
+                                android:tag="weapon"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/weaponStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/weaponImage"
                                 android:layout_alignLeft="@id/weaponImage"
                                 android:layout_alignRight="@id/weaponImage"
@@ -247,11 +253,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/weaponTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/weaponImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/weaponImage"
                                 android:layout_alignRight="@id/weaponImage"
+                                android:layout_below="@id/weaponImage"
                                 android:gravity="center"
                                 android:text="@string/weaponText"
                                 android:textColor="@color/black"
@@ -261,21 +267,22 @@
 
                         <!-- Visitor Type -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/heroImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
-                                android:onClick="visitorClick"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
-                                android:padding="5dp"/>
+                                android:background="@drawable/slot"
+                                android:onClick="visitorClick"
+                                android:padding="5dp"
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/heroName"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/heroImage"
                                 android:layout_alignLeft="@id/heroImage"
                                 android:layout_alignRight="@id/heroImage"
@@ -289,10 +296,10 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/heroTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/heroImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignRight="@id/heroImage"
+                                android:layout_below="@id/heroImage"
                                 android:gravity="center"
                                 android:text="@string/help_hero"
                                 android:textColor="@color/black"
@@ -302,22 +309,23 @@
 
                         <!-- Shield -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/shieldImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
                                 android:padding="5dp"
                                 android:tag="shield"
-                                android:onClick="equipmentClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/shieldStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/shieldImage"
                                 android:layout_alignLeft="@id/shieldImage"
                                 android:layout_alignRight="@id/shieldImage"
@@ -331,11 +339,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/shieldTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/shieldImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/shieldImage"
                                 android:layout_alignRight="@id/shieldImage"
+                                android:layout_below="@id/shieldImage"
                                 android:gravity="center"
                                 android:text="@string/shieldText"
                                 android:textColor="@color/black"
@@ -353,22 +361,23 @@
 
                         <!-- Gloves -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/glovesImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
                                 android:padding="5dp"
                                 android:tag="gloves"
-                                android:onClick="equipmentClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/glovesStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/glovesImage"
                                 android:layout_alignLeft="@id/glovesImage"
                                 android:layout_alignRight="@id/glovesImage"
@@ -382,11 +391,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/glovesTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/glovesImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/glovesImage"
                                 android:layout_alignRight="@id/glovesImage"
+                                android:layout_below="@id/glovesImage"
                                 android:gravity="center"
                                 android:text="@string/glovesText"
                                 android:textColor="@color/black"
@@ -396,22 +405,23 @@
 
                         <!-- Boots -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/bootsImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
                                 android:padding="5dp"
                                 android:tag="boots"
-                                android:onClick="equipmentClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/bootsStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/bootsImage"
                                 android:layout_alignLeft="@id/bootsImage"
                                 android:layout_alignRight="@id/bootsImage"
@@ -425,11 +435,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/bootsTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/bootsImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/bootsImage"
                                 android:layout_alignRight="@id/bootsImage"
+                                android:layout_below="@id/bootsImage"
                                 android:gravity="center"
                                 android:text="@string/bootsText"
                                 android:textColor="@color/black"
@@ -439,22 +449,23 @@
 
                         <!-- Ring -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/ringImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="equipmentClick"
                                 android:padding="5dp"
                                 android:tag="ring"
-                                android:onClick="equipmentClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/ringStrength"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/ringImage"
                                 android:layout_alignLeft="@id/ringImage"
                                 android:layout_alignRight="@id/ringImage"
@@ -468,11 +479,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/ringTitle"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/ringImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/ringImage"
                                 android:layout_alignRight="@id/ringImage"
+                                android:layout_below="@id/ringImage"
                                 android:gravity="center"
                                 android:text="@string/ringsText"
                                 android:textColor="@color/black"
@@ -484,34 +495,38 @@
 
                     <!-- Row 4 -->
                     <TableRow>
+
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:layout_height="wrap_content"
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_span="3"
                             android:gravity="center"
                             android:text="@string/setBonuses"
-                            android:layout_span="3"
-                            android:layout_marginTop="10dp"
                             android:textColor="@color/black"
                             android:textSize="26sp" />
                     </TableRow>
+
                     <LinearLayout
                         android:id="@+id/heroSets"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical" />
 
                     <!-- Row 5 -->
                     <TableRow>
+
                         <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:layout_height="wrap_content"
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_span="3"
                             android:gravity="center"
                             android:text="@string/tutorialVisitorPrefs"
-                            android:layout_span="3"
-                            android:layout_marginTop="10dp"
                             android:textColor="@color/black"
                             android:textSize="26sp" />
                     </TableRow>
+
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -519,21 +534,22 @@
 
                         <!-- Type -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/typeImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="typeClick"
                                 android:padding="5dp"
-                                android:onClick="typeClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/typeBonus"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/typeImage"
                                 android:layout_alignLeft="@id/typeImage"
                                 android:layout_alignRight="@id/typeImage"
@@ -547,11 +563,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/typeText"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/typeImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/typeImage"
                                 android:layout_alignRight="@id/typeImage"
+                                android:layout_below="@id/typeImage"
                                 android:gravity="center"
                                 android:text="@string/typeText"
                                 android:textColor="@color/black"
@@ -561,21 +577,22 @@
 
                         <!-- Tier -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/tierImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="tierClick"
                                 android:padding="5dp"
-                                android:onClick="tierClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/tierBonus"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/tierImage"
                                 android:layout_alignLeft="@id/tierImage"
                                 android:layout_alignRight="@id/tierImage"
@@ -589,11 +606,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/tierText"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/tierImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/tierImage"
                                 android:layout_alignRight="@id/tierImage"
+                                android:layout_below="@id/tierImage"
                                 android:gravity="center"
                                 android:text="@string/tierText"
                                 android:textColor="@color/black"
@@ -603,21 +620,22 @@
 
                         <!-- State -->
                         <RelativeLayout>
+
                             <ImageView
                                 android:id="@+id/stateImage"
-                                android:background="@drawable/slot"
-                                android:layout_height="80dp"
                                 android:layout_width="match_parent"
-                                app:layout_heightPercent="25%"
-                                app:layout_widthPercent="20%"
+                                android:layout_height="80dp"
                                 android:layout_margin="3dp"
+                                android:background="@drawable/slot"
+                                android:onClick="stateClick"
                                 android:padding="5dp"
-                                android:onClick="stateClick"/>
+                                app:layout_heightPercent="25%"
+                                app:layout_widthPercent="20%" />
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/stateBonus"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_alignBottom="@id/stateImage"
                                 android:layout_alignLeft="@id/stateImage"
                                 android:layout_alignRight="@id/stateImage"
@@ -631,11 +649,11 @@
 
                             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                                 android:id="@+id/stateText"
-                                android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
-                                android:layout_below="@id/stateImage"
+                                android:layout_height="wrap_content"
                                 android:layout_alignLeft="@id/stateImage"
                                 android:layout_alignRight="@id/stateImage"
+                                android:layout_below="@id/stateImage"
                                 android:gravity="center"
                                 android:text="@string/stateText"
                                 android:textColor="@color/black"

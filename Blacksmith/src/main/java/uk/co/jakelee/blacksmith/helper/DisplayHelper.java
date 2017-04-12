@@ -71,14 +71,13 @@ public class DisplayHelper {
     };
     private static DisplayHelper dhInstance = null;
     private final Context context;
-    private boolean isProcessingPendingInventory = false;
-    private Picasso picasso;
-
     public ViewFlipper itemSelectionFlipper;
     public HorizontalDots itemSelectionDots;
     public List<Item> itemSelectionItems;
     public long itemSelectionState;
     public boolean itemSelectionInventoryCheck;
+    private boolean isProcessingPendingInventory = false;
+    private Picasso picasso;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -116,6 +115,92 @@ public class DisplayHelper {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflatedView = inflater.inflate(R.layout.custom_slot, null);
         return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
+    }
+
+    public static void updateQuest(int current, int max, String eventID) {
+        ImageView questIcon = (ImageView) MainActivity.questContainer.findViewById(R.id.questIcon);
+        ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
+
+        questIcon.setImageResource(getEventDrawableID(eventID));
+
+        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
+        questProgress.setProgress(current);
+        questProgress.setMax(max);
+    }
+
+    private static int getEventDrawableID(String eventID) {
+        switch (eventID) {
+            case Constants.EVENT_VISITOR_COMPLETED:
+                return R.drawable.visitor26;
+            case Constants.EVENT_VISITOR_FULLY_COMPLETED:
+                return R.drawable.visitor20;
+            case Constants.EVENT_BOUGHT_ITEM:
+                return R.drawable.character8;
+            case Constants.EVENT_CREATE_BAR:
+                return R.drawable.item15;
+            case Constants.EVENT_CREATE_UNFINISHED:
+                return R.drawable.state2;
+            case Constants.EVENT_CREATE_FINISHED:
+                return R.drawable.item89;
+            case Constants.EVENT_CREATE_ENCHANTED:
+                return R.drawable.item72;
+            case Constants.EVENT_CREATE_POWDER:
+                return R.drawable.item129;
+            case Constants.EVENT_CREATE_FOOD:
+                return R.drawable.item218;
+            case Constants.EVENT_SOLD_ITEM:
+                return R.drawable.sell_small;
+            case Constants.EVENT_TRADE_ITEM:
+                return R.drawable.item52;
+            case Constants.EVENT_BUY_ALL_ITEM:
+                return R.drawable.character15;
+            case Constants.EVENT_CONTRIBUTE:
+                return R.drawable.uparrow;
+            case Constants.EVENT_CLAIM_BONUS:
+                return R.drawable.bonus_chest_full;
+            case Constants.EVENT_HELPER_TRIPS:
+                return R.drawable.visitor3;
+            case Constants.EVENT_HERO_TRIPS:
+                return R.drawable.visitor43;
+            default:
+                return R.drawable.quests;
+        }
+    }
+
+    private static String formatLargeNumber(int number) {
+        String numberString = Integer.toString(number);
+        if (numberString.length() > 3) {
+            numberString = numberString.substring(0, numberString.length() - 3) + "k";
+        }
+        return numberString;
+    }
+
+    public static void updateBonusChest(ImageView chest) {
+        Picasso.with(chest.getContext())
+                .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
+                .into(chest);
+    }
+
+    public static void updateAssistantDisplay(RelativeLayout assistantContainer) {
+        int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
+        long lastClaimTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first().getLongValue();
+
+        String timeLeftText;
+        if (activeAssistant > 0) {
+            Assistant assistant = Assistant.get(activeAssistant);
+            ((ImageView) assistantContainer.findViewById(R.id.assistant_image)).setImageResource(DisplayHelper.getAssistantDrawableID(
+                    assistantContainer.getContext(),
+                    assistant));
+
+            if (lastClaimTime + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
+                timeLeftText = assistantContainer.getContext().getString(R.string.assistantReady);
+            } else {
+                timeLeftText = assistantContainer.getContext().getString(R.string.assistantNotReady) + DateHelper.getHoursMinsRemaining((lastClaimTime + assistant.getRewardFrequency()) - System.currentTimeMillis());
+            }
+        } else {
+            timeLeftText = assistantContainer.getContext().getString(R.string.assistantTeaser);
+        }
+        ((TextView) assistantContainer.findViewById(R.id.assistant_time)).setText(timeLeftText);
     }
 
     public String getString(int ID) {
@@ -334,7 +419,7 @@ public class DisplayHelper {
             visitorImage.setTag(visitor.getId().toString());
             visitorImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastVisitorClick < 500){
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastVisitorClick < 500) {
                         return;
                     } else {
                         MainActivity.vh.lastVisitorClick = SystemClock.elapsedRealtime();
@@ -433,7 +518,7 @@ public class DisplayHelper {
 
         RelativeLayout itemBox = new RelativeLayout(context);
 
-        ImageView image = createItemImage(itemID, (int)state, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
+        ImageView image = createItemImage(itemID, (int) state, 80, 80, Inventory.haveSeen(itemID, state), Inventory.haveLevelFor(itemID));
         TextView count = createItemCount(itemID, state, Color.WHITE, Color.BLACK);
         count.setWidth(convertDpToPixel(80));
 
@@ -527,21 +612,29 @@ public class DisplayHelper {
         Drawable imageResource = createDrawable(drawableId, width, height);
         if (haveSeen) {
             switch (itemState) {
-                case Constants.STATE_RED: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.redOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_RED:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.redOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_BLUE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blueOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_BLUE:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blueOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_GREEN: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.greenOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_GREEN:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.greenOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_WHITE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.whiteOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_WHITE:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.whiteOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_BLACK: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_BLACK:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.blackOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_PURPLE: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.purpleOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_PURPLE:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.purpleOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                case Constants.STATE_YELLOW: imageResource.setColorFilter(ContextCompat.getColor(context, R.color.yellowOverlay), PorterDuff.Mode.MULTIPLY);
+                case Constants.STATE_YELLOW:
+                    imageResource.setColorFilter(ContextCompat.getColor(context, R.color.yellowOverlay), PorterDuff.Mode.MULTIPLY);
                     break;
-                default: imageResource.clearColorFilter();
+                default:
+                    imageResource.clearColorFilter();
                     break;
             }
         } else if (canCreate) {
@@ -618,56 +711,6 @@ public class DisplayHelper {
     public void updateCoinsGUI(TextView coins) {
         String coinCountString = String.format("%,d", Inventory.getCoins());
         coins.setText(coinCountString);
-    }
-
-    public static void updateQuest(int current, int max, String eventID) {
-        ImageView questIcon = (ImageView) MainActivity.questContainer.findViewById(R.id.questIcon);
-        ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
-
-        questIcon.setImageResource(getEventDrawableID(eventID));
-
-        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
-        questProgress.setProgress(current);
-        questProgress.setMax(max);
-    }
-
-    private static int getEventDrawableID(String eventID) {
-        switch (eventID) {
-            case Constants.EVENT_VISITOR_COMPLETED :
-                return R.drawable.visitor26;
-            case Constants.EVENT_VISITOR_FULLY_COMPLETED :
-                return R.drawable.visitor20;
-            case Constants.EVENT_BOUGHT_ITEM :
-                return R.drawable.character8;
-            case Constants.EVENT_CREATE_BAR :
-                return R.drawable.item15;
-            case Constants.EVENT_CREATE_UNFINISHED :
-                return R.drawable.state2;
-            case Constants.EVENT_CREATE_FINISHED :
-                return R.drawable.item89;
-            case Constants.EVENT_CREATE_ENCHANTED :
-                return R.drawable.item72;
-            case Constants.EVENT_CREATE_POWDER :
-                return R.drawable.item129;
-            case Constants.EVENT_CREATE_FOOD :
-                return R.drawable.item218;
-            case Constants.EVENT_SOLD_ITEM :
-                return R.drawable.sell_small;
-            case Constants.EVENT_TRADE_ITEM :
-                return R.drawable.item52;
-            case Constants.EVENT_BUY_ALL_ITEM :
-                return R.drawable.character15;
-            case Constants.EVENT_CONTRIBUTE :
-                return R.drawable.uparrow;
-            case Constants.EVENT_CLAIM_BONUS :
-                return R.drawable.bonus_chest_full;
-            case Constants.EVENT_HELPER_TRIPS :
-                return R.drawable.visitor3;
-            case Constants.EVENT_HERO_TRIPS :
-                return R.drawable.visitor43;
-            default :
-                return R.drawable.quests;
-        }
     }
 
     public void createCraftingInterface(RelativeLayout main, TableLayout ingredientsTable, ViewFlipper viewFlipper, long state) {
@@ -753,21 +796,13 @@ public class DisplayHelper {
                 }
             });
 
-            row.addView(createItemImage(ingredient.getIngredient(), (int)ingredient.getIngredientState(), 25, 25, true, true));
+            row.addView(createItemImage(ingredient.getIngredient(), (int) ingredient.getIngredientState(), 25, 25, true, true));
             row.addView(itemNameView);
             row.addView(createTextView(formatLargeNumber(ingredient.getQuantity()), 22, Color.DKGRAY));
             row.addView(createTextView(formatLargeNumber(owned.getQuantity()), 22, Color.DKGRAY));
 
             ingredientsTable.addView(row);
         }
-    }
-
-    private static String formatLargeNumber(int number) {
-        String numberString = Integer.toString(number);
-        if (numberString.length() > 3) {
-            numberString = numberString.substring(0, numberString.length() - 3) + "k";
-        }
-        return numberString;
     }
 
     public void createItemSelector(ViewFlipper itemSelector, HorizontalDots dots, boolean clearExisting, final List<Item> items, long state, int selectedPosition) {
@@ -828,33 +863,5 @@ public class DisplayHelper {
         } else {
             downArrow.setVisibility(View.VISIBLE);
         }
-    }
-
-    public static void updateBonusChest(ImageView chest) {
-        Picasso.with(chest.getContext())
-                .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
-                .into(chest);
-    }
-
-    public static void updateAssistantDisplay(RelativeLayout assistantContainer) {
-        int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
-        long lastClaimTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first().getLongValue();
-
-        String timeLeftText;
-        if (activeAssistant > 0) {
-            Assistant assistant = Assistant.get(activeAssistant);
-            ((ImageView) assistantContainer.findViewById(R.id.assistant_image)).setImageResource(DisplayHelper.getAssistantDrawableID(
-                    assistantContainer.getContext(),
-                    assistant));
-
-            if (lastClaimTime + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
-                timeLeftText = assistantContainer.getContext().getString(R.string.assistantReady);
-            } else {
-                timeLeftText = assistantContainer.getContext().getString(R.string.assistantNotReady) + DateHelper.getHoursMinsRemaining((lastClaimTime + assistant.getRewardFrequency()) - System.currentTimeMillis());
-            }
-        } else {
-            timeLeftText = assistantContainer.getContext().getString(R.string.assistantTeaser);
-        }
-        ((TextView)assistantContainer.findViewById(R.id.assistant_time)).setText(timeLeftText);
     }
 }

@@ -26,13 +26,13 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/statisticsTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
             android:gravity="center"
             android:text="@string/statisticsText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="55sp"
+            app:layout_heightPercent="10%"
             app:layout_marginBottomPercent="7%"
             app:layout_marginTopPercent="3%" />
 
@@ -51,35 +51,37 @@
                 android:layout_marginRight="8dp"
                 android:columnCount="1">
 
-                <LinearLayout >
+                <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:id="@+id/totalCompletionTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:onClick="openCompletionPercent"
                         android:paddingTop="5dp"
                         android:text="@string/statisticsCompletion"
                         android:textColor="@color/black"
-                        android:onClick="openCompletionPercent"
-                        android:clickable="true"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="completionpercent"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="completionpercent" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/totalCompletion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="openCompletionPercent"
                     android:paddingBottom="5dp"
                     android:textColor="@color/Blue"
-                    android:onClick="openCompletionPercent"
-                    android:clickable="true"
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -115,6 +117,7 @@
                     android:textSize="20sp" />
 
                 <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -122,14 +125,15 @@
                         android:text="@string/statisticsHighestLevel"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="highestlevel"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="highestlevel" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -237,6 +241,7 @@
                     android:textSize="20sp" />
 
                 <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -244,14 +249,15 @@
                         android:text="@string/statisticsVisitors"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="visitors"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="visitors" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -327,6 +333,7 @@
                     android:textSize="20sp" />
 
                 <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -334,14 +341,15 @@
                         android:text="@string/statisticsBiggestTrade"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="bestitem"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="bestitem" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -449,6 +457,7 @@
                     android:textSize="20sp" />
 
                 <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -456,14 +465,15 @@
                         android:text="@string/statisticsTrophies"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="trophies"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="trophies" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -491,12 +501,12 @@
                     android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:text="@string/statisticsWorkersTrips"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="@string/statisticsWorkersTrips"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/workersTrips"
@@ -539,6 +549,7 @@
                     android:textSize="20sp" />
 
                 <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -546,14 +557,15 @@
                         android:text="@string/statisticsCollectionsCrafted"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="collectionscrafted"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="collectionscrafted" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
@@ -613,6 +625,7 @@
                     android:textSize="20sp" />
 
                 <LinearLayout>
+
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -620,14 +633,15 @@
                         android:text="@string/statisticsPrestige"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
+
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/button_narrow"
-                        android:src="@drawable/playleaderboards"
+                        android:onClick="openLeaderboards"
                         android:padding="2dp"
-                        android:tag="prestiged"
-                        android:onClick="openLeaderboards"/>
+                        android:src="@drawable/playleaderboards"
+                        android:tag="prestiged" />
                 </LinearLayout>
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel

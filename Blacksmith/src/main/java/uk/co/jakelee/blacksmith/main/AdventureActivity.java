@@ -64,12 +64,14 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     public void onPause() {
         super.onPause();
         SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
-        prefs.edit().putInt("adventureCategory", ((Spinner)findViewById(R.id.adventureCategories)).getSelectedItemPosition()).apply();
-        prefs.edit().putInt("adventureSubcategory", ((Spinner)findViewById(R.id.adventureSubcategories)).getSelectedItemPosition()).apply();
+        prefs.edit().putInt("adventureCategory", ((Spinner) findViewById(R.id.adventureCategories)).getSelectedItemPosition()).apply();
+        prefs.edit().putInt("adventureSubcategory", ((Spinner) findViewById(R.id.adventureSubcategories)).getSelectedItemPosition()).apply();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        if (dropdownsToCreate > 0) { return; }
+        if (dropdownsToCreate > 0) {
+            return;
+        }
         if (parent.getTag().equals("CategorySelect")) {
             String selectedItem = (String) parent.getItemAtPosition(pos);
             if (!selectedItem.equals(getString(R.string.please_select))) {
@@ -83,7 +85,9 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        if (dropdownsToCreate > 0) { return; }
+        if (dropdownsToCreate > 0) {
+            return;
+        }
         populateAdventures(getString(R.string.please_select));
     }
 
@@ -136,7 +140,9 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     private void populateAdventures(String selection) {
-        if (dropdownsToCreate > 0) { return; }
+        if (dropdownsToCreate > 0) {
+            return;
+        }
 
         TableLayout adventureHolder = (TableLayout) findViewById(R.id.adventureHolder);
         adventureHolder.removeAllViews();

@@ -26,15 +26,15 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/equipmentTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/equipmentText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/totalStrength"
@@ -42,19 +42,19 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="26sp"
-            app:layout_marginTopPercent="21%"/>
+            app:layout_marginTopPercent="21%" />
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_marginTopPercent="22%"
-            app:layout_marginBottomPercent="2%">
+            app:layout_marginBottomPercent="2%"
+            app:layout_marginTopPercent="22%">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="5dp">
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
 
                 <TableLayout
                     android:id="@+id/equipmentTable"
@@ -67,9 +67,9 @@
                         android:id="@+id/noItemsMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="22sp"
+                        android:text="@string/noItemsEquipment"
                         android:textColor="@color/black"
-                        android:text="@string/noItemsEquipment"/>
+                        android:textSize="22sp" />
                 </TableLayout>
             </LinearLayout>
         </ScrollView>

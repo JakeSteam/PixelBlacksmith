@@ -115,7 +115,7 @@ public class EquipmentActivity extends Activity {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ToastHelper.showTipToast(view, Toast.LENGTH_SHORT, (String)view.getTag(), true);
+                        ToastHelper.showTipToast(view, Toast.LENGTH_SHORT, (String) view.getTag(), true);
                     }
                 });
                 setContainer.addView(textView);

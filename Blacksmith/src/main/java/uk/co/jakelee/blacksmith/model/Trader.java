@@ -106,6 +106,43 @@ public class Trader extends SugarRecord {
         return selectedTraderType;
     }
 
+    public static int restockAll(int restockCost) {
+        if (Inventory.getCoins() < restockCost) {
+            return Constants.ERROR_NOT_ENOUGH_COINS;
+        } else {
+            // Remove coins
+            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+            coinStock.setQuantity(coinStock.getQuantity() - restockCost);
+            coinStock.save();
+
+            Trader.executeQuery("UPDATE trader SET status = " + Constants.TRADER_NOT_PRESENT);
+            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
+
+            return Constants.SUCCESS;
+        }
+    }
+
+    public static int getFixedCount() {
+        return (int) Select.from(Trader.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_MARKET),
+                Condition.prop("fixed").eq(1)).count();
+    }
+
+    public static int getRestockAllCost() {
+        return Upgrade.getValue("Restock All Cost");
+    }
+
+    public static int outOfStockTraders() {
+        List<Trader> traders = Trader.listAll(Trader.class);
+        int outOfStock = 0;
+        for (Trader trader : traders) {
+            if (trader.isOutOfStock()) {
+                outOfStock++;
+            }
+        }
+        return outOfStock;
+    }
+
     public int restock(int restockCost) {
         if (Inventory.getCoins() < restockCost) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
@@ -125,32 +162,6 @@ public class Trader extends SugarRecord {
 
             return Constants.SUCCESS;
         }
-    }
-
-    public static int restockAll(int restockCost) {
-        if (Inventory.getCoins() < restockCost) {
-            return Constants.ERROR_NOT_ENOUGH_COINS;
-        } else {
-            // Remove coins
-            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-            coinStock.setQuantity(coinStock.getQuantity() - restockCost);
-            coinStock.save();
-
-            Trader.executeQuery("UPDATE trader SET status = " + Constants.TRADER_NOT_PRESENT);
-            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
-
-            return Constants.SUCCESS;
-        }
-    }
-
-    public static int getFixedCount() {
-        return (int)Select.from(Trader.class).where(
-                Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("fixed").eq(1)).count();
-    }
-
-    public static int getRestockAllCost() {
-        return Upgrade.getValue("Restock All Cost");
     }
 
     public long getShopkeeper() {
@@ -238,16 +249,5 @@ public class Trader extends SugarRecord {
         }
 
         return !hasStock;
-    }
-
-    public static int outOfStockTraders() {
-        List<Trader> traders = Trader.listAll(Trader.class);
-        int outOfStock = 0;
-        for (Trader trader : traders) {
-            if (trader.isOutOfStock()) {
-                outOfStock++;
-            }
-        }
-        return outOfStock;
     }
 }

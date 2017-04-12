@@ -238,10 +238,10 @@ public class EnchantingActivity extends Activity {
 
         int textSize = 30;
         itemButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickEnchantButton(v);
-                }
-            });
+            public void onClick(View v) {
+                clickEnchantButton(v);
+            }
+        });
         TextView buttonTextView = dh.createTextView(buttonText, textSize);
 
         itemButton.addView(buttonTextView);

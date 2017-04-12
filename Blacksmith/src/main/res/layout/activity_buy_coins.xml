@@ -27,14 +27,14 @@
             android:id="@+id/buyCoinsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/buyCoinsText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/buyCoinsScroller"
@@ -53,34 +53,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/buyCoinsDesc"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/coins1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_margin="7dp"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
-                    android:layout_gravity="center_horizontal"
                     android:onClick="buyCoins1"
                     android:textColor="@color/black"
-                    android:textSize="30sp"/>
+                    android:textSize="30sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/coins2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_margin="7dp"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
-                    android:layout_gravity="center_horizontal"
                     android:onClick="buyCoins2"
                     android:textColor="@color/black"
-                    android:textSize="30sp"/>
+                    android:textSize="30sp" />
             </LinearLayout>
 
         </ScrollView>

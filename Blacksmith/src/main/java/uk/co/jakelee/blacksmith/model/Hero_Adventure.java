@@ -28,6 +28,21 @@ public class Hero_Adventure extends SugarRecord {
         this.completed = false;
     }
 
+    public static int getTotalCompleted() {
+        List<Hero_Adventure> adventures = Hero_Adventure.listAll(Hero_Adventure.class);
+        int totalCompleted = 0;
+
+        for (Hero_Adventure adventure : adventures) {
+            if (adventure.isCompleted()) totalCompleted++;
+        }
+
+        return totalCompleted;
+    }
+
+    public static Hero_Adventure getAdventure(int id) {
+        return Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(id)).first();
+    }
+
     public int getAdventureId() {
         return adventureId;
     }
@@ -66,21 +81,6 @@ public class Hero_Adventure extends SugarRecord {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
-    }
-
-    public static int getTotalCompleted() {
-        List<Hero_Adventure> adventures = Hero_Adventure.listAll(Hero_Adventure.class);
-        int totalCompleted = 0;
-
-        for (Hero_Adventure adventure : adventures) {
-            if (adventure.isCompleted()) totalCompleted++;
-        }
-
-        return totalCompleted;
-    }
-
-    public static Hero_Adventure getAdventure(int id) {
-        return Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(id)).first();
     }
 
     public Hero_Category getSubcategoryObject() {

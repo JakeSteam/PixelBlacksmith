@@ -88,14 +88,14 @@ public class ToolActivity extends Activity implements AdapterView.OnItemSelected
     private void populateTools(String selection) {
         TableLayout toolHolder = (TableLayout) findViewById(R.id.toolHolder);
         toolHolder.removeAllViews();
-        TextView noToolsMessage = (TextView)findViewById(R.id.noTools);
+        TextView noToolsMessage = (TextView) findViewById(R.id.noTools);
 
         List<Inventory> tools = WorkerHelper.getTools(this, selection);
         if (tools.size() > 0) {
             noToolsMessage.setVisibility(View.GONE);
             for (Inventory tool : tools) {
                 Item toolItem = Item.findById(Item.class, tool.getItem());
-                ImageView itemImage = dh.createItemImage(tool.getItem(), (int)tool.getState(), 25, 25, true, true);
+                ImageView itemImage = dh.createItemImage(tool.getItem(), (int) tool.getState(), 25, 25, true, true);
                 TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
                         tool.getQuantity(),
                         toolItem.getName(this)), 30);

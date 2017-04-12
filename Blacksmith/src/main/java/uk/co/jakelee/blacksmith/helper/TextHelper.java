@@ -9,8 +9,8 @@ import java.util.List;
 import uk.co.jakelee.blacksmith.R;
 
 public class TextHelper {
-    private final Resources resources;
     private static TextHelper thInstance = null;
+    private final Resources resources;
     private final String packageName;
 
     public TextHelper(Context context) {
@@ -23,11 +23,6 @@ public class TextHelper {
             thInstance = new TextHelper(ctx.getApplicationContext());
         }
         return thInstance;
-    }
-
-    public String getText(String identifier) {
-        int resourceId = resources.getIdentifier(identifier, "string", packageName);
-        return resourceId > 0 ? (String)resources.getText(resourceId) : identifier;
     }
 
     public static List<String> getTips(Context context) {
@@ -113,5 +108,10 @@ public class TextHelper {
         tips.add(context.getString(R.string.tip_79));
         tips.add(context.getString(R.string.tip_80));
         return tips;
+    }
+
+    public String getText(String identifier) {
+        int resourceId = resources.getIdentifier(identifier, "string", packageName);
+        return resourceId > 0 ? (String) resources.getText(resourceId) : identifier;
     }
 }

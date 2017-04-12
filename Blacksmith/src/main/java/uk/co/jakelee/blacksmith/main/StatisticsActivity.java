@@ -141,7 +141,7 @@ public class StatisticsActivity extends Activity {
 
         int adventuresCompleted = Hero_Adventure.getTotalCompleted();
         int adventuresCount = (int) Hero_Adventure.count(Hero_Adventure.class);
-        int adventuresPercent = (int) (((double)adventuresCompleted / (double)adventuresCount) * 100);
+        int adventuresPercent = (int) (((double) adventuresCompleted / (double) adventuresCount) * 100);
         ((TextViewPixel) findViewById(R.id.heroAdventuresCompleted)).setText(String.format(getString(R.string.genericProgressPercent),
                 adventuresCompleted,
                 adventuresCount,

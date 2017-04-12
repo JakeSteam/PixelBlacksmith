@@ -33,7 +33,7 @@ public class HelpActivity extends Activity {
             displayHelp(helpLayout, topicIntent);
         } else {
             for (TOPICS topic : TOPICS.values()) {
-                TextViewPixel topicView = dh.createTextView(topic.name().replace("_"," "), 34);
+                TextViewPixel topicView = dh.createTextView(topic.name().replace("_", " "), 34);
                 int topicPadding = dh.convertDpToPixel(3);
                 topicView.setPadding(topicPadding, topicPadding, topicPadding, topicPadding);
                 topicView.setTag(topic);
@@ -56,39 +56,105 @@ public class HelpActivity extends Activity {
 
     private void displayHelp(LinearLayout layout, TOPICS topic) {
         switch (topic) {
-            case Advertising: displayHelpAdvertising(layout); break;
-            case Anvil: displayHelpAnvil(layout); break;
-            case Coins: displayHelpCoins(layout); break;
-            case Credits: displayHelpCredits(layout); break;
-            case Furnace: displayHelpFurnace(layout); break;
-            case Gem_Table: displayHelpGemTable(layout); break;
-            case Help: displayHelpHelp(layout); break;
-            case Helper: displayHelpHelper(layout); break;
-            case Helper_Food: displayHelpFood(layout); break;
-            case Helper_Tools: displayHelpTools(layout); break;
-            case Hero: displayHelpHero(layout); break;
-            case Hero_Adventures: displayHelpHeroAdventures(layout); break;
-            case Hero_Equipment: displayHelpHeroEquipment(layout); break;
-            case Hero_Visitors: displayHelpHeroVisitors(layout); break;
-            case Inventory: displayHelpInventory(layout); break;
-            case Item_Picker: displayHelpItemPicker(layout); break;
-            case Market: displayHelpMarket(layout); break;
-            case Messages: displayHelpMessages(layout); break;
-            case Overview: displayHelpOverview(layout); break;
-            case Assistants: displayHelpAssistants(layout); break;
-            case Premium: displayHelpPremium(layout); break;
-            case Prestige: displayHelpPrestige(layout); break;
-            case Quests: displayHelpQuests(layout); break;
-            case Settings: displayHelpSettings(layout); break;
-            case Statistics: displayHelpStatistics(layout); break;
-            case Super_Upgrade: displayHelpSuperUpgrade(layout); break;
-            case Table: displayHelpTable(layout); break;
-            case Tips_And_Tricks: displayTips(layout); break;
-            case Trader: displayHelpTrader(layout); break;
-            case Trading: displayHelpTrading(layout); break;
-            case Trophy: displayHelpTrophy(layout); break;
-            case Upgrade: displayHelpUpgrade(layout); break;
-            case Visitor: displayHelpVisitor(layout); break;
+            case Advertising:
+                displayHelpAdvertising(layout);
+                break;
+            case Anvil:
+                displayHelpAnvil(layout);
+                break;
+            case Coins:
+                displayHelpCoins(layout);
+                break;
+            case Credits:
+                displayHelpCredits(layout);
+                break;
+            case Furnace:
+                displayHelpFurnace(layout);
+                break;
+            case Gem_Table:
+                displayHelpGemTable(layout);
+                break;
+            case Help:
+                displayHelpHelp(layout);
+                break;
+            case Helper:
+                displayHelpHelper(layout);
+                break;
+            case Helper_Food:
+                displayHelpFood(layout);
+                break;
+            case Helper_Tools:
+                displayHelpTools(layout);
+                break;
+            case Hero:
+                displayHelpHero(layout);
+                break;
+            case Hero_Adventures:
+                displayHelpHeroAdventures(layout);
+                break;
+            case Hero_Equipment:
+                displayHelpHeroEquipment(layout);
+                break;
+            case Hero_Visitors:
+                displayHelpHeroVisitors(layout);
+                break;
+            case Inventory:
+                displayHelpInventory(layout);
+                break;
+            case Item_Picker:
+                displayHelpItemPicker(layout);
+                break;
+            case Market:
+                displayHelpMarket(layout);
+                break;
+            case Messages:
+                displayHelpMessages(layout);
+                break;
+            case Overview:
+                displayHelpOverview(layout);
+                break;
+            case Assistants:
+                displayHelpAssistants(layout);
+                break;
+            case Premium:
+                displayHelpPremium(layout);
+                break;
+            case Prestige:
+                displayHelpPrestige(layout);
+                break;
+            case Quests:
+                displayHelpQuests(layout);
+                break;
+            case Settings:
+                displayHelpSettings(layout);
+                break;
+            case Statistics:
+                displayHelpStatistics(layout);
+                break;
+            case Super_Upgrade:
+                displayHelpSuperUpgrade(layout);
+                break;
+            case Table:
+                displayHelpTable(layout);
+                break;
+            case Tips_And_Tricks:
+                displayTips(layout);
+                break;
+            case Trader:
+                displayHelpTrader(layout);
+                break;
+            case Trading:
+                displayHelpTrading(layout);
+                break;
+            case Trophy:
+                displayHelpTrophy(layout);
+                break;
+            case Upgrade:
+                displayHelpUpgrade(layout);
+                break;
+            case Visitor:
+                displayHelpVisitor(layout);
+                break;
         }
     }
 
@@ -171,7 +237,7 @@ public class HelpActivity extends Activity {
     private void displayHelpSettings(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_settings), 26));
         layout.addView(dh.createTextView(getString(R.string.help_text_settings), 22));
-        }
+    }
 
     private void displayHelpTrader(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_trader), 26));

@@ -72,15 +72,15 @@ public class MainActivity extends AppCompatActivity implements
         BatchUnlockListener {
     private static final Handler handler = new Handler();
     public static RelativeLayout questContainer;
-    private DisplayHelper dh;
     public static VariableHelper vh;
-    private int newVisitors;
-    private Intent musicService;
-    private boolean musicServiceIsStarted = false;
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
     public AdvertHelper ah;
+    private DisplayHelper dh;
+    private int newVisitors;
+    private Intent musicService;
+    private boolean musicServiceIsStarted = false;
     private GooglePlayHelper gph;
 
     @Override
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         findViewById(R.id.buyCoins).setVisibility(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? View.INVISIBLE : View.VISIBLE);
-        DisplayHelper.updateAssistantDisplay((RelativeLayout)findViewById(R.id.assistant_container));
+        DisplayHelper.updateAssistantDisplay((RelativeLayout) findViewById(R.id.assistant_container));
     }
 
     public void exitTutorial(View v) {
@@ -470,7 +470,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void updateVisitors() {
-        dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout)findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
+        dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout) findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
     }
 
     public void claimAssistant(View v) {
@@ -650,18 +650,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onNewIntent(Intent intent)
-    {
+    protected void onNewIntent(Intent intent) {
         Batch.onNewIntent(this, intent);
         super.onNewIntent(intent);
     }
 
     @Override
-    public void onRedeemAutomaticOffer(Offer offer)
-    {
+    public void onRedeemAutomaticOffer(Offer offer) {
         // Give resources & features contained in the campaign to the user
         String rewardMessage = offer.getOfferAdditionalParameters().get("reward_message");
-        for(Resource resource : offer.getResources()) {
+        for (Resource resource : offer.getResources()) {
             if (resource.getReference().equals("LARGE_COIN_PACK")) {
                 Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 3000);
                 ToastHelper.showPositiveToast(null, Toast.LENGTH_SHORT, rewardMessage != null ? rewardMessage : "1000 coins rewarded!", true);

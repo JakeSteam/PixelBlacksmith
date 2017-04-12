@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/wallpaper1"/>
+                android:src="@drawable/wallpaper1" />
 
             <ImageView
                 android:id="@+id/wallpaper_id2"
@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/wallpaper_id"
                 android:scaleType="fitXY"
-                android:src="@drawable/wallpaper2"/>
+                android:src="@drawable/wallpaper2" />
 
             <ImageView
                 android:id="@+id/wallpaper_id3"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/wallpaper_id2"
                 android:scaleType="fitXY"
-                android:src="@drawable/wallpaper3"/>
+                android:src="@drawable/wallpaper3" />
 
             <ImageView
                 android:id="@+id/open_furnace"
@@ -54,8 +54,8 @@
                 android:layout_alignLeft="@id/open_furnace"
                 android:layout_below="@id/open_furnace"
                 android:columnCount="5"
-                android:orientation="horizontal"
-                android:onClick="openFurnace" />
+                android:onClick="openFurnace"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/open_anvil"
@@ -73,8 +73,8 @@
                 android:layout_alignLeft="@id/open_anvil"
                 android:layout_below="@id/open_anvil"
                 android:columnCount="5"
-                android:orientation="horizontal"
-                android:onClick="openAnvil" />
+                android:onClick="openAnvil"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/open_inventory"
@@ -92,8 +92,8 @@
                 android:layout_alignLeft="@id/open_inventory"
                 android:layout_below="@id/open_inventory"
                 android:columnCount="4"
-                android:orientation="horizontal"
-                android:onClick="openInventory" />
+                android:onClick="openInventory"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/open_table"
@@ -111,8 +111,8 @@
                 android:layout_alignLeft="@id/open_table"
                 android:layout_below="@id/open_table"
                 android:columnCount="5"
-                android:orientation="horizontal"
-                android:onClick="openTable" />
+                android:onClick="openTable"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/open_enchanting"
@@ -130,8 +130,8 @@
                 android:layout_alignLeft="@id/open_enchanting"
                 android:layout_below="@id/open_enchanting"
                 android:columnCount="5"
-                android:orientation="horizontal"
-                android:onClick="openEnchanting" />
+                android:onClick="openEnchanting"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/open_market"
@@ -140,7 +140,7 @@
                 android:layout_marginLeft="1285dp"
                 android:onClick="openMarket"
                 app:layout_heightPercent="25%"
-                app:layout_marginTopPercent="0%"/>
+                app:layout_marginTopPercent="0%" />
 
             <GridLayout
                 android:id="@+id/slots_market"
@@ -149,8 +149,8 @@
                 android:layout_alignLeft="@id/open_market"
                 android:layout_below="@id/open_market"
                 android:columnCount="5"
-                android:orientation="horizontal"
-                android:onClick="openMarket" />
+                android:onClick="openMarket"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/open_workers"
@@ -159,7 +159,7 @@
                 android:layout_marginLeft="1345dp"
                 android:onClick="openWorkers"
                 app:layout_heightPercent="22%"
-                app:layout_marginTopPercent="55%"/>
+                app:layout_marginTopPercent="55%" />
 
             <GridLayout
                 android:id="@+id/slots_workers"
@@ -168,8 +168,8 @@
                 android:layout_alignLeft="@id/open_workers"
                 android:layout_below="@id/open_workers"
                 android:columnCount="5"
-                android:orientation="horizontal"
-                android:onClick="openWorkers" />
+                android:onClick="openWorkers"
+                android:orientation="horizontal" />
 
             <ImageView
                 android:id="@+id/bonus_chest"
@@ -271,9 +271,9 @@
                 android:layout_width="45dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="72dp"
+                android:onClick="openMessages"
                 android:orientation="horizontal"
                 app:layout_heightPercent="6%"
-                android:onClick="openMessages"
                 app:layout_marginTopPercent="68%" />
 
             <LinearLayout
@@ -281,9 +281,9 @@
                 android:layout_width="45dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="340dp"
+                android:onClick="openMessages"
                 android:orientation="horizontal"
                 app:layout_heightPercent="6%"
-                android:onClick="openMessages"
                 app:layout_marginTopPercent="68%" />
 
             <RelativeLayout
@@ -294,55 +294,57 @@
                 android:onClick="openAssistants"
                 app:layout_heightPercent="15%"
                 app:layout_marginTopPercent="11%">
+
                 <ImageView
                     android:id="@+id/assistant_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="20dp"/>
+                    android:paddingBottom="20dp" />
+
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/assistant_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:textSize="24sp"
-                    android:padding="3dp"
+                    android:alpha="0.6"
+                    android:background="@color/black"
                     android:gravity="center_horizontal"
                     android:onClick="claimAssistant"
-                    android:background="@color/black"
-                    android:alpha="0.6"/>
+                    android:padding="3dp"
+                    android:textSize="24sp" />
             </RelativeLayout>
 
             <!-- Areas -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/furnace"
                 android:layout_marginLeft="553dp"
+                android:src="@drawable/furnace"
                 app:layout_marginTopPercent="25%" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bookcase"
                 android:layout_marginLeft="130dp"
-                app:layout_marginTopPercent="20%"
-                android:onClick="clickBookcase"/>
+                android:onClick="clickBookcase"
+                android:src="@drawable/bookcase"
+                app:layout_marginTopPercent="20%" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/anvil"
                 android:layout_marginLeft="789dp"
+                android:src="@drawable/anvil"
                 app:layout_marginTopPercent="24%" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/window"
                 android:layout_marginLeft="1296dp"
-                app:layout_marginTopPercent="11%"
-                android:onClick="clickWindow"/>
+                android:onClick="clickWindow"
+                android:src="@drawable/window"
+                app:layout_marginTopPercent="11%" />
 
             <!-- Water -->
             <pl.droidsonroids.gif.GifImageView
@@ -353,63 +355,63 @@
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/water"
-                android:layout_marginLeft="64dp"/>
+                android:layout_marginLeft="64dp"
+                android:src="@drawable/water" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/water"
-                android:layout_marginLeft="128dp" />
+                android:layout_marginLeft="128dp"
+                android:src="@drawable/water" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/water"
-                android:layout_marginLeft="192dp" />
+                android:layout_marginLeft="192dp"
+                android:src="@drawable/water" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bridge"
-                android:layout_marginLeft="256dp" />
+                android:layout_marginLeft="256dp"
+                android:src="@drawable/bridge" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/water"
-                android:layout_marginLeft="320dp" />
+                android:layout_marginLeft="320dp"
+                android:src="@drawable/water" />
 
             <!-- Torches -->
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/torch"
                 android:layout_marginLeft="86dp"
+                android:src="@drawable/torch"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="22%" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/torch"
                 android:layout_marginLeft="218dp"
+                android:src="@drawable/torch"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="22%" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/torch"
                 android:layout_marginLeft="860dp"
+                android:src="@drawable/torch"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="11%" />
 
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/torch"
                 android:layout_marginLeft="1240dp"
+                android:src="@drawable/torch"
                 app:layout_heightPercent="11%"
                 app:layout_marginTopPercent="11%" />
 
@@ -442,8 +444,8 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_toRightOf="@id/coinCount"
-            android:src="@drawable/add"
-            android:onClick="openBuyCoins"/>
+            android:onClick="openBuyCoins"
+            android:src="@drawable/add" />
 
         <ProgressBar
             android:id="@+id/currentLevelProgress"
@@ -481,8 +483,8 @@
             android:layout_alignRight="@id/levelBackground"
             android:layout_marginLeft="-5dp"
             android:layout_marginRight="-5dp"
-            android:gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
             android:textColor="@color/white"
             android:textSize="28sp" />
 
@@ -490,20 +492,23 @@
             android:id="@+id/questContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/currentLevel"
             android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/currentLevel"
             android:onClick="openQuests">
+
             <ImageView
                 android:id="@+id/questBackground"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/levelbackground" />
+
             <ImageView
                 android:id="@+id/questIcon"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp" />
+
             <ProgressBar
                 android:id="@+id/questProgress"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -511,8 +516,8 @@
                 android:layout_height="4dp"
                 android:layout_marginTop="24dp"
                 android:indeterminate="false"
-                android:progressDrawable="@drawable/level_progress"
-                android:progress="0"/>
+                android:progress="0"
+                android:progressDrawable="@drawable/level_progress" />
         </RelativeLayout>
 
 
@@ -520,20 +525,22 @@
             android:id="@+id/eventContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/questContainer"
             android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/questContainer"
             android:onClick="openEventInfo">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/levelbackground" />
+
             <ImageView
                 android:id="@+id/eventIcon"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/item231"/>
+                android:layout_marginTop="3dp"
+                android:src="@drawable/item231" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -541,18 +548,18 @@
         android:id="@+id/exitTutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"
+        android:alpha="0.6"
+        android:background="@color/black"
+        android:clickable="true"
         android:gravity="center_horizontal"
+        android:onClick="exitTutorial"
+        android:padding="5dp"
+        android:text="@string/exitTutorial"
         android:textColor="@color/white"
         android:textSize="32sp"
-        android:padding="5dp"
-        android:alpha="0.6"
-        android:clickable="true"
-        android:background="@color/black"
-        android:text="@string/exitTutorial"
-        android:onClick="exitTutorial"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -30,11 +30,11 @@ public class Criteria extends SugarRecord {
         return name;
     }
 
-    public String getName(Context context) {
-        return TextHelper.getInstance(context).getText("criteria_" + criteriaID);
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("criteria_" + criteriaID);
     }
 }

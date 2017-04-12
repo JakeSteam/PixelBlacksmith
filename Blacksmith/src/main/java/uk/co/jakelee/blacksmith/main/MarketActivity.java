@@ -85,7 +85,7 @@ public class MarketActivity extends Activity {
             marketLayout.addView(dh.createTextView(getString(R.string.fixed) + String.format(" (%1$d / %2$d)",
                     fixedTraders,
                     Constants.TRADER_LOCK_MAX),
-                30));
+                    30));
         }
 
         for (Trader trader : traders) {
@@ -109,7 +109,7 @@ public class MarketActivity extends Activity {
             inflatedView.setTag(trader.getId());
             inflatedView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500){
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500) {
                         return;
                     } else {
                         MainActivity.vh.lastTraderClick = SystemClock.elapsedRealtime();

@@ -24,10 +24,10 @@ import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.main.AssistantActivity;
 import uk.co.jakelee.blacksmith.main.InventoryActivity;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.main.MarketActivity;
-import uk.co.jakelee.blacksmith.main.AssistantActivity;
 import uk.co.jakelee.blacksmith.main.TraderActivity;
 import uk.co.jakelee.blacksmith.main.UpgradeActivity;
 import uk.co.jakelee.blacksmith.main.VisitorActivity;
@@ -486,8 +486,8 @@ public class AlertDialogHelper {
     public static void confirmTraderRestock(final Context context, final TraderActivity activity, final Trader trader, final int restockCost) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(Player_Info.displayAds() ?
-                        String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(context), restockCost) :
-                        String.format(context.getString(R.string.traderRestockQuestion), trader.getName(context), restockCost));
+                String.format(context.getString(R.string.traderRestockQuestionAdvert), trader.getName(context), restockCost) :
+                String.format(context.getString(R.string.traderRestockQuestion), trader.getName(context), restockCost));
         alertDialog.setIcon(R.drawable.item52);
 
         alertDialog.setPositiveButton(context.getString(R.string.traderRestockConfirm), new DialogInterface.OnClickListener() {
@@ -608,12 +608,12 @@ public class AlertDialogHelper {
         final Dialog dialog = alertDialog.create();
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
         dialog.show();
-        ((TextView)dialog.findViewById(android.R.id.message)).setGravity(Gravity.RIGHT);
+        ((TextView) dialog.findViewById(android.R.id.message)).setGravity(Gravity.RIGHT);
         dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void confirmPageExchange(final Context context, final InventoryActivity activity, final View view,  final Inventory inventory, final Item item) {
+    public static void confirmPageExchange(final Context context, final InventoryActivity activity, final View view, final Inventory inventory, final Item item) {
         final int maxNewPages = inventory.getQuantity() / Constants.PAGE_EXCHANGE_QTY;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
@@ -796,10 +796,10 @@ public class AlertDialogHelper {
     public static void confirmItemBuy(final Context context, final TraderActivity activity, final Trader_Stock itemStock, boolean isFixed) {
         final Item item = Item.findById(Item.class, itemStock.getItemID());
         int itemValue = item.getValue() / (item.getValue() > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
-        final int finalItemValue = isFixed ? (int)Math.ceil((double)itemValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : itemValue;
+        final int finalItemValue = isFixed ? (int) Math.ceil((double) itemValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : itemValue;
         final String itemName = item.getFullName(context, Constants.STATE_NORMAL);
         final Trader trader = Trader.findById(Trader.class, itemStock.getTraderType());
-        final int itemsToSell = (int)Select.from(Trader_Stock.class).where(
+        final int itemsToSell = (int) Select.from(Trader_Stock.class).where(
                 Condition.prop("trader_type").eq(trader.getId()),
                 Condition.prop("required_purchases").lt(trader.getPurchases() + 1),
                 Condition.prop("stock").gt(0)).count();
@@ -839,7 +839,7 @@ public class AlertDialogHelper {
                 int totalCost = itemStock.getStock() * finalItemValue;
 
                 if (totalCost <= coinStock.getQuantity()) {
-                    int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
+                    int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1) * itemStock.getStock();
                     itemsBought += itemsToBuy;
                     itemStock.setStock(0);
                     itemStock.save();
@@ -903,7 +903,7 @@ public class AlertDialogHelper {
             itemCount += itemStock.getStock();
         }
         totalValue = totalValue / (Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST) ? 2 : 1);
-        final int finalTotalValue = trader.isFixed() ? (int)Math.ceil((double)totalValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : totalValue;
+        final int finalTotalValue = trader.isFixed() ? (int) Math.ceil((double) totalValue * Constants.TRADER_LOCK_PRICE_MODIFIER) : totalValue;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(activity.getString(R.string.itemBuyAllQuestion), itemCount, finalTotalValue));
@@ -920,11 +920,11 @@ public class AlertDialogHelper {
                     Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
                     Item item = Item.findById(Item.class, itemStock.getItemID());
                     int totalCost = (item.getModifiedValue(itemStock.getState()) * itemStock.getStock());
-                    totalCost = trader.isFixed() ? (int)Math.ceil((double)totalCost * Constants.TRADER_LOCK_PRICE_MODIFIER) : totalCost;
+                    totalCost = trader.isFixed() ? (int) Math.ceil((double) totalCost * Constants.TRADER_LOCK_PRICE_MODIFIER) : totalCost;
                     totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
 
                     if (totalCost <= coinStock.getQuantity() && successful) {
-                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
+                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1) * itemStock.getStock();
                         itemsBought += itemsToBuy;
                         itemStock.setStock(0);
                         itemStock.save();
@@ -1009,7 +1009,7 @@ public class AlertDialogHelper {
                     totalCost = totalCost / ((totalCost > 1 && Super_Upgrade.isEnabled(Constants.SU_HALF_MARKET_COST)) ? 2 : 1);
 
                     if (totalCost <= coinStock.getQuantity() && successful) {
-                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1 ) * itemStock.getStock();
+                        int itemsToBuy = (Super_Upgrade.isEnabled(Constants.SU_TRADER_STOCK) ? 2 : 1) * itemStock.getStock();
                         itemsBought += itemsToBuy;
                         itemStock.setStock(0);
                         itemStock.save();

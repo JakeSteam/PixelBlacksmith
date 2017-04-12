@@ -20,10 +20,10 @@ import uk.co.jakelee.blacksmith.model.Message;
 public class TutorialHelper {
     public static boolean currentlyInTutorial = false;
     public static ChainTourGuide chainTourGuide;
-    private Activity activity;
     public static int currentStage;
     private final List<ChainTourGuide> tourGuides = new ArrayList<>();
     private final Animation enterAnimation = new AlphaAnimation(0f, 1f);
+    private Activity activity;
 
     public TutorialHelper(Activity activity, int stage) {
         currentStage = stage;

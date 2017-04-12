@@ -237,9 +237,9 @@ public class AnvilActivity extends Activity {
     }
 
     public void brightenButtons() {
-       craft1.setAlpha(1);
-       craft10.setAlpha(1);
-       craft100.setAlpha(1);
+        craft1.setAlpha(1);
+        craft10.setAlpha(1);
+        craft100.setAlpha(1);
     }
 
     public void dimButtons() {

@@ -91,12 +91,11 @@ public class EquipmentSelectActivity extends Activity {
                         "AND quantity > 0 " +
                         "ORDER BY tier, state ASC");
 
-        
 
         for (Inventory inventory : matchedItems) {
             Item item = Item.findById(Item.class, inventory.getItem());
 
-            ImageView itemImage = dh.createItemImage(item.getId(), (int)inventory.getState(), 35, 35, true, true);
+            ImageView itemImage = dh.createItemImage(item.getId(), (int) inventory.getState(), 35, 35, true, true);
             TextView itemName = dh.createTextView(item.getFullName(this, inventory.getState()), 20, Color.BLACK);
 
             TextViewPixel itemStrength = dh.createTextView("", 24, Color.BLACK);

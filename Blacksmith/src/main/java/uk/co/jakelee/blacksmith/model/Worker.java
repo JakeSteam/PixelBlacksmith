@@ -48,6 +48,27 @@ public class Worker extends SugarRecord {
         this.favouriteFoodDiscovered = favouriteFoodDiscovered;
     }
 
+    public static int getTotalTrips() {
+        int trips = 0;
+        List<Worker> workers = Worker.listAll(Worker.class);
+
+        for (Worker worker : workers) {
+            trips += worker.getTimesCompleted();
+        }
+
+        return trips;
+    }
+
+    public static int getAvailableWorkersCount() {
+        return getAvailableWorkers().size();
+    }
+
+    public static List<Worker> getAvailableWorkers() {
+        return Select.from(Worker.class).where(
+                Condition.prop("purchased").eq(1),
+                Condition.prop("time_started").eq(0)).list();
+    }
+
     public long getWorkerID() {
         return workerID;
     }
@@ -134,26 +155,5 @@ public class Worker extends SugarRecord {
 
     public void setFavouriteFoodDiscovered(boolean favouriteFoodDiscovered) {
         this.favouriteFoodDiscovered = favouriteFoodDiscovered;
-    }
-
-    public static int getTotalTrips() {
-        int trips = 0;
-        List<Worker> workers = Worker.listAll(Worker.class);
-
-        for (Worker worker : workers) {
-            trips += worker.getTimesCompleted();
-        }
-
-        return trips;
-    }
-
-    public static int getAvailableWorkersCount() {
-        return getAvailableWorkers().size();
-    }
-
-    public static List<Worker> getAvailableWorkers() {
-        return Select.from(Worker.class).where(
-                Condition.prop("purchased").eq(1),
-                Condition.prop("time_started").eq(0)).list();
     }
 }

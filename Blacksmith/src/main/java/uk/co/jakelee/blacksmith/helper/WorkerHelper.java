@@ -36,7 +36,6 @@ public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
     public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
     public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
-    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring}
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
@@ -221,7 +220,6 @@ public class WorkerHelper {
         return slotsWithItems;
     }
 
-
     public static List<EQUIP_SLOTS> getSlotsToEmpty(Hero hero, int itemsToRemove) {
         List<EQUIP_SLOTS> slotsWithItems = getSlotsWithItems(hero);
         if (slotsWithItems.size() == 0 || slotsWithItems.size() <= itemsToRemove) {
@@ -241,7 +239,7 @@ public class WorkerHelper {
         String slotsString = "";
         for (EQUIP_SLOTS slot : slotsToEmpty) {
             slotsString += slot.name() + ", ";
-            switch(slot) {
+            switch (slot) {
                 case Helmet:
                     hero.setHelmetItem(0);
                     hero.setHelmetState(0);
@@ -404,8 +402,8 @@ public class WorkerHelper {
     private static List<Hero_Resource> superSuccessResources(List<Hero_Resource> resources) {
         double modifier = (VisitorHelper.getRandomNumber(Constants.SUPER_SUCCESS_MINIMUM, Constants.SUPER_SUCCESS_MAXIMUM) / 100);
         for (Hero_Resource resource : resources) {
-            double modifiedQuantity = ((double)resource.getResourceQuantity()) * modifier;
-            resource.setResourceQuantity((int)Math.ceil(modifiedQuantity));
+            double modifiedQuantity = ((double) resource.getResourceQuantity()) * modifier;
+            resource.setResourceQuantity((int) Math.ceil(modifiedQuantity));
         }
         return resources;
     }
@@ -424,7 +422,7 @@ public class WorkerHelper {
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
-            if(data.containsKey(item.getName(context))) {
+            if (data.containsKey(item.getName(context))) {
                 temp = data.get(item.getName(context)) + numberResources;
                 data.put(item.getName(context), temp);
             } else {
@@ -482,7 +480,7 @@ public class WorkerHelper {
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
-            if(data.containsKey(item.getName(context))) {
+            if (data.containsKey(item.getName(context))) {
                 temp = data.get(item.getName(context)) + numberResources;
                 data.put(item.getName(context), temp);
             } else {
@@ -646,7 +644,7 @@ public class WorkerHelper {
         totalStrength += getAdjustedStrength(vType, hero.getBootsItem(), hero.getBootsState());
         totalStrength += getAdjustedStrength(vType, hero.getRingItem(), hero.getRingState());
 
-        totalStrength = (int)Math.ceil(((double)totalStrength) * HeroSetHelper.getMultiplier(hero));
+        totalStrength = (int) Math.ceil(((double) totalStrength) * HeroSetHelper.getMultiplier(hero));
 
         return totalStrength;
     }
@@ -657,4 +655,6 @@ public class WorkerHelper {
                 && vStats.getBestItemValue() >= Constants.HERO_MIN_TRADE
                 && vType.getPreferencesDiscovered() >= Constants.HERO_MIN_PREFS;
     }
+
+    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring}
 }

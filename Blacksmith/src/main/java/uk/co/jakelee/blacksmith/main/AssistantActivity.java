@@ -92,31 +92,31 @@ public class AssistantActivity extends Activity {
         Assistant assistant = Assistant.get(selectedAssistant);
         Item rewardItem = Item.findById(Item.class, assistant.getRewardItem());
 
-        ((TextView)findViewById(R.id.assistantName)).setText(assistant.getObtained() == 0L ?
+        ((TextView) findViewById(R.id.assistantName)).setText(assistant.getObtained() == 0L ?
                 assistant.getTypeName(this) :
                 String.format(Locale.ENGLISH, getString(R.string.assistantName),
-                    assistant.getName().equals("") ? assistant.getTypeName(this) : assistant.getName()));
+                        assistant.getName().equals("") ? assistant.getTypeName(this) : assistant.getName()));
         int progress = assistant.getLevelProgress();
-        ((TextView)findViewById(R.id.assistantSpecs)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantSpecs),
+        ((TextView) findViewById(R.id.assistantSpecs)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantSpecs),
                 assistant.getTier() + 1,
                 assistant.getTypeName(this)));
-        ((TextView)findViewById(R.id.assistantOverallProgress)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantOverallProgressText),
+        ((TextView) findViewById(R.id.assistantOverallProgress)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantOverallProgressText),
                 assistant.getAssistantId(),
                 Assistant.count(Assistant.class)));
-        ((ProgressBar)findViewById(R.id.assistantProgress)).setProgress(progress);
-        ((TextView)findViewById(R.id.assistantProgressText)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantProgressText),
+        ((ProgressBar) findViewById(R.id.assistantProgress)).setProgress(progress);
+        ((TextView) findViewById(R.id.assistantProgressText)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantProgressText),
                 assistant.getLevel(),
                 assistant.getMaxLevel(),
                 progress));
 
-        ((TextView)findViewById(R.id.assistantDesc)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantDesc),
+        ((TextView) findViewById(R.id.assistantDesc)).setText(String.format(Locale.ENGLISH, getString(R.string.assistantDesc),
                 assistant.getRewardQuantity(),
                 rewardItem.getFullName(this, assistant.getRewardState()),
                 DateHelper.getHoursMinsRemaining(assistant.getRewardFrequency()),
                 assistant.getBoost(1) * 100d,
-                assistant.getRewardQuantity() *  assistant.getLevel(),
+                assistant.getRewardQuantity() * assistant.getLevel(),
                 assistant.getBoost() * 100d));
-        ((TextView)findViewById(R.id.mainButton)).setText(getButtonText(assistant));
+        ((TextView) findViewById(R.id.mainButton)).setText(getButtonText(assistant));
     }
 
     public void nameChange(View v) {

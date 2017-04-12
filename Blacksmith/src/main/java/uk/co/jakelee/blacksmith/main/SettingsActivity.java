@@ -63,7 +63,7 @@ public class SettingsActivity extends Activity {
 
         updateAdToggleVisibility();
         spinnersInitialised = 0;
-        createLanguagePicker((Spinner)findViewById(R.id.languagePicker));
+        createLanguagePicker((Spinner) findViewById(R.id.languagePicker));
     }
 
     private void createLanguagePicker(Spinner spinner) {
@@ -219,7 +219,7 @@ public class SettingsActivity extends Activity {
 
     public void toggleOrientation(View v) {
         Setting orientationSetting = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION);
-        orientationSetting.setIntValue(Integer.valueOf((String)v.getTag()));
+        orientationSetting.setIntValue(Integer.valueOf((String) v.getTag()));
         orientationSetting.save();
         populateOrientation();
     }
@@ -313,7 +313,7 @@ public class SettingsActivity extends Activity {
     }
 
     public void openRating(View view) {
-        final String appPackageName = getPackageName(); 
+        final String appPackageName = getPackageName();
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {
@@ -324,7 +324,7 @@ public class SettingsActivity extends Activity {
     public void openTutorial(View view) {
         this.finish();
         TutorialHelper.currentlyInTutorial = true;
-        TutorialHelper.currentStage  = Constants.STAGE_1_MAIN;
+        TutorialHelper.currentStage = Constants.STAGE_1_MAIN;
         this.finish();
     }
 

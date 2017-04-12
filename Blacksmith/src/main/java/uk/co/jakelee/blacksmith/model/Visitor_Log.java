@@ -18,6 +18,13 @@ public class Visitor_Log extends SugarRecord {
         this.itemState = itemState;
     }
 
+    public static boolean hasBeenTried(long visitorId, long itemId, long itemState) {
+        return Select.from(Visitor_Log.class).where(
+                Condition.prop("visitor_id").eq(visitorId),
+                Condition.prop("item_id").eq(itemId),
+                Condition.prop("item_state").eq(itemState)).count() > 0;
+    }
+
     public long getVisitorId() {
         return visitorId;
     }
@@ -40,12 +47,5 @@ public class Visitor_Log extends SugarRecord {
 
     public void setItemState(long itemState) {
         this.itemState = itemState;
-    }
-
-    public static boolean hasBeenTried(long visitorId, long itemId, long itemState) {
-        return Select.from(Visitor_Log.class).where(
-                Condition.prop("visitor_id").eq(visitorId),
-                Condition.prop("item_id").eq(itemId),
-                Condition.prop("item_state").eq(itemState)).count() > 0;
     }
 }

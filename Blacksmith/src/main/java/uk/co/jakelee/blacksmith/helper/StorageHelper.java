@@ -44,7 +44,7 @@ public class StorageHelper {
         }
     }
 
-    public static String saveLocalSave(Activity activity){
+    public static String saveLocalSave(Activity activity) {
         confirmStoragePermissions(activity);
 
         try {
@@ -71,7 +71,7 @@ public class StorageHelper {
         return String.format(context.getString(R.string.saveNameFormat), date);
     }
 
-    public static String loadLocalSave(Activity activity, boolean checkIsImprovement){
+    public static String loadLocalSave(Activity activity, boolean checkIsImprovement) {
         File directory = new File(Environment.getExternalStorageDirectory().getPath() + "/PixelBlacksmith");
 
         // Get a list of all files

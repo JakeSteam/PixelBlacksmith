@@ -13,8 +13,8 @@ public class ListenerHelper {
         return new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                long itemId = (long)view.getTag(R.id.itemID);
-                long itemState = (long)view.getTag(R.id.itemState);
+                long itemId = (long) view.getTag(R.id.itemID);
+                long itemState = (long) view.getTag(R.id.itemState);
                 Inventory inventory = Inventory.getInventory(itemId, itemState);
                 Item item = Item.findById(Item.class, inventory.getItem());
 

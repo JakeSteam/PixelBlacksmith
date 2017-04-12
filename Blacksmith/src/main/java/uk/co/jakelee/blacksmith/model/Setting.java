@@ -34,6 +34,12 @@ public class Setting extends SugarRecord {
         this.strValue = strValue;
     }
 
+    public static boolean getSafeBoolean(long settingId) {
+        Setting setting = Setting.findById(Setting.class, settingId);
+
+        return setting != null && setting.getBoolValue();
+    }
+
     public long getSettingId() {
         return settingId;
     }
@@ -72,12 +78,6 @@ public class Setting extends SugarRecord {
 
     public void setStrValue(String strValue) {
         this.strValue = strValue;
-    }
-
-    public static boolean getSafeBoolean(long settingId) {
-        Setting setting = Setting.findById(Setting.class, settingId);
-
-        return setting != null && setting.getBoolValue();
     }
 
     public String getName(Context context) {

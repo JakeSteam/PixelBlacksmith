@@ -19,12 +19,12 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class BuyCoinsActivity extends Activity implements BillingProcessor.IBillingHandler {
-    BillingProcessor bp;
-    boolean canBuyIAPs = false;
     private static final String SKU_COIN_1 = "coin_pack_1";
     private static final String SKU_COIN_2 = "coin_pack_2";
     private static final int coinPackAmount1 = 500;
     private static final int coinPackAmount2 = 3000;
+    BillingProcessor bp;
+    boolean canBuyIAPs = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         }
 
         int playerLevel = Player_Info.getPlayerLevel();
-        ((TextView)findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount1)));
-        ((TextView)findViewById(R.id.coins2)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount2)));
+        ((TextView) findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount1)));
+        ((TextView) findViewById(R.id.coins2)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount2)));
     }
 
     @Override
@@ -74,7 +74,8 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     @Override
-    public void onPurchaseHistoryRestored() {}
+    public void onPurchaseHistoryRestored() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -107,7 +108,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     private String getPublicKey() {
-        String[] keyArray = new String[] {
+        String[] keyArray = new String[]{
                 "MIIBIjANBgkqhki",
                 "G9w0BAQEFAAOCAQ",
                 "8AMIIBCgKCAQEAlONTh/sroNhFQ",

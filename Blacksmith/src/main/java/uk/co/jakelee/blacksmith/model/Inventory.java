@@ -30,14 +30,6 @@ public class Inventory extends SugarRecord implements Serializable {
         this.unsellable = false;
     }
 
-    public boolean isUnsellable() {
-        return unsellable;
-    }
-
-    public void setUnsellable(boolean unsellable) {
-        this.unsellable = unsellable;
-    }
-
     public static void addItem(Pending_Inventory item, boolean rewardXp) {
         addItem(item.getItem(), item.getState(), item.getQuantity(), rewardXp);
     }
@@ -258,7 +250,7 @@ public class Inventory extends SugarRecord implements Serializable {
         int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
         if (activeAssistant > 0) {
             Assistant assistant = Assistant.get(activeAssistant);
-            price = (int)Math.floor((double)price * (1 + assistant.getBoost()));
+            price = (int) Math.floor((double) price * (1 + assistant.getBoost()));
         }
 
         if (itemStock.isUnsellable()) {
@@ -330,6 +322,14 @@ public class Inventory extends SugarRecord implements Serializable {
         } else {
             return 0;
         }
+    }
+
+    public boolean isUnsellable() {
+        return unsellable;
+    }
+
+    public void setUnsellable(boolean unsellable) {
+        this.unsellable = unsellable;
     }
 
     public Long getItem() {

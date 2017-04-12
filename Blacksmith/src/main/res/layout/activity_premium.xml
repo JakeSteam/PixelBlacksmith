@@ -27,14 +27,14 @@
             android:id="@+id/premiumTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/premiumText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/premiumScroller"
@@ -46,23 +46,24 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/contributeDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/contributeDescription"
-                    android:textSize="20sp"
                     android:textColor="@color/black"
-                    android:visibility="gone"/>
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:id="@+id/contributeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_below="@id/contributeDescription"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
@@ -70,32 +71,32 @@
                     android:text="@string/buyContribute"
                     android:textColor="@color/black"
                     android:textSize="30sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/contributeContainer"
-                    android:layout_below="@id/contributeButton"
-                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_below="@id/contributeButton"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/premiumFeatures"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/premiumFeatures"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     android:id="@+id/buyPremiumButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_below="@id/premiumFeatures"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
@@ -103,7 +104,7 @@
                     android:text="@string/buyPremium"
                     android:textColor="@color/black"
                     android:textSize="30sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </RelativeLayout>
 
         </ScrollView>

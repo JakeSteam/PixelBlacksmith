@@ -145,7 +145,7 @@ public class Pending_Inventory extends SugarRecord {
 
     private static void addPendingInventory(Long itemID, long state, int quantity, Long location, long startTime) {
         Item item = Item.findById(Item.class, itemID);
-        int craftTimeMultiplier = (int)Math.ceil((double)Upgrade.getValue("Craft Time") * (Super_Upgrade.isEnabled(Constants.SU_HALVE_TIMES) ? 0.5 : 1.0));
+        int craftTimeMultiplier = (int) Math.ceil((double) Upgrade.getValue("Craft Time") * (Super_Upgrade.isEnabled(Constants.SU_HALVE_TIMES) ? 0.5 : 1.0));
         int craftTime = item.getModifiedValue(state) * quantity * craftTimeMultiplier;
 
         Pending_Inventory newItem = new Pending_Inventory(itemID, state, startTime, quantity, craftTime, location);
@@ -168,7 +168,7 @@ public class Pending_Inventory extends SugarRecord {
 
         if (finishTimes.size() >= numSlots) {
             // If we're all full up, get the first time a slot will become available
-            return finishTimes.get(numSlots-1);
+            return finishTimes.get(numSlots - 1);
         } else {
             // Otherwise, it can go in now
             return System.currentTimeMillis();
@@ -183,12 +183,11 @@ public class Pending_Inventory extends SugarRecord {
         for (Pending_Inventory pendingItem : pendingItems) {
             Item item = Item.findById(Item.class, pendingItem.getItem());
             Integer temp;
-            if(data.containsKey(item.getName(context))) {
-                temp = data.get(item.getName(context))+pendingItem.getQuantity();
-                data.put(item.getName(context),temp);
-            }
-            else {
-                data.put(item.getName(context),pendingItem.getQuantity());
+            if (data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context)) + pendingItem.getQuantity();
+                data.put(item.getName(context), temp);
+            } else {
+                data.put(item.getName(context), pendingItem.getQuantity());
             }
         }
 

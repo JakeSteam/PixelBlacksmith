@@ -349,9 +349,9 @@ public class VisitorActivity extends Activity {
             String bestItemName = Item.findById(Item.class, bestItemID).getFullName(this, bestItemState);
             ToastHelper.showToast(findViewById(R.id.visitor),
                     ToastHelper.SHORT, String.format(getString(R.string.bestItemMessage),
-                        visitorType.getName(this),
-                        bestItemName,
-                        bestItemValue), false);
+                            visitorType.getName(this),
+                            bestItemName,
+                            bestItemValue), false);
         }
     }
 

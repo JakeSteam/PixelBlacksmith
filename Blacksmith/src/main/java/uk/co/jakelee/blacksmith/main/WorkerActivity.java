@@ -35,8 +35,8 @@ import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
 public class WorkerActivity extends Activity {
-    private static DisplayHelper dh;
     private static final Handler handler = new Handler();
+    private static DisplayHelper dh;
     private boolean heroesSelected = false;
 
     @Override

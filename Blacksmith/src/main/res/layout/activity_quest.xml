@@ -41,24 +41,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/questTitle"
-            android:fadeScrollbars="false"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:id="@+id/questContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp"
-                android:gravity="center">
+                android:padding="5dp">
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/questsCompleted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:textColor="@color/black"
-                    android:textSize="26sp"
-                    android:layout_marginBottom="5dp"/>
+                    android:textSize="26sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"

@@ -27,23 +27,23 @@
             android:id="@+id/foodTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/foodText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/noFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/foodTitle"
+            android:text="@string/noFoodText"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:text="@string/noFoodText"
             android:visibility="gone" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,10 +56,10 @@
                 android:id="@+id/foodHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:orientation="vertical"
                 android:shrinkColumns="1"
-                android:stretchColumns="1"
-                android:layout_marginRight="5dp" />
+                android:stretchColumns="1" />
 
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>

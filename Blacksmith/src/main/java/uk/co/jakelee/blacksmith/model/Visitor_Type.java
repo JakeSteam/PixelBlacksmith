@@ -49,6 +49,38 @@ public class Visitor_Type extends SugarRecord {
         this.weighting = weighting;
     }
 
+    public static int getTotalPreferencesDiscovered() {
+        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
+        int preferencesDiscovered = 0;
+
+        for (Visitor_Type visitor : visitors) {
+            if (visitor.isTierDiscovered()) {
+                preferencesDiscovered++;
+            }
+            if (visitor.isTypeDiscovered()) {
+                preferencesDiscovered++;
+            }
+            if (visitor.isStateDiscovered()) {
+                preferencesDiscovered++;
+            }
+        }
+
+        return preferencesDiscovered;
+    }
+
+    public static Pair<Integer, Integer> getAdventureAttempts() {
+        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
+        int adventureAttempts = 0;
+        int adventureSuccesses = 0;
+
+        for (Visitor_Type visitor : visitors) {
+            adventureAttempts += visitor.getAdventuresAttempted();
+            adventureSuccesses += visitor.getAdventuresCompleted();
+        }
+
+        return new Pair<>(adventureAttempts, adventureSuccesses);
+    }
+
     public Long getVisitorID() {
         return visitorID;
     }
@@ -234,7 +266,6 @@ public class Visitor_Type extends SugarRecord {
         return (double) bonus / (double) 100;
     }
 
-
     public void updateUnlockedPreferences(Item item, long state) {
         if (state == getStatePreferred()) {
             setStateDiscovered(true);
@@ -258,38 +289,6 @@ public class Visitor_Type extends SugarRecord {
 
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_ITEM_VALUE, value);
         }
-    }
-
-    public static int getTotalPreferencesDiscovered() {
-        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
-        int preferencesDiscovered = 0;
-
-        for (Visitor_Type visitor : visitors) {
-            if (visitor.isTierDiscovered()) {
-                preferencesDiscovered++;
-            }
-            if (visitor.isTypeDiscovered()) {
-                preferencesDiscovered++;
-            }
-            if (visitor.isStateDiscovered()) {
-                preferencesDiscovered++;
-            }
-        }
-
-        return preferencesDiscovered;
-    }
-
-    public static Pair<Integer, Integer> getAdventureAttempts() {
-        List<Visitor_Type> visitors = Visitor_Type.listAll(Visitor_Type.class);
-        int adventureAttempts = 0;
-        int adventureSuccesses = 0;
-
-        for (Visitor_Type visitor : visitors) {
-            adventureAttempts += visitor.getAdventuresAttempted();
-            adventureSuccesses += visitor.getAdventuresCompleted();
-        }
-
-        return new Pair<> (adventureAttempts, adventureSuccesses);
     }
 }
 

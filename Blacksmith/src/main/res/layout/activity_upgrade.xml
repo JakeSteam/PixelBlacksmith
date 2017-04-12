@@ -39,40 +39,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            app:layout_marginTopPercent="9%"
-            app:layout_marginBottomPercent="80%">
+            app:layout_marginBottomPercent="80%"
+            app:layout_marginTopPercent="9%">
+
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/upgradeTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/upgradeTabText"
                 android:layout_margin="3dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
                 android:background="@drawable/button_short"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="toggleTab"
-                android:gravity="center"/>
+                android:text="@string/upgradeTabText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/superTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/superTabText"
                 android:layout_margin="3dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
                 android:background="@drawable/button_short"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="toggleTab"
-                android:gravity="center"/>
+                android:text="@string/superTabText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
         </LinearLayout>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/upgradeScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_marginTopPercent="20%"
-            android:fadeScrollbars="false">
+            android:fadeScrollbars="false"
+            app:layout_marginTopPercent="20%">
 
             <TableLayout
                 android:id="@+id/upgradeTable"

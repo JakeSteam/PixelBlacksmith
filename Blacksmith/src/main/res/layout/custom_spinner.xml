@@ -2,12 +2,12 @@
 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     style="?android:attr/spinnerItemStyle"
-    android:maxLines="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:textColor="@color/black"
-    android:textSize="24sp"
     android:background="@color/lightBrown"
     android:ellipsize="marquee"
-    android:padding="5dp"/>
+    android:gravity="center"
+    android:maxLines="1"
+    android:padding="5dp"
+    android:textColor="@color/black"
+    android:textSize="24sp" />

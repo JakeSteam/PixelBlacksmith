@@ -44,20 +44,20 @@ public class FoodActivity extends Activity {
     private void populateFood() {
         TableLayout foodHolder = (TableLayout) findViewById(R.id.foodHolder);
         foodHolder.removeAllViews();
-        TextView noFoodMessage = (TextView)findViewById(R.id.noFood);
+        TextView noFoodMessage = (TextView) findViewById(R.id.noFood);
 
         List<Inventory> foods = Inventory.findWithQuery(Inventory.class,
                 "SELECT * " +
-                "FROM inventory " +
-                "INNER JOIN item on inventory.item = item.id " +
-                "WHERE item.type IN (" + Constants.TYPE_FOOD + "," + Constants.TYPE_PROCESSED_FOOD + ") " +
-                "AND quantity > 0 " +
-                "ORDER BY value DESC");
+                        "FROM inventory " +
+                        "INNER JOIN item on inventory.item = item.id " +
+                        "WHERE item.type IN (" + Constants.TYPE_FOOD + "," + Constants.TYPE_PROCESSED_FOOD + ") " +
+                        "AND quantity > 0 " +
+                        "ORDER BY value DESC");
         if (foods.size() > 0) {
             noFoodMessage.setVisibility(View.GONE);
             for (Inventory food : foods) {
                 Item foodItem = Item.findById(Item.class, food.getItem());
-                ImageView itemImage = dh.createItemImage(food.getItem(), (int)food.getState(), 25, 25, true, true);
+                ImageView itemImage = dh.createItemImage(food.getItem(), (int) food.getState(), 25, 25, true, true);
                 TextView itemName = dh.createTextView(String.format(getString(R.string.genericQuantity),
                         food.getQuantity(),
                         foodItem.getName(this)), 26);

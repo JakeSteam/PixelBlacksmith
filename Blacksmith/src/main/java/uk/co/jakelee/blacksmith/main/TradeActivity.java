@@ -194,7 +194,7 @@ public class TradeActivity extends Activity implements ItemTable {
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20, hasBeenTried ? Color.GRAY : Color.BLACK);
-                ImageView image = dh.createItemImage(inventory.getItem(), (int)inventory.getState(), 35, 35, true, true, inventory.isUnsellable());
+                ImageView image = dh.createItemImage(inventory.getItem(), (int) inventory.getState(), 35, 35, true, true, inventory.isUnsellable());
 
                 final String itemName = item.getPrefix(inventory.getState()) + item.getName(this);
                 TextViewPixel name = dh.createTextView(itemName, 20, hasBeenTried ? Color.GRAY : Color.BLACK);

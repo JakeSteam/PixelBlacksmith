@@ -338,11 +338,11 @@ public class VisitorHelper {
             strings.add(context.getString(R.string.visitorLeavesLegendary1));
             strings.add(context.getString(R.string.visitorLeavesLegendary2));
             strings.add(context.getString(R.string.visitorLeavesLegendary3));
-        }else if (isFullyComplete) {
+        } else if (isFullyComplete) {
             strings.add(context.getString(R.string.visitorLeavesComplete1));
             strings.add(context.getString(R.string.visitorLeavesComplete2));
             strings.add(context.getString(R.string.visitorLeavesComplete3));
-        }else {
+        } else {
             strings.add(context.getString(R.string.visitorLeaves1));
             strings.add(context.getString(R.string.visitorLeaves2));
             strings.add(context.getString(R.string.visitorLeaves3));
@@ -375,7 +375,7 @@ public class VisitorHelper {
             // Easter bunny provides golden eggs!
             selectedItem = Item.findById(Item.class, 231);
         } else {
-            numRewards =  numRewards * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
+            numRewards = numRewards * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
             int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
             List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
             selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);

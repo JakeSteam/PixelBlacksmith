@@ -50,9 +50,9 @@
             android:id="@+id/visitorScroller"
             android:layout_width="match_parent"
             android:layout_below="@id/trophyTitle"
+            android:fadeScrollbars="false"
             app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="8%"
-            android:fadeScrollbars="false">
+            app:layout_marginTopPercent="8%">
 
             <GridLayout
                 android:id="@+id/visitorGrid"
@@ -110,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorName"
                 android:layout_below="@id/visitorName"
-                android:paddingLeft="5dp"
                 android:maxLines="1"
+                android:paddingLeft="5dp"
                 android:text="@string/unknownText"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -122,11 +122,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorPicture"
                 android:layout_below="@id/visitorPicture"
+                android:layout_marginTop="-1dp"
                 android:maxLines="1"
                 android:text="@string/trophyFirstSeenUnknown"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginTop="-1dp" />
+                android:textSize="18sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitor100thVisit"
@@ -134,11 +134,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorFirstSeen"
                 android:layout_below="@id/visitorFirstSeen"
+                android:layout_marginTop="-1dp"
                 android:maxLines="1"
                 android:text="@string/trophy100thVisitUnknown"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginTop="-1dp" />
+                android:textSize="18sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorBestItem"
@@ -146,11 +146,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitor100thVisit"
                 android:layout_below="@id/visitor100thVisit"
+                android:layout_marginTop="-1dp"
                 android:maxLines="1"
                 android:text="@string/trophyBestItemUnknown"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginTop="-1dp"/>
+                android:textSize="18sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorRarity"
@@ -158,11 +158,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorBestItem"
                 android:layout_below="@id/visitorBestItem"
+                android:layout_marginTop="-1dp"
                 android:maxLines="1"
                 android:text="@string/trophyRarityUnknown"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginTop="-1dp" />
+                android:textSize="18sp" />
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/visitorPreferences"
@@ -170,11 +170,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/visitorRarity"
                 android:layout_below="@id/visitorRarity"
+                android:layout_marginTop="-1dp"
                 android:maxLines="1"
                 android:text="@string/trophyPreferencesUnknown"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginTop="-1dp"/>
+                android:textSize="18sp" />
 
         </RelativeLayout>
     </android.support.percent.PercentRelativeLayout>

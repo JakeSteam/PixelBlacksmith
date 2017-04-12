@@ -113,7 +113,7 @@ public class UpgradeActivity extends Activity {
         TextView superUpgrade = dh.createTextView(upgrade.getName(this) + "\n", 24);
         superUpgrade.setSingleLine(false);
         if (!upgrade.havePrestigeLevel()) {
-            superUpgrade.setPaintFlags(superUpgrade.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+            superUpgrade.setPaintFlags(superUpgrade.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
         return superUpgrade;
     }
@@ -216,7 +216,7 @@ public class UpgradeActivity extends Activity {
 
     private void upgradeOnClick(View v) {
         Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
-        if (!selectedUpgrade.isAtMaximum()){
+        if (!selectedUpgrade.isAtMaximum()) {
             AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
             ToastHelper.showErrorToast(findViewById(R.id.upgradeTitle), ToastHelper.SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE)), false);

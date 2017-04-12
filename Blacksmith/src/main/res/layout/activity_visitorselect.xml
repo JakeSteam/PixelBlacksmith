@@ -25,27 +25,27 @@
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
-            app:layout_marginBottomPercent="9%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/heroText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="9%"
+            app:layout_marginTopPercent="3%" />
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_marginTopPercent="21%"
-            app:layout_marginBottomPercent="2%">
+            app:layout_marginBottomPercent="2%"
+            app:layout_marginTopPercent="21%">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="5dp">
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
 
                 <TableLayout
                     android:id="@+id/visitorTable"
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/loadingMessage"
                         android:textColor="@color/black"
-                        android:textSize="26sp"/>
+                        android:textSize="26sp" />
                 </TableLayout>
             </LinearLayout>
         </ScrollView>
