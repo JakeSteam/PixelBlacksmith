@@ -31,7 +31,7 @@
     <string name="assistantTeaser">No\nAssistant!</string>
 
     <string name="eventEasterItem">You found a %1$s! Look for the Golden Egg recipe in the food section of the furnace to unlock a valuable item &amp; unique achievement!</string>
-    <string name="eventText">It\'s Easter!\n\nColoured easter eggs will be found at random whilst the game is open, and can be used to create an extremely valuable easter item. Look under the food tab in the furnace!\n\nAdditionally, a new visitor has been added who will always reward this new valuable item. Good luck finding him!\n\nEvent ends on 22nd March.</string>
+    <string name="eventText">It\'s Easter!\n\nColoured easter eggs will be found at random whilst the game is open, and can be used to create an extremely valuable easter item. Look under the food tab in the furnace!\n\nAdditionally, a new visitor has been added who will always reward this new valuable item. Good luck finding him!\n\nEvent ends on 22nd April.</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
@@ -314,219 +314,220 @@
     <string name="criteria_2">Tier</string>
     <string name="criteria_3">Type</string>
 
-    <string name="hero_adventure_1">Gather Red Weed</string>
-    <string name="hero_adventure_2">Gather Nirnroot Herbs</string>
-    <string name="hero_adventure_3">Gather Kyrt Herbs</string>
-    <string name="hero_adventure_4">Gather Ants</string>
-    <string name="hero_adventure_5">Gather Bees</string>
-    <string name="hero_adventure_6">Gather Stick Insects</string>
-    <string name="hero_adventure_7">Gather Hercules Beetles</string>
-    <string name="hero_adventure_8">Gather Praying Mantis</string>
-    <string name="hero_adventure_9">Gather Bird Bones</string>
-    <string name="hero_adventure_10">Gather Rat Bones</string>
-    <string name="hero_adventure_11">Gather Fish Bones</string>
-    <string name="hero_adventure_12">Gather Monkey Bones</string>
-    <string name="hero_adventure_13">Gather Shark Bones</string>
-    <string name="hero_adventure_14">Gather Coal</string>
-    <string name="hero_adventure_15">Gather Iron Ore</string>
-    <string name="hero_adventure_16">Gather Silver Nuggets</string>
-    <string name="hero_adventure_17">Gather Gold Nuggets</string>
-    <string name="hero_adventure_18">Gather Mithril Ore</string>
-    <string name="hero_adventure_19">Gather Adamantite Ore</string>
-    <string name="hero_adventure_20">Gather Runite Ore</string>
-    <string name="hero_adventure_21">Gather Dragonite Ore</string>
-    <string name="hero_adventure_22">Gather Mice Corpses</string>
-    <string name="hero_adventure_23">Gather Wolf Corpses</string>
-    <string name="hero_adventure_24">Gather Human Corpses</string>
-    <string name="hero_adventure_25">Gather Giant Corpses</string>
-    <string name="hero_adventure_26">Gather Monster Corpses</string>
-    <string name="hero_adventure_27">Gather Buried Coins</string>
-    <string name="hero_adventure_28">Gather Buried Gems</string>
-    <string name="hero_adventure_29">Gather Buried Chests</string>
-    <string name="hero_adventure_30">Hunt Fruit Flies</string>
-    <string name="hero_adventure_31">Hunt Blue Flies</string>
-    <string name="hero_adventure_32">Hunt Mutant Flies</string>
-    <string name="hero_adventure_33">Hunt Vampire Flies</string>
-    <string name="hero_adventure_34">Hunt Scavenger Flies</string>
-    <string name="hero_adventure_35">Hunt Slow Slugs</string>
-    <string name="hero_adventure_36">Hunt Sticky Slugs</string>
-    <string name="hero_adventure_37">Hunt Fancy Slugs</string>
-    <string name="hero_adventure_38">Hunt Deadly Slugs</string>
-    <string name="hero_adventure_39">Hunt Baby Spiders</string>
-    <string name="hero_adventure_40">Hunt Daddy Long Legs Spiders</string>
-    <string name="hero_adventure_41">Hunt Tarantula Spiders</string>
-    <string name="hero_adventure_42">Hunt Black Widow Spiders</string>
-    <string name="hero_adventure_43">Hunt Baby Frogs</string>
-    <string name="hero_adventure_44">Hunt Jumping Frogs</string>
-    <string name="hero_adventure_45">Hunt Skermit The Frogs</string>
-    <string name="hero_adventure_46">Hunt Mr. Frogs</string>
-    <string name="hero_adventure_47">Hunt Hypnofrogs</string>
-    <string name="hero_adventure_48">Hunt White Rabbits</string>
-    <string name="hero_adventure_49">Hunt Dwarf Rabbits</string>
-    <string name="hero_adventure_50">Hunt Wooly Rabbits</string>
-    <string name="hero_adventure_51">Hunt Wabbits</string>
-    <string name="hero_adventure_52">Hunt Blue Hellcats</string>
-    <string name="hero_adventure_53">Hunt Green Hellcats</string>
-    <string name="hero_adventure_54">Hunt Red Hellcats</string>
-    <string name="hero_adventure_55">Hunt White Hellcats</string>
-    <string name="hero_adventure_56">Hunt Black Hellcats</string>
-    <string name="hero_adventure_57">Hunt White Wolves</string>
-    <string name="hero_adventure_58">Hunt Wargs</string>
-    <string name="hero_adventure_59">Hunt Big Bad Wolves</string>
-    <string name="hero_adventure_60">Hunt Direwolves</string>
-    <string name="hero_adventure_61">Hunt Werewolves</string>
-    <string name="hero_adventure_62">Hunt Bobo The Bears</string>
-    <string name="hero_adventure_63">Hunt Panda Bears</string>
-    <string name="hero_adventure_64">Hunt Pom Bears</string>
-    <string name="hero_adventure_65">Hunt Black Bears</string>
-    <string name="hero_adventure_66">Hunt Grizzly Bears</string>
-    <string name="hero_adventure_67">Hunt Tiggers</string>
-    <string name="hero_adventure_68">Hunt Young Tigers</string>
-    <string name="hero_adventure_69">Hunt Gladiatorial Tigers</string>
-    <string name="hero_adventure_70">Hunt Phony Tigers</string>
-    <string name="hero_adventure_71">Hunt Shere Khan</string>
-    <string name="hero_adventure_72">Hunt Poltergeists</string>
-    <string name="hero_adventure_73">Hunt Victorian Ghosts</string>
-    <string name="hero_adventure_74">Hunt Bloody Barons</string>
-    <string name="hero_adventure_75">Hunt Black Knights</string>
-    <string name="hero_adventure_76">Hunt Vampire Bats</string>
-    <string name="hero_adventure_77">Hunt Vampire Counts</string>
-    <string name="hero_adventure_78">Hunt Draugrs</string>
-    <string name="hero_adventure_79">Hunt Loch Ness Monsters</string>
-    <string name="hero_adventure_80">Hunt Leviathans</string>
-    <string name="hero_adventure_81">Hunt Elder Gods</string>
-    <string name="hero_adventure_82">Hunt Soft Ones</string>
-    <string name="hero_adventure_83">Hunt Reapers</string>
-    <string name="hero_adventure_84">Hunt Daleks</string>
-    <string name="hero_adventure_85">Hunt Xenomorphs</string>
-    <string name="hero_adventure_86">Hunt Moties</string>
-    <string name="hero_adventure_87">Hunt Infected</string>
-    <string name="hero_adventure_88">Hunt Crawlers</string>
-    <string name="hero_adventure_89">Hunt Runners</string>
-    <string name="hero_adventure_90">Hunt Spitters</string>
-    <string name="hero_adventure_91">Hunt Boomers</string>
-    <string name="hero_adventure_92">Kill Big Smoke</string>
-    <string name="hero_adventure_93">Kill Big Daddy</string>
-    <string name="hero_adventure_94">Kill Olmec</string>
-    <string name="hero_adventure_95">Kill Handsome Jack</string>
-    <string name="hero_adventure_96">Kill The Warrior</string>
-    <string name="hero_adventure_97">Kill Nihilanth</string>
-    <string name="hero_adventure_98">Kill GLaDOS</string>
-    <string name="hero_adventure_99">Kill Netherlord</string>
-    <string name="hero_adventure_100">Kill Doviculus</string>
-    <string name="hero_adventure_101">Survive Blacksmith Horde</string>
-    <string name="hero_adventure_102">Survive Spider Horde</string>
-    <string name="hero_adventure_103">Survive Golem Horde</string>
-    <string name="hero_adventure_104">Survive Angry Mob</string>
-    <string name="hero_adventure_105">Survive Warrior Horde</string>
-    <string name="hero_adventure_106">Achieve Nirvana</string>
-    <string name="hero_adventure_107">Calculate Prime Number Formula</string>
-    <string name="hero_adventure_108">Live Forever</string>
-    <string name="hero_adventure_109">Raise The Dead</string>
-    <string name="hero_adventure_110">Turn Back Time</string>
-    <string name="hero_adventure_111">Complete All Adventures</string>
-    <string name="hero_adventure_112">Guard Butchers</string>
-    <string name="hero_adventure_113">Guard Bakers</string>
-    <string name="hero_adventure_114">Guard Sandwich Shop</string>
-    <string name="hero_adventure_115">Guard Fishmongers</string>
-    <string name="hero_adventure_116">Guard Pie Shop</string>
-    <string name="hero_adventure_117">Guard Fruit Stand</string>
-    <string name="hero_adventure_118">Guard Farmer\'s Stand</string>
-    <string name="hero_adventure_119">Guard Sweet Shop</string>
-    <string name="hero_adventure_120">Guard Local Market</string>
-    <string name="hero_adventure_121">Guard Farmer\'s Market</string>
-    <string name="hero_adventure_122">Guard County Market</string>
-    <string name="hero_adventure_123">Guard Food Processing Factory</string>
-    <string name="hero_adventure_124">Guard Smelting Factory</string>
-    <string name="hero_adventure_125">Guard Clothing Factory</string>
-    <string name="hero_adventure_126">Guard Gem Factory</string>
-    <string name="hero_adventure_127">Guard Local Bank</string>
-    <string name="hero_adventure_128">Guard Town Bank</string>
-    <string name="hero_adventure_129">Guard City Bank</string>
-    <string name="hero_adventure_130">Guard State Bank</string>
-    <string name="hero_adventure_131">Guard Federal Bank</string>
-    <string name="hero_adventure_132">Guard Princess</string>
-    <string name="hero_adventure_133">Guard Prince</string>
-    <string name="hero_adventure_134">Guard Queen</string>
-    <string name="hero_adventure_135">Guard King</string>
-    <string name="hero_adventure_136">Explore Shrubs</string>
-    <string name="hero_adventure_137">Explore Bushes</string>
-    <string name="hero_adventure_138">Explore Trees</string>
-    <string name="hero_adventure_139">Explore Treetops</string>
-    <string name="hero_adventure_140">Explore Sandwich</string>
-    <string name="hero_adventure_141">Explore Sandcastle</string>
-    <string name="hero_adventure_142">Explore Sand Dune</string>
-    <string name="hero_adventure_143">Explore Central City</string>
-    <string name="hero_adventure_144">Explore West City</string>
-    <string name="hero_adventure_145">Explore South City</string>
-    <string name="hero_adventure_146">Explore East City</string>
-    <string name="hero_adventure_147">Explore North City</string>
-    <string name="hero_adventure_148">Explore Coral Reef</string>
-    <string name="hero_adventure_149">Explore Mariana Trench</string>
-    <string name="hero_adventure_150">Explore Small Cave</string>
-    <string name="hero_adventure_151">Explore Medium Cave</string>
-    <string name="hero_adventure_152">Explore Large Cave</string>
-    <string name="hero_adventure_153">Escort Butcher</string>
-    <string name="hero_adventure_154">Escort Baker</string>
-    <string name="hero_adventure_155">Escort Fisherman</string>
-    <string name="hero_adventure_156">Escort Silk Trader</string>
-    <string name="hero_adventure_157">Escort Gem Trader</string>
-    <string name="hero_adventure_158">Escort Weapons Trader</string>
-    <string name="hero_adventure_159">Escort Armour Trader</string>
-    <string name="hero_adventure_160">Escort Day Visitor</string>
-    <string name="hero_adventure_161">Escort Night Visitor</string>
-    <string name="hero_adventure_162">Escort Winter Visitor</string>
-    <string name="hero_adventure_163">Escort Summer Visitor</string>
-    <string name="hero_adventure_164">Escort Autumn Visitor</string>
-    <string name="hero_adventure_165">Escort Spring Visitor</string>
-    <string name="hero_adventure_166">Escort Lost Courier</string>
-    <string name="hero_adventure_167">Escort Underground Soldier</string>
-    <string name="hero_adventure_168">Escort Shiny Soldier</string>
-    <string name="hero_adventure_169">Escort Elegant Soldier</string>
 
-    <string name="hero_category_1">Gathering (10-150)</string>
-    <string name="hero_category_2">Gather Plants (10-30)</string>
-    <string name="hero_category_3">Gather Insects (25-95)</string>
-    <string name="hero_category_4">Gather Bones (25-65)</string>
-    <string name="hero_category_5">Gather Ore (15-125)</string>
-    <string name="hero_category_6">Gather Corpses (50-150)</string>
-    <string name="hero_category_7">Gather Buried Treasure (130-150)</string>
-    <string name="hero_category_8">Animal Hunting (100-250)</string>
-    <string name="hero_category_9">Fly Hunting (100-220)</string>
-    <string name="hero_category_10">Slug Hunting (130-190)</string>
-    <string name="hero_category_11">Spider Hunting (110-250)</string>
-    <string name="hero_category_12">Frog Hunting (110-250)</string>
-    <string name="hero_category_13">Rabbit Hunting (100-220)</string>
-    <string name="hero_category_14">Hellcat Hunting (210-250)</string>
-    <string name="hero_category_15">Wolf Hunting (160-240)</string>
-    <string name="hero_category_16">Bear Hunting (100-250)</string>
-    <string name="hero_category_17">Tiger Hunting (100-240)</string>
-    <string name="hero_category_18">Monster Hunting (190-600)</string>
-    <string name="hero_category_19">Ghost Hunting (220-400)</string>
-    <string name="hero_category_20">Vampire Hunting (310-390)</string>
-    <string name="hero_category_21">Sea Monster Hunting (500-600)</string>
-    <string name="hero_category_22">Alien Hunting (190-590)</string>
-    <string name="hero_category_23">Zombie Hunting (400-600)</string>
-    <string name="hero_category_24">Elite Challenges (700-1500)</string>
-    <string name="hero_category_25">Bosses (700-1020)</string>
-    <string name="hero_category_26">Hordes (750-1100)</string>
-    <string name="hero_category_27">Unbeatable (1000-1500)</string>
-    <string name="hero_category_28">Guard Duty (100-300)</string>
-    <string name="hero_category_29">Guard Shops (100-170)</string>
-    <string name="hero_category_30">Guard Markets (100-300)</string>
-    <string name="hero_category_31">Guard Factories (150-300)</string>
-    <string name="hero_category_32">Guard Banks (190-240)</string>
-    <string name="hero_category_33">Guard Royalty (260-290)</string>
-    <string name="hero_category_34">Exploring (500-800)</string>
-    <string name="hero_category_35">Explore Forest (500-600)</string>
-    <string name="hero_category_36">Explore Desert (500-700)</string>
-    <string name="hero_category_37">Explore City (600-760)</string>
-    <string name="hero_category_38">Explore Underwater (600-800)</string>
-    <string name="hero_category_39">Explore Caves (750-800)</string>
-    <string name="hero_category_40">Escort (350-690)</string>
-    <string name="hero_category_41">Escort Villagers (350-470)</string>
-    <string name="hero_category_42">Escort Visitors (500-620)</string>
-    <string name="hero_category_43">Escort Soldiers (630-690)</string>
+    <string name="hero_adventure_111" translatable="false">Gather Red Weed</string>
+    <string name="hero_adventure_112" translatable="false">Gather Nirnroot Herbs</string>
+    <string name="hero_adventure_113" translatable="false">Gather Kyrt Herbs</string>
+    <string name="hero_adventure_121" translatable="false">Gather Ants</string>
+    <string name="hero_adventure_122" translatable="false">Gather Bees</string>
+    <string name="hero_adventure_123" translatable="false">Gather Stick Insects</string>
+    <string name="hero_adventure_124" translatable="false">Gather Hercules Beetles</string>
+    <string name="hero_adventure_125" translatable="false">Gather Praying Mantis</string>
+    <string name="hero_adventure_131" translatable="false">Gather Bird Bones</string>
+    <string name="hero_adventure_132" translatable="false">Gather Rat Bones</string>
+    <string name="hero_adventure_133" translatable="false">Gather Fish Bones</string>
+    <string name="hero_adventure_134" translatable="false">Gather Monkey Bones</string>
+    <string name="hero_adventure_135" translatable="false">Gather Shark Bones</string>
+    <string name="hero_adventure_141" translatable="false">Gather Coal</string>
+    <string name="hero_adventure_142" translatable="false">Gather Iron Ore</string>
+    <string name="hero_adventure_143" translatable="false">Gather Silver Nuggets</string>
+    <string name="hero_adventure_144" translatable="false">Gather Gold Nuggets</string>
+    <string name="hero_adventure_145" translatable="false">Gather Mithril Ore</string>
+    <string name="hero_adventure_146" translatable="false">Gather Adamantite Ore</string>
+    <string name="hero_adventure_147" translatable="false">Gather Runite Ore</string>
+    <string name="hero_adventure_148" translatable="false">Gather Dragonite Ore</string>
+    <string name="hero_adventure_151" translatable="false">Gather Mice Corpses</string>
+    <string name="hero_adventure_152" translatable="false">Gather Wolf Corpses</string>
+    <string name="hero_adventure_153" translatable="false">Gather Human Corpses</string>
+    <string name="hero_adventure_154" translatable="false">Gather Giant Corpses</string>
+    <string name="hero_adventure_155" translatable="false">Gather Monster Corpses</string>
+    <string name="hero_adventure_161" translatable="false">Gather Buried Coins</string>
+    <string name="hero_adventure_162" translatable="false">Gather Buried Gems</string>
+    <string name="hero_adventure_163" translatable="false">Gather Buried Chests</string>
+    <string name="hero_adventure_211" translatable="false">Hunt Fruit Flies</string>
+    <string name="hero_adventure_212" translatable="false">Hunt Blue Flies</string>
+    <string name="hero_adventure_213" translatable="false">Hunt Mutant Flies</string>
+    <string name="hero_adventure_214" translatable="false">Hunt Vampire Flies</string>
+    <string name="hero_adventure_215" translatable="false">Hunt Scavenger Flies</string>
+    <string name="hero_adventure_221" translatable="false">Hunt Slow Slugs</string>
+    <string name="hero_adventure_222" translatable="false">Hunt Sticky Slugs</string>
+    <string name="hero_adventure_223" translatable="false">Hunt Fancy Slugs</string>
+    <string name="hero_adventure_224" translatable="false">Hunt Deadly Slugs</string>
+    <string name="hero_adventure_231" translatable="false">Hunt Baby Spiders</string>
+    <string name="hero_adventure_232" translatable="false">Hunt Daddy Long Legs Spiders</string>
+    <string name="hero_adventure_233" translatable="false">Hunt Tarantula Spiders</string>
+    <string name="hero_adventure_234" translatable="false">Hunt Black Widow Spiders</string>
+    <string name="hero_adventure_241" translatable="false">Hunt Baby Frogs</string>
+    <string name="hero_adventure_242" translatable="false">Hunt Jumping Frogs</string>
+    <string name="hero_adventure_243" translatable="false">Hunt Skermit The Frogs</string>
+    <string name="hero_adventure_244" translatable="false">Hunt Mr. Frogs</string>
+    <string name="hero_adventure_245" translatable="false">Hunt Hypnofrogs</string>
+    <string name="hero_adventure_251" translatable="false">Hunt White Rabbits</string>
+    <string name="hero_adventure_252" translatable="false">Hunt Dwarf Rabbits</string>
+    <string name="hero_adventure_253" translatable="false">Hunt Wooly Rabbits</string>
+    <string name="hero_adventure_254" translatable="false">Hunt Wabbits</string>
+    <string name="hero_adventure_261" translatable="false">Hunt Blue Hellcats</string>
+    <string name="hero_adventure_262" translatable="false">Hunt Green Hellcats</string>
+    <string name="hero_adventure_263" translatable="false">Hunt Red Hellcats</string>
+    <string name="hero_adventure_264" translatable="false">Hunt White Hellcats</string>
+    <string name="hero_adventure_265" translatable="false">Hunt Black Hellcats</string>
+    <string name="hero_adventure_271" translatable="false">Hunt White Wolves</string>
+    <string name="hero_adventure_272" translatable="false">Hunt Wargs</string>
+    <string name="hero_adventure_273" translatable="false">Hunt Big Bad Wolves</string>
+    <string name="hero_adventure_274" translatable="false">Hunt Direwolves</string>
+    <string name="hero_adventure_275" translatable="false">Hunt Werewolves</string>
+    <string name="hero_adventure_281" translatable="false">Hunt Bobo The Bears</string>
+    <string name="hero_adventure_282" translatable="false">Hunt Panda Bears</string>
+    <string name="hero_adventure_283" translatable="false">Hunt Pom Bears</string>
+    <string name="hero_adventure_284" translatable="false">Hunt Black Bears</string>
+    <string name="hero_adventure_285" translatable="false">Hunt Grizzly Bears</string>
+    <string name="hero_adventure_291" translatable="false">Hunt Tiggers</string>
+    <string name="hero_adventure_292" translatable="false">Hunt Young Tigers</string>
+    <string name="hero_adventure_293" translatable="false">Hunt Gladiatorial Tigers</string>
+    <string name="hero_adventure_294" translatable="false">Hunt Phony Tigers</string>
+    <string name="hero_adventure_295" translatable="false">Hunt Shere Khan</string>
+    <string name="hero_adventure_311" translatable="false">Hunt Poltergeists</string>
+    <string name="hero_adventure_312" translatable="false">Hunt Victorian Ghosts</string>
+    <string name="hero_adventure_313" translatable="false">Hunt Bloody Barons</string>
+    <string name="hero_adventure_314" translatable="false">Hunt Black Knights</string>
+    <string name="hero_adventure_321" translatable="false">Hunt Vampire Bats</string>
+    <string name="hero_adventure_322" translatable="false">Hunt Vampire Counts</string>
+    <string name="hero_adventure_323" translatable="false">Hunt Draugrs</string>
+    <string name="hero_adventure_331" translatable="false">Hunt Loch Ness Monsters</string>
+    <string name="hero_adventure_332" translatable="false">Hunt Leviathans</string>
+    <string name="hero_adventure_333" translatable="false">Hunt Elder Gods</string>
+    <string name="hero_adventure_341" translatable="false">Hunt Soft Ones</string>
+    <string name="hero_adventure_342" translatable="false">Hunt Reapers</string>
+    <string name="hero_adventure_343" translatable="false">Hunt Daleks</string>
+    <string name="hero_adventure_344" translatable="false">Hunt Xenomorphs</string>
+    <string name="hero_adventure_345" translatable="false">Hunt Moties</string>
+    <string name="hero_adventure_351" translatable="false">Hunt Infected</string>
+    <string name="hero_adventure_352" translatable="false">Hunt Crawlers</string>
+    <string name="hero_adventure_353" translatable="false">Hunt Runners</string>
+    <string name="hero_adventure_354" translatable="false">Hunt Spitters</string>
+    <string name="hero_adventure_355" translatable="false">Hunt Boomers</string>
+    <string name="hero_adventure_411" translatable="false">Kill Big Smoke</string>
+    <string name="hero_adventure_412" translatable="false">Kill Big Daddy</string>
+    <string name="hero_adventure_413" translatable="false">Kill Olmec</string>
+    <string name="hero_adventure_414" translatable="false">Kill Handsome Jack</string>
+    <string name="hero_adventure_415" translatable="false">Kill The Warrior</string>
+    <string name="hero_adventure_416" translatable="false">Kill Nihilanth</string>
+    <string name="hero_adventure_417" translatable="false">Kill GLaDOS</string>
+    <string name="hero_adventure_418" translatable="false">Kill Netherlord</string>
+    <string name="hero_adventure_419" translatable="false">Kill Doviculus</string>
+    <string name="hero_adventure_421" translatable="false">Survive Blacksmith Horde</string>
+    <string name="hero_adventure_422" translatable="false">Survive Spider Horde</string>
+    <string name="hero_adventure_423" translatable="false">Survive Golem Horde</string>
+    <string name="hero_adventure_424" translatable="false">Survive Angry Mob</string>
+    <string name="hero_adventure_425" translatable="false">Survive Warrior Horde</string>
+    <string name="hero_adventure_431" translatable="false">Achieve Nirvana</string>
+    <string name="hero_adventure_432" translatable="false">Calculate Prime Number Formula</string>
+    <string name="hero_adventure_433" translatable="false">Live Forever</string>
+    <string name="hero_adventure_434" translatable="false">Raise The Dead</string>
+    <string name="hero_adventure_435" translatable="false">Turn Back Time</string>
+    <string name="hero_adventure_436" translatable="false">Complete All Adventures</string>
+    <string name="hero_adventure_511" translatable="false">Guard Butchers</string>
+    <string name="hero_adventure_512" translatable="false">Guard Bakers</string>
+    <string name="hero_adventure_513" translatable="false">Guard Sandwich Shop</string>
+    <string name="hero_adventure_514" translatable="false">Guard Fishmongers</string>
+    <string name="hero_adventure_515" translatable="false">Guard Pie Shop</string>
+    <string name="hero_adventure_516" translatable="false">Guard Fruit Stand</string>
+    <string name="hero_adventure_517" translatable="false">Guard Farmer\'s Stand</string>
+    <string name="hero_adventure_518" translatable="false">Guard Sweet Shop</string>
+    <string name="hero_adventure_521" translatable="false">Guard Local Market</string>
+    <string name="hero_adventure_522" translatable="false">Guard Farmer\'s Market</string>
+    <string name="hero_adventure_523" translatable="false">Guard County Market</string>
+    <string name="hero_adventure_531" translatable="false">Guard Food Processing Factory</string>
+    <string name="hero_adventure_532" translatable="false">Guard Smelting Factory</string>
+    <string name="hero_adventure_533" translatable="false">Guard Clothing Factory</string>
+    <string name="hero_adventure_534" translatable="false">Guard Gem Factory</string>
+    <string name="hero_adventure_541" translatable="false">Guard Local Bank</string>
+    <string name="hero_adventure_542" translatable="false">Guard Town Bank</string>
+    <string name="hero_adventure_543" translatable="false">Guard City Bank</string>
+    <string name="hero_adventure_544" translatable="false">Guard State Bank</string>
+    <string name="hero_adventure_545" translatable="false">Guard Federal Bank</string>
+    <string name="hero_adventure_551" translatable="false">Guard Princess</string>
+    <string name="hero_adventure_552" translatable="false">Guard Prince</string>
+    <string name="hero_adventure_553" translatable="false">Guard Queen</string>
+    <string name="hero_adventure_554" translatable="false">Guard King</string>
+    <string name="hero_adventure_611" translatable="false">Explore Shrubs</string>
+    <string name="hero_adventure_612" translatable="false">Explore Bushes</string>
+    <string name="hero_adventure_613" translatable="false">Explore Trees</string>
+    <string name="hero_adventure_614" translatable="false">Explore Treetops</string>
+    <string name="hero_adventure_621" translatable="false">Explore Sandwich</string>
+    <string name="hero_adventure_622" translatable="false">Explore Sandcastle</string>
+    <string name="hero_adventure_623" translatable="false">Explore Sand Dune</string>
+    <string name="hero_adventure_631" translatable="false">Explore Central City</string>
+    <string name="hero_adventure_632" translatable="false">Explore West City</string>
+    <string name="hero_adventure_633" translatable="false">Explore South City</string>
+    <string name="hero_adventure_634" translatable="false">Explore East City</string>
+    <string name="hero_adventure_635" translatable="false">Explore North City</string>
+    <string name="hero_adventure_641" translatable="false">Explore Coral Reef</string>
+    <string name="hero_adventure_642" translatable="false">Explore Mariana Trench</string>
+    <string name="hero_adventure_651" translatable="false">Explore Small Cave</string>
+    <string name="hero_adventure_652" translatable="false">Explore Medium Cave</string>
+    <string name="hero_adventure_653" translatable="false">Explore Large Cave</string>
+    <string name="hero_adventure_711" translatable="false">Escort Butcher</string>
+    <string name="hero_adventure_712" translatable="false">Escort Baker</string>
+    <string name="hero_adventure_713" translatable="false">Escort Fisherman</string>
+    <string name="hero_adventure_714" translatable="false">Escort Silk Trader</string>
+    <string name="hero_adventure_715" translatable="false">Escort Gem Trader</string>
+    <string name="hero_adventure_716" translatable="false">Escort Weapons Trader</string>
+    <string name="hero_adventure_717" translatable="false">Escort Armour Trader</string>
+    <string name="hero_adventure_721" translatable="false">Escort Day Visitor</string>
+    <string name="hero_adventure_722" translatable="false">Escort Night Visitor</string>
+    <string name="hero_adventure_723" translatable="false">Escort Winter Visitor</string>
+    <string name="hero_adventure_724" translatable="false">Escort Summer Visitor</string>
+    <string name="hero_adventure_725" translatable="false">Escort Autumn Visitor</string>
+    <string name="hero_adventure_726" translatable="false">Escort Spring Visitor</string>
+    <string name="hero_adventure_727" translatable="false">Escort Lost Courier</string>
+    <string name="hero_adventure_731" translatable="false">Escort Underground Soldier</string>
+    <string name="hero_adventure_732" translatable="false">Escort Shiny Soldier</string>
+    <string name="hero_adventure_733" translatable="false">Escort Elegant Soldier</string>
+
+    <string name="hero_category_1" translatable="false">Gathering (10-150)</string>
+    <string name="hero_category_2" translatable="false">Animal Hunting (100-250)</string>
+    <string name="hero_category_3" translatable="false">Monster Hunting (190-600)</string>
+    <string name="hero_category_4" translatable="false">Elite Challenges (700-1500)</string>
+    <string name="hero_category_5" translatable="false">Guard Duty (100-300)</string>
+    <string name="hero_category_6" translatable="false">Exploring (500-800)</string>
+    <string name="hero_category_7" translatable="false">Escort (350-690)</string>
+    <string name="hero_category_11" translatable="false">Gather Plants (10-30)</string>
+    <string name="hero_category_12" translatable="false">Gather Insects (25-95)</string>
+    <string name="hero_category_13" translatable="false">Gather Bones (25-65)</string>
+    <string name="hero_category_14" translatable="false">Gather Ore (15-125)</string>
+    <string name="hero_category_15" translatable="false">Gather Corpses (50-150)</string>
+    <string name="hero_category_16" translatable="false">Gather Buried Treasure (130-150)</string>
+    <string name="hero_category_21" translatable="false">Fly Hunting (100-220)</string>
+    <string name="hero_category_22" translatable="false">Slug Hunting (130-190)</string>
+    <string name="hero_category_23" translatable="false">Spider Hunting (110-250)</string>
+    <string name="hero_category_24" translatable="false">Frog Hunting (110-250)</string>
+    <string name="hero_category_25" translatable="false">Rabbit Hunting (100-220)</string>
+    <string name="hero_category_26" translatable="false">Hellcat Hunting (210-250)</string>
+    <string name="hero_category_27" translatable="false">Wolf Hunting (160-240)</string>
+    <string name="hero_category_28" translatable="false">Bear Hunting (100-250)</string>
+    <string name="hero_category_29" translatable="false">Tiger Hunting (100-240)</string>
+    <string name="hero_category_31" translatable="false">Ghost Hunting (220-400)</string>
+    <string name="hero_category_32" translatable="false">Vampire Hunting (310-390)</string>
+    <string name="hero_category_33" translatable="false">Sea Monster Hunting (500-600)</string>
+    <string name="hero_category_34" translatable="false">Alien Hunting (190-590)</string>
+    <string name="hero_category_35" translatable="false">Zombie Hunting (400-600)</string>
+    <string name="hero_category_41" translatable="false">Bosses (700-1020)</string>
+    <string name="hero_category_42" translatable="false">Hordes (750-1100)</string>
+    <string name="hero_category_43" translatable="false">Unbeatable (1000-1500)</string>
+    <string name="hero_category_51" translatable="false">Guard Shops (100-170)</string>
+    <string name="hero_category_52" translatable="false">Guard Markets (100-300)</string>
+    <string name="hero_category_53" translatable="false">Guard Factories (150-300)</string>
+    <string name="hero_category_54" translatable="false">Guard Banks (190-240)</string>
+    <string name="hero_category_55" translatable="false">Guard Royalty (260-290)</string>
+    <string name="hero_category_61" translatable="false">Explore Forest (500-600)</string>
+    <string name="hero_category_62" translatable="false">Explore Desert (500-700)</string>
+    <string name="hero_category_63" translatable="false">Explore City (600-760)</string>
+    <string name="hero_category_64" translatable="false">Explore Underwater (600-800)</string>
+    <string name="hero_category_65" translatable="false">Explore Caves (750-800)</string>
+    <string name="hero_category_71" translatable="false">Escort Villagers (350-470)</string>
+    <string name="hero_category_72" translatable="false">Escort Visitors (500-620)</string>
+    <string name="hero_category_73" translatable="false">Escort Soldiers (630-690)</string>
 
     <string name="item_name_1">Copper ore</string>
     <string name="item_name_2">Tin ore</string>

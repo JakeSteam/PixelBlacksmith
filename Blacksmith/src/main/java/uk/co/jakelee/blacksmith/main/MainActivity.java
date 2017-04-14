@@ -394,6 +394,15 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        final Runnable easterEvent = new Runnable() {
+            @Override
+            public void run() {
+                EventHelper.checkForEasterEggs(activity);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
+            }
+        };
+        handler.postDelayed(easterEvent, DateHelper.MILLISECONDS_IN_SECOND * 60);
+
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
@@ -441,7 +450,6 @@ public class MainActivity extends AppCompatActivity implements
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
                 WorkerHelper.checkForFinishedHeroes(activity);
-                EventHelper.checkForEasterEggs(activity);
                 dh.createAllSlots(activity);
                 DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
