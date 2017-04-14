@@ -8,7 +8,7 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion apiVersion
-        versionCode 65
+        versionCode 66
         versionName "2.1.0"
     }
     buildTypes {
