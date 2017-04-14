@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -7,6 +9,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Super_Upgrade extends SugarRecord {
     private int superUpgradeId;
@@ -24,38 +27,6 @@ public class Super_Upgrade extends SugarRecord {
         this.enabled = enabled;
     }
 
-    public int getSuperUpgradeId() {
-        return superUpgradeId;
-    }
-
-    public void setSuperUpgradeId(int superUpgradeId) {
-        this.superUpgradeId = superUpgradeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrestigeLevel() {
-        return prestigeLevel;
-    }
-
-    public void setPrestigeLevel(int prestigeLevel) {
-        this.prestigeLevel = prestigeLevel;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public static boolean isEnabled(int superUpgradeId) {
         List<Super_Upgrade> upgrades = Select.from(Super_Upgrade.class).where(Condition.prop("super_upgrade_id").eq(superUpgradeId)).list();
 
@@ -64,10 +35,6 @@ public class Super_Upgrade extends SugarRecord {
 
     public static Super_Upgrade find(int superUpgradeId) {
         return Select.from(Super_Upgrade.class).where(Condition.prop("super_upgrade_id").eq(superUpgradeId)).first();
-    }
-
-    public boolean havePrestigeLevel() {
-        return Player_Info.getPrestige() >= prestigeLevel;
     }
 
     public static int totalEnabled() {
@@ -103,6 +70,42 @@ public class Super_Upgrade extends SugarRecord {
 
     public static int total() {
         return Super_Upgrade.listAll(Super_Upgrade.class).size();
+    }
+
+    public int getSuperUpgradeId() {
+        return superUpgradeId;
+    }
+
+    public void setSuperUpgradeId(int superUpgradeId) {
+        this.superUpgradeId = superUpgradeId;
+    }
+
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("su_" + superUpgradeId);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrestigeLevel() {
+        return prestigeLevel;
+    }
+
+    public void setPrestigeLevel(int prestigeLevel) {
+        this.prestigeLevel = prestigeLevel;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean havePrestigeLevel() {
+        return Player_Info.getPrestige() >= prestigeLevel;
     }
 }
 

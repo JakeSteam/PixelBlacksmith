@@ -6,10 +6,6 @@ import com.orm.query.Select;
 
 import java.util.List;
 
-/**
- * `_id` INTEGER PRIMARY KEY AUTOINCREMENT, `location_id` INTEGER NOT NULL, `level_req` INTEGER NOT NULL, `premium` INTEGER NOT NULL);
- * Created by Jake on 01/12/2015.
- */
 public class Slot extends SugarRecord {
     private int location;
     private int level;

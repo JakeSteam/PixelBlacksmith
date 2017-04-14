@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Criteria extends SugarRecord {
     private Long criteriaID;
@@ -28,5 +32,9 @@ public class Criteria extends SugarRecord {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("criteria_" + criteriaID);
     }
 }

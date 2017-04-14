@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
@@ -23,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.StorageHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -32,6 +36,8 @@ import uk.co.jakelee.blacksmith.model.Setting;
 public class SettingsActivity extends Activity {
     private static DisplayHelper dh;
     final Handler handler = new Handler();
+    private int spinnersInitialised = 0;
+    private int totalSpinners = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,46 @@ public class SettingsActivity extends Activity {
         handler.post(everySecond);
 
         updateAdToggleVisibility();
+        spinnersInitialised = 0;
+        createLanguagePicker((Spinner) findViewById(R.id.languagePicker));
+    }
+
+    private void createLanguagePicker(Spinner spinner) {
+        Setting setting = Setting.findById(Setting.class, Constants.SETTING_LANGUAGE);
+        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner);
+        envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
+
+        for (int i = 1; i <= Constants.NUM_LANGUAGES; i++) {
+            String text = LanguageHelper.getFlagById(i) + " " + LanguageHelper.getLanguageById(this, i);
+            envAdapter.add(text);
+        }
+
+        spinner.setAdapter(envAdapter);
+        spinner.setSelection(setting.getIntValue() - 1);
+        spinner.setOnItemSelectedListener(getListener(setting));
+    }
+
+    private AdapterView.OnItemSelectedListener getListener(final Setting setting) {
+        final Activity activity = this;
+        return new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (spinnersInitialised < totalSpinners) {
+                    spinnersInitialised++;
+                } else {
+                    setting.setIntValue(position + 1);
+                    setting.save();
+
+                    LanguageHelper.changeLanguage(activity, position + 1);
+                    ToastHelper.showPositiveToast(parentView, ToastHelper.SHORT, parentView.getSelectedItem().toString(), true);
+                    onResume();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        };
     }
 
     @Override
@@ -125,6 +171,7 @@ public class SettingsActivity extends Activity {
         ((ImageView) findViewById(R.id.workerNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_WORKER_NOTIFICATIONS) ? tick : cross);
         ((ImageView) findViewById(R.id.bonusNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BONUS_NOTIFICATIONS) ? tick : cross);
         ((ImageView) findViewById(R.id.finishedNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_FINISHED_NOTIFICATIONS) ? tick : cross);
+        ((ImageView) findViewById(R.id.assistantNotificationToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_ASSISTANT_NOTIFICATIONS) ? tick : cross);
         ((ImageView) findViewById(R.id.notificationSoundToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_NOTIFICATION_SOUNDS) ? tick : cross);
         ((ImageView) findViewById(R.id.turnOffAdsButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? tick : cross);
         ((ImageView) findViewById(R.id.clickChangeToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_CLICK_CHANGE) ? tick : cross);
@@ -167,92 +214,75 @@ public class SettingsActivity extends Activity {
         }
 
         return String.format(getString(R.string.settingsCode),
-                settings.size(),
                 Integer.valueOf(settingsCode, 2));
     }
 
     public void toggleOrientation(View v) {
         Setting orientationSetting = Setting.findById(Setting.class, Constants.SETTING_ORIENTATION);
-        orientationSetting.setIntValue(Integer.valueOf((String)v.getTag()));
+        orientationSetting.setIntValue(Integer.valueOf((String) v.getTag()));
         orientationSetting.save();
         populateOrientation();
     }
 
     public void toggleSetting(View v) {
         Long settingID = null;
-        String settingName = "";
         switch (v.getId()) {
             case R.id.soundToggle:
                 settingID = Constants.SETTING_SOUNDS;
-                settingName = "Game Sound";
                 break;
             case R.id.musicToggle:
                 settingID = Constants.SETTING_MUSIC;
-                settingName = "Game Music";
                 break;
             case R.id.restockNotificationToggle:
                 settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
-                settingName = "Restock Notifications";
                 break;
             case R.id.workerNotificationToggle:
                 settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
-                settingName = "Worker Notifications";
                 break;
             case R.id.visitorNotificationToggle:
                 settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
-                settingName = "Visitor Notifications";
                 break;
             case R.id.bonusNotificationToggle:
                 settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
-                settingName = "Bonus Notifications";
                 break;
             case R.id.notificationSoundToggle:
                 settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
-                settingName = "Notification Sounds";
                 break;
             case R.id.finishedNotificationToggle:
                 settingID = Constants.SETTING_FINISHED_NOTIFICATIONS;
-                settingName = "All Items Finished Notifications";
+                break;
+            case R.id.assistantNotificationToggle:
+                settingID = Constants.SETTING_ASSISTANT_NOTIFICATIONS;
                 break;
             case R.id.turnOffAdsToggle:
                 settingID = Constants.SETTING_DISABLE_ADS;
-                settingName = "Disable Ads";
                 break;
             case R.id.clickChangeToggle:
                 settingID = Constants.SETTING_CLICK_CHANGE;
-                settingName = "Quick Item Select";
                 break;
             case R.id.messageLogToggle:
                 settingID = Constants.SETTING_MESSAGE_LOG;
-                settingName = "Quick Log Access";
                 break;
             case R.id.fullscreenToggle:
                 settingID = Constants.SETTING_FULLSCREEN;
-                settingName = "Fullscreen Mode";
                 break;
             case R.id.autoRefreshToggle:
                 settingID = Constants.SETTING_AUTOREFRESH;
-                settingName = "Item Listing Auto Refresh";
                 break;
             case R.id.fullscreenCheckToggle:
                 settingID = Constants.SETTING_CHECK_FULLSCREEN;
-                settingName = "Fullscreen Mode Checking";
                 break;
             case R.id.updateSlotsToggle:
                 settingID = Constants.SETTING_UPDATE_SLOTS;
-                settingName = "Item Slot Updating";
                 break;
             case R.id.longToastToggle:
                 settingID = Constants.SETTING_LONG_TOAST;
-                settingName = "Longer Message Durations";
                 break;
             case R.id.handleMaxToggle:
                 settingID = Constants.SETTING_HANDLE_MAX;
-                settingName = "Smelt / Craft / Sell Max";
                 break;
             case R.id.bulkStackToggle:
                 settingID = Constants.SETTING_BULK_STACK;
-                settingName = "Single Stack Bulk Crafting";
                 break;
         }
 
@@ -262,7 +292,7 @@ public class SettingsActivity extends Activity {
             settingToToggle.save();
 
             ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(getString(R.string.settingChanged),
-                    settingName,
+                    settingToToggle.getName(this),
                     settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
         }
@@ -283,7 +313,7 @@ public class SettingsActivity extends Activity {
     }
 
     public void openRating(View view) {
-        final String appPackageName = getPackageName(); 
+        final String appPackageName = getPackageName();
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {
@@ -294,13 +324,17 @@ public class SettingsActivity extends Activity {
     public void openTutorial(View view) {
         this.finish();
         TutorialHelper.currentlyInTutorial = true;
-        TutorialHelper.currentStage  = Constants.STAGE_1_MAIN;
+        TutorialHelper.currentStage = Constants.STAGE_1_MAIN;
         this.finish();
     }
 
     public void openCredits(View view) {
         Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
         startActivity(intent);
+    }
+
+    public void launchHotfixes(View view) {
+        AlertDialogHelper.hotfixMenu(this);
     }
 
     public void openAchievements(View view) {
@@ -370,5 +404,10 @@ public class SettingsActivity extends Activity {
 
     public void closePopup(View view) {
         finish();
+    }
+
+    public void openTranslationSheet(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/spreadsheets/d/1SIvUBTR2kT1UFBcVbXrpMxF5A1jBZz5rVFCgVgyRMnE/"));
+        startActivity(browserIntent);
     }
 }

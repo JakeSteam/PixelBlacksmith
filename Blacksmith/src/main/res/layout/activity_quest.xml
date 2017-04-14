@@ -41,24 +41,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/questTitle"
-            android:fadeScrollbars="false"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:fadeScrollbars="false">
 
             <LinearLayout
                 android:id="@+id/questContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp"
-                android:gravity="center">
+                android:padding="5dp">
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/questsCompleted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:textColor="@color/black"
-                    android:textSize="26sp"
-                    android:layout_marginBottom="5dp"/>
+                    android:textSize="26sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
@@ -68,7 +68,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="currentQuests"
-                    android:text="In Progress"
+                    android:text="@string/questInProgress"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
@@ -80,7 +80,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="availableQuests"
-                    android:text="Available"
+                    android:text="@string/questAvailable"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
@@ -92,7 +92,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="upcomingQuests"
-                    android:text="Upcoming"
+                    android:text="@string/questUpcoming"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
@@ -104,7 +104,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="completedQuests"
-                    android:text="Completed"
+                    android:text="@string/questCompleted"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
@@ -116,7 +116,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     android:onClick="failedQuests"
-                    android:text="Failed"
+                    android:text="@string/questFailed"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
@@ -127,8 +127,20 @@
                     android:background="@drawable/button_extra_wide"
                     android:clickable="true"
                     android:gravity="center"
+                    android:onClick="claimUnclaimed"
+                    android:text="@string/questUnclaimed"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
                     android:onClick="redditSchedule"
-                    android:text="Schedule (on Reddit)"
+                    android:text="@string/questSchedule"
                     android:textColor="@color/black"
                     android:textSize="22sp" />
             </LinearLayout>

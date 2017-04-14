@@ -1,8 +1,11 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Item extends SugarRecord {
     private Long id;
@@ -34,16 +37,16 @@ public class Item extends SugarRecord {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("item_name_" + id);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescription(Context context) {
+        return TextHelper.getInstance(context).getText("item_desc_" + id);
     }
 
     public void setDescription(String description) {
@@ -82,8 +85,8 @@ public class Item extends SugarRecord {
         this.level = level;
     }
 
-    public String getFullName(long state) {
-        return getPrefix(state) + getName();
+    public String getFullName(Context context, long state) {
+        return getPrefix(state) + getName(context);
     }
 
     public String getPrefix(int id) {

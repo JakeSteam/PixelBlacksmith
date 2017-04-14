@@ -44,11 +44,11 @@ public class HeroSetHelper {
         if (numberOfItemsEquipped(hero, 1)) {
             sets.add(new Hero_Set("One Itemer", "having only one item equipped.", 40));
         }
-        
+
         if (itemsInAllSlots(hero)) {
             sets.add(new Hero_Set("Fully Loaded", "having an item in every slot.", 20));
         }
-        
+
         if (onlyFoodEquipped(hero)) {
             sets.add(new Hero_Set("Hungry", "only having a food item equipped.", 10));
         }
@@ -56,7 +56,7 @@ public class HeroSetHelper {
         if (itemsInNoSlots(hero)) {
             sets.add(new Hero_Set("Broke", "having no items equipped.", 0));
         }
-        
+
         if (itemsAllSameState(hero) && itemsInAllSlots(hero)) {
             sets.add(new Hero_Set("State Of Mind", "having all equipped items of the same state.", 20));
         }
@@ -77,19 +77,89 @@ public class HeroSetHelper {
             sets.add(new Hero_Set("Bare Inessentials", "having only the inessential slots filled (Gloves, Boots, Ring, Food).", 25));
         }
 
+        if (onlyCornerItems(hero)) {
+            sets.add(new Hero_Set("Corner The Market", "having only the corner slots filled in.", 10));
+        }
+
+        if (onlyMiddleItems(hero)) {
+            sets.add(new Hero_Set("The Plus Side", "having a \"plus\" (+) of equipped items.", 22));
+        }
+
+        if (itemsInMetalSlots(hero) && itemsAllSelectedTier(Constants.TIER_IRON, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Oh The Irony", "having all iron items equipped.", 30));
+        }
+
+        if (itemsInMetalSlots(hero) && itemsAllSelectedTier(Constants.TIER_STEEL, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Nerves Of Steel", "having all steel items equipped.", 27));
+        }
+
+        if (hero.getArmourItem() == 119) {
+            sets.add(new Hero_Set("Dragon Slayee", "have a rune chainmail equipped.", 1));
+        }
+
+        if (hero.getArmourItem() == 120) {
+            sets.add(new Hero_Set("Dragon Slayer", "have a rune platebody equipped.", 11));
+        }
+
+        if (itemsAllSelectedState(Constants.STATE_YELLOW, hero) && itemsInAllSlots(hero) && itemsAllSelectedTier(Constants.TIER_DRAGON, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Godlike", "have yellow enchanted legendary items in all slots.", 70));
+        }
+
+        if (itemsAllSelectedState(Constants.STATE_YELLOW, hero) && itemsInAllSlots(hero) && itemsAllSelectedTier(Constants.TIER_PREMIUM, armourItem, bootsItem, glovesItem, helmetItem, shieldItem, weaponItem)) {
+            sets.add(new Hero_Set("Godly", "have yellow-enchanted legendary items in all slots.", 100));
+        }
+
         return sets;
+    }
+
+    private static boolean onlyMiddleItems(Hero hero) {
+        return hero.getArmourItem() == 0
+                && hero.getBootsItem() > 0
+                && hero.getFoodItem() == 0
+                && hero.getGlovesItem() == 0
+                && hero.getHelmetItem() > 0
+                && hero.getRingItem() == 0
+                && hero.getShieldItem() > 0
+                && hero.getWeaponItem() > 0;
+    }
+
+    private static boolean onlyCornerItems(Hero hero) {
+        return hero.getArmourItem() > 0
+                && hero.getBootsItem() == 0
+                && hero.getFoodItem() > 0
+                && hero.getGlovesItem() > 0
+                && hero.getHelmetItem() == 0
+                && hero.getRingItem() > 0
+                && hero.getShieldItem() == 0
+                && hero.getWeaponItem() == 0;
     }
 
     private static boolean numberOfItemsEquipped(Hero hero, int desiredNumber) {
         int actualNumber = 0;
-        if (hero.getFoodItem() > 0) { actualNumber++; }
-        if (hero.getRingItem() > 0) { actualNumber++; }
-        if (hero.getArmourItem() > 0) { actualNumber++; }
-        if (hero.getBootsItem() > 0) { actualNumber++; }
-        if (hero.getGlovesItem() > 0) { actualNumber++; }
-        if (hero.getHelmetItem() > 0) { actualNumber++; }
-        if (hero.getShieldItem() > 0) { actualNumber++; }
-        if (hero.getWeaponItem() > 0) { actualNumber++; }
+        if (hero.getFoodItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getRingItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getArmourItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getBootsItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getGlovesItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getHelmetItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getShieldItem() > 0) {
+            actualNumber++;
+        }
+        if (hero.getWeaponItem() > 0) {
+            actualNumber++;
+        }
 
         return actualNumber == desiredNumber;
     }
@@ -189,6 +259,6 @@ public class HeroSetHelper {
         for (Hero_Set set : sets) {
             bonus += set.getBonus();
         }
-        return 1 + ((double)bonus / 100);
+        return 1 + ((double) bonus / 100);
     }
 }

@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
 import android.content.Context;
+import android.widget.TableLayout;
 
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 
@@ -39,7 +41,7 @@ public class Trader extends SugarRecord {
         this.fixed = false;
     }
 
-    public static void checkTraderStatus(Context context, long location) {
+    public static void checkTraderStatus(Context context, TableLayout marketLayout, long location) {
         List<Trader> traders = Select.from(Trader.class).where(
                 Condition.prop("location").eq(location),
                 Condition.prop("status").eq(Constants.TRADER_PRESENT)).list();
@@ -63,18 +65,18 @@ public class Trader extends SugarRecord {
         }
 
         while (numberOfTraders < Upgrade.getValue("Maximum Traders")) {
-            Trader.makeTraderAppear(context);
+            Trader.makeTraderAppear(context, marketLayout);
             numberOfTraders++;
         }
     }
 
-    private static void makeTraderAppear(Context context) {
+    private static void makeTraderAppear(Context context, TableLayout marketLayout) {
         Trader traderToArrive = selectTraderType();
-        if (traderToArrive.getName() != null) {
+        if (traderToArrive.getName(context) != null) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
             if (!TutorialHelper.currentlyInTutorial) {
-                ToastHelper.showToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName()), true);
+                ToastHelper.showToast(marketLayout, ToastHelper.SHORT, String.format(context.getString(R.string.traderArrived), traderToArrive.getName(context)), true);
             }
         }
     }
@@ -104,6 +106,43 @@ public class Trader extends SugarRecord {
         return selectedTraderType;
     }
 
+    public static int restockAll(int restockCost) {
+        if (Inventory.getCoins() < restockCost) {
+            return Constants.ERROR_NOT_ENOUGH_COINS;
+        } else {
+            // Remove coins
+            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
+            coinStock.setQuantity(coinStock.getQuantity() - restockCost);
+            coinStock.save();
+
+            Trader.executeQuery("UPDATE trader SET status = " + Constants.TRADER_NOT_PRESENT);
+            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
+
+            return Constants.SUCCESS;
+        }
+    }
+
+    public static int getFixedCount() {
+        return (int) Select.from(Trader.class).where(
+                Condition.prop("location").eq(Constants.LOCATION_MARKET),
+                Condition.prop("fixed").eq(1)).count();
+    }
+
+    public static int getRestockAllCost() {
+        return Upgrade.getValue("Restock All Cost");
+    }
+
+    public static int outOfStockTraders() {
+        List<Trader> traders = Trader.listAll(Trader.class);
+        int outOfStock = 0;
+        for (Trader trader : traders) {
+            if (trader.isOutOfStock()) {
+                outOfStock++;
+            }
+        }
+        return outOfStock;
+    }
+
     public int restock(int restockCost) {
         if (Inventory.getCoins() < restockCost) {
             return Constants.ERROR_NOT_ENOUGH_COINS;
@@ -125,32 +164,6 @@ public class Trader extends SugarRecord {
         }
     }
 
-    public static int restockAll(int restockCost) {
-        if (Inventory.getCoins() < restockCost) {
-            return Constants.ERROR_NOT_ENOUGH_COINS;
-        } else {
-            // Remove coins
-            Inventory coinStock = Inventory.getInventory(Constants.ITEM_COINS, Constants.STATE_NORMAL);
-            coinStock.setQuantity(coinStock.getQuantity() - restockCost);
-            coinStock.save();
-
-            Trader.executeQuery("UPDATE trader SET status = " + Constants.TRADER_NOT_PRESENT);
-            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
-
-            return Constants.SUCCESS;
-        }
-    }
-
-    public static int getFixedCount() {
-        return (int)Select.from(Trader.class).where(
-                Condition.prop("location").eq(Constants.LOCATION_MARKET),
-                Condition.prop("fixed").eq(1)).count();
-    }
-
-    public static int getRestockAllCost() {
-        return Upgrade.getValue("Restock All Cost");
-    }
-
     public long getShopkeeper() {
         return shopkeeper;
     }
@@ -167,16 +180,16 @@ public class Trader extends SugarRecord {
         this.location = location;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("trader_name_" + getId());
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescription(Context context) {
+        return TextHelper.getInstance(context).getText("trader_desc_" + getId());
     }
 
     public void setDescription(String description) {
@@ -236,16 +249,5 @@ public class Trader extends SugarRecord {
         }
 
         return !hasStock;
-    }
-
-    public static int outOfStockTraders() {
-        List<Trader> traders = Trader.listAll(Trader.class);
-        int outOfStock = 0;
-        for (Trader trader : traders) {
-            if (trader.isOutOfStock()) {
-                outOfStock++;
-            }
-        }
-        return outOfStock;
     }
 }

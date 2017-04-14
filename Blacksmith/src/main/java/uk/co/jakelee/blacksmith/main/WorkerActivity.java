@@ -35,8 +35,8 @@ import uk.co.jakelee.blacksmith.model.Worker;
 import uk.co.jakelee.blacksmith.model.Worker_Resource;
 
 public class WorkerActivity extends Activity {
-    private static DisplayHelper dh;
     private static final Handler handler = new Handler();
+    private static DisplayHelper dh;
     private boolean heroesSelected = false;
 
     @Override
@@ -150,7 +150,7 @@ public class WorkerActivity extends Activity {
 
             if (adventure != null) {
                 heroAdventure.setImageResource(DisplayHelper.getAdventureDrawableID(this, adventure.getSubcategory()));
-                heroAdventureText.setText(adventure.getName());
+                heroAdventureText.setText(adventure.getName(this));
             }
             heroAdventure.setTag(hero);
             heroAdventure.setOnClickListener(new Button.OnClickListener() {
@@ -171,13 +171,13 @@ public class WorkerActivity extends Activity {
                     if (hero.isPurchased() && hero.getVisitorId() > 0) {
                         List<Hero_Resource> resources = WorkerHelper.getResourcesByAdventure(hero.getCurrentAdventure());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(hero, resources, false, false)), false);
+                                WorkerHelper.getRewardResourcesText(activity, hero, resources, false, false)), false);
                     }
                 }
             });
             WorkerHelper.populateResources(dh, heroResourceContainer, hero.getCurrentAdventure());
 
-            heroButton.setText(WorkerHelper.getButtonText(hero));
+            heroButton.setText(WorkerHelper.getButtonText(this, hero));
             heroButton.setTag(hero);
             heroButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -293,7 +293,7 @@ public class WorkerActivity extends Activity {
                     }
                 }
             });
-            workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName()));
+            workerToolText.setText(String.format(getString(R.string.workerTool), tool.getName(this)));
 
             workerResourceContainer.setTag(worker);
             workerResourceContainer.setOnClickListener(new Button.OnClickListener() {
@@ -302,13 +302,13 @@ public class WorkerActivity extends Activity {
                     if (worker.isPurchased()) {
                         List<Worker_Resource> resources = WorkerHelper.getResourcesByTool((int) worker.getToolUsed());
                         ToastHelper.showToast(activity.findViewById(R.id.workerTitle), ToastHelper.LONG, String.format(getString(R.string.workerResources),
-                                WorkerHelper.getRewardResourcesText(worker, resources, false)), false);
+                                WorkerHelper.getRewardResourcesText(activity, worker, resources, false)), false);
                     }
                 }
             });
             WorkerHelper.populateResources(dh, workerResourceContainer, worker.getToolUsed());
 
-            workerButton.setText(WorkerHelper.getButtonText(worker));
+            workerButton.setText(WorkerHelper.getButtonText(this, worker));
             workerButton.setTag(worker);
             workerButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

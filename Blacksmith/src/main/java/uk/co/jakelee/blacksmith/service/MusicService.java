@@ -8,7 +8,6 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 
 import uk.co.jakelee.blacksmith.R;
-import uk.co.jakelee.blacksmith.helper.Constants;
 
 public class MusicService extends Service {
     private MediaPlayer player;
@@ -32,7 +31,7 @@ public class MusicService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         player.start();
 
-        return Constants.TRUE;
+        return Service.START_STICKY;
     }
 
     @Override

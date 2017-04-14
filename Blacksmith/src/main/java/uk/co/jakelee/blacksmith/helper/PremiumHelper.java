@@ -10,8 +10,8 @@ public class PremiumHelper {
     public static boolean payOutTax() {
         if (Player_Info.isPremium()) {
             int taxAmount = getTaxAmount();
-                Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, taxAmount);
-                return true;
+            Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, taxAmount);
+            return true;
         }
         return false;
     }

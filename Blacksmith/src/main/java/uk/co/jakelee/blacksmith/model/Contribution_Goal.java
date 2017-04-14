@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Contribution_Goal extends SugarRecord {
     private int goalId;
@@ -28,8 +32,8 @@ public class Contribution_Goal extends SugarRecord {
         this.goalId = goalId;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("con_name_" + goalId);
     }
 
     public void setName(String name) {
@@ -44,16 +48,16 @@ public class Contribution_Goal extends SugarRecord {
         this.reqContributions = reqContributions;
     }
 
-    public String getTeaserText() {
-        return teaserText;
+    public String getTeaserText(Context context) {
+        return TextHelper.getInstance(context).getText("con_teaser_" + goalId);
     }
 
     public void setTeaserText(String teaserText) {
         this.teaserText = teaserText;
     }
 
-    public String getUnlockedText() {
-        return unlockedText;
+    public String getUnlockedText(Context context) {
+        return TextHelper.getInstance(context).getText("con_unlocked_" + goalId);
     }
 
     public void setUnlockedText(String unlockedText) {

@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -127,10 +128,11 @@ public class TradeActivity extends Activity implements ItemTable {
 
     private void displayVisitorInfo() {
         final TextViewPixel visitorName = (TextViewPixel) findViewById(R.id.visitorName);
+        final Context context = this;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visitorName.setText(visitorType.getName());
+                visitorName.setText(visitorType.getName(context));
             }
         });
     }
@@ -139,12 +141,13 @@ public class TradeActivity extends Activity implements ItemTable {
         final Criteria demandCriteria = Criteria.findById(Criteria.class, demand.getCriteriaType());
         final TextViewPixel demandTextView = (TextViewPixel) findViewById(R.id.demandInfo);
 
+        final Activity activity = this;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 demandTextView.setText(String.format(getString(R.string.demandText),
-                        demandCriteria.getName(),
-                        Visitor_Demand.getCriteriaName(demand),
+                        demandCriteria.getName(activity),
+                        Visitor_Demand.getCriteriaName(activity, demand),
                         demand.getQuantityProvided(),
                         demand.getQuantity()
                 ));
@@ -191,9 +194,9 @@ public class TradeActivity extends Activity implements ItemTable {
                 TableRow itemRow = new TableRow(getApplicationContext());
                 final Item item = Item.findById(Item.class, inventory.getItem());
                 TextViewPixel quantity = dh.createTextView(String.valueOf(inventory.getQuantity()), 20, hasBeenTried ? Color.GRAY : Color.BLACK);
-                ImageView image = dh.createItemImage(inventory.getItem(), (int)inventory.getState(), 35, 35, true, true, inventory.isUnsellable());
+                ImageView image = dh.createItemImage(inventory.getItem(), (int) inventory.getState(), 35, 35, true, true, inventory.isUnsellable());
 
-                final String itemName = item.getPrefix(inventory.getState()) + item.getName();
+                final String itemName = item.getPrefix(inventory.getState()) + item.getName(this);
                 TextViewPixel name = dh.createTextView(itemName, 20, hasBeenTried ? Color.GRAY : Color.BLACK);
                 name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
@@ -202,10 +205,10 @@ public class TradeActivity extends Activity implements ItemTable {
                 name.setSingleLine(false);
                 name.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                        ToastHelper.showToast(itemsTable, ToastHelper.SHORT, item.getDescription(), false);
+                        ToastHelper.showToast(itemsTable, ToastHelper.SHORT, item.getDescription(itemsTable.getContext()), false);
                     }
                 });
-                name.setOnLongClickListener(ListenerHelper.getItemLongClick(this));
+                name.setOnLongClickListener(ListenerHelper.getItemLongClick(this, this));
 
                 itemRow.addView(quantity);
                 itemRow.addView(image);
@@ -304,7 +307,7 @@ public class TradeActivity extends Activity implements ItemTable {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
             ToastHelper.showToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, String.format(getString(R.string.tradedItem),
                     itemsTraded,
-                    itemToSell.getName(),
+                    itemToSell.getName(this),
                     value * itemsTraded), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsTraded, itemsTraded);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, value * itemsTraded);
@@ -313,7 +316,7 @@ public class TradeActivity extends Activity implements ItemTable {
             demand.setQuantityProvided(demand.getQuantityProvided() + itemsTraded);
             demand.save();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(tradeResponse), false);
+            ToastHelper.showErrorToast(findViewById(R.id.tradeTitle), ToastHelper.SHORT, getString(ErrorHelper.errors.get(tradeResponse)), false);
         }
 
         dh.updateCoins(Inventory.getCoins());

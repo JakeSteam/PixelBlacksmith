@@ -19,22 +19,22 @@ public class QuestHelper {
         double rewardModifier = 0;
         int rewardPageCount = 0;
         switch (difficulty) {
-            case "Elite" :
+            case "Elite":
                 xpAmount = Player_Info.getPlayerLevel() * Constants.QUEST_XP_MODIFIER_ELITE;
                 rewardModifier = Constants.QUEST_REWARD_MODIFIER_ELITE;
                 rewardPageCount = getPagesRewarded(Constants.QUEST_PAGE_CHANCE_ELITE);
                 break;
-            case "Hard" :
+            case "Hard":
                 xpAmount = Player_Info.getPlayerLevel() * Constants.QUEST_XP_MODIFIER_HARD;
                 rewardModifier = Constants.QUEST_REWARD_MODIFIER_HARD;
                 rewardPageCount = getPagesRewarded(Constants.QUEST_PAGE_CHANCE_HARD);
                 break;
-            case "Medium" :
+            case "Medium":
                 xpAmount = Player_Info.getPlayerLevel() * Constants.QUEST_XP_MODIFIER_MEDIUM;
                 rewardModifier = Constants.QUEST_REWARD_MODIFIER_MEDIUM;
                 rewardPageCount = getPagesRewarded(Constants.QUEST_PAGE_CHANCE_MEDIUM);
                 break;
-            case "Easy" :
+            case "Easy":
                 xpAmount = Player_Info.getPlayerLevel() * Constants.QUEST_XP_MODIFIER_EASY;
                 rewardModifier = Constants.QUEST_REWARD_MODIFIER_EASY;
                 rewardPageCount = getPagesRewarded(Constants.QUEST_PAGE_CHANCE_EASY);
@@ -66,14 +66,14 @@ public class QuestHelper {
             return String.format(context.getString(R.string.questRewardPage),
                     xpAmount,
                     rewardItemCount,
-                    rewardItem.getName(),
+                    rewardItem.getName(context),
                     rewardPageCount,
-                    rewardPage.getName());
+                    rewardPage.getName(context));
         } else {
             return String.format(context.getString(R.string.questRewardNoPage),
                     xpAmount,
                     rewardItemCount,
-                    rewardItem.getName());
+                    rewardItem.getName(context));
         }
     }
 

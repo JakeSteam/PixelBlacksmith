@@ -1,5 +1,7 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -26,14 +28,6 @@ public class Inventory extends SugarRecord implements Serializable {
         this.state = state;
         this.quantity = quantity;
         this.unsellable = false;
-    }
-
-    public boolean isUnsellable() {
-        return unsellable;
-    }
-
-    public void setUnsellable(boolean unsellable) {
-        this.unsellable = unsellable;
     }
 
     public static void addItem(Pending_Inventory item, boolean rewardXp) {
@@ -223,7 +217,7 @@ public class Inventory extends SugarRecord implements Serializable {
         }
     }
 
-    public static String exchangePages(Inventory pageInventory, int quantity) {
+    public static String exchangePages(Context context, Inventory pageInventory, int quantity) {
         pageInventory.setQuantity(pageInventory.getQuantity() - (quantity * Constants.PAGE_EXCHANGE_QTY));
         pageInventory.save();
 
@@ -233,7 +227,7 @@ public class Inventory extends SugarRecord implements Serializable {
         Item rewardPage = VisitorHelper.pickRandomItemFromList(pages);
         Inventory.addItem(rewardPage.getId(), Constants.STATE_NORMAL, quantity);
 
-        return rewardPage.getName();
+        return rewardPage.getName(context);
     }
 
     public static boolean haveSeen(long item, long state) {
@@ -251,6 +245,12 @@ public class Inventory extends SugarRecord implements Serializable {
             price = price * 4;
         } else if (Super_Upgrade.isEnabled(Constants.SU_BONUS_GOLD) || Super_Upgrade.isEnabled(Constants.SU_DOUBLE_TRADE_PRICE)) {
             price = price * 2;
+        }
+
+        int activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue();
+        if (activeAssistant > 0) {
+            Assistant assistant = Assistant.get(activeAssistant);
+            price = (int) Math.floor((double) price * (1 + assistant.getBoost()));
         }
 
         if (itemStock.isUnsellable()) {
@@ -279,6 +279,10 @@ public class Inventory extends SugarRecord implements Serializable {
         } else {
             return Constants.SUCCESS;
         }
+    }
+
+    public static void clearDuplicates() {
+        Inventory.executeQuery("DELETE FROM inventory WHERE quantity = 0 AND item IN (SELECT i2.item FROM inventory AS i2 GROUP BY i2.item, i2.state HAVING COUNT(*) > 1)");
     }
 
     public static int buyItem(Trader_Stock itemStock) {
@@ -318,6 +322,14 @@ public class Inventory extends SugarRecord implements Serializable {
         } else {
             return 0;
         }
+    }
+
+    public boolean isUnsellable() {
+        return unsellable;
+    }
+
+    public void setUnsellable(boolean unsellable) {
+        this.unsellable = unsellable;
     }
 
     public Long getItem() {

@@ -36,7 +36,6 @@ public class WorkerHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.workerID";
     public final static String INTENT_TYPE = "uk.co.jakelee.blacksmith.equipmentType";
     public final static String INTENT_HERO = "uk.co.jakelee.blacksmith.hero";
-    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring};
 
     public static List<Worker_Resource> getResourcesByTool(int toolID) {
         return Select.from(Worker_Resource.class).where(
@@ -95,25 +94,25 @@ public class WorkerHelper {
         return hero.getLevelUnlocked() * Constants.HERO_COST_MULTIPLIER;
     }
 
-    public static String getButtonText(Worker worker) {
+    public static String getButtonText(Context context, Worker worker) {
         if (isReady(worker)) {
-            return "Start Gathering";
+            return context.getString(R.string.worker_start_gathering);
         } else {
-            return "Returns in " + WorkerHelper.getTimeRemainingString(worker.getTimeStarted());
+            return context.getString(R.string.worker_returns_in) + WorkerHelper.getTimeRemainingString(worker.getTimeStarted());
         }
     }
 
-    public static String getButtonText(Hero hero) {
+    public static String getButtonText(Context context, Hero hero) {
         if (isReady(hero)) {
             Hero_Adventure adventure = Hero_Adventure.getAdventure(hero.getCurrentAdventure());
             Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
-            return "Start Adventure (" + getAdventureSuccessChance(getTotalStrength(hero, vType), adventure.getDifficulty()) + "%)";
+            return context.getString(R.string.worker_start_adventure) + " (" + getAdventureSuccessChance(getTotalStrength(hero, vType), adventure.getDifficulty()) + "%)";
         } else if (hero.getVisitorId() == 0) {
-            return "Select Hero";
+            return context.getString(R.string.worker_select_hero);
         } else if (hero.getCurrentAdventure() == 0) {
-            return "Select Adventure";
+            return context.getString(R.string.worker_select_adventure);
         } else {
-            return "Returns in " + WorkerHelper.getTimeRemainingString(hero.getTimeStarted());
+            return context.getString(R.string.worker_returns_in) + WorkerHelper.getTimeRemainingString(hero.getTimeStarted());
         }
     }
 
@@ -165,17 +164,17 @@ public class WorkerHelper {
                     String lastResultString = removeEquippedItems(hero, slotsToEmpty);
                     if (slotsToEmpty.size() > 0) {
                         lastResult = String.format(context.getString(R.string.heroFailText),
-                                heroVisitor.getName(),
-                                adventure.getName(),
+                                heroVisitor.getName(context),
+                                adventure.getName(context),
                                 lastResultString);
                     } else {
                         lastResult = String.format(context.getString(R.string.heroFailNoItemsText),
-                                heroVisitor.getName(),
-                                adventure.getName());
+                                heroVisitor.getName(context),
+                                adventure.getName(context));
                     }
                 }
-                heroNames.add(heroVisitor.getName());
-                completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS);
+                heroNames.add(heroVisitor.getName(context));
+                completeHero(hero, refillFood, heroVisitor, adventureResult == Constants.HERO_RESULT_SUCCESS || adventureResult == Constants.HERO_RESULT_SUPER_SUCCESS);
                 heroesFinished++;
                 Message.add(lastResult);
             }
@@ -221,7 +220,6 @@ public class WorkerHelper {
         return slotsWithItems;
     }
 
-
     public static List<EQUIP_SLOTS> getSlotsToEmpty(Hero hero, int itemsToRemove) {
         List<EQUIP_SLOTS> slotsWithItems = getSlotsWithItems(hero);
         if (slotsWithItems.size() == 0 || slotsWithItems.size() <= itemsToRemove) {
@@ -241,7 +239,7 @@ public class WorkerHelper {
         String slotsString = "";
         for (EQUIP_SLOTS slot : slotsToEmpty) {
             slotsString += slot.name() + ", ";
-            switch(slot) {
+            switch (slot) {
                 case Helmet:
                     hero.setHelmetItem(0);
                     hero.setHelmetState(0);
@@ -336,14 +334,13 @@ public class WorkerHelper {
                 Condition.prop("time_started").notEq(0)).list();
         int workersFinished = 0;
         List<String> workerNames = new ArrayList<>();
-        String rewardText = "";
-
+        String rewardText;
         boolean refillFood = Setting.getSafeBoolean(Constants.SETTING_AUTOFEED);
 
         for (Worker worker : workers) {
             if (getTimeRemaining(worker.getTimeStarted()) <= 0) {
                 rewardText = rewardResources(context, worker);
-                workerNames.add(Character.findById(Character.class, worker.getCharacterID()).getName());
+                workerNames.add(Character.findById(Character.class, worker.getCharacterID()).getName(context));
                 workersFinished++;
 
                 // If autorefill is on and worker has food, remove 1 from inventory and leave the current food used.
@@ -387,8 +384,8 @@ public class WorkerHelper {
         Character workerCharacter = Character.findById(Character.class, worker.getCharacterID());
         List<Worker_Resource> resources = getResourcesByTool((int) worker.getToolUsed());
         return String.format(context.getString(R.string.workerReturned),
-                workerCharacter.getName(),
-                getRewardResourcesText(worker, resources, true));
+                workerCharacter.getName(context),
+                getRewardResourcesText(context, worker, resources, true));
     }
 
     private static String rewardResources(Context context, Hero hero, boolean superSuccess) {
@@ -398,20 +395,20 @@ public class WorkerHelper {
             resources = superSuccessResources(resources);
         }
         return String.format(context.getString(R.string.workerReturned),
-                vType.getName(),
-                getRewardResourcesText(hero, resources, true, superSuccess));
+                vType.getName(context),
+                getRewardResourcesText(context, hero, resources, true, superSuccess));
     }
 
     private static List<Hero_Resource> superSuccessResources(List<Hero_Resource> resources) {
         double modifier = (VisitorHelper.getRandomNumber(Constants.SUPER_SUCCESS_MINIMUM, Constants.SUPER_SUCCESS_MAXIMUM) / 100);
         for (Hero_Resource resource : resources) {
-            double modifiedQuantity = ((double)resource.getResourceQuantity()) * modifier;
-            resource.setResourceQuantity((int)Math.ceil(modifiedQuantity));
+            double modifiedQuantity = ((double) resource.getResourceQuantity()) * modifier;
+            resource.setResourceQuantity((int) Math.ceil(modifiedQuantity));
         }
         return resources;
     }
 
-    public static String getRewardResourcesText(Hero hero, List<Hero_Resource> resources, boolean addItems, boolean isSuperSuccess) {
+    public static String getRewardResourcesText(Context context, Hero hero, List<Hero_Resource> resources, boolean addItems, boolean isSuperSuccess) {
         LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, hero.getFoodItem());
 
@@ -425,11 +422,11 @@ public class WorkerHelper {
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
-            if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName()) + numberResources;
-                data.put(item.getName(), temp);
+            if (data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context)) + numberResources;
+                data.put(item.getName(context), temp);
             } else {
-                data.put(item.getName(), numberResources);
+                data.put(item.getName(context), numberResources);
             }
         }
 
@@ -442,9 +439,9 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+            bonusText = ", " + context.getString(R.string.fragment_and_a_rare) + " %s" + rewardedPage.getName(context);
         } else if (!addItems && foodItem != null) {
-            bonusText = ", and possibly a rare page";
+            bonusText = ", " + context.getString(R.string.fragment_and_a_page);
         }
 
         StringBuilder result = new StringBuilder();
@@ -457,7 +454,7 @@ public class WorkerHelper {
         return result.substring(0, result.length() - 2) + bonusText;
     }
 
-    public static String getRewardResourcesText(Worker worker, List<Worker_Resource> resources, boolean addItems) {
+    public static String getRewardResourcesText(Context context, Worker worker, List<Worker_Resource> resources, boolean addItems) {
         LinkedHashMap<String, Integer> data = new LinkedHashMap<>();
         Item foodItem = Item.findById(Item.class, worker.getFoodUsed());
         boolean applyFoodBonus = worker.getFoodUsed() > 0 && (worker.getTimeStarted() > 0 || addItems);
@@ -483,11 +480,11 @@ public class WorkerHelper {
 
             Item item = Item.findById(Item.class, resource.getResourceID());
             Integer temp;
-            if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName()) + numberResources;
-                data.put(item.getName(), temp);
+            if (data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context)) + numberResources;
+                data.put(item.getName(context), temp);
             } else {
-                data.put(item.getName(), numberResources);
+                data.put(item.getName(context), numberResources);
             }
         }
 
@@ -500,13 +497,13 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = String.format(", and a rare %s", rewardedPage.getName());
+            bonusText = ", " + context.getString(R.string.fragment_and_a_rare) + rewardedPage.getName(context);
         } else if (!addItems && foodItem != null) {
             // If checking resources
             if (foodItem.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered()) {
-                bonusText = ", and very possibly a rare page";
+                bonusText = ", " + context.getString(R.string.fragment_and_a_page_very);
             } else {
-                bonusText = ", and possibly a rare page";
+                bonusText = ", " + context.getString(R.string.fragment_and_a_page);
             }
         }
 
@@ -521,16 +518,16 @@ public class WorkerHelper {
         if (result.length() > 3) {
             return result.substring(0, result.length() - 2) + bonusText;
         }
-        return "Failed to lookup info, please let the developer know which worker this is!";
+        return "";
     }
 
     public static String getTimesCompletedString(Context context, Worker worker) {
         Character character = Character.findById(Character.class, worker.getCharacterID());
         Item foodUsed = Item.findById(Item.class, worker.getFoodUsed());
         return String.format(context.getString(R.string.workerTimesCompleted),
-                character.getName(),
+                character.getName(context),
                 worker.getTimesCompleted(),
-                foodUsed != null ? foodUsed.getName() : "nothing",
+                foodUsed != null ? foodUsed.getName(context) : "N/A",
                 foodUsed != null ? (foodUsed.getId() == worker.getFavouriteFood() && worker.isFavouriteFoodDiscovered() ? 2 : 1) * foodUsed.getValue() : 0);
     }
 
@@ -538,7 +535,7 @@ public class WorkerHelper {
         Visitor_Type visitorType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
         Visitor_Stats visitorStats = Visitor_Stats.findById(Visitor_Stats.class, hero.getVisitorId());
         return String.format(context.getString(R.string.heroTimesCompleted),
-                visitorType.getName(),
+                visitorType.getName(context),
                 visitorStats.getAdventuresCompleted(),
                 WorkerHelper.getTotalStrength(hero, visitorType));
     }
@@ -547,7 +544,7 @@ public class WorkerHelper {
         Character character = Character.findById(Character.class, worker.getCharacterID());
         String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(worker.getTimeStarted()));
         return String.format(context.getString(R.string.workerReturnTime),
-                character.getName(),
+                character.getName(context),
                 timeRemaining);
     }
 
@@ -555,29 +552,29 @@ public class WorkerHelper {
         Visitor_Type vType = Visitor_Type.findById(Visitor_Type.class, hero.getVisitorId());
         String timeRemaining = DateHelper.getHoursMinsSecsRemaining(WorkerHelper.getTimeRemaining(hero.getTimeStarted()));
         return String.format(context.getString(R.string.workerReturnTime),
-                vType.getName(),
+                vType.getName(context),
                 timeRemaining);
     }
 
-    public static List<Inventory> getTools(String selection) {
+    public static List<Inventory> getTools(Context context, String selection) {
         String whereClause = "1 > 2";
-        if (selection.equals("Pickaxe (Ore)")) {
+        if (selection.equals(context.getString(R.string.tool_pickaxe))) {
             whereClause = "type = 15";
-        } else if (selection.equals("Hammer (Bar)")) {
+        } else if (selection.equals(context.getString(R.string.tool_hammer))) {
             whereClause = "type = 18";
-        } else if (selection.equals("Fishing Rod (Food)")) {
+        } else if (selection.equals(context.getString(R.string.tool_fishing_rod))) {
             whereClause = "type = 17";
-        } else if (selection.equals("Hatchet (Wood)")) {
+        } else if (selection.equals(context.getString(R.string.tool_hatchet))) {
             whereClause = "type = 16";
-        } else if (selection.equals("Gloves (Silk)")) {
+        } else if (selection.equals(context.getString(R.string.tool_gloves))) {
             whereClause = "type = 14";
-        } else if (selection.equals("Gem (Powder)")) {
+        } else if (selection.equals(context.getString(R.string.tool_gem))) {
             whereClause = "type = 20";
-        } else if (selection.equals("Silver Ring (Silver + Gems)")) {
+        } else if (selection.equals(context.getString(R.string.tool_silver_ring))) {
             whereClause = "type = 24 AND tier = 8";
-        } else if (selection.equals("Gold Ring (Gold + Gems)")) {
+        } else if (selection.equals(context.getString(R.string.tool_gold_ring))) {
             whereClause = "type = 24 AND tier = 9";
-        } else if (selection.equals("Visage (Coins)")) {
+        } else if (selection.equals(context.getString(R.string.tool_visage))) {
             whereClause = "id = 148";
         }
         List<Item> items = Item.find(Item.class, whereClause);
@@ -647,7 +644,7 @@ public class WorkerHelper {
         totalStrength += getAdjustedStrength(vType, hero.getBootsItem(), hero.getBootsState());
         totalStrength += getAdjustedStrength(vType, hero.getRingItem(), hero.getRingState());
 
-        totalStrength = (int)Math.ceil(((double)totalStrength) * HeroSetHelper.getMultiplier(hero));
+        totalStrength = (int) Math.ceil(((double) totalStrength) * HeroSetHelper.getMultiplier(hero));
 
         return totalStrength;
     }
@@ -658,4 +655,6 @@ public class WorkerHelper {
                 && vStats.getBestItemValue() >= Constants.HERO_MIN_TRADE
                 && vType.getPreferencesDiscovered() >= Constants.HERO_MIN_PREFS;
     }
+
+    private enum EQUIP_SLOTS {Helmet, Armour, Weapon, Shield, Gloves, Boots, Ring}
 }

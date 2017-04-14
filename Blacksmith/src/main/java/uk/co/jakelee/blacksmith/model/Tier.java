@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Tier extends SugarRecord {
     private Long id;
@@ -26,8 +30,8 @@ public class Tier extends SugarRecord {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("tier_" + id);
     }
 
     public void setName(String name) {

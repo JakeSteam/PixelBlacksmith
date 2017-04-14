@@ -26,25 +26,25 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/interstitialTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
-            app:layout_marginTopPercent="1%"
-            app:layout_marginBottomPercent="8%"
             android:gravity="center"
             android:text="@string/interstitialText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="8%"
+            app:layout_marginTopPercent="1%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/countdownTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/interstitialTitle"
-            android:textSize="34sp"
-            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
             android:text="@string/unknown_error"
-            android:layout_marginBottom="8dp"/>
+            android:textColor="@color/black"
+            android:textSize="34sp" />
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/interstitialScroller"
@@ -64,11 +64,11 @@
                     android:id="@+id/interstitialText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
                     android:text="@string/interstitialLongText"
-                    android:textColorLink="@color/defaultLink"/>
+                    android:textColor="@color/black"
+                    android:textColorLink="@color/defaultLink"
+                    android:textSize="22sp" />
             </LinearLayout>
 
         </ScrollView>

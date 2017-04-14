@@ -74,10 +74,10 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
         traderImage.setImageResource(drawableID);
 
         TextView traderName = (TextView) findViewById(R.id.traderName);
-        traderName.setText(traderCharacter.getName());
+        traderName.setText(traderCharacter.getName(this));
 
         TextView traderGreeting = (TextView) findViewById(R.id.traderGreeting);
-        traderGreeting.setText(traderCharacter.getIntro());
+        traderGreeting.setText(traderCharacter.getIntro(this));
 
         TextView traderTrades = (TextView) findViewById(R.id.traderTrades);
         traderTrades.setText(String.format(getString(R.string.traderTrades), trader.getPurchases()));
@@ -86,7 +86,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
     }
 
     private void updateLockStatus() {
-        ((ImageView)findViewById(R.id.traderLockIndicator)).setImageDrawable(dh.createDrawable(trader.isFixed() ? R.drawable.tick : R.drawable.cross, 25, 25));
+        ((ImageView) findViewById(R.id.traderLockIndicator)).setImageDrawable(dh.createDrawable(trader.isFixed() ? R.drawable.tick : R.drawable.cross, 25, 25));
     }
 
     private void createItemList() {
@@ -115,14 +115,14 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
         TextView itemStock = (TextView) itemRow.findViewById(R.id.itemStock);
         itemStock.setText(String.format(getString(R.string.traderStock),
-                item.getFullName(itemForSale.getState()),
+                item.getFullName(this, itemForSale.getState()),
                 itemForSale.getStock(),
                 itemForSale.getDefaultStock()));
 
         TextView itemBuy = (TextView) itemRow.findViewById(R.id.itemBuy);
 
         if (outOfStock) {
-            itemStock.setPaintFlags(itemStock.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+            itemStock.setPaintFlags(itemStock.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             itemStock.setTextColor(Color.GRAY);
             itemBuy.setVisibility(View.INVISIBLE);
         } else {
@@ -146,7 +146,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
             } else {
                 AlertDialogHelper.confirmTraderRestock(getApplicationContext(), this, trader, restockCost);
             }
-        } else if(trader.isFixed()) {
+        } else if (trader.isFixed()) {
             callbackRestock();
         } else {
             ToastHelper.showToast(findViewById(R.id.trader), ToastHelper.SHORT, getString(R.string.unnecessaryRestock), false);
@@ -159,7 +159,7 @@ public class TraderActivity extends Activity implements AlertDialogCallback {
 
     public void toggleTraderLock(View v) {
         if (!trader.isFixed() && Trader.getFixedCount() > (Constants.TRADER_LOCK_MAX - 1)) {
-            ToastHelper.showErrorToast(findViewById(R.id.trader), Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAX_LOCKED_TRADERS), false);
+            ToastHelper.showErrorToast(findViewById(R.id.trader), Toast.LENGTH_SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAX_LOCKED_TRADERS)), false);
         } else {
             AlertDialogHelper.confirmTraderLock(this, trader);
         }

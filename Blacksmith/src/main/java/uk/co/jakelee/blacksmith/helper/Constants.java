@@ -5,6 +5,17 @@ import android.content.pm.ActivityInfo;
 public class Constants {
     public static final int TRUE = 1;
 
+    public static final int NUM_LANGUAGES = 9;
+    public static final int LANG_ENGLISH = 1;
+    public static final int LANG_FRENCH = 2;
+    public static final int LANG_RUSSIAN = 3;
+    public static final int LANG_DUTCH = 4;
+    public static final int LANG_CHINESE = 5;
+    public static final int LANG_KOREAN = 6;
+    public static final int LANG_JAPANESE = 7;
+    public static final int LANG_SPANISH = 8;
+    public static final int LANG_GERMAN = 9;
+
     public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";
     public static final String LEADERBOARD_TROPHIES = "CgkI6tnE2Y4OEAIQIQ";
@@ -112,6 +123,7 @@ public class Constants {
     public static final int NOTIFICATION_WORKER = 3;
     public static final int NOTIFICATION_BONUS = 4;
     public static final int NOTIFICATION_FINISHED = 5;
+    public static final int NOTIFICATION_ASSISTANT = 6;
 
     public static final int NUMBER_OF_TROPHY_COLUMNS = 4;
     public static final int VISITS_TROPHY = 100;
@@ -184,6 +196,8 @@ public class Constants {
     public static final Long SETTING_FINISHED_NOTIFICATIONS = 20L;
     public static final Long SETTING_BULK_STACK = 21L;
     public static final Long SETTING_ORIENTATION = 22L;
+    public static final Long SETTING_LANGUAGE = 23L;
+    public static final Long SETTING_ASSISTANT_NOTIFICATIONS = 24L;
 
     public static final int SU_DOUBLE_FURNACE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;
@@ -204,6 +218,8 @@ public class Constants {
     public static final int SU_DOUBLE_ANVIL_CRAFTS = 17;
     public static final int SU_DOUBLE_TABLE_CRAFTS = 18;
     public static final int SU_DOUBLE_ENCHANT_CRAFTS = 19;
+    public static final int SU_BUY_ALL_MARKET = 20;
+    public static final int SU_HALVE_TIMES = 21;
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_UNFINISHED = 2;

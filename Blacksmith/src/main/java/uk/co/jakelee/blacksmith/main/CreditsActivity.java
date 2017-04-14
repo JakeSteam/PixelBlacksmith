@@ -12,13 +12,11 @@ import uk.co.jakelee.blacksmith.controls.TextViewPixel;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 
 public class CreditsActivity extends Activity {
-    private static DisplayHelper dh;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         // Make all the links work

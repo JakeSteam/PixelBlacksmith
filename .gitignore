@@ -9,3 +9,6 @@ sh.exe.stackdump
 Blacksmith/Blacksmith.iml
 BaseGameUtils/BaseGameUtils.iml
 .idea/misc.xml
+Blacksmith.iml
+Blacksmith/Blacksmith-Blacksmith.iml
+.idea/modules.xml

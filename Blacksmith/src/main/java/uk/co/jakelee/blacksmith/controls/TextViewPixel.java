@@ -2,10 +2,10 @@ package uk.co.jakelee.blacksmith.controls;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
-public class TextViewPixel extends TextView {
+public class TextViewPixel extends AppCompatTextView {
     private static Typeface mTypeface;
 
     public TextViewPixel(final Context context) {

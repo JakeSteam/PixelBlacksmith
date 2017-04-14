@@ -33,11 +33,11 @@ import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
+    private static final String SKU_PREMIUM = "premium";
+    private static final String SKU_CONTRIBUTE = "contribute";
     private static DisplayHelper dh;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
-    private static final String SKU_PREMIUM = "premium";
-    private static final String SKU_CONTRIBUTE = "contribute";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
         }
-        
+
         updatePremiumStatus();
         updateContributeStatus();
     }
@@ -86,7 +86,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onPurchaseHistoryRestored() {}
+    public void onPurchaseHistoryRestored() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -127,20 +128,20 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         for (Contribution_Goal contribution : contributions) {
             boolean unlocked = timesContributed >= contribution.getReqContributions();
             TextView contributeTitle = dh.createTextView(String.format(getString(R.string.contributeTitle),
-                    contribution.getName(),
+                    contribution.getName(this),
                     unlocked ? contribution.getReqContributions() : timesContributed,
                     contribution.getReqContributions()), 24);
             contributeTitle.setTextColor(unlocked ? Color.parseColor("#267c18") : Color.BLACK);
             contributeTitle.setPadding(0, 0, 15, 0);
 
             ProgressBar contributeProgress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
-            contributeProgress.getProgressDrawable().setColorFilter(0xFF267c18,android.graphics.PorterDuff.Mode.MULTIPLY);
+            contributeProgress.getProgressDrawable().setColorFilter(0xFF267c18, android.graphics.PorterDuff.Mode.MULTIPLY);
             contributeProgress.setProgress(unlocked ? contribution.getReqContributions() : timesContributed);
             contributeProgress.setMax(contribution.getReqContributions());
             contributeProgress.setPadding(0, 0, 15, 0);
 
             TextView contributeBody = new TextViewPixel(this);
-            contributeBody.setText(Html.fromHtml(unlocked ? contribution.getUnlockedText() : contribution.getTeaserText() + "<br><br>"));
+            contributeBody.setText(Html.fromHtml(unlocked ? contribution.getUnlockedText(this) : contribution.getTeaserText(this) + "<br><br>"));
             contributeBody.setTextSize(20);
             contributeBody.setMovementMethod(LinkMovementMethod.getInstance());
             contributeBody.setTextColor(Color.BLACK);
@@ -182,7 +183,7 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     private String getPublicKey() {
-        String[] keyArray = new String[] {
+        String[] keyArray = new String[]{
                 "MIIBIjANBgkqhki",
                 "G9w0BAQEFAAOCAQ",
                 "8AMIIBCgKCAQEAlONTh/sroNhFQ",

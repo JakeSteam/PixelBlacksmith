@@ -29,18 +29,16 @@ import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
-    public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox};
-    public AppLovinIncentivizedInterstitial advert;
+    public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
+    private static AdvertHelper dhInstance = null;
     private final Context context;
+    private AppLovinIncentivizedInterstitial advert;
     private MainActivity mainActivity;
     private MarketActivity marketActivity;
     private VisitorActivity visitorActivity;
     private TraderActivity traderActivity;
     private boolean verified;
     private advertPurpose currentPurpose;
-    private static AdvertHelper dhInstance = null;
-    public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
-
     public AdvertHelper(Context context) {
         this.context = context;
 
@@ -54,6 +52,75 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
             dhInstance = new AdvertHelper(ctx.getApplicationContext());
         }
         return dhInstance;
+    }
+
+    public static String createAdvertReward(Context context) {
+        int minimumRewards = Constants.MINIMUM_REWARDS;
+        int maximumRewards = Constants.MAXIMUM_REWARDS;
+        boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
+        boolean rewardPage = VisitorHelper.getRandomBoolean(Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) ? 0 : 65); // 35% chance to get page
+
+        // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
+        Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);
+        if (VisitorHelper.getRandomBoolean(25)) {
+            int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
+            List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
+            selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
+        } else {
+            minimumRewards = Constants.MINIMUM_COIN_REWARDS;
+            maximumRewards = Constants.MAXIMUM_COIN_REWARDS;
+        }
+
+        int numberRewards = (Player_Info.isPremium() ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
+        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numberRewards);
+        String rewardString = getRewardString(context, rewardLegendary);
+
+        // Create reward string, and legendary if necessary.
+        if (rewardLegendary) {
+            List<Item> legendaryItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
+            Item legendaryItem = VisitorHelper.pickRandomItemFromList(legendaryItems);
+            Inventory.addItem(legendaryItem.getId(), Constants.STATE_UNFINISHED, 1);
+            rewardString = String.format(rewardString,
+                    numberRewards,
+                    selectedItem.getName(context),
+                    legendaryItem.getFullName(context, Constants.STATE_UNFINISHED));
+        } else {
+            rewardString = String.format(rewardString,
+                    numberRewards,
+                    selectedItem.getFullName(context, Constants.STATE_NORMAL));
+        }
+
+        // Append page earned if possible.
+        if (rewardPage) {
+            List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
+            Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
+            Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
+
+            rewardString += (" " + String.format(context.getString(R.string.advertWatchedPageSuffix),
+                    rewardedPage.getName(context)));
+        }
+
+        return rewardString;
+    }
+
+    private static String getRewardString(Context context, boolean rewardLegendary) {
+        List<String> strings = new ArrayList<>();
+        boolean isPremium = Player_Info.isPremium();
+        if (rewardLegendary && isPremium) {
+            strings.add(context.getString(R.string.advertWatchedLegendaryPremium1));
+            strings.add(context.getString(R.string.advertWatchedLegendaryPremium2));
+        } else if (rewardLegendary) {
+            strings.add(context.getString(R.string.advertWatchedLegendary1));
+            strings.add(context.getString(R.string.advertWatchedLegendary2));
+        } else if (isPremium) {
+            strings.add(context.getString(R.string.advertWatchedPremium1));
+            strings.add(context.getString(R.string.advertWatchedPremium2));
+        } else {
+            strings.add(context.getString(R.string.advertWatched1));
+            strings.add(context.getString(R.string.advertWatched2));
+        }
+        int position = VisitorHelper.getRandomNumber(0, strings.size() - 1);
+        return strings.get(position);
     }
 
     public void openInterstitial(advertPurpose purpose) {
@@ -132,7 +199,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     break;
             }
         } else {
-            ToastHelper.showErrorToast(null, ToastHelper.LONG, "Something went wrong, and the ad view couldn't be verified. Sorry!", false);
+            ToastHelper.showErrorToast(null, ToastHelper.LONG, context.getString(R.string.error_ad_unverified), false);
         }
         // Begin loading next advert.
         advert.preload(null);
@@ -163,80 +230,33 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         verified = true;
     }
 
-    @Override public void videoPlaybackBegan(AppLovinAd appLovinAd) {}
-    @Override public void videoPlaybackEnded(AppLovinAd appLovinAd, double v, boolean b) {}
-    @Override public void adDisplayed(AppLovinAd appLovinAd) {}
-    @Override public void userOverQuota(AppLovinAd appLovinAd, Map map) {}
-    @Override public void userRewardRejected(AppLovinAd appLovinAd, Map map) {}
-    @Override public void validationRequestFailed(AppLovinAd appLovinAd, int i) {}
-    @Override public void userDeclinedToViewAd(AppLovinAd appLovinAd) {}
-
-    public static String createAdvertReward(Context context) {
-        int minimumRewards = Constants.MINIMUM_REWARDS;
-        int maximumRewards = Constants.MAXIMUM_REWARDS;
-        boolean rewardLegendary = Player_Info.isPremium() && VisitorHelper.getRandomBoolean(100 - Upgrade.getValue("Legendary Chance"));
-        boolean rewardPage = VisitorHelper.getRandomBoolean(Super_Upgrade.isEnabled(Constants.SU_PAGE_CHANCE) ? 0 : 65); // 35% chance to get page
-
-        // 75% chance to get a normal (increased) reward, 25% chance to get coin amount.
-        Item selectedItem = Item.findById(Item.class, Constants.ITEM_COINS);
-        if (VisitorHelper.getRandomBoolean(25)) {
-            int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);
-            List<Item> matchingItems = Select.from(Item.class).where(Condition.prop("type").eq(typeID)).list();
-            selectedItem = VisitorHelper.pickRandomItemFromList(matchingItems);
-        } else {
-            minimumRewards = Constants.MINIMUM_COIN_REWARDS;
-            maximumRewards = Constants.MAXIMUM_COIN_REWARDS;
-        }
-
-        int numberRewards = (Player_Info.isPremium() ? 2 : 1) * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
-        Inventory.addItem(selectedItem.getId(), Constants.STATE_NORMAL, numberRewards);
-        String rewardString = getRewardString(context, rewardLegendary);
-
-        // Create reward string, and legendary if necessary.
-        if (rewardLegendary) {
-            List<Item> legendaryItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
-            Item legendaryItem = VisitorHelper.pickRandomItemFromList(legendaryItems);
-            Inventory.addItem(legendaryItem.getId(), Constants.STATE_UNFINISHED, 1);
-            rewardString = String.format(rewardString,
-                    numberRewards,
-                    selectedItem.getName(),
-                    legendaryItem.getFullName(Constants.STATE_UNFINISHED));
-        } else {
-            rewardString = String.format(rewardString,
-                    numberRewards,
-                    selectedItem.getFullName(Constants.STATE_NORMAL));
-        }
-
-        // Append page earned if possible.
-        if (rewardPage) {
-            List<Item> pages = Select.from(Item.class).where(Condition.prop("type").eq(Constants.TYPE_PAGE)).list();
-            Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
-            Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
-
-            rewardString += (" " + String.format(context.getString(R.string.advertWatchedPageSuffix),
-                rewardedPage.getName()));
-        }
-
-        return rewardString;
+    @Override
+    public void videoPlaybackBegan(AppLovinAd appLovinAd) {
     }
 
-    private static String getRewardString(Context context, boolean rewardLegendary) {
-        List<String> strings = new ArrayList<>();
-        boolean isPremium = Player_Info.isPremium();
-        if (rewardLegendary && isPremium) {
-            strings.add(context.getString(R.string.advertWatchedLegendaryPremium1));
-            strings.add(context.getString(R.string.advertWatchedLegendaryPremium2));
-        } else if (rewardLegendary && !isPremium) {
-            strings.add(context.getString(R.string.advertWatchedLegendary1));
-            strings.add(context.getString(R.string.advertWatchedLegendary2));
-        }else if (!rewardLegendary && isPremium) {
-            strings.add(context.getString(R.string.advertWatchedPremium1));
-            strings.add(context.getString(R.string.advertWatchedPremium2));
-        }else if (!rewardLegendary && !isPremium) {
-            strings.add(context.getString(R.string.advertWatched1));
-            strings.add(context.getString(R.string.advertWatched2));
-        }
-        int position = VisitorHelper.getRandomNumber(0, strings.size() - 1);
-        return strings.get(position);
+    @Override
+    public void videoPlaybackEnded(AppLovinAd appLovinAd, double v, boolean b) {
     }
+
+    @Override
+    public void adDisplayed(AppLovinAd appLovinAd) {
+    }
+
+    @Override
+    public void userOverQuota(AppLovinAd appLovinAd, Map map) {
+    }
+
+    @Override
+    public void userRewardRejected(AppLovinAd appLovinAd, Map map) {
+    }
+
+    @Override
+    public void validationRequestFailed(AppLovinAd appLovinAd, int i) {
+    }
+
+    @Override
+    public void userDeclinedToViewAd(AppLovinAd appLovinAd) {
+    }
+
+    public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox}
 }

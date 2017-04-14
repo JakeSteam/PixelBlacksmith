@@ -27,6 +27,7 @@ public class ItemSelectActivity extends Activity {
     public static String INTENT_ID = "uk.co.jakelee.blacksmith.itemSelectID";
     private DisplayHelper dh;
     private List<Item> items;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,22 +105,22 @@ public class ItemSelectActivity extends Activity {
         boolean haveSeen = Inventory.haveSeen(item.getId(), dh.itemSelectionState);
         boolean canCreate = Inventory.haveLevelFor(item.getId());
         if (haveSeen) {
-            itemName.setText(String.format("%s", item.getFullName(dh.itemSelectionState)));
+            itemName.setText(String.format("%s", item.getFullName(this, dh.itemSelectionState)));
             itemCount.setText(String.format("%d", numberOwned));
         } else if (canCreate) {
-            itemName.setText(String.format("%s", item.getFullName(dh.itemSelectionState)));
+            itemName.setText(String.format("%s", item.getFullName(this, dh.itemSelectionState)));
             itemCount.setText(R.string.unknownText);
         } else {
             itemName.setText(R.string.unknownText);
             itemCount.setText(R.string.unknownText);
         }
-        itemImage.setImageDrawable(dh.createItemImageDrawable(item.getId(), (int)dh.itemSelectionState, 40, 40, haveSeen, canCreate));
+        itemImage.setImageDrawable(dh.createItemImageDrawable(item.getId(), (int) dh.itemSelectionState, 40, 40, haveSeen, canCreate));
 
         return row;
     }
 
     public void clickItem(View view) {
-        int position = (int)view.getTag();
+        int position = (int) view.getTag();
         dh.itemSelectionFlipper.setDisplayedChild(position);
         dh.itemSelectionDots.addDots(dh, dh.itemSelectionFlipper.getChildCount(), dh.itemSelectionFlipper.getDisplayedChild());
         this.finish();

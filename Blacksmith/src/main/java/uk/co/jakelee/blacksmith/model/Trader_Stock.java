@@ -41,19 +41,17 @@ public class Trader_Stock extends SugarRecord {
     public static long getMillisecondsUntilRestock() {
         long unixRestocked = Select.from(Player_Info.class).where(Condition.prop("name").eq("DateRestocked")).first().getLongValue();
         long unixNextRestock = unixRestocked + DateHelper.hoursToMilliseconds(Upgrade.getValue("Market Restock Time"));
-        long unixRestockDifference = unixNextRestock - System.currentTimeMillis();
-
-        return unixRestockDifference;
+        return unixNextRestock - System.currentTimeMillis();
     }
 
     public static void restockTraders() {
-            Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
-            Trader.executeQuery("UPDATE trader SET status = 0");
+        Trader_Stock.executeQuery("UPDATE traderstock SET stock = default_stock");
+        Trader.executeQuery("UPDATE trader SET status = 0");
 
-            Player_Info dateRefreshed = Select.from(Player_Info.class).where(
-                    Condition.prop("name").eq("DateRestocked")).first();
-            dateRefreshed.setLongValue(System.currentTimeMillis());
-            dateRefreshed.save();
+        Player_Info dateRefreshed = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateRestocked")).first();
+        dateRefreshed.setLongValue(System.currentTimeMillis());
+        dateRefreshed.save();
     }
 
     public static int getUnlockedCount() {

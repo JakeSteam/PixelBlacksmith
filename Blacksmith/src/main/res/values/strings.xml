@@ -1,11 +1,1339 @@
 <resources>
     <string name="app_name" translatable="false">Pixel Blacksmith</string>
 
+
+    <string name="assistant_name_1">Pig</string>
+    <string name="assistant_name_2">Troll</string>
+    <string name="assistant_name_3">Skeleton</string>
+    <string name="assistant_name_4">Human</string>
+    <string name="assistant_name_5">Elf</string>
+    <string name="assistant_name_6">Orc</string>
+
+    <string name="assistantTitle">Assistant</string>
+    <string name="assistantAlertSelected">Selected assistant \"%1$s\"!</string>
+    <string name="assistantButtonSelect">Select</string>
+    <string name="assistantButtonSelected">Selected!</string>
+    <string name="assistantButtonLockedLevel">Req. Lev </string>
+    <string name="assistantButtonLockedCoins">Unlock for </string>
+    <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
+    <string name="assistantSpecs">Tier %1$d %2$s</string>
+    <string name="assistantDesc">Per level:\n%1$dx %2$s per %3$s.\n+%4$.0f%% XP / coin boost.\n\nCurrent:\n%5$dx %2$s per %3$s.\n+%6$.0f%% XP / coin boost.</string>
+    <string name="assistantClaimed">Received %1$dx %2$s!</string>
+    <string name="assistantTimeLeft">Assistant bonus ready to claim in %1$s.</string>
+    <string name="assistantProgressText">Lev %1$d/%2$d (%3$d%%)</string>
+    <string name="assistantOverallProgressText">Assistant %1$d/%2$d</string>
+    <string name="assistantName">%1$s [Edit?]</string>
+    <string name="assistantEditNamePrompt">What would you like to rename \"%1$s\" to (maximum 30 characters)?</string>
+    <string name="assistantUnlockAlert">Unlocked assistant \"%1$s\"!</string>
+    <string name="assistantProgressAlert">Progress towards level %1$d: %2$d/%3$d XP</string>
+    <string name="assistantReady">Bonus\nReady!</string>
+    <string name="assistantNotReady">Bonus:\n</string>
+    <string name="assistantTeaser">No\nAssistant!</string>
+
+    <string name="eventEasterItem">You found a %1$s! Look for the Golden Egg recipe in the food section of the furnace to unlock a valuable item &amp; unique achievement!</string>
+    <string name="eventText">It\'s Easter!\n\nColoured easter eggs will be found at random whilst the game is open, and can be used to create an extremely valuable easter item. Look under the food tab in the furnace!\n\nAdditionally, a new visitor has been added who will always reward this new valuable item. Good luck finding him!\n\nEvent ends on 22nd March.</string>
+
+    <string name="tool_pickaxe">Pickaxe (Ore)</string>
+    <string name="tool_hammer">Hammer (Bar)</string>
+    <string name="tool_fishing_rod">Fishing Rod (Food)</string>
+    <string name="tool_hatchet">Hatchet (Wood)</string>
+    <string name="tool_gloves">Gloves (Silk)</string>
+    <string name="tool_gem">Gem (Powder)</string>
+    <string name="tool_silver_ring">Silver Ring (Silver + Gems)</string>
+    <string name="tool_gold_ring">Gold Ring (Gold + Gems)</string>
+    <string name="tool_visage">Visage (Coins)</string>
+
+    <string name="help_assistants">Assistants</string>
+    <string name="help_text_assistants">Assistants can be recruited (for a cost) after certain levels, and will provide regular income alongside passive XP &amp; gold bonuses.\n\nHigher level assistants will provide better bonuses, make sure to claim the bonus items regularly!</string>
+    <string name="help_coins">Coins</string>
+    <string name="help_text_coins">Coins are earned and spent during normal gameplay. The buyable amount is dependent on your current player level.\nThe larger pack is also better value, so check out the two prices and see which works best for you!\n</string>
+    <string name="help_prestige">Prestige</string>
+    <string name="help_text_prestige">Prestiging resets many aspects of your game, and can only be performed at level 70 by premium players.\n\nBenefits:\n+50%% coins bonus.\n-25%% XP bonus.\n+100%% to completion percentage.\nAchievement on first prestige.\n\nReset:\nAll items (except pages and books).\nAll upgrades (except premium benefits).\nAll slots.\nXP / Level.\nCurrent visitors.\nExtra trader stock unlocked.\nAll workers.\n\nKept:\nDiscovered visitor preferences.\nVisitor trophy progress.\nHighest level statistic.\nItems smelted / crafted / traded / bought / sold &amp; gems embedded statistics.\nCoins earned statistic.\nBiggest trade statistic.\nHelper\'s trips statistic.\nQuests completed statistic.</string>
+    <string name="help_tips">Prestige</string>
+    <string name="help_help">Help</string>
+    <string name="help_text_help">You want help for the help!?\nGet out of here, there\'s money to make!</string>
+    <string name="help_advertising">Advertising</string>
+    <string name="help_text_advertising">There are 2 types of advert in Pixel Blacksmith.\nThe first is a \'convenience\' one, e.g. skipping a timer, getting a free restock. The other type is the \'bonus\' advert, accessible via the bonus chest.\nThis chest can only be opened every few hours (premium members have a shorter timer).\nPremium members can also disable adverts. If this option is selected, all mention of adverts will be removed.</string>
+    <string name="help_overview">Overview</string>
+    <string name="help_text_overview">So, here\'s the deal: You\'re a blacksmith. A not very good one, to be honest.\nIf you want to make a name for yourself, you\'re going to have to keep visitors happy, and keep an eye on your resources.\nOr, I guess you could ignore all the visitors and just work towards making the high end gear. But, y\'know, don\'t do that.\nGenerally, ores come from the market and other ingredients come from visitors and certain traders. You can also hire workers to gather resources for you.\nThese ores are smelted in the furnace, crafted at the anvil, finished at the table, and embedded with gems at the gem table, before being sold to a visitor.\nVisitors, like the rest of us, have preferences. Once a visitor has been sold one of their favourite types / tiers / states of item, their preference and associated bonus will be saved.\nNext time they visit, selling them preferred items will provide a nice healthy bonus tip for yourself.\nGet stuck at any stage in the process? Press the help button!</string>
+    <string name="help_furnace">Furnace</string>
+    <string name="help_text_furnace">The furnace is the starting point for creating items.\nOre is generally bought from passing traders at the marketplace, but it can also be given as a reward by happy visitors.\nOre you receive will have to be smelted into bars before any items can be created with it. Some bars will require a mixer, generally coal, to facilitate the creation of bars.\nWhilst bars can be sold, they\'ll generally be a lot more valuable if they are first hammered into an unfinished item via the anvil, and finally finished at the crafting table.\nFood can also be created here. This can be sold to visitors, or given to workers to increase resources returned / increase the chance of pages.\nSwipe left and right to change items. Pressing \'Smelt 10\' will add 10 bars to your smelting queue, if you have the resources.</string>
+    <string name="help_anvil">Anvil</string>
+    <string name="help_text_anvil">After the furnace creates bars, the anvil must be used to hammer them into shape.\nMost recipes only require bars, with more valuable items requiring more bars.\nOf course, these unfinished items aren\'t quite done yet. They will still require combining with a secondary ingredient, which is done at the crafting table.\nRings can also be crafted via the separate \'Rings\' tab.\nSwipe left and right to change items. Use the up and down arrows to change tiers.\nPressing \'10\' will add 10 of the item to your crafting queue, if you have the resources.</string>
+    <string name="help_inventory">Inventory</string>
+    <string name="help_text_inventory">All of your current stock can be viewed here.\nMost items can be sold for their basic value here, although this is not recommended. Note that any prestige / coins bonus will not apply here.\nInstead, try and create items that will sell for a large bonus with visitors.\nLong pressing an item will mark it as unsellable, useful when saving items.\nIf a page has "Exc" next to it, it can be exchanged for a random page. This can be useful when trying to get the last few pages for a book.\nScroll up and down to view all items.</string>
+    <string name="help_food">Food Selection</string>
+    <string name="help_text_food">Helpers can be given food here.\nEach worker has a favourite food, and if it has been used in the past it will be highlighted here with green text and double the usual bonus.\nTrying different foods with helpers to find their favourite is a good way to maximise bonus resources.</string>
+    <string name="help_credits">Credits</string>
+    <string name="help_text_credits">Making a game is hard, but it\'s also extremely rewarding and educational.\nDevelopment would be impossible without building on the work of others via open-source libraries, free resources, and places like StackOverflow.\nThe credits contain a few of the larger contributions, but the helpfulness of the hundreds of articles / forums / Q&amp;A sites visited during development can\'t be understated.\nThanks, y\'all!</string>
+    <string name="help_gem">Gem Table</string>
+    <string name="help_text_gem">Once an item is finished, its value can be greatly increased by putting a valuable gem inside.\nUse these wisely, as they are only available in limited quantities, and certain visitors will pay a very hefty bonus for items with their preferred gem in.\nGems can also be crushed into powders via the \'Powder\' tab.\nAs always, swipe left and right to change items, and use the up and down arrows to change tiers.\nOnce the desired item is selected, tap the gem to be added.</string>
+    <string name="help_market">Market</string>
+    <string name="help_text_market">Raw resources (ore, some secondaries) are generally purchased from the market. Traders come and go, each with different specialities.\nOnly traders with stock will be displayed, so buying all stock from more common traders is a good way to get rarer traders.\nIf a lot of purchases are made from a trader, more items will unlock for sale.\nScroll up and down to see the full list of traders.\nIf all traders are out of stock, you\'ll have to wait for the market to restock, or pay a bribe / watch an advert to get them all to come back immediately.\nTraders can also be locked in place for a fee, ensuring vital resources can always be purchased (for an increased price).</string>
+    <string name="help_settings">Settings</string>
+    <string name="help_text_settings">Game settings can be changed here, changes take place as soon as the settings interface is closed.\nSound Options:\nHere all game sounds, game music, and notification sounds can be enabled / disabled.\nNotification Options:\nMarket restock, visitor spawn, worker return, items crafted, and bonus chest refill notifications can be enabled / disabled.\nGameplay Options:\n\'Full Screen\' enables a more immersive full screen mode.\nThe \'Quick Select\' functionality allows tapping the item image in a crafting interface to change item. Disabling \'Quick Select\' will make swiping to change item easier.\nThe \'Quick Log Access\' option makes tapping a message open the message log instead of closing the current message.\nThe \'Longer Messages\' option increases the time errors and alerts stay on screen.\nThe \'Use Max\' option replaces \'Make 1000\' buttons with \'Make Max\'.\nEnabling \'Bulk Craft Stack\' causes items to stack up when bulk crafting. This means a lengthy process can carry on whilst short-term crafting is still possible.\nPerformance Options:\nThe \'Auto Refresh\' option will enable auto refreshing on inventory and trade screens. This feature can cause performance issues, so is disabled by default.\nThe \'Full Screen Check\' option will enable check fullscreen status. If disabled, fullscreen mode will be less reliable, but performance will be improved.\nThe \'Update Slots\' option will enable updating item slots. Disabling it is not recommended, but can improve performance slightly.\nPremium Options:\nPremium players can disable all mention of adverts and prestige their account. Prestiging resets all items (except pages &amp; books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\nIn return for being set back to level 1, you\'ll receive +50%% to coin earnings, and -25%% to XP gains.\nExtras:\nThe message log will show the last 100 important game messages.\nThe tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\nThe rate app button will link you to the game\'s Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\nIf you\'ve received a support code from customer support, it can also be entered here.\nYou game save can also be imported / exported from your device here. Saves are stored in ExternalStorage/PixelBlacksmith/PixelBlacksmith(date &amp; time).save.\nGoogle Play:\nGoogle Play Games services can also be accessed here, including cloud saves, achievements, leaderboards, and quests.\nSettings Code:\nThe settings code is an indicator of your current settings. Changing any setting will generate a new unique code. It can be used to help diagnose problems, or to quickly check two devices have the same settings.</string>
+    <string name="help_trader">Trader</string>
+    <string name="help_text_trader">Various traders will appear in the market, each offering different items. Making many purchases from a trader will usually unlock more items for sale.\nMany traders require a minimum level before they will appear, especially those selling higher level / rarer equipment.\nThey each have a limited amount of stock and restocking happens every 24 hours. Time until next restock is available on the statistics interface, and a notification is also sent.\nA trader can also be restocked for a cost. The buy all button will also buy every item the trader is currently selling.\nLocked traders restock for free, but charge higher prices.</string>
+    <string name="help_statistics">Statistics</string>
+    <string name="help_text_statistics">Useful statistics such as time until next restock / visitor are available here.\nAdditionally, progress towards various achievements can be tracked using the statistics displayed, as well as other miscellaneous pieces of information.\nCompletion percentage is also visible here. Many factors contribute to this percentage:\n- Level\n- Upgrades\n- Traders unlocked\n- Trader stocks unlocked\n- Slots unlocked\n- Items seen\n- Visitor preferences discovered\n- Trophies unlocked\n- Helpers purchased\nNote that every prestige (Level 70+) counts as an additional 100%.\nTotal coin percentage is calculated as: Coins Upgrade + (0.5 * Prestige Level)), then converted from a multiplier into a percentage.\nTotal XP percentage is calculated as: XP Upgrade * (0.75 ^ Prestige Level)), then converted from a multiplier into a percentage.</string>
+    <string name="help_table">Table</string>
+    <string name="help_text_table">The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\nAfter this, items can be optionally embedded with gems at the gem table.\nAdditionally, rare pages can be crafted into books here. Crafting a book will require 10 pages, and many additional ingredients. Pages are obtained from a variety of sources:\n- 3 pages are rewarded when a visitor trophy is unlocked.\n- 35%% chance to receive one when opening the bonus chest.\n- 0-90%% chance to receive one from a worker, depending on food used (see worker help for more info).\nSwipe left and right to change items. Use the up and down arrows to change tiers.</string>
+    <string name="help_trade">Trade</string>
+    <string name="help_text_trade">This screen is where you\'ll make all of your money!\nThe discovered bonus is displayed next to the sell price of each item. It\'s entirely possible the item will sell for more than this, if all of the visitor\'s preferences have not yet been discovered.\nUndiscovered preferences will be displayed as \"???\".\nIf an item has been sold to a visitor in the past, it will be shown in grey to make it easier to work out preference.\nThe progress bar will let you see your progress at a glance, and the item criteria and visitor are also visible.\nThe finish button will close this trade for now.\nThe \'Max\' button will, when checked, let you trade as many of an item as possible at once.\nLong pressing an item will mark it as unsellable, useful when saving items.</string>
+    <string name="help_trophy">Trophy</string>
+    <string name="help_text_trophy">The trophy screen is where notes about all of the seen visitors can be looked at.\nUnseen visitors will have no information available about them.\nSeen visitors will have a lighter silhouette the more you see them. Additionally, basic information will become available.\nOnce a visitor has been seen 100 times, they will provide you with a gift, and become fully visible.\nThe higher the \'Appear chance\', the more likely a visitor is to arrive.</string>
+    <string name="help_visitor">Visitor</string>
+    <string name="help_text_visitor">This screen provides an overview of the currently selected visitor.\nOnce a visitor\'s preferred item type, tier, or state have been discovered through trading, this will be displayed underneath the visitor\'s picture. Also shown is how much extra a visitor will pay for these preferences. Combine all three to achieve the biggest profits!\nItem type: This is the item\'s category. For example dagger, sword, or hatchet.\nItem tier: This is the quality of the item\'s material. For example bronze, iron, or steel.\nItem state: This is the condition of the item. For example unfinished (shattered vial icon) or normal (vial icon). At higher levels, this can be an embedded gem such as red (ruby icon) or blue (sapphire icon).\nAdditionally, the highest value item previously traded with the visitor is displayed.\nIn the list of demands, black denotes a required trade, whilst grey is optional.\nOnce all required trades have been completed, the visitor can be completed and you will receive a reward. If all of the visitor\'s optional demands have also been completed, you\'ll receive double the reward!\nAlternatively, they can be shooed away for a fee. This fee is based on your current level, how long the visitor has been waiting, and the number of incomplete demands (required + optional).</string>
+    <string name="help_upgrade">Upgrade</string>
+    <string name="help_text_upgrade">On this screen various upgrades can be bought, to help improve your shop.\nCraft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.\nCoins Bonus\nUpgrading coins bonus will increase the %% of bonus coins received on every trade / sale.\nLegendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.\nMarket Restock Time\nUpgrading market restock time will decrease the hours between new traders entering the market.\nMaximum Traders\nUpgrading maximum traders will increase how many traders can be in the market at once.\nMaximum Visitor Rewards\nUpgrading maximum visitor rewards will increase the maximum number of items a visitor can give you.\nMaximum Visitors\nUpgrading maximum visitors will increase the maximum number of visitors in the shop at once.\nMinimum Visitor Rewards\nUpgrading minimum visitor rewards will increase the minimum number of items a visitor can give you.\nRestock All Cost\nUpgrading the restock all cost will reduce the cost of restocking the entire marketplace.\nVisitor Spawn Time\nUpgrading visitor spawn time will decrease the minutes between additional visitors appearing.\nWorker Time\nUpgrading worker time will decrease the time taken for a helper or hero to complete a trip.\nXP Bonus\nUpgrading XP bonus will increase the %% of bonus XP received for every in-game action.</string>
+    <string name="help_premium">Premium</string>
+    <string name="help_text_premium">Buying premium provides a ton of new features and helps further development on the game!\nOnce premium, you\'ll also be able to prestige, essentially starting a new game with +50%% coin earnings and -25%% XP gain.\nThere\'s also extremely valuable legendary items, a reduced cooldown on the bonus chest, and many more features!\nAmong the benefits is a tax paid by all out of stock traders when an automatic restock happens. Think of it as a reward for being a loyal customer!\nNote that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.\nContributions\nContributing is a way to continue helping the games\'s development. Contributing repeatedly will provide extra benefits such as suggesting new items and visitors!</string>
+    <string name="help_messages">Messages</string>
+    <string name="help_text_messages">The last 100 important messages are displayed here.\nCommon messages, such as crafting beginning will not be displayed, but rarer ones like levelling up will. This way, if a message is missed, it can be reviewed here.\nBy default, tapping a message will close it. The \'Quick Log Access\' setting will change this to open the messages interface instead.</string>
+    <string name="help_helper">Helper</string>
+    <string name="help_text_helper">Helpers help gather resources. Every helper has a minimum level, and a hire cost based on that level.\nOnce a helper has been hired, they will gather resources for you over time.\nThe resources gained depends on the tool used. Higher tier tools will gather more / better resources.\nProviding a helper with food will provide bonus resources and provide a chance of finding a page.\nEach helper has a favourite food, which will provide twice the normal bonus if provided. Food is consumed on each trip.\nIf \'Auto-feed\' is enabled, helpers (and heroes) will automatically restock themselves if the last used food is available.\nTapping the \'Send Out Helpers\' button will send out all available helpers / heroes.\nTapping a purchased helper will tell you their name, total trips, and current food item.\nTapping the food item will let you pick another. Discovered favourite food(s) are highlighted in green, and provide double food bonuses + page chance.\nTapping the tool will let you to choose another, based on items you currently own.\nTapping the resource indicator will provide information on the resources currently being gathered.\nThe large button below the helper sends them out to gather resources. Additionally, tapping the button whilst the helper is busy will display the exact time until they return.</string>
+    <string name="help_hero">Hero</string>
+    <string name="help_text_hero">Heroes are hireable workers who can be given equipment, and sent on adventures.\nThe higher a hero\'s strength, the more likely they are to succeed. The %% chance of success is displayed on the Start Adventure button.\nIf hero strength = adventure difficulty, there is a 50%% chance of success. If hero strength >= 2x adventure difficulty, success is guaranteed.\nAdditionally if success is guaranteed, bonus items will be rewarded from the adventure, between 1.1-2.5x the normal amount.\nIf a hero fails an adventure, they will lose a random 1-3 pieces of equipment. As such, be careful not to send heroes on unwinnable adventures.</string>
+    <string name="help_tools">Tools</string>
+    <string name="help_text_tools">Select a tool for a helper to use by first selecting a category, then an item.\nOnly currently owned items will be displayed. Note that higher tier tools will provide better / more resources.\nTools do not degrade, and can be reclaimed by providing the helper with a replacement tool.</string>
+    <string name="help_quest">Quests</string>
+    <string name="help_text_quest">Quests are an excellent way to gather additional rewards whilst playing.\nOnce a quest is accepted, the relevant icon and current progress will appear in the indicator. If multiple are selected, the next to end will be displayed.\nA list of accepted / upcoming / completed / failed quests is available, as well as a schedule of all events.\nAll quests reward XP, 0-2 pages, and 2-24 items / 50-2100 coins.\nXP is calculated by multiplier * current level. The values for the multiplier are: Easy 9, Medium 15, Hard 35, Elite 75.\nPage chance is 25%% for Easy, 50%% for Medium, 100%% for Hard, and 200%% for Elite (2 pages!).\nThe number of items / coins rewarded is halved for Easy, unchanged for Medium, doubled for Hard, and tripled for Elite.\nAccepted quests (except contribution quests) will give a reminder notification (via Google Play Games) 24 hours before the end.</string>
+    <string name="help_item_picker">Quick Select</string>
+    <string name="help_text_item_picker">When the "Quick Select" setting is enabled, tapping an item will display a list of all items in the current tier.\nTapping any item image / name will load it into the crafting interface, and this can often be faster than swiping to the area.\nWhen this option is enabled, swiping to change item can be trickier, so some players may wish to disable it via the settings menu for easier swiping.\nAdditionally, the "Show All Items" toggle will switch between only displaying creatable items, and displaying all items.</string>
+    <string name="help_hero_adventures">Adventures</string>
+    <string name="help_text_hero_adventures">Adventures can be selected for your hero to go on.\nThey are organised into categories and subcategories. Quests with a higher difficulty generally offer better rewards, but your hero is more likely to fail!</string>
+    <string name="help_hero_equipment">Equipment</string>
+    <string name="help_text_hero_equipment">Any item of the correct type can be given to a hero.\nHowever, taking notice of their preferences will ensure the most efficient tools are selected.\nDiscovering unique item sets will provide a free strength increase, useful for defeating the harder quests.</string>
+    <string name="help_hero_visitors">Visitors</string>
+    <string name="help_text_hero_visitors">A list of all visitors is here, along with progress towards unlocking them.\nOnce the requirements have been met, they can be selected as a hero.\nSelecting heroes with high preference bonuses is a good way to increase total strength.</string>
+    <string name="help_super_upgrade">Super Upgrades</string>
+    <string name="help_text_super_upgrade">Super upgrades are much more powerful upgrades that can only be used by players that have completed a collection.\nCollections can be created from books in the \'Books\' tab of the crafting table.\nPrestiging will unlock more Super Upgrades, whilst completing collections will increase the maximum that can be enabled at once.\n\'100x Contribution Reward\' increases the 1337 coins usually received by contributing to a staggering 133,700 coins.\n\'Free Market Restock\' makes restocking the market and traders free, perfect for emptying traders out!\n\'2x ____ Items\' doubles the number of items received from a crafting process. Note that pages + books are excluded from this.\n\'2x Worker Resources\' doubles the resources received from Helper tasks and Hero adventures.\n\'Guaranteed Pages\' guarantees that workers with food, watching adverts, and quests will all reward pages.\n\'-50% Bonus Chest Time\' halves the time taken for the bonus chest to refill.\n\'1 Demand Per Visitor\' forces each visitor to only have 1 demand.\n\'-50% Market Buy Cost\' will halve the price of all items on the market.\n\'-50% Worker Time\' will have the time taken for a helper or hero to complete a task.\n\'2x Trade Price\' will double the money received from every trade.\n\'2x Trader Items Purchased\' will double all items purchased from a trader.\n\'2x All XP\' will double all XP (after other bonuses have been applied).\n\'2x Coin Earnings\' will double all coins earned (after other bonuses have been applied).\n\'All Quests Medium / Hard / Elite\' increase the minimum quest reward to the specified level.</string>
+
+    <string name="tip">Tip</string>
+    <string name="tip_1">Tap the red \'?\' in the upper left of any screen for detailed information and help.</string>
+    <string name="tip_2">The tutorial can be replayed from the Settings menu if you need a reminder.</string>
+    <string name="tip_3">Game sounds / music can be turned off in the Settings, along with notification sounds.</string>
+    <string name="tip_4">All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</string>
+    <string name="tip_5">A Visitor\'s Required Trades are listed in black.</string>
+    <string name="tip_6">A Visitor\'s Optional Trades are listed in grey.</string>
+    <string name="tip_7">Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</string>
+    <string name="tip_8">Try to combine a Visitor\'s Preferences to earn the most Coins.</string>
+    <string name="tip_9">Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</string>
+    <string name="tip_10">Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</string>
+    <string name="tip_11">Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</string>
+    <string name="tip_12">Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</string>
+    <string name="tip_13">Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</string>
+    <string name="tip_14">Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</string>
+    <string name="tip_15">As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</string>
+    <string name="tip_16">Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</string>
+    <string name="tip_17">After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</string>
+    <string name="tip_18">Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</string>
+    <string name="tip_19">Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</string>
+    <string name="tip_20">Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</string>
+    <string name="tip_21">Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</string>
+    <string name="tip_22">Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</string>
+    <string name="tip_23">Pages can be found by completing quests, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</string>
+    <string name="tip_24">Premium players can disable all adverts from the settings menu.</string>
+    <string name="tip_25">Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</string>
+    <string name="tip_26">A log of the last 100 important messages can be viewed in the Settings menu.</string>
+    <string name="tip_27">The game\'s credits can be viewed in the Settings menu.</string>
+    <string name="tip_28">Received a support code from customer support? Enter it in the Settings menu.</string>
+    <string name="tip_29">Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</string>
+    <string name="tip_30">Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</string>
+    <string name="tip_31">As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</string>
+    <string name="tip_32">Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</string>
+    <string name="tip_33">After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</string>
+    <string name="tip_34">Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</string>
+    <string name="tip_35">Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</string>
+    <string name="tip_36">An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</string>
+    <string name="tip_37">The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</string>
+    <string name="tip_38">Initially, you can only have up to 2 Visitors at the same time. This can be increased to 10 Visitors by upgrading "Maximum Visitors".</string>
+    <string name="tip_39">The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</string>
+    <string name="tip_40">The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</string>
+    <string name="tip_41">Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</string>
+    <string name="tip_42">Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</string>
+    <string name="tip_43">The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</string>
+    <string name="tip_44">Helpers and heroes initially take 3 hours to return with resources. This can be reduced to just 30 minutes by upgrading "Worker Time".</string>
+    <string name="tip_45">Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</string>
+    <string name="tip_46">Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</string>
+    <string name="tip_47">There are 7 different hirable Helpers that unlock as you level up.</string>
+    <string name="tip_48">You only have to pay to hire each different Helper once. After you\'ve hired a Helper, they will continue to work for you as long as you want to give them a job to do.</string>
+    <string name="tip_49">Helpers need Tools. You can either craft Tools or buy them from the Market.</string>
+    <string name="tip_50">Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</string>
+    <string name="tip_51">There are 8 different types of Tools that Helpers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</string>
+    <string name="tip_52">A Helper with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</string>
+    <string name="tip_53">Equipping a Helper with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</string>
+    <string name="tip_54">Once you\'ve equipped a Helper with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</string>
+    <string name="tip_55">Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Helper a Food item to increase how much they will gather.</string>
+    <string name="tip_56">The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</string>
+    <string name="tip_57">Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</string>
+    <string name="tip_58">Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</string>
+    <string name="tip_59">Heroes are a riskier way to earn items, but can be very profitable!</string>
+    <string name="tip_60">Make the most of a hero\'s item preferences to complete the trickier quests.</string>
+    <string name="tip_61">The worker notification will inform you when both heroes and helpers have returned.</string>
+    <string name="tip_62">When pressed, messages can either show the message log, or disappear. Change it in the settings!</string>
+    <string name="tip_63">Fullscreen mode provides a more immersive mode, but can drain battery faster!</string>
+    <string name="tip_64">If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</string>
+    <string name="tip_65">Messages disappearing too quickly? Enable longer messages in the settings.</string>
+    <string name="tip_66">Hero quests can be more rewarding, but there\'s a chance of losing items.</string>
+    <string name="tip_67">Pay attention to hero preferences, they make a massive difference to hero effectiveness!</string>
+    <string name="tip_68">Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</string>
+    <string name="tip_69">Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</string>
+    <string name="tip_70">Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</string>
+    <string name="tip_71">Having trouble reaching 100% completion? Tap your completion %% to see a breakdown of your progress.</string>
+    <string name="tip_72">The game can be locked in portrait or landscape if you prefer playing a certain way.</string>
+    <string name="tip_73">Enchanted items will have a coloured tint to them, to help easily identify them.</string>
+    <string name="tip_74">Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</string>
+    <string name="tip_75">The sheets on the table below the shop visitors can be tapped to quickly access the message log.</string>
+    <string name="tip_76">Running low on coins? Packs can be bought by tapping the plus button next to your coin count. The higher your level, the more coins you\'ll get!</string>
+    <string name="tip_77">Large quantities of item can be crafted in a single stack. This lets other items be crafted at the same time as a large order.</string>
+    <string name="tip_78">Once a visitor\'s trophy has been earned, the spawn chance is cut in half.</string>
+    <string name="tip_79">Heroes can \'super succeed\' if on an easy adventure, earning 1.1 to 2.5x the usual reward.</string>
+    <string name="tip_80">Heroes can be made more powerful for free by making use of sets, unique combinations of items that boost hero strength.</string>
+
+    <string name="alert_marked_unsellable">Marked %1$s as %2$ssellable!</string>
+    <string name="error_no_save_found">Couldn\'t find a save.</string>
+    <string name="error_ad_unverified">Something went wrong, and the ad view couldn\'t be verified. Sorry!</string>
+    <string name="error_image_load_fail">Failed to load image, due to low device memory...</string>
+    <string name="error_player_level">This requires a higher level!</string>
+    <string name="error_undiscovered">This item\'s recipe has not been discovered yet!</string>
+    <string name="error_trader_run_out">This trader has run out of stock for this item!</string>
+    <string name="error_not_enough_ingredients">The item cannot be created without all ingredients!</string>
+    <string name="error_not_enough_coins">You don\'t have enough money to do that!</string>
+    <string name="error_not_enough_items">You don\'t have enough of these to sell!</string>
+    <string name="error_no_spare_slots">There are no slots currently available.</string>
+    <string name="error_no_items">You cannot enchant an item you do not have!</string>
+    <string name="error_no_gems">You cannot enchant an item using non-existent gems!</string>
+    <string name="error_maximum_upgrade">There\'s no further upgrades to purchase!</string>
+    <string name="error_no_slots_enchanting">There\'s no gem table slots unlocked! The first one unlocks at level 10.</string>
+    <string name="error_busy">Currently calculating... please try again!</string>
+    <string name="error_maximum_super_upgrade">No more super upgrades can be enabled! Create another collection to increase the maximum, or disable an enabled super upgrade.</string>
+    <string name="error_visitor_in_use">This visitor is already in use by another hero slot!</string>
+    <string name="error_resolving_conflict">Cloud save conflict detected! Resolving, please wait, this might take a while...</string>
+    <string name="error_unsellable">This item is marked as unsellable! Long press it to turn off.</string>
+    <string name="error_max_locked_traders">The maximum number of traders have already been locked!</string>
+    <string name="need">Need</string>
+    <string name="have">Have</string>
+    <string name="level">Level</string>
+    <string name="fragment_and_a_rare">and a rare</string>
+    <string name="fragment_and_a_page">and possibly a rare page</string>
+    <string name="fragment_and_a_page_very">and very possibly a rare page</string>
+    <string name="please_select">Please select</string>
+    <string name="adventure">Adventure</string>
+    <string name="difficulty_short">Diff.</string>
+    <string name="hero_set_bonus">The %1$s set provides +%2$d%% strength bonus, activated by %3$s</string>
+    <string name="hero_no_set_bonus">No sets currently active!</string>
+    <string name="fixed">Fixed</string>
+    <string name="temporary">Temporary</string>
+    <string name="pending_items_none">No pending items.</string>
+    <string name="pending_items">Pending items:</string>
+
+    <string name="worker_start_gathering">Start Gathering</string>
+    <string name="worker_returns_in">Returns in </string>
+    <string name="worker_start_adventure">Start Adventure</string>
+    <string name="worker_select_hero">Select Hero</string>
+    <string name="worker_select_adventure">Select Adventure</string>
+
+    <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nTraders: %5$d / %6$d\nSlots: %7$d / %8$d\nTraders Stock: %9$d / %10$d\nItems Owned: %11$d / %12$d\nVisitor Prefs: %13$d / %14$d\nTrophies: %15$d / %16$d\nWorkers: %17$d / %18$d\nAdventures: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
+
     <string name="rate_dialog_title">Rate Blacksmith</string>
-    <string name="rate_dialog_message">If you\'re enjoying Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec!</string>
+    <string name="rate_dialog_message">If you\'re enjoying Pixel Blacksmith, would you mind leaving a rating / review on the Play Store? It\'ll only take a sec!</string>
     <string name="rate_dialog_ok">Rate</string>
     <string name="rate_dialog_cancel">Later</string>
     <string name="rate_dialog_no">Cancel</string>
+
+    <string name="character_intro_1">Greetings! See anything you like?</string>
+    <string name="character_intro_2">Look, it\'s knight with a k, okay?</string>
+    <string name="character_intro_3">Can never have enough golden goldy gold. EVER.</string>
+    <string name="character_intro_4">Want clothing? You\'re gonna need some cloth!</string>
+    <string name="character_intro_5">How much wood can I cut? Enough!</string>
+    <string name="character_intro_6">Oog oog!!!</string>
+    <string name="character_intro_7">Bzzt!</string>
+    <string name="character_intro_8">You\'d better not have any weedkiller on you.</string>
+    <string name="character_intro_9">I am an exclusive trader.</string>
+    <string name="character_intro_10">Hello dear! I hope you like my shop.</string>
+    <string name="character_intro_11">Boo! Only joking, I\'m not that scary.</string>
+    <string name="character_intro_12">Maybe I\'ve spent a little too long in the sun.</string>
+    <string name="character_intro_13">Orite matey, got any gold?</string>
+    <string name="character_intro_14">It\'s rather hard carrying stock around y\'know.</string>
+    <string name="character_intro_15">Hello there! Come, friend, trade away!</string>
+    <string name="character_intro_16">Bloop bloop.</string>
+    <string name="character_intro_17">Floating in the stars forever.</string>
+    <string name="character_intro_18">Fine, I\'ll trade if I have to. Hmph.</string>
+    <string name="character_intro_19">Flippity flappity, my friend.</string>
+    <string name="character_intro_20">Also bloop. Even more so.</string>
+    <string name="character_intro_21">What do you think of my new paint job?</string>
+
+    <string name="character_name_1">Sean Keeper</string>
+    <string name="character_name_2">The Iron Knight</string>
+    <string name="character_name_3">The Golden Warrior</string>
+    <string name="character_name_4">Cloth King</string>
+    <string name="character_name_5">Woodchuck</string>
+    <string name="character_name_6">Oog</string>
+    <string name="character_name_7">GemBot 5000</string>
+    <string name="character_name_8">Farmer\'s Little Friend</string>
+    <string name="character_name_9">Death Beetle</string>
+    <string name="character_name_10">Miss Odds &amp; Ends</string>
+    <string name="character_name_11">Deathly Ghoul</string>
+    <string name="character_name_12">Bleached Crab</string>
+    <string name="character_name_13">Goblin Warrior</string>
+    <string name="character_name_14">Floating Tradesman</string>
+    <string name="character_name_15">Goblin Businessman</string>
+    <string name="character_name_16">Blobette</string>
+    <string name="character_name_17">Ricky Stardust</string>
+    <string name="character_name_18">Grumblestiltskin</string>
+    <string name="character_name_19">Oculus Lift</string>
+    <string name="character_name_20">Blob King</string>
+    <string name="character_name_21">Farmer\'s Evil Friend</string>
+
+    <string name="con_name_1">Thank You</string>
+    <string name="con_name_2">Dev Queue</string>
+    <string name="con_name_3">Beta &amp; Credits</string>
+    <string name="con_name_4">Create Quest</string>
+    <string name="con_name_5">Create Item</string>
+    <string name="con_name_6">Create Visitor</string>
+    <string name="con_name_7">Create Feature</string>
+
+    <string name="con_teaser_1">Get an extra little thank you.</string>
+    <string name="con_teaser_2">Get access to the Trello board used to plan / prioritise new features, changes, and bug fixes.</string>
+    <string name="con_teaser_3">Get beta access to all releases at least 24hr in advance, and get your name / username in the credits.</string>
+    <string name="con_teaser_4">Create a quest and quest reward for a hero to be added to the game.</string>
+    <string name="con_teaser_5">Create an item (e.g. weapon, armour, ingredient) to be added to the game.</string>
+    <string name="con_teaser_6">Create a visitor, along with preferences.</string>
+    <string name="con_teaser_7">Suggest an entirely new feature (within reason!) for the game.</string>
+
+    <string name="con_unlocked_1">Thanks! Your contributions are what make further development on Pixel Blacksmith possible!</string>
+    <string name="con_unlocked_2"><a href="https://trello.com/b/Zw01amFA/">Trello board.</a> Under each Trello category, the higher an item is, the higher priority it is, and the sooner it\'ll be worked on. Items are also tagged with the release (e.g. 1.7.0) it will be in.</string>
+    <string name="con_unlocked_3">Hey, send an email to <a href="mailto:i.am.now.a.beta.player@jakelee.co.uk">the beta address</a> and I\'ll get you added to the beta testing / credits!</string>
+    <string name="con_unlocked_4">Woo! Try and make your idea fit into an existing category, and email it to <a href="mailto:i.make.the.quests@jakelee.co.uk">the quest address</a>, and I\'ll put it in the game.</string>
+    <string name="con_unlocked_5">Hey! Email your item name, description, ingredients, and purpose to <a href="mailto:hi.i.am.an.item.creator@jakelee.co.uk">the item address</a>. We might have to make some changes to balance the item though!</string>
+    <string name="con_unlocked_6">You\'re a big fan of contributing, huh? Email a visitor name, description, and preferences to <a href="mailto:i.make.people.happen@jakelee.co.uk">the visitor address</a>, and we\'ll discuss the visitor\'s appearance etc.</string>
+    <string name="con_unlocked_7">Wow, that\'s impressive..! Send me an email to <a href="mailto:i.basically.make.the.game@jakelee.co.uk">the feature address</a>, and we\'ll work together to make the feature reality.</string>
+
+    <string name="criteria_1">State</string>
+    <string name="criteria_2">Tier</string>
+    <string name="criteria_3">Type</string>
+
+    <string name="hero_adventure_1">Gather Red Weed</string>
+    <string name="hero_adventure_2">Gather Nirnroot Herbs</string>
+    <string name="hero_adventure_3">Gather Kyrt Herbs</string>
+    <string name="hero_adventure_4">Gather Ants</string>
+    <string name="hero_adventure_5">Gather Bees</string>
+    <string name="hero_adventure_6">Gather Stick Insects</string>
+    <string name="hero_adventure_7">Gather Hercules Beetles</string>
+    <string name="hero_adventure_8">Gather Praying Mantis</string>
+    <string name="hero_adventure_9">Gather Bird Bones</string>
+    <string name="hero_adventure_10">Gather Rat Bones</string>
+    <string name="hero_adventure_11">Gather Fish Bones</string>
+    <string name="hero_adventure_12">Gather Monkey Bones</string>
+    <string name="hero_adventure_13">Gather Shark Bones</string>
+    <string name="hero_adventure_14">Gather Coal</string>
+    <string name="hero_adventure_15">Gather Iron Ore</string>
+    <string name="hero_adventure_16">Gather Silver Nuggets</string>
+    <string name="hero_adventure_17">Gather Gold Nuggets</string>
+    <string name="hero_adventure_18">Gather Mithril Ore</string>
+    <string name="hero_adventure_19">Gather Adamantite Ore</string>
+    <string name="hero_adventure_20">Gather Runite Ore</string>
+    <string name="hero_adventure_21">Gather Dragonite Ore</string>
+    <string name="hero_adventure_22">Gather Mice Corpses</string>
+    <string name="hero_adventure_23">Gather Wolf Corpses</string>
+    <string name="hero_adventure_24">Gather Human Corpses</string>
+    <string name="hero_adventure_25">Gather Giant Corpses</string>
+    <string name="hero_adventure_26">Gather Monster Corpses</string>
+    <string name="hero_adventure_27">Gather Buried Coins</string>
+    <string name="hero_adventure_28">Gather Buried Gems</string>
+    <string name="hero_adventure_29">Gather Buried Chests</string>
+    <string name="hero_adventure_30">Hunt Fruit Flies</string>
+    <string name="hero_adventure_31">Hunt Blue Flies</string>
+    <string name="hero_adventure_32">Hunt Mutant Flies</string>
+    <string name="hero_adventure_33">Hunt Vampire Flies</string>
+    <string name="hero_adventure_34">Hunt Scavenger Flies</string>
+    <string name="hero_adventure_35">Hunt Slow Slugs</string>
+    <string name="hero_adventure_36">Hunt Sticky Slugs</string>
+    <string name="hero_adventure_37">Hunt Fancy Slugs</string>
+    <string name="hero_adventure_38">Hunt Deadly Slugs</string>
+    <string name="hero_adventure_39">Hunt Baby Spiders</string>
+    <string name="hero_adventure_40">Hunt Daddy Long Legs Spiders</string>
+    <string name="hero_adventure_41">Hunt Tarantula Spiders</string>
+    <string name="hero_adventure_42">Hunt Black Widow Spiders</string>
+    <string name="hero_adventure_43">Hunt Baby Frogs</string>
+    <string name="hero_adventure_44">Hunt Jumping Frogs</string>
+    <string name="hero_adventure_45">Hunt Skermit The Frogs</string>
+    <string name="hero_adventure_46">Hunt Mr. Frogs</string>
+    <string name="hero_adventure_47">Hunt Hypnofrogs</string>
+    <string name="hero_adventure_48">Hunt White Rabbits</string>
+    <string name="hero_adventure_49">Hunt Dwarf Rabbits</string>
+    <string name="hero_adventure_50">Hunt Wooly Rabbits</string>
+    <string name="hero_adventure_51">Hunt Wabbits</string>
+    <string name="hero_adventure_52">Hunt Blue Hellcats</string>
+    <string name="hero_adventure_53">Hunt Green Hellcats</string>
+    <string name="hero_adventure_54">Hunt Red Hellcats</string>
+    <string name="hero_adventure_55">Hunt White Hellcats</string>
+    <string name="hero_adventure_56">Hunt Black Hellcats</string>
+    <string name="hero_adventure_57">Hunt White Wolves</string>
+    <string name="hero_adventure_58">Hunt Wargs</string>
+    <string name="hero_adventure_59">Hunt Big Bad Wolves</string>
+    <string name="hero_adventure_60">Hunt Direwolves</string>
+    <string name="hero_adventure_61">Hunt Werewolves</string>
+    <string name="hero_adventure_62">Hunt Bobo The Bears</string>
+    <string name="hero_adventure_63">Hunt Panda Bears</string>
+    <string name="hero_adventure_64">Hunt Pom Bears</string>
+    <string name="hero_adventure_65">Hunt Black Bears</string>
+    <string name="hero_adventure_66">Hunt Grizzly Bears</string>
+    <string name="hero_adventure_67">Hunt Tiggers</string>
+    <string name="hero_adventure_68">Hunt Young Tigers</string>
+    <string name="hero_adventure_69">Hunt Gladiatorial Tigers</string>
+    <string name="hero_adventure_70">Hunt Phony Tigers</string>
+    <string name="hero_adventure_71">Hunt Shere Khan</string>
+    <string name="hero_adventure_72">Hunt Poltergeists</string>
+    <string name="hero_adventure_73">Hunt Victorian Ghosts</string>
+    <string name="hero_adventure_74">Hunt Bloody Barons</string>
+    <string name="hero_adventure_75">Hunt Black Knights</string>
+    <string name="hero_adventure_76">Hunt Vampire Bats</string>
+    <string name="hero_adventure_77">Hunt Vampire Counts</string>
+    <string name="hero_adventure_78">Hunt Draugrs</string>
+    <string name="hero_adventure_79">Hunt Loch Ness Monsters</string>
+    <string name="hero_adventure_80">Hunt Leviathans</string>
+    <string name="hero_adventure_81">Hunt Elder Gods</string>
+    <string name="hero_adventure_82">Hunt Soft Ones</string>
+    <string name="hero_adventure_83">Hunt Reapers</string>
+    <string name="hero_adventure_84">Hunt Daleks</string>
+    <string name="hero_adventure_85">Hunt Xenomorphs</string>
+    <string name="hero_adventure_86">Hunt Moties</string>
+    <string name="hero_adventure_87">Hunt Infected</string>
+    <string name="hero_adventure_88">Hunt Crawlers</string>
+    <string name="hero_adventure_89">Hunt Runners</string>
+    <string name="hero_adventure_90">Hunt Spitters</string>
+    <string name="hero_adventure_91">Hunt Boomers</string>
+    <string name="hero_adventure_92">Kill Big Smoke</string>
+    <string name="hero_adventure_93">Kill Big Daddy</string>
+    <string name="hero_adventure_94">Kill Olmec</string>
+    <string name="hero_adventure_95">Kill Handsome Jack</string>
+    <string name="hero_adventure_96">Kill The Warrior</string>
+    <string name="hero_adventure_97">Kill Nihilanth</string>
+    <string name="hero_adventure_98">Kill GLaDOS</string>
+    <string name="hero_adventure_99">Kill Netherlord</string>
+    <string name="hero_adventure_100">Kill Doviculus</string>
+    <string name="hero_adventure_101">Survive Blacksmith Horde</string>
+    <string name="hero_adventure_102">Survive Spider Horde</string>
+    <string name="hero_adventure_103">Survive Golem Horde</string>
+    <string name="hero_adventure_104">Survive Angry Mob</string>
+    <string name="hero_adventure_105">Survive Warrior Horde</string>
+    <string name="hero_adventure_106">Achieve Nirvana</string>
+    <string name="hero_adventure_107">Calculate Prime Number Formula</string>
+    <string name="hero_adventure_108">Live Forever</string>
+    <string name="hero_adventure_109">Raise The Dead</string>
+    <string name="hero_adventure_110">Turn Back Time</string>
+    <string name="hero_adventure_111">Complete All Adventures</string>
+    <string name="hero_adventure_112">Guard Butchers</string>
+    <string name="hero_adventure_113">Guard Bakers</string>
+    <string name="hero_adventure_114">Guard Sandwich Shop</string>
+    <string name="hero_adventure_115">Guard Fishmongers</string>
+    <string name="hero_adventure_116">Guard Pie Shop</string>
+    <string name="hero_adventure_117">Guard Fruit Stand</string>
+    <string name="hero_adventure_118">Guard Farmer\'s Stand</string>
+    <string name="hero_adventure_119">Guard Sweet Shop</string>
+    <string name="hero_adventure_120">Guard Local Market</string>
+    <string name="hero_adventure_121">Guard Farmer\'s Market</string>
+    <string name="hero_adventure_122">Guard County Market</string>
+    <string name="hero_adventure_123">Guard Food Processing Factory</string>
+    <string name="hero_adventure_124">Guard Smelting Factory</string>
+    <string name="hero_adventure_125">Guard Clothing Factory</string>
+    <string name="hero_adventure_126">Guard Gem Factory</string>
+    <string name="hero_adventure_127">Guard Local Bank</string>
+    <string name="hero_adventure_128">Guard Town Bank</string>
+    <string name="hero_adventure_129">Guard City Bank</string>
+    <string name="hero_adventure_130">Guard State Bank</string>
+    <string name="hero_adventure_131">Guard Federal Bank</string>
+    <string name="hero_adventure_132">Guard Princess</string>
+    <string name="hero_adventure_133">Guard Prince</string>
+    <string name="hero_adventure_134">Guard Queen</string>
+    <string name="hero_adventure_135">Guard King</string>
+    <string name="hero_adventure_136">Explore Shrubs</string>
+    <string name="hero_adventure_137">Explore Bushes</string>
+    <string name="hero_adventure_138">Explore Trees</string>
+    <string name="hero_adventure_139">Explore Treetops</string>
+    <string name="hero_adventure_140">Explore Sandwich</string>
+    <string name="hero_adventure_141">Explore Sandcastle</string>
+    <string name="hero_adventure_142">Explore Sand Dune</string>
+    <string name="hero_adventure_143">Explore Central City</string>
+    <string name="hero_adventure_144">Explore West City</string>
+    <string name="hero_adventure_145">Explore South City</string>
+    <string name="hero_adventure_146">Explore East City</string>
+    <string name="hero_adventure_147">Explore North City</string>
+    <string name="hero_adventure_148">Explore Coral Reef</string>
+    <string name="hero_adventure_149">Explore Mariana Trench</string>
+    <string name="hero_adventure_150">Explore Small Cave</string>
+    <string name="hero_adventure_151">Explore Medium Cave</string>
+    <string name="hero_adventure_152">Explore Large Cave</string>
+    <string name="hero_adventure_153">Escort Butcher</string>
+    <string name="hero_adventure_154">Escort Baker</string>
+    <string name="hero_adventure_155">Escort Fisherman</string>
+    <string name="hero_adventure_156">Escort Silk Trader</string>
+    <string name="hero_adventure_157">Escort Gem Trader</string>
+    <string name="hero_adventure_158">Escort Weapons Trader</string>
+    <string name="hero_adventure_159">Escort Armour Trader</string>
+    <string name="hero_adventure_160">Escort Day Visitor</string>
+    <string name="hero_adventure_161">Escort Night Visitor</string>
+    <string name="hero_adventure_162">Escort Winter Visitor</string>
+    <string name="hero_adventure_163">Escort Summer Visitor</string>
+    <string name="hero_adventure_164">Escort Autumn Visitor</string>
+    <string name="hero_adventure_165">Escort Spring Visitor</string>
+    <string name="hero_adventure_166">Escort Lost Courier</string>
+    <string name="hero_adventure_167">Escort Underground Soldier</string>
+    <string name="hero_adventure_168">Escort Shiny Soldier</string>
+    <string name="hero_adventure_169">Escort Elegant Soldier</string>
+
+    <string name="hero_category_1">Gathering (10-150)</string>
+    <string name="hero_category_2">Gather Plants (10-30)</string>
+    <string name="hero_category_3">Gather Insects (25-95)</string>
+    <string name="hero_category_4">Gather Bones (25-65)</string>
+    <string name="hero_category_5">Gather Ore (15-125)</string>
+    <string name="hero_category_6">Gather Corpses (50-150)</string>
+    <string name="hero_category_7">Gather Buried Treasure (130-150)</string>
+    <string name="hero_category_8">Animal Hunting (100-250)</string>
+    <string name="hero_category_9">Fly Hunting (100-220)</string>
+    <string name="hero_category_10">Slug Hunting (130-190)</string>
+    <string name="hero_category_11">Spider Hunting (110-250)</string>
+    <string name="hero_category_12">Frog Hunting (110-250)</string>
+    <string name="hero_category_13">Rabbit Hunting (100-220)</string>
+    <string name="hero_category_14">Hellcat Hunting (210-250)</string>
+    <string name="hero_category_15">Wolf Hunting (160-240)</string>
+    <string name="hero_category_16">Bear Hunting (100-250)</string>
+    <string name="hero_category_17">Tiger Hunting (100-240)</string>
+    <string name="hero_category_18">Monster Hunting (190-600)</string>
+    <string name="hero_category_19">Ghost Hunting (220-400)</string>
+    <string name="hero_category_20">Vampire Hunting (310-390)</string>
+    <string name="hero_category_21">Sea Monster Hunting (500-600)</string>
+    <string name="hero_category_22">Alien Hunting (190-590)</string>
+    <string name="hero_category_23">Zombie Hunting (400-600)</string>
+    <string name="hero_category_24">Elite Challenges (700-1500)</string>
+    <string name="hero_category_25">Bosses (700-1020)</string>
+    <string name="hero_category_26">Hordes (750-1100)</string>
+    <string name="hero_category_27">Unbeatable (1000-1500)</string>
+    <string name="hero_category_28">Guard Duty (100-300)</string>
+    <string name="hero_category_29">Guard Shops (100-170)</string>
+    <string name="hero_category_30">Guard Markets (100-300)</string>
+    <string name="hero_category_31">Guard Factories (150-300)</string>
+    <string name="hero_category_32">Guard Banks (190-240)</string>
+    <string name="hero_category_33">Guard Royalty (260-290)</string>
+    <string name="hero_category_34">Exploring (500-800)</string>
+    <string name="hero_category_35">Explore Forest (500-600)</string>
+    <string name="hero_category_36">Explore Desert (500-700)</string>
+    <string name="hero_category_37">Explore City (600-760)</string>
+    <string name="hero_category_38">Explore Underwater (600-800)</string>
+    <string name="hero_category_39">Explore Caves (750-800)</string>
+    <string name="hero_category_40">Escort (350-690)</string>
+    <string name="hero_category_41">Escort Villagers (350-470)</string>
+    <string name="hero_category_42">Escort Visitors (500-620)</string>
+    <string name="hero_category_43">Escort Soldiers (630-690)</string>
+
+    <string name="item_name_1">Copper ore</string>
+    <string name="item_name_2">Tin ore</string>
+    <string name="item_name_3">Coal</string>
+    <string name="item_name_4">Iron ore</string>
+    <string name="item_name_5">Mithril ore</string>
+    <string name="item_name_6">Adamantite ore</string>
+    <string name="item_name_7">Runite ore</string>
+    <string name="item_name_8">Gold nugget</string>
+    <string name="item_name_9">Silver nugget</string>
+    <string name="item_name_10">Dragonite ore</string>
+    <string name="item_name_11">Bronze bar</string>
+    <string name="item_name_12">Iron bar</string>
+    <string name="item_name_13">Steel bar</string>
+    <string name="item_name_14">Mithril bar</string>
+    <string name="item_name_15">Adamant bar</string>
+    <string name="item_name_16">Rune bar</string>
+    <string name="item_name_17">Silver bar</string>
+    <string name="item_name_18">Gold bar</string>
+    <string name="item_name_19">Dragon bar</string>
+    <string name="item_name_20">Bronze dagger</string>
+    <string name="item_name_21">Bronze sword</string>
+    <string name="item_name_22">Bronze longsword</string>
+    <string name="item_name_23">Bronze bow</string>
+    <string name="item_name_24">Bronze half shield</string>
+    <string name="item_name_25">Bronze full shield</string>
+    <string name="item_name_26">Bronze chainmail</string>
+    <string name="item_name_27">Bronze platebody</string>
+    <string name="item_name_28">Bronze half helmet</string>
+    <string name="item_name_29">Bronze full helmet</string>
+    <string name="item_name_30">Bronze boots</string>
+    <string name="item_name_31">Bronze gloves</string>
+    <string name="item_name_32">Bronze pickaxe</string>
+    <string name="item_name_33">Bronze hatchet</string>
+    <string name="item_name_34">Bronze fishing rod</string>
+    <string name="item_name_35">Bronze hammer</string>
+    <string name="item_name_36">Iron dagger</string>
+    <string name="item_name_37">Iron sword</string>
+    <string name="item_name_38">Iron longsword</string>
+    <string name="item_name_39">Iron bow</string>
+    <string name="item_name_40">Iron half shield</string>
+    <string name="item_name_41">Iron full shield</string>
+    <string name="item_name_42">Iron chainmail</string>
+    <string name="item_name_43">Iron platebody</string>
+    <string name="item_name_44">Iron half helmet</string>
+    <string name="item_name_45">Iron full helmet</string>
+    <string name="item_name_46">Iron boots</string>
+    <string name="item_name_47">Iron gloves</string>
+    <string name="item_name_48">Iron pickaxe</string>
+    <string name="item_name_49">Iron hatchet</string>
+    <string name="item_name_50">Iron fishing rod</string>
+    <string name="item_name_51">Iron hammer</string>
+    <string name="item_name_52">Coins</string>
+    <string name="item_name_53">Steel dagger</string>
+    <string name="item_name_54">Steel sword</string>
+    <string name="item_name_55">Steel longsword</string>
+    <string name="item_name_56">Steel bow</string>
+    <string name="item_name_57">Steel half shield</string>
+    <string name="item_name_58">Steel full shield</string>
+    <string name="item_name_59">Steel chainmail</string>
+    <string name="item_name_60">Steel platebody</string>
+    <string name="item_name_61">Steel half helmet</string>
+    <string name="item_name_62">Steel full helmet</string>
+    <string name="item_name_63">Steel boots</string>
+    <string name="item_name_64">Steel gloves</string>
+    <string name="item_name_65">Steel pickaxe</string>
+    <string name="item_name_66">Steel hatchet</string>
+    <string name="item_name_67">Steel fishing rod</string>
+    <string name="item_name_68">Steel hammer</string>
+    <string name="item_name_69">Spidersilk</string>
+    <string name="item_name_70">Silk</string>
+    <string name="item_name_71">Logs</string>
+    <string name="item_name_72">Ruby</string>
+    <string name="item_name_73">Sapphire</string>
+    <string name="item_name_74">Emerald</string>
+    <string name="item_name_75">Diamond</string>
+    <string name="item_name_76">Onyx</string>
+    <string name="item_name_77">Apple</string>
+    <string name="item_name_78">Cheese</string>
+    <string name="item_name_79">Bread</string>
+    <string name="item_name_80">Raw Meat</string>
+    <string name="item_name_81">Mithril dagger</string>
+    <string name="item_name_82">Mithril sword</string>
+    <string name="item_name_83">Mithril longsword</string>
+    <string name="item_name_84">Mithril bow</string>
+    <string name="item_name_85">Mithril half shield</string>
+    <string name="item_name_86">Mithril full shield</string>
+    <string name="item_name_87">Mithril chainmail</string>
+    <string name="item_name_88">Mithril platebody</string>
+    <string name="item_name_89">Mithril half helmet</string>
+    <string name="item_name_90">Mithril full helmet</string>
+    <string name="item_name_91">Mithril boots</string>
+    <string name="item_name_92">Mithril gloves</string>
+    <string name="item_name_93">Mithril pickaxe</string>
+    <string name="item_name_94">Mithril hatchet</string>
+    <string name="item_name_95">Mithril fishing rod</string>
+    <string name="item_name_96">Mithril hammer</string>
+    <string name="item_name_97">Adamant dagger</string>
+    <string name="item_name_98">Adamant sword</string>
+    <string name="item_name_99">Adamant longsword</string>
+    <string name="item_name_100">Adamant bow</string>
+    <string name="item_name_101">Adamant half shield</string>
+    <string name="item_name_102">Adamant full shield</string>
+    <string name="item_name_103">Adamant chainmail</string>
+    <string name="item_name_104">Adamant platebody</string>
+    <string name="item_name_105">Adamant half helmet</string>
+    <string name="item_name_106">Adamant full helmet</string>
+    <string name="item_name_107">Adamant boots</string>
+    <string name="item_name_108">Adamant gloves</string>
+    <string name="item_name_109">Adamant pickaxe</string>
+    <string name="item_name_110">Adamant hatchet</string>
+    <string name="item_name_111">Adamant fishing rod</string>
+    <string name="item_name_112">Adamant hammer</string>
+    <string name="item_name_113">Rune dagger</string>
+    <string name="item_name_114">Rune sword</string>
+    <string name="item_name_115">Rune longsword</string>
+    <string name="item_name_116">Rune bow</string>
+    <string name="item_name_117">Rune half shield</string>
+    <string name="item_name_118">Rune full shield</string>
+    <string name="item_name_119">Rune chainmail</string>
+    <string name="item_name_120">Rune platebody</string>
+    <string name="item_name_121">Rune half helmet</string>
+    <string name="item_name_122">Rune full helmet</string>
+    <string name="item_name_123">Rune boots</string>
+    <string name="item_name_124">Rune gloves</string>
+    <string name="item_name_125">Rune pickaxe</string>
+    <string name="item_name_126">Rune hatchet</string>
+    <string name="item_name_127">Rune fishing rod</string>
+    <string name="item_name_128">Rune hammer</string>
+    <string name="item_name_129">Powdered Sapphire</string>
+    <string name="item_name_130">Powdered Emerald</string>
+    <string name="item_name_131">Powdered Diamond</string>
+    <string name="item_name_132">Dragon dagger</string>
+    <string name="item_name_133">Dragon sword</string>
+    <string name="item_name_134">Dragon longsword</string>
+    <string name="item_name_135">Dragon bow</string>
+    <string name="item_name_136">Dragon half shield</string>
+    <string name="item_name_137">Dragon full shield</string>
+    <string name="item_name_138">Dragon chainmail</string>
+    <string name="item_name_139">Dragon platebody</string>
+    <string name="item_name_140">Dragon half helmet</string>
+    <string name="item_name_141">Dragon full helmet</string>
+    <string name="item_name_142">Dragon boots</string>
+    <string name="item_name_143">Dragon gloves</string>
+    <string name="item_name_144">Dragon pickaxe</string>
+    <string name="item_name_145">Dragon hatchet</string>
+    <string name="item_name_146">Dragon fishing spear</string>
+    <string name="item_name_147">Dragon hammer</string>
+    <string name="item_name_148">Draconic visage</string>
+    <string name="item_name_149">Silver ring</string>
+    <string name="item_name_150">Silver sapphire ring</string>
+    <string name="item_name_151">Silver emerald ring</string>
+    <string name="item_name_152">Silver ruby ring</string>
+    <string name="item_name_153">Silver diamond ring</string>
+    <string name="item_name_154">Silver onyx ring</string>
+    <string name="item_name_155">Gold ring</string>
+    <string name="item_name_156">Gold sapphire ring</string>
+    <string name="item_name_157">Gold emerald ring</string>
+    <string name="item_name_158">Gold ruby ring</string>
+    <string name="item_name_159">Gold diamond ring</string>
+    <string name="item_name_160">Gold onyx ring</string>
+    <string name="item_name_161">Legendary dagger</string>
+    <string name="item_name_162">Legendary sword</string>
+    <string name="item_name_163">Legendary longsword</string>
+    <string name="item_name_164">Legendary bow</string>
+    <string name="item_name_165">Legendary half shield</string>
+    <string name="item_name_166">Legendary full shield</string>
+    <string name="item_name_167">Legendary chainmail</string>
+    <string name="item_name_168">Legendary platebody</string>
+    <string name="item_name_169">Legendary half helmet</string>
+    <string name="item_name_170">Legendary full helmet</string>
+    <string name="item_name_171">Legendary boots</string>
+    <string name="item_name_172">Legendary gloves</string>
+    <string name="item_name_173">Legendary pickaxe</string>
+    <string name="item_name_174">Legendary hatchet</string>
+    <string name="item_name_175">Legendary fishing spear</string>
+    <string name="item_name_176">Legendary hammer</string>
+    <string name="item_name_177">Red Page</string>
+    <string name="item_name_178">Red Page (dirty)</string>
+    <string name="item_name_179">Yellow Page</string>
+    <string name="item_name_180">Yellow Page (dirty)</string>
+    <string name="item_name_181">Green Page</string>
+    <string name="item_name_182">Green Page (dirty)</string>
+    <string name="item_name_183">Blue Page</string>
+    <string name="item_name_184">Blue Page (dirty)</string>
+    <string name="item_name_185">Pink Page</string>
+    <string name="item_name_186">Pink Page (dirty)</string>
+    <string name="item_name_187">Brown Page</string>
+    <string name="item_name_188">Brown Page (dirty)</string>
+    <string name="item_name_189">Black Page</string>
+    <string name="item_name_190">Black Page (dirty)</string>
+    <string name="item_name_191">White Page</string>
+    <string name="item_name_192">White Page (dirty)</string>
+    <string name="item_name_193">Book of Strength</string>
+    <string name="item_name_194">Book of Agility</string>
+    <string name="item_name_195">Book of Nature</string>
+    <string name="item_name_196">Book of Water</string>
+    <string name="item_name_197">Book of Peace</string>
+    <string name="item_name_198">Book of Earth</string>
+    <string name="item_name_199">Book of War</string>
+    <string name="item_name_200">Book of Life</string>
+    <string name="item_name_201">The Collection</string>
+    <string name="item_name_202">Wheat</string>
+    <string name="item_name_203">Egg</string>
+    <string name="item_name_204">Milk</string>
+    <string name="item_name_205">Blueberry</string>
+    <string name="item_name_206">Banana</string>
+    <string name="item_name_207">Orange</string>
+    <string name="item_name_208">Cherry</string>
+    <string name="item_name_209">Candy</string>
+    <string name="item_name_210">Chocolate</string>
+    <string name="item_name_211">Raw Fish</string>
+    <string name="item_name_212">Fruit Salad</string>
+    <string name="item_name_213">Cooked Fish</string>
+    <string name="item_name_214">Cooked Meat</string>
+    <string name="item_name_215">Ham + Cheese S\'wich</string>
+    <string name="item_name_216">Ham Sandwich</string>
+    <string name="item_name_217">Cheese Sandwich</string>
+    <string name="item_name_218">Pie</string>
+    <string name="item_name_219">Cookie</string>
+    <string name="item_name_220">Amethyst</string>
+    <string name="item_name_221">Citrine</string>
+    <string name="item_name_222">Silver amethyst ring</string>
+    <string name="item_name_223">Silver citrine ring</string>
+    <string name="item_name_224">Gold amethyst ring</string>
+    <string name="item_name_225">Gold citrine ring</string>
+    <string name="item_name_226">Rare Candy</string>
+    <string name="item_name_227">Bowl Of Water</string>
+    <string name="item_name_228">Soup</string>
+    <string name="item_name_229">Cereal</string>
+    <string name="item_name_230">White Chocolate</string>
+    <string name="item_name_231">Golden Egg</string>
+
+    <string name="item_desc_1">A piece of copper ore.</string>
+    <string name="item_desc_2">A piece of tin ore.</string>
+    <string name="item_desc_3">A piece of coal.</string>
+    <string name="item_desc_4">A piece of iron ore.</string>
+    <string name="item_desc_5">A piece of mithril ore.</string>
+    <string name="item_desc_6">A piece of adamantite ore.</string>
+    <string name="item_desc_7">A piece of runite ore.</string>
+    <string name="item_desc_8">A golden nugget.</string>
+    <string name="item_desc_9">A silver nugget.</string>
+    <string name="item_desc_10">A piece of dragonite ore.</string>
+    <string name="item_desc_11">A fresh bar of bronze.</string>
+    <string name="item_desc_12">A fresh bar of iron.</string>
+    <string name="item_desc_13">A fresh bar of steel.</string>
+    <string name="item_desc_14">A fresh bar of mithril.</string>
+    <string name="item_desc_15">A fresh bar of adamant.</string>
+    <string name="item_desc_16">A fresh bar of rune.</string>
+    <string name="item_desc_17">A fresh bar of silver.</string>
+    <string name="item_desc_18">A fresh bar of gold.</string>
+    <string name="item_desc_19">A fresh bar of dragon.</string>
+    <string name="item_desc_20">A blunt bronze dagger.</string>
+    <string name="item_desc_21">A fairly blunt bronze sword.</string>
+    <string name="item_desc_22">A longer bronze sword.</string>
+    <string name="item_desc_23">A bow with bronze elements.</string>
+    <string name="item_desc_24">A fairly weak bronze shield.</string>
+    <string name="item_desc_25">A slightly stronger bronze shield.</string>
+    <string name="item_desc_26">A light set of bronze body armour.</string>
+    <string name="item_desc_27">A heavy set of bronze body armour.</string>
+    <string name="item_desc_28">A no-frills approach to protection.</string>
+    <string name="item_desc_29">A frills approach to protection.</string>
+    <string name="item_desc_30">A set of boots for those that like the muddy look.</string>
+    <string name="item_desc_31">A set of gloves for those that like the muddy look.</string>
+    <string name="item_desc_32">A weak pickaxe for mining rocks.</string>
+    <string name="item_desc_33">A weak axe for cutting down trees.</string>
+    <string name="item_desc_34">A weak rod for catching fish.</string>
+    <string name="item_desc_35">A weak hammer who misses his anvil.</string>
+    <string name="item_desc_36">A blunt iron dagger.</string>
+    <string name="item_desc_37">A bluntish iron sword.</string>
+    <string name="item_desc_38">A longer iron sword.</string>
+    <string name="item_desc_39">A bow with iron elements.</string>
+    <string name="item_desc_40">An iron half shield.</string>
+    <string name="item_desc_41">An improved iron shield.</string>
+    <string name="item_desc_42">A light set of iron body armour.</string>
+    <string name="item_desc_43">A heavy set of iron body armour.</string>
+    <string name="item_desc_44">A tiny bit of frills approach to protection.</string>
+    <string name="item_desc_45">A very frilly approach to protection.</string>
+    <string name="item_desc_46">A set of boots for those that like the grey look.</string>
+    <string name="item_desc_47">A set of gloves for those that like the grey look.</string>
+    <string name="item_desc_48">A standard pickaxe for mining rocks.</string>
+    <string name="item_desc_49">A standard axe for cutting down trees.</string>
+    <string name="item_desc_50">A standard rod for catching fish.</string>
+    <string name="item_desc_51">A standard hammer who misses his anvil.</string>
+    <string name="item_desc_52">Coins! Glorious coins!</string>
+    <string name="item_desc_53">An average steel dagger.</string>
+    <string name="item_desc_54">A slightly blunt steel sword.</string>
+    <string name="item_desc_55">An even longer steel sword.</string>
+    <string name="item_desc_56">A bow with steel elements.</string>
+    <string name="item_desc_57">Steel shield, but only half.</string>
+    <string name="item_desc_58">Steel shield, the fullest.</string>
+    <string name="item_desc_59">A light set of steel body armour.</string>
+    <string name="item_desc_60">A heavy set of steel body armour.</string>
+    <string name="item_desc_61">A little bit frilly approach to protection.</string>
+    <string name="item_desc_62">A rather frilly approach to protection.</string>
+    <string name="item_desc_63">A set of boots for those that like the grey look, now with added shine.</string>
+    <string name="item_desc_64">A set of gloves for those that like the grey look, now with added shine.</string>
+    <string name="item_desc_65">A sharper pickaxe for mining rocks.</string>
+    <string name="item_desc_66">A sharper axe for cutting down trees.</string>
+    <string name="item_desc_67">A sturdier rod for catching fish.</string>
+    <string name="item_desc_68">A heavier hammer that tends to hit the anvil. Just.</string>
+    <string name="item_desc_69">A stand of spidersilk.</string>
+    <string name="item_desc_70">A fine strip of silk.</string>
+    <string name="item_desc_71">Some basic logs.</string>
+    <string name="item_desc_72">A red gem.</string>
+    <string name="item_desc_73">A blue gem.</string>
+    <string name="item_desc_74">A green gem.</string>
+    <string name="item_desc_75">A white gem.</string>
+    <string name="item_desc_76">A black gem.</string>
+    <string name="item_desc_77">A nice, shiny apple.</string>
+    <string name="item_desc_78">Smells a bit cheesy.</string>
+    <string name="item_desc_79">A bit stale, but edible.</string>
+    <string name="item_desc_80">Still dripping. Yuck.</string>
+    <string name="item_desc_81">A pretty good blue-tinted dagger.</string>
+    <string name="item_desc_82">A slightly sharp sword, with a blue hue.</string>
+    <string name="item_desc_83">This is a sword? No, longer!</string>
+    <string name="item_desc_84">Use to fire arrows out of the blue.</string>
+    <string name="item_desc_85">A bl shi.</string>
+    <string name="item_desc_86">A blue shield.</string>
+    <string name="item_desc_87">A set of mithril chainmail, seemingly for the smaller gentleman.</string>
+    <string name="item_desc_88">A more complete approach to sword-stopping.</string>
+    <string name="item_desc_89">Blue on blue for you.</string>
+    <string name="item_desc_90">Blue on more blue, still for you.</string>
+    <string name="item_desc_91">Note: Despite appearances, you are not walking on water.</string>
+    <string name="item_desc_92">Note: Despite appearances, you are not washing your hands.</string>
+    <string name="item_desc_93">This pick is no myth!</string>
+    <string name="item_desc_94">It\'s a shame magical blue trees don\'t exist.</string>
+    <string name="item_desc_95">The fish seem oddly attracted to the blue metal.</string>
+    <string name="item_desc_96">A heavier hammer that tends to hit the anvil. Just.</string>
+    <string name="item_desc_97">A scarily sharp green dagger.</string>
+    <string name="item_desc_98">A rather sharp sword, with a green tint.</string>
+    <string name="item_desc_99">I\'m adamant that this sword is longer.</string>
+    <string name="item_desc_100">A fine bow, with an intriguing green hue.</string>
+    <string name="item_desc_101">Don\'t let anyone know this shield looks like a pea.</string>
+    <string name="item_desc_102">A rather impressive green shield.</string>
+    <string name="item_desc_103">A fine set of chainmail, even considering the colour.</string>
+    <string name="item_desc_104">The best platebody for those that can\'t kill dragons.</string>
+    <string name="item_desc_105">Green on green, lookin\' mean.</string>
+    <string name="item_desc_106">Gold on green, still lookin\' mean.</string>
+    <string name="item_desc_107">Ugh, how do these even get so mould- ... oh!</string>
+    <string name="item_desc_108">Maybe you should take up gardening.</string>
+    <string name="item_desc_109">Mean, green, mining machine.</string>
+    <string name="item_desc_110">Powerful, but has a habit of blending into the target.</string>
+    <string name="item_desc_111">The green rod seems to lure the fishies in...</string>
+    <string name="item_desc_112">A very solid hammer, used for crafting powerful equipment.</string>
+    <string name="item_desc_113">A nifty little blade with a very sharp point.</string>
+    <string name="item_desc_114">The rune rune rune, rune is the (s)word.</string>
+    <string name="item_desc_115">A very long, and very sharp, sword.</string>
+    <string name="item_desc_116">The shortest of shortbows, the longest of longbows.</string>
+    <string name="item_desc_117">Looks rather like a crystal, but isn\'t.</string>
+    <string name="item_desc_118">A very nice shield, used by professional adventurers.</string>
+    <string name="item_desc_119">Well, it\'s not a platebody, but it\'s still pretty good.</string>
+    <string name="item_desc_120">Made famous by DR4G0NK1LL3R, truly a brave adventurer.</string>
+    <string name="item_desc_121">A very protective helmet, without all the trimmings.</string>
+    <string name="item_desc_122">An especially protective helmet, with all the trimmings.</string>
+    <string name="item_desc_123">Walk the streets in style with these super-comfy boots.</string>
+    <string name="item_desc_124">Brand new Rune gloves, now with extra protection!</string>
+    <string name="item_desc_125">A pickaxe any miner would be proud to use.</string>
+    <string name="item_desc_126">An extremely sharp axe, for the mightiest of trees.</string>
+    <string name="item_desc_127">The fish won\'t rune away from this rod!</string>
+    <string name="item_desc_128">The mightiest of hammers! Or at least a very mighty one.</string>
+    <string name="item_desc_129">This sapphire is in tiny shards.</string>
+    <string name="item_desc_130">This emerald is in tiny shards.</string>
+    <string name="item_desc_131">This diamond is in tiny shards.</string>
+    <string name="item_desc_132">The deadliest dragon dagger!</string>
+    <string name="item_desc_133">Sharp as a dragon\'s wit.</string>
+    <string name="item_desc_134">A very long, and very sharp, sword.</string>
+    <string name="item_desc_135">A striking red bow, with a hint of flames.</string>
+    <string name="item_desc_136">Half shield or not, this will protect from a dragon\'s breath.</string>
+    <string name="item_desc_137">Rumoured to be forged from dragon remains.</string>
+    <string name="item_desc_138">Unusually, small insects seem to herd around the item.</string>
+    <string name="item_desc_139">The ultimate in heavy duty protection.</string>
+    <string name="item_desc_140">There\'ll be no headshots whilst this is worn.</string>
+    <string name="item_desc_141">The helmet almost seems to repel arrows.</string>
+    <string name="item_desc_142">I don\'t think a dragon\'s foot would fit in these...</string>
+    <string name="item_desc_143">I\'m certain a dragon\'s claw wouldn\'t fit in here...</string>
+    <string name="item_desc_144">For mining the toughest of ores.</string>
+    <string name="item_desc_145">For felling the tallest great oaks</string>
+    <string name="item_desc_146">Let\'s take the fight to the fishes!</string>
+    <string name="item_desc_147">Want to avoid getting hammered? Use this!</string>
+    <string name="item_desc_148">The orb seems to pulsate with power.</string>
+    <string name="item_desc_149">A plain ring of silver.</string>
+    <string name="item_desc_150">A ring of silver, with a glittering blue gem.</string>
+    <string name="item_desc_151">An emerald-embossed silver ring.</string>
+    <string name="item_desc_152">A silver ring with a fine ruby in.</string>
+    <string name="item_desc_153">A fine silver ring with a precious white gem.</string>
+    <string name="item_desc_154">A mildly ominous silver and black ring.</string>
+    <string name="item_desc_155">A plain ring of gold.</string>
+    <string name="item_desc_156">A golden ring, with a stunningly large sapphire.</string>
+    <string name="item_desc_157">A ring of fine gold, with a glittering emerald.</string>
+    <string name="item_desc_158">An expensive looking gold and red ring.</string>
+    <string name="item_desc_159">An intimidatingly opulent ring.</string>
+    <string name="item_desc_160">The ultimate in finger decorations.</string>
+    <string name="item_desc_161">The dagger whispers of murders past.</string>
+    <string name="item_desc_162">An absurdly menacing blade.</string>
+    <string name="item_desc_163">For long distance damage.</string>
+    <string name="item_desc_164">Fired arrows seem to hone in on the target.</string>
+    <string name="item_desc_165">No, two halves don\'t make a whole. Sorry.</string>
+    <string name="item_desc_166">Maximum protection, maximum style.</string>
+    <string name="item_desc_167">All the protection, with all the mobility.</string>
+    <string name="item_desc_168">Distinctly better for not-dying than dragon armour.</string>
+    <string name="item_desc_169">Fit for a king!</string>
+    <string name="item_desc_170">Possibly the comfiest helmet ever made.</string>
+    <string name="item_desc_171">These boots were made for stomping. On enemies.</string>
+    <string name="item_desc_172">These gloves seem to fuse to legendary weapons automatically.</string>
+    <string name="item_desc_173">Fragments of ore seem to be drawn to the powerful blade.</string>
+    <string name="item_desc_174">Trees shake with fear when the axe draws closer.</string>
+    <string name="item_desc_175">Arguably, this could be used as a weapon...</string>
+    <string name="item_desc_176">Used for the forging of the mightiest equipment.</string>
+    <string name="item_desc_177">The page seems to glow with power.</string>
+    <string name="item_desc_178">The page seems to glow with dulled power.</string>
+    <string name="item_desc_179">The page seems to vibrate.</string>
+    <string name="item_desc_180">The page seems to vibrate slightly.</string>
+    <string name="item_desc_181">The page emits strong, leafy smell.</string>
+    <string name="item_desc_182">The page emits a faint flowery smell.</string>
+    <string name="item_desc_183">The page is rather soggy.</string>
+    <string name="item_desc_184">The page is slightly damp</string>
+    <string name="item_desc_185">The page\'s appearance somehow cheers you up.</string>
+    <string name="item_desc_186">The page makes you feel a little bit happier.</string>
+    <string name="item_desc_187">The page is a little muddy.</string>
+    <string name="item_desc_188">The page is covered in rather messy mud.</string>
+    <string name="item_desc_189">The page whispers stories of battles long ended to you.</string>
+    <string name="item_desc_190">The page\'s appearance makes you more irritable.</string>
+    <string name="item_desc_191">The page\'s leaves have petals sprouting from them.</string>
+    <string name="item_desc_192">The page has bugs crawling all over.</string>
+    <string name="item_desc_193">A powerful book, with information on combat techniques.</string>
+    <string name="item_desc_194">An agile book, containing information on dodging techniques.</string>
+    <string name="item_desc_195">A natural book, containing information on gardening.</string>
+    <string name="item_desc_196">A wet book, containing information on sea creatures.</string>
+    <string name="item_desc_197">A relaxing book, helping to negotiate between others.</string>
+    <string name="item_desc_198">A brown book, containing information about Earth.</string>
+    <string name="item_desc_199">A deadly book, containing information on poisons.</string>
+    <string name="item_desc_200">A lively book, containing information on the world\'s species.</string>
+    <string name="item_desc_201">A collection of all books,the ultimate prize.</string>
+    <string name="item_desc_202">The grain in game falls mainly in... here.</string>
+    <string name="item_desc_203">Egg-sactly what you need.</string>
+    <string name="item_desc_204">Freshly squeezed.</string>
+    <string name="item_desc_205">Like a blackberry, but bluer.</string>
+    <string name="item_desc_206">Not split. Yet.</string>
+    <string name="item_desc_207">Orange you glad you bought this?</string>
+    <string name="item_desc_208">Cherish this cherry. Or use it.</string>
+    <string name="item_desc_209">Don\'t eat too many!</string>
+    <string name="item_desc_210">Don\'t eat too much!</string>
+    <string name="item_desc_211">A very fishy dishy. Delishy!.</string>
+    <string name="item_desc_212">Fresh, not from a can.</string>
+    <string name="item_desc_213">A less fishy dishy, still delishy!.</string>
+    <string name="item_desc_214">Not dripping any more. Phew!</string>
+    <string name="item_desc_215">A sandwich with all the insides inside(s).</string>
+    <string name="item_desc_216">Ham, not spam!</string>
+    <string name="item_desc_217">Not grilled, unfortunately.</string>
+    <string name="item_desc_218">This pie isn\'t.</string>
+    <string name="item_desc_219">Look at the way it crumbles.</string>
+    <string name="item_desc_220">A purple gem.</string>
+    <string name="item_desc_221">A yellow gem.</string>
+    <string name="item_desc_222">A rather pretty silver and purple ring.</string>
+    <string name="item_desc_223">An intriguing silver and yellow ring.</string>
+    <string name="item_desc_224">A rather pretty gold and purple ring.</string>
+    <string name="item_desc_225">An intriguing gold and silver ring.</string>
+    <string name="item_desc_226">Unfortunately won\'t level you up.</string>
+    <string name="item_desc_227">Thirst quenching, and rather wet.</string>
+    <string name="item_desc_228">Hearty and filling!</string>
+    <string name="item_desc_229">The most important meal of the day, apparently.</string>
+    <string name="item_desc_230">Mmmm, so sweet!</string>
+    <string name="item_desc_231">So pretty! So golden! So eggy!</string>
+
+    <string name="language_1">English</string>
+    <string name="language_2">French</string>
+    <string name="language_3">Russian</string>
+    <string name="language_4">Dutch</string>
+    <string name="language_5">Chinese</string>
+    <string name="language_6">Korean</string>
+    <string name="language_7">Japanese</string>
+    <string name="language_8">Spanish</string>
+    <string name="language_9">German</string>
+
+    <string name="setting_1">Game Sound</string>
+    <string name="setting_2">Game Music</string>
+    <string name="setting_3">Restock Notifications</string>
+    <string name="setting_4">Notification Sounds</string>
+    <string name="setting_5">Visitor Notifications</string>
+    <string name="setting_6">Auto sign in</string>
+    <string name="setting_7">Worker Notifications</string>
+    <string name="setting_8">Disable Ads</string>
+    <string name="setting_9">Bonus Notifications</string>
+    <string name="setting_10">Worker Autofeed</string>
+    <string name="setting_11">Quick Item Select</string>
+    <string name="setting_12">Only Available Items</string>
+    <string name="setting_13">Quick Log Access</string>
+    <string name="setting_14">Fullscreen Mode</string>
+    <string name="setting_15">Item Listing Auto Refresh</string>
+    <string name="setting_16">Fullscreen Mode Checking</string>
+    <string name="setting_17">Item Slot Updating</string>
+    <string name="setting_18">Longer Message Durations</string>
+    <string name="setting_19">Smelt / Craft / Sell Max</string>
+    <string name="setting_20">All Items Finished Notifications</string>
+    <string name="setting_21">Single Stack Bulk Crafting</string>
+    <string name="setting_22">Orientation</string>
+    <string name="setting_23">Language</string>
+    <string name="setting_24">Assistant Notifications</string>
+
+    <string name="state_1">Normal</string>
+    <string name="state_2">Unfinished</string>
+    <string name="state_3">Red Enchant</string>
+    <string name="state_4">Blue Enchant</string>
+    <string name="state_5">Green Enchant</string>
+    <string name="state_6">White Enchant</string>
+    <string name="state_7">Black Enchant</string>
+    <string name="state_8">Purple Enchant</string>
+    <string name="state_9">Yellow Enchant</string>
+
+    <string name="su_1">2x Furnace Items</string>
+    <string name="su_2">2x Coin Earnings</string>
+    <string name="su_3">2x All XP</string>
+    <string name="su_4">2x Trader Items Purchased</string>
+    <string name="su_5">2x Worker Resources</string>
+    <string name="su_6">1 Demand Per Visitor</string>
+    <string name="su_7">Free Market Restock</string>
+    <string name="su_8">-50% Worker Time</string>
+    <string name="su_9">2x Trade Price</string>
+    <string name="su_10">-50% Market Buy Cost</string>
+    <string name="su_11">-50%% Bonus Chest Time</string>
+    <string name="su_12">100x Contribution Reward</string>
+    <string name="su_13">Guaranteed Pages</string>
+    <string name="su_14">All Quests Medium+</string>
+    <string name="su_15">All Quests Hard+</string>
+    <string name="su_16">All Quests Elite</string>
+    <string name="su_17">2x Anvil Items</string>
+    <string name="su_18">2x Table Items</string>
+    <string name="su_19">2x Enchant Table Items</string>
+    <string name="su_20">Buy All From Market</string>
+    <string name="su_21">Halve All Times</string>
+
+    <string name="tier_1">Bronze</string>
+    <string name="tier_2">Iron</string>
+    <string name="tier_3">Steel</string>
+    <string name="tier_4">Mithril</string>
+    <string name="tier_5">Adamant</string>
+    <string name="tier_6">Rune</string>
+    <string name="tier_7">Dragon</string>
+    <string name="tier_8">Silver</string>
+    <string name="tier_9">Gold</string>
+    <string name="tier_10">Legendary</string>
+    <string name="tier_11">None</string>
+
+    <string name="trader_name_1">The Scraps</string>
+    <string name="trader_name_2">Lots More Ore</string>
+    <string name="trader_name_3">The Off Cuts</string>
+    <string name="trader_name_4">The Backbone</string>
+    <string name="trader_name_5">The Prime Cuts</string>
+    <string name="trader_name_6">The Iron Throne</string>
+    <string name="trader_name_7">The Iron Fist</string>
+    <string name="trader_name_8">The Nuggets</string>
+    <string name="trader_name_9">The Nougat</string>
+    <string name="trader_name_10">The Golden Boulders</string>
+    <string name="trader_name_11">A Straight Cut</string>
+    <string name="trader_name_12">A Finer Cut</string>
+    <string name="trader_name_13">Logged In</string>
+    <string name="trader_name_14">Oog</string>
+    <string name="trader_name_15">GemBooth 1000</string>
+    <string name="trader_name_16">GemEmporium 5000</string>
+    <string name="trader_name_17">GemCrusher 9000</string>
+    <string name="trader_name_18">Farmyard Funland</string>
+    <string name="trader_name_19">Baker\'s Dozen</string>
+    <string name="trader_name_20">The Exclusive Emporium</string>
+    <string name="trader_name_21">The Little Ore Shop</string>
+    <string name="trader_name_22">The Little Bar Shop</string>
+    <string name="trader_name_23">The Bigger Ore Shop</string>
+    <string name="trader_name_24">The Bigger Bar Shop</string>
+    <string name="trader_name_25">The Biggest Ore Shop</string>
+    <string name="trader_name_26">The Biggest Bar Shop</string>
+    <string name="trader_name_27">The Scary Silk Shop</string>
+    <string name="trader_name_28">The Lethal Log Lair</string>
+    <string name="trader_name_29">The Petrifying Powder Place</string>
+    <string name="trader_name_30">Surf and Steel</string>
+    <string name="trader_name_31">Manatees and Mithril</string>
+    <string name="trader_name_32">Atolls and Adamant</string>
+    <string name="trader_name_33">Reefs and Rune</string>
+    <string name="trader_name_34">Dives and Dragon</string>
+    <string name="trader_name_35">Swords a\'plenty!</string>
+    <string name="trader_name_36">Shields a\'plenty!</string>
+    <string name="trader_name_37">Armour a\'plenty!</string>
+    <string name="trader_name_38">The Floating Fruitmonger</string>
+    <string name="trader_name_39">The Fromage Fermenter</string>
+    <string name="trader_name_40">Mill Hill</string>
+    <string name="trader_name_41">Bloodsucker\'s Boxes</string>
+    <string name="trader_name_42">Runic Remedies</string>
+    <string name="trader_name_43">Dragon Delights</string>
+    <string name="trader_name_44">Silver Waistbands</string>
+    <string name="trader_name_45">Gold Belts</string>
+    <string name="trader_name_46">Space Ores</string>
+    <string name="trader_name_47">Space Bars</string>
+    <string name="trader_name_48">Space Gems</string>
+    <string name="trader_name_49">My Stuff</string>
+    <string name="trader_name_50">Still My Stuff</string>
+    <string name="trader_name_51">Opticians</string>
+    <string name="trader_name_52">The King\'s Armoury</string>
+    <string name="trader_name_53">The King\'s Weapon Rack</string>
+    <string name="trader_name_54">The Pre-Bakery</string>
+    <string name="trader_name_55">Fruit Stand</string>
+    <string name="trader_name_56">The Sweet Spot</string>
+
+    <string name="trader_desc_1">I was gonna chuck this stuff out.. you interested?</string>
+    <string name="trader_desc_2">Lots and lots and lots of ore!</string>
+    <string name="trader_desc_3">This stuff isn\'t the best, but it\'ll do.</string>
+    <string name="trader_desc_4">You\'re gonna like what I\'ve got. I think.</string>
+    <string name="trader_desc_5">My very best stock, for the connoisseur.</string>
+    <string name="trader_desc_6">I rule my iron with an iron fist!</string>
+    <string name="trader_desc_7">I rule my iron from an iron throne!</string>
+    <string name="trader_desc_8">Check out these lil shiners.</string>
+    <string name="trader_desc_9">Panned these all myself, honest!</string>
+    <string name="trader_desc_10">Check out these lil shiners.</string>
+    <string name="trader_desc_11">Definitely not off the back of a cart.</string>
+    <string name="trader_desc_12">Reams upon reams of high quality cloth.</string>
+    <string name="trader_desc_13">LOGS! LOOOGS! LOTSA LOOOOOOGS!!!</string>
+    <string name="trader_desc_14">OOG. OOG. OOG.</string>
+    <string name="trader_desc_15">Bzzt! Buy gems!</string>
+    <string name="trader_desc_16">Bzzt! Buy BETTER gems!</string>
+    <string name="trader_desc_17">Bzzt! Buy BROKEN gems!</string>
+    <string name="trader_desc_18">All the fun of the farm!</string>
+    <string name="trader_desc_19">What, a plant can\'t run a business?</string>
+    <string name="trader_desc_20">You won\'t find any of this anywhere else!</string>
+    <string name="trader_desc_21">A little ore in store, you it is for!</string>
+    <string name="trader_desc_22">Some bars inside, no need to hide.</string>
+    <string name="trader_desc_23">Ore? A lot, that\'s what I\'ve got.</string>
+    <string name="trader_desc_24">Lots more bars, don\'t go fars!</string>
+    <string name="trader_desc_25">Ore to the max, racks and racks.</string>
+    <string name="trader_desc_26">So many bars, enough to fill Mars.</string>
+    <string name="trader_desc_27">About as scary as regular silk.</string>
+    <string name="trader_desc_28">About as lethal as any old log.</string>
+    <string name="trader_desc_29">Powder can be scary! Course it can!</string>
+    <string name="trader_desc_30">Don\'t steal my steel.</string>
+    <string name="trader_desc_31">I won\'t mith my mithril. I mean miss.</string>
+    <string name="trader_desc_32">I\'m adamant you\'ll like my adamant.</string>
+    <string name="trader_desc_33">Don\'t rune away!</string>
+    <string name="trader_desc_34">Forged from seadragon hide.</string>
+    <string name="trader_desc_35">Get your swords here!</string>
+    <string name="trader_desc_36">Get your shields here!</string>
+    <string name="trader_desc_37">Get your armour here!</string>
+    <string name="trader_desc_38">It\'s all technically fruit!</string>
+    <string name="trader_desc_39">Finely fermented, frankly.</string>
+    <string name="trader_desc_40">Baker\'s dozens!</string>
+    <string name="trader_desc_41">Don\'t ask how I got this.</string>
+    <string name="trader_desc_42">The finest rune resources in the land!</string>
+    <string name="trader_desc_43">All 100%% gen-u-ine dragon.</string>
+    <string name="trader_desc_44">For blobs only!</string>
+    <string name="trader_desc_45">For fancy blobs only!</string>
+    <string name="trader_desc_46">Fresh off the asteroid.</string>
+    <string name="trader_desc_47">From the slightly more advanced asteroids.</string>
+    <string name="trader_desc_48">Formed when a space rock meets high G-forces.</string>
+    <string name="trader_desc_49">Not for sale. Go away.</string>
+    <string name="trader_desc_50">I\'m hanging onto this. Shoo.</string>
+    <string name="trader_desc_51">Well, they help protect your eyes at least.</string>
+    <string name="trader_desc_52">Buy the very best.</string>
+    <string name="trader_desc_53">Buy the very best.</string>
+    <string name="trader_desc_54">All the ingredients, none of the bread!</string>
+    <string name="trader_desc_55">All of your five a day.</string>
+    <string name="trader_desc_56">Careful, they\'ll rot your teeth.</string>
+
+    <string name="type_1">Ore</string>
+    <string name="type_2">Bar</string>
+    <string name="type_3">Dagger</string>
+    <string name="type_4">Sword</string>
+    <string name="type_5">Longsword</string>
+    <string name="type_6">Bow</string>
+    <string name="type_7">Half Shield</string>
+    <string name="type_8">Full Shield</string>
+    <string name="type_9">Chainmail</string>
+    <string name="type_10">Platebody</string>
+    <string name="type_11">Half Helmet</string>
+    <string name="type_12">Full Helmet</string>
+    <string name="type_13">Boot</string>
+    <string name="type_14">Glove</string>
+    <string name="type_15">Pickaxe</string>
+    <string name="type_16">Hatchet</string>
+    <string name="type_17">Fishing Rod</string>
+    <string name="type_18">Hammer</string>
+    <string name="type_19">Secondary</string>
+    <string name="type_20">Gem</string>
+    <string name="type_21">Raw Food</string>
+    <string name="type_22">Powder</string>
+    <string name="type_23">Rare</string>
+    <string name="type_24">Ring</string>
+    <string name="type_25">Page</string>
+    <string name="type_26">Book</string>
+    <string name="type_27">Cooked Food</string>
+    <string name="type_28">Internal</string>
+
+    <string name="upgrade_1">Visitor Spawn Time</string>
+    <string name="upgrade_2">Market Restock Time</string>
+    <string name="upgrade_3">Maximum Visitors</string>
+    <string name="upgrade_4">Maximum Traders</string>
+    <string name="upgrade_5">Coins Bonus</string>
+    <string name="upgrade_6">XP Bonus</string>
+    <string name="upgrade_7">Craft Time</string>
+    <string name="upgrade_8">Legendary Chance</string>
+    <string name="upgrade_9">Restock All Cost</string>
+    <string name="upgrade_10">Worker Time</string>
+    <string name="upgrade_11">Minimum Visitor Rewards</string>
+    <string name="upgrade_12">Maximum Visitor Rewards</string>
+
+    <string name="visitor_name_1">Senor Spicy Hot</string>
+    <string name="visitor_name_2">Mister Hatchet</string>
+    <string name="visitor_name_3">Lord of the Junk</string>
+    <string name="visitor_name_4">Monsieur Fancypants</string>
+    <string name="visitor_name_5">Grumbling Rock</string>
+    <string name="visitor_name_6">Large Grumbling Rock</string>
+    <string name="visitor_name_7">R. De Couleur</string>
+    <string name="visitor_name_8">G. De Couleur</string>
+    <string name="visitor_name_9">B. De Couleur</string>
+    <string name="visitor_name_10">W. De Couleur</string>
+    <string name="visitor_name_11">B. De Couleur</string>
+    <string name="visitor_name_12">Gelatinous Egg</string>
+    <string name="visitor_name_13">The Great Cheese Menace</string>
+    <string name="visitor_name_14">The Leech King</string>
+    <string name="visitor_name_15">Man of Magicka</string>
+    <string name="visitor_name_16">Rare Chest</string>
+    <string name="visitor_name_17">Chest</string>
+    <string name="visitor_name_18">Eye of Ender</string>
+    <string name="visitor_name_19">BRAINS</string>
+    <string name="visitor_name_20">Asterisk The Ghoul</string>
+    <string name="visitor_name_21">Eye of Starter</string>
+    <string name="visitor_name_22">Marcell</string>
+    <string name="visitor_name_23">Crabby</string>
+    <string name="visitor_name_24">Southerner</string>
+    <string name="visitor_name_25">Magical Mushroom</string>
+    <string name="visitor_name_26">Overwasp</string>
+    <string name="visitor_name_27">Obelix The Ghoul</string>
+    <string name="visitor_name_28">Whippersnappette</string>
+    <string name="visitor_name_29">Hatty</string>
+    <string name="visitor_name_30">Archer</string>
+    <string name="visitor_name_31">Steve</string>
+    <string name="visitor_name_32">Whippersnapper</string>
+    <string name="visitor_name_33">Mr T Utorial</string>
+    <string name="visitor_name_34">Sammy the Snake</string>
+    <string name="visitor_name_35">Power Orb</string>
+    <string name="visitor_name_36">Frankie Fire</string>
+    <string name="visitor_name_37">Emerald Giant</string>
+    <string name="visitor_name_38">PURPLEBOT9000</string>
+    <string name="visitor_name_39">Whirling Dervish</string>
+    <string name="visitor_name_40">Stumps</string>
+    <string name="visitor_name_41">Octomum</string>
+    <string name="visitor_name_42">Battletoad</string>
+    <string name="visitor_name_43">Casper</string>
+    <string name="visitor_name_44">Mummioso</string>
+    <string name="visitor_name_45">The Black Knight</string>
+    <string name="visitor_name_46">Mrs BRAINS</string>
+    <string name="visitor_name_47">Sir Stumps</string>
+    <string name="visitor_name_48">The Great Bread Menace</string>
+    <string name="visitor_name_49">Bloody Mary</string>
+    <string name="visitor_name_50">COLDBOT5000</string>
+    <string name="visitor_name_51">Mr Tentacles</string>
+    <string name="visitor_name_52">Bresh Bosh</string>
+    <string name="visitor_name_53">Easter Bunny</string>
+
+    <string name="visitor_desc_1">I like unfinished things, they burn better!</string>
+    <string name="visitor_desc_2">If only I was a woodcutter...</string>
+    <string name="visitor_desc_3">It\'s not rubbish, it\'s treasure!</string>
+    <string name="visitor_desc_4">Only the best for me, old chap.</string>
+    <string name="visitor_desc_5">Me hungry. Tummy rumbling.</string>
+    <string name="visitor_desc_6">Me very hungry. Tummy rumbling loud.</string>
+    <string name="visitor_desc_7">They say I\'m the short-tempered one, but I just like the colour.</string>
+    <string name="visitor_desc_8">They say I\'m the jealous one, but I just like the colour.</string>
+    <string name="visitor_desc_9">They say I\'m the unhappy one, but I just like the colour.</string>
+    <string name="visitor_desc_10">They say I\'m the scared one, but I just like the colour.</string>
+    <string name="visitor_desc_11">They say I\'m the scary one, but I just like the colour.</string>
+    <string name="visitor_desc_12">So what if I\'m not quite in shape?</string>
+    <string name="visitor_desc_13">You there! Got any of the yellow stuff?</string>
+    <string name="visitor_desc_14">Slurp, slurp.</string>
+    <string name="visitor_desc_15">Do you like my outfit?</string>
+    <string name="visitor_desc_16">Give me your rare items, I\'ll look after them!</string>
+    <string name="visitor_desc_17">Give me your items, I\'ll look after them!</string>
+    <string name="visitor_desc_18">Don\'t worry, it\'s a coloured contact lens.</string>
+    <string name="visitor_desc_19">BRAINS</string>
+    <string name="visitor_desc_20">Seen Obelix anywhere?</string>
+    <string name="visitor_desc_21">I don\'t suppose you\'ve got any monocles?</string>
+    <string name="visitor_desc_22">I\'ve got shoes on.</string>
+    <string name="visitor_desc_23">Snippy, snippy!</string>
+    <string name="visitor_desc_24">From down south. No, REALLY south. REAAALLLY south.</string>
+    <string name="visitor_desc_25">No nibbling.</string>
+    <string name="visitor_desc_26">You know I can sting repeatedly, right?</string>
+    <string name="visitor_desc_27">Seen Asterisk anywhere?</string>
+    <string name="visitor_desc_28">Don\'t tell Steve, but his secret mine isn\'t so secret.</string>
+    <string name="visitor_desc_29">I wish my hair wasn\'t so exposed to the elements.</string>
+    <string name="visitor_desc_30">It\'s all about the bullseye.</string>
+    <string name="visitor_desc_31">Gotta dig deeper and deeper and deeper and...</string>
+    <string name="visitor_desc_32">Don\'t tell Steve, but his secret fish pond isn\'t so secret.</string>
+    <string name="visitor_desc_33">Need a hand?</string>
+    <string name="visitor_desc_34">Ssscared of sssnakesss?</string>
+    <string name="visitor_desc_35">I am all powerful. Okay, apart from equipment. Shh.</string>
+    <string name="visitor_desc_36">Is it hot in here?</string>
+    <string name="visitor_desc_37">I.. can.. barely.. move.</string>
+    <string name="visitor_desc_38">BZZ.. GIVE SILVER. PLZ.</string>
+    <string name="visitor_desc_39">I\'m a little bit dizzy. Actually, very dizzy.</string>
+    <string name="visitor_desc_40">Sure is cold up there.</string>
+    <string name="visitor_desc_41">I am a completely normal human. Completely normal.</string>
+    <string name="visitor_desc_42">Make it quick, I\'ve got somewhere to be.</string>
+    <string name="visitor_desc_43">I hope I\'m not scaring you. I\'m so sorry if I am. Sorry.</string>
+    <string name="visitor_desc_44">I am more than a mere mummy, I am Mummioso!</string>
+    <string name="visitor_desc_45">It\'s not even a scratch!</string>
+    <string name="visitor_desc_46">Hello! Oh, also BRAINS.</string>
+    <string name="visitor_desc_47">My bark is as good as my bite.</string>
+    <string name="visitor_desc_48">You there! Got any of the yeasty stuff?</string>
+    <string name="visitor_desc_49">Bloody Mary, Bloody Mary, Bloody Mary!</string>
+    <string name="visitor_desc_50">It\'s freezerin\' time!</string>
+    <string name="visitor_desc_51">Want a burger?</string>
+    <string name="visitor_desc_52">I\'s got all these coins but nuffin good. Whatchu got?</string>
+    <string name="visitor_desc_53">Here to spread Easter joy!</string>
 
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>
@@ -24,7 +1352,7 @@
     <string name="tutorialVisitorPicture">Visitor</string>
     <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
     <string name="tutorialVisitorPrefs">Preferences</string>
-    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5%% bonus if they are traded.</string>
     <string name="tutorialVisitorDemands">Demands</string>
     <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
 
@@ -126,7 +1454,7 @@
     <string name="tradeText">Trade</string>
     <string name="enchantingText">Gem Table</string>
     <string name="settingsText">Settings</string>
-    <string name="creditsText">Credits</string>
+    <string name="creditsText" translatable="false">Credits</string>
     <string name="rateText">Rate App</string>
     <string name="trophyText">Trophies</string>
     <string name="statisticsText">Statistics</string>
@@ -153,6 +1481,13 @@
     <string name="messageLogToggleText">Quick Log Access</string>
     <string name="adventureText">Adventures</string>
     <string name="equipmentText">Equipment</string>
+    <string name="helmetText">Helmet</string>
+    <string name="armourText">Armour</string>
+    <string name="weaponText">Weapon</string>
+    <string name="shieldText">Shield</string>
+    <string name="glovesText">Gloves</string>
+    <string name="bootsText">Boots</string>
+    <string name="setBonuses">Set Bonuses</string>
     <string name="interstitialText">Advert</string>
 
     <string name="interstitialTimeLeft">Remaining: %1$ds</string>
@@ -167,9 +1502,9 @@
     <string name="superUpgradeDisabled">disabled</string>
     <string name="superUpgradePrestigeLevel">You need to have prestiged %1$d times to unlock this Super Upgrade.</string>
 
-    <string name="slotLevel">Lv %d</string>
+    <string name="slotLevel" translatable="false">Lv %d</string>
     <string name="slotPremium">Prem</string>
-    <string name="slotSeconds">%ds</string>
+    <string name="slotSeconds" translatable="false">%ds</string>
 
     <string name="socialMediaQuestion">Want to get in touch? You\'re in luck!\n\nReddit is the most active community, but any will get a quick response.</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -194,7 +1529,7 @@
     <string name="boughtContribute">Thank you for contributing! You\'re the best!</string>
     <string name="contributeDescription">Hey!\n\nThank you so much for buying premium. The contribute option is for those that want to give more to support development.\n\nThere is a 1337 coin reward for contributing, and you can contribute as often as you like. If you\'re interested in buying more coins, coins can be bought (+ button next to coins).\n\nContributing repeatedly provides access to more behind-the-scenes content, up to suggesting new features for the game.</string>
     <string name="contributeStatus">\nYou\'ve contributed %1$d time(s) in total, the last time was on %2$s.</string>
-    <string name="contributeTitle">%1$s (%2$d / %3$d)</string>
+    <string name="contributeTitle" translatable="false">%1$s (%2$d / %3$d)</string>
     <string name="contributeHeader">Rewards:</string>
 
     <string name="buyCoinsButton">%1$s coins</string>
@@ -224,7 +1559,7 @@
     <string name="levelUpText">Levelled up to %1$d! Unlocked %2$d item(s), %3$d trader(s), %4$d slot(s), and %5$d state(s).</string>
     <string name="levelUpPrestigeText">Levelled up to %d! Premium players can prestige, take a look at the settings menu!</string>
     <string name="levelUpPremiumPrestigeText">Levelled up to %d! You can now prestige (New Game +), take a look at the settings menu!</string>
-    <string name="overflowText">+ %d</string>
+    <string name="overflowText" translatable="false">+ %d</string>
 
     <string name="workerLocked">Locked</string>
     <string name="buyWorkerQuestion">Are you sure you would like to hire this helper for %,d coins?</string>
@@ -242,7 +1577,8 @@
 
     <string name="onlyAvailable">Show All Items\n</string>
 
-    <string name="updateMessage">Updated to version %s!\n\nA full changelist can be viewed on the /r/PixelBlacksmith subreddit.</string>
+    <string name="translationHelp" translatable="false"><u>Fix?</u></string>
+    <string name="updateMessage">Updated to version %s!\n\nMain changes:\n- Easter Event! Collect eggs to craft a valuable Golden Egg!\n- Assistants! Unlock assistants to get XP, coin, and item bonuses!\n- Languages! 8 new languages added, with improvements coming!\n- New food, rings, hero sets, super upgrades, and bugfixes!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
@@ -328,7 +1664,7 @@
     <string name="prestigeCancel">Cancel</string>
 
     <string name="unlockConfirm">Are you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
-    <string name="lockConfirm">"Are you sure you want to lock %1$s for %2$s coins?</string>
+    <string name="lockConfirm">Are you sure you want to lock %1$s for %2$s coins?</string>
     <string name="lock">Lock</string>
     <string name="unlock">Unlock</string>
     <string name="lockSuccess">Successfully locked trader!</string>
@@ -368,11 +1704,11 @@
     <string name="craftSuccess">Successfully added %1$dx %2$s to craft queue.</string>
     <string name="sellSuccess">Began selling %1$dx %2$s for %3$d coin(s) each.</string>
 
-    <string name="enchantingButtonText">%1$s (x%2$d)</string>
-    <string name="genericQuantity">%1$dx %2$s</string>
+    <string name="enchantingButtonText" translatable="false">%1$s (x%2$d)</string>
+    <string name="genericQuantity" translatable="false">%1$dx %2$s</string>
 
-    <string name="horizontalDotsSelected">x</string>
-    <string name="horizontalDotsUnselected">o</string>
+    <string name="horizontalDotsSelected" translatable="false">x</string>
+    <string name="horizontalDotsUnselected" translatable="false">o</string>
 
     <string name="demandText" translatable="false">%1$s: %2$s (%3$d/%4$d)</string>
     <string name="visitorDemand" translatable="false">%1$dx %2$s: %3$s</string>
@@ -387,11 +1723,11 @@
 
     <string name="cook1Text">Cook 1</string>
     <string name="smelt1Text">Smelt 1</string>
-    <string name="smelt10Text">10</string>
-    <string name="smelt100Text">100</string>
+    <string name="smelt10Text" translatable="false">10</string>
+    <string name="smelt100Text" translatable="false">100</string>
     <string name="craft1Text">Craft 1</string>
-    <string name="craft10Text">10</string>
-    <string name="craft100Text">100</string>
+    <string name="craft10Text" translatable="false">10</string>
+    <string name="craft100Text" translatable="false">100</string>
     <string name="sell1Text">Sell 1</string>
     <string name="sell10Text">Sell 10</string>
     <string name="sell100Text">Sell 100</string>
@@ -407,21 +1743,25 @@
     <string name="visitorNotificationSettingText">Visitor</string>
     <string name="workerNotificationSettingText">Worker</string>
     <string name="bonusNotificationSettingText">Bonus</string>
-    <string name="finishedNotificationSettingText">Items\nDone</string>
-    <string name="prestigeSettingText">Prestige\n(NG+)</string>
+    <string name="finishedNotificationSettingText">Items</string>
+    <string name="assistantNotificationSettingText">Assist.</string>
+    <string name="prestigeSettingText">Prestige (NG+)</string>
     <string name="fullscreenSettingText">Full Screen</string>
     <string name="fullscreenCheckSettingText">Fullscr Check</string>
-    <string name="autoRefreshSettingText">Auto Refresh</string>
+    <string name="autoRefreshSettingText">Auto\nRefresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
     <string name="longToastSettingText">Longer Messages</string>
     <string name="handleMaxSettingText">Enable\nMax</string>
     <string name="bulkStackSettingText">Bulk Craft\nStack</string>
     <string name="orientationAuto">Auto</string>
     <string name="orientationPortrait">Portrait</string>
-    <string name="orientationLandscape">Landscape</string>
+    <string name="orientationLandscape">Landsc.</string>
+    <string name="launchHotfixes">Bug\nFixes</string>
+    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!</string>
+    <string name="hotfixDuplicate">Fix Unsellable</string>
 
-    <string name="importSaveText">Import Save</string>
-    <string name="exportSaveText">Export Save</string>
+    <string name="importSaveText">Import\nSave</string>
+    <string name="exportSaveText">Export\nSave</string>
     <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
     <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
@@ -432,6 +1772,7 @@
     <string name="exitTutorial">Skip Tutorial</string>
     <string name="exitTutorialText">Tutorial skipped! It can be repeated via the \'Settings\' menu (gear icon).</string>
 
+    <string name="languageSettingGroup">Language</string>
     <string name="soundSettingGroup">Sound Options</string>
     <string name="notificationSettingGroup">Notification Options</string>
     <string name="gameplaySettingGroup">Gameplay Options</string>
@@ -439,9 +1780,9 @@
     <string name="orientationSettingGroup">Orientation Options</string>
     <string name="premiumSettingGroup">Premium Options</string>
     <string name="otherSettingGroup">Extras</string>
-    <string name="googlePlaySettingGroup">Google Play</string>
+    <string name="googlePlaySettingGroup" translatable="false">Google Play</string>
     <string name="settingsCodeUnknown">Settings Code: ???</string>
-    <string name="settingsCode">Settings Code: %2$d</string>
+    <string name="settingsCode">Settings Code: %1$d</string>
 
     <string name="unknownText">\???</string>
 
@@ -490,11 +1831,11 @@
     <string name="tableItem">Item </string>
     <string name="tableSell">Sell</string>
 
-    <string name="genericProgress">%1$d / %2$d</string>
-    <string name="genericProgressPercent">%1$d / %2$d (%3$d%%)</string>
-    <string name="genericPercent">%1$s%2$d%%</string>
+    <string name="genericProgress" translatable="false">%1$d / %2$d</string>
+    <string name="genericProgressPercent" translatable="false">%1$d / %2$d (%3$d%%)</string>
+    <string name="genericPercent" translatable="false">%1$s%2$d%%</string>
 
-    <string name="traderStock">%1$s\n%2$d / %3$d</string>
+    <string name="traderStock" translatable="false">%1$s\n%2$d / %3$d</string>
     <string name="traderTrades">%1$d Trades</string>
 
     <string name="tradedItem">Traded %1$dx %2$s for %3$d coin(s)</string>
@@ -586,11 +1927,19 @@
     <string name="questComplete">Completed \"%1$s\" and received a %2$s Reward: %3$s.</string>
     <string name="questRewardNoPage">%1$d XP and %2$dx %3$s</string>
     <string name="questRewardPage">%1$d XP, %2$dx %3$s, and %4$dx %5$s</string>
+    <string name="questInProgress">In Progress</string>
+    <string name="questAvailable">Available</string>
+    <string name="questUpcoming">Upcoming</string>
+    <string name="questCompleted">Completed</string>
+    <string name="questFailed">Failed</string>
+    <string name="questUnclaimed">Claim Unclaimed Rewards</string>
+    <string name="questSchedule">Schedule (on Reddit)</string>
 
     <string name="signIn">Sign In</string>
     <string name="signOut">Sign Out</string>
-    <string name="versionNumber">V%1$s (#%2$d)</string>
+    <string name="versionNumber" translatable="false">V%1$s (#%2$d)</string>
     <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
+    <string name="unknownError">An unknown error occurred! If it happens again, please email pixel.blacksmith@jakelee.co.uk with as much info as possible!</string>
 
     <string name="complete">Complete</string>
     <string name="close" translatable="false">X</string>
@@ -605,159 +1954,35 @@
 \n\nThis can be caused by poor internet, recently enabling adverts, or no advertisers currently advertising in your area.
 \n\nIf you wait until the countdown at the top reaches 0 and turns green, closing this window will provide the bonus / timer skip / etc.
 \n\nWhilst you\'re waiting, you could <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">leave the game a rating</a>. It\'s the best way to help the game grow!
-\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmith">City Flow</a>. I think it\'s rather fun!!
+\n\nOr even check out my new game, <a href="https://play.google.com/store/apps/details?id=uk.co.jakelee.cityflow">Connect Quest</a>. I think it\'s rather fun!
 \n\nYou could also read a few tips:</string>
 
-    <string name="creditsOverall">Overall</string>
-    <string name="creditsOverallDetails">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>Jake@k.st</a>.</string>
-    <string name="creditsMusic">Music</string>
+    <string name="creditsOverall" translatable="false">Overall</string>
+    <string name="creditsOverallDetails" translatable="false">Hi! I\'m Jake, and I made Pixel Blacksmith. I really hope you\'re enjoying it, feel free to get in touch on various social media (via the settings menu) or email me directly at <a href='mailto:jake@k.st'>pixel.blacksmith@jakelee.co.uk</a>.</string>
+    <string name="creditsMusic" translatable="false">Music</string>
     <string name="creditsMusicDetails" translatable="false">\"The Path of the Goblin King\" - <a href='http://incompetech.com'>Kevin MacLeod</a></string>
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
-    <string name="creditsGraphics">Graphics</string>
+    <string name="creditsGraphics" translatable="false">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
-\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
-    <string name="creditsLibraries">Libraries</string>
+\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, <a href="https://opengameart.org/users/sufan02">Sufan02</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
+    <string name="creditsLibraries" translatable="false">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
 \n<a href='https://github.com/anjlab/android-inapp-billing-v3'>Android In-App Billing</a> - IAP helper, used for handling premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
 \n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
+\n<a href='https://batch.com/doc/android/sdk-integration/initial-setup.html'>Batch</a> - Free IAP promotions for AppGratis etc.
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
+\n<a href='https://github.com/square/picasso'>Picasso</a> - Used for image loading.
 \n<a href='https://github.com/satyan/sugar'>SugarORM</a> - Database management, used for storing game data.
 \n<a href='https://github.com/worker8/TourGuide'>TourGuide</a> - Area highlighting, used for tutorial.</string>
-    <string name="creditsSoftware">Software</string>
-    <string name="creditsSoftwareDetails"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
+    <string name="creditsSoftware" translatable="false">Software</string>
+    <string name="creditsSoftwareDetails" translatable="false"><a href='https://developer.android.com/tools/studio/index.html'>Android Studio</a> - IDE.
 \n<a href='http://www.photoshop.com/'>Photoshop</a> - Image editing.
 \n<a href='https://trello.com/'>Trello</a> - Project management.</string>
-    <string name="creditsMiscDetails">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
+    <string name="creditsMiscDetails" translatable="false">Finally, thanks to the wondeful <a href='https://stackoverflow.com'>StackOverflow</a> for the code snippets / bug fixing support, and <a href='http://reddit.com/r/PixelBlacksmith'>/r/PixelBlacksmith</a> (especially /u/Mokhnaar, /u/Nekratal, and /u/SweetGoat!) for all the testing, suggestions, and continued support. I couldn\'t have done it without you guys!
 </string>
-
-    <string-array name="toolsArray">
-        <item>Pickaxe (Ore)</item>
-        <item>Hammer (Bar)</item>
-        <item>Fishing Rod (Food)</item>
-        <item>Hatchet (Wood)</item>
-        <item>Gloves (Silk)</item>
-        <item>Gem (Powder)</item>
-        <item>Silver Ring (Silver + Gems)</item>
-        <item>Gold Ring (Gold + Gems)</item>
-        <item>Visage (Coins)</item>
-    </string-array>
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
-
-    <string-array name="typesArray">
-        <item>All Items</item>
-        <item>Bar</item>
-        <item>Book</item>
-        <item>Boot</item>
-        <item>Bow</item>
-        <item>Chainmail</item>
-        <item>Cooked Food</item>
-        <item>Dagger</item>
-        <item>Fishing Rod</item>
-        <item>Full Helmet</item>
-        <item>Full Shield</item>
-        <item>Gem</item>
-        <item>Glove</item>
-        <item>Half Helmet</item>
-        <item>Half Shield</item>
-        <item>Hammer</item>
-        <item>Hatchet</item>
-        <item>Longsword</item>
-        <item>Ore</item>
-        <item>Page</item>
-        <item>Pickaxe</item>
-        <item>Platebody</item>
-        <item>Powder</item>
-        <item>Rare</item>
-        <item>Raw Food</item>
-        <item>Ring</item>
-        <item>Secondary</item>
-        <item>Sword</item>
-    </string-array>
-
-    <string-array name='tipsArray'>
-        <item>Tap the red \'?\' in the upper left of any screen for detailed information and help.</item>
-        <item>The tutorial can be replayed from the Settings menu if you need a reminder.</item>
-        <item>Game sounds / music can be turned off in the Settings, along with notification sounds.</item>
-        <item>All notifications (Market Restock, Visitor Spawn, Worker Return, Bonus Chest Refill) can be enabled / disabled in the Settings menu.</item>
-        <item>A Visitor\'s Required Trades are listed in black.</item>
-        <item>A Visitor\'s Optional Trades are listed in grey.</item>
-        <item>Completing all of a Visitor\'s Required and Optional Trades will earn you a doubled gift from the satisfied customer.</item>
-        <item>Try to combine a Visitor\'s Preferences to earn the most Coins.</item>
-        <item>Can\'t complete all of a Visitor\'s Required Trades? It may be best to just Dismiss them via the \'X\' button and move on.</item>
-        <item>Reduce the cost of Dismissing a Visitor by completing as many Optional and Required Trades as you can.</item>
-        <item>Not sure if that is Iron or Steel that a Visitor prefers? Tap on a Visitor\'s discovered Preference to see a description of it.</item>
-        <item>Want a new Visitor? Get one immediately by using the grey and white button with a plus sign to either pay Coins or watch a brief advertisement.</item>
-        <item>Need some quick coins? You can sell excess items from your Inventory as a last resort, but any bonus coin upgrades won\'t apply!</item>
-        <item>Unfinished items are marked with "(unf)" at the beginning of their name. These sell for half as much as finished items and may cause you to lose money.</item>
-        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
-        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
-        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
-        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
-        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
-        <item>Join us at www.reddit.com/r/PixelBlacksmith for gameplay tips, release notes, and all kinds of discussion!</item>
-        <item>Want to get in touch on Reddit, Facebook, or Twitter? Look for the "Social Media" section in the Settings menu!</item>
-        <item>Found a bug? Submit it at www.reddit.com/r/PixelBlacksmith and it\'ll get fixed!</item>
-        <item>Pages can be found by completing quests, achieving visitor trophies, sending out workers with food, and opening the bonus chest.</item>
-        <item>Premium players can disable all adverts from the settings menu.</item>
-        <item>Premium players can prestige their account multiple times and enter New Game+ mode via the Settings menu.</item>
-        <item>A log of the last 100 important messages can be viewed in the Settings menu.</item>
-        <item>The game\'s credits can be viewed in the Settings menu.</item>
-        <item>Received a support code from customer support? Enter it in the Settings menu.</item>
-        <item>Want to see all your Google Play achievements / leaderboard? Head to the Settings menu.</item>
-        <item>Getting a snazzy new phone? Make sure to cloud save via the Settings menu first!</item>
-        <item>As your level increases, new Traders will arrive at the Market. You can unlock up to 56 different Traders, with new ones being added regularly.</item>
-        <item>Some Traders have additional stock that you can unlock as you purchase items. The more you buy from them, the more you unlock.</item>
-        <item>After you\'ve purchased items from a Trader, you can restock that Trader\'s items by using the Restock button and paying coins or watching a brief advertisement.</item>
-        <item>Once you\'ve purchased all items a Trader currently has available, the Trader will leave when the window is closed. Then, a new Trader will take their place, if there are any more available with stock.</item>
-        <item>Bought all the items in the Market? It will Restock automatically after a while. If don\'t want to wait, you can use the Restock All button and pay Coins or watch a brief advertisement for an instant restock.</item>
-        <item>An extra Visitor automatically shows up every 25 minutes. This can be decreased to only 10 minutes by upgrading "Visitor Spawn Time".</item>
-        <item>The Market restocks automatically every 24 hours. This can be reduced to only 2 hours by upgrading "Market Restock Time".</item>
-        <item>Initially, you can only have up to 2 Visitors at the same time. This can be increased to 10 Visitors by upgrading "Maximum Visitors".</item>
-        <item>The Market starts with 3 Traders displayed at the same time. This can be raised to 10 Traders by upgrading "Maximum Traders".</item>
-        <item>The "Coins Bonus" upgrade gives extra Coins on every single Visitor Trade you complete. This upgrade is extremely powerful and should not be overlooked!</item>
-        <item>Interested in levelling faster? The "XP Bonus" upgrade increases all experience you earn.</item>
-        <item>Are the high Tier items taking too long to craft? Investing in "Craft Time" upgrades can help.</item>
-        <item>The "Craft Time" upgrade also reduces the time it takes for items purchased at the Market to be delivered, and the time it takes to sell items from your Inventory.</item>
-        <item>Helpers and heroes initially take 3 hours to return with resources. This can be reduced to just 30 minutes by upgrading "Worker Time".</item>
-        <item>Completing a Visitor\'s Required Trades earns a gift of 1 to 5 random items. This can be increased up to 5 to 15 items by upgrading "Visitor Rewards".</item>
-        <item>Receive up to 30 items as a gift from a satisfied Visitor by maxing the "Visitor Rewards" upgrade and completing all Required and Optional Trades.</item>
-        <item>There are 7 different hirable Helpers that unlock as you level up.</item>
-        <item>You only have to pay to hire each different Helper once. After you\'ve hired a Helper, they will continue to work for you as long as you want to give them a job to do.</item>
-        <item>Helpers need Tools. You can either craft Tools or buy them from the Market.</item>
-        <item>Are all your workers using their favourite food? Turn on autofeed to keep them topped up automatically!</item>
-        <item>There are 8 different types of Tools that Helpers can use: Pickaxes, Hammers, Fishing Rods, Hatchets, Gloves, Gems, Rings, and Visages.</item>
-        <item>A Helper with a Pickaxe, Hammer, or Ring will gather materials worth more Coins than the other Tools. But sometimes you really need the materials the other Tools provide.</item>
-        <item>Equipping a Helper with a better Tool will produce better results. Craft or buy higher Tier Tools to get higher Tier materials.</item>
-        <item>Once you\'ve equipped a Helper with a Tool, you can press the display to the right of the Tool to get a list of how many items they will gather.</item>
-        <item>Everyone does a better job when they aren\'t hungry! Your Workers included. Give your Helper a Food item to increase how much they will gather.</item>
-        <item>The Foods that you craft may provide a higher Helper gather bonus than the Foods you can buy in the Market.</item>
-        <item>Each Helper has a different secret Food that they prefer and that provides a double gather bonus. Once you\'ve discovered their preferred Food, the gather bonus will be displayed in a green color.</item>
-        <item>Providing your Helpers with Food gives a small chance that they will bring back a special Page item. Using their preferred Food increases this chance.</item>
-        <item>Heroes are a riskier way to earn items, but can be very profitable!</item>
-        <item>Make the most of a hero\'s item preferences to complete the trickier quests.</item>
-        <item>The worker notification will inform you when both heroes and helpers have returned.</item>
-        <item>When pressed, messages can either show the message log, or disappear. Change it in the settings!</item>
-        <item>Fullscreen mode provides a more immersive mode, but can drain battery faster!</item>
-        <item>If you\'re experiencing performance issues, try turning off auto-refresh in the settings!</item>
-        <item>Messages disappearing too quickly? Enable longer messages in the settings.</item>
-        <item>Hero quests can be more rewarding, but there\'s a chance of losing items.</item>
-        <item>Pay attention to hero preferences, they make a massive difference to hero effectiveness!</item>
-        <item>Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</item>
-        <item>Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</item>
-        <item>Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</item>
-        <item>Having trouble reaching 100%% completion? Tap your completion %% to see a breakdown of your progress.</item>
-        <item>The game can be locked in portrait or landscape if you prefer playing a certain way.</item>
-        <item>Enchanted items will have a coloured tint to them, to help easily identify them.</item>
-        <item>Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</item>
-        <item>The sheets on the table below the shop visitors can be tapped to quickly access the message log.</item>
-        <item>Running low on coins? Packs can be bought by tapping the plus button next to your coin count. The higher your level, the more coins you\'ll get!</item>
-        <item>Large quantities of item can be crafted in a single stack. This lets other items be crafted at the same time as a large order.</item>
-        <item>Once a visitor\'s trophy has been earned, the spawn chance is cut in half.</item>
-        <item>Heroes can \'super succeed\' if on an easy adventure, earning 1.1 to 2.5x the usual reward.</item>
-        <item>Heroes can be made more powerful for free by making use of sets, unique combinations of items that boost hero strength.</item>
-    </string-array>
 </resources>

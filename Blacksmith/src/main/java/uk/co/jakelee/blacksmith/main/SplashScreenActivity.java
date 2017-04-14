@@ -23,10 +23,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
 
         final Picasso picasso = new Picasso.Builder(this).build();
-        final ImageView imageView = (ImageView)findViewById(R.id.image);
+        final ImageView imageView = (ImageView) findViewById(R.id.image);
         final Handler h = new Handler();
-        h.post(new Runnable(){
-            public void run(){
+        h.post(new Runnable() {
+            public void run() {
                 picasso.load(getRandomItemOrVisitorDrawable())
                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                         .networkPolicy(NetworkPolicy.NO_CACHE)

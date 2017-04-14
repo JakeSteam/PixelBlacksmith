@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
 import android.text.format.DateUtils;
 import android.util.Pair;
 
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.main.AnvilActivity;
 import uk.co.jakelee.blacksmith.main.FurnaceActivity;
@@ -143,7 +145,7 @@ public class Pending_Inventory extends SugarRecord {
 
     private static void addPendingInventory(Long itemID, long state, int quantity, Long location, long startTime) {
         Item item = Item.findById(Item.class, itemID);
-        int craftTimeMultiplier = Upgrade.getValue("Craft Time");
+        int craftTimeMultiplier = (int) Math.ceil((double) Upgrade.getValue("Craft Time") * (Super_Upgrade.isEnabled(Constants.SU_HALVE_TIMES) ? 0.5 : 1.0));
         int craftTime = item.getModifiedValue(state) * quantity * craftTimeMultiplier;
 
         Pending_Inventory newItem = new Pending_Inventory(itemID, state, startTime, quantity, craftTime, location);
@@ -166,14 +168,14 @@ public class Pending_Inventory extends SugarRecord {
 
         if (finishTimes.size() >= numSlots) {
             // If we're all full up, get the first time a slot will become available
-            return finishTimes.get(numSlots-1);
+            return finishTimes.get(numSlots - 1);
         } else {
             // Otherwise, it can go in now
             return System.currentTimeMillis();
         }
     }
 
-    public static String getPendingItemsText(long locationID) {
+    public static String getPendingItemsText(Context context, long locationID) {
         List<Pending_Inventory> pendingItems = Select.from(Pending_Inventory.class).where(
                 Condition.prop("location_id").eq(locationID)).list();
         HashMap<String, Integer> data = new HashMap<>();
@@ -181,17 +183,16 @@ public class Pending_Inventory extends SugarRecord {
         for (Pending_Inventory pendingItem : pendingItems) {
             Item item = Item.findById(Item.class, pendingItem.getItem());
             Integer temp;
-            if(data.containsKey(item.getName())) {
-                temp = data.get(item.getName())+pendingItem.getQuantity();
-                data.put(item.getName(),temp);
-            }
-            else {
-                data.put(item.getName(),pendingItem.getQuantity());
+            if (data.containsKey(item.getName(context))) {
+                temp = data.get(item.getName(context)) + pendingItem.getQuantity();
+                data.put(item.getName(context), temp);
+            } else {
+                data.put(item.getName(context), pendingItem.getQuantity());
             }
         }
 
         if (data.size() == 0) {
-            return "No pending items.";
+            return context.getString(R.string.pending_items_none);
         } else {
             StringBuilder result = new StringBuilder();
             for (Map.Entry<String, Integer> entry : data.entrySet()) {
@@ -200,7 +201,7 @@ public class Pending_Inventory extends SugarRecord {
 
                 result.append(String.format("%dx %s, ", value, key));
             }
-            return String.format("Pending items: %s.", result.substring(0, result.length() - 2));
+            return String.format(context.getString(R.string.pending_items) + " %s.", result.substring(0, result.length() - 2));
         }
     }
 

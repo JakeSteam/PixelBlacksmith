@@ -19,13 +19,12 @@ import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class QuestActivity extends Activity {
-    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         int questsCompleted = Select.from(Player_Info.class).where(Condition.prop("name").eq("QuestsCompleted")).first().getIntValue();
@@ -56,6 +55,12 @@ public class QuestActivity extends Activity {
         }
     }
 
+    public void claimUnclaimed(View view) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_COMPLETED_UNCLAIMED}), GooglePlayHelper.RC_QUESTS);
+        }
+    }
+
     public void upcomingQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
@@ -63,7 +68,7 @@ public class QuestActivity extends Activity {
     }
 
     public void redditSchedule(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/comments/4ktv5h/quest_list/"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/wiki/quests"));
         startActivity(browserIntent);
     }
 

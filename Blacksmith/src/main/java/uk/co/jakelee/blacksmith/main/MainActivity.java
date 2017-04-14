@@ -30,6 +30,9 @@ import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+import java.util.Locale;
+
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
@@ -38,15 +41,20 @@ import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.EventHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
 import uk.co.jakelee.blacksmith.helper.PremiumHelper;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
 import uk.co.jakelee.blacksmith.helper.VariableHelper;
 import uk.co.jakelee.blacksmith.helper.VisitorHelper;
 import uk.co.jakelee.blacksmith.helper.WorkerHelper;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
+import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Setting;
@@ -64,17 +72,15 @@ public class MainActivity extends AppCompatActivity implements
         BatchUnlockListener {
     private static final Handler handler = new Handler();
     public static RelativeLayout questContainer;
-    private static DisplayHelper dh;
     public static VariableHelper vh;
-    private static LinearLayout visitorContainer;
-    private static LinearLayout visitorContainerOverflow;
-    private int newVisitors;
-    private Intent musicService;
-    private boolean musicServiceIsStarted = false;
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
     public static SharedPreferences prefs;
     public AdvertHelper ah;
+    private DisplayHelper dh;
+    private int newVisitors;
+    private Intent musicService;
+    private boolean musicServiceIsStarted = false;
     private GooglePlayHelper gph;
 
     @Override
@@ -90,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements
         gph = new GooglePlayHelper();
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+        LanguageHelper.updateLanguage(getApplicationContext());
 
         if (prefs.getInt("tutorialStage", 0) > 0) {
             TutorialHelper.currentlyInTutorial = true;
@@ -318,6 +325,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         findViewById(R.id.buyCoins).setVisibility(Setting.getSafeBoolean(Constants.SETTING_DISABLE_ADS) ? View.INVISIBLE : View.VISIBLE);
+        DisplayHelper.updateAssistantDisplay((RelativeLayout) findViewById(R.id.assistant_container));
     }
 
     public void exitTutorial(View v) {
@@ -357,6 +365,10 @@ public class MainActivity extends AppCompatActivity implements
             NotificationHelper.addFinishedNotification(getApplicationContext(), notificationSound);
         }
 
+        if (Setting.getSafeBoolean(Constants.SETTING_ASSISTANT_NOTIFICATIONS)) {
+            NotificationHelper.addAssistantNotification(getApplicationContext(), notificationSound);
+        }
+
         if (musicServiceIsStarted) {
             stopService(musicService);
             musicServiceIsStarted = false;
@@ -374,6 +386,14 @@ public class MainActivity extends AppCompatActivity implements
         final ProgressBar levelProgress = (ProgressBar) findViewById(R.id.currentLevelProgress);
         final TextView levelPercent = (TextView) findViewById(R.id.currentLevelPercent);
         final TextView coinCount = (TextView) findViewById(R.id.coinCount);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                dh.createAllSlots(activity);
+            }
+        });
+
         final Runnable everySecond = new Runnable() {
             @Override
             public void run() {
@@ -405,20 +425,10 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
                 gph.UpdateQuest();
-
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
         handler.postDelayed(everyTenSeconds, DateHelper.MILLISECONDS_IN_SECOND * 10);
-
-        final Runnable everyMinuteImmediate = new Runnable() {
-            @Override
-            public void run() {
-                dh.createAllSlots(activity);
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
-            }
-        };
-        handler.post(everyMinuteImmediate);
 
         final Runnable everyMinute = new Runnable() {
             @Override
@@ -431,6 +441,9 @@ public class MainActivity extends AppCompatActivity implements
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
                 WorkerHelper.checkForFinishedHeroes(activity);
+                EventHelper.checkForEasterEggs(activity);
+                dh.createAllSlots(activity);
+                DisplayHelper.updateAssistantDisplay((RelativeLayout) activity.findViewById(R.id.assistant_container));
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
@@ -452,84 +465,103 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    public void openEventInfo(View v) {
+        AlertDialogHelper.displayEventInfo(this);
+    }
+
     private void updateVisitors() {
-        dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout)findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
+        dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout) findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
+    }
+
+    public void claimAssistant(View v) {
+        Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first();
+        Player_Info totalClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("TotalAssistantClaims")).first();
+        Assistant assistant = Assistant.get(Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue());
+        if (assistant != null && lastClaimed != null) {
+            if (lastClaimed.getLongValue() + assistant.getRewardFrequency() <= System.currentTimeMillis()) {
+                Inventory.addItem((long) assistant.getRewardItem(), assistant.getRewardState(), assistant.getRewardQuantity() * assistant.getLevel(), false);
+                lastClaimed.setLongValue(System.currentTimeMillis());
+                lastClaimed.save();
+                totalClaimed.setIntValue(totalClaimed.getIntValue() + 1);
+                totalClaimed.save();
+
+                Item item = Item.findById(Item.class, assistant.getRewardItem());
+                ToastHelper.showPositiveToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantClaimed),
+                        assistant.getRewardQuantity() * assistant.getLevel(),
+                        item.getFullName(this, assistant.getRewardState())), true);
+                DisplayHelper.updateAssistantDisplay((RelativeLayout) findViewById(R.id.assistant_container));
+            } else {
+                ToastHelper.showTipToast(v, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantTimeLeft),
+                        DateHelper.getHoursMinsSecsRemaining(((lastClaimed.getLongValue() + assistant.getRewardFrequency()) - System.currentTimeMillis()))), false);
+            }
+        } else {
+            startActivity(new Intent(this, AssistantActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
+        }
     }
 
     public void openMarket(View view) {
-        Intent intent = new Intent(this, MarketActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, MarketActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openInventory(View view) {
-        Intent intent = new Intent(this, InventoryActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, InventoryActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openFurnace(View view) {
-        Intent intent = new Intent(this, FurnaceActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, FurnaceActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openAnvil(View view) {
-        Intent intent = new Intent(this, AnvilActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, AnvilActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openTable(View view) {
-        Intent intent = new Intent(this, TableActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, TableActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openEnchanting(View view) {
-        Intent intent = new Intent(this, EnchantingActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, EnchantingActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openSettings(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openTrophies(View view) {
-        Intent intent = new Intent(this, TrophyActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, TrophyActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openStatistics(View view) {
-        Intent intent = new Intent(this, StatisticsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, StatisticsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openHelp(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, HelpActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openUpgrades(View view) {
-        Intent intent = new Intent(this, UpgradeActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, UpgradeActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openPremium(View view) {
-        Intent intent = new Intent(this, PremiumActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, PremiumActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
+    }
+
+    public void openAssistants(View view) {
+        startActivity(new Intent(this, AssistantActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openWorkers(View view) {
-        Intent intent = new Intent(this, WorkerActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, WorkerActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openBuyCoins(View view) {
-        Intent intent = new Intent(this, BuyCoinsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, BuyCoinsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
     public void openQuests(View view) {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            Intent intent = new Intent(this, QuestActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, QuestActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
         } else {
             ToastHelper.showErrorToast(null, ToastHelper.LONG, getString(R.string.questsNoConnection), false);
         }
@@ -560,12 +592,12 @@ public class MainActivity extends AppCompatActivity implements
 
     public void clickBookcase(View view) {
         int thisTip = prefs.getInt("nextTip", 0);
-        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
-        if (thisTip >= tipArray.length) {
+        List<String> tips = TextHelper.getTips(this);
+        if (thisTip >= tips.size()) {
             thisTip = 0;
         }
 
-        String tipMessage = "Tip " + (thisTip + 1) + "/" + tipArray.length + ": " + tipArray[thisTip];
+        String tipMessage = "Tip " + (thisTip + 1) + "/" + tips.size() + ": " + tips.get(thisTip);
         ToastHelper.showTipToast(null, ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
@@ -618,18 +650,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onNewIntent(Intent intent)
-    {
+    protected void onNewIntent(Intent intent) {
         Batch.onNewIntent(this, intent);
         super.onNewIntent(intent);
     }
 
     @Override
-    public void onRedeemAutomaticOffer(Offer offer)
-    {
+    public void onRedeemAutomaticOffer(Offer offer) {
         // Give resources & features contained in the campaign to the user
         String rewardMessage = offer.getOfferAdditionalParameters().get("reward_message");
-        for(Resource resource : offer.getResources()) {
+        for (Resource resource : offer.getResources()) {
             if (resource.getReference().equals("LARGE_COIN_PACK")) {
                 Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 3000);
                 ToastHelper.showPositiveToast(null, Toast.LENGTH_SHORT, rewardMessage != null ? rewardMessage : "1000 coins rewarded!", true);

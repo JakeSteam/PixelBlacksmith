@@ -233,15 +233,15 @@ public class EnchantingActivity extends Activity {
         itemButton.addView(itemImage);
 
         int quantityOwned = Inventory.getInventory(item.getId(), Constants.STATE_NORMAL).getQuantity();
-        String itemName = item.getName();
+        String itemName = item.getName(this);
         String buttonText = String.format(getString(R.string.enchantingButtonText), itemName, quantityOwned);
 
         int textSize = 30;
         itemButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    clickEnchantButton(v);
-                }
-            });
+            public void onClick(View v) {
+                clickEnchantButton(v);
+            }
+        });
         TextView buttonTextView = dh.createTextView(buttonText, textSize);
 
         itemButton.addView(buttonTextView);
@@ -257,7 +257,7 @@ public class EnchantingActivity extends Activity {
         int powderResponse = Inventory.tryPowderGem(powderID, Constants.STATE_NORMAL, Constants.LOCATION_ENCHANTING);
         if (powderResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
-            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName()), false);
+            ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.powderAdd), powder.getName(this)), false);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_POWDER, 1);
 
             dh.createCraftingInterface(
@@ -266,7 +266,7 @@ public class EnchantingActivity extends Activity {
                     mViewFlipper,
                     Constants.STATE_NORMAL);
         } else {
-            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(powderResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(powderResponse)), false);
         }
     }
 
@@ -283,15 +283,15 @@ public class EnchantingActivity extends Activity {
         if (enchantResponse == Constants.SUCCESS) {
             SoundHelper.playSound(this, SoundHelper.enchantingSounds);
             ToastHelper.showToast(v, ToastHelper.SHORT, String.format(getString(R.string.enchantAdd),
-                    gem.getName(),
-                    item.getName()), false);
+                    gem.getName(this),
+                    item.getName(this)), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsEnchanted);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_ENCHANTED, 1);
 
             dh.displayItemInfo((Long) mViewFlipper.getCurrentView().getTag(), Constants.STATE_NORMAL, enchantingItemInfo);
             createGemsTable((TableLayout) findViewById(R.id.itemsTable));
         } else {
-            ToastHelper.showErrorToast(v, ToastHelper.SHORT, ErrorHelper.errors.get(enchantResponse), false);
+            ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(enchantResponse)), false);
         }
     }
 

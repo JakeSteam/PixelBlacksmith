@@ -132,10 +132,14 @@ public class AnvilActivity extends Activity {
         }
 
         if (ringsSelected) {
-            if (displayedTier < Constants.TIER_SILVER || displayedTier > Constants.TIER_GOLD) displayedTier = Constants.TIER_GOLD;
+            if (displayedTier < Constants.TIER_SILVER || displayedTier > Constants.TIER_GOLD) {
+                displayedTier = Constants.TIER_GOLD;
+            }
             createRingsInterface(clearExisting);
         } else {
-            if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) displayedTier = Constants.TIER_MAX;
+            if (displayedTier < Constants.TIER_MIN || displayedTier > Constants.TIER_MAX) {
+                displayedTier = Constants.TIER_MAX;
+            }
             createItemsInterface(clearExisting);
         }
 
@@ -233,9 +237,9 @@ public class AnvilActivity extends Activity {
     }
 
     public void brightenButtons() {
-       craft1.setAlpha(1);
-       craft10.setAlpha(1);
-       craft100.setAlpha(1);
+        craft1.setAlpha(1);
+        craft10.setAlpha(1);
+        craft100.setAlpha(1);
     }
 
     public void dimButtons() {
@@ -272,7 +276,7 @@ public class AnvilActivity extends Activity {
         if (quantityCrafted > 0) {
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(findViewById(R.id.anvil), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
+            ToastHelper.showToast(findViewById(R.id.anvil), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(this, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
             if (!ringsSelected) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
@@ -282,7 +286,7 @@ public class AnvilActivity extends Activity {
             MainActivity.vh.anvilBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
         }
     }
 

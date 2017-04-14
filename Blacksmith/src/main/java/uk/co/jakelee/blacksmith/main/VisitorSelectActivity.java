@@ -63,11 +63,13 @@ public class VisitorSelectActivity extends Activity {
 
         for (Visitor_Type visitor : allVisitors) {
             Visitor_Stats vStats = Visitor_Stats.findById(Visitor_Stats.class, visitor.getVisitorID());
-            if (vStats == null) { break; }
+            if (vStats == null) {
+                continue;
+            }
             boolean canBeSelected = WorkerHelper.canBeSelectedAsHero(visitor, vStats);
             ImageView visitorImage = dh.createImageView("visitor", visitor.getVisitorID(), 60, 60);
             TextView visitorReqs = dh.createTextView(String.format(getString(R.string.visitorRequirements),
-                    visitor.getName(),
+                    visitor.getName(this),
                     vStats.getVisits(), Constants.HERO_MIN_VISITS,
                     vStats.getBestItemValue(), Constants.HERO_MIN_TRADE,
                     visitor.getPreferencesDiscovered(), Constants.HERO_MIN_PREFS), 20);
@@ -118,7 +120,7 @@ public class VisitorSelectActivity extends Activity {
 
 
         if (alreadyInUse) {
-            ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_VISITOR_IN_USE), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_VISITOR_IN_USE)), false);
         } else {
             hero.setVisitorId(visitorId);
             hero.save();

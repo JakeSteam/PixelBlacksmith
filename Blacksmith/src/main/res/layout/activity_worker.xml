@@ -39,32 +39,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            app:layout_marginTopPercent="9%"
-            app:layout_marginBottomPercent="80%">
+            app:layout_marginBottomPercent="80%"
+            app:layout_marginTopPercent="9%">
+
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/workersTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/helperText"
                 android:layout_margin="3dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
                 android:background="@drawable/button_short"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="toggleTab"
-                android:gravity="center"/>
+                android:text="@string/helperText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/heroesTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/heroText"
                 android:layout_margin="3dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
                 android:background="@drawable/button_short"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="toggleTab"
-                android:gravity="center"/>
+                android:text="@string/heroText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
         </LinearLayout>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -72,9 +74,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/workerTitle"
-            app:layout_marginTopPercent="10%"
+            android:fadeScrollbars="false"
             app:layout_marginBottomPercent="1%"
-            android:fadeScrollbars="false">
+            app:layout_marginTopPercent="10%">
 
             <LinearLayout
                 android:id="@+id/mainWrapper"
@@ -86,18 +88,18 @@
                     android:id="@+id/workerControlsContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal">
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
 
                     <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
                         android:id="@+id/gatherAllButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
                         android:background="@drawable/button"
                         android:clickable="true"
                         android:gravity="center"
-                        android:layout_margin="2dp"
                         android:onClick="sendAllGathering"
                         android:text="@string/sendOutWorkers"
                         android:textColor="@color/black"
@@ -108,11 +110,11 @@
                         android:id="@+id/autoFeedToggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
                         android:layout_toRightOf="@id/gatherAllButton"
                         android:background="@drawable/button"
                         android:clickable="true"
                         android:gravity="center"
-                        android:layout_margin="2dp"
                         android:onClick="toggleAutofeed"
                         android:text="@string/autofeedWorkers"
                         android:textColor="@color/black"
@@ -122,12 +124,12 @@
                         android:id="@+id/autoFeedIndicator"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/cross"
-                        android:onClick="toggleAutofeed"
+                        android:layout_alignBottom="@id/autoFeedToggle"
                         android:layout_alignLeft="@id/autoFeedToggle"
                         android:layout_alignRight="@id/autoFeedToggle"
-                        android:layout_alignBottom="@id/autoFeedToggle"
-                        android:layout_marginBottom="3dp"/>
+                        android:layout_marginBottom="3dp"
+                        android:onClick="toggleAutofeed"
+                        android:src="@drawable/cross" />
                 </RelativeLayout>
 
                 <LinearLayout

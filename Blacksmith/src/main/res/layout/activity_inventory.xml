@@ -169,7 +169,7 @@
                     android:text="@string/noItemsInventory"
                     android:textColor="@color/black"
                     android:textSize="26sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <TableLayout
                     android:id="@+id/inventoryTable"

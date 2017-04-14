@@ -64,15 +64,17 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     public void onPause() {
         super.onPause();
         SharedPreferences prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
-        prefs.edit().putInt("adventureCategory", ((Spinner)findViewById(R.id.adventureCategories)).getSelectedItemPosition()).apply();
-        prefs.edit().putInt("adventureSubcategory", ((Spinner)findViewById(R.id.adventureSubcategories)).getSelectedItemPosition()).apply();
+        prefs.edit().putInt("adventureCategory", ((Spinner) findViewById(R.id.adventureCategories)).getSelectedItemPosition()).apply();
+        prefs.edit().putInt("adventureSubcategory", ((Spinner) findViewById(R.id.adventureSubcategories)).getSelectedItemPosition()).apply();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        if (dropdownsToCreate > 0) { return; }
+        if (dropdownsToCreate > 0) {
+            return;
+        }
         if (parent.getTag().equals("CategorySelect")) {
             String selectedItem = (String) parent.getItemAtPosition(pos);
-            if (!selectedItem.equals("Please select")) {
+            if (!selectedItem.equals(getString(R.string.please_select))) {
                 populateSubcategories(selectedItem);
             }
         } else if (parent.getTag().equals("SubcategorySelect")) {
@@ -83,8 +85,10 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        if (dropdownsToCreate > 0) { return; }
-        populateAdventures("Please select");
+        if (dropdownsToCreate > 0) {
+            return;
+        }
+        populateAdventures(getString(R.string.please_select));
     }
 
     private void createCategoryDropdown(boolean subcategories) {
@@ -102,7 +106,7 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
     }
 
     private void populateSubcategories(String selectedCategory) {
-        if (selectedCategory.equals("Please select")) {
+        if (selectedCategory.equals(getString(R.string.please_select))) {
             (findViewById(R.id.selectCategoriesMessage)).setVisibility(View.VISIBLE);
         } else {
             (findViewById(R.id.selectCategoriesMessage)).setVisibility(View.GONE);
@@ -127,21 +131,23 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         List<Hero_Category> categories = Select.from(Hero_Category.class).where(
                 Condition.prop("parent").eq(categoryId)).orderBy("name").list();
 
-        categoryNames.add("Please select");
+        categoryNames.add(getString(R.string.please_select));
         for (Hero_Category category : categories) {
-            categoryNames.add(category.getName());
+            categoryNames.add(category.getName(this));
         }
 
         return categoryNames;
     }
 
     private void populateAdventures(String selection) {
-        if (dropdownsToCreate > 0) { return; }
+        if (dropdownsToCreate > 0) {
+            return;
+        }
 
         TableLayout adventureHolder = (TableLayout) findViewById(R.id.adventureHolder);
         adventureHolder.removeAllViews();
 
-        if (selection.equals("Please select")) {
+        if (selection.equals(getString(R.string.please_select))) {
             findViewById(R.id.selectCategoriesMessage).setVisibility(View.VISIBLE);
             return;
         } else {
@@ -152,15 +158,15 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         List<Hero_Adventure> adventures = Select.from(Hero_Adventure.class).where(Condition.prop("subcategory").eq(category.getCategoryId())).list();
 
         TableRow titleRow = new TableRow(this);
-        TextView adventureTitle = dh.createTextView("Adventure", 20);
-        TextView difficultyTitle = dh.createTextView("Diff.", 20);
+        TextView adventureTitle = dh.createTextView(getString(R.string.adventure), 20);
+        TextView difficultyTitle = dh.createTextView(getString(R.string.difficulty_short), 20);
         titleRow.addView(adventureTitle);
         titleRow.addView(difficultyTitle);
         adventureHolder.addView(titleRow);
 
         for (Hero_Adventure adventure : adventures) {
             TextView difficulty = dh.createTextView(Integer.toString(adventure.getDifficulty()), 30);
-            TextView name = dh.createTextView(adventure.getName(), 20);
+            TextView name = dh.createTextView(adventure.getName(this), 20);
             if (adventure.isCompleted()) {
                 name.setPaintFlags(name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }

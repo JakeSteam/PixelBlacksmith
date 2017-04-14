@@ -53,11 +53,6 @@ public class Hero extends SugarRecord {
         this.ringItem = 0;
     }
 
-    public static Hero findById(int id) {
-        return Select.from(Hero.class).where(
-                Condition.prop("hero_id").eq(id)).first();
-    }
-
     public Hero(int heroId, int levelUnlocked, int currentAdventure, long adventureStarted, boolean purchased, int visitorId, int foodItem, int helmetItem, int armourItem, int weaponItem, int shieldItem, int glovesItem, int bootsItem, int ringItem) {
         this.heroId = heroId;
         this.levelUnlocked = levelUnlocked;
@@ -81,6 +76,11 @@ public class Hero extends SugarRecord {
         this.bootsState = Constants.STATE_NORMAL;
         this.ringItem = ringItem;
         this.ringState = Constants.STATE_NORMAL;
+    }
+
+    public static Hero findById(int id) {
+        return Select.from(Hero.class).where(
+                Condition.prop("hero_id").eq(id)).first();
     }
 
     public static int getAvailableHeroesCount() {

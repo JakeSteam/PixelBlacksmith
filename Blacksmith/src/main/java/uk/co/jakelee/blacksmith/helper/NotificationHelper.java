@@ -18,6 +18,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -51,6 +52,20 @@ public class NotificationHelper extends BroadcastReceiver {
             if (worker.isPurchased() && !WorkerHelper.isReady(worker)) {
                 long restockTime = System.currentTimeMillis() + WorkerHelper.getTimeRemaining(worker.getTimeStarted());
                 NotificationHelper.addNotification(context, restockTime, Constants.NOTIFICATION_WORKER);
+            }
+        }
+    }
+
+    public static void addAssistantNotification(Context context, boolean useSoundsSetting) {
+        useSounds = useSoundsSetting;
+
+        Assistant assistant = Assistant.get(Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue());
+        long lastClaimTime = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first().getLongValue();
+
+        if (assistant != null && assistant.getObtained() > 0) {
+            long nextClaimTime = lastClaimTime + assistant.getRewardFrequency();
+            if (nextClaimTime > System.currentTimeMillis()) {
+                NotificationHelper.addNotification(context, nextClaimTime, Constants.NOTIFICATION_ASSISTANT);
             }
         }
     }

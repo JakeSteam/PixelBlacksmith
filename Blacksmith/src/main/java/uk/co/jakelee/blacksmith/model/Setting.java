@@ -1,6 +1,10 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Setting extends SugarRecord {
     private long settingId;
@@ -28,6 +32,12 @@ public class Setting extends SugarRecord {
         this.settingId = settingId;
         this.settingName = settingName;
         this.strValue = strValue;
+    }
+
+    public static boolean getSafeBoolean(long settingId) {
+        Setting setting = Setting.findById(Setting.class, settingId);
+
+        return setting != null && setting.getBoolValue();
     }
 
     public long getSettingId() {
@@ -70,9 +80,7 @@ public class Setting extends SugarRecord {
         this.strValue = strValue;
     }
 
-    public static boolean getSafeBoolean(long settingId) {
-        Setting setting = Setting.findById(Setting.class, settingId);
-
-        return setting != null && setting.getBoolValue();
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("setting_" + settingId);
     }
 }

@@ -110,10 +110,10 @@ public class UpgradeActivity extends Activity {
     }
 
     private TextView createSuperUpgradeText(Super_Upgrade upgrade) {
-        TextView superUpgrade = dh.createTextView(upgrade.getName() + "\n", 24);
+        TextView superUpgrade = dh.createTextView(upgrade.getName(this) + "\n", 24);
         superUpgrade.setSingleLine(false);
         if (!upgrade.havePrestigeLevel()) {
-            superUpgrade.setPaintFlags(superUpgrade.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+            superUpgrade.setPaintFlags(superUpgrade.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
         return superUpgrade;
     }
@@ -146,14 +146,14 @@ public class UpgradeActivity extends Activity {
             ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradePrestigeLevel), upgrade.getPrestigeLevel()), false);
             return;
         } else if (!upgrade.isEnabled() && (Super_Upgrade.totalEnabled() >= Super_Upgrade.maxEnabled())) {
-            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_SUPER_UPGRADE), false);
+            ToastHelper.showErrorToast(view, Toast.LENGTH_SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_SUPER_UPGRADE)), false);
             return;
         }
 
         upgrade.setEnabled(!upgrade.isEnabled());
         upgrade.save();
         ToastHelper.showPositiveToast(view, Toast.LENGTH_SHORT, String.format(getString(R.string.superUpgradeStatusChange),
-                upgrade.getName(),
+                upgrade.getName(this),
                 getString(upgrade.isEnabled() ? R.string.superUpgradeEnabled : R.string.superUpgradeDisabled)
         ), true);
 
@@ -197,7 +197,7 @@ public class UpgradeActivity extends Activity {
     private String getUpgradeText(Upgrade upgrade) {
         if (!upgrade.isAtMaximum()) {
             return String.format(getString(R.string.upgradeDescription),
-                    upgrade.getName(),
+                    upgrade.getName(this),
                     upgrade.getCurrent(),
                     upgrade.getMaximum(),
                     upgrade.getUnits(),
@@ -207,7 +207,7 @@ public class UpgradeActivity extends Activity {
                     upgrade.getUpgradeCost());
         } else {
             return String.format(getString(R.string.upgradeCompletedDescription),
-                    upgrade.getName(),
+                    upgrade.getName(this),
                     upgrade.getCurrent(),
                     upgrade.getMaximum(),
                     upgrade.getUnits());
@@ -216,10 +216,10 @@ public class UpgradeActivity extends Activity {
 
     private void upgradeOnClick(View v) {
         Upgrade selectedUpgrade = Upgrade.findById(Upgrade.class, (long) v.getTag());
-        if (!selectedUpgrade.isAtMaximum()){
+        if (!selectedUpgrade.isAtMaximum()) {
             AlertDialogHelper.confirmUpgrade(this, this, selectedUpgrade);
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.upgradeTitle), ToastHelper.SHORT, ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE), false);
+            ToastHelper.showErrorToast(findViewById(R.id.upgradeTitle), ToastHelper.SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_MAXIMUM_UPGRADE)), false);
         }
     }
 

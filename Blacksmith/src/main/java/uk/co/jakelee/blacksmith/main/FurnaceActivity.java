@@ -56,7 +56,7 @@ public class FurnaceActivity extends Activity {
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
-        
+
         gh = new GestureHelper(getApplicationContext());
         foodSelected = MainActivity.prefs.getBoolean("furnaceTab", false);
 
@@ -172,8 +172,11 @@ public class FurnaceActivity extends Activity {
     }
 
     private void createFoodInterface(boolean clearExisting) {
-        List<Item> items = Select.from(Item.class).where(
-                Condition.prop("type").eq(Constants.TYPE_PROCESSED_FOOD)).orderBy("level").list();
+        List<Item> items = new ArrayList<>();
+        items.add(Item.findById(Item.class, 231));
+        items.addAll(Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_PROCESSED_FOOD),
+                Condition.prop("id").notEq(231)).orderBy("level").list());
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
@@ -242,9 +245,13 @@ public class FurnaceActivity extends Activity {
         }
 
         if (quantitySmelted > 0) {
+            if (itemID.equals(231L)) {
+                // Golden egg achievement
+                GooglePlayHelper.UnlockAchievement("CgkI6tnE2Y4OEAIQWw");
+            }
             Item item = Item.findById(Item.class, itemID);
             SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(findViewById(R.id.furnace), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(Constants.STATE_NORMAL)), false);
+            ToastHelper.showToast(findViewById(R.id.furnace), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(this, Constants.STATE_NORMAL)), false);
             Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
             GooglePlayHelper.UpdateEvent(foodSelected ? Constants.EVENT_CREATE_FOOD : Constants.EVENT_CREATE_BAR, quantitySmelted);
 
@@ -252,7 +259,7 @@ public class FurnaceActivity extends Activity {
             MainActivity.vh.furnaceBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, ErrorHelper.errors.get(canCreate), false);
+            ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
         }
     }
 

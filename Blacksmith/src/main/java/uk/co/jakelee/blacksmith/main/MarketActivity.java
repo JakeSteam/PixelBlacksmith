@@ -60,11 +60,16 @@ public class MarketActivity extends Activity {
         super.onResume();
 
         populateTraderList();
+        findViewById(R.id.buyAllButton).setVisibility(Super_Upgrade.isEnabled(Constants.SU_BUY_ALL_MARKET) ? View.VISIBLE : View.GONE);
+    }
+
+    public void buyAll(View v) {
+        AlertDialogHelper.confirmMarketBuyAll(this);
     }
 
     private void populateTraderList() {
-        Trader.checkTraderStatus(this, Constants.LOCATION_MARKET);
         TableLayout marketLayout = (TableLayout) findViewById(R.id.marketList);
+        Trader.checkTraderStatus(this, marketLayout, Constants.LOCATION_MARKET);
         marketLayout.removeAllViews();
 
         int fixedTraders = Trader.getFixedCount();
@@ -77,15 +82,15 @@ public class MarketActivity extends Activity {
         boolean mixedFixedStatus = fixedTraders > 0;
         boolean haveDisplayedUnlockHeader = false;
         if (mixedFixedStatus) {
-            marketLayout.addView(dh.createTextView(String.format("Fixed (%1$d / %2$d)",
+            marketLayout.addView(dh.createTextView(getString(R.string.fixed) + String.format(" (%1$d / %2$d)",
                     fixedTraders,
                     Constants.TRADER_LOCK_MAX),
-                30));
+                    30));
         }
 
         for (Trader trader : traders) {
             if (mixedFixedStatus && !trader.isFixed() && !haveDisplayedUnlockHeader) {
-                marketLayout.addView(dh.createTextView("\nTemporary", 30));
+                marketLayout.addView(dh.createTextView("\n" + getString(R.string.temporary), 30));
                 haveDisplayedUnlockHeader = true;
             }
             LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
@@ -93,10 +98,10 @@ public class MarketActivity extends Activity {
             TableRow traderRow = (TableRow) inflatedView.findViewById(R.id.traderRow);
 
             TextView traderName = (TextView) traderRow.findViewById(R.id.traderName);
-            traderName.setText(trader.getName());
+            traderName.setText(trader.getName(this));
 
             TextView traderDescription = (TextView) traderRow.findViewById(R.id.traderDescription);
-            traderDescription.setText(trader.getDescription());
+            traderDescription.setText(trader.getDescription(this));
 
             LinearLayout traderOfferingsContainer = (LinearLayout) traderRow.findViewById(R.id.traderOfferings);
             populateTraderOfferings(traderOfferingsContainer, trader);
@@ -104,7 +109,7 @@ public class MarketActivity extends Activity {
             inflatedView.setTag(trader.getId());
             inflatedView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500){
+                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500) {
                         return;
                     } else {
                         MainActivity.vh.lastTraderClick = SystemClock.elapsedRealtime();

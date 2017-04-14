@@ -21,7 +21,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ import uk.co.jakelee.blacksmith.model.Setting;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Type;
 
-public class InventoryActivity extends Activity implements ItemTable, AdapterView.OnItemSelectedListener{
+public class InventoryActivity extends Activity implements ItemTable, AdapterView.OnItemSelectedListener {
     private static final Handler handler = new Handler();
     private static DisplayHelper dh;
     private LinearLayout sell1;
@@ -104,8 +103,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        selectedType = Select.from(Type.class).where(
-                Condition.prop("name").eq(parent.getItemAtPosition(pos))).first();
+        selectedType = Type.findById(Type.class, pos);
         dh.updateFullscreen(this);
         displayItemsTable();
     }
@@ -117,11 +115,24 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     private void createDropdown() {
         Spinner typeSelector = (Spinner) findViewById(R.id.itemTypes);
         typeSelector.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typesArray, R.layout.custom_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.custom_spinner, getTypeStrings());
         adapter.setDropDownViewResource(R.layout.custom_spinner_item);
         typeSelector.setAdapter(adapter);
         typeSelector.setOnItemSelectedListener(this);
-        typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName()) : 0);
+        typeSelector.setSelection(selectedType != null ? adapter.getPosition(selectedType.getName(this)) : 0);
+    }
+
+    private List<String> getTypeStrings() {
+        List<String> typeStrings = new ArrayList<>();
+        List<Type> types = Select.from(Type.class).list();
+        typeStrings.add(getString(R.string.exchangePagesAll));
+        for (Type type : types) {
+            if (type.getId() <= Constants.TYPE_PROCESSED_FOOD) {
+                typeStrings.add(type.getName(this));
+            }
+        }
+        return typeStrings;
+
     }
 
     protected void onStop() {
@@ -158,9 +169,9 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
 
             TextViewPixel count = dh.createTextView(Integer.toString(inventoryItem.getQuantity()), 20, Color.BLACK);
 
-            ImageView image = dh.createItemImage(item.getId(), (int)inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true, inventoryItem.isUnsellable());
+            ImageView image = dh.createItemImage(item.getId(), (int) inventoryItem.getState(), 35, 35, inventoryItem.haveSeen(), true, inventoryItem.isUnsellable());
 
-            final String itemName = item.getPrefix(inventoryItem.getState()) + item.getName();
+            final String itemName = item.getPrefix(inventoryItem.getState()) + item.getName(this);
             TextViewPixel name = dh.createTextView(itemName, 20, Color.BLACK);
             name.setSingleLine(false);
             name.setTag(R.id.itemID, inventoryItem.getItem());
@@ -169,10 +180,10 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
             name.setPadding(0, dh.convertDpToPixel(5), 0, 17);
             name.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    ToastHelper.showToast(inventoryTable, ToastHelper.SHORT, item.getDescription(), false);
+                    ToastHelper.showToast(inventoryTable, ToastHelper.SHORT, item.getDescription(activity), false);
                 }
             });
-            name.setOnLongClickListener(ListenerHelper.getItemLongClick(this));
+            name.setOnLongClickListener(ListenerHelper.getItemLongClick(this, this));
 
             itemRow.addView(count);
             itemRow.addView(image);
@@ -199,7 +210,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
                 tradeBtn.setTag((int) (long) item.getId());
                 tradeBtn.setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
-                    clickExchangeButton(v);
+                        clickExchangeButton(v);
                     }
                 });
             }
@@ -226,7 +237,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         Item item = Item.findById(Item.class, itemId);
         Inventory inventory = Inventory.getInventory(itemId, Constants.STATE_NORMAL);
         if (inventory.isUnsellable()) {
-            ToastHelper.showErrorToast(v, Toast.LENGTH_SHORT, ErrorHelper.errors.get(Constants.ERROR_UNSELLABLE), false);
+            ToastHelper.showErrorToast(v, Toast.LENGTH_SHORT, getString(ErrorHelper.errors.get(Constants.ERROR_UNSELLABLE)), false);
         } else {
             AlertDialogHelper.confirmPageExchange(this, this, findViewById(R.id.inventoryTable), inventory, item);
         }
@@ -268,7 +279,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
 
         if (quantityToSell > 0) {
             SoundHelper.playSound(this, SoundHelper.sellingSounds);
-            ToastHelper.showToast(view, ToastHelper.SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(), itemValue), false);
+            ToastHelper.showToast(view, ToastHelper.SHORT, String.format(getString(R.string.sellSuccess), quantity, itemToSell.getName(this), itemValue), false);
             Player_Info.increaseByOne(Player_Info.Statistic.ItemsSold);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsEarned, itemValue * quantityToSell);
             GooglePlayHelper.UpdateEvent(Constants.EVENT_SOLD_ITEM, quantityToSell);
@@ -277,7 +288,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
             MainActivity.vh.inventoryBusy = true;
             dimButtons();
         } else {
-            ToastHelper.showErrorToast(view, ToastHelper.SHORT, ErrorHelper.errors.get(canSell), false);
+            ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(ErrorHelper.errors.get(canSell)), false);
         }
         displayItemsTable();
         dh.updateCoins(Inventory.getCoins());

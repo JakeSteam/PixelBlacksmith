@@ -39,32 +39,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            app:layout_marginTopPercent="9%"
-            app:layout_marginBottomPercent="80%">
+            app:layout_marginBottomPercent="80%"
+            app:layout_marginTopPercent="9%">
+
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/itemsTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/itemsText"
                 android:layout_margin="3dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
                 android:background="@drawable/button_short"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="toggleTab"
-                android:gravity="center"/>
+                android:text="@string/itemsText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:id="@+id/ringsTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/booksText"
                 android:layout_margin="3dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
                 android:background="@drawable/button_short"
                 android:clickable="true"
+                android:gravity="center"
                 android:onClick="toggleTab"
-                android:gravity="center"/>
+                android:text="@string/booksText"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
         </LinearLayout>
 
         <Button
@@ -90,8 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tableTitle"
             android:layout_marginLeft="5dp"
+            android:maxLines="1"
             android:padding="5dp"
-            android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -181,12 +183,12 @@
             android:id="@+id/ingredientsScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/buttonContainer"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/horizontalIndicator"
-            android:layout_above="@id/buttonContainer"
-            android:padding="3dp"
             android:fadeScrollbars="false"
+            android:padding="3dp"
             app:layout_marginTopPercent="3%">
 
             <TableLayout

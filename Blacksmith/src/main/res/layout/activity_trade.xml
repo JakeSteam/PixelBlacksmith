@@ -26,15 +26,15 @@
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/tradeTitle"
             android:layout_width="match_parent"
-            app:layout_heightPercent="10%"
-            app:layout_marginBottomPercent="7%"
-            app:layout_marginTopPercent="3%"
             android:gravity="center"
             android:text="@string/tradeText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/black"
             android:textIsSelectable="false"
-            android:textSize="55sp" />
+            android:textSize="55sp"
+            app:layout_heightPercent="10%"
+            app:layout_marginBottomPercent="7%"
+            app:layout_marginTopPercent="3%" />
 
         <uk.co.jakelee.blacksmith.controls.TextViewPixel
             android:id="@+id/visitorName"
@@ -86,32 +86,32 @@
             android:id="@+id/maxCheckboxArea"
             android:layout_width="40dp"
             android:layout_height="45dp"
-            android:background="@drawable/button_narrow"
-            android:layout_toLeftOf="@id/finishTrade"
-            android:layout_alignTop="@id/finishTrade"
             android:layout_alignBottom="@id/finishTrade"
-            android:onClick="toggleMax"
+            android:layout_alignTop="@id/finishTrade"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/finishTrade"
+            android:background="@drawable/button_narrow"
             android:clickable="true"
             android:gravity="center"
-            android:layout_marginRight="5dp"
+            android:onClick="toggleMax"
             android:orientation="vertical">
 
             <uk.co.jakelee.blacksmith.controls.TextViewPixel
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tradeMax"
-                android:textSize="20sp"
-                android:textColor="@color/white"
+                android:layout_marginBottom="-5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="-5dp"/>
+                android:text="@string/tradeMax"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/maxIndicator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/cross"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="-2dp"
-                android:layout_marginBottom="2dp"/>
+                android:src="@drawable/cross" />
         </LinearLayout>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -120,8 +120,8 @@
             android:layout_height="match_parent"
             android:layout_above="@id/finishTrade"
             android:layout_below="@id/demandProgress"
-            android:paddingTop="10dp"
-            android:fadeScrollbars="false">
+            android:fadeScrollbars="false"
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,10 +134,10 @@
                     android:id="@+id/noItemsMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="22sp"
+                    android:text="@string/noItemsMessage"
                     android:textColor="@color/black"
-                    android:visibility="gone"
-                    android:text="@string/noItemsMessage"/>
+                    android:textSize="22sp"
+                    android:visibility="gone" />
 
                 <TableLayout
                     android:id="@+id/itemsTable"
@@ -149,6 +149,7 @@
         </ScrollView>
 
     </android.support.percent.PercentRelativeLayout>
+
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/help"

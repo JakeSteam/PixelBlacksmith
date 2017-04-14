@@ -34,49 +34,67 @@
             android:textSize="60sp"
             app:layout_marginTopPercent="1%" />
 
+        <uk.co.jakelee.blacksmith.controls.TextViewPixel xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/buyAllButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_extra_wide"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="buyAll"
+            android:text="@string/itemBuyAllConfirm"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/marketScroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/buyAllButton"
             android:layout_below="@id/marketTitle"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            app:layout_marginTopPercent="10%"
-            android:fadeScrollbars="false">
+            android:fadeScrollbars="false"
+            app:layout_marginTopPercent="10%">
 
             <TableLayout
                 android:id="@+id/marketList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:shrinkColumns="0"
-                android:stretchColumns="0"
-                android:layout_marginRight="10dp"/>
+                android:stretchColumns="0" />
         </ScrollView>
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/emptyMarket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/buyAllButton"
             android:layout_below="@id/marketTitle"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            app:layout_marginTopPercent="10%"
             android:fadeScrollbars="false"
-            android:visibility="gone">
+            android:visibility="gone"
+            app:layout_marginTopPercent="10%">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/restockText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:layout_marginBottom="10dp"/>
+                    android:textSize="22sp" />
 
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:id="@+id/restockButton"
@@ -88,7 +106,7 @@
                     android:onClick="clickRestockAll"
                     android:text="@string/restockMarketButton"
                     android:textColor="@color/black"
-                    android:textSize="30sp"/>
+                    android:textSize="30sp" />
             </LinearLayout>
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>

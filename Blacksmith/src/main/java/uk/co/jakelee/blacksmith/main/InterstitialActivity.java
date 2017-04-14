@@ -21,9 +21,9 @@ import uk.co.jakelee.blacksmith.helper.AdvertHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class InterstitialActivity extends Activity {
-    private static DisplayHelper dh;
     private AdvertHelper.advertPurpose purpose;
     private boolean timerEnded = false;
     private boolean calledCallback = false;
@@ -32,7 +32,7 @@ public class InterstitialActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interstitial);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         Intent intent = getIntent();
@@ -48,18 +48,18 @@ public class InterstitialActivity extends Activity {
             }
         }
 
-        String[] tipArray = getResources().getStringArray(R.array.tipsArray);
+        List<String> tips = TextHelper.getTips(this);
         List<Integer> ints = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
-            int newInt = new Random().nextInt(tipArray.length);
+            int newInt = new Random().nextInt(tips.size());
             if (ints.contains(newInt)) {
-                newInt = new Random().nextInt(tipArray.length);
+                newInt = new Random().nextInt(tips.size());
             }
             ints.add(newInt);
         }
 
         for (int i : ints) {
-            root.addView(dh.createTextView("Tip " + i + ": " + tipArray[i] + "\n", 22));
+            root.addView(dh.createTextView(getString(R.string.tip) + " " + i + ": " + tips.get(i) + "\n", 22));
         }
     }
 
@@ -74,7 +74,7 @@ public class InterstitialActivity extends Activity {
     }
 
     public void setupTimer() {
-        final TextView countdownTimer = (TextView)findViewById(R.id.countdownTimer);
+        final TextView countdownTimer = (TextView) findViewById(R.id.countdownTimer);
         new CountDownTimer(Constants.ADVERT_TIMEOUT, DateHelper.MILLISECONDS_IN_SECOND) {
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);

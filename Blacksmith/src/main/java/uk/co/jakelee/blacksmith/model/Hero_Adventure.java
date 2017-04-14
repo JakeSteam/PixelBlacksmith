@@ -1,10 +1,14 @@
 package uk.co.jakelee.blacksmith.model;
 
+import android.content.Context;
+
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
+
+import uk.co.jakelee.blacksmith.helper.TextHelper;
 
 public class Hero_Adventure extends SugarRecord {
     private int adventureId;
@@ -24,6 +28,21 @@ public class Hero_Adventure extends SugarRecord {
         this.completed = false;
     }
 
+    public static int getTotalCompleted() {
+        List<Hero_Adventure> adventures = Hero_Adventure.listAll(Hero_Adventure.class);
+        int totalCompleted = 0;
+
+        for (Hero_Adventure adventure : adventures) {
+            if (adventure.isCompleted()) totalCompleted++;
+        }
+
+        return totalCompleted;
+    }
+
+    public static Hero_Adventure getAdventure(int id) {
+        return Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(id)).first();
+    }
+
     public int getAdventureId() {
         return adventureId;
     }
@@ -32,8 +51,8 @@ public class Hero_Adventure extends SugarRecord {
         this.adventureId = adventureId;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Context context) {
+        return TextHelper.getInstance(context).getText("hero_adventure_" + adventureId);
     }
 
     public void setName(String name) {
@@ -62,21 +81,6 @@ public class Hero_Adventure extends SugarRecord {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
-    }
-
-    public static int getTotalCompleted() {
-        List<Hero_Adventure> adventures = Hero_Adventure.listAll(Hero_Adventure.class);
-        int totalCompleted = 0;
-
-        for (Hero_Adventure adventure : adventures) {
-            if (adventure.isCompleted()) totalCompleted++;
-        }
-
-        return totalCompleted;
-    }
-
-    public static Hero_Adventure getAdventure(int id) {
-        return Select.from(Hero_Adventure.class).where(Condition.prop("adventure_id").eq(id)).first();
     }
 
     public Hero_Category getSubcategoryObject() {

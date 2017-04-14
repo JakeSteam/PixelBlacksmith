@@ -33,6 +33,7 @@ import uk.co.jakelee.blacksmith.BuildConfig;
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
@@ -100,33 +101,6 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 questReward);
     }
 
-    public void onResult(com.google.android.gms.common.api.Result result) {
-        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
-        QuestBuffer qb = r.getQuests();
-
-        int current = 0;
-        int max = 1;
-        String event = "";
-        if (qb.getCount() > 0) {
-            Quest q = qb.get(0);
-            current = (int) q.getCurrentMilestone().getCurrentProgress();
-            max = (int) q.getCurrentMilestone().getTargetProgress();
-            event = q.getCurrentMilestone().getEventId();
-        }
-
-        DisplayHelper.updateQuest(current, max, event);
-        qb.close();
-    }
-
-    public void UpdateQuest() {
-        if (!IsConnected()) {
-            return;
-        }
-
-        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
-        quests.setResultCallback(this);
-    }
-
     public static void UpdateEvent(String eventId, int quantity) {
         if (!IsConnected() || quantity <= 0) {
             return;
@@ -178,6 +152,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
+    public static void UnlockAchievement(String achievementID) {
+        if (mGoogleApiClient.isConnected()) {
+            Games.Achievements.unlock(mGoogleApiClient, achievementID);
+        }
+    }
+
     private static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
         if (currentValue > lastSentValue && mGoogleApiClient.isConnected()) {
             statistic.setLastSentValue(currentValue);
@@ -204,7 +184,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                         @Override
                         public void run() {
                             DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
-                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT), true);
+                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, context.getString(ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT)), true);
                         }
                     });
 
@@ -365,6 +345,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         backupString += gson.toJson(Worker.listAll(Worker.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Hero.listAll(Hero.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Visitor_Log.listAll(Visitor_Log.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Assistant.listAll(Assistant.class)) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
@@ -463,6 +444,16 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
         }
 
+        if (splitData.length > 13) {
+            Assistant[] assistants = gson.fromJson(splitData[13], Assistant[].class);
+            if (assistants.length > 0) {
+                Assistant.deleteAll(Assistant.class);
+                for (Assistant assistant : assistants) {
+                    assistant.save();
+                }
+            }
+        }
+
         new DatabaseHelper().execute();
 
         if (callingActivity != null) {
@@ -507,5 +498,32 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
 
         return splitData;
+    }
+
+    public void onResult(com.google.android.gms.common.api.Result result) {
+        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult) result;
+        QuestBuffer qb = r.getQuests();
+
+        int current = 0;
+        int max = 1;
+        String event = "";
+        if (qb.getCount() > 0) {
+            Quest q = qb.get(0);
+            current = (int) q.getCurrentMilestone().getCurrentProgress();
+            max = (int) q.getCurrentMilestone().getTargetProgress();
+            event = q.getCurrentMilestone().getEventId();
+        }
+
+        DisplayHelper.updateQuest(current, max, event);
+        qb.close();
+    }
+
+    public void UpdateQuest() {
+        if (!IsConnected()) {
+            return;
+        }
+
+        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[]{Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
+        quests.setResultCallback(this);
     }
 }

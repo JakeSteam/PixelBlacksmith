@@ -36,13 +36,12 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class StatisticsActivity extends Activity {
     private double completionPercent = 0.00;
-    private static DisplayHelper dh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        dh = DisplayHelper.getInstance(getApplicationContext());
+        DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
         displayStatistics();
@@ -142,7 +141,7 @@ public class StatisticsActivity extends Activity {
 
         int adventuresCompleted = Hero_Adventure.getTotalCompleted();
         int adventuresCount = (int) Hero_Adventure.count(Hero_Adventure.class);
-        int adventuresPercent = (int) (((double)adventuresCompleted / (double)adventuresCount) * 100);
+        int adventuresPercent = (int) (((double) adventuresCompleted / (double) adventuresCount) * 100);
         ((TextViewPixel) findViewById(R.id.heroAdventuresCompleted)).setText(String.format(getString(R.string.genericProgressPercent),
                 adventuresCompleted,
                 adventuresCount,

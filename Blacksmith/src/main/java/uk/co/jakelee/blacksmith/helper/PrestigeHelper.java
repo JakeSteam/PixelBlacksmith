@@ -8,6 +8,7 @@ import java.util.List;
 
 import uk.co.jakelee.blacksmith.main.MainActivity;
 import uk.co.jakelee.blacksmith.model.Achievement;
+import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Hero;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Pending_Inventory;
@@ -31,6 +32,7 @@ public class PrestigeHelper {
             resetAllVisitors();
             resetTraders();
             resetWorkers();
+            resetAssistants();
             resetCraftingInterface();
 
             GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_TIMES_PRESTIGED, Player_Info.getPrestige() + 1);
@@ -98,6 +100,10 @@ public class PrestigeHelper {
                 "food_item = 0, food_state = 0, helmet_item = 0, helmet_state = 0, armour_item = 0, armour_state = 0, " +
                 "weapon_item = 0, weapon_state = 0, shield_item = 0, shield_state = 0, gloves_item = 0, gloves_state = 0, " +
                 "boots_item = 0, boots_state = 0, ring_item = 0, ring_state = 0");
+    }
+
+    private static void resetAssistants() {
+        Assistant.executeQuery("UPDATE assistant SET xp = 0, obtained = 0");
     }
 
     public static void resetCraftingInterface() {

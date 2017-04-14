@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.components.Hero_Set;
@@ -77,7 +78,7 @@ public class EquipmentActivity extends Activity {
 
         if (hero.getVisitorId() > 0) {
             ((ImageView) findViewById(R.id.heroImage)).setImageDrawable(dh.createDrawable(DisplayHelper.getVisitorDrawableID(this, hero.getVisitorId()), 25, 25));
-            ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName() + " (" + vType.getAdventuresCompleted() + ")");
+            ((TextViewPixel) findViewById(R.id.heroName)).setText(vType.getName(this) + " (" + vType.getAdventuresCompleted() + ")");
         } else {
             ((TextViewPixel) findViewById(R.id.heroName)).setText(R.string.workerStatusSelectHero);
         }
@@ -110,17 +111,17 @@ public class EquipmentActivity extends Activity {
         if (sets.size() > 0) {
             for (Hero_Set set : sets) {
                 View textView = dh.createTextView(String.format("%1$s (+%2$s%%)", set.getName(), set.getBonus()), 30);
-                textView.setTag(String.format("The %1$s set provides +%2$d%% strength bonus, activated by %3$s", set.getName(), set.getBonus(), set.getDescription()));
+                textView.setTag(String.format(Locale.ENGLISH, getString(R.string.hero_set_bonus), set.getName(), set.getBonus(), set.getDescription()));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ToastHelper.showTipToast(view, Toast.LENGTH_SHORT, (String)view.getTag(), true);
+                        ToastHelper.showTipToast(view, Toast.LENGTH_SHORT, (String) view.getTag(), true);
                     }
                 });
                 setContainer.addView(textView);
             }
         } else {
-            setContainer.addView(dh.createTextView("No sets currently active!", 35));
+            setContainer.addView(dh.createTextView(getString(R.string.hero_no_set_bonus), 35));
         }
     }
 
@@ -169,21 +170,21 @@ public class EquipmentActivity extends Activity {
 
     public void tierClick(View view) {
         if (hero.getVisitorId() > 0) {
-            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = Tier.findById(Tier.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.tierPreferenceHero, preferred);
         }
     }
 
     public void typeClick(View view) {
         if (hero.getVisitorId() > 0) {
-            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = Type.findById(Type.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.typePreferenceHero, preferred);
         }
     }
 
     public void stateClick(View view) {
         if (hero.getVisitorId() > 0) {
-            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName();
+            String preferred = State.findById(State.class, (long) view.getTag(R.id.preferred)).getName(this);
             VisitorHelper.displayPreference(this, view, R.string.statePreferenceHero, preferred);
         }
     }
