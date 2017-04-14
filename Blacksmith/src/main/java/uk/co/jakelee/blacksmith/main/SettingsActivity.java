@@ -76,9 +76,11 @@ public class SettingsActivity extends Activity {
             envAdapter.add(text);
         }
 
-        spinner.setAdapter(envAdapter);
-        spinner.setSelection(setting.getIntValue() - 1);
-        spinner.setOnItemSelectedListener(getListener(setting));
+        if (spinner != null) {
+            spinner.setAdapter(envAdapter);
+            spinner.setSelection(setting.getIntValue() > 0 ? setting.getIntValue() - 1 : 0);
+            spinner.setOnItemSelectedListener(getListener(setting));
+        }
     }
 
     private AdapterView.OnItemSelectedListener getListener(final Setting setting) {
