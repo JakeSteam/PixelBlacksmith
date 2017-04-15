@@ -60,7 +60,6 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:paddingBottom="20dp"
                     android:text="@string/creditsOverallDetails"
                     android:textColor="@color/black"
@@ -77,7 +76,6 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:text="@string/creditsMusicDetails"
                     android:textColor="@color/black"
                     android:textColorLink="@color/defaultLink"
@@ -86,7 +84,6 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:paddingBottom="20dp"
                     android:text="@string/creditsCCBY"
                     android:textColor="@color/black"
@@ -103,9 +100,24 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:paddingBottom="20dp"
                     android:text="@string/creditsGraphicsDetails"
+                    android:textColor="@color/black"
+                    android:textColorLink="@color/defaultLink"
+                    android:textSize="22sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/creditsTranslations"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:text="@string/creditsTranslationsDetails"
                     android:textColor="@color/black"
                     android:textColorLink="@color/defaultLink"
                     android:textSize="22sp" />
@@ -120,7 +132,6 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:paddingBottom="20dp"
                     android:text="@string/creditsLibrariesDetails"
                     android:textColor="@color/black"
@@ -137,7 +148,6 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:paddingBottom="20dp"
                     android:text="@string/creditsSoftwareDetails"
                     android:textColor="@color/black"
@@ -147,7 +157,6 @@
                 <uk.co.jakelee.blacksmith.controls.TextViewPixel
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
                     android:paddingBottom="20dp"
                     android:text="@string/creditsMiscDetails"
                     android:textColor="@color/black"

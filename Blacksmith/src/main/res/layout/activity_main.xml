@@ -311,6 +311,7 @@
                     android:background="@color/black"
                     android:gravity="center_horizontal"
                     android:onClick="claimAssistant"
+                    android:clickable="true"
                     android:padding="3dp"
                     android:textSize="24sp" />
             </RelativeLayout>
