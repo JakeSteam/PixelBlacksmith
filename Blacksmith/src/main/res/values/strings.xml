@@ -44,7 +44,7 @@
     <string name="tool_visage">Visage (Coins)</string>
 
     <string name="help_assistants">Assistants</string>
-    <string name="help_text_assistants">Assistants can be recruited (for a cost) after certain levels, and will provide regular income alongside passive XP &amp; gold bonuses.\n\nHigher level assistants will provide better bonuses, make sure to claim the bonus items regularly!</string>
+    <string name="help_text_assistants">Assistants can be recruited (for a cost) after certain levels, and will provide regular income alongside passive XP &amp; gold bonuses.\n\nThey level up automatically as you gain XP, up to their maximum level. Every 10 levels their appearance also changes!\n\nHigher level assistants will provide better bonuses, make sure to claim the bonus items regularly!</string>
     <string name="help_coins">Coins</string>
     <string name="help_text_coins">Coins are earned and spent during normal gameplay. The buyable amount is dependent on your current player level.\nThe larger pack is also better value, so check out the two prices and see which works best for you!\n</string>
     <string name="help_prestige">Prestige</string>
@@ -1213,7 +1213,7 @@
     <string name="type_25">Page</string>
     <string name="type_26">Book</string>
     <string name="type_27">Cooked Food</string>
-    <string name="type_28">Internal</string>
+    <string name="type_28">Cooked Food</string>
 
     <string name="upgrade_1">Visitor Spawn Time</string>
     <string name="upgrade_2">Market Restock Time</string>

@@ -76,7 +76,7 @@ public class SettingsActivity extends Activity {
             envAdapter.add(text);
         }
 
-        if (spinner != null) {
+        if (spinner != null && setting != null) {
             spinner.setAdapter(envAdapter);
             spinner.setSelection(setting.getIntValue() > 0 ? setting.getIntValue() - 1 : 0);
             spinner.setOnItemSelectedListener(getListener(setting));
