@@ -18,8 +18,6 @@ import android.widget.TextView;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
-import java.util.List;
-
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
@@ -192,7 +190,6 @@ public class SettingsActivity extends Activity {
             findViewById(R.id.prestigeButton).setVisibility(View.VISIBLE);
         }
 
-        ((TextView) findViewById(R.id.settingsCodeHeader)).setText(getSettingsCode());
     }
 
     private void populateOrientation() {
@@ -206,17 +203,6 @@ public class SettingsActivity extends Activity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getSettingsCode() {
-        List<Setting> settings = Setting.listAll(Setting.class);
-        String settingsCode = "1";
-        for (Setting setting : settings) {
-            settingsCode += (setting.getBoolValue() ? "1" : "0");
-        }
-
-        return String.format(getString(R.string.settingsCode),
-                Integer.valueOf(settingsCode, 2));
     }
 
     public void toggleOrientation(View v) {
