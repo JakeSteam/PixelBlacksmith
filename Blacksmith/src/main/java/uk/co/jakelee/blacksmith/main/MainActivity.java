@@ -41,7 +41,6 @@ import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
-import uk.co.jakelee.blacksmith.helper.EventHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
@@ -393,15 +392,6 @@ public class MainActivity extends AppCompatActivity implements
                 dh.createAllSlots(activity);
             }
         });
-
-        final Runnable easterEvent = new Runnable() {
-            @Override
-            public void run() {
-                EventHelper.checkForEasterEggs(activity);
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
-            }
-        };
-        handler.postDelayed(easterEvent, DateHelper.MILLISECONDS_IN_SECOND * 60);
 
         final Runnable everySecond = new Runnable() {
             @Override

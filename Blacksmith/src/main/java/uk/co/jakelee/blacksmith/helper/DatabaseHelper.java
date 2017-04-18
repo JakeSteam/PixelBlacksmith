@@ -948,6 +948,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         createAssistants();
     }
 
+    private void patch212to213() {
+        Visitor_Type.executeQuery("UPDATE visitor_type SET weighting = 2 WHERE visitor_id = 53");
+        Assistant.executeQuery("UPDATE assistant SET reward_quantity = (reward_quantity / 3), reward_frequency = (reward_frequency * 2)");
+    }
+
     private void createAssistants() {
         List<Assistant> assistants = new ArrayList<>();
         assistants.add(new Assistant(1, 5, 1000, 0.1, 19, 0, 70, 1, 100, 600000, 0.01));
