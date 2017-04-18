@@ -78,6 +78,10 @@ public class MarketActivity extends Activity {
                 Constants.LOCATION_MARKET,
                 Constants.TRADER_PRESENT,
                 Constants.TRUE));
+        List<Trader> tradersWithStock = Trader.find(Trader.class, String.format(Locale.ENGLISH,
+                "location = %1$d AND status = %2$d AND fixed = 0 ORDER BY fixed DESC, name ASC",
+                Constants.LOCATION_MARKET,
+                Constants.TRADER_PRESENT));
 
         boolean mixedFixedStatus = fixedTraders > 0;
         boolean haveDisplayedUnlockHeader = false;
@@ -122,7 +126,7 @@ public class MarketActivity extends Activity {
             marketLayout.addView(inflatedView);
 
         }
-        checkIfOutOfStock(traders.size());
+        checkIfOutOfStock(tradersWithStock.size());
 
     }
 
