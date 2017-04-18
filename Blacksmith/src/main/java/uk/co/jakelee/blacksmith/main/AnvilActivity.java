@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -273,20 +274,24 @@ public class AnvilActivity extends Activity {
             }
         }
 
-        if (quantityCrafted > 0) {
-            Item item = Item.findById(Item.class, itemID);
-            SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(findViewById(R.id.anvil), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(this, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
-            Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
-            if (!ringsSelected) {
-                GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
-            }
+        try {
+            if (quantityCrafted > 0) {
+                Item item = Item.findById(Item.class, itemID);
+                SoundHelper.playSound(this, SoundHelper.smithingSounds);
+                ToastHelper.showToast(findViewById(R.id.anvil), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantityCrafted, item.getFullName(this, ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED)), false);
+                Player_Info.increaseByX(Player_Info.Statistic.ItemsCrafted, quantityCrafted);
+                if (!ringsSelected) {
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_CREATE_UNFINISHED, quantityCrafted);
+                }
 
-            Pending_Inventory.addScheduledItems(this, Constants.LOCATION_ANVIL, itemsToAdd);
-            MainActivity.vh.anvilBusy = true;
-            dimButtons();
-        } else {
-            ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
+                Pending_Inventory.addScheduledItems(this, Constants.LOCATION_ANVIL, itemsToAdd);
+                MainActivity.vh.anvilBusy = true;
+                dimButtons();
+            } else {
+                ToastHelper.showErrorToast(findViewById(R.id.anvil), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
+            }
+        } catch (NullPointerException e) {
+            Log.d("Blacksmith", "Er, error whilst crafting at the anvil?");
         }
     }
 

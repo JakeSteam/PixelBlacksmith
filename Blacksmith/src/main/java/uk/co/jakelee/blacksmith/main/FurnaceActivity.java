@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -244,22 +245,26 @@ public class FurnaceActivity extends Activity {
             }
         }
 
-        if (quantitySmelted > 0) {
-            if (itemID.equals(231L)) {
-                // Golden egg achievement
-                GooglePlayHelper.UnlockAchievement("CgkI6tnE2Y4OEAIQWw");
-            }
-            Item item = Item.findById(Item.class, itemID);
-            SoundHelper.playSound(this, SoundHelper.smithingSounds);
-            ToastHelper.showToast(findViewById(R.id.furnace), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(this, Constants.STATE_NORMAL)), false);
-            Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
-            GooglePlayHelper.UpdateEvent(foodSelected ? Constants.EVENT_CREATE_FOOD : Constants.EVENT_CREATE_BAR, quantitySmelted);
+        try {
+            if (quantitySmelted > 0) {
+                if (itemID.equals(231L)) {
+                    // Golden egg achievement
+                    GooglePlayHelper.UnlockAchievement("CgkI6tnE2Y4OEAIQWw");
+                }
+                Item item = Item.findById(Item.class, itemID);
+                SoundHelper.playSound(this, SoundHelper.smithingSounds);
+                ToastHelper.showToast(findViewById(R.id.furnace), ToastHelper.SHORT, String.format(getString(R.string.craftSuccess), quantitySmelted, item.getFullName(this, Constants.STATE_NORMAL)), false);
+                Player_Info.increaseByX(Player_Info.Statistic.ItemsSmelted, quantitySmelted);
+                GooglePlayHelper.UpdateEvent(foodSelected ? Constants.EVENT_CREATE_FOOD : Constants.EVENT_CREATE_BAR, quantitySmelted);
 
-            Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
-            MainActivity.vh.furnaceBusy = true;
-            dimButtons();
-        } else {
-            ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
+                Pending_Inventory.addScheduledItems(this, Constants.LOCATION_FURNACE, itemsToAdd);
+                MainActivity.vh.furnaceBusy = true;
+                dimButtons();
+            } else {
+                ToastHelper.showErrorToast(findViewById(R.id.furnace), ToastHelper.SHORT, getString(ErrorHelper.errors.get(canCreate)), false);
+            }
+        } catch (NullPointerException e) {
+            Log.d("Blacksmith", "Er, error whilst crafting at the furnace?");
         }
     }
 

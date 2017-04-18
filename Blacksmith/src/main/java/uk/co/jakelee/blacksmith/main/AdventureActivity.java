@@ -155,7 +155,11 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
         }
 
         Hero_Category category = Select.from(Hero_Category.class).where(Condition.prop("name").eq(selection)).first();
-        List<Hero_Adventure> adventures = Select.from(Hero_Adventure.class).where(Condition.prop("subcategory").eq(category.getCategoryId())).list();
+        List<Hero_Adventure> adventures = new ArrayList<>();
+
+        if (category != null) {
+            adventures = Select.from(Hero_Adventure.class).where(Condition.prop("subcategory").eq(category.getCategoryId())).list();
+        }
 
         TableRow titleRow = new TableRow(this);
         TextView adventureTitle = dh.createTextView(getString(R.string.adventure), 20);
