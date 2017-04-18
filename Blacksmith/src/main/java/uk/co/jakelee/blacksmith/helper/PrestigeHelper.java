@@ -103,7 +103,7 @@ public class PrestigeHelper {
     }
 
     private static void resetAssistants() {
-        Assistant.executeQuery("UPDATE assistant SET xp = 0, obtained = 0");
+        Assistant.executeQuery("UPDATE assistant SET current_xp = 0, obtained = 0");
     }
 
     public static void resetCraftingInterface() {

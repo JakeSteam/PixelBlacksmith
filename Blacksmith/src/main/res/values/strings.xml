@@ -1658,7 +1658,7 @@
     <string name="upgradeCompletedDescription">%1$s
 \n%2$d / %3$d %4$s</string>
 
-    <string name="prestigeQuestion">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50%% coin &amp; -25%% XP gains.
+    <string name="prestigeQuestion" formatted="false">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50% coin &amp; -25% XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
     <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
