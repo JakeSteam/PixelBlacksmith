@@ -22,7 +22,7 @@
     <string name="bonusWatch">Werbung zeigen</string>
     <string name="booksText">Bücher</string>
     <string name="boughtContribute">Vielen Dank für den Beitrag! Du bist der Beste!</string>
-    <string name="boughtPremium">Sie haben Premium gekauft! Vielen Dank, Ihre Unterstützung hilft uns wirklich, um unser Spiel zu entwickeln! <3</string>
+    <string name="boughtPremium">Sie haben Premium gekauft! Vielen Dank, Ihre Unterstützung hilft uns wirklich, um unser Spiel zu entwickeln! &lt;3</string>
     <string name="bribeAdvert">Werbung zeigen</string>
     <string name="bribeAdvertComplete">Ein Besucher kommt herein,sieht aus als hätte die Anzeige funktioniert.</string>
     <string name="bribeCancel">Abbrechen</string>
