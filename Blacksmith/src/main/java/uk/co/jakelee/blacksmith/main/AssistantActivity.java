@@ -30,6 +30,8 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Item;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
+import static com.orm.query.Select.from;
+
 public class AssistantActivity extends Activity {
     private DisplayHelper dh;
     private ViewPager mViewPager;
@@ -69,9 +71,12 @@ public class AssistantActivity extends Activity {
 
     public void buttonClick(View v) {
         Assistant assistant = Assistant.get(selectedAssistant);
-        Player_Info activeAssistant = Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
+        Player_Info activeAssistant = from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
+        Player_Info lastClaim = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastAssistantClaim")).first();
         if (assistant.getObtained() > 0) {
             if (assistant.getAssistantId() != activeAssistant.getIntValue()) {
+                lastClaim.setLongValue(System.currentTimeMillis());
+                lastClaim.save();
                 activeAssistant.setIntValue(selectedAssistant);
                 activeAssistant.save();
                 displayAssistantInfo();
@@ -150,7 +155,7 @@ public class AssistantActivity extends Activity {
                 return getString(R.string.assistantButtonLockedCoins) + " " + assistant.getCoinsRequired();
             }
         } else {
-            if (Select.from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue() == selectedAssistant) {
+            if (from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first().getIntValue() == selectedAssistant) {
                 return getString(R.string.assistantButtonSelected);
             } else {
                 return getString(R.string.assistantButtonSelect);

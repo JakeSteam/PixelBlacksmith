@@ -739,21 +739,6 @@
                         android:padding="10dp"
                         android:src="@drawable/playquests" />
                 </LinearLayout>
-
-                <!-- Settings Code -->
-                <TableRow>
-
-                    <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                        android:id="@+id/settingsCodeHeader"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_span="3"
-                        android:paddingTop="5dp"
-                        android:text="@string/settingsCodeUnknown"
-                        android:textColor="@color/black"
-                        android:textSize="28sp" />
-                </TableRow>
             </TableLayout>
 
         </ScrollView>
