@@ -24,7 +24,7 @@
     <string name="bonusWatch">Kijk Ad</string>
     <string name="booksText">Boeken</string>
     <string name="boughtContribute">Dank voor uw bijdrage! Jij bent de beste!</string>
-    <string name="boughtPremium">Je hebt premium gekocht! Dank je wel, uw steun helpt echt voor toekomstige ontwikkeling! <3</string>
+    <string name="boughtPremium">Je hebt premium gekocht! Dank je wel, uw steun helpt echt voor toekomstige ontwikkeling! &lt;3</string>
     <string name="bribeAdvert">Kijk advertentie</string>
     <string name="bribeAdvertComplete">Een bezoeker wandelt binnen, het ziet er naar uit dat de advertentie werkte!</string>
     <string name="bribeCancel">Annuleer</string>
