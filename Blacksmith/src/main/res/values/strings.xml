@@ -1966,8 +1966,8 @@
     <string name="creditsGraphics" translatable="false">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
 \nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, <a href="https://opengameart.org/users/sufan02">Sufan02</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
-    <string name="creditsTranslations" translatable="false">Translations</string>
-    <string name="creditsTranslationsDetails" translatable="false">French: Nat C</string>
+    <string name="creditsTranslations" translatable="false">Translation Fixes</string>
+    <string name="creditsTranslationsDetails" translatable="false">German: Patrick W / - - / Jason S\nSpanish: Ezequiel T / Emiliano R\nFrench: Nat_Crelk\nDutch: Lichtje\nRussian: Dezment / Vladimir S</string>
     <string name="creditsLibraries" translatable="false">Libraries</string>
     <string name="creditsLibrariesDetails" translatable="false"><a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt Android</a> - Encryption, used for support codes.
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.

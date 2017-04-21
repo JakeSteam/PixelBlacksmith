@@ -34,7 +34,7 @@
     <string name="bulkStackSettingText">Bulk Craft</string>
     <string name="buy">Kaufen</string>
     <string name="buyCoinsButton">%1$s Münzen</string>
-    <string name="buyCoinsDesc">Laufen auf Münzen? Nun, Sie könnten einen Gewinn machen Handwerk Artikel, aber vielleicht ist das nicht dein Stil. Vielleicht bist du viel zu beschäftigt für all das und willst in Münzen herumrollen!\n\nHeute ist dein Glückstag! Zwei Münzenpakete sind vorhanden; Die erste ist 500 x dein Niveau, die zweite ist 3.000 x dein Niveau.\n\nWillst du mehr Wert für Geld bekommen? Kaufen Sie die größere Packung oder Level up!</string>
+    <string name="buyCoinsDesc">Zu wenig Münzen? Nun, Sie könnten Gewinn machen und sachen verkaufen, aber vielleicht ist das nicht dein Stil. Vielleicht sind sie viel zu beschäftigt für all das sie woolen lieber in Münzen herumrollen!\\n\\nHeute ist ihr Glückstag! Zwei Münzenpakete sind vorhanden; Die erste ist 500 x dein Level, die zweite ist 3.000 x dein Level.\\n\\nWollen sie höherwertige Angebote für iht Geld bekommen? Kaufen Sie die größere Angebote oder Leveln sie up!</string>
     <string name="buyCoinsSuccess">Erfolgreich gekauft %1$d Münzen, genießen!</string>
     <string name="buyCoinsText">Kaufe Münzen</string>
     <string name="buyContribute">Beitragen</string>
@@ -1498,7 +1498,7 @@
     <string name="help_credits">Kredite</string>
     <string name="help_food">Lebensmittelauswahl</string>
     <string name="help_furnace">Ofen</string>
-    <string name="help_gem">Gem Tisch</string>
+    <string name="help_gem">Juwelen-Tisch</string>
     <string name="help_help">Hilfe</string>
     <string name="help_helper">Helfer</string>
     <string name="help_hero">Held</string>
@@ -1528,7 +1528,7 @@
     <string name="hotfixDuplicate">Fix unbesiegbar</string>
     <string name="item_desc_231">So schön! So golden! Also Eier!</string>
     <string name="item_name_231">Goldenes Ei</string>
-    <string name="launchHotfixes">Fehler\nBehebt</string>
+    <string name="launchHotfixes">Fehler\\nBeheben</string>
     <string name="setting_24">Assistent Benachrichtigungen</string>
     <string name="unknownError">Ein unbekannter Fehler ist aufgetreten! Wenn es wieder passiert, bitte per E-Mail pixel.blacksmith@jakelee.co.uk mit so viel Info wie möglich!</string>
     <string name="visitor_desc_53">Hier, um Ostern Freude zu verbreiten!</string>
