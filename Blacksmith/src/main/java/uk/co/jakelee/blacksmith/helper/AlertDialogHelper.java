@@ -447,7 +447,7 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNeutralButton(R.string.hotfixDuplicate, new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton(R.string.hotfixPositions, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
             SharedPreferences prefs = activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
             prefs.edit()
