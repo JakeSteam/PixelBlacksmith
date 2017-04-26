@@ -139,56 +139,56 @@ public class EquipmentSelectActivity extends Activity {
         switch (itemType) {
             case ("food"):
                 if (hero.getFoodItem() > 0) {
-                    Inventory.addItem((long) hero.getFoodItem(), hero.getFoodState(), 1);
+                    Inventory.addItem((long) hero.getFoodItem(), hero.getFoodState(), 1, false);
                 }
                 hero.setFoodItem(itemId);
                 hero.setFoodState(itemState);
                 break;
             case ("helmet"):
                 if (hero.getHelmetItem() > 0) {
-                    Inventory.addItem((long) hero.getHelmetItem(), hero.getHelmetState(), 1);
+                    Inventory.addItem((long) hero.getHelmetItem(), hero.getHelmetState(), 1, false);
                 }
                 hero.setHelmetItem(itemId);
                 hero.setHelmetState(itemState);
                 break;
             case ("armour"):
                 if (hero.getArmourItem() > 0) {
-                    Inventory.addItem((long) hero.getArmourItem(), hero.getArmourState(), 1);
+                    Inventory.addItem((long) hero.getArmourItem(), hero.getArmourState(), 1, false);
                 }
                 hero.setArmourItem(itemId);
                 hero.setArmourState(itemState);
                 break;
             case ("weapon"):
                 if (hero.getWeaponItem() > 0) {
-                    Inventory.addItem((long) hero.getWeaponItem(), hero.getWeaponState(), 1);
+                    Inventory.addItem((long) hero.getWeaponItem(), hero.getWeaponState(), 1, false);
                 }
                 hero.setWeaponItem(itemId);
                 hero.setWeaponState(itemState);
                 break;
             case ("shield"):
                 if (hero.getShieldItem() > 0) {
-                    Inventory.addItem((long) hero.getShieldItem(), hero.getShieldState(), 1);
+                    Inventory.addItem((long) hero.getShieldItem(), hero.getShieldState(), 1, false);
                 }
                 hero.setShieldItem(itemId);
                 hero.setShieldState(itemState);
                 break;
             case ("gloves"):
                 if (hero.getGlovesItem() > 0) {
-                    Inventory.addItem((long) hero.getGlovesItem(), hero.getGlovesState(), 1);
+                    Inventory.addItem((long) hero.getGlovesItem(), hero.getGlovesState(), 1, false);
                 }
                 hero.setGlovesItem(itemId);
                 hero.setGlovesState(itemState);
                 break;
             case ("boots"):
                 if (hero.getBootsItem() > 0) {
-                    Inventory.addItem((long) hero.getBootsItem(), hero.getBootsState(), 1);
+                    Inventory.addItem((long) hero.getBootsItem(), hero.getBootsState(), 1, false);
                 }
                 hero.setBootsItem(itemId);
                 hero.setBootsState(itemState);
                 break;
             case ("ring"):
                 if (hero.getRingItem() > 0) {
-                    Inventory.addItem((long) hero.getRingItem(), hero.getRingState(), 1);
+                    Inventory.addItem((long) hero.getRingItem(), hero.getRingState(), 1, false);
                 }
                 hero.setRingItem(itemId);
                 hero.setRingState(itemState);

@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
@@ -50,6 +51,7 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
+import static android.content.Context.MODE_PRIVATE;
 import static uk.co.jakelee.blacksmith.R.id.trader;
 
 public class AlertDialogHelper {
@@ -442,6 +444,34 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(R.string.hotfixDuplicate, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Inventory.clearDuplicates();
+            }
+        });
+
+        alertDialog.setNeutralButton(R.string.hotfixPositions, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            SharedPreferences prefs = activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
+            prefs.edit()
+                    .remove("furnacePosition")
+                    .remove("furnaceTab")
+                    .remove("adventureCategory")
+                    .remove("adventureSubcategory")
+                    .remove("adventureSubcategory")
+                    .remove("anvilTier")
+                    .remove("anvilTab")
+                    .remove("anvilPosition")
+                    .remove("enchantingTier")
+                    .remove("enchantingTab")
+                    .remove("enchantingPosition")
+                    .remove("inventoryFilter")
+                    .remove("sellQuantity")
+                    .remove("nextTip")
+                    .remove("tableTier")
+                    .remove("tableTab")
+                    .remove("tablePosition")
+                    .remove("tradeMax")
+                    .remove("upgradeTab")
+                    .remove("workerTab")
+                .apply();
             }
         });
 
