@@ -1758,8 +1758,9 @@
     <string name="orientationPortrait">Portrait</string>
     <string name="orientationLandscape">Landsc.</string>
     <string name="launchHotfixes">Bug\nFixes</string>
-    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!</string>
+    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!\n\n\"Reset Positions\" will reset the saved positions for all interfaces, useful if your last viewed item is now not available.</string>
     <string name="hotfixDuplicate">Fix Unsellable</string>
+    <string name="hotfixPositions">Reset Positions</string>
 
     <string name="importSaveText">Import\nSave</string>
     <string name="exportSaveText">Export\nSave</string>
