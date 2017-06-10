@@ -475,9 +475,9 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(activity.getString(R.string.lockCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(activity.getString(R.string.hotfix_ghost_traders), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                Trader.executeQuery("DELETE FROM trader WHERE shopkeeper = 0");
             }
         });
 

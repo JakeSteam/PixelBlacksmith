@@ -1758,7 +1758,7 @@
     <string name="orientationPortrait">Portrait</string>
     <string name="orientationLandscape">Landsc.</string>
     <string name="launchHotfixes">Bug\nFixes</string>
-    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!\n\n\"Reset Positions\" will reset the saved positions for all interfaces, useful if your last viewed item is now not available.</string>
+    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!\n\n\"Reset Positions\" will reset the saved positions for all interfaces, useful if your last viewed item is now not available.\n\n"Ghost Traders" will remove a bug where trader_name_x will appear instead of a trader.</string>
     <string name="hotfixDuplicate">Fix Unsellable</string>
     <string name="hotfixPositions" translatable="false">Reset Positions</string>
 
@@ -1989,4 +1989,5 @@
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
+    <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
 </resources>
