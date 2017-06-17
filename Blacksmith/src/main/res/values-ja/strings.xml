@@ -1567,5 +1567,11 @@
     <string name="hotfix_ghost_traders">ゴーストトレーダーを修正</string>
     <string name="play_now">今すぐプレー！</string>
     <string name="updateMessage">バージョン%sに更新されました！\\n\\nスピンオフゲーム「ブラックスミススロット」がライブになりました！ それは無料で、同じアイテムを特色としていますが、新しいスタイルのゲームプレイもあります。</string>
+    <string name="blacksmith_slots_message">Blacksmith Slotsは、Pixel Blacksmithと同じ宇宙のスロット/クラフトゲームセットです！ それは同じ文字の多くを特色にし、周囲の世界を探検する。\\n\\n今日はそれを試してみてください、あなたはそれが好きになると思います！</string>
+    <string name="blacksmith_slots_play">無料でプレイ</string>
+    <string name="visitor_desc_54">兄が好き！</string>
+    <string name="visitor_desc_55">私は兄が嫌い！</string>
+    <string name="visitor_name_54">Blinky</string>
+    <string name="visitor_name_55">スパキー</string>
 
 </resources>

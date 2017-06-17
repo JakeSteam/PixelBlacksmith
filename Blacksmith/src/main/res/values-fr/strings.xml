@@ -1568,5 +1568,11 @@
     <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
     <string name="play_now">Joue maintenant!</string>
     <string name="updateMessage">Mise à jour vers la version %s!\\n\\nLe jeu de spin-off Blacksmith Slots est maintenant en direct! C\'est gratuit, et présente les mêmes éléments, mais un nouveau style de jeu, passez-en!</string>
+    <string name="blacksmith_slots_message">Blacksmith Slots est un jeu de machines à sous / créations dans le même univers que Pixel Blacksmith! Il présente plusieurs des mêmes caractères et explore le monde environnant.\\n\\nEssayez-le aujourd\'hui, je pense que vous l\'aimerez!</string>
+    <string name="blacksmith_slots_play">Jouer gratuitement</string>
+    <string name="visitor_desc_54">J\'aime mon frère!</string>
+    <string name="visitor_desc_55">Je déteste mon frère!</string>
+    <string name="visitor_name_54">Blinky</string>
+    <string name="visitor_name_55">Sparky</string>
 
 </resources>

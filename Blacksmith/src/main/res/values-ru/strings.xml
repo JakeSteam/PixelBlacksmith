@@ -1568,4 +1568,10 @@
     <string name="hotfix_ghost_traders">Фиксирующие трейдеры</string>
     <string name="play_now">Играть сейчас!</string>
     <string name="updateMessage">Обновлено до версии %s!\\n\\nВыпущенная игра Blacksmith Slots теперь живая! Это бесплатно, и имеет те же элементы, но новый стиль геймплея, дайте ему уйти!</string>
+    <string name="blacksmith_slots_message">Кузнечные слоты - это игровые автоматы / игровые автоматы, установленные в той же самой вселенной, что и Pixel Blacksmith! Он включает в себя многие из тех же персонажей и исследует окружающий мир.\\n\\nПопробуй сегодня, я думаю, тебе понравится!</string>
+    <string name="blacksmith_slots_play">Играть бесплатно</string>
+    <string name="visitor_desc_54">Я люблю своего брата!</string>
+    <string name="visitor_desc_55">Я ненавижу своего брата!</string>
+    <string name="visitor_name_54">Блинки</string>
+    <string name="visitor_name_55">Спарки</string>
 </resources>

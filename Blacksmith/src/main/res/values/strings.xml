@@ -1995,4 +1995,6 @@
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
     <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
     <string name="play_now">Play Now!</string>
+    <string name="blacksmith_slots_message">Blacksmith Slots is a slots / crafting game set in the same universe as Pixel Blacksmith! It features many of the same characters, and explores the surrounding world.\n\nGive it a try today, I think you\'ll like it!</string>
+    <string name="blacksmith_slots_play">Play for free</string>
 </resources>

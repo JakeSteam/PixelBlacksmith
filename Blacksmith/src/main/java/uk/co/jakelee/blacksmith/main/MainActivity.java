@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
+            findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
@@ -464,7 +465,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openEventInfo(View v) {
-        AlertDialogHelper.displayEventInfo(this);
+        //AlertDialogHelper.displayEventInfo(this);
+        AlertDialogHelper.openBlacksmithSlot(this);
     }
 
     private void updateVisitors() {

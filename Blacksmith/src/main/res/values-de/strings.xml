@@ -1567,4 +1567,10 @@
     <string name="hotfix_ghost_traders">Fix Händler</string>
     <string name="play_now">Jetzt spielen!</string>
     <string name="updateMessage">Aktualisiert auf Version %s!\\n\\nDas Spin-off Spiel Blacksmith Slots ist jetzt live! Es ist kostenlos, und verfügt über die gleichen Elemente, aber eine neue Art von Gameplay, geben Sie es einen go!</string>
+    <string name="blacksmith_slots_message">Blacksmith Slots ist ein Slots / Crafting-Spiel in dem gleichen Universum wie Pixel Blacksmith gesetzt! Es kennzeichnet viele der gleichen Charaktere und erforscht die umgebende Welt.\\n\\nProbieren Sie es heute aus, ich glaube, Sie werden es mögen!</string>
+    <string name="blacksmith_slots_play">Kostenlos spielen</string>
+    <string name="visitor_desc_54">Ich liebe meinen Bruder!</string>
+    <string name="visitor_desc_55">Ich hasse meinen Bruder!</string>
+    <string name="visitor_name_54">Blinky</string>
+    <string name="visitor_name_55">Sparky</string>
 </resources>

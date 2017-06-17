@@ -524,13 +524,14 @@
         </RelativeLayout>
 
 
-        <!--<RelativeLayout
-            android:id="@+id/eventContainer"
+        <RelativeLayout
+            android:id="@+id/blacksmithSlotsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/questContainer"
-            android:onClick="openEventInfo">
+            android:onClick="openEventInfo"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -543,8 +544,8 @@
                 android:layout_height="22dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/item231" />
-        </RelativeLayout>-->
+                android:src="@drawable/blacksmithslots" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <uk.co.jakelee.blacksmith.controls.TextViewPixel

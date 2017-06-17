@@ -1567,4 +1567,10 @@
     <string name="hotfix_ghost_traders">修复鬼交易者</string>
     <string name="play_now">现在播放！</string>
     <string name="updateMessage">更新到版本%s！\\n\\n剥离游戏Blacksmith Slots现在在线！ 它是免费的，具有相同的项目，但一种新的游戏风格，给它一个去！</string>
+    <string name="blacksmith_slots_message">铁匠老虎机是与Pixel Blacksmith相同的宇宙中的插槽/制作游戏！ 它具有许多相同的字符，并探索周围的世界。\\n\\n今天试一试，我想你会喜欢的！</string>
+    <string name="blacksmith_slots_play">免费玩</string>
+    <string name="visitor_desc_54">我爱我的兄弟！</string>
+    <string name="visitor_desc_55">我讨厌我的兄弟！</string>
+    <string name="visitor_name_54">的Blinky</string>
+    <string name="visitor_name_55">活泼的</string>
 </resources>

@@ -1567,4 +1567,10 @@
     <string name="hotfix_ghost_traders">고스트 트레이더 수정</string>
     <string name="play_now">지금 플레이!</string>
     <string name="updateMessage">버전  %s (으)로 업데이트되었습니다!\\n\\n스핀 오프 게임 인 대장장이 슬롯이 이제 생방송입니다! 무료이며 동일 품목이지만 새로운 스타일의 게임 플레이를 제공합니다.</string>
+    <string name="blacksmith_slots_message">대장장이 슬롯은 Pixel Blacksmith와 같은 우주에서 세팅 된 슬롯 / 크래프트 게임입니다! 그것은 같은 캐릭터의 많은 기능과 주변 세계를 탐험 해보세요.\\n\\n오늘 시도 해봐, 네가 좋아할 것 같아!</string>
+    <string name="blacksmith_slots_play">무료로 게임하기</string>
+    <string name="visitor_desc_54">난 형을 사랑해!</string>
+    <string name="visitor_desc_55">나는 오빠가 싫어!</string>
+    <string name="visitor_name_54">블링키</string>
+    <string name="visitor_name_55">스파키</string>
 </resources>
