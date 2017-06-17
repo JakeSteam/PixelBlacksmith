@@ -969,6 +969,16 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void patch214to220() {
         Trader.executeQuery("DELETE FROM trader WHERE shopkeeper = 0");
+
+        List<Visitor_Stats> visitorStats = new ArrayList<>();
+        visitorStats.add(new Visitor_Stats(54L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStats.add(new Visitor_Stats(55L, 0, 52L, 1L, 0, 0L, 0L));
+        Visitor_Stats.saveInTx(visitorStats);
+
+        List<Visitor_Type> visitorTypes = new ArrayList<>();
+        visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.05, 1.35, 1.12, false, false, false, 7));
+        visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.05, 1.35, 1.12, false, false, false, 7));
+        Visitor_Type.saveInTx(visitorTypes);
     }
 
     private void createAssistants() {
