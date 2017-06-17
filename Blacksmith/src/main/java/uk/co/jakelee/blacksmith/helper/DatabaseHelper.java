@@ -879,6 +879,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         new Player_Info("CoinsPurchased", 0).save();
     }
 
+
     private void patch201to203() {
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(220, 130, 1, 8));
@@ -976,8 +977,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Visitor_Stats.saveInTx(visitorStats);
 
         List<Visitor_Type> visitorTypes = new ArrayList<>();
-        visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.15, 1.07, 1.16, false, false, false, 9999));
-        visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.15, 1.07, 1.16, false, false, false, 9999));
+        visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.15, 1.07, 1.16, false, false, false, 6));
+        visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.15, 1.07, 1.16, false, false, false, 6));
         Visitor_Type.saveInTx(visitorTypes);
     }
 
