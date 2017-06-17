@@ -976,8 +976,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Visitor_Stats.saveInTx(visitorStats);
 
         List<Visitor_Type> visitorTypes = new ArrayList<>();
-        visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.05, 1.35, 1.12, false, false, false, 7));
-        visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.05, 1.35, 1.12, false, false, false, 7));
+        visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.15, 1.07, 1.16, false, false, false, 9999));
+        visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.15, 1.07, 1.16, false, false, false, 9999));
         Visitor_Type.saveInTx(visitorTypes);
     }
 
