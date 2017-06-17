@@ -69,8 +69,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V2_0_3 = 18;
     private final static int DB_V2_1_0 = 19;
     private final static int DB_V2_1_3 = 20;
+    private final static int DB_V2_2_0 = 21;
 
-    public final static int DB_LATEST = DB_V2_1_3;
+    public final static int DB_LATEST = DB_V2_2_0;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -257,6 +258,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.1.3 Patch", 95);
             patch212to213();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_1_3).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) < DatabaseHelper.DB_V2_2_0) {
+            setProgress("2.2.0 Patch", 96);
+            patch214to220();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_2_0).apply();
         }
 
         setProgress("Complete", 100);
@@ -958,6 +965,10 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private void patch212to213() {
         Visitor_Type.executeQuery("UPDATE visitortype SET weighting = 2 WHERE visitor_id = 53");
         Assistant.executeQuery("UPDATE assistant SET reward_quantity = (reward_quantity / 3), reward_frequency = (reward_frequency * 2)");
+    }
+
+    private void patch214to220() {
+        Trader.executeQuery("DELETE FROM trader WHERE shopkeeper = 0");
     }
 
     private void createAssistants() {

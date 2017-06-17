@@ -1579,7 +1579,7 @@
     <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
-    <string name="updateMessage">Updated to version %s!\n\nMain changes:\n- Easter Event! Collect eggs to craft a valuable Golden Egg!\n- Assistants! Unlock assistants to get XP, coin, and item bonuses!\n- Languages! 8 new languages added, with improvements coming!\n- New food, rings, hero sets, super upgrades, and bugfixes!</string>
+    <string name="updateMessage">Updated to version %s!\n\nThe spin-off game Blacksmith Slots is now live! It\'s free, and features the same items but a new style of gameplay, give it a go!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
@@ -1990,4 +1990,5 @@
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
     <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
+    <string name="play_now">Play Now!</string>
 </resources>

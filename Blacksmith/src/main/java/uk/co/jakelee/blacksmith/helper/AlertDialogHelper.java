@@ -803,9 +803,9 @@ public class AlertDialogHelper {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
 
-        alertDialog.setPositiveButton(context.getString(R.string.updateReddit), new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmithslots"));
                 context.startActivity(browserIntent);
             }
         });
