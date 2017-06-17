@@ -740,7 +740,6 @@
     <string name="saveImportFailure">Beim Laden wurde ein Fehler aufgetreten. Fehler: %s.</string>
     <string name="saveImportLoadSuccess">Erfolgreich geladen und importiert lokales Spiel sparen!</string>
     <string name="saveImportSuccess">Erfolgreich geladenes lokales Spiel sparen!</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="selectAdventure">Bitte wählen Sie eine Kategorie und Unterkategorie von Abenteuer mit den Dropdowns oben.</string>
     <string name="sell100Text">Verkauf 100</string>
     <string name="sell10Text">Verkauf 10</string>
@@ -1151,7 +1150,6 @@
     <string name="type_9">Kettenhemd</string>
     <string name="tutorialMainSettings">Einstellungen</string>
     <string name="undiscoveredPreference">Du hast diese Vorliebe noch nicht entdeckt! Versuchen Sie, verschiedene Gegenstände zu verkaufen, um sie zu entdecken.</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">Freischalten</string>
     <string name="unlockConfirm">Sind Sie sicher, dass Sie %1$s freischalten möchten? Entriegelung ist kostenlos, aber es kostet %2$d Münzen wieder zu sperren.</string>
     <string name="unlockSuccess">Erfolgreich freigegebener Händler!</string>
@@ -1162,9 +1160,7 @@
     <string name="updateReddit">Änderungen anzeigen</string>
     <string name="updateSlotsSettingText">Slots aktualisieren</string>
     <string name="upgradeCancel">Stornieren</string>
-    <string name="upgradeCompletedDescription">%1$s\n%2$d / %3$d %4$s</string>
     <string name="upgradeConfirm">Aktualisierung</string>
-    <string name="upgradeDescription">%1$s\n%2$d / %3$d %4$s\n%5$s %6$d %7$s: %8$,d Münzen</string>
     <string name="upgradeQuestion">Möchten Sie %1$s auf %2$d / %3$d für %4$,d Münzen aktualisieren?</string>
     <string name="upgradeSuccess">Upgrade %s!</string>
     <string name="upgradeTabText">Aktualisierung</string>
@@ -1307,8 +1303,6 @@
     <string name="visitorsFullRestockTime">Niemals!</string>
     <string name="windowClick">Was war das!?</string>
     <string name="workerCoins">%,d Münzen</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">Lev %d</string>
     <string name="workerLocked">Gesperrt</string>
     <string name="workerNotificationSettingText">Arbeitnehmer</string>
     <string name="workerResources">Ressourcen: %s.</string>
@@ -1571,4 +1565,6 @@
     <string name="setBonuses">Set Boni</string>
     <string name="shieldText">Schild</string>
     <string name="weaponText">Waffe</string>
+    <string name="hotfix_ghost_traders">Fix Händler</string>
+    <string name="play_now">Jetzt spielen!</string>
 </resources>

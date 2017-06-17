@@ -776,7 +776,6 @@
     <string name="saveImportFailure">Se ha producido un error al cargar guardar. Error: %s.</string>
     <string name="saveImportLoadSuccess">¡El juego localmente cargado e importado con éxito ahorró!</string>
     <string name="saveImportSuccess">¡Ahorro de juego local con éxito cargado!</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="selectAdventure">Por favor seleccione una categoría y subcategoría de aventura usando los desplegables arriba.</string>
     <string name="sell100Text">Venta 100</string>
     <string name="sell10Text">Venta 10</string>
@@ -1188,7 +1187,6 @@
     <string name="type_8">Escudo completo</string>
     <string name="type_9">Correo de cadena</string>
     <string name="undiscoveredPreference">¡Todavía no has descubierto esta preferencia! Intente vender artículos diferentes para descubrirlos.</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">desbloquear</string>
     <string name="unlockConfirm">¿Seguro que quieres desbloquear %1$s? El desbloqueo es gratuito, pero costará %2$d monedas para bloquear de nuevo.</string>
     <string name="unlockSuccess">Exitosamente desbloqueado comerciante!</string>
@@ -1199,9 +1197,7 @@
     <string name="updateReddit">Ver cambios</string>
     <string name="updateSlotsSettingText">Actualizar tragamonedas</string>
     <string name="upgradeCancel">Cancelar</string>
-    <string name="upgradeCompletedDescription">%1$s\n\n%2$d / %3$d %4$s</string>
     <string name="upgradeConfirm">Mejorar</string>
-    <string name="upgradeDescription">%1$s\n\n%2$d / %3$d %4$s\n\n%5$s %6$d %7$s: %8$,d monedas</string>
     <string name="upgradeQuestion">¿Desea actualizar %1$s a %2$d / %3$d para %4$,d monedas?</string>
     <string name="upgradeSuccess">Actualizado %s!</string>
     <string name="upgradeTabText">Mejorar</string>
@@ -1345,8 +1341,6 @@
     <string name="visitorsFullRestockTime">¡Nunca!</string>
     <string name="windowClick">¿¡Qué fue eso!?</string>
     <string name="workerCoins">%,d monedas</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">Lev %d</string>
     <string name="workerLocked">Bloqueado</string>
     <string name="workerNotificationSettingText">Obrero</string>
     <string name="workerResources">Recursos: %s.</string>
@@ -1572,5 +1566,7 @@
     <string name="setBonuses">Establecer bonos</string>
     <string name="shieldText">Proteger</string>
     <string name="weaponText">Arma</string>
+    <string name="hotfix_ghost_traders">Corregir operadores</string>
+    <string name="play_now">¡Reproducir ahora!</string>
 
 </resources>

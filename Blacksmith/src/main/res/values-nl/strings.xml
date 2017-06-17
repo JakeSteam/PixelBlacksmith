@@ -776,7 +776,6 @@
     <string name="saveImportFailure">Een fout opgetreden tijdens het laden opslaan. Error: %s.</string>
     <string name="saveImportLoadSuccess">Succesvol geladen en geïmporteerd plaatselijke spel op te slaan!</string>
     <string name="saveImportSuccess">Succesvol geladen plaatselijke spel op te slaan!</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="selectAdventure">Selecteer een categorie en subcategorie van avontuur met behulp van de dropdown-menu\'s hierboven.</string>
     <string name="sell100Text">verkopen 100</string>
     <string name="sell10Text">Verkoop 10</string>
@@ -1188,7 +1187,6 @@
     <string name="type_8">volledige Shield</string>
     <string name="type_9">Kettingmail</string>
     <string name="undiscoveredPreference">Je bent nog niet ontdekt deze voorkeur! Probeer de verkoop van verschillende items om ze te ontdekken.</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">ontsluiten</string>
     <string name="unlockConfirm">Weet u zeker dat u wilt ontgrendelen %1$s? Unlocking is gratis, maar het zal kost %2$d munten om weer te vergrendelen.</string>
     <string name="unlockSuccess">Met succes ontgrendeld trader!</string>
@@ -1199,9 +1197,7 @@
     <string name="updateReddit">Bekijk Changes</string>
     <string name="updateSlotsSettingText">update Slots</string>
     <string name="upgradeCancel">Annuleer</string>
-    <string name="upgradeCompletedDescription">%1$s\n\n%2$d / %3$d %4$s</string>
     <string name="upgradeConfirm">Upgrade</string>
-    <string name="upgradeDescription">%1$s\n\n%2$d / %3$d %4$s\n\n%5$s %6$d %7$s: %8$,d muntstukken</string>
     <string name="upgradeQuestion">Wilt u upgraden %1$s naar %2$d / %3$d voor %4$,d munten?</string>
     <string name="upgradeSuccess">Upgraded %s!</string>
     <string name="upgradeTabText">Upgrade</string>
@@ -1345,8 +1341,6 @@
     <string name="visitorsFullRestockTime">Nooit!</string>
     <string name="windowClick">Wat was dat!?</string>
     <string name="workerCoins">%d muntstukken</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">Lev %d</string>
     <string name="workerLocked">opgesloten</string>
     <string name="workerNotificationSettingText">arbeider</string>
     <string name="workerResources">Bronnen: %s.</string>
@@ -1571,4 +1565,6 @@
     <string name="setBonuses">set Bonussen</string>
     <string name="shieldText">Schild</string>
     <string name="weaponText">Wapen</string>
+    <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
+    <string name="play_now">Nu afspelen!</string>
 </resources>

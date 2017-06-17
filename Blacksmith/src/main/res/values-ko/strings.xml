@@ -776,7 +776,6 @@
     <string name="saveImportFailure">저장을로드하는 중에 오류가 발생했습니다. 오류 : %s.</string>
     <string name="saveImportLoadSuccess">로컬 게임을 성공적으로로드하고 가져 왔습니다.</string>
     <string name="saveImportSuccess">로컬 게임을 성공적으로로드했습니다!</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="selectAdventure">위의 드롭 다운을 사용하여 모험의 카테고리 및 하위 카테고리를 선택하십시오.</string>
     <string name="sell100Text">100 개 팔다</string>
     <string name="sell10Text">10 매도</string>
@@ -1188,7 +1187,6 @@
     <string name="type_8">완전 방패</string>
     <string name="type_9">체인 메일</string>
     <string name="undiscoveredPreference">아직이 환경 설정을 발견하지 못했습니다! 그들을 발견하기 위해 다른 항목을 판매 해보십시오.</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">터놓다</string>
     <string name="unlockConfirm">%1$s을 (를) 잠금 해제 하시겠습니까? 잠금 해제는 무료이지만 다시 잠 그려면  %2$d 동전이 소비됩니다.</string>
     <string name="unlockSuccess">성공적으로 상인을 열었습니다!</string>
@@ -1199,9 +1197,7 @@
     <string name="updateReddit">변경 사항보기</string>
     <string name="updateSlotsSettingText">슬롯 업데이트</string>
     <string name="upgradeCancel">취소</string>
-    <string name="upgradeCompletedDescription">%1$s\n\n%2$d /  %3$d  %4$s</string>
     <string name="upgradeConfirm">업그레이드</string>
-    <string name="upgradeDescription">%1$s\n\n%2$d /  %3$d  %4$s\n\n%5$s  %6$d  %7$s :  %8$,d 동전</string>
     <string name="upgradeQuestion">%4$,d 개의 동전에 대해  %1$s을 (를)  %2$d /  %3$d (으)로 업그레이드 하시겠습니까?</string>
     <string name="upgradeSuccess">업그레이드 된  %s!</string>
     <string name="upgradeTabText">업그레이드</string>
@@ -1345,8 +1341,6 @@
     <string name="visitorsFullRestockTime">못!</string>
     <string name="windowClick">그게 뭐야!?</string>
     <string name="workerCoins">%,d 동전</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">레프 %d</string>
     <string name="workerLocked">잠김</string>
     <string name="workerNotificationSettingText">노동자</string>
     <string name="workerResources">자원 : %s.</string>
@@ -1571,4 +1565,6 @@
     <string name="setBonuses">보너스 설정</string>
     <string name="shieldText">방패</string>
     <string name="weaponText">무기</string>
+    <string name="hotfix_ghost_traders">고스트 트레이더 수정</string>
+    <string name="play_now">지금 플레이!</string>
 </resources>

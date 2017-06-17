@@ -777,7 +777,6 @@
     <string name="saveImportFailure">При загрузке сохранения произошла ошибка. Ошибка: %s.</string>
     <string name="saveImportLoadSuccess">Успешно загружены и импортированы локальные игры!</string>
     <string name="saveImportSuccess">Успешно загружено локальное сохранение игры!</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="selectAdventure">Пожалуйста, выберите категорию и подкатегорию приключений, используя выпадающие меню.</string>
     <string name="sell100Text">Продать 100</string>
     <string name="sell10Text">Продать 10</string>
@@ -1189,7 +1188,6 @@
     <string name="type_8">Полный щит</string>
     <string name="type_9">Кольчуга</string>
     <string name="undiscoveredPreference">Вы еще не открыли это предпочтение! Попробуйте продавать разные предметы, чтобы обнаружить их.</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">Разблокировать</string>
     <string name="unlockConfirm">Вы действительно хотите разблокировать %1$s? Разблокировка бесплатна, но она снова будет стоить %2$d монет.</string>
     <string name="unlockSuccess">Успешно разблокированный трейдер!</string>
@@ -1200,9 +1198,7 @@
     <string name="updateReddit">Просмотреть изменения</string>
     <string name="updateSlotsSettingText">Обновить слоты</string>
     <string name="upgradeCancel">Отмена</string>
-    <string name="upgradeCompletedDescription">%1$s\n\n%2$d / %3$d %4$s</string>
     <string name="upgradeConfirm">Обновить</string>
-    <string name="upgradeDescription">%1$s\n\n%2$d / %3$d %4$s\n\n%5$s %6$d %7$s: %8$,d монеты</string>
     <string name="upgradeQuestion">Вы хотите обновить %1$s до %2$d / %3$d для %4$,d монеты?</string>
     <string name="upgradeSuccess">Обновлено %s!</string>
     <string name="upgradeTabText">Обновить</string>
@@ -1346,8 +1342,6 @@
     <string name="visitorsFullRestockTime">Никогда!</string>
     <string name="windowClick">Что это было!?</string>
     <string name="workerCoins">%,d монеты</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">Lev %d</string>
     <string name="workerLocked">Заблокировано</string>
     <string name="workerNotificationSettingText">Работник</string>
     <string name="workerResources">Ресурсы: %s.</string>
@@ -1572,4 +1566,6 @@
     <string name="setBonuses">Установить бонусы</string>
     <string name="shieldText">Щит</string>
     <string name="weaponText">Оружие</string>
+    <string name="hotfix_ghost_traders">Фиксирующие трейдеры</string>
+    <string name="play_now">Играть сейчас!</string>
 </resources>

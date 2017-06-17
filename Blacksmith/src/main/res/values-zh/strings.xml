@@ -776,7 +776,6 @@
     <string name="saveImportFailure">加载保存时发生错误。错误：%s。</string>
     <string name="saveImportLoadSuccess">成功加载和导入本地游戏保存！</string>
     <string name="saveImportSuccess">成功加载本地游戏保存！</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
     <string name="selectAdventure">请使用上面的下拉列表选择冒险的类别和子类别。</string>
     <string name="sell100Text">卖100</string>
     <string name="sell10Text">卖10</string>
@@ -1188,7 +1187,6 @@
     <string name="type_8">全盾</string>
     <string name="type_9">链邮</string>
     <string name="undiscoveredPreference">你还没有发现这个偏好！尝试销售不同的物品来发现它们。</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">开锁</string>
     <string name="unlockConfirm">您确定要解锁%1$s吗？解锁是免费的，但是它会花费$ 2$d硬币再次锁定。</string>
     <string name="unlockSuccess">成功解锁交易员！</string>
@@ -1199,9 +1197,7 @@
     <string name="updateReddit">查看更改</string>
     <string name="updateSlotsSettingText">更新老虎机</string>
     <string name="upgradeCancel">取消</string>
-    <string name="upgradeCompletedDescription">%1$s\n\n%2$d /%3$d%4$s</string>
     <string name="upgradeConfirm">升级</string>
-    <string name="upgradeDescription">%1$s\n\n%2$d /%3$d%4$s\n\n%5$s%6$d%7$s：%8$,d硬币</string>
     <string name="upgradeQuestion">您要将%1$s升级到%2$d /%3$d，为%4$,d硬币？</string>
     <string name="upgradeSuccess">升级了%s！</string>
     <string name="upgradeTabText">升级</string>
@@ -1345,8 +1341,6 @@
     <string name="visitorsFullRestockTime">决不！</string>
     <string name="windowClick">那是什么！？</string>
     <string name="workerCoins">%,d硬币</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">Lev%d</string>
     <string name="workerLocked">锁定</string>
     <string name="workerNotificationSettingText">工人</string>
     <string name="workerResources">资源：%s。</string>
@@ -1571,4 +1565,6 @@
     <string name="setBonuses">设置奖金</string>
     <string name="shieldText">屏蔽</string>
     <string name="weaponText">武器</string>
+    <string name="hotfix_ghost_traders">修复鬼交易者</string>
+    <string name="play_now">现在播放！</string>
 </resources>

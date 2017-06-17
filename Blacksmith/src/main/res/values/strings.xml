@@ -1608,7 +1608,7 @@
     <string name="buyWorker">Purchase Helper</string>
     <string name="buyHero">Purchase Hero</string>
     <string name="workerCoins">%,d coins</string>
-    <string name="workerLevel">Lev %d</string>
+    <string name="workerLevel" translatable="false">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
     <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
@@ -1621,7 +1621,7 @@
     <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
     <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$d of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
-    <string name="workerFoodBonus">+</string>
+    <string name="workerFoodBonus" translatable="false">+</string>
 
     <string name="heroTotalStrength">Total Strength: %d</string>
     <string name="heroFailText">%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
@@ -1652,10 +1652,10 @@
     <string name="upgradeConfirm">Upgrade</string>
     <string name="upgradeCancel">Cancel</string>
     <string name="upgradeSuccess">Upgraded %s!</string>
-    <string name="upgradeDescription">%1$s
+    <string name="upgradeDescription" translatable="false">%1$s
 \n%2$d / %3$d %4$s
 \n%5$s%6$d %7$s: %8$,d coins</string>
-    <string name="upgradeCompletedDescription">%1$s
+    <string name="upgradeCompletedDescription" translatable="false">%1$s
 \n%2$d / %3$d %4$s</string>
 
     <string name="prestigeQuestion" formatted="false">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50% coin &amp; -25% XP gains.
@@ -1764,7 +1764,7 @@
 
     <string name="importSaveText">Import\nSave</string>
     <string name="exportSaveText">Export\nSave</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
+    <string name="saveNameFormat" translatable="false">PixelBlacksmith%s.save</string>
     <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
     <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
     <string name="saveImportSuccess">Successfully loaded local game save!</string>
@@ -1786,7 +1786,7 @@
     <string name="settingsCodeUnknown">Settings Code: ???</string>
     <string name="settingsCode">Settings Code: %1$d</string>
 
-    <string name="unknownText">\???</string>
+    <string name="unknownText" translatable="false">\???</string>
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
 

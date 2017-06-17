@@ -777,7 +777,6 @@
     <string name="saveImportFailure">Une erreur %s est produite lors du chargement des sauvegardes. Les erreurs.</string>
     <string name="saveImportLoadSuccess">Les sauvegardes locales sauvegardées et importées avec succès!</string>
     <string name="saveImportSuccess">Sauvegardez le jeu local avec succès!</string>
-    <string name="saveNameFormat">PixelBlacksmith %s.save</string>
     <string name="selectAdventure">Sélectionnez une catégorie et une sous-catégorie d\'aventure en utilisant les menus déroulants ci-dessus.</string>
     <string name="sell100Text">Vendre 100</string>
     <string name="sell10Text">Vendre 10</string>
@@ -1189,7 +1188,6 @@
     <string name="type_8">Bouclier complet</string>
     <string name="type_9">Chainmail</string>
     <string name="undiscoveredPreference">Vous n\'avez pas encore découvert cette préférence! Essayez de vendre différents objets pour les découvrir.</string>
-    <string name="unknownText">\???</string>
     <string name="unlock">Ouvrir</string>
     <string name="unlockConfirm">Êtes-vous sûr de vouloir débloquer %1$s? Le déverrouillage est gratuit, mais cela coûtera moins de %2$d pièces pour se verrouiller à nouveau.</string>
     <string name="unlockSuccess">Un commerçant débloqué avec succès!</string>
@@ -1200,9 +1198,7 @@
     <string name="updateReddit">Afficher les changements</string>
     <string name="updateSlotsSettingText">Mise à jour des machines à sous</string>
     <string name="upgradeCancel">Annuler</string>
-    <string name="upgradeCompletedDescription">%1$s\n\n%2$d / %3$d %4$s</string>
     <string name="upgradeConfirm">Surclassement</string>
-    <string name="upgradeDescription">%1$s\n\n%2$d / %3$d %4$s\n\n%5$s %6$d %7$s: %8$,d pièces</string>
     <string name="upgradeQuestion">Souhaitez-vous mettre à niveau %1$s pour %2$d / %3$d pour %4$,d pièces?</string>
     <string name="upgradeSuccess">Mise à niveau %s!</string>
     <string name="upgradeTabText">Surclassement</string>
@@ -1346,8 +1342,6 @@
     <string name="visitorsFullRestockTime">Jamais!</string>
     <string name="windowClick">Ca c\'était quoi!?</string>
     <string name="workerCoins">%,d pièces</string>
-    <string name="workerFoodBonus">+</string>
-    <string name="workerLevel">Lev %d</string>
     <string name="workerLocked">Fermé à clef</string>
     <string name="workerNotificationSettingText">Ouvrier</string>
     <string name="workerResources">Ressources: %s.</string>
@@ -1572,5 +1566,7 @@
     <string name="setBonuses">Bonus de set</string>
     <string name="shieldText">Bouclier</string>
     <string name="weaponText">Arme</string>
+    <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
+    <string name="play_now">Joue maintenant!</string>
 
 </resources>
