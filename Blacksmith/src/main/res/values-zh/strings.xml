@@ -1193,7 +1193,6 @@
     <string name="unnecessaryRestock">没有必要为这个交易者补货！</string>
     <string name="unsellableItem">标记为%1$s为%2$s可卖！</string>
     <string name="updateClose">关</string>
-    <string name="updateMessage">更新到版本%s！\\n\\n主要变化：\\n- 复活节活动！ 收集鸡蛋来制作有价值的金蛋！\\n- 助理！ 解锁助手获得XP，硬币和项目奖金！\\n- 语言 添加了8种新的语言，改进了！\\n- 新的食物，戒指，英雄套装，超级升级和bug修复！</string>
     <string name="updateReddit">查看更改</string>
     <string name="updateSlotsSettingText">更新老虎机</string>
     <string name="upgradeCancel">取消</string>
@@ -1567,4 +1566,5 @@
     <string name="weaponText">武器</string>
     <string name="hotfix_ghost_traders">修复鬼交易者</string>
     <string name="play_now">现在播放！</string>
+    <string name="updateMessage">更新到版本%s！\\n\\n剥离游戏Blacksmith Slots现在在线！ 它是免费的，具有相同的项目，但一种新的游戏风格，给它一个去！</string>
 </resources>

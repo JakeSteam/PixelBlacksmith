@@ -1393,7 +1393,6 @@
     <string name="unnecessaryRestock">Não há necessidade de reabastecer este comerciante!</string>
     <string name="unsellableItem">Marcado %1$s como %2$ssellable!</string>
     <string name="updateClose">Fechar</string>
-    <string name="updateMessage">Atualizado para a versão% s!\\n\\nO jogo spin-off Blacksmith Slots está agora ao vivo! É grátis, e apresenta os mesmos itens, mas um novo estilo de jogabilidade, dê uma chance!</string>
     <string name="updateReddit">Ver alterações</string>
     <string name="updateSlotsSettingText">Atualizar Slots</string>
     <string name="upgradeCancel">Cancelar</string>
@@ -1568,4 +1567,5 @@
     <string name="worseSaveCancel">Cancelar</string>
     <string name="worseSaveLoad">Carga</string>
     <string name="worseSaveMessage">Tem certeza de que deseja carregar esta reserva de nuvem inferior?\\n\\nEconomia local:\\nPrestígios: %1$d, Nível: %2$d, XP: %3$d.\\n\\nEconomia de nuvem:\\nPrestígios: %4$d, Nível: %5$d, XP: %6$d.</string>
+    <string name="updateMessage">Atualizado para a versão %s!\\n\\nO jogo spin-off Blacksmith Slots está agora ao vivo! É grátis, e apresenta os mesmos itens, mas um novo estilo de jogabilidade, dê uma chance!</string>
 </resources>

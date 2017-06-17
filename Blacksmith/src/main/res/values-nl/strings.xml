@@ -1193,7 +1193,6 @@
     <string name="unnecessaryRestock">Er is geen noodzaak om deze handelaar weer te vullen!</string>
     <string name="unsellableItem">Gemarkeerd %1$s in %2$ssellable!</string>
     <string name="updateClose">Dichtbij</string>
-    <string name="updateMessage">Bijgewerkt naar versie %s!\\n\\nBelangrijkste wijzigingen:\\n- Pasen Event! Verzamel eieren naar een waardevolle Gouden Ei knutselen!\\n- Assistenten! Unlock assistenten XP, munt, en punt bonussen te krijgen!\\n- Languages! 8 nieuwe talen toegevoegd, met verbeteringen komen!\\n- Nieuwe voedsel, ringen, held sets, super upgrades en bugfixes!</string>
     <string name="updateReddit">Bekijk Changes</string>
     <string name="updateSlotsSettingText">update Slots</string>
     <string name="upgradeCancel">Annuleer</string>
@@ -1567,4 +1566,5 @@
     <string name="weaponText">Wapen</string>
     <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
     <string name="play_now">Nu afspelen!</string>
+    <string name="updateMessage">Bijgewerkt naar versie %s!\\n\\nDe spin-off game Blacksmith Slots is nu live! Het is gratis, en bevat dezelfde items maar een nieuwe gameplay, geef het een stukje!</string>
 </resources>

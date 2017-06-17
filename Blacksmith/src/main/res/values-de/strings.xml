@@ -1156,7 +1156,6 @@
     <string name="unnecessaryRestock">Es gibt keine Notwendigkeit, diesen Händler wieder aufzufüllen!</string>
     <string name="unsellableItem">Markiert %1$s als %2$ssellable!</string>
     <string name="updateClose">Schließen</string>
-    <string name="updateMessage">Aktualisiert auf Version%s!\\n\\nHauptänderungen:\\n- Oster-Event! Sammle Eier, um ein wertvolles goldenes Ei zu fertigen!\\n- Assistenten! Unlock Assistenten zu bekommen XP, Münze und Artikel Boni!\\n- Sprachen! 8 neue Sprachen hinzugefügt, mit Verbesserungen kommen!\\n- Neues Essen, Ringe, Helden-Sets, Super-Upgrades und Bugfixes!</string>
     <string name="updateReddit">Änderungen anzeigen</string>
     <string name="updateSlotsSettingText">Slots aktualisieren</string>
     <string name="upgradeCancel">Stornieren</string>
@@ -1567,4 +1566,5 @@
     <string name="weaponText">Waffe</string>
     <string name="hotfix_ghost_traders">Fix Händler</string>
     <string name="play_now">Jetzt spielen!</string>
+    <string name="updateMessage">Aktualisiert auf Version %s!\\n\\nDas Spin-off Spiel Blacksmith Slots ist jetzt live! Es ist kostenlos, und verfügt über die gleichen Elemente, aber eine neue Art von Gameplay, geben Sie es einen go!</string>
 </resources>
