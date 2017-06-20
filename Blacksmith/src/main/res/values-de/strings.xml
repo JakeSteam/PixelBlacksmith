@@ -33,7 +33,6 @@
     <string name="bribeQuestionAdvert">Möchten Sie %1$,d Münzen bezahlen oder eine Anzeige sehen, um einen Besucher sofort erscheinen zu lassen?\nMan kommt kostenlos in %2$s an.</string>
     <string name="bulkStackSettingText">Bulk Craft</string>
     <string name="buy">Kaufen</string>
-    <string name="buyCoinsButton">%1$s Münzen</string>
     <string name="buyCoinsDesc">Zu wenig Münzen? Nun, Sie könnten Gewinn machen und sachen verkaufen, aber vielleicht ist das nicht dein Stil. Vielleicht sind sie viel zu beschäftigt für all das sie woolen lieber in Münzen herumrollen!\n\nHeute ist ihr Glückstag! Zwei Münzenpakete sind vorhanden; Die erste ist 500 x dein Level, die zweite ist 3.000 x dein Level.\n\nWollen sie höherwertige Angebote für iht Geld bekommen? Kaufen Sie die größere Angebote oder Leveln sie up!</string>
     <string name="buyCoinsSuccess">Erfolgreich gekauft %1$d Münzen, genießen!</string>
     <string name="buyCoinsText">Kaufe Münzen</string>

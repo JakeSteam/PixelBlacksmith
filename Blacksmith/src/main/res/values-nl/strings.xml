@@ -34,7 +34,6 @@
     <string name="bribeQuestion">Wilt u een bezoeker omkopen %1$,d munten om onmiddellijk te komen? Een zal gratis komen over %2$s.</string>
     <string name="bribeQuestionAdvert">Wilt u %1$,d munten betalen of kijken naar een advertentie om een ​​bezoeker direct te laten komen?\nEen zal gratis komen over %2$s.</string>
     <string name="bulkStackSettingText">bulk Craft</string>
-    <string name="buyCoinsButton">%1$s munten</string>
     <string name="buyCoinsDesc">Bijna op munten? Nou, je kon een winst crafting items te maken, maar misschien is dat niet uw stijl. Misschien ben je veel te druk voor dat alles, en willen rond te rollen in munten!\n\nVandaag is je geluksdag! Twee coin packs beschikbaar zijn; de eerste is 500 x uw niveau, de tweede is 3.000 x uw niveau.\n\nWilt u meer waarde voor je geld te krijgen? Koop de grotere verpakking of een level omhoog!</string>
     <string name="buyCoinsSuccess">Succesvol kocht %1$d munten, veel plezier!</string>
     <string name="buyCoinsText">Koop munten</string>

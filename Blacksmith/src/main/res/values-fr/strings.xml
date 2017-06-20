@@ -35,7 +35,6 @@
     <string name="bribeQuestionAdvert">Voulez-vous dépenser %1$,d pièces ou regarder une publicité pour faire apparaître un visiteur maintenant?\n\nUn client devrait arriver gratuitement dans %2$s.</string>
     <string name="bulkStackSettingText">Emballage vrac</string>
     <string name="buy">Acheter</string>
-    <string name="buyCoinsButton">%1$s pièces</string>
     <string name="buyCoinsDesc">Ah vous manquez de pièces? Bon, vous pourriez faire du profit en fabriquant et en vendant des objets, mais peut-être que ça n\'est pas votre style. Peut-être aussi êtes-vous trop occupé pour cela et vou préférez l\'argent facile!\n\nAujourd\'hui est votre jour de chance! Deux offres sont disponibles; la première est de 500 x votre niveau, la seconde, 3,000 x votre niveau.\n\nVous voulez de meilleurs prix encore? Achetez les packs plus importants ou passez des niveaux!</string>
     <string name="buyCoinsSuccess">Transaction réussie, vous venez d\'acheter %1$d pièces. Profitez-en!</string>
     <string name="buyCoinsText">Acheter des pièces</string>

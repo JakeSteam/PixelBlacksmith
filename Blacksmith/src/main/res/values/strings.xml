@@ -1537,11 +1537,11 @@
     <string name="contributeTitle" translatable="false">%1$s (%2$d / %3$d)</string>
     <string name="contributeHeader">Rewards:</string>
 
-    <string name="buyCoinsButton">%1$s coins</string>
+    <string name="buyCoinsButton" translatable="false">%1$s (%2$s)</string>
     <string name="buyCoinsSuccess">Successfully bought %1$d coins, enjoy!</string>
     <string name="buyCoinsDesc">Running low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
-\n\nToday is your lucky day! Two coin packs are available; the first is 500 x your level, the second is 3,000 x your level.
-\n\nWant to get more value for money? Buy the bigger pack or level up!</string>
+\n\nToday is your lucky day! Three coin packs are available; the first is 500x your level, the second is 3,000x, and the third is 10,000x.
+\n\nWant to get more value for money? Buy the bigger packs or level up!</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>

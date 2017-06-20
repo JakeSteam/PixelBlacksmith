@@ -35,7 +35,6 @@
     <string name="bribeQuestionAdvert">您要支付%1$,d个硬币还是观看广告，使访问者立即出现？\n\n一个人将免费到达%2$s。</string>
     <string name="bulkStackSettingText">散装工艺\n堆栈</string>
     <string name="buy">购买</string>
-    <string name="buyCoinsButton">%1$s的硬币</string>
     <string name="buyCoinsDesc">跑低硬币？嗯，你可以赚钱赚钱，但也许这不是你的风格。也许你太忙了，所有的东西，想要滚动硬币！\n\n今天是你的幸运日！有两个硬币包可用;第一个是500 x你的水平，第二个是你的水平3000 x。\n\n想要获得更多的物有所值？购买更大的包或水平！</string>
     <string name="buyCoinsSuccess">成功购买%1$d硬币，享受！</string>
     <string name="buyCoinsText">买硬币</string>

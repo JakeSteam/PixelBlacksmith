@@ -65,7 +65,6 @@
     <string name="bribeQuestionAdvert">Gostaria de pagar %1$,d moedas ou assistir um anúncio para que um visitante apareça imediatamente?\n\nUm chegará gratuitamente em %2$s.</string>
     <string name="bulkStackSettingText">Construir\nPilha</string>
     <string name="buy">Comprar</string>
-    <string name="buyCoinsButton">%1$s moedas</string>
     <string name="buyCoinsDesc">Funcionando com poucas moedas? Bem, você poderia criar itens de criação de lucro, mas talvez esse não seja o seu estilo. Talvez você esteja muito ocupado por tudo isso, e quer rodar em moedas!\n\nHoje é seu dia de sorte! Dois pacotes de moedas estão disponíveis; O primeiro é 500 x seu nível, o segundo é 3.000 x seu nível.\n\nDeseja obter mais valor para o dinheiro? Compre o pacote maior ou aumente!</string>
     <string name="buyCoinsSuccess">Compra com sucesso de moedas de %1$d, divirta-se!</string>
     <string name="buyCoinsText">Comprar moedas</string>

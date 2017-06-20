@@ -35,7 +35,6 @@
     <string name="bribeQuestionAdvert">¿Le gustaría pagar %1$,d monedas o ver un anuncio para hacer que un visitante aparezca inmediatamente?\n\nUno llegará gratis en %2$s.</string>
     <string name="bulkStackSettingText">Arte Granel</string>
     <string name="buy">Comprar</string>
-    <string name="buyCoinsButton">%1$s monedas</string>
     <string name="buyCoinsDesc">¿Corriendo bajo en monedas? Bueno, usted podría hacer un beneficio crafting artículos, pero tal vez no es su estilo. Tal vez usted está demasiado ocupado por todo eso, y quiere rodar en monedas!\n\n¡Hoy es tu dia de suerte! Hay dos paquetes de monedas disponibles; El primero es 500 x tu nivel, el segundo es 3.000 x tu nivel.\n\n¿Quieres obtener más valor por dinero? ¡Compre el paquete más grande o nivele para arriba!</string>
     <string name="buyCoinsSuccess">Compraste con exito %1$d monedas. ¡A disfrutar!</string>
     <string name="buyCoinsText">Comprar monedas</string>

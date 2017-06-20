@@ -35,7 +35,6 @@
     <string name="bribeQuestionAdvert">%1$,dコインを支払うか、訪問者をすぐに見せるために広告を見たいですか？\n\n1人は%2$sで無料で到着します。</string>
     <string name="bulkStackSettingText">バルククラフト\nスタック</string>
     <string name="buy">購入</string>
-    <string name="buyCoinsButton">%1$sコイン</string>
     <string name="buyCoinsDesc">コインの上で低実行？さて、あなたはアイテムを作って利益を上げることができましたが、それはあなたのスタイルではないかもしれません。たぶんあなたはそれほど忙しいので、コインで回ってみたいです！\n\n今日はあなたの幸運な日です！ 2つのコインパックが利用可能です。最初は500 xあなたのレベル、2番目は3000 xあなたのレベルです。\n\nお金のためのより多くの価値を得たいですか？より大きなパックを買うか、レベルアップ！</string>
     <string name="buyCoinsSuccess">成功して%1$d個のコインを購入して、お楽しみください！</string>
     <string name="buyCoinsText">コインを購入する</string>

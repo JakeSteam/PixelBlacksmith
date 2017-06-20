@@ -15,7 +15,7 @@ buildscript {
 ext {
     apiVersion = 26
     compilerVersion = '25.0.1'
-    supportLibraryVersion = '23.0.0' // Updating this breaks alert sizes, tutorial skipping, and many other things.
+    supportLibraryVersion = '23.0.0' // Updating this breaks alert sizes, tutorial skipping, and many other things. Don't.
     playLibraryVersion = '10.0.1'
 }
 
