@@ -755,7 +755,7 @@
     <string name="questText">Quêtes</string>
     <string name="questUnclaimed">Réclamer des récompenses non réclamées</string>
     <string name="questUpcoming">Prochain</string>
-    <string name="questsCompleted">\" %D quêtes terminées.\"</string>
+    <string name="questsCompleted">%d quêtes terminées.</string>
     <string name="questsNoConnection">Participer aux quêtes nécessite d\'être connecté à Google Play Games, via le menu des paramètres!</string>
     <string name="rateText">Application de taux</string>
     <string name="rate_dialog_cancel">Plus tard</string>

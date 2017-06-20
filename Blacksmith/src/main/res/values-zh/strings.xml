@@ -1188,7 +1188,7 @@
     <string name="type_9">链邮</string>
     <string name="undiscoveredPreference">你还没有发现这个偏好！尝试销售不同的物品来发现它们。</string>
     <string name="unlock">开锁</string>
-    <string name="unlockConfirm">您确定要解锁%1$s吗？解锁是免费的，但是它会花费$ 2$d硬币再次锁定。</string>
+    <string name="unlockConfirm">您确定要解锁%1$s吗？解锁是免费的，但是它会花费%2$d硬币再次锁定。</string>
     <string name="unlockSuccess">成功解锁交易员！</string>
     <string name="unnecessaryRestock">没有必要为这个交易者补货！</string>
     <string name="unsellableItem">标记为%1$s为%2$s可卖！</string>
