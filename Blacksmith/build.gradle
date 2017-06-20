@@ -28,6 +28,9 @@ repositories {
     maven {
         url 'http://maven.batch.com/release'
     }
+    maven {
+        url 'https://maven.google.com'
+    }
 }
 
 dependencies {
