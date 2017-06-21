@@ -29,6 +29,8 @@ import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
+import com.tapjoy.TJPlacement;
+import com.tapjoy.Tapjoy;
 
 import java.util.List;
 import java.util.Locale;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
     private GooglePlayHelper gph;
+    public static TJPlacement adPlacement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements
         Batch.Push.setGCMSenderId("484982205674");
         //Batch.setConfig(new Config("DEV587E86C2DC0F0FE0EE90C49321B"));
         Batch.setConfig(new Config("587E86C2DBE524C8EB318A0E517579"));
+
+        adPlacement = new TJPlacement(this, "WatchAdvert", AdvertHelper.getInstance(this));
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
@@ -235,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onStart();
         Batch.Unlock.setUnlockListener(this);
         Batch.onStart(this);
+        Tapjoy.onActivityStart(this);
 
         // Run background tasks and organise music
         new Thread(new Runnable() {
@@ -339,6 +345,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStop() {
         Batch.onStop(this);
+        Tapjoy.onActivityStop(this);
         super.onStop();
 
         handler.removeCallbacksAndMessages(null);

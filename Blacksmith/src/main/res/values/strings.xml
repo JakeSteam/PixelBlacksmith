@@ -1997,4 +1997,5 @@
     <string name="play_now">Play Now!</string>
     <string name="blacksmith_slots_message">Blacksmith Slots is a slots / crafting game set in the same universe as Pixel Blacksmith! It features many of the same characters, and explores the surrounding world.\n\nGive it a try today, I think you\'ll like it!</string>
     <string name="blacksmith_slots_play">Play for free</string>
+    <string name="advert_load_start">Starting to load advert... If no advert is loaded in 10s, a replacement screen will appear!</string>
 </resources>

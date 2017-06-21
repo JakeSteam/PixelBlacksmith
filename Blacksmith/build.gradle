@@ -51,6 +51,7 @@ dependencies {
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile project(':BaseGameUtils')
     compile files('libs/applovin-sdk-6.2.2.jar')
+    compile files('libs/tapjoyconnectlibrary.jar')
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.batch.android:batch-sdk:1.7+'

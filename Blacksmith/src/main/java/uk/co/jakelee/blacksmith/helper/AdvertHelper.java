@@ -1,9 +1,12 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
+import com.applovin.adview.AppLovinInterstitialAd;
 import com.applovin.sdk.AppLovinAd;
 import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdRewardListener;
@@ -11,6 +14,11 @@ import com.applovin.sdk.AppLovinAdVideoPlaybackListener;
 import com.applovin.sdk.AppLovinSdk;
 import com.orm.query.Condition;
 import com.orm.query.Select;
+import com.tapjoy.TJActionRequest;
+import com.tapjoy.TJError;
+import com.tapjoy.TJPlacement;
+import com.tapjoy.TJPlacementListener;
+import com.tapjoy.Tapjoy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +36,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
-public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
+public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener, TJPlacementListener {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
     private static AdvertHelper dhInstance = null;
     private final Context context;
@@ -38,9 +46,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     private VisitorActivity visitorActivity;
     private TraderActivity traderActivity;
     private boolean verified;
+    private boolean tryingToLoad;
     private advertPurpose currentPurpose;
     public AdvertHelper(Context context) {
         this.context = context;
+
+        Tapjoy.connect(context, "5RRfiBZDQ1igkbGMq000-gECphRBAD7rfoVwE7ZfGkZOWFqxNELMLHp9BVgk", null);
+        Tapjoy.setDebugEnabled(true);
 
         AppLovinSdk.initializeSdk(context);
         advert = AppLovinIncentivizedInterstitial.create(context);
@@ -130,56 +142,54 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         context.startActivity(intent);
     }
 
-    public void showAdvert(MainActivity activity, advertPurpose purpose) {
+    private void showGenericAdvert(Activity activity, final advertPurpose purpose) {
         verified = false;
-        mainActivity = activity;
+        tryingToLoad = true;
         currentPurpose = purpose;
 
-        if (advert.isAdReadyToDisplay()) {
-            advert.show(activity, this, this, this);
-        } else {
-            openInterstitial(purpose);
-        }
+        ToastHelper.showTipToast(null, ToastHelper.LONG, activity.getString(R.string.advert_load_start), false);
+
+        //if (advert.isAdReadyToDisplay()) {
+        //    advert.show(activity, this, this, this);
+        //} else if (AppLovinInterstitialAd.isAdReadyToDisplay(activity)) {
+        //    AppLovinInterstitialAd.show(activity);
+        //} else {
+            //if (MainActivity.adPlacement != null) {
+            //    MainActivity.adPlacement.requestContent();
+            //}
+        //}
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!verified && tryingToLoad) {
+                    openInterstitial(purpose);
+                }
+            }
+        }, 10000);
+    }
+
+    public void showAdvert(MainActivity activity, advertPurpose purpose) {
+        mainActivity = activity;
+        showGenericAdvert(activity, purpose);
     }
 
     public void showAdvert(TraderActivity activity, advertPurpose purpose) {
-        verified = false;
         traderActivity = activity;
-        currentPurpose = purpose;
-
-        if (advert.isAdReadyToDisplay()) {
-            advert.show(activity, this, this, this);
-        } else {
-            openInterstitial(purpose);
-        }
+        showGenericAdvert(activity, purpose);
     }
 
     public void showAdvert(MarketActivity activity, advertPurpose purpose) {
-        verified = false;
         marketActivity = activity;
-        currentPurpose = purpose;
-
-        if (advert.isAdReadyToDisplay()) {
-            advert.show(activity, this, this, this);
-        } else {
-            openInterstitial(purpose);
-        }
+        showGenericAdvert(activity, purpose);
     }
 
     public void showAdvert(VisitorActivity activity, advertPurpose purpose) {
-        verified = false;
         visitorActivity = activity;
-        currentPurpose = purpose;
-
-        if (advert.isAdReadyToDisplay()) {
-            advert.show(activity, this, this, this);
-        } else {
-            openInterstitial(purpose);
-        }
+        showGenericAdvert(activity, purpose);
     }
 
-    @Override
-    public void adHidden(AppLovinAd appLovinAd) {
+    private void tryReward() {
         if (verified) {
             switch (currentPurpose) {
                 case ConvMarketRestock:
@@ -201,8 +211,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         } else {
             ToastHelper.showErrorToast(null, ToastHelper.LONG, context.getString(R.string.error_ad_unverified), false);
         }
-        // Begin loading next advert.
-        advert.preload(null);
     }
 
     public void triggerCallback(advertPurpose purpose) {
@@ -225,38 +233,42 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         }
     }
 
+
+    @Override
+    public void adHidden(AppLovinAd appLovinAd) {
+        tryReward();
+        advert.preload(null);
+    }
+
     @Override
     public void userRewardVerified(AppLovinAd appLovinAd, Map map) {
         verified = true;
     }
 
-    @Override
-    public void videoPlaybackBegan(AppLovinAd appLovinAd) {
+    @Override public void videoPlaybackBegan(AppLovinAd appLovinAd) {}
+    @Override public void videoPlaybackEnded(AppLovinAd appLovinAd, double v, boolean b) {}
+    @Override public void adDisplayed(AppLovinAd appLovinAd) {
+        tryingToLoad = false;
     }
+    @Override public void userOverQuota(AppLovinAd appLovinAd, Map map) {}
+    @Override public void userRewardRejected(AppLovinAd appLovinAd, Map map) {}
+    @Override public void validationRequestFailed(AppLovinAd appLovinAd, int i) {}
+    @Override public void userDeclinedToViewAd(AppLovinAd appLovinAd) {}
 
-    @Override
-    public void videoPlaybackEnded(AppLovinAd appLovinAd, double v, boolean b) {
+    public void onContentReady(TJPlacement placement) {
+        tryingToLoad = false;
+        placement.showContent();
     }
-
-    @Override
-    public void adDisplayed(AppLovinAd appLovinAd) {
+    public void onContentDismiss(TJPlacement placement) {
+        verified = true;
+        tryReward();
     }
-
-    @Override
-    public void userOverQuota(AppLovinAd appLovinAd, Map map) {
-    }
-
-    @Override
-    public void userRewardRejected(AppLovinAd appLovinAd, Map map) {
-    }
-
-    @Override
-    public void validationRequestFailed(AppLovinAd appLovinAd, int i) {
-    }
-
-    @Override
-    public void userDeclinedToViewAd(AppLovinAd appLovinAd) {
-    }
+    public void onPurchaseRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    public void onRewardRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string, int number) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    public void onRequestSuccess(TJPlacement placement) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    public void onRequestFailure(TJPlacement placement, TJError error) {} // Called when there was a problem during connecting Tapjoy servers.
+    public void onContentShow(TJPlacement placement) {
+    } // Called when the content is showed.
 
     public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox}
 }
