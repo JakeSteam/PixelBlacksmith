@@ -149,15 +149,15 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
         ToastHelper.showTipToast(null, ToastHelper.LONG, activity.getString(R.string.advert_load_start), false);
 
-        //if (advert.isAdReadyToDisplay()) {
-        //    advert.show(activity, this, this, this);
-        //} else if (AppLovinInterstitialAd.isAdReadyToDisplay(activity)) {
-        //    AppLovinInterstitialAd.show(activity);
-        //} else {
-            //if (MainActivity.adPlacement != null) {
-            //    MainActivity.adPlacement.requestContent();
-            //}
-        //}
+        if (advert.isAdReadyToDisplay()) {
+            advert.show(activity, this, this, this);
+        } else if (AppLovinInterstitialAd.isAdReadyToDisplay(activity)) {
+            AppLovinInterstitialAd.show(activity);
+        } else {
+            if (MainActivity.adPlacement != null) {
+               MainActivity.adPlacement.requestContent();
+            }
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
