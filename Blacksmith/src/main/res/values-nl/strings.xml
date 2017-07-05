@@ -1565,11 +1565,13 @@
     <string name="weaponText">Wapen</string>
     <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
     <string name="play_now">Nu afspelen!</string>
-    <string name="updateMessage">Bijgewerkt naar versie %s!\n\nDe spin-off game Blacksmith Slots is nu live! Het is gratis, en bevat dezelfde items maar een nieuwe gameplay, geef het een stukje!</string>
+    <string name="updateMessage">Bijgewerkt naar versie %s!\n\nVeranderingen:\nPortugese vertaling toegevoegd, 2 nieuwe bezoekers, nieuwe muntenpakket, en back-up adverteerder. Verhoogde berichtduur, en veel, veel bug / crash fixes.\n\nPS: Het gratis spin-off spel Blacksmith Slots is nu live!Bijgewerkt naar versie% s!\n\nVeranderingen:\nPortugese vertaling toegevoegd, 2 nieuwe bezoekers, nieuwe muntenpakket, en back-up adverteerder. Verhoogde berichtduur, en veel, veel bug / crash fixes.\n\nPS: Het gratis spin-off spel Blacksmith Slots is nu live!</string>
     <string name="blacksmith_slots_message">Blacksmith Slots is een slots / crafting game in hetzelfde universum als Pixel Blacksmith! Het heeft veel van dezelfde karakters, en verkent de omringende wereld.\n\nProbeer het vandaag, ik denk dat je het leuk vindt!</string>
     <string name="blacksmith_slots_play">Gratis spelen</string>
     <string name="visitor_desc_54">Ik houd van mijn broer!</string>
     <string name="visitor_desc_55">Ik haat mijn broer!</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
+    <string name="advert_load_start">Advertentie beginnen ... Als er geen advertentie in 10\'s is geladen, verschijnt er een vervangend scherm!</string>
+    <string name="language_10">Portugees</string>
 </resources>

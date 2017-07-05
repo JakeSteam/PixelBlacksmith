@@ -16,11 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.batch.android.Batch;
-import com.batch.android.BatchUnlockListener;
-import com.batch.android.Config;
-import com.batch.android.Offer;
-import com.batch.android.Resource;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;

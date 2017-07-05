@@ -1566,11 +1566,13 @@
     <string name="worseSaveCancel">Cancelar</string>
     <string name="worseSaveLoad">Carga</string>
     <string name="worseSaveMessage">Tem certeza de que deseja carregar esta reserva de nuvem inferior?\n\nEconomia local:\nPrestígios: %1$d, Nível: %2$d, XP: %3$d.\n\nEconomia de nuvem:\nPrestígios: %4$d, Nível: %5$d, XP: %6$d.</string>
-    <string name="updateMessage">Atualizado para a versão %s!\n\nO jogo spin-off Blacksmith Slots está agora ao vivo! É grátis, e apresenta os mesmos itens, mas um novo estilo de jogabilidade, dê uma chance!</string>
+    <string name="updateMessage">Atualizado para a versão %s!\n\nAlterar:\nAdicionado tradução em português, 2 novos visitantes, novo pacote de moedas e provedor de anúncios de backup. Maior duração da mensagem, e muitas, muitas correções de erro / colisão.\n\nPS: O jogo de spin-off gratuito Blacksmith Slots está agora ao vivo!Atualizado para a versão% s!\n\nAlterar:\nAdicionado tradução em português, 2 novos visitantes, novo pacote de moedas e provedor de anúncios de backup. Maior duração da mensagem, e muitas, muitas correções de erro / colisão.\n\nPS: O jogo de spin-off gratuito Blacksmith Slots está agora ao vivo!</string>
     <string name="blacksmith_slots_message">Blacksmith Slots é um jogo de slots / crafting no mesmo universo que Pixel Blacksmith! Possui muitos dos mesmos personagens e explora o mundo circundante.\n\nExperimente hoje, acho que você vai gostar!</string>
     <string name="blacksmith_slots_play">Jogar de graça</string>
     <string name="visitor_desc_54">Eu amo meu irmão!</string>
     <string name="visitor_desc_55">Eu odeio meu irmão!</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
+    <string name="advert_load_start">Começando a carregar o anúncio ... Se nenhum anúncio é carregado em 10s, uma tela de substituição aparecerá!</string>
+    <string name="language_10">Português</string>
 </resources>

@@ -1002,6 +1002,7 @@
     <string name="language_7">Japanese</string>
     <string name="language_8">Spanish</string>
     <string name="language_9">German</string>
+    <string name="language_10">Portuguese</string>
 
     <string name="setting_1">Game Sound</string>
     <string name="setting_2">Game Music</string>
@@ -1583,7 +1584,7 @@
     <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
-    <string name="updateMessage">Updated to version %s!\n\nThe spin-off game Blacksmith Slots is now live! It\'s free, and features the same items but a new style of gameplay, give it a go!</string>
+    <string name="updateMessage">Updated to version %s!\n\nChanges:\nAdded portuguese, 2 new visitors, new coin pack, backup advert provider. Increased message duration, and many, many bug / crash fixes.\n\nPS: The free spin-off game Blacksmith Slots is now live!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
@@ -1994,7 +1995,7 @@
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
     <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
-    <string name="play_now">Play Now!</string>
+    <string name="play_now">Play Slots!</string>
     <string name="blacksmith_slots_message">Blacksmith Slots is a slots / crafting game set in the same universe as Pixel Blacksmith! It features many of the same characters, and explores the surrounding world.\n\nGive it a try today, I think you\'ll like it!</string>
     <string name="blacksmith_slots_play">Play for free</string>
     <string name="advert_load_start">Starting to load advert... If no advert is loaded in 10s, a replacement screen will appear!</string>

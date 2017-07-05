@@ -5,7 +5,7 @@ import android.content.pm.ActivityInfo;
 public class Constants {
     public static final int TRUE = 1;
 
-    public static final int NUM_LANGUAGES = 9;
+    public static final int NUM_LANGUAGES = 10;
     public static final int LANG_ENGLISH = 1;
     public static final int LANG_FRENCH = 2;
     public static final int LANG_RUSSIAN = 3;
@@ -15,6 +15,7 @@ public class Constants {
     public static final int LANG_JAPANESE = 7;
     public static final int LANG_SPANISH = 8;
     public static final int LANG_GERMAN = 9;
+    public static final int LANG_PORT = 10;
 
     public static final String LEADERBOARD_VISITORS = "CgkI6tnE2Y4OEAIQAA";
     public static final String LEADERBOARD_ITEM_VALUE = "CgkI6tnE2Y4OEAIQAQ";

@@ -1565,12 +1565,14 @@
     <string name="weaponText">武器</string>
     <string name="hotfix_ghost_traders">ゴーストトレーダーを修正</string>
     <string name="play_now">今すぐプレー！</string>
-    <string name="updateMessage">バージョン%sに更新されました！\n\nスピンオフゲーム「ブラックスミススロット」がライブになりました！ それは無料で、同じアイテムを特色としていますが、新しいスタイルのゲームプレイもあります。</string>
+    <string name="updateMessage">バージョン%sに更新されました！\n\n変更点：\nポルトガル語の翻訳を追加し、2人の新規訪問者、新しいコインパック、およびバックアップ広告プロバイダーを追加しました。 メッセージの継続時間が長くなり、多くのバグ/クラッシュが修正されました。\n\nPS：無料のスピンオフゲーム「Blacksmith Slots」がライブになりました！バージョン％sに更新されました！\n\n変更点：\nポルトガル語の翻訳を追加し、2人の新規訪問者、新しいコインパック、およびバックアップ広告プロバイダーを追加しました。 メッセージの継続時間が長くなり、多くのバグ/クラッシュが修正されました。\n\nPS：無料のスピンオフゲーム「Blacksmith Slots」がライブになりました！</string>
     <string name="blacksmith_slots_message">Blacksmith Slotsは、Pixel Blacksmithと同じ宇宙のスロット/クラフトゲームセットです！ それは同じ文字の多くを特色にし、周囲の世界を探検する。\n\n今日はそれを試してみてください、あなたはそれが好きになると思います！</string>
     <string name="blacksmith_slots_play">無料でプレイ</string>
     <string name="visitor_desc_54">兄が好き！</string>
     <string name="visitor_desc_55">私は兄が嫌い！</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">スパキー</string>
+    <string name="advert_load_start">広告の読み込みを開始...広告が10秒間に読み込まれていない場合、代替画面が表示されます！</string>
+    <string name="language_10">ポルトガル語</string>
 
 </resources>

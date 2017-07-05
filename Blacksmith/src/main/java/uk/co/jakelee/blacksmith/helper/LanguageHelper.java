@@ -49,6 +49,8 @@ public class LanguageHelper {
                 return "es";
             case Constants.LANG_GERMAN:
                 return "de";
+            case Constants.LANG_PORT:
+                return "pt";
         }
         return "";
     }
@@ -73,6 +75,8 @@ public class LanguageHelper {
                 return Constants.LANG_SPANISH;
             case "de":
                 return Constants.LANG_GERMAN;
+            case "pt":
+                return Constants.LANG_PORT;
         }
         return Constants.LANG_ENGLISH;
     }
@@ -101,6 +105,8 @@ public class LanguageHelper {
                 return new String(Character.toChars(0x1F1EA)) + new String(Character.toChars(0x1F1F8));
             case Constants.LANG_GERMAN:
                 return new String(Character.toChars(0x1F1E9)) + new String(Character.toChars(0x1F1EA));
+            case Constants.LANG_PORT:
+                return new String(Character.toChars(0x1F1E7)) + new String(Character.toChars(0x1F1F7));
             default:
                 return "";
         }

@@ -1565,11 +1565,13 @@
     <string name="weaponText">무기</string>
     <string name="hotfix_ghost_traders">고스트 트레이더 수정</string>
     <string name="play_now">지금 플레이!</string>
-    <string name="updateMessage">버전  %s (으)로 업데이트되었습니다!\n\n스핀 오프 게임 인 대장장이 슬롯이 이제 생방송입니다! 무료이며 동일 품목이지만 새로운 스타일의 게임 플레이를 제공합니다.</string>
+    <string name="updateMessage">버전 %s (으)로 업데이트되었습니다!\n\n변경 사항 :\n포르투갈어 번역 추가, 신규 방문자 2 명, 새 코인 팩 및 백업 광고 제공 업체 추가 메시지 지속 시간 증가 및 많은 버그 / 충돌 수정.\n\n추신 : 무료 스핀 오프 게임 대장장이 슬롯은 현재 라이브입니다!버전 % s (으)로 업데이트되었습니다!\n\n변경 사항 :\n포르투갈어 번역 추가, 신규 방문자 2 명, 새 코인 팩 및 백업 광고 제공 업체 추가 메시지 지속 시간 증가 및 많은 버그 / 충돌 수정.\n\n추신 : 무료 스핀 오프 게임 대장장이 슬롯은 현재 라이브입니다!</string>
     <string name="blacksmith_slots_message">대장장이 슬롯은 Pixel Blacksmith와 같은 우주에서 세팅 된 슬롯 / 크래프트 게임입니다! 그것은 같은 캐릭터의 많은 기능과 주변 세계를 탐험 해보세요.\n\n오늘 시도 해봐, 네가 좋아할 것 같아!</string>
     <string name="blacksmith_slots_play">무료로 게임하기</string>
     <string name="visitor_desc_54">난 형을 사랑해!</string>
     <string name="visitor_desc_55">나는 오빠가 싫어!</string>
     <string name="visitor_name_54">블링키</string>
     <string name="visitor_name_55">스파키</string>
+    <string name="advert_load_start">광고로드 시작 ... 10 초에 광고가로드되지 않으면 대체 화면이 나타납니다!</string>
+    <string name="language_10">포르투갈 인</string>
 </resources>
