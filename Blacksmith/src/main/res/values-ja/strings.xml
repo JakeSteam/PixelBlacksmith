@@ -738,7 +738,7 @@
     <string name="premiumStatusInactive">現在はプレミアムではありません。</string>
     <string name="premiumText">プレミアム</string>
     <string name="prestigeCancel">キャンセル</string>
-    <string name="prestigeComplete">プレステージ成功、すべてのコイン収益+%1$d %%＆amp; XPの利益 - %2$d %%！がんばろう！</string>
+    <string name="prestigeComplete">プレステージ成功、すべてのコイン収益+%1$d%%＆amp; XPの利益 - %2$d%%！がんばろう！</string>
     <string name="prestigeConfirm">威信</string>
     <string name="prestigeQuestion">Prestigingは、+50%%coin&amp; +50%%coin &amp;の代わりにすべてのアイテム（ページ+書籍を除く）/コイン/アップグレード/ワーカーをリセットします。 -25 %%XPが得られます。\n\nこれは、元に戻すことはできません。</string>
     <string name="prestigeSettingText">威信\n（NG+）</string>

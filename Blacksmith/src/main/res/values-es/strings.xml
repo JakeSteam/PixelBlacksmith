@@ -738,7 +738,7 @@
     <string name="premiumStatusInactive">Actualmente no es premium.</string>
     <string name="premiumText">Prima</string>
     <string name="prestigeCancel">Cancelar</string>
-    <string name="prestigeComplete">Prestigio exitoso, todas las ganancias de monedas + %1$d% &amp; Ganancias XP - %2$d %%! ¡Buena suerte!</string>
+    <string name="prestigeComplete">Prestigio exitoso, todas las ganancias de monedas + %1$d% &amp; Ganancias XP - %2$d%%! ¡Buena suerte!</string>
     <string name="prestigeConfirm">Prestigio</string>
     <string name="prestigeQuestion">Prestigar restablece todos los elementos (excepto páginas + libros) / monedas / actualizaciones / trabajadores a cambio de + 50% moneda &amp; -25 % XP ganancias.\n\nEsto no se puede deshacer.</string>
     <string name="prestigeSettingText">Prestigio</string>

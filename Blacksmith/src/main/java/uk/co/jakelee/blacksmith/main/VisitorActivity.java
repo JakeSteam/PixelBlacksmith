@@ -152,7 +152,10 @@ public class VisitorActivity extends Activity {
             TextViewPixel typeMultiplier = (TextViewPixel) findViewById(R.id.typeMultiplier);
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("type" + visitorType.getTypePreferred(), "drawable", getApplicationContext().getPackageName());
-            typePic.setImageResource(typeDrawableId);
+            try {
+                typePic.setImageResource(typeDrawableId);
+            } catch (OutOfMemoryError e) {
+            }
             typePic.setTag(R.id.preferred, visitorType.getTypePreferred());
             typePic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
             typeMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTypeMultiplier()));
@@ -163,7 +166,10 @@ public class VisitorActivity extends Activity {
             TextViewPixel tierMultiplier = (TextViewPixel) findViewById(R.id.tierMultiplier);
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("tier" + visitorType.getTierPreferred(), "drawable", getApplicationContext().getPackageName());
-            tierPic.setImageResource(typeDrawableId);
+            try {
+                tierPic.setImageResource(typeDrawableId);
+            } catch (OutOfMemoryError e) {
+            }
             tierPic.setTag(R.id.preferred, visitorType.getTierPreferred());
             tierPic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
             tierMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getTierMultiplier()));
@@ -174,7 +180,10 @@ public class VisitorActivity extends Activity {
             TextViewPixel stateMultiplier = (TextViewPixel) findViewById(R.id.stateMultiplier);
 
             int typeDrawableId = getApplicationContext().getResources().getIdentifier("state" + visitorType.getStatePreferred(), "drawable", getApplicationContext().getPackageName());
-            statePic.setImageResource(typeDrawableId);
+            try {
+                statePic.setImageResource(typeDrawableId);
+            } catch (OutOfMemoryError e) {
+            }
             statePic.setTag(R.id.preferred, visitorType.getStatePreferred());
             statePic.setTag(R.id.multiplier, VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
             stateMultiplier.setText(VisitorHelper.multiplierToPercent(visitorType.getStateMultiplier()));
@@ -183,7 +192,10 @@ public class VisitorActivity extends Activity {
         if (!visitorStats.getBestItem().equals(Constants.ITEM_COINS)) {
             ImageView bestItem = (ImageView) findViewById(R.id.bestItemImage);
             int bestItemDrawableId = getApplicationContext().getResources().getIdentifier("item" + visitorStats.getBestItem(), "drawable", getApplicationContext().getPackageName());
-            bestItem.setImageResource(bestItemDrawableId);
+            try {
+                bestItem.setImageResource(bestItemDrawableId);
+            } catch (OutOfMemoryError e) {
+            }
             bestItem.setTag(R.id.bestItemID, visitorStats.getBestItem());
             bestItem.setTag(R.id.bestItemValue, visitorStats.getBestItemValue());
             bestItem.setTag(R.id.bestItemState, visitorStats.getBestItemState());

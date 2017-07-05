@@ -109,13 +109,18 @@ public class MainActivity extends AppCompatActivity implements
 
         assignUIElements();
 
-        GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                .setViewForPopups(findViewById(android.R.id.content))
-                .build();
+        try {
+            GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                    .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
+                    .setViewForPopups(findViewById(android.R.id.content))
+                    .build();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Unknown error whilst connecting to Google Play!", Toast.LENGTH_SHORT).show();
+        }
 
         dh.createAllSlots(this);
         ratingPrompt();

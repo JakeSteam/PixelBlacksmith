@@ -738,7 +738,7 @@
     <string name="premiumStatusInactive">目前没有溢价。</string>
     <string name="premiumText">高级</string>
     <string name="prestigeCancel">取消</string>
-    <string name="prestigeComplete">尊贵成功，所有硬币收益+%1$d %%&amp; XP收益 - %2$d %%！祝你好运！</string>
+    <string name="prestigeComplete">尊贵成功，所有硬币收益+%1$d% &amp; XP收益 - %2$d%%！祝你好运！</string>
     <string name="prestigeConfirm">声望</string>
     <string name="prestigeQuestion">Prestiging将所有项目（页面+图书除外）/硬币/升级/工作人员重置为+ 50 %%硬币和-25 %%XP获利。\n\n这不能被撤消。</string>
     <string name="prestigeSettingText">声望\n（NG+）</string>

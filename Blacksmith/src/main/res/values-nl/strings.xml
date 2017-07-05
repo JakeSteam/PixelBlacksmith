@@ -738,7 +738,7 @@
     <string name="premiumStatusInactive">Op dit moment niet premie.</string>
     <string name="premiumText">Premie</string>
     <string name="prestigeCancel">Annuleer</string>
-    <string name="prestigeComplete">Prestige succesvol, al munt winst + %1$d%%&amp; XP winsten - %2$d%%! Succes!</string>
+    <string name="prestigeComplete">Prestige succesvol, al munt winst + %1$d% &amp; XP winsten - %2$d%%! Succes!</string>
     <string name="prestigeConfirm">Prestige</string>
     <string name="prestigeQuestion">Prestiging reset alle items (met uitzondering van pagina\'s + boeken) / munten / upgrades / werknemers in ruil voor + 50% coin &amp; -25%%XP winsten.\n\nDit kan niet ongedaan gemaakt worden.</string>
     <string name="prestigeSettingText">Prestige\n(NG +)</string>

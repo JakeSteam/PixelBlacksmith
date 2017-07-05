@@ -859,7 +859,7 @@
     <string name="questText">Missões</string>
     <string name="questUnclaimed">Reivindicar recompensas não reclamadas</string>
     <string name="questUpcoming">próximos</string>
-    <string name="questsCompleted">" %D quests concluídas."</string>
+    <string name="questsCompleted">%d quests concluídas.</string>
     <string name="questsNoConnection">Participar em quests exige estar conectado ao Google Play Games, através do menu de configurações!</string>
     <string name="rateText">Avaliar aplicação</string>
     <string name="rate_dialog_cancel">Mais tarde</string>
