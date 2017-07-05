@@ -271,7 +271,7 @@ public class TradeActivity extends Activity implements ItemTable {
             currentlySelling = true;
             new Visitor_Log(visitorType.getVisitorID(), itemID, itemState).save();
             int quantity = 1;
-            if (MainActivity.prefs.getBoolean("tradeMax", false)) {
+            if (getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("tradeMax", false)) {
                 quantity = demand.getQuantity() - demand.getQuantityProvided();
             }
             tradeItem(quantity, itemObject, itemStateObject);
@@ -333,8 +333,8 @@ public class TradeActivity extends Activity implements ItemTable {
     }
 
     public void toggleMax(View view) {
-        tradeMax = !MainActivity.prefs.getBoolean("tradeMax", false);
-        MainActivity.prefs.edit().putBoolean("tradeMax", tradeMax).apply();
+        tradeMax = !getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("tradeMax", false);
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("tradeMax", tradeMax).apply();
         updateMax();
     }
 
@@ -343,7 +343,7 @@ public class TradeActivity extends Activity implements ItemTable {
         final Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
         final ImageView maxIndicator = (ImageView) findViewById(R.id.maxIndicator);
 
-        tradeMax = MainActivity.prefs.getBoolean("tradeMax", false);
+        tradeMax = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("tradeMax", false);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

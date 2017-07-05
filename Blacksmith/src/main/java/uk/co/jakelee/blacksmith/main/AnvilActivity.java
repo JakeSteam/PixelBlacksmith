@@ -59,8 +59,8 @@ public class AnvilActivity extends Activity {
         dh.updateFullscreen(this);
 
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.prefs.getInt("anvilTier", ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN);
-        ringsSelected = MainActivity.prefs.getBoolean("anvilTab", false);
+        displayedTier = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("anvilTier", ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN);
+        ringsSelected = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("anvilTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -105,9 +105,9 @@ public class AnvilActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        MainActivity.prefs.edit().putInt("anvilTier", displayedTier).apply();
-        MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
-        MainActivity.prefs.edit().putBoolean("anvilTab", ringsSelected).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("anvilTier", displayedTier).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("anvilTab", ringsSelected).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -171,7 +171,7 @@ public class AnvilActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_UNFINISHED,
-                MainActivity.prefs.getInt("anvilPosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("anvilPosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.anvil),
@@ -196,7 +196,7 @@ public class AnvilActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("anvilPosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("anvilPosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.anvil),
@@ -298,7 +298,7 @@ public class AnvilActivity extends Activity {
     public void goUpTier(View view) {
         int maxTier = ringsSelected ? Constants.TIER_GOLD : Constants.TIER_MAX;
         if (displayedTier < maxTier) {
-            MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
             createAnvilInterface(true, false);
         }
@@ -307,14 +307,14 @@ public class AnvilActivity extends Activity {
     public void goDownTier(View view) {
         int minTier = ringsSelected ? Constants.TIER_SILVER : Constants.TIER_MIN;
         if (displayedTier > minTier) {
-            MainActivity.prefs.edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("anvilPosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
             createAnvilInterface(true, false);
         }
     }
 
     public void toggleTab(View view) {
-        MainActivity.prefs.edit().putInt("anvilTier", displayedTier).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("anvilTier", displayedTier).apply();
         ringsSelected = !ringsSelected;
         updateTabs();
         createAnvilInterface(true, true);

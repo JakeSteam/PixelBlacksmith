@@ -46,7 +46,7 @@ public class WorkerActivity extends Activity {
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
-        heroesSelected = MainActivity.prefs.getBoolean("workerTab", false);
+        heroesSelected = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("workerTab", false);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class WorkerActivity extends Activity {
         super.onPause();
 
         handler.removeCallbacksAndMessages(null);
-        MainActivity.prefs.edit().putBoolean("workerTab", heroesSelected).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("workerTab", heroesSelected).apply();
     }
 
     private void populateWorkers() {

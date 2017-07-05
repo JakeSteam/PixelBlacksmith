@@ -39,7 +39,7 @@ public class UpgradeActivity extends Activity {
         setContentView(R.layout.activity_upgrade);
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
-        superSelected = MainActivity.prefs.getBoolean("upgradeTab", false);
+        superSelected = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("upgradeTab", false);
 
         createInterface();
     }
@@ -47,7 +47,7 @@ public class UpgradeActivity extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-        MainActivity.prefs.edit().putBoolean("upgradeTab", superSelected).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("upgradeTab", superSelected).apply();
     }
 
     public void openHelp(View view) {

@@ -61,10 +61,10 @@ public class TableActivity extends Activity {
         dh.updateFullscreen(this);
 
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.prefs.getInt("tableTier", booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN);
+        displayedTier = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("tableTier", booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN);
         if (displayedTier > Constants.TIER_MAX && displayedTier != Constants.TIER_PREMIUM)
             displayedTier = Constants.TIER_PREMIUM;
-        booksSelected = MainActivity.prefs.getBoolean("tableTab", false);
+        booksSelected = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("tableTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -109,9 +109,9 @@ public class TableActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        MainActivity.prefs.edit().putInt("tableTier", displayedTier).apply();
-        MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
-        MainActivity.prefs.edit().putBoolean("tableTab", booksSelected).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tableTier", displayedTier).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("tableTab", booksSelected).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -169,7 +169,7 @@ public class TableActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("tablePosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("tablePosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.table),
@@ -193,7 +193,7 @@ public class TableActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("tablePosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("tablePosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.table),
@@ -300,11 +300,11 @@ public class TableActivity extends Activity {
         int maxTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_MAX;
 
         if (displayedTier == Constants.TIER_MAX) {
-            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier = Constants.TIER_PREMIUM;
             createTableInterface(true, false);
         } else if (displayedTier < maxTier) {
-            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier++;
             createTableInterface(true, false);
         }
@@ -314,18 +314,18 @@ public class TableActivity extends Activity {
         int minTier = booksSelected ? Constants.TIER_NONE : Constants.TIER_MIN;
 
         if (displayedTier == Constants.TIER_PREMIUM) {
-            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier = Constants.TIER_MAX;
             createTableInterface(true, false);
         } else if (displayedTier > minTier) {
-            MainActivity.prefs.edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tablePosition", mViewFlipper.getDisplayedChild()).apply();
             displayedTier--;
             createTableInterface(true, false);
         }
     }
 
     public void toggleTab(View view) {
-        MainActivity.prefs.edit().putInt("tablePosition", 0).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("tablePosition", 0).apply();
         booksSelected = !booksSelected;
         updateTabs();
         createTableInterface(true, true);

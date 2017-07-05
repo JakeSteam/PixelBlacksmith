@@ -33,8 +33,9 @@
     <string name="bribeQuestionAdvert">Möchten Sie %1$,d Münzen bezahlen oder eine Anzeige angucken, um einen Besucher sofort erscheinen zu lassen? Einer kommt kostenlos in %2$s.</string>
     <string name="bulkStackSettingText">Bulk Craft</string>
     <string name="buy">Kaufen</string>
+    <string name="buyCoinsButton">%1$s Münzen</string>
     <string name="buyCoinsDesc">Zu wenig Münzen? Nun, Sie könnten Gewinn machen und sachen verkaufen, aber vielleicht ist das nicht dein Stil. Vielleicht sind sie viel zu beschäftigt für all das sie woolen lieber in Münzen herumrollen!\n\nHeute ist ihr Glückstag! Zwei Münzenpakete sind vorhanden; Die erste ist 500 x dein Level, die zweite ist 3.000 x dein Level.\n\nWollen sie höherwertige Angebote für iht Geld bekommen? Kaufen Sie die größere Angebote oder Leveln sie up!</string>
-    <string name="buyCoinsSuccess">Erfolgreich %1$d Münzen gekauft, viel Spaß damit!</string>
+    <string name="buyCoinsSuccess">Erfolgreich gekauft %1$d Münzen, genießen!</string>
     <string name="buyCoinsText">Kaufe Münzen</string>
     <string name="buyContribute">Beitragen</string>
     <string name="buyHero">Kaufe Helden</string>
@@ -1155,6 +1156,7 @@
     <string name="unnecessaryRestock">Es gibt keine Notwendigkeit, diesen Händler wieder aufzufüllen!</string>
     <string name="unsellableItem">Markiert %1$s als %2$ssellable!</string>
     <string name="updateClose">Schließen</string>
+    <string name="updateMessage">Aktualisiert auf Version%s!\n\nHauptänderungen:\n- Oster-Event! Sammle Eier, um ein wertvolles goldenes Ei zu fertigen!\n- Assistenten! Unlock Assistenten zu bekommen XP, Münze und Artikel Boni!\n- Sprachen! 8 neue Sprachen hinzugefügt, mit Verbesserungen kommen!\n- Neues Essen, Ringe, Helden-Sets, Super-Upgrades und Bugfixes!</string>
     <string name="updateReddit">Änderungen anzeigen</string>
     <string name="updateSlotsSettingText">Slots aktualisieren</string>
     <string name="upgradeCancel">Stornieren</string>
