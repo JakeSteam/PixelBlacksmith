@@ -1194,7 +1194,6 @@
     <string name="unnecessaryRestock">Нет необходимости пополнять этот трейдер!</string>
     <string name="unsellableItem">Отмечено %1$s как %2$ssellable!</string>
     <string name="updateClose">Закрыть</string>
-    <string name="updateMessage">Обновлено до версии %s!\n\nОсновные изменения:\n- Пасхальное событие! Собирайте яйца, чтобы создать ценное Золотое Яйцо!\n- Помощники! Разблокируйте помощников, чтобы получить XP, монету и бонусы!\n- Языки! Добавлено 8 новых языков, с улучшениями!\n- Новая еда, кольца, наборы героев, супер апгрейды и исправления!</string>
     <string name="updateReddit">Просмотреть изменения</string>
     <string name="updateSlotsSettingText">Обновить слоты</string>
     <string name="upgradeCancel">Отмена</string>

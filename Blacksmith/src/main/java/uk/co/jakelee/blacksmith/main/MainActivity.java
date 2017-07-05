@@ -127,7 +127,9 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
-            findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
+            if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
+                findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
+            }
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();

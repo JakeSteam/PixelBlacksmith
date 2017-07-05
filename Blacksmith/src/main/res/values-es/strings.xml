@@ -1192,7 +1192,6 @@
     <string name="unnecessaryRestock">No hay necesidad de reabastecer este comerciante!</string>
     <string name="unsellableItem">Marcado %1$s como %2$ssellable!</string>
     <string name="updateClose">Cerca</string>
-    <string name="updateMessage">Actualizado a la versión %s!\n\nPrincipales cambios:\n- ¡Evento de Pascua! Recoger huevos para elaborar un valioso huevo de oro!\n- ¡Ayudantes! Desbloquear asistentes para obtener XP, moneda y bonos de artículos!\n- ¡Idiomas! 8 nuevos idiomas agregados, con las mejoras que vienen!\n- Nuevos alimentos, anillos, juegos de héroes, super actualizaciones y correcciones de errores!</string>
     <string name="updateReddit">Ver cambios</string>
     <string name="updateSlotsSettingText">Actualizar tragamonedas</string>
     <string name="upgradeCancel">Cancelar</string>

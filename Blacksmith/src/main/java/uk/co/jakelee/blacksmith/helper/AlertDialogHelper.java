@@ -184,6 +184,7 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmithslots"));
                 activity.startActivity(browserIntent);
+                activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("hasViewedBlacksmithSlots", true).apply();
             }
         });
 
@@ -831,6 +832,7 @@ public class AlertDialogHelper {
         alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmithslots"));
+                activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("hasViewedBlacksmithSlots", true).apply();
                 context.startActivity(browserIntent);
             }
         });

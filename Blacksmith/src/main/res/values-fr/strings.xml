@@ -1193,7 +1193,6 @@
     <string name="unnecessaryRestock">Il n\'est pas nécessaire de racheter ce commerçant!</string>
     <string name="unsellableItem">Marqué %1$s en %2$ssellable!</string>
     <string name="updateClose">Fermer</string>
-    <string name="updateMessage">Mise à jour vers la version %s!\n\nPrincipales modifications:\n- Evénement de Pâques! Recueillir des oeufs pour fabriquer un précieux oeuf d\'or!\n- Assistants! Débloquez les assistants pour obtenir des bonus XP, pièces et objets!\n- Langues! 8 nouvelles langues ajoutées, avec des améliorations à venir!\n- Nouveaux aliments, anneaux, jeux de héros, super mises à niveau et corrections de bugs!</string>
     <string name="updateReddit">Afficher les changements</string>
     <string name="updateSlotsSettingText">Mise à jour des machines à sous</string>
     <string name="upgradeCancel">Annuler</string>

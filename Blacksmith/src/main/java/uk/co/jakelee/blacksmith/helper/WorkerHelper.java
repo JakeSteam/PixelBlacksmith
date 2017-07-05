@@ -451,7 +451,12 @@ public class WorkerHelper {
 
             result.append(String.format("%dx %s, ", value, key));
         }
-        return result.substring(0, result.length() - 2) + bonusText;
+
+        try {
+            return result.substring(0, result.length() - 2) + bonusText;
+        } catch (IndexOutOfBoundsException e) {
+            return result + bonusText;
+        }
     }
 
     public static String getRewardResourcesText(Context context, Worker worker, List<Worker_Resource> resources, boolean addItems) {

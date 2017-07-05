@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -120,8 +121,14 @@ public class AdventureActivity extends Activity implements AdapterView.OnItemSel
             categorySelector.setAdapter(adapter);
             categorySelector.setOnItemSelectedListener(this);
             if (!haveLoadedSavedSubs) {
-                categorySelector.setSelection(getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("adventureSubcategory", 0), true);
+                try {
+                    categorySelector.setSelection(getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("adventureSubcategory", 0), true);
+                } catch (IndexOutOfBoundsException e) {
+                    categorySelector.setSelection(0);
+                    Toast.makeText(this, "An error occured! Please try reopening the interface, or try the hotfixes in the settings.", Toast.LENGTH_SHORT).show();
+                }
                 haveLoadedSavedSubs = true;
+
             }
         }
     }

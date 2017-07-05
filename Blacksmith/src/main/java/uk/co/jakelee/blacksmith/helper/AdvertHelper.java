@@ -52,7 +52,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         this.context = context;
 
         Tapjoy.connect(context, "5RRfiBZDQ1igkbGMq000-gECphRBAD7rfoVwE7ZfGkZOWFqxNELMLHp9BVgk", null);
-        Tapjoy.setDebugEnabled(true);
 
         AppLovinSdk.initializeSdk(context);
         advert = AppLovinIncentivizedInterstitial.create(context);
@@ -151,22 +150,20 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
-        } else if (AppLovinInterstitialAd.isAdReadyToDisplay(activity)) {
-            AppLovinInterstitialAd.show(activity);
         } else {
             if (MainActivity.adPlacement != null) {
                MainActivity.adPlacement.requestContent();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!verified && tryingToLoad) {
+                            openInterstitial(purpose);
+                        }
+                    }
+                }, 10000);
             }
         }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!verified && tryingToLoad) {
-                    openInterstitial(purpose);
-                }
-            }
-        }, 10000);
     }
 
     public void showAdvert(MainActivity activity, advertPurpose purpose) {
