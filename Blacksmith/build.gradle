@@ -26,9 +26,6 @@ android {
 repositories {
     mavenCentral()
     maven {
-        url 'http://maven.batch.com/release'
-    }
-    maven {
         url 'https://maven.google.com'
     }
 }
@@ -54,5 +51,4 @@ dependencies {
     compile files('libs/tapjoyconnectlibrary.jar')
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.batch.android:batch-sdk:1.7+'
 }

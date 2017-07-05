@@ -69,8 +69,7 @@ import static uk.co.jakelee.blacksmith.R.id.mainScroller;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener,
-        BatchUnlockListener {
+        QuestUpdateListener{
     private static final Handler handler = new Handler();
     public static RelativeLayout questContainer;
     public static VariableHelper vh;
@@ -89,9 +88,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Batch.Push.setGCMSenderId("484982205674");
-        //Batch.setConfig(new Config("DEV587E86C2DC0F0FE0EE90C49321B"));
-        Batch.setConfig(new Config("587E86C2DBE524C8EB318A0E517579"));
 
         adPlacement = new TJPlacement(this, "WatchAdvert", AdvertHelper.getInstance(this));
 
@@ -245,8 +241,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        Batch.Unlock.setUnlockListener(this);
-        Batch.onStart(this);
         Tapjoy.onActivityStart(this);
 
         // Run background tasks and organise music
@@ -351,7 +345,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onStop() {
-        Batch.onStop(this);
         Tapjoy.onActivityStop(this);
         super.onStop();
 
@@ -461,12 +454,6 @@ public class MainActivity extends AppCompatActivity implements
             }
         };
         handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 5);
-    }
-
-    @Override
-    protected void onDestroy() {
-        Batch.onDestroy(this);
-        super.onDestroy();
     }
 
     private String getRestockText(boolean taxPaid) {
@@ -661,23 +648,5 @@ public class MainActivity extends AppCompatActivity implements
 
         GooglePlayHelper.UpdateEvent(Constants.EVENT_CLAIM_BONUS, 1);
         DisplayHelper.updateBonusChest((ImageView) findViewById(R.id.bonus_chest));
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        Batch.onNewIntent(this, intent);
-        super.onNewIntent(intent);
-    }
-
-    @Override
-    public void onRedeemAutomaticOffer(Offer offer) {
-        // Give resources & features contained in the campaign to the user
-        String rewardMessage = offer.getOfferAdditionalParameters().get("reward_message");
-        for (Resource resource : offer.getResources()) {
-            if (resource.getReference().equals("LARGE_COIN_PACK")) {
-                Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 3000);
-                ToastHelper.showPositiveToast(null, Toast.LENGTH_SHORT, rewardMessage != null ? rewardMessage : "1000 coins rewarded!", true);
-            }
-        }
     }
 }

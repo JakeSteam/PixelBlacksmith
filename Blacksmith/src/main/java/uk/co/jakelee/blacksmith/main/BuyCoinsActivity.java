@@ -61,6 +61,8 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
             return coinPackAmount1 * level;
         } else if (sku.equals(SKU_COIN_2)) {
             return coinPackAmount2 * level;
+        } else if (sku.equals(SKU_COIN_3)) {
+            return coinPackAmount3 * level;
         }
         return 0;
     }
@@ -146,12 +148,14 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     private String getPriceIfPossible(String iapName, String defaultPrice) {
-        if (bp != null) {
-            SkuDetails iapInfo = bp.getPurchaseListingDetails(iapName);
-            if (iapInfo != null) {
-                return iapInfo.priceText;
+        try {
+            if (bp != null) {
+                SkuDetails iapInfo = bp.getPurchaseListingDetails(iapName);
+                if (iapInfo != null) {
+                    return iapInfo.priceText;
+                }
             }
-        }
+        } catch (Exception e) {}
         return defaultPrice;
     }
 
