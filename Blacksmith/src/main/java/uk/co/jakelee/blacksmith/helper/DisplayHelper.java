@@ -108,7 +108,11 @@ public class DisplayHelper {
     }
 
     public static int getAssistantDrawableID(Context context, Assistant assistant) {
-        return context.getResources().getIdentifier("assistant" + assistant.getAssistantId() + "_" + assistant.getTier(), "drawable", context.getPackageName());
+        if (assistant != null) {
+            return context.getResources().getIdentifier("assistant" + assistant.getAssistantId() + "_" + assistant.getTier(), "drawable", context.getPackageName());
+        } else {
+            return R.drawable.help;
+        }
     }
 
     private static RelativeLayout createSlotRoot(Context context) {
@@ -176,9 +180,11 @@ public class DisplayHelper {
     }
 
     public static void updateBonusChest(ImageView chest) {
-        Picasso.with(chest.getContext())
-                .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
-                .into(chest);
+        if (chest != null) {
+            Picasso.with(chest.getContext())
+                    .load(Player_Info.isBonusReady() ? R.drawable.bonus_chest_full : R.drawable.bonus_chest_empty)
+                    .into(chest);
+        }
     }
 
     public static void updateAssistantDisplay(RelativeLayout assistantContainer) {
@@ -204,7 +210,10 @@ public class DisplayHelper {
     }
 
     public String getString(int ID) {
-        return this.context.getString(ID);
+        if (this.context != null) {
+            return this.context.getString(ID);
+        }
+        return "???";
     }
 
     public void createAllSlots(final Activity activity) {

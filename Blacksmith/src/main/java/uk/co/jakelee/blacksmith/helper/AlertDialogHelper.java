@@ -175,6 +175,32 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
+    public static void openBlacksmithSlot(final Activity activity) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(R.string.blacksmith_slots_message);
+
+
+        alertDialog.setNegativeButton(R.string.blacksmith_slots_play, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmithslots"));
+                activity.startActivity(browserIntent);
+                activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("hasViewedBlacksmithSlots", true).apply();
+            }
+        });
+
+        alertDialog.setPositiveButton(activity.getString(R.string.upgradeCancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
     public static void openSocialMedia(final Context context, final Activity activity) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(context.getString(R.string.socialMediaQuestion));
@@ -475,9 +501,9 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton(activity.getString(R.string.lockCancel), new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(activity.getString(R.string.hotfix_ghost_traders), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                Trader.executeQuery("DELETE FROM trader WHERE shopkeeper = 0");
             }
         });
 
@@ -803,9 +829,10 @@ public class AlertDialogHelper {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
 
-        alertDialog.setPositiveButton(context.getString(R.string.updateReddit), new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.reddit.com/r/PixelBlacksmith/"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmithslots"));
+                activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("hasViewedBlacksmithSlots", true).apply();
                 context.startActivity(browserIntent);
             }
         });

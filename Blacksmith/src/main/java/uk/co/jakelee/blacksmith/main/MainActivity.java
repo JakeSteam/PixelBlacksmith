@@ -16,11 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.batch.android.Batch;
-import com.batch.android.BatchUnlockListener;
-import com.batch.android.Config;
-import com.batch.android.Offer;
-import com.batch.android.Resource;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
@@ -29,6 +24,8 @@ import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
+import com.tapjoy.TJPlacement;
+import com.tapjoy.Tapjoy;
 
 import java.util.List;
 import java.util.Locale;
@@ -67,8 +64,7 @@ import static uk.co.jakelee.blacksmith.R.id.mainScroller;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener,
-        BatchUnlockListener {
+        QuestUpdateListener{
     private static final Handler handler = new Handler();
     public static RelativeLayout questContainer;
     public static VariableHelper vh;
@@ -81,14 +77,14 @@ public class MainActivity extends AppCompatActivity implements
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
     private GooglePlayHelper gph;
+    public static TJPlacement adPlacement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Batch.Push.setGCMSenderId("484982205674");
-        //Batch.setConfig(new Config("DEV587E86C2DC0F0FE0EE90C49321B"));
-        Batch.setConfig(new Config("587E86C2DBE524C8EB318A0E517579"));
+
+        adPlacement = new TJPlacement(this, "WatchAdvert", AdvertHelper.getInstance(this));
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
@@ -104,19 +100,27 @@ public class MainActivity extends AppCompatActivity implements
 
         assignUIElements();
 
-        GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                .setViewForPopups(findViewById(android.R.id.content))
-                .build();
+        try {
+            GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                    .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
+                    .setViewForPopups(findViewById(android.R.id.content))
+                    .build();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Unknown error whilst connecting to Google Play!", Toast.LENGTH_SHORT).show();
+        }
 
         dh.createAllSlots(this);
         ratingPrompt();
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
+            if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
+                findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
+            }
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
@@ -232,8 +236,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        Batch.Unlock.setUnlockListener(this);
-        Batch.onStart(this);
+        Tapjoy.onActivityStart(this);
 
         // Run background tasks and organise music
         new Thread(new Runnable() {
@@ -337,7 +340,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onStop() {
-        Batch.onStop(this);
+        Tapjoy.onActivityStop(this);
         super.onStop();
 
         handler.removeCallbacksAndMessages(null);
@@ -448,12 +451,6 @@ public class MainActivity extends AppCompatActivity implements
         handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 5);
     }
 
-    @Override
-    protected void onDestroy() {
-        Batch.onDestroy(this);
-        super.onDestroy();
-    }
-
     private String getRestockText(boolean taxPaid) {
         if (taxPaid) {
             return String.format(getString(R.string.restockTextWithTax),
@@ -464,7 +461,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openEventInfo(View v) {
-        AlertDialogHelper.displayEventInfo(this);
+        //AlertDialogHelper.displayEventInfo(this);
+        AlertDialogHelper.openBlacksmithSlot(this);
     }
 
     private void updateVisitors() {
@@ -645,23 +643,5 @@ public class MainActivity extends AppCompatActivity implements
 
         GooglePlayHelper.UpdateEvent(Constants.EVENT_CLAIM_BONUS, 1);
         DisplayHelper.updateBonusChest((ImageView) findViewById(R.id.bonus_chest));
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        Batch.onNewIntent(this, intent);
-        super.onNewIntent(intent);
-    }
-
-    @Override
-    public void onRedeemAutomaticOffer(Offer offer) {
-        // Give resources & features contained in the campaign to the user
-        String rewardMessage = offer.getOfferAdditionalParameters().get("reward_message");
-        for (Resource resource : offer.getResources()) {
-            if (resource.getReference().equals("LARGE_COIN_PACK")) {
-                Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, 3000);
-                ToastHelper.showPositiveToast(null, Toast.LENGTH_SHORT, rewardMessage != null ? rewardMessage : "1000 coins rewarded!", true);
-            }
-        }
     }
 }

@@ -69,8 +69,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V2_0_3 = 18;
     private final static int DB_V2_1_0 = 19;
     private final static int DB_V2_1_3 = 20;
+    private final static int DB_V2_2_0 = 21;
 
-    public final static int DB_LATEST = DB_V2_1_3;
+    public final static int DB_LATEST = DB_V2_2_0;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -257,6 +258,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.1.3 Patch", 95);
             patch212to213();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_1_3).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) < DatabaseHelper.DB_V2_2_0) {
+            setProgress("2.2.0 Patch", 96);
+            patch214to220();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_2_0).apply();
         }
 
         setProgress("Complete", 100);
@@ -872,6 +879,7 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         new Player_Info("CoinsPurchased", 0).save();
     }
 
+
     private void patch201to203() {
         List<Worker_Resource> workerResources = new ArrayList<>();
         workerResources.add(new Worker_Resource(220, 130, 1, 8));
@@ -958,6 +966,20 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private void patch212to213() {
         Visitor_Type.executeQuery("UPDATE visitortype SET weighting = 2 WHERE visitor_id = 53");
         Assistant.executeQuery("UPDATE assistant SET reward_quantity = (reward_quantity / 3), reward_frequency = (reward_frequency * 2)");
+    }
+
+    private void patch214to220() {
+        Trader.executeQuery("DELETE FROM trader WHERE shopkeeper = 0");
+
+        List<Visitor_Stats> visitorStats = new ArrayList<>();
+        visitorStats.add(new Visitor_Stats(54L, 0, 52L, 1L, 0, 0L, 0L));
+        visitorStats.add(new Visitor_Stats(55L, 0, 52L, 1L, 0, 0L, 0L));
+        Visitor_Stats.saveInTx(visitorStats);
+
+        List<Visitor_Type> visitorTypes = new ArrayList<>();
+        visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.15, 1.07, 1.16, false, false, false, 6));
+        visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.15, 1.07, 1.16, false, false, false, 6));
+        Visitor_Type.saveInTx(visitorTypes);
     }
 
     private void createAssistants() {

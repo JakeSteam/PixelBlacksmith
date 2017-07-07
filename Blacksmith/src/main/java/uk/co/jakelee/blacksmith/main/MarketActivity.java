@@ -113,7 +113,7 @@ public class MarketActivity extends Activity {
             inflatedView.setTag(trader.getId());
             inflatedView.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    if (SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500) {
+                    if (MainActivity.vh == null || SystemClock.elapsedRealtime() - MainActivity.vh.lastTraderClick < 500) {
                         return;
                     } else {
                         MainActivity.vh.lastTraderClick = SystemClock.elapsedRealtime();

@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion apiVersion
-    buildToolsVersion compilerVersion
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion apiVersion
-        versionCode 70
-        versionName "2.1.4"
+        versionCode 71
+        versionName "2.2.0"
     }
     buildTypes {
         release {
@@ -26,7 +26,7 @@ android {
 repositories {
     mavenCentral()
     maven {
-        url 'http://maven.batch.com/release'
+        url 'https://maven.google.com'
     }
 }
 
@@ -48,7 +48,7 @@ dependencies {
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile project(':BaseGameUtils')
     compile files('libs/applovin-sdk-6.2.2.jar')
+    compile files('libs/tapjoyconnectlibrary.jar')
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.batch.android:batch-sdk:1.7+'
 }

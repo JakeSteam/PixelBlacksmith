@@ -81,6 +81,19 @@
                     android:onClick="buyCoins2"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
+
+                <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                    android:id="@+id/coins3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/button_extra_wide"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="buyCoins3"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
             </LinearLayout>
 
         </ScrollView>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.text.NumberFormat;
@@ -21,8 +22,10 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 public class BuyCoinsActivity extends Activity implements BillingProcessor.IBillingHandler {
     private static final String SKU_COIN_1 = "coin_pack_1";
     private static final String SKU_COIN_2 = "coin_pack_2";
+    private static final String SKU_COIN_3 = "coin_pack_3";
     private static final int coinPackAmount1 = 500;
     private static final int coinPackAmount2 = 3000;
+    private static final int coinPackAmount3 = 10000;
     BillingProcessor bp;
     boolean canBuyIAPs = false;
 
@@ -39,8 +42,13 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         }
 
         int playerLevel = Player_Info.getPlayerLevel();
-        ((TextView) findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount1)));
-        ((TextView) findViewById(R.id.coins2)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount2)));
+        ((TextView) findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton),
+                NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount1),
+                getPriceIfPossible(SKU_COIN_1, "$1.99")));
+        ((TextView) findViewById(R.id.coins2)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount2),
+                getPriceIfPossible(SKU_COIN_2, "$4.99")));
+        ((TextView) findViewById(R.id.coins3)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount3),
+                getPriceIfPossible(SKU_COIN_3, "$9.99")));
     }
 
     @Override
@@ -53,6 +61,8 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
             return coinPackAmount1 * level;
         } else if (sku.equals(SKU_COIN_2)) {
             return coinPackAmount2 * level;
+        } else if (sku.equals(SKU_COIN_3)) {
+            return coinPackAmount3 * level;
         }
         return 0;
     }
@@ -100,6 +110,14 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         }
     }
 
+    public void buyCoins3(View v) {
+        if (canBuyIAPs) {
+            bp.purchase(this, SKU_COIN_3);
+        } else {
+            ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
+        }
+    }
+
     @Override
     public void onDestroy() {
         if (bp != null)
@@ -127,6 +145,18 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         }
 
         return builder.toString();
+    }
+
+    private String getPriceIfPossible(String iapName, String defaultPrice) {
+        try {
+            if (bp != null) {
+                SkuDetails iapInfo = bp.getPurchaseListingDetails(iapName);
+                if (iapInfo != null) {
+                    return iapInfo.priceText;
+                }
+            }
+        } catch (Exception e) {}
+        return defaultPrice;
     }
 
     public void openHelp(View view) {

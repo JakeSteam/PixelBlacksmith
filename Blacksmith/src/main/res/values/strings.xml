@@ -17,7 +17,7 @@
     <string name="assistantButtonLockedCoins">Unlock for </string>
     <string name="assistantBuyQuestion">Unlock \"%1$s\" for %2$d coins?</string>
     <string name="assistantSpecs">Tier %1$d %2$s</string>
-    <string name="assistantDesc">Per level:\n%1$dx %2$s per %3$s.\n+%4$.0f%% XP / coin boost.\n\nCurrent:\n%5$dx %2$s per %3$s.\n+%6$.0f%% XP / coin boost.</string>
+    <string name="assistantDesc">Per level:\n%1$dx %2$s per %3$s.\n+%4$.0f% XP / coin boost.\n\nCurrent:\n%5$dx %2$s per %3$s.\n+%6$.0f% XP / coin boost.</string>
     <string name="assistantClaimed">Received %1$dx %2$s!</string>
     <string name="assistantTimeLeft">Assistant bonus ready to claim in %1$s.</string>
     <string name="assistantProgressText">Lev %1$d/%2$d (%3$d%%)</string>
@@ -48,7 +48,7 @@
     <string name="help_coins">Coins</string>
     <string name="help_text_coins">Coins are earned and spent during normal gameplay. The buyable amount is dependent on your current player level.\nThe larger pack is also better value, so check out the two prices and see which works best for you!\n</string>
     <string name="help_prestige">Prestige</string>
-    <string name="help_text_prestige">Prestiging resets many aspects of your game, and can only be performed at level 70 by premium players.\n\nBenefits:\n+50%% coins bonus.\n-25%% XP bonus.\n+100%% to completion percentage.\nAchievement on first prestige.\n\nReset:\nAll items (except pages and books).\nAll upgrades (except premium benefits).\nAll slots.\nXP / Level.\nCurrent visitors.\nExtra trader stock unlocked.\nAll workers.\n\nKept:\nDiscovered visitor preferences.\nVisitor trophy progress.\nHighest level statistic.\nItems smelted / crafted / traded / bought / sold &amp; gems embedded statistics.\nCoins earned statistic.\nBiggest trade statistic.\nHelper\'s trips statistic.\nQuests completed statistic.</string>
+    <string name="help_text_prestige">Prestiging resets many aspects of your game, and can only be performed at level 70 by premium players.\n\nBenefits:\n+50% coins bonus.\n-25% XP bonus.\n+100% to completion percentage.\nAchievement on first prestige.\n\nReset:\nAll items (except pages and books).\nAll upgrades (except premium benefits).\nAll slots.\nXP / Level.\nCurrent visitors.\nExtra trader stock unlocked.\nAll workers.\n\nKept:\nDiscovered visitor preferences.\nVisitor trophy progress.\nHighest level statistic.\nItems smelted / crafted / traded / bought / sold &amp; gems embedded statistics.\nCoins earned statistic.\nBiggest trade statistic.\nHelper\'s trips statistic.\nQuests completed statistic.</string>
     <string name="help_tips">Prestige</string>
     <string name="help_help">Help</string>
     <string name="help_text_help">You want help for the help!?\nGet out of here, there\'s money to make!</string>
@@ -71,13 +71,13 @@
     <string name="help_market">Market</string>
     <string name="help_text_market">Raw resources (ore, some secondaries) are generally purchased from the market. Traders come and go, each with different specialities.\nOnly traders with stock will be displayed, so buying all stock from more common traders is a good way to get rarer traders.\nIf a lot of purchases are made from a trader, more items will unlock for sale.\nScroll up and down to see the full list of traders.\nIf all traders are out of stock, you\'ll have to wait for the market to restock, or pay a bribe / watch an advert to get them all to come back immediately.\nTraders can also be locked in place for a fee, ensuring vital resources can always be purchased (for an increased price).</string>
     <string name="help_settings">Settings</string>
-    <string name="help_text_settings">Game settings can be changed here, changes take place as soon as the settings interface is closed.\nSound Options:\nHere all game sounds, game music, and notification sounds can be enabled / disabled.\nNotification Options:\nMarket restock, visitor spawn, worker return, items crafted, and bonus chest refill notifications can be enabled / disabled.\nGameplay Options:\n\'Full Screen\' enables a more immersive full screen mode.\nThe \'Quick Select\' functionality allows tapping the item image in a crafting interface to change item. Disabling \'Quick Select\' will make swiping to change item easier.\nThe \'Quick Log Access\' option makes tapping a message open the message log instead of closing the current message.\nThe \'Longer Messages\' option increases the time errors and alerts stay on screen.\nThe \'Use Max\' option replaces \'Make 1000\' buttons with \'Make Max\'.\nEnabling \'Bulk Craft Stack\' causes items to stack up when bulk crafting. This means a lengthy process can carry on whilst short-term crafting is still possible.\nPerformance Options:\nThe \'Auto Refresh\' option will enable auto refreshing on inventory and trade screens. This feature can cause performance issues, so is disabled by default.\nThe \'Full Screen Check\' option will enable check fullscreen status. If disabled, fullscreen mode will be less reliable, but performance will be improved.\nThe \'Update Slots\' option will enable updating item slots. Disabling it is not recommended, but can improve performance slightly.\nPremium Options:\nPremium players can disable all mention of adverts and prestige their account. Prestiging resets all items (except pages &amp; books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\nIn return for being set back to level 1, you\'ll receive +50%% to coin earnings, and -25%% to XP gains.\nExtras:\nThe message log will show the last 100 important game messages.\nThe tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\nThe rate app button will link you to the game\'s Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\nIf you\'ve received a support code from customer support, it can also be entered here.\nYou game save can also be imported / exported from your device here. Saves are stored in ExternalStorage/PixelBlacksmith/PixelBlacksmith(date &amp; time).save.\nGoogle Play:\nGoogle Play Games services can also be accessed here, including cloud saves, achievements, leaderboards, and quests.\nSettings Code:\nThe settings code is an indicator of your current settings. Changing any setting will generate a new unique code. It can be used to help diagnose problems, or to quickly check two devices have the same settings.</string>
+    <string name="help_text_settings">Game settings can be changed here, changes take place as soon as the settings interface is closed.\nSound Options:\nHere all game sounds, game music, and notification sounds can be enabled / disabled.\nNotification Options:\nMarket restock, visitor spawn, worker return, items crafted, and bonus chest refill notifications can be enabled / disabled.\nGameplay Options:\n\'Full Screen\' enables a more immersive full screen mode.\nThe \'Quick Select\' functionality allows tapping the item image in a crafting interface to change item. Disabling \'Quick Select\' will make swiping to change item easier.\nThe \'Quick Log Access\' option makes tapping a message open the message log instead of closing the current message.\nThe \'Longer Messages\' option increases the time errors and alerts stay on screen.\nThe \'Use Max\' option replaces \'Make 1000\' buttons with \'Make Max\'.\nEnabling \'Bulk Craft Stack\' causes items to stack up when bulk crafting. This means a lengthy process can carry on whilst short-term crafting is still possible.\nPerformance Options:\nThe \'Auto Refresh\' option will enable auto refreshing on inventory and trade screens. This feature can cause performance issues, so is disabled by default.\nThe \'Full Screen Check\' option will enable check fullscreen status. If disabled, fullscreen mode will be less reliable, but performance will be improved.\nThe \'Update Slots\' option will enable updating item slots. Disabling it is not recommended, but can improve performance slightly.\nPremium Options:\nPremium players can disable all mention of adverts and prestige their account. Prestiging resets all items (except pages &amp; books), XP, coins, upgrades, and trader progress, but keeps statistics and premium bonuses.\nIn return for being set back to level 1, you\'ll receive +50% to coin earnings, and -25% to XP gains.\nExtras:\nThe message log will show the last 100 important game messages.\nThe tutorial button will replay the game tutorial, whilst the credits button will tell you a bit more about the people and technologies that contributed towards the game.\nThe rate app button will link you to the game\'s Play Store listing to rate it, whilst the social media button provides links to Pixel Blacksmith online.\nIf you\'ve received a support code from customer support, it can also be entered here.\nYou game save can also be imported / exported from your device here. Saves are stored in ExternalStorage/PixelBlacksmith/PixelBlacksmith(date &amp; time).save.\nGoogle Play:\nGoogle Play Games services can also be accessed here, including cloud saves, achievements, leaderboards, and quests.\nSettings Code:\nThe settings code is an indicator of your current settings. Changing any setting will generate a new unique code. It can be used to help diagnose problems, or to quickly check two devices have the same settings.</string>
     <string name="help_trader">Trader</string>
     <string name="help_text_trader">Various traders will appear in the market, each offering different items. Making many purchases from a trader will usually unlock more items for sale.\nMany traders require a minimum level before they will appear, especially those selling higher level / rarer equipment.\nThey each have a limited amount of stock and restocking happens every 24 hours. Time until next restock is available on the statistics interface, and a notification is also sent.\nA trader can also be restocked for a cost. The buy all button will also buy every item the trader is currently selling.\nLocked traders restock for free, but charge higher prices.</string>
     <string name="help_statistics">Statistics</string>
     <string name="help_text_statistics">Useful statistics such as time until next restock / visitor are available here.\nAdditionally, progress towards various achievements can be tracked using the statistics displayed, as well as other miscellaneous pieces of information.\nCompletion percentage is also visible here. Many factors contribute to this percentage:\n- Level\n- Upgrades\n- Traders unlocked\n- Trader stocks unlocked\n- Slots unlocked\n- Items seen\n- Visitor preferences discovered\n- Trophies unlocked\n- Helpers purchased\nNote that every prestige (Level 70+) counts as an additional 100%.\nTotal coin percentage is calculated as: Coins Upgrade + (0.5 * Prestige Level)), then converted from a multiplier into a percentage.\nTotal XP percentage is calculated as: XP Upgrade * (0.75 ^ Prestige Level)), then converted from a multiplier into a percentage.</string>
     <string name="help_table">Table</string>
-    <string name="help_text_table">The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\nAfter this, items can be optionally embedded with gems at the gem table.\nAdditionally, rare pages can be crafted into books here. Crafting a book will require 10 pages, and many additional ingredients. Pages are obtained from a variety of sources:\n- 3 pages are rewarded when a visitor trophy is unlocked.\n- 35%% chance to receive one when opening the bonus chest.\n- 0-90%% chance to receive one from a worker, depending on food used (see worker help for more info).\nSwipe left and right to change items. Use the up and down arrows to change tiers.</string>
+    <string name="help_text_table">The table is an essential part of the item creating process, converting unfinished items into finished items, with the addition of secondary ingredients.\nAfter this, items can be optionally embedded with gems at the gem table.\nAdditionally, rare pages can be crafted into books here. Crafting a book will require 10 pages, and many additional ingredients. Pages are obtained from a variety of sources:\n- 3 pages are rewarded when a visitor trophy is unlocked.\n- 35% chance to receive one when opening the bonus chest.\n- 0-90% chance to receive one from a worker, depending on food used (see worker help for more info).\nSwipe left and right to change items. Use the up and down arrows to change tiers.</string>
     <string name="help_trade">Trade</string>
     <string name="help_text_trade">This screen is where you\'ll make all of your money!\nThe discovered bonus is displayed next to the sell price of each item. It\'s entirely possible the item will sell for more than this, if all of the visitor\'s preferences have not yet been discovered.\nUndiscovered preferences will be displayed as \"???\".\nIf an item has been sold to a visitor in the past, it will be shown in grey to make it easier to work out preference.\nThe progress bar will let you see your progress at a glance, and the item criteria and visitor are also visible.\nThe finish button will close this trade for now.\nThe \'Max\' button will, when checked, let you trade as many of an item as possible at once.\nLong pressing an item will mark it as unsellable, useful when saving items.</string>
     <string name="help_trophy">Trophy</string>
@@ -85,19 +85,19 @@
     <string name="help_visitor">Visitor</string>
     <string name="help_text_visitor">This screen provides an overview of the currently selected visitor.\nOnce a visitor\'s preferred item type, tier, or state have been discovered through trading, this will be displayed underneath the visitor\'s picture. Also shown is how much extra a visitor will pay for these preferences. Combine all three to achieve the biggest profits!\nItem type: This is the item\'s category. For example dagger, sword, or hatchet.\nItem tier: This is the quality of the item\'s material. For example bronze, iron, or steel.\nItem state: This is the condition of the item. For example unfinished (shattered vial icon) or normal (vial icon). At higher levels, this can be an embedded gem such as red (ruby icon) or blue (sapphire icon).\nAdditionally, the highest value item previously traded with the visitor is displayed.\nIn the list of demands, black denotes a required trade, whilst grey is optional.\nOnce all required trades have been completed, the visitor can be completed and you will receive a reward. If all of the visitor\'s optional demands have also been completed, you\'ll receive double the reward!\nAlternatively, they can be shooed away for a fee. This fee is based on your current level, how long the visitor has been waiting, and the number of incomplete demands (required + optional).</string>
     <string name="help_upgrade">Upgrade</string>
-    <string name="help_text_upgrade">On this screen various upgrades can be bought, to help improve your shop.\nCraft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.\nCoins Bonus\nUpgrading coins bonus will increase the %% of bonus coins received on every trade / sale.\nLegendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.\nMarket Restock Time\nUpgrading market restock time will decrease the hours between new traders entering the market.\nMaximum Traders\nUpgrading maximum traders will increase how many traders can be in the market at once.\nMaximum Visitor Rewards\nUpgrading maximum visitor rewards will increase the maximum number of items a visitor can give you.\nMaximum Visitors\nUpgrading maximum visitors will increase the maximum number of visitors in the shop at once.\nMinimum Visitor Rewards\nUpgrading minimum visitor rewards will increase the minimum number of items a visitor can give you.\nRestock All Cost\nUpgrading the restock all cost will reduce the cost of restocking the entire marketplace.\nVisitor Spawn Time\nUpgrading visitor spawn time will decrease the minutes between additional visitors appearing.\nWorker Time\nUpgrading worker time will decrease the time taken for a helper or hero to complete a trip.\nXP Bonus\nUpgrading XP bonus will increase the %% of bonus XP received for every in-game action.</string>
+    <string name="help_text_upgrade">On this screen various upgrades can be bought, to help improve your shop.\nCraft Time\nUpgrading craft time will decrease the amount of time each item takes. This is calculated as item value * craft time.\nCoins Bonus\nUpgrading coins bonus will increase the % of bonus coins received on every trade / sale.\nLegendary Chance\n(Premium Only) Upgrading legendary chance will increase the likelihood of receiving legendary items as a reward from visitors.\nMarket Restock Time\nUpgrading market restock time will decrease the hours between new traders entering the market.\nMaximum Traders\nUpgrading maximum traders will increase how many traders can be in the market at once.\nMaximum Visitor Rewards\nUpgrading maximum visitor rewards will increase the maximum number of items a visitor can give you.\nMaximum Visitors\nUpgrading maximum visitors will increase the maximum number of visitors in the shop at once.\nMinimum Visitor Rewards\nUpgrading minimum visitor rewards will increase the minimum number of items a visitor can give you.\nRestock All Cost\nUpgrading the restock all cost will reduce the cost of restocking the entire marketplace.\nVisitor Spawn Time\nUpgrading visitor spawn time will decrease the minutes between additional visitors appearing.\nWorker Time\nUpgrading worker time will decrease the time taken for a helper or hero to complete a trip.\nXP Bonus\nUpgrading XP bonus will increase the % of bonus XP received for every in-game action.</string>
     <string name="help_premium">Premium</string>
-    <string name="help_text_premium">Buying premium provides a ton of new features and helps further development on the game!\nOnce premium, you\'ll also be able to prestige, essentially starting a new game with +50%% coin earnings and -25%% XP gain.\nThere\'s also extremely valuable legendary items, a reduced cooldown on the bonus chest, and many more features!\nAmong the benefits is a tax paid by all out of stock traders when an automatic restock happens. Think of it as a reward for being a loyal customer!\nNote that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.\nContributions\nContributing is a way to continue helping the games\'s development. Contributing repeatedly will provide extra benefits such as suggesting new items and visitors!</string>
+    <string name="help_text_premium">Buying premium provides a ton of new features and helps further development on the game!\nOnce premium, you\'ll also be able to prestige, essentially starting a new game with +50% coin earnings and -25% XP gain.\nThere\'s also extremely valuable legendary items, a reduced cooldown on the bonus chest, and many more features!\nAmong the benefits is a tax paid by all out of stock traders when an automatic restock happens. Think of it as a reward for being a loyal customer!\nNote that premium status is applied to your account forever, and any other devices you install Pixel Blacksmith on will also be made premium.\nContributions\nContributing is a way to continue helping the games\'s development. Contributing repeatedly will provide extra benefits such as suggesting new items and visitors!</string>
     <string name="help_messages">Messages</string>
     <string name="help_text_messages">The last 100 important messages are displayed here.\nCommon messages, such as crafting beginning will not be displayed, but rarer ones like levelling up will. This way, if a message is missed, it can be reviewed here.\nBy default, tapping a message will close it. The \'Quick Log Access\' setting will change this to open the messages interface instead.</string>
     <string name="help_helper">Helper</string>
     <string name="help_text_helper">Helpers help gather resources. Every helper has a minimum level, and a hire cost based on that level.\nOnce a helper has been hired, they will gather resources for you over time.\nThe resources gained depends on the tool used. Higher tier tools will gather more / better resources.\nProviding a helper with food will provide bonus resources and provide a chance of finding a page.\nEach helper has a favourite food, which will provide twice the normal bonus if provided. Food is consumed on each trip.\nIf \'Auto-feed\' is enabled, helpers (and heroes) will automatically restock themselves if the last used food is available.\nTapping the \'Send Out Helpers\' button will send out all available helpers / heroes.\nTapping a purchased helper will tell you their name, total trips, and current food item.\nTapping the food item will let you pick another. Discovered favourite food(s) are highlighted in green, and provide double food bonuses + page chance.\nTapping the tool will let you to choose another, based on items you currently own.\nTapping the resource indicator will provide information on the resources currently being gathered.\nThe large button below the helper sends them out to gather resources. Additionally, tapping the button whilst the helper is busy will display the exact time until they return.</string>
     <string name="help_hero">Hero</string>
-    <string name="help_text_hero">Heroes are hireable workers who can be given equipment, and sent on adventures.\nThe higher a hero\'s strength, the more likely they are to succeed. The %% chance of success is displayed on the Start Adventure button.\nIf hero strength = adventure difficulty, there is a 50%% chance of success. If hero strength >= 2x adventure difficulty, success is guaranteed.\nAdditionally if success is guaranteed, bonus items will be rewarded from the adventure, between 1.1-2.5x the normal amount.\nIf a hero fails an adventure, they will lose a random 1-3 pieces of equipment. As such, be careful not to send heroes on unwinnable adventures.</string>
+    <string name="help_text_hero">Heroes are hireable workers who can be given equipment, and sent on adventures.\nThe higher a hero\'s strength, the more likely they are to succeed. The % chance of success is displayed on the Start Adventure button.\nIf hero strength = adventure difficulty, there is a 50% chance of success. If hero strength >= 2x adventure difficulty, success is guaranteed.\nAdditionally if success is guaranteed, bonus items will be rewarded from the adventure, between 1.1-2.5x the normal amount.\nIf a hero fails an adventure, they will lose a random 1-3 pieces of equipment. As such, be careful not to send heroes on unwinnable adventures.</string>
     <string name="help_tools">Tools</string>
     <string name="help_text_tools">Select a tool for a helper to use by first selecting a category, then an item.\nOnly currently owned items will be displayed. Note that higher tier tools will provide better / more resources.\nTools do not degrade, and can be reclaimed by providing the helper with a replacement tool.</string>
     <string name="help_quest">Quests</string>
-    <string name="help_text_quest">Quests are an excellent way to gather additional rewards whilst playing.\nOnce a quest is accepted, the relevant icon and current progress will appear in the indicator. If multiple are selected, the next to end will be displayed.\nA list of accepted / upcoming / completed / failed quests is available, as well as a schedule of all events.\nAll quests reward XP, 0-2 pages, and 2-24 items / 50-2100 coins.\nXP is calculated by multiplier * current level. The values for the multiplier are: Easy 9, Medium 15, Hard 35, Elite 75.\nPage chance is 25%% for Easy, 50%% for Medium, 100%% for Hard, and 200%% for Elite (2 pages!).\nThe number of items / coins rewarded is halved for Easy, unchanged for Medium, doubled for Hard, and tripled for Elite.\nAccepted quests (except contribution quests) will give a reminder notification (via Google Play Games) 24 hours before the end.</string>
+    <string name="help_text_quest">Quests are an excellent way to gather additional rewards whilst playing.\nOnce a quest is accepted, the relevant icon and current progress will appear in the indicator. If multiple are selected, the next to end will be displayed.\nA list of accepted / upcoming / completed / failed quests is available, as well as a schedule of all events.\nAll quests reward XP, 0-2 pages, and 2-24 items / 50-2100 coins.\nXP is calculated by multiplier * current level. The values for the multiplier are: Easy 9, Medium 15, Hard 35, Elite 75.\nPage chance is 25% for Easy, 50% for Medium, 100% for Hard, and 200% for Elite (2 pages!).\nThe number of items / coins rewarded is halved for Easy, unchanged for Medium, doubled for Hard, and tripled for Elite.\nAccepted quests (except contribution quests) will give a reminder notification (via Google Play Games) 24 hours before the end.</string>
     <string name="help_item_picker">Quick Select</string>
     <string name="help_text_item_picker">When the "Quick Select" setting is enabled, tapping an item will display a list of all items in the current tier.\nTapping any item image / name will load it into the crafting interface, and this can often be faster than swiping to the area.\nWhen this option is enabled, swiping to change item can be trickier, so some players may wish to disable it via the settings menu for easier swiping.\nAdditionally, the "Show All Items" toggle will switch between only displaying creatable items, and displaying all items.</string>
     <string name="help_hero_adventures">Adventures</string>
@@ -180,7 +180,7 @@
     <string name="tip_68">Contributors can unlock beta access, suggest new items / quests / visitors, and more, via the premium screen.</string>
     <string name="tip_69">Traders can be locked in place for a price. Once locked, they\'ll charge higher prices but restock for free!</string>
     <string name="tip_70">Want to leave the game until your items have finished crafting / selling / buying? Make sure the notification is turned on!</string>
-    <string name="tip_71">Having trouble reaching 100% completion? Tap your completion %% to see a breakdown of your progress.</string>
+    <string name="tip_71">Having trouble reaching 100% completion? Tap your completion % to see a breakdown of your progress.</string>
     <string name="tip_72">The game can be locked in portrait or landscape if you prefer playing a certain way.</string>
     <string name="tip_73">Enchanted items will have a coloured tint to them, to help easily identify them.</string>
     <string name="tip_74">Long press an item to lock it, making it unsellable and untradeable. Useful when saving items for a worker or hero!</string>
@@ -221,7 +221,7 @@
     <string name="please_select">Please select</string>
     <string name="adventure">Adventure</string>
     <string name="difficulty_short">Diff.</string>
-    <string name="hero_set_bonus">The %1$s set provides +%2$d%% strength bonus, activated by %3$s</string>
+    <string name="hero_set_bonus">The %1$s set provides +%2$d% strength bonus, activated by %3$s</string>
     <string name="hero_no_set_bonus">No sets currently active!</string>
     <string name="fixed">Fixed</string>
     <string name="temporary">Temporary</string>
@@ -1002,6 +1002,7 @@
     <string name="language_7">Japanese</string>
     <string name="language_8">Spanish</string>
     <string name="language_9">German</string>
+    <string name="language_10">Portuguese</string>
 
     <string name="setting_1">Game Sound</string>
     <string name="setting_2">Game Music</string>
@@ -1048,7 +1049,7 @@
     <string name="su_8">-50% Worker Time</string>
     <string name="su_9">2x Trade Price</string>
     <string name="su_10">-50% Market Buy Cost</string>
-    <string name="su_11">-50%% Bonus Chest Time</string>
+    <string name="su_11">-50% Bonus Chest Time</string>
     <string name="su_12">100x Contribution Reward</string>
     <string name="su_13">Guaranteed Pages</string>
     <string name="su_14">All Quests Medium+</string>
@@ -1171,7 +1172,7 @@
     <string name="trader_desc_40">Baker\'s dozens!</string>
     <string name="trader_desc_41">Don\'t ask how I got this.</string>
     <string name="trader_desc_42">The finest rune resources in the land!</string>
-    <string name="trader_desc_43">All 100%% gen-u-ine dragon.</string>
+    <string name="trader_desc_43">All 100% gen-u-ine dragon.</string>
     <string name="trader_desc_44">For blobs only!</string>
     <string name="trader_desc_45">For fancy blobs only!</string>
     <string name="trader_desc_46">Fresh off the asteroid.</string>
@@ -1281,6 +1282,8 @@
     <string name="visitor_name_51">Mr Tentacles</string>
     <string name="visitor_name_52">Bresh Bosh</string>
     <string name="visitor_name_53">Easter Bunny</string>
+    <string name="visitor_name_54">Blinky</string>
+    <string name="visitor_name_55">Sparky</string>
 
     <string name="visitor_desc_1">I like unfinished things, they burn better!</string>
     <string name="visitor_desc_2">If only I was a woodcutter...</string>
@@ -1335,6 +1338,8 @@
     <string name="visitor_desc_51">Want a burger?</string>
     <string name="visitor_desc_52">I\'s got all these coins but nuffin good. Whatchu got?</string>
     <string name="visitor_desc_53">Here to spread Easter joy!</string>
+    <string name="visitor_desc_54">I love my brother!</string>
+    <string name="visitor_desc_55">I hate my brother!</string>
 
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>
@@ -1353,7 +1358,7 @@
     <string name="tutorialVisitorPicture">Visitor</string>
     <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
     <string name="tutorialVisitorPrefs">Preferences</string>
-    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5%% bonus if they are traded.</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5% bonus if they are traded.</string>
     <string name="tutorialVisitorDemands">Demands</string>
     <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
 
@@ -1533,11 +1538,11 @@
     <string name="contributeTitle" translatable="false">%1$s (%2$d / %3$d)</string>
     <string name="contributeHeader">Rewards:</string>
 
-    <string name="buyCoinsButton">%1$s coins</string>
+    <string name="buyCoinsButton" translatable="false">%1$s (%2$s)</string>
     <string name="buyCoinsSuccess">Successfully bought %1$d coins, enjoy!</string>
     <string name="buyCoinsDesc">Running low on coins? Well, you could make a profit crafting items, but maybe that\'s not your style. Maybe you\'re far too busy for all that, and want to roll around in coins!
-\n\nToday is your lucky day! Two coin packs are available; the first is 500 x your level, the second is 3,000 x your level.
-\n\nWant to get more value for money? Buy the bigger pack or level up!</string>
+\n\nToday is your lucky day! Three coin packs are available; the first is 500x your level, the second is 3,000x, and the third is 10,000x.
+\n\nWant to get more value for money? Buy the bigger packs or level up!</string>
 
     <string name="buyPremium">Go Premium!</string>
     <string name="boughtPremium">You\'ve bought premium! Thank you so much, your support really helps future development happen! &lt;3</string>
@@ -1579,7 +1584,7 @@
     <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
-    <string name="updateMessage">Updated to version %s!\n\nMain changes:\n- Easter Event! Collect eggs to craft a valuable Golden Egg!\n- Assistants! Unlock assistants to get XP, coin, and item bonuses!\n- Languages! 8 new languages added, with improvements coming!\n- New food, rings, hero sets, super upgrades, and bugfixes!</string>
+    <string name="updateMessage">Updated to version %s!\n\nChanges:\nAdded portuguese, 2 new visitors, new coin pack, backup advert provider. Increased message duration, and many, many bug / crash fixes.\n\nPS: The free spin-off game Blacksmith Slots is now live!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
@@ -1608,7 +1613,7 @@
     <string name="buyWorker">Purchase Helper</string>
     <string name="buyHero">Purchase Hero</string>
     <string name="workerCoins">%,d coins</string>
-    <string name="workerLevel">Lev %d</string>
+    <string name="workerLevel" translatable="false">Lev %d</string>
     <string name="workerReturnTime">%1$s will return in %2$s.</string>
     <string name="workerTimesCompleted">%1$s has completed %2$d trips, and is currently eating %3$s (+%4$d%%).</string>
     <string name="heroTimesCompleted">%1$s has completed %2$d adventures, and currently has a strength of %3$d.</string>
@@ -1621,7 +1626,7 @@
     <string name="workersReturned">%1$d helpers (%2$s) have returned, laden down with resources! For more details, view the message log.</string>
     <string name="heroesReturned">%1$d heroes (%2$s) have returned from adventures, %3$d of which were successful! For more details, view the message log.</string>
     <string name="workerResources">Resources: %s.</string>
-    <string name="workerFoodBonus">+</string>
+    <string name="workerFoodBonus" translatable="false">+</string>
 
     <string name="heroTotalStrength">Total Strength: %d</string>
     <string name="heroFailText">%1$s has failed whilst attempting to %2$s! Unfortunately, they lost their %3$s.</string>
@@ -1652,16 +1657,16 @@
     <string name="upgradeConfirm">Upgrade</string>
     <string name="upgradeCancel">Cancel</string>
     <string name="upgradeSuccess">Upgraded %s!</string>
-    <string name="upgradeDescription">%1$s
+    <string name="upgradeDescription" translatable="false">%1$s
 \n%2$d / %3$d %4$s
 \n%5$s%6$d %7$s: %8$,d coins</string>
-    <string name="upgradeCompletedDescription">%1$s
+    <string name="upgradeCompletedDescription" translatable="false">%1$s
 \n%2$d / %3$d %4$s</string>
 
     <string name="prestigeQuestion" formatted="false">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50% coin &amp; -25% XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
-    <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
+    <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d% &amp; XP gains -%2$d%%! Good luck!</string>
     <string name="prestigeCancel">Cancel</string>
 
     <string name="unlockConfirm">Are you sure you want to unlock %1$s? Unlocking is free, but it will cost %2$d coins to lock again.</string>
@@ -1758,13 +1763,13 @@
     <string name="orientationPortrait">Portrait</string>
     <string name="orientationLandscape">Landsc.</string>
     <string name="launchHotfixes">Bug\nFixes</string>
-    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!\n\n\"Reset Positions\" will reset the saved positions for all interfaces, useful if your last viewed item is now not available.</string>
+    <string name="hotfixDesc">\"Fix Unsellable\" will fix a rare bug where items will become unsellable. It won\'t do anything if you\'re not encountering problems!\n\n\"Reset Positions\" will reset the saved positions for all interfaces, useful if your last viewed item is now not available.\n\n"Ghost Traders" will remove a bug where trader_name_x will appear instead of a trader.</string>
     <string name="hotfixDuplicate">Fix Unsellable</string>
     <string name="hotfixPositions" translatable="false">Reset Positions</string>
 
     <string name="importSaveText">Import\nSave</string>
     <string name="exportSaveText">Export\nSave</string>
-    <string name="saveNameFormat">PixelBlacksmith%s.save</string>
+    <string name="saveNameFormat" translatable="false">PixelBlacksmith%s.save</string>
     <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
     <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
     <string name="saveImportSuccess">Successfully loaded local game save!</string>
@@ -1786,7 +1791,7 @@
     <string name="settingsCodeUnknown">Settings Code: ???</string>
     <string name="settingsCode">Settings Code: %1$d</string>
 
-    <string name="unknownText">\???</string>
+    <string name="unknownText" translatable="false">\???</string>
 
     <string name="connectionFailure">Couldn\'t log in. Please try again later.</string>
 
@@ -1915,7 +1920,7 @@
     <string name="statisticsTotalBonusXP">Total XP Bonus:</string>
     <string name="statisticsPrestige">Prestige Level:</string>
     <string name="statisticsLastPrestiged">Last Prestige:</string>
-    <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d% coins &amp; -%3$d% XP)</string>
     <string name="statisticsLastPrestigedNever">Never!</string>
     <string name="statisticsLastPrestigedLowLevel">Level %d+ required!</string>
     <string name="statisticsCoinsPurchased">Coins Purchased:</string>
@@ -1966,7 +1971,7 @@
     <string name="creditsCCBY" translatable="false">Modified: Reduced bitrate. Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.</string>
     <string name="creditsGraphics" translatable="false">Graphics</string>
     <string name="creditsGraphicsDetails" translatable="false">Significant contributions by <a href='https://twitter.com/7souldesign'>@7SoulDesign</a>, <a href='https://twitter.com/TeaGadd'>@TeaGadd</a>, and <a href='http://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=102'>AmericanHamster</a>.
-\nAdditional contributions by <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, <a href="https://opengameart.org/users/sufan02">Sufan02</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
+\nAdditional contributions by <a href='https://reddit.com/u/sirnoodlenodii'>/u/sirnoodlenodII</a>, <a href='https://twitter.com/Calciumtrice'>@Calciumtrice</a>, <a href="https://twitter.com/ansimuz">@Ansimuz</a>, <a href="https://twitter.com/michelebucelli">@MicheleBucelli</a>, <a href="https://twitter.com/ThKasparrr">@ThKasparrr</a>, <a href="https://opengameart.org/users/sufan02">Sufan02</a>, and various folks from <a href="http://opengameart.org/">OpenGameArt</a>.</string>
     <string name="creditsTranslations" translatable="false">Translation Fixes</string>
     <string name="creditsTranslationsDetails" translatable="false">German: Patrick W / - - / Jason S\nSpanish: Ezequiel T / Emiliano R\nFrench: Nat_Crelk\nDutch: Lichtje\nRussian: Dezment / Vladimir S</string>
     <string name="creditsLibraries" translatable="false">Libraries</string>
@@ -1989,4 +1994,9 @@
     <string name="noToolsText">You don\'t have any suitable tools!\n\nTry crafting some in the anvil / crafting table.</string>
     <string name="noFoodText">You don\'t have any food!\n\nTry buying some in the market or cooking some in the furnace.</string>
     <string name="selectAdventure">Please select a category and subcategory of adventure using the dropdowns above.</string>
+    <string name="hotfix_ghost_traders">Fix Ghost Traders</string>
+    <string name="play_now">Play Slots!</string>
+    <string name="blacksmith_slots_message">Blacksmith Slots is a slots / crafting game set in the same universe as Pixel Blacksmith! It features many of the same characters, and explores the surrounding world.\n\nGive it a try today, I think you\'ll like it!</string>
+    <string name="blacksmith_slots_play">Play for free</string>
+    <string name="advert_load_start">Starting to load advert... If no advert is loaded in 10s, a replacement screen will appear!</string>
 </resources>

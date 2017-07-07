@@ -59,7 +59,7 @@ public class FurnaceActivity extends Activity {
         dh.updateFullscreen(this);
 
         gh = new GestureHelper(getApplicationContext());
-        foodSelected = MainActivity.prefs.getBoolean("furnaceTab", false);
+        foodSelected = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("furnaceTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -103,8 +103,8 @@ public class FurnaceActivity extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-        MainActivity.prefs.edit().putInt("furnacePosition", mViewFlipper.getDisplayedChild()).apply();
-        MainActivity.prefs.edit().putBoolean("furnaceTab", foodSelected).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("furnacePosition", mViewFlipper.getDisplayedChild()).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("furnaceTab", foodSelected).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -153,7 +153,7 @@ public class FurnaceActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("furnacePosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("furnacePosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.furnace),
@@ -184,7 +184,7 @@ public class FurnaceActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("furnacePosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("furnacePosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.furnace),
@@ -285,7 +285,7 @@ public class FurnaceActivity extends Activity {
     }
 
     public void toggleTab(View view) {
-        MainActivity.prefs.edit().putInt("furnacePosition", 0).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("furnacePosition", 0).apply();
         foodSelected = !foodSelected;
         updateTabs();
         createInterface(true);

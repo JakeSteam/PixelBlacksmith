@@ -20,6 +20,8 @@ import uk.co.jakelee.blacksmith.model.Visitor;
 import uk.co.jakelee.blacksmith.model.Visitor_Demand;
 import uk.co.jakelee.blacksmith.model.Worker;
 
+import static com.orm.query.Select.from;
+
 public class PrestigeHelper {
     public static void prestigeAccount() {
         if (!MainActivity.vh.prestiging) {
@@ -104,6 +106,9 @@ public class PrestigeHelper {
 
     private static void resetAssistants() {
         Assistant.executeQuery("UPDATE assistant SET current_xp = 0, obtained = 0");
+        Player_Info activeAssistant = from(Player_Info.class).where(Condition.prop("name").eq("ActiveAssistant")).first();
+        activeAssistant.setIntValue(0);
+        activeAssistant.save();
     }
 
     public static void resetCraftingInterface() {

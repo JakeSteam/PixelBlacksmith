@@ -3,10 +3,13 @@ apply plugin: 'com.android.library'
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com'
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
     }
 }
 
@@ -18,7 +21,7 @@ dependencies {
 }
 
 android {
-    compileSdkVersion apiVersion
+    compileSdkVersion 24
     buildToolsVersion compilerVersion
 }
 

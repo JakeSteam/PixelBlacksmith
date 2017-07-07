@@ -24,8 +24,14 @@ public class MusicService extends Service {
         int volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         player = MediaPlayer.create(this, R.raw.music1);
-        player.setLooping(true);
-        player.setVolume(volume, volume);
+        if (player != null) {
+            try {
+                player.setLooping(true);
+                player.setVolume(volume, volume);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {

@@ -53,8 +53,8 @@ public class EnchantingActivity extends Activity {
         dh.updateFullscreen(this);
 
         gh = new GestureHelper(getApplicationContext());
-        displayedTier = MainActivity.prefs.getInt("enchantingTier", Constants.TIER_MIN);
-        powderSelected = MainActivity.prefs.getBoolean("enchantingTab", false);
+        displayedTier = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("enchantingTier", Constants.TIER_MIN);
+        powderSelected = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getBoolean("enchantingTab", false);
 
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
@@ -76,7 +76,7 @@ public class EnchantingActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
         createInterface(true, false);
     }
 
@@ -84,9 +84,9 @@ public class EnchantingActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        MainActivity.prefs.edit().putInt("enchantingTier", displayedTier).apply();
-        MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
-        MainActivity.prefs.edit().putBoolean("enchantingTab", powderSelected).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("enchantingTier", displayedTier).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("enchantingTab", powderSelected).apply();
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -122,7 +122,7 @@ public class EnchantingActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("enchantingPosition", 0),
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("enchantingPosition", 0),
                 true);
 
         // Horizontal selector
@@ -151,7 +151,7 @@ public class EnchantingActivity extends Activity {
                 clearExisting,
                 items,
                 Constants.STATE_NORMAL,
-                MainActivity.prefs.getInt("enchantingPosition", 0));
+                getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("enchantingPosition", 0));
 
         dh.createCraftingInterface(
                 (RelativeLayout) findViewById(R.id.enchanting),
@@ -172,7 +172,7 @@ public class EnchantingActivity extends Activity {
             } else {
                 displayedTier++;
             }
-            MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
             createEnchantingInterface(true);
         }
     }
@@ -184,13 +184,13 @@ public class EnchantingActivity extends Activity {
             } else {
                 displayedTier--;
             }
-            MainActivity.prefs.edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
+            getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("enchantingPosition", mViewFlipper.getDisplayedChild()).apply();
             createEnchantingInterface(true);
         }
     }
 
     public void toggleTab(View view) {
-        MainActivity.prefs.edit().putInt("enchantingPosition", 0).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("enchantingPosition", 0).apply();
         powderSelected = !powderSelected;
         updateTabs();
         createInterface(true, true);

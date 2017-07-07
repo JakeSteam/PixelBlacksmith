@@ -3,16 +3,19 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
     }
 }
 
 ext {
-    apiVersion = 25
+    apiVersion = 26
     compilerVersion = '25.0.1'
-    supportLibraryVersion = '23.0.0'
+    supportLibraryVersion = '23.0.0' // Updating this breaks alert sizes, tutorial skipping, and many other things. Don't.
     playLibraryVersion = '10.0.1'
 }
 

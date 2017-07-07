@@ -138,7 +138,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     protected void onStop() {
         super.onStop();
 
-        MainActivity.prefs.edit().putLong("inventoryFilter", selectedType != null ? selectedType.getId() : 0).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putLong("inventoryFilter", selectedType != null ? selectedType.getId() : 0).apply();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -247,7 +247,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         int quantityToSell = 0;
         List<Integer> itemPrices = new ArrayList<>();
 
-        int quantity = MainActivity.prefs.getInt("sellQuantity", 1);
+        int quantity = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("sellQuantity", 1);
         Long itemID = (Long) view.getTag(R.id.itemID);
         long itemState = (Long) view.getTag(R.id.itemState);
         Item itemToSell = Item.findById(Item.class, itemID);
@@ -295,17 +295,17 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     }
 
     public void sell1Toggle(View view) {
-        MainActivity.prefs.edit().putInt("sellQuantity", 1).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("sellQuantity", 1).apply();
         updateQuantityUI();
     }
 
     public void sell10Toggle(View view) {
-        MainActivity.prefs.edit().putInt("sellQuantity", 10).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("sellQuantity", 10).apply();
         updateQuantityUI();
     }
 
     public void sell100Toggle(View view) {
-        MainActivity.prefs.edit().putInt("sellQuantity", 100).apply();
+        getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putInt("sellQuantity", 100).apply();
         updateQuantityUI();
     }
 
@@ -317,7 +317,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
     private void updateQuantityUI() {
         Drawable tick = dh.createDrawable(R.drawable.tick, 25, 25);
         Drawable cross = dh.createDrawable(R.drawable.cross, 25, 25);
-        int quantity = MainActivity.prefs.getInt("sellQuantity", 1);
+        int quantity = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).getInt("sellQuantity", 1);
 
         ((ImageView) findViewById(R.id.sell1indicator)).setImageDrawable(quantity == 1 ? tick : cross);
         ((ImageView) findViewById(R.id.sell10indicator)).setImageDrawable(quantity == 10 ? tick : cross);
