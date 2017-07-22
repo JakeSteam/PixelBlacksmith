@@ -854,7 +854,7 @@
     <string name="statisticsNextVisitorCheck">다음 방문자 :</string>
     <string name="statisticsPreferencesDiscovered">검색된 환경 설정 :</string>
     <string name="statisticsPrestige">프레스티지 레벨 :</string>
-    <string name="statisticsPrestigeValue">%1$d (+ %2$d% coins &amp;  %3$d%%XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; -%3$d%% XP)</string>
     <string name="statisticsQuestsCompleted">완료 퀘스트 :</string>
     <string name="statisticsRestock">다음 재계약 :</string>
     <string name="statisticsSlotsUnlocked">잠금 해제 된 슬롯 :</string>

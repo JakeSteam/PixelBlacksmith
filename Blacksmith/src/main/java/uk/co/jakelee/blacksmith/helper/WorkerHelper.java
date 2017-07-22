@@ -593,7 +593,12 @@ public class WorkerHelper {
             itemString.append(item.getId().toString());
             itemString.append(",");
         }
-        return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1 AND quantity > 0 ORDER BY item ASC";
+
+        if (itemString.length() > 2) {
+            return "item IN (" + itemString.substring(0, itemString.length() - 1) + ") AND state = 1 AND quantity > 0 ORDER BY item ASC";
+        } else {
+            return "item = 9999";
+        }
     }
 
     public static int getBasePrice(int itemId, int state) {

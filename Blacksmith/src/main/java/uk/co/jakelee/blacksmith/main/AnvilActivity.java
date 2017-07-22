@@ -152,10 +152,14 @@ public class AnvilActivity extends Activity {
     }
 
     private void updateButtons() {
-        if (MainActivity.vh.anvilBusy) {
-            dimButtons();
-        } else {
-            brightenButtons();
+        try {
+            if (MainActivity.vh.anvilBusy) {
+                dimButtons();
+            } else {
+                brightenButtons();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 

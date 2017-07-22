@@ -855,7 +855,7 @@
     <string name="statisticsNextVisitorCheck">Следующий посетитель:</string>
     <string name="statisticsPreferencesDiscovered">Открытые настройки:</string>
     <string name="statisticsPrestige">Уровень престижа:</string>
-    <string name="statisticsPrestigeValue">%1$d (+ %2$d%%coins &amp; %3$d%%XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% coins &amp; %3$d%% XP)</string>
     <string name="statisticsQuestsCompleted">Завершенные задания:</string>
     <string name="statisticsRestock">Следующий пополнение:</string>
     <string name="statisticsSlotsUnlocked">Слоты разблокированы:</string>

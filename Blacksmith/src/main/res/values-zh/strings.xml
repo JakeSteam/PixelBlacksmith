@@ -854,7 +854,7 @@
     <string name="statisticsNextVisitorCheck">下一位访客：</string>
     <string name="statisticsPreferencesDiscovered">发现偏好：</string>
     <string name="statisticsPrestige">威望等级：</string>
-    <string name="statisticsPrestigeValue">%1$d（+%2$d %%coins &amp; - %3$d%%XP）</string>
+    <string name="statisticsPrestigeValue">%1$d（+%2$d%% coins &amp; -%3$d%% XP）</string>
     <string name="statisticsQuestsCompleted">任务完成：</string>
     <string name="statisticsRestock">下一个</string>
     <string name="statisticsSlotsUnlocked">插槽已解锁：</string>

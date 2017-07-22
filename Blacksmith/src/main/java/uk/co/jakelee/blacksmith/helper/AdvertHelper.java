@@ -211,22 +211,26 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     }
 
     public void triggerCallback(advertPurpose purpose) {
-        switch (purpose) {
-            case ConvMarketRestock:
-                marketActivity.callbackRestock();
-                break;
-            case ConvVisitorDismiss:
-                visitorActivity.callbackDismiss();
-                break;
-            case ConvVisitorSpawn:
-                mainActivity.callbackSpawn();
-                break;
-            case ConvTraderRestock:
-                traderActivity.callbackRestock();
-                break;
-            case BonusBox:
-                mainActivity.callbackBonus();
-                break;
+        try {
+            switch (purpose) {
+                case ConvMarketRestock:
+                    marketActivity.callbackRestock();
+                    break;
+                case ConvVisitorDismiss:
+                    visitorActivity.callbackDismiss();
+                    break;
+                case ConvVisitorSpawn:
+                    mainActivity.callbackSpawn();
+                    break;
+                case ConvTraderRestock:
+                    traderActivity.callbackRestock();
+                    break;
+                case BonusBox:
+                    mainActivity.callbackBonus();
+                    break;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 

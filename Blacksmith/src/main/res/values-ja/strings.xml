@@ -854,7 +854,7 @@
     <string name="statisticsNextVisitorCheck">次の訪問者：</string>
     <string name="statisticsPreferencesDiscovered">検出された設定：</string>
     <string name="statisticsPrestige">プレステージレベル：</string>
-    <string name="statisticsPrestigeValue">%1$d（+%2$d%%コイン&amp; - %3$d%%XP）</string>
+    <string name="statisticsPrestigeValue">%1$d（+%2$d%% コイン&amp; -%3$d%% XP）</string>
     <string name="statisticsQuestsCompleted">完了したクエスト：</string>
     <string name="statisticsRestock">次の再始動：</string>
     <string name="statisticsSlotsUnlocked">ロックされていないスロット：</string>

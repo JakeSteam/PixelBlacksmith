@@ -150,10 +150,14 @@ public class TableActivity extends Activity {
     }
 
     private void updateButtons() {
-        if (MainActivity.vh.tableBusy) {
-            dimButtons();
-        } else {
-            brightenButtons();
+        try {
+            if (MainActivity.vh.tableBusy) {
+                dimButtons();
+            } else {
+                brightenButtons();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 

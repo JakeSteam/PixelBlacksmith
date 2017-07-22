@@ -806,7 +806,7 @@
     <string name="statisticsNextVisitorCheck">Siguiente Visitante:</string>
     <string name="statisticsPreferencesDiscovered">Preferencias Descubiertas:</string>
     <string name="statisticsPrestige">Nivel de Prestigio:</string>
-    <string name="statisticsPrestigeValue">%1$d (+ %2$d% monedas y %3$d% XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% monedas y -%3$d%% XP)</string>
     <string name="statisticsQuestsCompleted">Misiones completadas:</string>
     <string name="statisticsRestock">Siguiente Restock:</string>
     <string name="statisticsSlotsUnlocked">Ranuras Desbloqueado:</string>

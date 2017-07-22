@@ -200,7 +200,7 @@ public class AssistantActivity extends Activity {
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
             imageView.setImageResource(DisplayHelper.getAssistantDrawableID(container.getContext(), assistant));
 
-            if (assistant.getObtained() > 0L) {
+            if (assistant != null && assistant.getObtained() > 0L) {
                 imageView.clearColorFilter();
             } else {
                 imageView.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);

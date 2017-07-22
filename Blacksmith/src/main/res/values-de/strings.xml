@@ -818,7 +818,7 @@
     <string name="statisticsNextVisitorCheck">Nächster Besucher:</string>
     <string name="statisticsPreferencesDiscovered">Vorlieben entdeckt:</string>
     <string name="statisticsPrestige">Prestige Stufe:</string>
-    <string name="statisticsPrestigeValue">%1$d (+%2$d%%Münzen &amp; - %3$d%%XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% Münzen &amp; -%3$d%% XP)</string>
     <string name="statisticsQuestsCompleted">Quests abgeschlossen:</string>
     <string name="statisticsRestock">Weiter Wiederauffüllung:</string>
     <string name="statisticsSlotsUnlocked">Steckplätze freigeschaltet:</string>

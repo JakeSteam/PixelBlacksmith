@@ -963,7 +963,7 @@
     <string name="statisticsNextVisitorCheck">Visitante seguinte:</string>
     <string name="statisticsPreferencesDiscovered">Preferências descobertas:</string>
     <string name="statisticsPrestige">Nível Prestige:</string>
-    <string name="statisticsPrestigeValue">%1$d (+ %2$d% moedas &amp; - %3$d% XP)</string>
+    <string name="statisticsPrestigeValue">%1$d (+%2$d%% moedas &amp; -%3$d%% XP)</string>
     <string name="statisticsQuestsCompleted">Missões concluídas:</string>
     <string name="statisticsRestock">Próximo Restock:</string>
     <string name="statisticsSlotsUnlocked">Slots Desbloqueado:</string>

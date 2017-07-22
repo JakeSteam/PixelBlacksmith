@@ -136,11 +136,13 @@ public class FurnaceActivity extends Activity {
     }
 
     private void updateButtons() {
-        if (MainActivity.vh.furnaceBusy) {
-            dimButtons();
-        } else {
-            brightenButtons();
-        }
+        try {
+            if (MainActivity.vh.furnaceBusy) {
+                dimButtons();
+            } else {
+                brightenButtons();
+            }
+        } catch (NullPointerException e) {}
     }
 
     private void createFurnaceInterface(boolean clearExisting) {
