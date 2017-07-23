@@ -439,7 +439,7 @@ public class WorkerHelper {
             Item rewardedPage = VisitorHelper.pickRandomItemFromList(pages);
             Inventory.addItem(rewardedPage.getId(), Constants.STATE_NORMAL, 1);
 
-            bonusText = ", " + context.getString(R.string.fragment_and_a_rare) + " %s" + rewardedPage.getName(context);
+            bonusText = ", " + context.getString(R.string.fragment_and_a_rare) + " " + rewardedPage.getName(context);
         } else if (!addItems && foodItem != null) {
             bonusText = ", " + context.getString(R.string.fragment_and_a_page);
         }
