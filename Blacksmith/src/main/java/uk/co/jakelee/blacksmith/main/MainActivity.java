@@ -38,6 +38,7 @@ import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.EventHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
@@ -118,9 +119,9 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
-            if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
+            /*if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
                 findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
-            }
+            }*/
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
@@ -449,6 +450,15 @@ public class MainActivity extends AppCompatActivity implements
             }
         };
         handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 5);
+
+        final Runnable eventRunnable = new Runnable() {
+            @Override
+            public void run() {
+                EventHelper.checkForEventItem(activity);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
+            }
+        };
+        handler.postDelayed(eventRunnable, DateHelper.MILLISECONDS_IN_SECOND * 60);
     }
 
     private String getRestockText(boolean taxPaid) {
@@ -461,8 +471,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openEventInfo(View v) {
-        //AlertDialogHelper.displayEventInfo(this);
-        AlertDialogHelper.openBlacksmithSlot(this);
+        AlertDialogHelper.displayEventInfo(this);
+        //AlertDialogHelper.openBlacksmithSlot(this);
     }
 
     private void updateVisitors() {

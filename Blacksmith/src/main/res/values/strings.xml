@@ -31,7 +31,10 @@
     <string name="assistantTeaser">No\nAssistant!</string>
 
     <string name="eventEasterItem">You found a %1$s! Look for the Golden Egg recipe in the food section of the furnace to unlock a valuable item &amp; unique achievement!</string>
-    <string name="eventText">It\'s Easter!\n\nColoured easter eggs will be found at random whilst the game is open, and can be used to create an extremely valuable easter item. Look under the food tab in the furnace!\n\nAdditionally, a new visitor has been added who will always reward this new valuable item. Good luck finding him!\n\nEvent ends on 22nd April.</string>
+    <string name="eventEasterText">It\'s Easter!\n\nColoured easter eggs will be found at random whilst the game is open, and can be used to create an extremely valuable easter item. Look under the food tab in the furnace!\n\nAdditionally, a new visitor has been added who will always reward this new valuable item. Good luck finding him!\n\nEvent ends on 22nd April.</string>
+
+    <string name="eventChristmasItem">You found a %1$s! Look for the Goody Sack recipe in the books section of the crafting table to earn a valuable item!</string>
+    <string name="eventChristmasText">It\'s Christmas!\n\nColoured presents will be found at random whilst the game is open, and can be used to create an extremely valuable christmas item. Look under the books tab in the crafting table!\n\nAdditionally, a new visitor has been added who will always reward this new valuable item. Good luck finding him!\n\nEvent ends on 5th January.</string>
 
     <string name="tool_pickaxe">Pickaxe (Ore)</string>
     <string name="tool_hammer">Hammer (Bar)</string>
@@ -760,6 +763,8 @@
     <string name="item_name_229">Cereal</string>
     <string name="item_name_230">White Chocolate</string>
     <string name="item_name_231">Golden Egg</string>
+    <string name="item_name_232">Present</string>
+    <string name="item_name_233">Goody Sack</string>
 
     <string name="item_desc_1">A piece of copper ore.</string>
     <string name="item_desc_2">A piece of tin ore.</string>
@@ -992,6 +997,8 @@
     <string name="item_desc_229">The most important meal of the day, apparently.</string>
     <string name="item_desc_230">Mmmm, so sweet!</string>
     <string name="item_desc_231">So pretty! So golden! So eggy!</string>
+    <string name="item_desc_232">Only for good boys and girls!</string>
+    <string name="item_desc_233">Full of so many presents!</string>
 
     <string name="language_1">English</string>
     <string name="language_2">French</string>
@@ -1284,6 +1291,7 @@
     <string name="visitor_name_53">Easter Bunny</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
+    <string name="visitor_name_56">Father Christmas</string>
 
     <string name="visitor_desc_1">I like unfinished things, they burn better!</string>
     <string name="visitor_desc_2">If only I was a woodcutter...</string>
@@ -1340,6 +1348,7 @@
     <string name="visitor_desc_53">Here to spread Easter joy!</string>
     <string name="visitor_desc_54">I love my brother!</string>
     <string name="visitor_desc_55">I hate my brother!</string>
+    <string name="visitor_desc_56">Ho ho ho, everyone!</string>
 
     <!-- Stage 1 -->
     <string name="tutorialText">Tutorial</string>

@@ -91,7 +91,7 @@ public class AlertDialogHelper {
 
     public static void displayEventInfo(final Activity activity) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(R.string.eventText);
+        alertDialog.setMessage(R.string.eventChristmasText);
 
         alertDialog.setPositiveButton(activity.getString(R.string.updateClose), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

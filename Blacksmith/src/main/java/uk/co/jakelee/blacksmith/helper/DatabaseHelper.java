@@ -70,8 +70,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V2_1_0 = 19;
     private final static int DB_V2_1_3 = 20;
     private final static int DB_V2_2_0 = 21;
+    private final static int DB_V2_3_0 = 22;
 
-    public final static int DB_LATEST = DB_V2_2_0;
+    public final static int DB_LATEST = DB_V2_3_0;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -264,6 +265,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.2.0 Patch", 96);
             patch214to220();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_2_0).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) < DatabaseHelper.DB_V2_3_0) {
+            setProgress("2.3.0 Christmas Patch", 97);
+            patch220to230();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_3_0).apply();
         }
 
         setProgress("Complete", 100);
@@ -980,6 +987,27 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         visitorTypes.add(new Visitor_Type(54L, "Blinky", "I love my brother!", 7L, 18L, 3L, 1.15, 1.07, 1.16, false, false, false, 6));
         visitorTypes.add(new Visitor_Type(55L, "Sparky", "I hate my brother!", 7L, 18L, 4L, 1.15, 1.07, 1.16, false, false, false, 6));
         Visitor_Type.saveInTx(visitorTypes);
+    }
+
+    private void patch220to230() {
+        new Visitor_Type(56L, "Father Christmas", "Ho ho ho, everyone!", 11L, 1L, 3L, 1.24, 1.24, 1.24, false, false, false, 40).save();
+        new Visitor_Stats(56L, 0, 52L, 1L, 0, 0L, 0L).save();
+
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(232L, "Present", "Only for good boys and girls!", 23, 11, 1, 1));
+        items.add(new Item(233L, "Goody Sack", "Full of so many presents!", 27, 11, 21012, 1));
+        Item.saveInTx(items);
+
+        List<Recipe> recipes = new ArrayList<>();
+        recipes.add(new Recipe(233L, 1L, 232L, 1L, 100));
+        recipes.add(new Recipe(233L, 1L, 232L, 3L, 10));
+        recipes.add(new Recipe(233L, 1L, 232L, 4L, 10));
+        recipes.add(new Recipe(233L, 1L, 232L, 5L, 10));
+        recipes.add(new Recipe(233L, 1L, 232L, 6L, 10));
+        recipes.add(new Recipe(233L, 1L, 232L, 7L, 10));
+        recipes.add(new Recipe(233L, 1L, 232L, 8L, 10));
+        recipes.add(new Recipe(233L, 1L, 232L, 9L, 10));
+        Recipe.saveInTx(recipes);
     }
 
     private void createAssistants() {
