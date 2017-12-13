@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.percent.PercentRelativeLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.StorageHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -284,6 +286,8 @@ public class SettingsActivity extends Activity {
                     settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
         }
+
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.settings), v, ParticleHelper.FEW);
     }
 
     public void prestigeClick(View view) {

@@ -530,8 +530,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/questContainer"
-            android:onClick="openEventInfo"
-            android:visibility="gone">
+            android:onClick="openEventInfo">
 
             <ImageView
                 android:layout_width="wrap_content"

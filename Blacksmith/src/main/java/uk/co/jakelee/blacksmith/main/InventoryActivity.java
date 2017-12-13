@@ -298,6 +298,9 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         }
         displayItemsTable();
         dh.updateCoins(Inventory.getCoins());
+
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
     }
 
     public void sell1Toggle(View view) {

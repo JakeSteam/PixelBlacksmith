@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.percent.PercentRelativeLayout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
@@ -29,6 +30,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -221,6 +223,7 @@ public class AnvilActivity extends Activity {
     public void craft1(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         craft(itemID, 1);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.anvil), v, ParticleHelper.MANY);
     }
 
     public void craft10(View v) {
@@ -228,6 +231,7 @@ public class AnvilActivity extends Activity {
         int state = ringsSelected ? Constants.STATE_NORMAL : Constants.STATE_UNFINISHED;
         int numCraftable = Inventory.getNumberCreatable(itemID, state);
         craft(itemID, numCraftable >= 10 ? 10 : numCraftable);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.anvil), v, ParticleHelper.MANY);
     }
 
     public void craft100(View v) {
@@ -239,6 +243,7 @@ public class AnvilActivity extends Activity {
         } else {
             craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
         }
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.anvil), v, ParticleHelper.MANY);
     }
 
     public void brightenButtons() {
@@ -322,6 +327,7 @@ public class AnvilActivity extends Activity {
         ringsSelected = !ringsSelected;
         updateTabs();
         createAnvilInterface(true, true);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.anvil), view, ParticleHelper.FEW);
     }
 
     private void updateTabs() {

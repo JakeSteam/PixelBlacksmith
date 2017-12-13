@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.percent.PercentRelativeLayout;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -30,6 +31,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -194,6 +196,7 @@ public class EnchantingActivity extends Activity {
         powderSelected = !powderSelected;
         updateTabs();
         createInterface(true, true);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.enchanting), view, ParticleHelper.FEW);
     }
 
     private void updateTabs() {
@@ -268,6 +271,8 @@ public class EnchantingActivity extends Activity {
         } else {
             ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(powderResponse)), false);
         }
+
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.enchanting), v, ParticleHelper.MANY);
     }
 
     public void clickEnchantButton(View v) {
@@ -293,6 +298,7 @@ public class EnchantingActivity extends Activity {
         } else {
             ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(enchantResponse)), false);
         }
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.table), v, ParticleHelper.MANY);
     }
 
     public void openHelp(View view) {

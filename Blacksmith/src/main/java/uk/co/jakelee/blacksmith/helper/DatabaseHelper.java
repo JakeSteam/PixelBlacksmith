@@ -1008,6 +1008,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         recipes.add(new Recipe(233L, 1L, 232L, 8L, 10));
         recipes.add(new Recipe(233L, 1L, 232L, 9L, 10));
         Recipe.saveInTx(recipes);
+
+        new Setting(Constants.SETTING_SEASONAL_EFFECTS, "SeasonalEffects", true).save();
     }
 
     private void createAssistants() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Assistant;
 import uk.co.jakelee.blacksmith.model.Inventory;
@@ -91,6 +93,8 @@ public class AssistantActivity extends Activity {
                 AlertDialogHelper.confirmBuyAssistant(this, this, assistant);
             }
         }
+
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.petContainer), v, ParticleHelper.MANY);
     }
 
     public void displayAssistantInfo() {
