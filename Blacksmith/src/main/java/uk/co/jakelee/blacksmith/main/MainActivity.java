@@ -28,6 +28,7 @@ import com.orm.query.Select;
 import com.tapjoy.TJPlacement;
 import com.tapjoy.Tapjoy;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -255,6 +256,12 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
             GooglePlayHelper.mGoogleApiClient.connect();
+        }
+
+        if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.DECEMBER && Setting.getSafeBoolean(Constants.SETTING_SEASONAL_EFFECTS)) {
+            ((ImageView)findViewById(R.id.wallpaper_id)).setImageResource(R.drawable.wallpaper1_xmas);
+            ((ImageView)findViewById(R.id.wallpaper_id2)).setImageResource(R.drawable.wallpaper2_xmas);
+            ((ImageView)findViewById(R.id.wallpaper_id3)).setImageResource(R.drawable.wallpaper3_xmas);
         }
     }
 
