@@ -52,6 +52,7 @@
 
         <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
+        <!--suppress AndroidDomInspection -->
         <activity
             android:name=".main.SplashScreenActivity"
             android:theme="@style/AppTheme.Splash">
@@ -61,6 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--suppress AndroidDomInspection -->
         <activity android:name=".main.MainActivity" />
         <activity
             android:name=".main.InventoryActivity"

@@ -1054,9 +1054,9 @@
     <string name="su_5">2x Worker Resources</string>
     <string name="su_6">1 Demand Per Visitor</string>
     <string name="su_7">Free Market Restock</string>
-    <string name="su_8">-50%% Worker Time</string>
+    <string name="su_8">-50% Worker Time</string>
     <string name="su_9">2x Trade Price</string>
-    <string name="su_10">-50%% Market Buy Cost</string>
+    <string name="su_10">-50% Market Buy Cost</string>
     <string name="su_11">-50%% Bonus Chest Time</string>
     <string name="su_12">100x Contribution Reward</string>
     <string name="su_13">Guaranteed Pages</string>
@@ -1594,7 +1594,7 @@
     <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
-    <string name="updateMessage">Updated to version %s!\n\nChanges:\nAdded portuguese, 2 new visitors, new coin pack, backup advert provider. Increased message duration, and many, many bug / crash fixes.\n\nPS: The free spin-off game Blacksmith Slots is now live!</string>
+    <string name="updateMessage">Updated to version %s! Enjoy the christmas event!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
@@ -1673,7 +1673,7 @@
     <string name="upgradeCompletedDescription" translatable="false">%1$s
 \n%2$d / %3$d %4$s</string>
 
-    <string name="prestigeQuestion" formatted="false">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50%% coin &amp; -25%% XP gains.
+    <string name="prestigeQuestion" formatted="false">Prestiging resets all items (except pages + books) / coins / upgrades / workers in return for +50% coin &amp; -25% XP gains.
 \n\nThis CANNOT be undone.</string>
     <string name="prestigeConfirm">Prestige</string>
     <string name="prestigeComplete">Prestige successful, all coin earnings +%1$d%% &amp; XP gains -%2$d%%! Good luck!</string>
