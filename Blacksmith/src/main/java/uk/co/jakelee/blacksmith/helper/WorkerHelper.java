@@ -236,9 +236,9 @@ public class WorkerHelper {
     }
 
     public static String removeEquippedItems(Hero hero, List<EQUIP_SLOTS> slotsToEmpty) {
-        String slotsString = "";
+        StringBuilder slotsString = new StringBuilder();
         for (EQUIP_SLOTS slot : slotsToEmpty) {
-            slotsString += slot.name() + ", ";
+            slotsString.append(slot.name()).append(", ");
             switch (slot) {
                 case Helmet:
                     hero.setHelmetItem(0);
@@ -272,11 +272,11 @@ public class WorkerHelper {
         }
         hero.save();
 
-        if (slotsString.endsWith(", ")) {
-            slotsString = slotsString.substring(0, slotsString.length() - 2);
+        if (slotsString.toString().endsWith(", ")) {
+            slotsString = new StringBuilder(slotsString.substring(0, slotsString.length() - 2));
         }
 
-        return slotsString;
+        return slotsString.toString();
     }
 
     public static int getAdventureResult(Hero hero) {
@@ -372,12 +372,12 @@ public class WorkerHelper {
     }
 
     private static String workerNamesToString(List<String> names) {
-        String nameString = "";
+        StringBuilder nameString = new StringBuilder();
         for (String name : names) {
-            nameString += "\"" + name + "\", ";
+            nameString.append("\"").append(name).append("\", ");
         }
 
-        return nameString.replaceAll(", $", "");
+        return nameString.toString().replaceAll(", $", "");
     }
 
     public static String rewardResources(Context context, Worker worker) {

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Handler;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
-import com.applovin.adview.AppLovinInterstitialAd;
 import com.applovin.sdk.AppLovinAd;
 import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdRewardListener;

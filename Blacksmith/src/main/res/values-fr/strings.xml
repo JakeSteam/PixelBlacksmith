@@ -1461,7 +1461,7 @@
     <string name="assistantButtonSelected">Sélectionné !</string>
     <string name="assistantBuyQuestion">Débloquez \" %1$s\" pour %2$d pièces?</string>
     <string name="assistantClaimed">Reçu %1$dx %2$s!</string>
-    <string name="assistantDesc">Par niveau:\n%1$dx %2$s en %3$s.\n+%4$.0f%% XP / Pièces suppl.\n\nActuel:\n%5$dx %2$s par %3$s.\n+%6$.0f% XP / Pièces Suppl.</string>
+    <string name="assistantDesc">Par niveau:\n%1$dx %2$s en %3$s.\n+%4$.0f%% XP / Pièces suppl.\n\nActuel:\n%5$dx %2$s par %3$s.\n+%6$.0f%% XP / Pièces Suppl.</string>
     <string name="assistantEditNamePrompt">En quoi voulez-vous renommer \"%1$s\" (max. 30 caractères)?</string>
     <string name="assistantName">%1$s [Modifier?]</string>
     <string name="assistantNotReady">Bonus:\n</string>

@@ -57,12 +57,13 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     private int getCoinsFromSku(String sku) {
         int level = Player_Info.getPlayerLevel();
-        if (sku.equals(SKU_COIN_1)) {
-            return coinPackAmount1 * level;
-        } else if (sku.equals(SKU_COIN_2)) {
-            return coinPackAmount2 * level;
-        } else if (sku.equals(SKU_COIN_3)) {
-            return coinPackAmount3 * level;
+        switch (sku) {
+            case SKU_COIN_1:
+                return coinPackAmount1 * level;
+            case SKU_COIN_2:
+                return coinPackAmount2 * level;
+            case SKU_COIN_3:
+                return coinPackAmount3 * level;
         }
         return 0;
     }
