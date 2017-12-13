@@ -1035,6 +1035,7 @@
     <string name="setting_22">Orientation</string>
     <string name="setting_23">Language</string>
     <string name="setting_24">Assistant Notifications</string>
+    <string name="setting_25">Seasonal Effects</string>
 
     <string name="state_1">Normal</string>
     <string name="state_2">Unfinished</string>
@@ -1765,6 +1766,7 @@
     <string name="fullscreenCheckSettingText">Fullscr Check</string>
     <string name="autoRefreshSettingText">Auto\nRefresh</string>
     <string name="updateSlotsSettingText">Update Slots</string>
+    <string name="seasonalEffectSettingText">Seasonal Effects</string>
     <string name="longToastSettingText">Longer Messages</string>
     <string name="handleMaxSettingText">Enable\nMax</string>
     <string name="bulkStackSettingText">Bulk Craft\nStack</string>

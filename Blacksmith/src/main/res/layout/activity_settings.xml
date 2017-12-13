@@ -418,6 +418,23 @@
                     </LinearLayout>
                 </TableRow>
 
+                <TableRow>
+
+                    <LinearLayout
+                        android:id="@+id/seasonalEffectToggle"
+                        style="@style/SettingPanel">
+
+                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
+                            android:id="@+id/seasonalEffectToggleText"
+                            style="@style/SettingText"
+                            android:text="@string/seasonalEffectSettingText" />
+
+                        <ImageView
+                            android:id="@+id/seasonalEffectToggleButton"
+                            style="@style/SettingButton" />
+                    </LinearLayout>
+                </TableRow>
+
                 <!-- Orientation -->
                 <TableRow>
 

@@ -185,6 +185,7 @@ public class SettingsActivity extends Activity {
         ((ImageView) findViewById(R.id.longToastToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST) ? tick : cross);
         ((ImageView) findViewById(R.id.handleMaxToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX) ? tick : cross);
         ((ImageView) findViewById(R.id.bulkStackToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BULK_STACK) ? tick : cross);
+        ((ImageView) findViewById(R.id.seasonalEffectToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_SEASONAL_EFFECTS) ? tick : cross);
 
         populateOrientation();
 
@@ -273,6 +274,9 @@ public class SettingsActivity extends Activity {
                 break;
             case R.id.bulkStackToggle:
                 settingID = Constants.SETTING_BULK_STACK;
+                break;
+            case R.id.seasonalEffectToggle:
+                settingID = Constants.SETTING_SEASONAL_EFFECTS;
                 break;
         }
 

@@ -280,7 +280,7 @@ public class TradeActivity extends Activity implements ItemTable {
             currentlySelling = false;
         }
 
-        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.furnace), v, ParticleHelper.MANY);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.furnace), v, ParticleHelper.FEW);
     }
 
     private void tradeItem(int quantity, Item itemToSell, State itemState) {
