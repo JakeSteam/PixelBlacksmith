@@ -22,20 +22,23 @@ public class MusicService extends Service {
 
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         int volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-
-        player = MediaPlayer.create(this, R.raw.music1);
-        if (player != null) {
-            try {
-                player.setLooping(true);
-                player.setVolume(volume, volume);
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            player = MediaPlayer.create(this, R.raw.music1);
+            if (player != null) {
+                    player.setLooping(true);
+                    player.setVolume(volume, volume);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        player.start();
+        try {
+            player.start();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
 
         return Service.START_STICKY;
     }

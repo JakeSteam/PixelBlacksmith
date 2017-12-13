@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.percent.PercentRelativeLayout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
@@ -29,6 +30,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -98,6 +100,7 @@ public class FurnaceActivity extends Activity {
                 (TableLayout) findViewById(R.id.ingredientsTable),
                 mViewFlipper,
                 Constants.STATE_NORMAL);
+
     }
 
     @Override
@@ -136,11 +139,13 @@ public class FurnaceActivity extends Activity {
     }
 
     private void updateButtons() {
-        if (MainActivity.vh.furnaceBusy) {
-            dimButtons();
-        } else {
-            brightenButtons();
-        }
+        try {
+            if (MainActivity.vh.furnaceBusy) {
+                dimButtons();
+            } else {
+                brightenButtons();
+            }
+        } catch (NullPointerException e) {}
     }
 
     private void createFurnaceInterface(boolean clearExisting) {
@@ -206,12 +211,14 @@ public class FurnaceActivity extends Activity {
     public void smelt1(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         smelt(itemID, 1);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.furnace), v, ParticleHelper.MANY);
     }
 
     public void smelt10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
         smelt(itemID, numCraftable >= 10 ? 10 : numCraftable);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.furnace), v, ParticleHelper.MANY);
     }
 
     public void smelt100(View v) {
@@ -221,6 +228,7 @@ public class FurnaceActivity extends Activity {
             smelt(itemID, numCraftable);
         } else {
             smelt(itemID, numCraftable >= 100 ? 100 : numCraftable);
+            ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.furnace), v, ParticleHelper.MANY);
         }
     }
 
@@ -289,6 +297,7 @@ public class FurnaceActivity extends Activity {
         foodSelected = !foodSelected;
         updateTabs();
         createInterface(true);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.furnace), view, ParticleHelper.FEW);
     }
 
     private void updateTabs() {

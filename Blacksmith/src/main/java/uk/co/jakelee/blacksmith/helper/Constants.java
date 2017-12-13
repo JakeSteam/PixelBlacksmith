@@ -199,6 +199,7 @@ public class Constants {
     public static final Long SETTING_ORIENTATION = 22L;
     public static final Long SETTING_LANGUAGE = 23L;
     public static final Long SETTING_ASSISTANT_NOTIFICATIONS = 24L;
+    public static final Long SETTING_SEASONAL_EFFECTS = 25L;
 
     public static final int SU_DOUBLE_FURNACE_CRAFTS = 1;
     public static final int SU_BONUS_GOLD = 2;

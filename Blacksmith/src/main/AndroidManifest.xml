@@ -52,6 +52,7 @@
 
         <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
+        <!--suppress AndroidDomInspection -->
         <activity
             android:name=".main.SplashScreenActivity"
             android:theme="@style/AppTheme.Splash">
@@ -61,6 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--suppress AndroidDomInspection -->
         <activity android:name=".main.MainActivity" />
         <activity
             android:name=".main.InventoryActivity"
@@ -160,25 +162,6 @@
         </receiver>
 
         <service android:name=".service.MusicService" />
-
-        <service android:name="com.batch.android.BatchPushService" />
-
-        <receiver
-            android:name="com.batch.android.BatchPushReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="uk.co.jakelee.blacksmith" />
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="com.batch.android.BatchPushInstanceIDService"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
-            </intent-filter>
-        </service>
 
         <activity
             android:name="com.tapjoy.TJAdUnitActivity"

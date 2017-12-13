@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Handler;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
-import com.applovin.adview.AppLovinInterstitialAd;
 import com.applovin.sdk.AppLovinAd;
 import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdRewardListener;
@@ -202,7 +201,9 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     traderActivity.callbackRestock();
                     break;
                 case BonusBox:
-                    mainActivity.callbackBonus();
+                    if (mainActivity != null) {
+                        mainActivity.callbackBonus();
+                    }
                     break;
             }
         } else {
@@ -211,22 +212,26 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     }
 
     public void triggerCallback(advertPurpose purpose) {
-        switch (purpose) {
-            case ConvMarketRestock:
-                marketActivity.callbackRestock();
-                break;
-            case ConvVisitorDismiss:
-                visitorActivity.callbackDismiss();
-                break;
-            case ConvVisitorSpawn:
-                mainActivity.callbackSpawn();
-                break;
-            case ConvTraderRestock:
-                traderActivity.callbackRestock();
-                break;
-            case BonusBox:
-                mainActivity.callbackBonus();
-                break;
+        try {
+            switch (purpose) {
+                case ConvMarketRestock:
+                    marketActivity.callbackRestock();
+                    break;
+                case ConvVisitorDismiss:
+                    visitorActivity.callbackDismiss();
+                    break;
+                case ConvVisitorSpawn:
+                    mainActivity.callbackSpawn();
+                    break;
+                case ConvTraderRestock:
+                    traderActivity.callbackRestock();
+                    break;
+                case BonusBox:
+                    mainActivity.callbackBonus();
+                    break;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 

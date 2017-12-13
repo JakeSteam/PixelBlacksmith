@@ -144,7 +144,7 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
 
     public void displayItemsTable() {
         final Activity activity = this;
-        List<Inventory> allInventoryItems;
+        final List<Inventory> allInventoryItems;
         if (selectedType != null) {
             allInventoryItems = Inventory.findWithQuery(Inventory.class, "SELECT * FROM inventory INNER JOIN item on inventory.item = item.id WHERE item.id <> 52 AND inventory.quantity > 0 AND item.type = " + selectedType.getId() + " ORDER BY inventory.state, item.name ASC");
         } else {
@@ -160,8 +160,14 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         headerRow.addView(dh.createTextView("Sell", 22, Color.BLACK));
         tableRows.add(headerRow);
 
-        findViewById(R.id.noItems).setVisibility(allInventoryItems.size() > 0 ? View.GONE : View.VISIBLE);
-        findViewById(R.id.inventoryTable).setVisibility(allInventoryItems.size() > 0 ? View.VISIBLE : View.INVISIBLE);
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.noItems).setVisibility(allInventoryItems.size() > 0 ? View.GONE : View.VISIBLE);
+                findViewById(R.id.inventoryTable).setVisibility(allInventoryItems.size() > 0 ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
+
 
         for (final Inventory inventoryItem : allInventoryItems) {
             TableRow itemRow = new TableRow(getApplicationContext());
@@ -292,6 +298,9 @@ public class InventoryActivity extends Activity implements ItemTable, AdapterVie
         }
         displayItemsTable();
         dh.updateCoins(Inventory.getCoins());
+
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
     }
 
     public void sell1Toggle(View view) {

@@ -334,6 +334,16 @@
                 android:src="@drawable/bookcase"
                 app:layout_marginTopPercent="20%" />
 
+            <LinearLayout
+                android:id="@+id/christmas_tree"
+                android:layout_width="65dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="320dp"
+                android:onClick="clickChristmasTree"
+                android:orientation="horizontal"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="18%" />
+
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -525,13 +535,12 @@
 
 
         <RelativeLayout
-            android:id="@+id/blacksmithSlotsButton"
+            android:id="@+id/eventButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/questContainer"
-            android:onClick="openEventInfo"
-            android:visibility="gone">
+            android:onClick="openEventInfo">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -544,7 +553,7 @@
                 android:layout_height="22dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/blacksmithslots" />
+                android:src="@drawable/bonus_chest_full" />
         </RelativeLayout>
     </RelativeLayout>
 

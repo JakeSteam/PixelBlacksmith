@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.percent.PercentRelativeLayout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
@@ -30,6 +31,7 @@ import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ErrorHelper;
 import uk.co.jakelee.blacksmith.helper.GestureHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.SoundHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -150,10 +152,14 @@ public class TableActivity extends Activity {
     }
 
     private void updateButtons() {
-        if (MainActivity.vh.tableBusy) {
-            dimButtons();
-        } else {
-            brightenButtons();
+        try {
+            if (MainActivity.vh.tableBusy) {
+                dimButtons();
+            } else {
+                brightenButtons();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -184,8 +190,10 @@ public class TableActivity extends Activity {
     }
 
     private void createBooksInterface(boolean clearExisting) {
-        List<Item> items = Select.from(Item.class).where(
-                Condition.prop("type").eq(Constants.TYPE_BOOK)).orderBy("level").list();
+        List<Item> items = new ArrayList<>();
+        items.add(Item.findById(Item.class, 233));
+        items.addAll(Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_BOOK)).orderBy("level").list());
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
@@ -210,12 +218,14 @@ public class TableActivity extends Activity {
     public void craft1(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         craft(itemID, 1);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.table), v, ParticleHelper.MANY);
     }
 
     public void craft10(View v) {
         Long itemID = (Long) mViewFlipper.getCurrentView().getTag();
         int numCraftable = Inventory.getNumberCreatable(itemID, Constants.STATE_NORMAL);
         craft(itemID, numCraftable >= 10 ? 10 : numCraftable);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.table), v, ParticleHelper.MANY);
     }
 
     public void craft100(View v) {
@@ -226,6 +236,7 @@ public class TableActivity extends Activity {
         } else {
             craft(itemID, numCraftable >= 100 ? 100 : numCraftable);
         }
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.table), v, ParticleHelper.MANY);
     }
 
     public void brightenButtons() {
@@ -329,6 +340,7 @@ public class TableActivity extends Activity {
         booksSelected = !booksSelected;
         updateTabs();
         createTableInterface(true, true);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.table), view, ParticleHelper.FEW);
     }
 
     private void updateTabs() {

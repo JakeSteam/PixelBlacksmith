@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 15
         targetSdkVersion apiVersion
-        versionCode 72
-        versionName "2.2.1"
+        versionCode 73
+        versionName "2.3.0"
     }
     buildTypes {
         release {
@@ -51,4 +51,5 @@ dependencies {
     compile files('libs/tapjoyconnectlibrary.jar')
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.jinatonic.confetti:confetti:1.1.1'
 }

@@ -371,9 +371,12 @@ public class VisitorHelper {
         // Get normal reward
         Item selectedItem;
         int numRewards = (isFullyComplete ? 2 : 1);
-        if (visitor.getId() == 153) {
+        if (visitor.getType() == 53) {
             // Easter bunny provides golden eggs!
             selectedItem = Item.findById(Item.class, 231);
+        } else if (visitor.getType() == 56) {
+            // Santa provides sack of presents!
+            selectedItem = Item.findById(Item.class, 233);
         } else {
             numRewards = numRewards * VisitorHelper.getRandomNumber(minimumRewards, maximumRewards);
             int typeID = VisitorHelper.pickRandomNumberFromArray(Constants.VISITOR_REWARD_TYPES);

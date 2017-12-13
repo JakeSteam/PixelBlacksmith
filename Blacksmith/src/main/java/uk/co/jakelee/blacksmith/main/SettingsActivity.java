@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.percent.PercentRelativeLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
+import uk.co.jakelee.blacksmith.helper.ParticleHelper;
 import uk.co.jakelee.blacksmith.helper.StorageHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.helper.TutorialHelper;
@@ -183,6 +185,7 @@ public class SettingsActivity extends Activity {
         ((ImageView) findViewById(R.id.longToastToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_LONG_TOAST) ? tick : cross);
         ((ImageView) findViewById(R.id.handleMaxToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_HANDLE_MAX) ? tick : cross);
         ((ImageView) findViewById(R.id.bulkStackToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_BULK_STACK) ? tick : cross);
+        ((ImageView) findViewById(R.id.seasonalEffectToggleButton)).setImageDrawable(Setting.getSafeBoolean(Constants.SETTING_SEASONAL_EFFECTS) ? tick : cross);
 
         populateOrientation();
 
@@ -272,6 +275,9 @@ public class SettingsActivity extends Activity {
             case R.id.bulkStackToggle:
                 settingID = Constants.SETTING_BULK_STACK;
                 break;
+            case R.id.seasonalEffectToggle:
+                settingID = Constants.SETTING_SEASONAL_EFFECTS;
+                break;
         }
 
         if (settingID != null) {
@@ -284,6 +290,8 @@ public class SettingsActivity extends Activity {
                     settingToToggle.getBoolValue() ? "on" : "off"), true);
             displaySettingsList();
         }
+
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.settings), v, ParticleHelper.FEW);
     }
 
     public void prestigeClick(View view) {

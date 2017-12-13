@@ -1,6 +1,7 @@
 package uk.co.jakelee.blacksmith.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.orm.query.Select;
 import com.tapjoy.TJPlacement;
 import com.tapjoy.Tapjoy;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,6 +40,7 @@ import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
+import uk.co.jakelee.blacksmith.helper.EventHelper;
 import uk.co.jakelee.blacksmith.helper.GooglePlayHelper;
 import uk.co.jakelee.blacksmith.helper.LanguageHelper;
 import uk.co.jakelee.blacksmith.helper.NotificationHelper;
@@ -118,9 +121,9 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
-            if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
+            /*if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
                 findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
-            }
+            }*/
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
@@ -253,6 +256,12 @@ public class MainActivity extends AppCompatActivity implements
         if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
             GooglePlayHelper.mGoogleApiClient.connect();
         }
+
+        if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.DECEMBER && Setting.getSafeBoolean(Constants.SETTING_SEASONAL_EFFECTS)) {
+            ((ImageView)findViewById(R.id.wallpaper_id)).setImageResource(R.drawable.wallpaper1_xmas);
+            ((ImageView)findViewById(R.id.wallpaper_id2)).setImageResource(R.drawable.wallpaper2_xmas);
+            ((ImageView)findViewById(R.id.wallpaper_id3)).setImageResource(R.drawable.wallpaper3_xmas);
+        }
     }
 
     @Override
@@ -379,6 +388,7 @@ public class MainActivity extends AppCompatActivity implements
         GooglePlayHelper.mGoogleApiClient.disconnect();
 
         prefs.edit().putInt("tutorialStage", (TutorialHelper.currentStage > 0 ? TutorialHelper.currentStage : 0)).apply();
+
     }
 
     private void setupRecurringEvents() {
@@ -449,6 +459,15 @@ public class MainActivity extends AppCompatActivity implements
             }
         };
         handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 5);
+
+        final Runnable eventRunnable = new Runnable() {
+            @Override
+            public void run() {
+                EventHelper.checkForEventItem(activity);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
+            }
+        };
+        handler.postDelayed(eventRunnable, DateHelper.MILLISECONDS_IN_SECOND * 60);
     }
 
     private String getRestockText(boolean taxPaid) {
@@ -461,8 +480,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openEventInfo(View v) {
-        //AlertDialogHelper.displayEventInfo(this);
-        AlertDialogHelper.openBlacksmithSlot(this);
+        AlertDialogHelper.displayEventInfo(this);
+        //AlertDialogHelper.openBlacksmithSlot(this);
+    }
+
+    public void clickChristmasTree(View v) {
+        ToastHelper.showTipToast(v, ToastHelper.LONG, "Merry Christmas from the Pixel Blacksmith dev, I hope you have a lovely holiday season! Happy blacksmithing <3", false);
     }
 
     private void updateVisitors() {
