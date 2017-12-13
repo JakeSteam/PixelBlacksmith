@@ -218,7 +218,7 @@
     <string name="need">Need</string>
     <string name="have">Have</string>
     <string name="level">Level</string>
-    <string name="fragment_and_a_rare">and a rare</string>
+    <string name="fragment_and_a_rare">and a rare </string>
     <string name="fragment_and_a_page">and possibly a rare page</string>
     <string name="fragment_and_a_page_very">and very possibly a rare page</string>
     <string name="please_select">Please select</string>

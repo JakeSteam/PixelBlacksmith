@@ -225,53 +225,55 @@ public class DisplayHelper {
         }
 
         for (final Location location : locations) {
-            final GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
-            slotContainer.removeAllViews();
+            if (location.getId().intValue() < slotIDs.length) {
+                final GridLayout slotContainer = (GridLayout) activity.findViewById(slotIDs[location.getId().intValue()]);
+                slotContainer.removeAllViews();
 
-            // If user is premium, we want premium slots first so they can see them. Otherwise, at the very end.
-            String sortOrder = Player_Info.isPremium() ? "DESC" : "ASC";
-            List<Slot> slots = Select.from(Slot.class).where(
-                    Condition.prop("location").eq(location.getId())).orderBy("premium " + sortOrder + ", level ASC").list();
+                // If user is premium, we want premium slots first so they can see them. Otherwise, at the very end.
+                String sortOrder = Player_Info.isPremium() ? "DESC" : "ASC";
+                List<Slot> slots = Select.from(Slot.class).where(
+                        Condition.prop("location").eq(location.getId())).orderBy("premium " + sortOrder + ", level ASC").list();
 
-            boolean displayedNextSlot = false;
-            for (Slot slot : slots) {
-                RelativeLayout slotRoot = createSlotRoot(activity.getApplicationContext());
+                boolean displayedNextSlot = false;
+                for (Slot slot : slots) {
+                    RelativeLayout slotRoot = createSlotRoot(activity.getApplicationContext());
 
-                ImageView slotBackground = (ImageView) slotRoot.findViewById(R.id.slot_background);
-                ImageView slotForeground = (ImageView) slotRoot.findViewById(R.id.slot_foreground);
-                TextViewPixel slotCount = (TextViewPixel) slotRoot.findViewById(R.id.slot_count);
-                TextViewPixel slotOverflow = (TextViewPixel) slotRoot.findViewById(R.id.slot_overflow);
+                    ImageView slotBackground = (ImageView) slotRoot.findViewById(R.id.slot_background);
+                    ImageView slotForeground = (ImageView) slotRoot.findViewById(R.id.slot_foreground);
+                    TextViewPixel slotCount = (TextViewPixel) slotRoot.findViewById(R.id.slot_count);
+                    TextViewPixel slotOverflow = (TextViewPixel) slotRoot.findViewById(R.id.slot_overflow);
 
-                if (!displayedNextSlot) {
-                    slotBackground.setBackgroundResource(R.drawable.slot);
-                    slotCount.setVisibility(View.VISIBLE);
-                    if (slot.isPremium() && !Player_Info.isPremium()) {
-                        slotForeground.setBackgroundResource(R.drawable.item52);
-                        slotCount.setText(activity.getString(R.string.slotPremium));
-                        slotOverflow.setVisibility(View.VISIBLE);
-                        slotBackground.setOnClickListener(new Button.OnClickListener() {
-                            public void onClick(View v) {
-                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(context, location.getId()), false);
+                    if (!displayedNextSlot) {
+                        slotBackground.setBackgroundResource(R.drawable.slot);
+                        slotCount.setVisibility(View.VISIBLE);
+                        if (slot.isPremium() && !Player_Info.isPremium()) {
+                            slotForeground.setBackgroundResource(R.drawable.item52);
+                            slotCount.setText(activity.getString(R.string.slotPremium));
+                            slotOverflow.setVisibility(View.VISIBLE);
+                            slotBackground.setOnClickListener(new Button.OnClickListener() {
+                                public void onClick(View v) {
+                                    ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(context, location.getId()), false);
+                                }
+                            });
+                            displayedNextSlot = true;
+                        } else if (slot.getLevel() > playerLevel) {
+                            if (slot.getLevel() < 9999) {
+                                slotForeground.setBackgroundResource(R.drawable.lock);
+                                slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
                             }
-                        });
-                        displayedNextSlot = true;
-                    } else if (slot.getLevel() > playerLevel) {
-                        if (slot.getLevel() < 9999) {
-                            slotForeground.setBackgroundResource(R.drawable.lock);
-                            slotCount.setText(String.format(activity.getString(R.string.slotLevel), slot.getLevel()));
+                            slotOverflow.setVisibility(View.VISIBLE);
+                            slotBackground.setOnClickListener(new Button.OnClickListener() {
+                                public void onClick(View v) {
+                                    ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(context, location.getId()), false);
+                                }
+                            });
+                            displayedNextSlot = true;
+                        } else {
+                            slotRoot.setTag(true);
                         }
-                        slotOverflow.setVisibility(View.VISIBLE);
-                        slotBackground.setOnClickListener(new Button.OnClickListener() {
-                            public void onClick(View v) {
-                                ToastHelper.showPositiveToast(slotContainer, ToastHelper.SHORT, Pending_Inventory.getPendingItemsText(context, location.getId()), false);
-                            }
-                        });
-                        displayedNextSlot = true;
-                    } else {
-                        slotRoot.setTag(true);
                     }
+                    slotContainer.addView(slotRoot);
                 }
-                slotContainer.addView(slotRoot);
             }
         }
     }

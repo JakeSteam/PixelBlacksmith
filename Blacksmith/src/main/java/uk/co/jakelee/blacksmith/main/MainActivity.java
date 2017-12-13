@@ -485,6 +485,10 @@ public class MainActivity extends AppCompatActivity implements
         //AlertDialogHelper.openBlacksmithSlot(this);
     }
 
+    public void clickChristmasTree(View v) {
+        ToastHelper.showTipToast(v, ToastHelper.LONG, "Merry Christmas from the Pixel Blacksmith dev, I hope you have a lovely holiday season! Happy blacksmithing <3", false);
+    }
+
     private void updateVisitors() {
         dh.populateVisitorsContainer(getApplicationContext(), this, (LinearLayout) findViewById(R.id.visitors_container), (LinearLayout) findViewById(R.id.visitors_container_overflow));
     }

@@ -25,7 +25,6 @@ public class MusicService extends Service {
         try {
             player = MediaPlayer.create(this, R.raw.music1);
             if (player != null) {
-
                     player.setLooping(true);
                     player.setVolume(volume, volume);
             }

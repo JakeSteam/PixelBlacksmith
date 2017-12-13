@@ -202,7 +202,9 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
                     traderActivity.callbackRestock();
                     break;
                 case BonusBox:
-                    mainActivity.callbackBonus();
+                    if (mainActivity != null) {
+                        mainActivity.callbackBonus();
+                    }
                     break;
             }
         } else {

@@ -43,6 +43,10 @@ public class ToastHelper {
             targetView = MainActivity.questContainer;
         }
 
+        if (targetView == null) {
+            return;
+        }
+
         final Snackbar snackbar = Snackbar.make(targetView, text, length);
         final Context context = targetView.getContext();
 

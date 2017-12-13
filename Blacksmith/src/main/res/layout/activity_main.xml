@@ -334,6 +334,16 @@
                 android:src="@drawable/bookcase"
                 app:layout_marginTopPercent="20%" />
 
+            <LinearLayout
+                android:id="@+id/christmas_tree"
+                android:layout_width="65dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="320dp"
+                android:onClick="clickChristmasTree"
+                android:orientation="horizontal"
+                app:layout_heightPercent="22%"
+                app:layout_marginTopPercent="18%" />
+
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
