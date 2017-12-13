@@ -1482,7 +1482,7 @@
     <string name="assistant_name_5">Duende</string>
     <string name="assistant_name_6">Orco</string>
     <string name="eventEasterItem">¡Encontraste un %1$s! Busque la receta del huevo de oro en la sección de alimentos del horno para desbloquear un elemento valioso &amp; Logro único</string>
-    <string name="eventText">¡Es Semana Santa!\n\nLos huevos de Pascua coloreados se encontrarán al azar mientras que el juego está abierto, y se pueden utilizar para crear un artículo de pascua extremadamente valioso. Mira bajo la pestaña de alimentos en el horno!\n\nAdemás, se ha agregado un nuevo visitante que siempre recompensará este nuevo elemento valioso. ¡Buena suerte encontrándolo!\n\nEl evento termina el 22 de marzo.</string>
+    <string name="eventEasterText">¡Es Semana Santa!\n\nLos huevos de Pascua coloreados se encontrarán al azar mientras que el juego está abierto, y se pueden utilizar para crear un artículo de pascua extremadamente valioso. Mira bajo la pestaña de alimentos en el horno!\n\nAdemás, se ha agregado un nuevo visitante que siempre recompensará este nuevo elemento valioso. ¡Buena suerte encontrándolo!\n\nEl evento termina el 22 de marzo.</string>
     <string name="help_advertising">Publicidad</string>
     <string name="help_text_advertising">Hay dos tipos de anuncios en Pixel Blacksmith.\nEl primero es un procedimiento de \"conveniencia\", p. Saltando un temporizador, consiguiendo un reabastecimiento libre. El otro tipo es el anuncio \"bono\", accesible a través del cofre extra.\nEste pecho se puede abrir solamente cada pocas horas (los miembros superiores tienen un contador de tiempo más corto).\nLos miembros Premium también pueden desactivar los anuncios. Si selecciona esta opción, se eliminará toda la mención de anuncios.</string>
     <string name="help_anvil">Yunque</string>
@@ -1575,5 +1575,15 @@
     <string name="visitor_name_55">Sparky</string>
     <string name="advert_load_start">Comenzar a cargar el anuncio ... Si no hay anuncio cargado en 10s, aparecerá una pantalla de reemplazo!</string>
     <string name="language_10">portugués</string>
+    <string name="item_desc_232">¡Solo para buenos chicos y chicas!</string>
+    <string name="item_desc_233">¡Lleno de tantos regalos!</string>
+    <string name="item_name_232">Presente</string>
+    <string name="item_name_233">Goody Sack</string>
+    <string name="seasonalEffectSettingText">Efectos estacionales</string>
+    <string name="setting_25">Efectos estacionales</string>
+    <string name="visitor_desc_56">¡Ho ho ho, todos!</string>
+    <string name="visitor_name_56">Papá Noel</string>
+    <string name="eventChristmasItem">¡Encontraste un %1$s! ¡Busca la receta Goody Sack en la sección de libros de la mesa de artesanía para ganar un artículo valioso!</string>
+    <string name="eventChristmasText">¡Es Navidad!\n\nLos regalos de colores se encontrarán al azar mientras el juego esté abierto, y se pueden usar para crear un objeto de Navidad extremadamente valioso. ¡Mira debajo de la pestaña de libros en la mesa de manualidades!\n\nAdemás, se ha agregado un nuevo visitante que siempre recompensará a este nuevo elemento valioso. ¡Buena suerte encontrándolo!\n\nEl evento termina el 5 de enero.</string>
 
 </resources>

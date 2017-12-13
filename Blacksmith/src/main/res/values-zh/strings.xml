@@ -1481,7 +1481,7 @@
     <string name="assistant_name_5">精灵</string>
     <string name="assistant_name_6">兽人</string>
     <string name="eventEasterItem">你找到了%1$s！在炉子的食物部分寻找金蛋配方，解开一个有价值的物品＆amp;独特的成就！</string>
-    <string name="eventText">这是复活节！\n\n彩色的复活节彩蛋将在游戏开放时随机发现，并可用于创建一个非常有价值的复活节物品。看看炉子里的食物标签吧！\n\n此外，还增加了一个新的访问者，将永远奖励这个新的有价值的项目。祝你好运找到他！\n\n活动于3月22日结束。</string>
+    <string name="eventEasterText">这是复活节！\n\n彩色的复活节彩蛋将在游戏开放时随机发现，并可用于创建一个非常有价值的复活节物品。看看炉子里的食物标签吧！\n\n此外，还增加了一个新的访问者，将永远奖励这个新的有价值的项目。祝你好运找到他！\n\n活动于3月22日结束。</string>
     <string name="help_advertising">广告</string>
     <string name="help_anvil">砧</string>
     <string name="help_assistants">助理</string>
@@ -1574,4 +1574,14 @@
     <string name="visitor_name_55">活泼的</string>
     <string name="advert_load_start">开始加载广告...如果在10秒内没有加载广告，将会出现替换屏幕！</string>
     <string name="language_10">葡萄牙语</string>
+    <string name="item_desc_232">只为好男孩和女孩！</string>
+    <string name="item_desc_233">充满了这么多的礼物！</string>
+    <string name="item_name_232">当下</string>
+    <string name="item_name_233">古迪麻袋</string>
+    <string name="seasonalEffectSettingText">季节效应</string>
+    <string name="setting_25">季节效应</string>
+    <string name="visitor_desc_56">何浩，大家好！</string>
+    <string name="visitor_name_56">圣诞老人</string>
+    <string name="eventChristmasItem">你找到了 %1$s！ 在工作台的书籍部分寻找Goody Sack配方，赚取一个有价值的物品！</string>
+    <string name="eventChristmasText">这是圣诞节！\n\n随着游戏开放，彩色礼物将随机找到，可以用来创建一个非常有价值的圣诞节项目。 看看工作表中的书签标签！\n\n此外，还增加了一个新的访问者，他们将永远奖励这个新的有价值的项目。 祝你好运，找到他！\n\n活动于1月5日结束。</string>
 </resources>

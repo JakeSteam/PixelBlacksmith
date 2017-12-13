@@ -1481,7 +1481,7 @@
     <string name="assistant_name_5">Elf</string>
     <string name="assistant_name_6">Ork</string>
     <string name="eventEasterItem">Sie haben einen %1$s gefunden! Suchen Sie nach dem Golden Egg Rezept in der Nahrung Abschnitt des Ofens zu entsperren ein wertvolles Element &amp; Einmalige Errungenschaft!</string>
-    <string name="eventText">Es ist Ostern!\n\nFarbige Ostereier werden zufällig gefunden, während das Spiel offen ist und kann verwendet werden, um ein extrem wertvolles Osterelement zu schaffen. Schau unter die Speisekarte im Ofen!\n\nZusätzlich wurde ein neuer Besucher hinzugefügt, der diesen neuen wertvollen Gegenstand immer belohnen wird. Viel Glück, ihn zu finden!\n\nDie Veranstaltung endet am 22. März.</string>
+    <string name="eventEasterText">Es ist Ostern!\n\nFarbige Ostereier werden zufällig gefunden, während das Spiel offen ist und kann verwendet werden, um ein extrem wertvolles Osterelement zu schaffen. Schau unter die Speisekarte im Ofen!\n\nZusätzlich wurde ein neuer Besucher hinzugefügt, der diesen neuen wertvollen Gegenstand immer belohnen wird. Viel Glück, ihn zu finden!\n\nDie Veranstaltung endet am 22. März.</string>
     <string name="help_advertising">Werbung</string>
     <string name="help_text_advertising">Es gibt 2 Arten von Anzeige in Pixel Blacksmith.\nDie erste ist eine \"Bequemlichkeit\", z.B. Einen Timer überspringen. Der andere Typ ist die \"Bonus\" -Anzeige, die über die Bonus-Kiste zugänglich ist.\nDiese Brust kann nur alle paar Stunden geöffnet werden (Premium-Mitglieder haben einen kürzeren Timer).\nPremiummitglieder können auch Anzeigen deaktivieren. Wenn diese Option ausgewählt ist, werden alle Anzeigen von Anzeigen entfernt.</string>
     <string name="help_anvil">Amboss</string>
@@ -1574,4 +1574,14 @@
     <string name="advert_load_start">Starten der Anzeige ... Wenn keine Anzeige in 10s geladen wird, erscheint ein Ersatzbildschirm!</string>
     <string name="language_10">Portugiesisch</string>
     <string name="updateMessage">Aktualisiert auf Version %s!\n\nÄnderungen:\nZusätzliche portugiesische Übersetzung, 2 neue Besucher, neue Münzpaket und Backup-Anbieter. Erhöhte Nachrichtendauer und viele, viele Bug / Crash-Fixes.\n\nPS: Das kostenlose Spin-off Spiel Blacksmith Slots ist jetzt live!Aktualisiert auf Version% s!\n\nÄnderungen:\nZusätzliche portugiesische Übersetzung, 2 neue Besucher, neue Münzpaket und Backup-Anbieter. Erhöhte Nachrichtendauer und viele, viele Bug / Crash-Fixes.\n\nPS: Das kostenlose Spin-off Spiel Blacksmith Slots ist jetzt live!</string>
+    <string name="item_desc_232">Nur für gute Jungen und Mädchen!</string>
+    <string name="item_desc_233">Voller Geschenke!</string>
+    <string name="item_name_232">Geschenk</string>
+    <string name="item_name_233">Goody Sack</string>
+    <string name="seasonalEffectSettingText">Saisonale Effekte</string>
+    <string name="setting_25">Saisonale Effekte</string>
+    <string name="visitor_desc_56">Ho ho ho, alle zusammen!</string>
+    <string name="visitor_name_56">Weihnachtsmann</string>
+    <string name="eventChristmasItem">Du hast %1$s gefunden! Sucht im Buchbereich des Handwerkstisches nach dem Goody Sack Rezept, um einen wertvollen Gegenstand zu erhalten!</string>
+    <string name="eventChristmasText">Es ist Weihnachten!\n\nFarbige Geschenke werden zufällig während des Spiels gefunden und können verwendet werden, um ein äußerst wertvolles Weihnachtsobjekt zu schaffen. Sieh unter der Registerkarte \"Bücher\" im Crafting-Tisch nach!\n\nZusätzlich wurde ein neuer Besucher hinzugefügt, der diesen neuen wertvollen Gegenstand immer belohnen wird. Viel Glück, ihn zu finden!\n\nDie Veranstaltung endet am 5. Januar.</string>
 </resources>

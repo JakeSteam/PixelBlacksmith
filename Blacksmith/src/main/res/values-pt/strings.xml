@@ -202,7 +202,7 @@
     <string name="error_unsellable">Este item está marcado como não aplicável! Pressione prolongadamente para desligar.</string>
     <string name="error_visitor_in_use">Este visitante já está em uso por outro slot de heróis!</string>
     <string name="eventEasterItem">Você encontrou %1$s! Procure a receita Golden Egg na seção de alimentos do forno para desbloquear um item valioso &amp; Realização única!</string>
-    <string name="eventText">É a Páscoa!\n\nOs ovos de páscoa coloridos serão encontrados aleatoriamente, enquanto o jogo está aberto e pode ser usado para criar um item de Páscoa extremamente valioso. Olhe sob a guia de comida no forno!\n\nAlém disso, um novo visitante foi adicionado, que sempre recompensará este novo item valioso. Boa sorte para encontrá-lo!\n\nO evento termina em 22 de abril.</string>
+    <string name="eventEasterText">É a Páscoa!\n\nOs ovos de páscoa coloridos serão encontrados aleatoriamente, enquanto o jogo está aberto e pode ser usado para criar um item de Páscoa extremamente valioso. Olhe sob a guia de comida no forno!\n\nAlém disso, um novo visitante foi adicionado, que sempre recompensará este novo item valioso. Boa sorte para encontrá-lo!\n\nO evento termina em 22 de abril.</string>
     <string name="exchangePagesAll">Todos</string>
     <string name="exchangePagesCancel">Cancelar</string>
     <string name="exchangePagesOne">1</string>
@@ -1575,4 +1575,14 @@
     <string name="visitor_name_55">Sparky</string>
     <string name="advert_load_start">Começando a carregar o anúncio ... Se nenhum anúncio é carregado em 10s, uma tela de substituição aparecerá!</string>
     <string name="language_10">Português</string>
+    <string name="item_desc_232">Somente para meninos e meninas bons!</string>
+    <string name="item_desc_233">Cheio de tantos presentes!</string>
+    <string name="item_name_232">Presente</string>
+    <string name="item_name_233">Goody Sack</string>
+    <string name="seasonalEffectSettingText">Efeitos Sazonais</string>
+    <string name="setting_25">Efeitos Sazonais</string>
+    <string name="visitor_desc_56">Ho ho ho, todos!</string>
+    <string name="visitor_name_56">Papai Noel</string>
+    <string name="eventChristmasItem">Você encontrou %1$s! Procure a receita do Goody Sack na seção de livros da mesa de artesanato para ganhar um item valioso!</string>
+    <string name="eventChristmasText">É Natal!\n\nOs presentes coloridos serão encontrados aleatoriamente enquanto o jogo estiver aberto, e pode ser usado para criar um item de natal extremamente valioso. Procure sob a guia de livros na mesa de artesanato!\n\nAlém disso, foi adicionado um novo visitante que sempre recompensará este novo item valioso. Boa sorte para encontrá-lo!\n\nO evento termina em 5 de janeiro.</string>
 </resources>

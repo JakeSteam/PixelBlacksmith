@@ -1481,7 +1481,7 @@
     <string name="assistant_name_5">꼬마 요정</string>
     <string name="assistant_name_6">오크</string>
     <string name="eventEasterItem">%1$s을 (를) 발견했습니다! 용광로의 음식 섹션에서 황금 계란 제조법을 찾아 귀중한 물품을 &amp; 독특한 업적!</string>
-    <string name="eventText">부활절이야!\n\n색깔이있는 부활절 달걀은 게임이 열려있는 동안 무작위로 발견되며 매우 귀중한 이터널 아이템을 만드는 데 사용할 수 있습니다. 퍼니스의 푸드 탭 아래를보십시오!\n\n또한,이 새로운 가치있는 아이템에 대해 항상 보상 할 새로운 방문자가 추가되었습니다. 그를 찾는 행운을 비네!\n\n이벤트는 3 월 22 일에 종료됩니다.</string>
+    <string name="eventEasterText">부활절이야!\n\n색깔이있는 부활절 달걀은 게임이 열려있는 동안 무작위로 발견되며 매우 귀중한 이터널 아이템을 만드는 데 사용할 수 있습니다. 퍼니스의 푸드 탭 아래를보십시오!\n\n또한,이 새로운 가치있는 아이템에 대해 항상 보상 할 새로운 방문자가 추가되었습니다. 그를 찾는 행운을 비네!\n\n이벤트는 3 월 22 일에 종료됩니다.</string>
     <string name="help_advertising">광고하는</string>
     <string name="help_anvil">모루</string>
     <string name="help_assistants">조수</string>
@@ -1574,4 +1574,14 @@
     <string name="visitor_name_55">스파키</string>
     <string name="advert_load_start">광고로드 시작 ... 10 초에 광고가로드되지 않으면 대체 화면이 나타납니다!</string>
     <string name="language_10">포르투갈 인</string>
+    <string name="item_desc_232">좋은 소년들만을 위해서!</string>
+    <string name="item_desc_233">너무나 많은 선물로 가득합니다!</string>
+    <string name="item_name_232">선물</string>
+    <string name="item_name_233">Goody Sack</string>
+    <string name="seasonalEffectSettingText">계절 효과</string>
+    <string name="setting_25">계절 효과</string>
+    <string name="visitor_desc_56">호호, 모두들!</string>
+    <string name="visitor_name_56">아버지 크리스마스</string>
+    <string name="eventChristmasItem">%1$s 을 (를) 찾았습니다! 귀중한 아이템을 얻으려면 공예 테이블의 책 섹션에서 Goody Sack 제조법을 찾으십시오!</string>
+    <string name="eventChristmasText">크리스마스 야!\n\n색깔이있는 선물은 게임이 열려있는 동안 무작위로 발견되고, 매우 귀중한 크리스마스 품목을 창조하기 위하여 이용 될 수있다. 공예 테이블의 책 탭을보십시오!\n\n또한,이 새로운 가치있는 아이템에 대해 항상 보상 할 새로운 방문자가 추가되었습니다. 그를 찾는 행운을 빌어 요!\n\n이벤트는 1 월 5 일에 끝납니다.</string>
 </resources>

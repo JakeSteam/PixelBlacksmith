@@ -1482,7 +1482,7 @@
     <string name="assistant_name_5">Elfe</string>
     <string name="assistant_name_6">Orc</string>
     <string name="eventEasterItem">Vous avez trouvé un %1$s! Cherchez la recette Golden Egg dans la section alimentaire du four pour déverrouiller un élément de valeur et amp; Réalisation unique!</string>
-    <string name="eventText">C\'est Pâques!\n\nLes oeufs de pâques colorés seront trouvés au hasard pendant que le jeu est ouvert et peuvent être utilisés pour créer un élément de Pâques extrêmement précieux. Regardez sous l\'onglet alimentaire dans le four!\n\nEn outre, un nouveau visiteur a été ajouté qui récompensera toujours ce nouvel élément de valeur. Bonne chance de le trouver!\n\nL\'événement se termine le 22 mars.</string>
+    <string name="eventEasterText">C\'est Pâques!\n\nLes oeufs de pâques colorés seront trouvés au hasard pendant que le jeu est ouvert et peuvent être utilisés pour créer un élément de Pâques extrêmement précieux. Regardez sous l\'onglet alimentaire dans le four!\n\nEn outre, un nouveau visiteur a été ajouté qui récompensera toujours ce nouvel élément de valeur. Bonne chance de le trouver!\n\nL\'événement se termine le 22 mars.</string>
     <string name="help_advertising">La publicité</string>
     <string name="help_text_advertising">Il existe 2 types d\'annonces dans Pixel Blacksmith.\nLe premier est un problème de \"commodité\", par ex. Sauter une minuterie, obtenir un réapprovisionnement gratuit. L\'autre type est l\'annonce «bonus», accessible via le coffre bonus.\nCe coffre ne peut être ouvert que toutes les quelques heures (les membres premium ont une minuterie plus courte).\nLes membres Premium peuvent également désactiver les annonces. Si cette option est sélectionnée, toute mention d\'annonces sera supprimée.</string>
     <string name="help_anvil">Enclume</string>
@@ -1575,5 +1575,15 @@
     <string name="visitor_name_55">Sparky</string>
     <string name="advert_load_start">Commencer à charger une annonce ... Si aucune annonce n\'est chargée en 10s, un écran de remplacement apparaîtra!</string>
     <string name="language_10">Portugais</string>
+    <string name="item_desc_232">Seulement pour les bons garçons et les filles!</string>
+    <string name="item_desc_233">Plein de tant de cadeaux!</string>
+    <string name="item_name_232">Présent</string>
+    <string name="item_name_233">Goody Sack</string>
+    <string name="seasonalEffectSettingText">Effets saisonniers</string>
+    <string name="setting_25">Effets saisonniers</string>
+    <string name="visitor_desc_56">Ho ho ho, tout le monde!</string>
+    <string name="visitor_name_56">Père Noël</string>
+    <string name="eventChristmasItem">Vous avez trouvé un %1$s! Recherchez la recette Goody Sack dans la section des livres de la table d\'artisanat pour gagner un objet de valeur!</string>
+    <string name="eventChristmasText">C\'est Noel!\n\nLes cadeaux colorés seront trouvés au hasard pendant que le jeu est ouvert, et peuvent être utilisés pour créer un objet de Noël extrêmement précieux. Regardez sous l\'onglet des livres dans la table d\'artisanat!\n\nDe plus, un nouveau visiteur a été ajouté qui récompensera toujours ce nouvel objet de valeur. Bonne chance de le trouver!\n\nL\'événement se termine le 5 janvier.</string>
 
 </resources>

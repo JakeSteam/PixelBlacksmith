@@ -1481,7 +1481,7 @@
     <string name="assistant_name_5">エルフ</string>
     <string name="assistant_name_6">オーク</string>
     <string name="eventEasterItem">あなたは%1$sを見つけました！炉の食料品のセクションでゴールデンエッグのレシピを探して貴重なアイテム&amp;ユニークな業績！</string>
-    <string name="eventText">イースターです！\n\n色の付いたイースターエッグは、ゲームが開かれている間はランダムに見つけられ、非常に貴重なイースターアイテムを作るのに使うことができます。炉のフードタブの下を見てください！\n\nさらに、新しい貴重なアイテムにいつも報酬を与える新たな訪問者が追加されました。彼を見つけることを幸運！\n\nイベントは3月22日に終了します。</string>
+    <string name="eventEasterText">イースターです！\n\n色の付いたイースターエッグは、ゲームが開かれている間はランダムに見つけられ、非常に貴重なイースターアイテムを作るのに使うことができます。炉のフードタブの下を見てください！\n\nさらに、新しい貴重なアイテムにいつも報酬を与える新たな訪問者が追加されました。彼を見つけることを幸運！\n\nイベントは3月22日に終了します。</string>
     <string name="help_advertising">広告</string>
     <string name="help_anvil">アンビル</string>
     <string name="help_assistants">アシスタント</string>
@@ -1574,5 +1574,15 @@
     <string name="visitor_name_55">スパキー</string>
     <string name="advert_load_start">広告の読み込みを開始...広告が10秒間に読み込まれていない場合、代替画面が表示されます！</string>
     <string name="language_10">ポルトガル語</string>
+    <string name="item_desc_232">良い少年と少女のためだけに！</string>
+    <string name="item_desc_233">たくさんのプレゼントがいっぱい！</string>
+    <string name="item_name_232">現在</string>
+    <string name="item_name_233">グッドサック</string>
+    <string name="seasonalEffectSettingText">季節の影響</string>
+    <string name="setting_25">季節の影響</string>
+    <string name="visitor_desc_56">ホーホー、皆！</string>
+    <string name="visitor_name_56">サンタクロース</string>
+    <string name="eventChristmasItem">あなたは%1$sを見つけました！ 貴重なアイテムを手に入れるために、クラフトテーブルの書籍セクションでグッドサックのレシピを探してください！</string>
+    <string name="eventChristmasText">クリスマスです！\n\n色のついたプレゼントは、ゲームが開いている間にランダムに見つけられ、非常に貴重なクリスマスアイテムを作成するために使用することができます。 クラフトテーブルの本のタブを見てください！\n\nさらに、新しい貴重なアイテムにいつも報酬を与える新たな訪問者が追加されました。 彼を見つけることを幸運！\n\nイベントは1月5日に終了します。</string>
 
 </resources>

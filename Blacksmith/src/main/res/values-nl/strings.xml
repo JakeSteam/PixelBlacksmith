@@ -1481,7 +1481,7 @@
     <string name="assistant_name_5">Elf</string>
     <string name="assistant_name_6">Orc</string>
     <string name="eventEasterItem">Je vond een %1$s! Kijk voor de Gouden Ei recept in het voedsel van de oven tot een waardevol punt &amp; ontgrendelen; unieke prestatie!</string>
-    <string name="eventText">Het is Pasen!\n\nGekleurde paaseieren gevonden zal worden in willekeurige volgorde, terwijl het spel is geopend, en kan worden gebruikt om een ​​uiterst waardevolle easter item te maken. Kijk onder het tabblad voedsel in de oven!\n\nDaarnaast is een nieuwe bezoeker toegevoegd die altijd deze nieuwe waardevol object zal belonen. Good luck het vinden van hem!\n\nEvent eindigt op 22 maart.</string>
+    <string name="eventEasterText">Het is Pasen!\n\nGekleurde paaseieren gevonden zal worden in willekeurige volgorde, terwijl het spel is geopend, en kan worden gebruikt om een ​​uiterst waardevolle easter item te maken. Kijk onder het tabblad voedsel in de oven!\n\nDaarnaast is een nieuwe bezoeker toegevoegd die altijd deze nieuwe waardevol object zal belonen. Good luck het vinden van hem!\n\nEvent eindigt op 22 maart.</string>
     <string name="help_advertising">Advertising</string>
     <string name="help_anvil">Aambeeld</string>
     <string name="help_assistants">assistenten</string>
@@ -1574,4 +1574,14 @@
     <string name="visitor_name_55">Sparky</string>
     <string name="advert_load_start">Advertentie beginnen ... Als er geen advertentie in 10\'s is geladen, verschijnt er een vervangend scherm!</string>
     <string name="language_10">Portugees</string>
+    <string name="item_desc_232">Alleen voor goede jongens en meisjes!</string>
+    <string name="item_desc_233">Vol met zoveel cadeautjes!</string>
+    <string name="item_name_232">Aanwezig</string>
+    <string name="item_name_233">Goody Sack</string>
+    <string name="seasonalEffectSettingText">Seizoenseffecten</string>
+    <string name="setting_25">Seizoenseffecten</string>
+    <string name="visitor_desc_56">Ho ho ho, iedereen!</string>
+    <string name="visitor_name_56">Kerstman</string>
+    <string name="eventChristmasItem">Je hebt %1$s gevonden! Zoek naar het Goody Sack-recept in de boekensectie van de handwerktafel om een waardevol item te verdienen!</string>
+    <string name="eventChristmasText">Het is Kerstmis!\n\nGekleurde cadeaus worden willekeurig gevonden terwijl het spel open is en kunnen worden gebruikt om een uiterst waardevol kerstartikel te maken. Kijk onder het tabblad met boeken in de crafting table!\n\nDaarnaast is er een nieuwe bezoeker toegevoegd die dit nieuwe waardevolle item altijd zal belonen. Veel succes met het vinden van hem!\n\nEvenement eindigt op 5 januari.</string>
 </resources>
