@@ -298,7 +298,7 @@ public class EnchantingActivity extends Activity {
         } else {
             ToastHelper.showErrorToast(v, ToastHelper.SHORT, getString(ErrorHelper.errors.get(enchantResponse)), false);
         }
-        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.table), v, ParticleHelper.MANY);
+        ParticleHelper.getInstance(this).triggerExplosion((PercentRelativeLayout)findViewById(R.id.enchanting), v, ParticleHelper.MANY);
     }
 
     public void openHelp(View view) {

@@ -57,8 +57,9 @@ public class VisitorHelper {
     }
 
     private static int getNumberNewVisitors(long currentTime) {
-        long lastSpawn = Select.from(Player_Info.class).where(
-                Condition.prop("name").eq("DateVisitorSpawned")).first().getLongValue();
+        List<Player_Info> lastVisitorSpawn = Select.from(Player_Info.class).where(
+                Condition.prop("name").eq("DateVisitorSpawned")).list();
+        long lastSpawn = (lastVisitorSpawn != null && lastVisitorSpawn.size() > 0) ? lastVisitorSpawn.get(0).getLongValue() : 0;
         int currentVisitors = Visitor.listAll(Visitor.class).size();
         int maxVisitors = Upgrade.getValue("Maximum Visitors");
         int maximumNewVisitors = maxVisitors - currentVisitors;
