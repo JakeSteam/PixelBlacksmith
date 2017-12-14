@@ -829,13 +829,13 @@ public class AlertDialogHelper {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
 
-        alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
+        /*alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=uk.co.jakelee.blacksmithslots"));
                 activity.getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE).edit().putBoolean("hasViewedBlacksmithSlots", true).apply();
                 context.startActivity(browserIntent);
             }
-        });
+        });*/
 
         alertDialog.setNegativeButton(context.getString(R.string.updateClose), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
