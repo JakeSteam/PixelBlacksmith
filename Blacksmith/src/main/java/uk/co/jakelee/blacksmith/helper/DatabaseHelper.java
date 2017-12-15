@@ -71,8 +71,9 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V2_1_3 = 20;
     private final static int DB_V2_2_0 = 21;
     private final static int DB_V2_3_0 = 22;
+    private final static int DB_V2_3_4 = 23;
 
-    public final static int DB_LATEST = DB_V2_3_0;
+    public final static int DB_LATEST = DB_V2_3_4;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -271,6 +272,12 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
             setProgress("2.3.0 Christmas Patch", 97);
             patch220to230();
             prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_3_0).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", DatabaseHelper.DB_EMPTY) < DatabaseHelper.DB_V2_3_4) {
+            setProgress("2.3.4", 98);
+            patch233to234();
+            prefs.edit().putInt("databaseVersion", DatabaseHelper.DB_V2_3_4).apply();
         }
 
         setProgress("Complete", 100);
@@ -1010,6 +1017,17 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
         Recipe.saveInTx(recipes);
 
         new Setting(Constants.SETTING_SEASONAL_EFFECTS, "SeasonalEffects", true).save();
+    }
+
+    private void patch233to234() {
+        Recipe recipe = Select.from(Recipe.class).where(
+                Condition.prop("item").eq(233),
+                Condition.prop("ingredient").eq(232),
+                Condition.prop("quantity").eq(100)
+        ).first();
+        if (recipe != null) {
+            recipe.delete();
+        }
     }
 
     private void createAssistants() {
