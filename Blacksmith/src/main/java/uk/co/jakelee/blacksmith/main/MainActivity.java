@@ -121,9 +121,9 @@ public class MainActivity extends AppCompatActivity implements
 
         if (Player_Info.displayAds()) {
             ah = AdvertHelper.getInstance(this);
-            /*if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
+            if (!prefs.getBoolean("hasViewedBlacksmithSlots", false)) {
                 findViewById(R.id.blacksmithSlotsButton).setVisibility(View.VISIBLE);
-            }*/
+            }
         }
 
         Player_Info savedVersion = Select.from(Player_Info.class).where(Condition.prop("name").eq("SavedVersion")).first();
@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements
             ((ImageView)findViewById(R.id.wallpaper_id)).setImageResource(R.drawable.wallpaper1_xmas);
             ((ImageView)findViewById(R.id.wallpaper_id2)).setImageResource(R.drawable.wallpaper2_xmas);
             ((ImageView)findViewById(R.id.wallpaper_id3)).setImageResource(R.drawable.wallpaper3_xmas);
+            ((LinearLayout)findViewById(R.id.christmas_tree)).setVisibility(View.VISIBLE);
         }
     }
 
@@ -460,14 +461,14 @@ public class MainActivity extends AppCompatActivity implements
         };
         handler.postDelayed(everyMinute, DateHelper.MILLISECONDS_IN_SECOND * 5);
 
-        final Runnable eventRunnable = new Runnable() {
+        /*final Runnable eventRunnable = new Runnable() {
             @Override
             public void run() {
                 EventHelper.checkForEventItem(activity);
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 60);
             }
         };
-        handler.postDelayed(eventRunnable, DateHelper.MILLISECONDS_IN_SECOND * 60);
+        handler.postDelayed(eventRunnable, DateHelper.MILLISECONDS_IN_SECOND * 60);*/
     }
 
     private String getRestockText(boolean taxPaid) {
@@ -480,8 +481,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void openEventInfo(View v) {
-        AlertDialogHelper.displayEventInfo(this);
-        //AlertDialogHelper.openBlacksmithSlot(this);
+        //AlertDialogHelper.displayEventInfo(this);
+        AlertDialogHelper.openBlacksmithSlot(this);
     }
 
     public void clickChristmasTree(View v) {

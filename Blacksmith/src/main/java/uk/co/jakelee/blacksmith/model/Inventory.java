@@ -44,7 +44,7 @@ public class Inventory extends SugarRecord implements Serializable {
         craftedItem.save();
 
         if (rewardXp) {
-            Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getModifiedValue(state));
+            Player_Info.addXp(Item.findById(Item.class, craftedItem.getItem()).getModifiedValue(state) * quantity);
         }
     }
 
