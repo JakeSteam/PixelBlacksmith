@@ -190,10 +190,8 @@ public class TableActivity extends Activity {
     }
 
     private void createBooksInterface(boolean clearExisting) {
-        List<Item> items = new ArrayList<>();
-        items.add(Item.findById(Item.class, 233));
-        items.addAll(Select.from(Item.class).where(
-                Condition.prop("type").eq(Constants.TYPE_BOOK)).orderBy("level").list());
+        List<Item> items = Select.from(Item.class).where(
+                Condition.prop("type").eq(Constants.TYPE_BOOK)).orderBy("level").list();
 
         dh.createItemSelector(
                 (ViewFlipper) findViewById(R.id.viewFlipper),
