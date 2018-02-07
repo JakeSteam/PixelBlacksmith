@@ -45,7 +45,11 @@ public class MusicService extends Service {
 
     @Override
     public void onDestroy() {
-        player.stop();
-        player.release();
+        try {
+            player.stop();
+            player.release();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
     }
 }

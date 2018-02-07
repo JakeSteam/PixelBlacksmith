@@ -1368,7 +1368,7 @@
     <string name="tutorialVisitorPicture">Visitor</string>
     <string name="tutorialVisitorPictureText">Ah, Mr T Utorial! How nice of you to stop by.</string>
     <string name="tutorialVisitorPrefs">Preferences</string>
-    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 5%% bonus if they are traded.</string>
+    <string name="tutorialVisitorPrefsText">It looks like this visitor prefers bronze items, and ore, and gives a 6% bonus if they are traded.</string>
     <string name="tutorialVisitorDemands">Demands</string>
     <string name="tutorialVisitorDemandsText">Each visitor has a list of demands. This one is for ores, tap the red button to open the trading window and see available items in your inventory.</string>
 
