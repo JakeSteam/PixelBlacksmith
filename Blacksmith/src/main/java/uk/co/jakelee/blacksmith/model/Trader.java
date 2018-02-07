@@ -72,7 +72,7 @@ public class Trader extends SugarRecord {
 
     private static void makeTraderAppear(Context context, TableLayout marketLayout) {
         Trader traderToArrive = selectTraderType();
-        if (traderToArrive.getName(context) != null) {
+        if (!traderToArrive.getName(context).startsWith("trader_name_")) {
             traderToArrive.setStatus(Constants.TRADER_PRESENT);
             traderToArrive.save();
             if (!TutorialHelper.currentlyInTutorial) {
