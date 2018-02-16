@@ -73,9 +73,8 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
     private final static int DB_V2_3_0 = 22;
     private final static int DB_V2_3_4 = 23;
     private final static int DB_V2_3_5 = 24;
-    private final static int DB_V2_3_6 = 25;
 
-    public final static int DB_LATEST = DB_V2_3_6;
+    public final static int DB_LATEST = DB_V2_3_5;
 
     private SplashScreenActivity callingActivity;
     private ProgressBar progressBar;
@@ -1040,25 +1039,11 @@ public class DatabaseHelper extends AsyncTask<String, String, String> {
 
     private void patch234to235() {
         Visitor_Type santaVisitor = Select.from(Visitor_Type.class)
-                .where(Condition.prop("visitor_id").eq(56)).first();
+                .where(Condition.prop("visitor_id").eq(233)).first();
 
         if (santaVisitor != null) {
             santaVisitor.setWeighting(2);
             santaVisitor.save();
-        }
-    }
-
-    private void patch235to236() {
-        Visitor_Type santaVisitor = Select.from(Visitor_Type.class).where(Condition.prop("visitor_id").eq(56)).first();
-        if (santaVisitor != null) {
-            santaVisitor.setWeighting(2);
-            santaVisitor.save();
-        }
-
-        Item present = Select.from(Item.class).where(Condition.prop("id").eq(233)).first();
-        if (present != null) {
-            present.setValue(300);
-            present.save();
         }
     }
 
