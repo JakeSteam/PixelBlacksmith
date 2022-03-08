@@ -57,6 +57,9 @@ Pixel Blacksmith is created and maintained by Jake Lee, a software engineer from
 Happy crafting, blacksmiths!
 
 ## Codebase notes
+* The app uses the long-dead SugarORM in `DatabaseHelper.java`.
+* The app contains most code in each screen's activity, with additional functionality added via "Helper" classes.
+* `DisplayHelper.java`, `VisitorHelper.java`, and `WorkerHelper.java` are horrendously complex classes that contain most of the logic!
 
 ## Licensing
 * Entire repository is under the MIT license, essentially do whatever you want but don't blame me if it breaks!
