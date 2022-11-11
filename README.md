@@ -63,6 +63,6 @@ Happy crafting, blacksmiths!
 
 ## Licensing
 * Entire repository is under the MIT license, essentially do whatever you want but don't blame me if it breaks!
-* Redcated images are licensed from long forgotten sources, unfortunately!
-* All unredacted images are modified versions of [Kenney](https://www.kenney.nl/assets?s=city) assets.
+* Redacted images are licensed from long forgotten sources, unfortunately!
+* All unredacted images are modified versions of [Kenney](https://www.kenney.nl/assets) assets.
 
