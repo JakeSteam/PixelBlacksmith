@@ -55,7 +55,8 @@
         <!--suppress AndroidDomInspection -->
         <activity
             android:name=".main.SplashScreenActivity"
-            android:theme="@style/AppTheme.Splash">
+            android:theme="@style/AppTheme.Splash"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -153,7 +154,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.PopupOverlay" />
 
-        <receiver android:name=".helper.NotificationHelper">
+        <receiver android:name=".helper.NotificationHelper" android:exported="true">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
 

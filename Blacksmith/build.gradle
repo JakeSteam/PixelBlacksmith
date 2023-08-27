@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 28
     buildToolsVersion '25.0.0'
 
     defaultConfig {
@@ -28,6 +28,7 @@ repositories {
     maven {
         url 'https://maven.google.com'
     }
+    google()
 }
 
 dependencies {
@@ -36,7 +37,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:percent:$supportLibraryVersion"
-    implementation "com.google.android.gms:play-services-ads:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-ads:20.0.0"
     implementation "com.google.android.gms:play-services-gcm:$playLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
