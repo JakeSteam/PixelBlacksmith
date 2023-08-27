@@ -6,6 +6,7 @@ buildscript {
         maven {
             url 'https://maven.google.com'
         }
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.0'
@@ -13,17 +14,23 @@ buildscript {
 }
 
 ext {
-    apiVersion = 26
+    apiVersion = 33
     compilerVersion = '25.0.1'
-    supportLibraryVersion = '23.0.0' // Updating this breaks alert sizes, tutorial skipping, and many other things. Don't.
-    playLibraryVersion = '10.0.1'
+    supportLibraryVersion = '23.0.1' // Updating this breaks alert sizes, tutorial skipping, and many other things. Don't.
+    playLibraryVersion = '15.0.0'
 }
 
 allprojects {
     repositories {
         jcenter()
         mavenCentral()
-        maven(){ url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven {
+            url 'https://maven.google.com'
+        }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+        google()
     }
 }
 
