@@ -27,22 +27,18 @@ public class ToastHelper {
     }
 
     public static void showErrorToast(View view, int length, String text, boolean saveToLog) {
-        showToast(view, length, text, saveToLog, R.color.holo_red_dark);
+        showToast(view, length, text, saveToLog, R.color.redOverlay);
     }
 
     public static void showTipToast(View view, int length, String text, boolean saveToLog) {
-        showToast(view, length, text, saveToLog, R.color.holo_blue_dark);
+        showToast(view, length, text, saveToLog, R.color.blueOverlay);
     }
 
     public static void showPositiveToast(View view, int length, String text, boolean saveToLog) {
-        showToast(view, length, text, saveToLog, R.color.holo_green_dark);
+        showToast(view, length, text, saveToLog, R.color.greenOverlay);
     }
 
     public static void showToast(View targetView, int length, String text, boolean saveToLog, int color) {
-        if (targetView == null) {
-            targetView = MainActivity.questContainer;
-        }
-
         if (targetView == null) {
             return;
         }

@@ -353,12 +353,6 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    public void openQuests(View view) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
-        }
-    }
-
     public void openSupportCode(View view) {
         AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
     }

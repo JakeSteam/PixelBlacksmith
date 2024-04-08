@@ -128,9 +128,6 @@
             android:name=".main.FoodActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity
-            android:name=".main.QuestActivity"
-            android:theme="@style/AppTheme.PopupOverlay" />
-        <activity
             android:name=".main.ItemSelectActivity"
             android:theme="@style/AppTheme.PopupOverlay" />
         <activity

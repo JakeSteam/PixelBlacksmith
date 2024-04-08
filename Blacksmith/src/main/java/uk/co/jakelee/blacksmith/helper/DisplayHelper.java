@@ -121,17 +121,6 @@ public class DisplayHelper {
         return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
     }
 
-    public static void updateQuest(int current, int max, String eventID) {
-        ImageView questIcon = (ImageView) MainActivity.questContainer.findViewById(R.id.questIcon);
-        ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
-
-        questIcon.setImageResource(getEventDrawableID(eventID));
-
-        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
-        questProgress.setProgress(current);
-        questProgress.setMax(max);
-    }
-
     private static int getEventDrawableID(String eventID) {
         switch (eventID) {
             case Constants.EVENT_VISITOR_COMPLETED:

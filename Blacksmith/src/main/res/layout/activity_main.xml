@@ -503,44 +503,11 @@
             android:textSize="28sp" />
 
         <RelativeLayout
-            android:id="@+id/questContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/currentLevel"
-            android:onClick="openQuests">
-
-            <ImageView
-                android:id="@+id/questBackground"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/levelbackground" />
-
-            <ImageView
-                android:id="@+id/questIcon"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp" />
-
-            <ProgressBar
-                android:id="@+id/questProgress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="32dp"
-                android:layout_height="4dp"
-                android:layout_marginTop="24dp"
-                android:indeterminate="false"
-                android:progress="0"
-                android:progressDrawable="@drawable/level_progress" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
             android:id="@+id/blacksmithSlotsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/questContainer"
+            android:layout_toLeftOf="@id/currentLevel"
             android:onClick="openEventInfo"
             android:visibility="gone">
 

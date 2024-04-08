@@ -6,17 +6,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.util.Pair;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Result;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.GamesStatusCodes;
-import com.google.android.gms.games.quest.Quest;
-import com.google.android.gms.games.quest.QuestBuffer;
-import com.google.android.gms.games.quest.Quests;
 import com.google.android.gms.games.snapshot.Snapshot;
 import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
 import com.google.android.gms.games.snapshot.Snapshots;
@@ -26,7 +24,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.List;
 
 import uk.co.jakelee.blacksmith.BuildConfig;
@@ -121,6 +118,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
             UpdateStatistic(statistic, currentValue, lastSentValue);
         }
+    }
+
+    @Override
+    public void onResult(@NonNull Result result) {
     }
 
     private static void UpdateAchievement(Achievement achievement, int currentValue, int lastSentValue) {
