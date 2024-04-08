@@ -7,14 +7,14 @@ android {
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion apiVersion
         versionCode 80
         versionName "2.3.7"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
         debug {
@@ -40,7 +40,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:percent:$supportLibraryVersion"
-    implementation "com.google.android.gms:play-services-ads:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-ads:20.0.0"
     implementation "com.google.android.gms:play-services-gcm:$playLibraryVersion"
     implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
     implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"

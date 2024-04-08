@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.percent.PercentRelativeLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.percentlayout.widget.PercentRelativeLayout;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;

@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
-import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +28,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import androidx.core.content.ContextCompat;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -457,6 +458,7 @@ public class DisplayHelper {
         final LinearLayout finalTargetContainer = targetContainer;
         final ImageView finalImageView = addVisitorButton;
         final List<ImageView> finalVisitorImages = visitorImages;
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
