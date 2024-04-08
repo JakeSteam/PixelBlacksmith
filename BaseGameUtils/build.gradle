@@ -19,5 +19,6 @@ dependencies {
 
 android {
     namespace = "uk.co.jakelee.basegameutils"
+    compileSdkVersion 24
 }
 
