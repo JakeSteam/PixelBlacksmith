@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="uk.co.jakelee.blacksmith"
     android:installLocation="auto">
 
     <uses-permission android:name="com.android.vending.BILLING" />
@@ -15,9 +14,6 @@
 
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE" />
-    <uses-permission
-        android:name="android.permission.WAKE_LOCK"
-        tools:node="remove" />
 
     <application
         android:name="com.orm.SugarApp"
@@ -54,6 +50,7 @@
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
         <!--suppress AndroidDomInspection -->
         <activity
+            android:exported="true"
             android:name=".main.SplashScreenActivity"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
@@ -150,7 +147,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.PopupOverlay" />
 
-        <receiver android:name=".helper.NotificationHelper">
+        <receiver android:name=".helper.NotificationHelper" android:exported="true">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
 

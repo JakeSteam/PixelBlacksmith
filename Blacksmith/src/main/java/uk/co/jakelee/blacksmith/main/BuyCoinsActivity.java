@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.anjlab.android.iab.v3.SkuDetails;
-import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.text.NumberFormat;
 
@@ -69,10 +69,10 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     @Override
-    public void onProductPurchased(String productId, TransactionDetails details) {
+    public void onProductPurchased(String productId, PurchaseInfo details) {
         int coinsPurchased = getCoinsFromSku(productId);
         if (coinsPurchased > 0) {
-            bp.consumePurchase(productId);
+            bp.consumePurchaseAsync(productId, null);
             Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, coinsPurchased);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsPurchased, coinsPurchased);
             ToastHelper.showToast(findViewById(R.id.buycoins), ToastHelper.LONG, String.format(getString(R.string.buyCoinsSuccess), coinsPurchased), true);
@@ -86,13 +86,6 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     @Override
     public void onPurchaseHistoryRestored() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     public void buyCoins1(View v) {
@@ -149,14 +142,6 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     private String getPriceIfPossible(String iapName, String defaultPrice) {
-        try {
-            if (bp != null) {
-                SkuDetails iapInfo = bp.getPurchaseListingDetails(iapName);
-                if (iapInfo != null) {
-                    return iapInfo.priceText;
-                }
-            }
-        } catch (Exception e) {}
         return defaultPrice;
     }
 

@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
+import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -66,14 +66,14 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onProductPurchased(String productId, TransactionDetails details) {
+    public void onProductPurchased(String productId, PurchaseInfo details) {
         if (productId.equals(SKU_PREMIUM)) {
             addPremiumFeatures();
             updatePremiumStatus();
 
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtPremium), true);
         } else if (productId.equals(SKU_CONTRIBUTE)) {
-            bp.consumePurchase(SKU_CONTRIBUTE);
+            bp.consumePurchaseAsync(SKU_CONTRIBUTE, null);
             addContributeFeatures();
             updateContributeStatus();
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtContribute), true);
@@ -87,13 +87,6 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
 
     @Override
     public void onPurchaseHistoryRestored() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     private void updatePremiumStatus() {
