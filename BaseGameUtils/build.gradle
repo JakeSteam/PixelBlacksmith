@@ -2,23 +2,23 @@ apply plugin: 'com.android.library'
 
 buildscript {
     repositories {
+        google()
         jcenter()
         maven {
             url 'https://maven.google.com'
         }
-        google()
     }
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:23.0.0"
-    implementation "com.android.support:support-v4:23.0.0"
-    implementation "com.google.android.gms:play-services-games:23.0.0"
-    implementation "com.google.android.gms:play-services-plus:23.0.0"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-plus:$playLibraryVersion"
 }
 
 android {
-    namespace = "uk.co.jakelee.basegameutils"
-    compileSdkVersion 24
+    namespace = "com.google.example.games.basegameutils"
+    compileSdkVersion 33
 }
 
