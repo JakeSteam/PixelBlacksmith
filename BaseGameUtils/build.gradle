@@ -6,18 +6,15 @@ buildscript {
         maven {
             url 'https://maven.google.com'
         }
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha5'
+        google()
     }
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
-    compile "com.android.support:support-v4:${supportLibraryVersion}"
-    compile "com.google.android.gms:play-services-games:${playLibraryVersion}"
-    compile "com.google.android.gms:play-services-plus:${playLibraryVersion}"
+    compile "com.android.support:appcompat-v7:23.0.0"
+    compile "com.android.support:support-v4:23.0.0"
+    compile "com.google.android.gms:play-services-games:23.0.0"
+    compile "com.google.android.gms:play-services-plus:23.0.0"
 }
 
 android {
