@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,8 +22,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.games.quest.Quest;
-import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 import com.tapjoy.TJPlacement;
@@ -66,10 +65,8 @@ import static uk.co.jakelee.blacksmith.R.id.mainScroller;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener{
+        GoogleApiClient.OnConnectionFailedListener {
     private static final Handler handler = new Handler();
-    public static RelativeLayout questContainer;
     public static VariableHelper vh;
     public static boolean needToRedrawVisitors = false;
     public static boolean needToRedrawSlots = false;
@@ -79,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
-    private GooglePlayHelper gph;
     public static TJPlacement adPlacement;
 
     @Override
@@ -91,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
-        gph = new GooglePlayHelper();
         musicService = new Intent(this, MusicService.class);
         prefs = getSharedPreferences("uk.co.jakelee.blacksmith", MODE_PRIVATE);
         LanguageHelper.updateLanguage(getApplicationContext());
@@ -100,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements
             TutorialHelper.currentlyInTutorial = true;
             TutorialHelper.currentStage = prefs.getInt("tutorialStage", 0);
         }
-
-        assignUIElements();
 
         try {
             GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -138,8 +131,11 @@ public class MainActivity extends AppCompatActivity implements
                 AlertDialogHelper.displayUpdateMessage(this, this);
             }
         }
+    }
 
-        gph.UpdateQuest();
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
     }
 
     private void ratingPrompt() {
@@ -153,10 +149,6 @@ public class MainActivity extends AppCompatActivity implements
         AppRate.showRateDialogIfMeetsConditions(this);
     }
 
-    private void assignUIElements() {
-        questContainer = (RelativeLayout) findViewById(R.id.questContainer);
-    }
-
     public void startFirstTutorial() {
         // Stage 1
         findViewById(mainScroller).scrollTo(0, 0);
@@ -164,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements
         TutorialHelper th = new TutorialHelper(this, Constants.STAGE_1_MAIN);
         th.addTutorialNoOverlay(findViewById(R.id.visitors_container), R.string.tutorialIntro, R.string.tutorialIntroText, false);
         th.addTutorial(findViewById(R.id.coinCount), R.string.tutorialCoins, R.string.tutorialCoinsText, false);
-        th.addTutorial(findViewById(R.id.questContainer), R.string.tutorialQuest, R.string.tutorialQuestText, false);
         th.addTutorial(findViewById(R.id.currentLevel), R.string.tutorialLevel, R.string.tutorialLevelText, false);
         th.addTutorialRectangle(findViewById(R.id.visitors_container), R.string.tutorialVisitor, R.string.tutorialVisitorText, true);
         th.start();
@@ -437,7 +428,6 @@ public class MainActivity extends AppCompatActivity implements
                     ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
-                gph.UpdateQuest();
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
@@ -579,14 +569,6 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(new Intent(this, BuyCoinsActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
     }
 
-    public void openQuests(View view) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivity(new Intent(this, QuestActivity.class).addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
-        } else {
-            ToastHelper.showErrorToast(null, ToastHelper.LONG, getString(R.string.questsNoConnection), false);
-        }
-    }
-
     public void openMessages(View view) {
         Intent intent = new Intent(this, MessagesActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -623,13 +605,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onConnected(Bundle connectionHint) {
-        if (GooglePlayHelper.IsConnected()) {
-            Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
-        }
-    }
-
-    @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         GooglePlayHelper.ConnectionFailed(this, connectionResult);
     }
@@ -637,10 +612,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onConnectionSuspended(int i) {
         GooglePlayHelper.mGoogleApiClient.connect();
-    }
-
-    public void onQuestCompleted(Quest quest) {
-        ToastHelper.showPositiveToast(null, ToastHelper.LONG, GooglePlayHelper.CompleteQuest(quest), true);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

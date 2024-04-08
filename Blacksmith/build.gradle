@@ -22,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
     }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 repositories {
@@ -39,6 +42,8 @@ dependencies {
     implementation "com.android.support:percent:$supportLibraryVersion"
     implementation "com.google.android.gms:play-services-ads:$playLibraryVersion"
     implementation "com.google.android.gms:play-services-gcm:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'com.anjlab.android.iab.v3:library:1.0.31'

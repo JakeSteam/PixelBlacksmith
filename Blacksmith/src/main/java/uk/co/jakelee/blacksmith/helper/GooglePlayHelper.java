@@ -85,22 +85,6 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
-    public static String CompleteQuest(Quest quest) {
-        Games.Quests.claim(mGoogleApiClient, quest.getQuestId(),
-                quest.getCurrentMilestone().getMilestoneId());
-        Context context = mGoogleApiClient.getContext();
-
-        String questName = quest.getName();
-        String questDifficulty = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
-        String questReward = QuestHelper.getQuestReward(context, questDifficulty);
-
-        Player_Info.increaseByOne(Player_Info.Statistic.QuestsCompleted);
-        return String.format(context.getString(R.string.questComplete),
-                questName,
-                questDifficulty,
-                questReward);
-    }
-
     public static void UpdateEvent(String eventId, int quantity) {
         if (!IsConnected() || quantity <= 0) {
             return;
@@ -502,30 +486,4 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         return splitData;
     }
 
-    public void onResult(com.google.android.gms.common.api.Result result) {
-        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult) result;
-        QuestBuffer qb = r.getQuests();
-
-        int current = 0;
-        int max = 1;
-        String event = "";
-        if (qb.getCount() > 0) {
-            Quest q = qb.get(0);
-            current = (int) q.getCurrentMilestone().getCurrentProgress();
-            max = (int) q.getCurrentMilestone().getTargetProgress();
-            event = q.getCurrentMilestone().getEventId();
-        }
-
-        DisplayHelper.updateQuest(current, max, event);
-        qb.close();
-    }
-
-    public void UpdateQuest() {
-        if (!IsConnected()) {
-            return;
-        }
-
-        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[]{Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
-        quests.setResultCallback(this);
-    }
 }
