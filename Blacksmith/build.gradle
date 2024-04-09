@@ -8,7 +8,7 @@ android {
         applicationId "uk.co.jakelee.blacksmith"
         minSdkVersion 19
         targetSdkVersion apiVersion
-        versionCode 85
+        versionCode 86
         versionName "3.0.0"
         multiDexEnabled true
     }
