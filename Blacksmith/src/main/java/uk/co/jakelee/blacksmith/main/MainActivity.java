@@ -21,8 +21,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
-import com.tapjoy.TJPlacement;
-import com.tapjoy.Tapjoy;
 
 import java.util.Calendar;
 import java.util.List;
@@ -76,14 +74,11 @@ public class MainActivity extends AppCompatActivity implements
     private int newVisitors;
     private Intent musicService;
     private boolean musicServiceIsStarted = false;
-    public static TJPlacement adPlacement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        adPlacement = new TJPlacement(this, "WatchAdvert", AdvertHelper.getInstance(this));
 
         dh = DisplayHelper.getInstance(getApplicationContext());
         vh = new VariableHelper();
@@ -228,7 +223,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        Tapjoy.onActivityStart(this);
 
         // Run background tasks and organise music
         new Thread(new Runnable() {
@@ -339,7 +333,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onStop() {
-        Tapjoy.onActivityStop(this);
         super.onStop();
 
         handler.removeCallbacksAndMessages(null);

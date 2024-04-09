@@ -13,11 +13,6 @@ import com.applovin.sdk.AppLovinAdVideoPlaybackListener;
 import com.applovin.sdk.AppLovinSdk;
 import com.orm.query.Condition;
 import com.orm.query.Select;
-import com.tapjoy.TJActionRequest;
-import com.tapjoy.TJError;
-import com.tapjoy.TJPlacement;
-import com.tapjoy.TJPlacementListener;
-import com.tapjoy.Tapjoy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +30,7 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
-public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener, TJPlacementListener {
+public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
     private static AdvertHelper dhInstance = null;
     private final Context context;
@@ -49,8 +44,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     private advertPurpose currentPurpose;
     public AdvertHelper(Context context) {
         this.context = context;
-
-        Tapjoy.connect(context, "5RRfiBZDQ1igkbGMq000-gECphRBAD7rfoVwE7ZfGkZOWFqxNELMLHp9BVgk", null);
 
         AppLovinSdk.initializeSdk(context);
         advert = AppLovinIncentivizedInterstitial.create(context);
@@ -150,17 +143,14 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            if (MainActivity.adPlacement != null) {
-               MainActivity.adPlacement.requestContent();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!verified && tryingToLoad) {
-                            openInterstitial(purpose);
-                        }
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!verified && tryingToLoad) {
+                        openInterstitial(purpose);
                     }
-                }, 10000);
-            }
+                }
+            }, 10000);
         }
 
     }
@@ -256,21 +246,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     @Override public void userRewardRejected(AppLovinAd appLovinAd, Map map) {}
     @Override public void validationRequestFailed(AppLovinAd appLovinAd, int i) {}
     @Override public void userDeclinedToViewAd(AppLovinAd appLovinAd) {}
-
-    public void onContentReady(TJPlacement placement) {
-        tryingToLoad = false;
-        placement.showContent();
-    }
-    public void onContentDismiss(TJPlacement placement) {
-        verified = true;
-        tryReward();
-    }
-    public void onPurchaseRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-    public void onRewardRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string, int number) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-    public void onRequestSuccess(TJPlacement placement) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-    public void onRequestFailure(TJPlacement placement, TJError error) {} // Called when there was a problem during connecting Tapjoy servers.
-    public void onContentShow(TJPlacement placement) {
-    } // Called when the content is showed.
 
     public enum advertPurpose {ConvMarketRestock, ConvTraderRestock, ConvVisitorDismiss, ConvVisitorSpawn, BonusBox}
 }
