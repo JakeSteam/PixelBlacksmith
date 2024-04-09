@@ -11,11 +11,11 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 83,
+      "versionCode": 84,
       "versionName": "3.0.0",
       "outputFile": "Blacksmith-release.apk"
     }
   ],
   "elementType": "File",
-  "minSdkVersionForDexing": 16
+  "minSdkVersionForDexing": 19
 }

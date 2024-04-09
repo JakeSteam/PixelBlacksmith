@@ -10,6 +10,7 @@ android {
         targetSdkVersion apiVersion
         versionCode 84
         versionName "3.0.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
