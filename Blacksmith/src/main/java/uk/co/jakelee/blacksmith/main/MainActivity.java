@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -98,11 +97,9 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         try {
-            GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
+            GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
                     .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                    .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
+                    //.addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                     .setViewForPopups(findViewById(android.R.id.content))
                     .build();
         } catch (IllegalStateException e) {

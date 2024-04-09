@@ -21,7 +21,7 @@ android {
     namespace = "com.google.example.games.basegameutils"
     compileSdkVersion 33
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
     }
 }
 
