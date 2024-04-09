@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.percent.PercentRelativeLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.percentlayout.widget.PercentRelativeLayout;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;

@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.support.design.widget.Snackbar;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.main.MainActivity;
@@ -27,22 +28,18 @@ public class ToastHelper {
     }
 
     public static void showErrorToast(View view, int length, String text, boolean saveToLog) {
-        showToast(view, length, text, saveToLog, R.color.holo_red_dark);
+        showToast(view, length, text, saveToLog, R.color.redOverlay);
     }
 
     public static void showTipToast(View view, int length, String text, boolean saveToLog) {
-        showToast(view, length, text, saveToLog, R.color.holo_blue_dark);
+        showToast(view, length, text, saveToLog, R.color.blueOverlay);
     }
 
     public static void showPositiveToast(View view, int length, String text, boolean saveToLog) {
-        showToast(view, length, text, saveToLog, R.color.holo_green_dark);
+        showToast(view, length, text, saveToLog, R.color.greenOverlay);
     }
 
     public static void showToast(View targetView, int length, String text, boolean saveToLog, int color) {
-        if (targetView == null) {
-            targetView = MainActivity.questContainer;
-        }
-
         if (targetView == null) {
             return;
         }
@@ -69,7 +66,7 @@ public class ToastHelper {
                 convertDpToPixel(context, -18)); // Bottom
         snackbarView.setBackgroundResource(color);
 
-        TextView snackbarText = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        TextView snackbarText = (TextView) snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
         snackbarText.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/BetterPixels.ttf"));
         snackbarText.setTextSize(20);
         snackbarText.setMinLines(2);

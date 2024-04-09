@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/statistics"
         android:layout_width="match_parent"
@@ -580,22 +580,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="5dp"
-                    android:text="@string/statisticsQuestsCompleted"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
-
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                    android:id="@+id/questsCompleted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
                     android:text="@string/statisticsTotalBonusGold"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -702,7 +686,7 @@
             </GridLayout>
         </ScrollView>
 
-    </android.support.percent.PercentRelativeLayout>
+    </androidx.percentlayout.widget.PercentRelativeLayout>
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

@@ -33,7 +33,7 @@ Also:
 
 Google Play:
 
-* 35 Repeatable Quests
+* ~~35 Repeatable Quests~~ Deprecated by Google :(
 * 31 Achievements
 * 7 Leaderboards
 * Cloud Saves

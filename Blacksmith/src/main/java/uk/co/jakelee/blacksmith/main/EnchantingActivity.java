@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.percent.PercentRelativeLayout;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -16,6 +15,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import androidx.percentlayout.widget.PercentRelativeLayout;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;

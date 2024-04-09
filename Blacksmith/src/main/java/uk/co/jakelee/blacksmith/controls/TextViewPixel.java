@@ -2,8 +2,9 @@ package uk.co.jakelee.blacksmith.controls;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 public class TextViewPixel extends AppCompatTextView {
     private static Typeface mTypeface;

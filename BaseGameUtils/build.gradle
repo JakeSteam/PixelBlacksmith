@@ -2,26 +2,26 @@ apply plugin: 'com.android.library'
 
 buildscript {
     repositories {
+        google()
         jcenter()
         maven {
             url 'https://maven.google.com'
         }
     }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha5'
-    }
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
-    compile "com.android.support:support-v4:${supportLibraryVersion}"
-    compile "com.google.android.gms:play-services-games:${playLibraryVersion}"
-    compile "com.google.android.gms:play-services-plus:${playLibraryVersion}"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-plus:$playLibraryVersion"
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion compilerVersion
+    namespace = "com.google.example.games.basegameutils"
+    compileSdkVersion 33
+    defaultConfig {
+        minSdkVersion 19
+    }
 }
 

@@ -1,19 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    namespace = "uk.co.jakelee.blacksmith"
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion apiVersion
-        versionCode 80
-        versionName "2.3.7"
+        versionCode 84
+        versionName "3.0.0"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
         debug {
@@ -21,9 +21,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
     }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 repositories {
+    google()
     mavenCentral()
     maven {
         url 'https://maven.google.com'
@@ -31,25 +35,25 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-    compile "com.android.support:design:$supportLibraryVersion"
-    compile "com.android.support:percent:$supportLibraryVersion"
-    compile "com.google.android.gms:play-services-ads:$playLibraryVersion"
-    compile "com.google.android.gms:play-services-gcm:$playLibraryVersion"
-    compile 'com.github.satyan:sugar:1.5'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.anjlab.android.iab.v3:library:1.0.31'
-    compile 'com.scottyab:aescrypt:0.0.1'
-    compile('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar') {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support:percent:$supportLibraryVersion"
+    implementation "com.google.android.gms:play-services-gcm:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
+    implementation 'com.github.satyan:sugar:1.5'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.anjlab.android.iab.v3:library:2.1.0'
+    implementation 'com.scottyab:aescrypt:0.0.1'
+    implementation('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar') {
         transitive = true
     }
-    compile 'com.github.hotchemi:android-rate:1.0.1'
-    compile project(':BaseGameUtils')
-    compile files('libs/applovin-sdk-6.2.2.jar')
-    compile files('libs/tapjoyconnectlibrary.jar')
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.github.jinatonic.confetti:confetti:1.1.1'
+    implementation 'com.github.hotchemi:android-rate:1.0.1'
+    implementation project(':BaseGameUtils')
+    implementation files('libs/applovin-sdk-6.2.2.jar')
+    implementation files('libs/tapjoyconnectlibrary.jar')
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.jinatonic.confetti:confetti:1.1.1'
 }

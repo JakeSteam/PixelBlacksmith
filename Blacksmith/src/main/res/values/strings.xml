@@ -1594,7 +1594,7 @@
     <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
-    <string name="updateMessage">Updated to version %s! Enjoy the christmas event!</string>
+    <string name="updateMessage">Updated to version %s!\n\nThis is the first update in 6-7 years, and just updates a few things required by Google, and removes quests (as Google removed the feature). Thanks for all the support over the years!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 

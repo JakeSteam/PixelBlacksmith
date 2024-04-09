@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
-import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +28,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import androidx.core.content.ContextCompat;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -119,17 +120,6 @@ public class DisplayHelper {
         LayoutInflater inflater = LayoutInflater.from(context);
         View inflatedView = inflater.inflate(R.layout.custom_slot, null);
         return (RelativeLayout) inflatedView.findViewById(R.id.slot_root);
-    }
-
-    public static void updateQuest(int current, int max, String eventID) {
-        ImageView questIcon = (ImageView) MainActivity.questContainer.findViewById(R.id.questIcon);
-        ProgressBar questProgress = (ProgressBar) MainActivity.questContainer.findViewById(R.id.questProgress);
-
-        questIcon.setImageResource(getEventDrawableID(eventID));
-
-        questProgress.setVisibility(max == 0 ? View.INVISIBLE : View.VISIBLE);
-        questProgress.setProgress(current);
-        questProgress.setMax(max);
     }
 
     private static int getEventDrawableID(String eventID) {
@@ -468,6 +458,7 @@ public class DisplayHelper {
         final LinearLayout finalTargetContainer = targetContainer;
         final ImageView finalImageView = addVisitorButton;
         final List<ImageView> finalVisitorImages = visitorImages;
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
