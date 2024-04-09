@@ -36,11 +36,11 @@ Google Play:
 * ~~35 Repeatable Quests~~ Deprecated by Google :(
 * 31 Achievements
 * 7 Leaderboards
-* Cloud Saves
+* ~~Cloud Saves~~ Requires rebuild of Google Play implementation :(
 
 Supported Devices:
 
-* All Android versions from Ice Cream Sandwich to Nougat, and beyond.
+* All Android versions from ~~Ice Cream Sandwich~~ API 19+
 * All phone & tablet sizes, from a tiny 3.7" Nexus One to a chubby 5.7" Nexus 6P, and beyond to the 10.1" Nexus 10!
 * Google Play Services are optional.
 
