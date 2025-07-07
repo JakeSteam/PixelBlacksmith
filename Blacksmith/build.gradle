@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion apiVersion
         versionCode 87
         versionName "3.0.1"
@@ -45,7 +45,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
-    implementation 'com.anjlab.android.iab.v3:library:2.1.0'
+    implementation 'com.anjlab.android.iab.v3:library:2.2.0'
     implementation 'com.scottyab:aescrypt:0.0.1'
     implementation('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar') {
         transitive = true
