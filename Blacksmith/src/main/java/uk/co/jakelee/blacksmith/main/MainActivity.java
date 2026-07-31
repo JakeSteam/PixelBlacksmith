@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dh.createAllSlots(this);
         keepTopBarBelowStatusBar();
+        NotificationHelper.confirmNotificationPermission(this);
         ratingPrompt();
 
         if (Player_Info.displayAds()) {

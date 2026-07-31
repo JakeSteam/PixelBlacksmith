@@ -1,15 +1,21 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
+import android.os.Build;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
 import com.orm.query.Condition;
@@ -29,6 +35,10 @@ import uk.co.jakelee.blacksmith.model.Worker;
 
 public class NotificationHelper extends BroadcastReceiver {
     private static final String NOTIFICATION_TYPE = "uk.co.jakelee.notification_type";
+    private static final String NOTIFICATION_SOUND = "uk.co.jakelee.notification_sound";
+    private static final String CHANNEL_SOUND = "blacksmith_alerts";
+    private static final String CHANNEL_SILENT = "blacksmith_alerts_silent";
+    private static final int REQUEST_POST_NOTIFICATIONS = 2;
     private static boolean useSounds = false;
 
     public static void addRestockNotification(Context context, boolean useSoundsSetting) {
@@ -100,18 +110,50 @@ public class NotificationHelper extends BroadcastReceiver {
     }
 
     private static void addNotification(Context context, long notificationTime, int notificationType) {
-        try {
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-            Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-            notificationIntent.addCategory("android.intent.category.DEFAULT");
-            notificationIntent.putExtra(NOTIFICATION_TYPE, notificationType);
+        Intent notificationIntent = new Intent(context, NotificationHelper.class);
+        notificationIntent.putExtra(NOTIFICATION_TYPE, notificationType);
+        // The alarm can outlive the process, so this can't rely on the static field.
+        notificationIntent.putExtra(NOTIFICATION_SOUND, useSounds);
 
-            PendingIntent broadcast = PendingIntent.getBroadcast(context, 9000 + notificationType, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 9000 + notificationType, notificationIntent, pendingIntentFlags());
 
-            alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, broadcast);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+        alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, broadcast);
+    }
+
+    /** Targeting S+ requires an explicit mutability flag, but FLAG_IMMUTABLE only exists from M. */
+    private static int pendingIntentFlags() {
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        return flags;
+    }
+
+    /**
+     * Notifications posted without a channel are dropped from Oreo onwards. Two channels, because
+     * the sound setting is per notification and a channel's sound can't be changed after creation.
+     */
+    private static void createChannels(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return;
+        }
+
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        String name = context.getString(R.string.app_name);
+        manager.createNotificationChannel(new NotificationChannel(CHANNEL_SOUND, name, NotificationManager.IMPORTANCE_DEFAULT));
+        manager.createNotificationChannel(new NotificationChannel(CHANNEL_SILENT, name, NotificationManager.IMPORTANCE_LOW));
+    }
+
+    /** Required from Android 13 onwards, or nothing we post is ever shown. */
+    public static void confirmNotificationPermission(Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_POST_NOTIFICATIONS);
         }
     }
 
@@ -128,8 +170,9 @@ public class NotificationHelper extends BroadcastReceiver {
         stackBuilder.addParentStack(MainActivity.class);
         stackBuilder.addNextIntent(notificationIntent);
 
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, pendingIntentFlags());
 
+        boolean playSound = intent.getBooleanExtra(NOTIFICATION_SOUND, false);
         int notificationType = intent.getExtras().getInt(NOTIFICATION_TYPE);
         String notificationText = "";
         if (notificationType == Constants.NOTIFICATION_RESTOCK) {
@@ -144,14 +187,17 @@ public class NotificationHelper extends BroadcastReceiver {
             notificationText = context.getString(R.string.notificationFinished);
         }
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        createChannels(context);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, playSound ? CHANNEL_SOUND : CHANNEL_SILENT);
         Notification notification = builder.setContentTitle(context.getString(R.string.app_name))
                 .setContentText(notificationText)
                 .setSmallIcon(R.drawable.notification)
                 .setContentIntent(pendingIntent)
                 .build();
 
-        if (useSounds) {
+        // Pre-Oreo has no channels, so the sound is set on the notification itself.
+        if (playSound && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             notification.sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         }
 

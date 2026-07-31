@@ -144,13 +144,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.PopupOverlay" />
 
-        <receiver android:name=".helper.NotificationHelper" android:exported="true">
-            <intent-filter>
-                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+        <!-- Only ever triggered by our own alarms, via an explicit intent -->
+        <receiver android:name=".helper.NotificationHelper" android:exported="false" />
 
         <service android:name=".service.MusicService" />
 
