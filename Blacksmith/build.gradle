@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
 
+// Signing credentials live in ~/.gradle/gradle.properties, outside this repo so they can never be
+// committed. Without them the build still works: debug falls back to the local debug keystore and
+// release comes out unsigned, which is what anyone cloning this public repo will get.
+def signingReady = ['PB_STORE_FILE', 'PB_STORE_PASSWORD', 'PB_KEY_ALIAS', 'PB_KEY_PASSWORD'].every {
+    project.hasProperty(it)
+} && file(project.findProperty('PB_STORE_FILE').toString()).exists()
+
 android {
     namespace = "uk.co.jakelee.blacksmith"
     compileSdkVersion 36
@@ -12,14 +19,28 @@ android {
         versionName "3.0.3"
         multiDexEnabled true
     }
+    if (signingReady) {
+        signingConfigs {
+            shipping {
+                storeFile = file(project.findProperty('PB_STORE_FILE').toString())
+                storePassword = project.findProperty('PB_STORE_PASSWORD').toString()
+                keyAlias = project.findProperty('PB_KEY_ALIAS').toString()
+                keyPassword = project.findProperty('PB_KEY_PASSWORD').toString()
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+            if (signingReady) signingConfig = signingConfigs.shipping
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+            // Signed with the shipping certificate so Play Games authenticates locally; it matches
+            // on package name plus certificate, and a debug-signed build fails with DEVELOPER_ERROR.
+            if (signingReady) signingConfig = signingConfigs.shipping
         }
     }
     buildFeatures {
