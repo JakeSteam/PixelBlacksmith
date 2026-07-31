@@ -647,7 +647,8 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackBonus() {
         String rewardText = AdvertHelper.createAdvertReward(this);
-        ToastHelper.showToast(null, ToastHelper.LONG, rewardText, true);
+        // ToastHelper drops anything passed a null view, which silently ate the reward text.
+        ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, rewardText, true);
 
         Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
         lastClaimed.setLongValue(System.currentTimeMillis());
