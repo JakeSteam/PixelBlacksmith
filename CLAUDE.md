@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Pixel Blacksmith — a released Android crafting game (`uk.co.jakelee.blacksmith`), Java, no Kotlin. Two Gradle modules: `:Blacksmith` (the app) and `:BaseGameUtils` (Google's vendored Play Games sample helper).
+Pixel Blacksmith — a released Android crafting game (`uk.co.jakelee.blacksmith`), Java, no Kotlin. One Gradle module, `:Blacksmith`.
 
 Codebase notes from the README, which still hold: most logic lives in each screen's Activity, with shared behaviour bolted on via `helper/*Helper` static classes. `DatabaseHelper`, `DisplayHelper`, `VisitorHelper`, and `WorkerHelper` are the large, tangled ones.
 
@@ -20,7 +20,7 @@ Codebase notes from the README, which still hold: most logic lives in each scree
 
 There are no tests — no `src/test`, no `src/androidTest`, no test dependencies. Don't invent a test command; verify changes by building and running the app.
 
-Toolchain: AGP 8.11.2 / Gradle 8.13 / JDK 17+, `compileSdk` 36, `targetSdk` 36 (via `apiVersion` in the root `build.gradle`), `minSdk` 21. API 36 needs AGP 8.11 or newer — AGP 8.9 and below cap out at 35.
+Toolchain: AGP 9.3.1 / Gradle 9.5.0 / JDK 17+, `compileSdk` 37, `targetSdk` 37 (via `apiVersion` in the root `build.gradle`), `minSdk` 23. API 37 needs AGP 9.3 or newer, which in turn requires Gradle 9.5.0.
 
 ### Verifying on an emulator
 
@@ -38,7 +38,11 @@ sqlite3 /tmp/x.db "SELECT id, message FROM MESSAGE ORDER BY ID DESC LIMIT 5;"
 
 Table names are SugarORM-mangled (`PLAYERINFO`, not `PLAYER_INFO`) and booleans live in `BOOL_VALUE`, ints in `INT_VALUE`. The `MESSAGE` table is especially useful: any toast raised with `saveToLog = true` lands there, so you can assert which user-facing message fired without racing a Snackbar's fade.
 
-Note the Play Games sign-in dialog hijacks the foreground on launch when no Google account is present; dismiss it with a single `KEYCODE_BACK` (more than that exits the app).
+Emulator gotchas that produce convincing false alarms:
+
+- **A device with no Google account** makes GMS throw up an add-account flow over the game on launch. Nothing to do with the app.
+- **A debug-signed build fails Play Games with `DEVELOPER_ERROR`** ("package name and certificate fingerprint do not match"), which manifests as a sign-in screen on every launch and `isConnected()` never becoming true. See the signing note below — builds here are signed with the shipping certificate precisely so this doesn't happen.
+- The shell is **zsh**, which does *not* word-split unquoted variables, so `D="-s emulator-5556"; adb $D shell` fails with "-s requires an argument". Write the flags out.
 
 ## Architecture
 
@@ -75,13 +79,33 @@ Activities are plain `Activity` (only `MainActivity` and `SplashScreenActivity` 
 
 `Location` (anvil, furnace, table, market, selling, enchanting) → `Slot` (unlocked by player level and premium status) → `Pending_Inventory` (an item in progress, with `timeCreated` + `craftTime`) → `Inventory` on completion. `Slot.hasAvailableSlot()` gates starting a craft; the polling runnables in `MainActivity` sweep completed `Pending_Inventory` rows into `Inventory`.
 
+### Signing
+
+Both build types are signed with the shipping certificate, from `PB_STORE_FILE`, `PB_STORE_PASSWORD`, `PB_KEY_ALIAS` and `PB_KEY_PASSWORD` in **`~/.gradle/gradle.properties`** — outside the repo, since this one is public. If those properties are missing the build still works (debug falls back to the local debug keystore, release comes out unsigned), so a clone builds fine.
+
+Debug is signed with the shipping certificate deliberately: Play Games and Play Billing both authenticate on package name *plus* certificate, so a debug-signed build can't exercise either. The trade-off is that a local debug build will install over a production one.
+
+There is no Play App Signing on this app, so that keystore is the app's only identity — lose it and the app can never be updated again, and since the save is a local database, players couldn't be migrated.
+
 ### Billing
 
-`helper/BillingHelper.java` wraps Google Play Billing 8.0.0 (one-time products only — the game sells no subscriptions). `PremiumActivity` and `BuyCoinsActivity` implement `BillingHelper.Listener`.
+`helper/BillingHelper.java` wraps Google Play Billing 9.1.0 (one-time products only — the game sells no subscriptions). `PremiumActivity` and `BuyCoinsActivity` implement `BillingHelper.Listener`.
 
 `premium` is a non-consumable and gets **acknowledged**; `contribute` and `coin_pack_1/2/3` are consumables and get **consumed**. Purchases are granted before being settled, so an interrupted grant is recovered on the next launch — consumables replay through `onProductPurchased`, non-consumables deliberately don't, because `addPremiumFeatures()` stacks its bonuses and isn't idempotent.
 
-Billing can't be tested locally: `launchBillingFlow` needs an upload-key-signed build on a Play track. On a debug build the product query returns nothing, `isReady()` is false, and the buy buttons fall back to the `cannotBuyIAP` message — that's the expected local behaviour, not a bug.
+With a shipping-signed build on a device with a Play account, products resolve and `launchBillingFlow` does hand off to Play's purchase sheet. Completing a purchase still needs the app on a Play track with a licence tester, so that last step can't be verified locally.
+
+Billing 9's transitive `lifecycle 2.6.2` drags in `kotlin-stdlib-jdk8:1.6.21`, whose classes moved into `kotlin-stdlib` in Kotlin 1.8 — hence the `constraints` block aligning them, without which `checkDuplicateClasses` fails.
+
+### Play Games
+
+Services **v2** (`play-services-games-v2`), via `helper/GooglePlayHelper.java`. There is no `GoogleApiClient`, no connect/disconnect, and **no sign-out** — authentication is automatic and `GooglePlayHelper` just records whether it succeeded.
+
+Every v2 client needs an `Activity`. Fire-and-forget writes (`UpdateEvent`, `UpdateLeaderboards`, `UnlockAchievement`, `UpdateAchievements`) are called from places holding only a `Context`, so `MainActivity` registers itself via `initialise()` and those borrow it. UI getters are asynchronous — `Task<Intent>`, launched from a success listener.
+
+Cloud saves work through `SnapshotsClient`, sharing `createBackup`/`applyBackup` with local export/import. **`applyBackup` deletes and repopulates fourteen tables**, so `isPlausibleSave` gates it: the save *is* the database, and a truncated one previously destroyed a game partway through. Keep that guard.
+
+GMS logs "You are using the deprecated Play Games Services v1 SDK" from `SnapshotsClient`. That's noise on Google's side; the dependency graph contains only games-v2.
 
 ### Error handling convention
 
@@ -90,13 +114,25 @@ Game-action methods return an `int` status: a positive count on success, or a ne
 ## Gotchas
 
 - **Don't bump `supportLibraryVersion` (23.0.0) in the root `build.gradle`.** The existing comment there is accurate: it breaks alert sizes, tutorial skipping, and more. AndroidX + Jetifier are enabled and rewrite it at build time.
-- **`android.nonFinalResIds=false` in `gradle.properties` is load-bearing** — `SettingsActivity` switches on view IDs.
+- **Jetifier is the next thing to break, in AGP 10.** `android.enableJetifier=true` is what maps the support libraries onto androidx, and AGP 9 already warns it's going. When it goes, the three `com.android.support:23.0.0` dependencies must be replaced with real androidx artifacts — which is exactly the change the comment above warns about. The androidx surface actually used is small (7 packages, 19 imports, zero `android.support.*` imports), so it's tractable, but expect dialog and tutorial theming to need checking.
+- **A `constraints` block pins `androidx.vectordrawable`(`-animated`) to 1.1.0.** Jetifier maps to androidx 1.0.0, where both artifacts declare the namespace `androidx.vectordrawable`; AGP 9 rejects duplicate namespaces outright. 1.1.0 is the first release that separates them.
+- **Resource IDs are non-final**, so they can't be `switch` case labels — `SettingsActivity.toggleSetting` is an if/else chain for this reason. `android.nonFinalResIds=false` used to paper over it and has been removed.
 - **TourGuide comes from JitPack**, as `com.github.worker8:TourGuide:v1.0.17-SNAPSHOT@aar`. The coordinate is case-sensitive and the version is tag-shaped; `v1.0.14` is *not* a substitute, as it predates the `ChainTourGuide` class `TutorialHelper` uses. Only jcenter ever served the old `tourguide` spelling.
-- **`ToastHelper` silently discards anything passed a null view** — it returns before `Message.add`, so there's no toast *and* no log entry. Roughly 25 call sites still do this, so some player-facing messages never appear. Pass a real view (`findViewById(android.R.id.content)` works) for anything new.
+- **`ToastHelper` needs a view to show anything.** It logs to `Message` first now, so nothing is silently lost, but with a null view there's no visible toast. Pass `findViewById(android.R.id.content)`. Three call sites in `DisplayHelper` deliberately still pass null — they're out-of-memory and image-load failures reached from `populateSlots` on a background thread, where showing a Snackbar would be unsafe.
 - Release builds have `minifyEnabled false`, but `Blacksmith/proguard.pro` matters anyway — it keeps `com.orm.**` and `uk.co.jakelee.blacksmith.model.**`, which SugarORM reflects over. Don't rename or obfuscate model classes/fields without also updating migration code.
-- **Play Games cannot be tested from a locally-built APK.** Sign-in authenticates on package name *plus* signing certificate, so a debug-signed build fails with `DEVELOPER_ERROR` — "Your package name and certificate fingerprint do not match". `enableAutoManage` then calls `beginFailureResolution`, which pops the full-screen Play Games sign-in flow on *every* cold start, and `isConnected()` never becomes true, so `UpdateAchievements`/`UpdateEvent` silently early-return and no Games traffic is emitted. **None of that indicates a real fault** — it's the expected result of an unregistered certificate. Testing Play Games needs a build signed with the upload key on a Play track, same constraint as billing. Register the debug SHA-1 against the Play Console game to test locally.
-- **Play Games Services v1 is deprecated on a hard clock.** Play blocks *new* titles on v1 as of Sept 2025; the v1 APIs were removed from the SDK in `play-services-games:25.0.0` (June 2026 — so **do not bump `playLibraryVersion` off 17.0.0**); runtime shutdown 2027. `play-services-games-v2` 21.0.0 covers every API this app uses (achievements, leaderboards, events, snapshots) and keeps `minSdk 21`; 22.0.0 requires 24. It also drops `play-services-drive`, the only reason that dependency is still here.
-- Two connection bugs in the v1 code, both found by inspection and worth fixing whenever Play Games is next touched: `MainActivity.onCreate` uses `enableAutoManage` *while* `onStart`/`onStop` also call `connect()`/`disconnect()`, which is explicitly unsupported (logcat: `Calling connect() while still connected, missing disconnect()`); and because leaving `MainActivity` disconnects the client, `SettingsActivity.updateSignInVisibility()` sees `IsConnected() == false` and so may never show the achievements/leaderboards/cloud-save buttons.
-- Cloud saves are additionally disabled in code: `Drive.API` is commented out in `MainActivity`'s client builder because the Drive Android API shut down in 2019. The serialisation (`GooglePlayHelper.createBackup`/`applyBackup`) is intact and shared with local export/import, so only the transport needs rebuilding.
+- **`gamesLibraryVersion` stays at 21.0.0** — `play-services-games-v2` 22.x requires `minSdk 24`, and this app is on 23 because of Play Billing 9.
+- **On screens ≥600dp, `targetSdk 37` means orientation requests are not honoured.** The `appCategory="game"` exemption and the compat property were both withdrawn at API 37. With the orientation setting on Auto (the default) the game fills a large screen and looks better than on a phone; if a player has forced portrait or landscape, the system letterboxes it into a window with black bars instead. Playable either way — it's cosmetic, and unavoidable at this target.
 - **Adverts are gone.** The AppLovin account is disabled and the SDK was removed. `AdvertHelper` remains and still grants the same rewards, but goes straight to `InterstitialActivity` — a homegrown tips-and-countdown screen, not an ad SDK. Strings still say "advert" / "WATCH AD", which is now inaccurate.
-- Bump `versionCode` and `versionName` in `Blacksmith/build.gradle` for releases. `MainActivity` compares `BuildConfig.VERSION_CODE` against the `SavedVersion` `Player_Info` row and shows an update message only when `VERSION_NAME` ends in `.0`.
+- Bump `versionCode` and `versionName` in `Blacksmith/build.gradle` for releases. `MainActivity` compares `BuildConfig.VERSION_CODE` against the `SavedVersion` `Player_Info` row and shows an update message only when `VERSION_NAME` ends in `.0`. **Beware:** the `updateMessage` string still describes the 3.0.0 release and is translated into all ten languages, so shipping a `.0` version shows stale copy to everyone. Rewrite it (and drop the stale translations) before using a `.0` version again.
+
+## Deadlines
+
+The point of the 3.0.4 work was to clear every known clock at once. Next forced dates:
+
+| When | What |
+|---|---|
+| Aug 2027 | Nothing — cleared by targeting 37 and Billing 9 |
+| Aug 2028 | Play Billing 9 stops being accepted; targetSdk 38 required |
+| AGP 10 | Jetifier removed, forcing the androidx migration above |
+
+Google adds requirements mid-cycle too — the 16KB page-size rule appeared that way. The native libs (`libpl_droidsonroids_gif`) are already 64KB-aligned, so that one is satisfied.
