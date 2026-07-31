@@ -40,6 +40,11 @@ public class ToastHelper {
     }
 
     public static void showToast(View targetView, int length, String text, boolean saveToLog, int color) {
+        // Logged first, so a caller with no view to hand still leaves the player a record.
+        if (saveToLog) {
+            Message.add(text);
+        }
+
         if (targetView == null) {
             return;
         }
@@ -72,10 +77,6 @@ public class ToastHelper {
         snackbarText.setMinLines(2);
         snackbarText.setMaxLines(10);
         snackbarText.setGravity(Gravity.CENTER_VERTICAL);
-
-        if (saveToLog) {
-            Message.add(text);
-        }
 
         snackbar.show();
     }

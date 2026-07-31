@@ -136,7 +136,8 @@ public class WorkerHelper {
         }
     }
 
-    public static void checkForFinishedHeroes(Context context) {
+    // Typed as Activity so the result toasts have a view to attach to; both callers are activities.
+    public static void checkForFinishedHeroes(Activity context) {
         List<Hero> heroes = Select.from(Hero.class).where(
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
@@ -181,14 +182,15 @@ public class WorkerHelper {
         }
 
         if (heroesFinished > 1) {
-            ToastHelper.showPositiveToast(((Activity) context).findViewById(R.id.worker), ToastHelper.LONG, String.format(context.getString(R.string.heroesReturned),
+            // R.id.worker only exists in WorkerActivity, so this was dropped when called from MainActivity.
+            ToastHelper.showPositiveToast(context.findViewById(android.R.id.content), ToastHelper.LONG, String.format(context.getString(R.string.heroesReturned),
                     heroesFinished,
                     workerNamesToString(heroNames),
                     heroesSuccessful), true);
         } else if (heroesFinished > 0 && heroesSuccessful > 0) {
-            ToastHelper.showPositiveToast(null, ToastHelper.LONG, lastResult, true);
+            ToastHelper.showPositiveToast(context.findViewById(android.R.id.content), ToastHelper.LONG, lastResult, true);
         } else if (heroesFinished > 0 && heroesSuccessful == 0) {
-            ToastHelper.showErrorToast(null, ToastHelper.LONG, lastResult, true);
+            ToastHelper.showErrorToast(context.findViewById(android.R.id.content), ToastHelper.LONG, lastResult, true);
         }
 
         GooglePlayHelper.UpdateEvent(Constants.EVENT_HERO_TRIPS, heroesSuccessful);
@@ -328,7 +330,8 @@ public class WorkerHelper {
         heroVisitor.save();
     }
 
-    public static void checkForFinishedWorkers(Context context) {
+    // Typed as Activity so the result toasts have a view to attach to; both callers are activities.
+    public static void checkForFinishedWorkers(Activity context) {
         List<Worker> workers = Select.from(Worker.class).where(
                 Condition.prop("purchased").eq(1),
                 Condition.prop("time_started").notEq(0)).list();
@@ -358,12 +361,12 @@ public class WorkerHelper {
                 worker.setTimesCompleted(worker.getTimesCompleted() + 1);
                 worker.save();
 
-                ToastHelper.showPositiveToast(null, ToastHelper.LONG, rewardText, true);
+                ToastHelper.showPositiveToast(context.findViewById(android.R.id.content), ToastHelper.LONG, rewardText, true);
             }
         }
 
         if (workersFinished > 1) {
-            ToastHelper.showPositiveToast(null, ToastHelper.LONG, String.format(context.getString(R.string.workersReturned),
+            ToastHelper.showPositiveToast(context.findViewById(android.R.id.content), ToastHelper.LONG, String.format(context.getString(R.string.workersReturned),
                     workersFinished,
                     workerNamesToString(workerNames)), true);
         }

@@ -1,5 +1,6 @@
 package uk.co.jakelee.blacksmith.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
@@ -356,7 +357,8 @@ public class VisitorHelper {
         Player_Info.addXp(Player_Info.getPlayerLevel() * (isFullyComplete ? Constants.QUEST_XP_MODIFIER_MEDIUM : Constants.QUEST_XP_MODIFIER_EASY));
     }
 
-    public static void createVisitorReward(Context context, Visitor visitor) {
+    // Typed as Activity so the reward toast has a view to attach to; VisitorActivity is the only caller.
+    public static void createVisitorReward(Activity context, Visitor visitor) {
         boolean isFullyComplete = visitor.isVisitorFullyComplete();
         int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
         int maximumRewards = Upgrade.getValue("Maximum Visitor Rewards");
@@ -392,12 +394,12 @@ public class VisitorHelper {
             List<Item> premiumItems = Select.from(Item.class).where(Condition.prop("tier").eq(Constants.TIER_PREMIUM)).list();
             Item premiumItem = VisitorHelper.pickRandomItemFromList(premiumItems);
             Inventory.addItem(premiumItem.getId(), Constants.STATE_UNFINISHED, 1, false);
-            ToastHelper.showToast(null, ToastHelper.LONG, String.format(rewardString,
+            ToastHelper.showToast(context.findViewById(android.R.id.content), ToastHelper.LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getName(context),
                     premiumItem.getFullName(context, Constants.STATE_UNFINISHED)), true);
         } else {
-            ToastHelper.showToast(null, ToastHelper.LONG, String.format(rewardString,
+            ToastHelper.showToast(context.findViewById(android.R.id.content), ToastHelper.LONG, String.format(rewardString,
                     numRewards,
                     selectedItem.getFullName(context, Constants.STATE_NORMAL)), true);
         }

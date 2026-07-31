@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
 
         if (newVisitors > 0) {
-            ToastHelper.showToast(null, ToastHelper.SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
+            ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
             newVisitors = 0;
         }
 
@@ -444,9 +444,9 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors == 1) {
-                    ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.visitorArriving), true);
+                    ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, getString(R.string.visitorArriving), true);
                 } else if (newVisitors > 1) {
-                    ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
+                    ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
@@ -460,7 +460,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     boolean taxPaid = PremiumHelper.payOutTax();
                     Trader_Stock.restockTraders();
-                    ToastHelper.showPositiveToast(null, ToastHelper.LONG, getRestockText(taxPaid), true);
+                    ToastHelper.showPositiveToast(findViewById(android.R.id.content), ToastHelper.LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
@@ -604,13 +604,13 @@ public class MainActivity extends AppCompatActivity implements
                 AlertDialogHelper.confirmBonusAdvert(this, this);
             }
         } else {
-            ToastHelper.showToast(null, ToastHelper.SHORT, String.format(getString(R.string.bonusTimeLeft),
+            ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.SHORT, String.format(getString(R.string.bonusTimeLeft),
                     DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
         }
     }
 
     public void clickWindow(View view) {
-        ToastHelper.showToast(null, ToastHelper.SHORT, getString(R.string.windowClick), false);
+        ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.SHORT, getString(R.string.windowClick), false);
     }
 
     public void clickBookcase(View view) {
@@ -621,7 +621,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         String tipMessage = "Tip " + (thisTip + 1) + "/" + tips.size() + ": " + tips.get(thisTip);
-        ToastHelper.showTipToast(null, ToastHelper.LONG, tipMessage, false);
+        ToastHelper.showTipToast(findViewById(android.R.id.content), ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
     }
 
@@ -641,7 +641,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void callbackSpawn() {
         if (VisitorHelper.tryCreateVisitor()) {
-            ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.bribeAdvertComplete), true);
+            ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, getString(R.string.bribeAdvertComplete), true);
         }
     }
 
