@@ -57,8 +57,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:percent:$supportLibraryVersion"
-    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
-    implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-games-v2:$gamesLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'com.android.billingclient:billing:9.1.0'
@@ -67,7 +66,6 @@ dependencies {
         transitive = true
     }
     implementation 'com.github.hotchemi:android-rate:1.0.1'
-    implementation project(':BaseGameUtils')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.1'

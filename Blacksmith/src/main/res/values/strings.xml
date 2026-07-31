@@ -1782,6 +1782,7 @@
     <string name="importSaveText">Import\nSave</string>
     <string name="exportSaveText">Export\nSave</string>
     <string name="saveNameFormat" translatable="false">PixelBlacksmith%s.save</string>
+    <string name="cloudSaveTitle">Cloud Saves</string>
     <string name="saveExportSuccess">Successfully exported game save to %s on external storage!</string>
     <string name="saveExportFailure">An error occurred! Please check your storage is correctly connected. Error: %s.</string>
     <string name="saveImportSuccess">Successfully loaded local game save!</string>

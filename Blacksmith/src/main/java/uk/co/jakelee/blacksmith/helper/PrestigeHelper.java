@@ -1,6 +1,5 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -45,7 +44,7 @@ public class PrestigeHelper {
         Player_Info.increaseByOne(Player_Info.Statistic.Prestige);
         if (GooglePlayHelper.IsConnected()) {
             Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Fun Never Stops")).first();
-            Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+            GooglePlayHelper.UnlockAchievement(achievement.getRemoteID());
         }
 
         Player_Info prestigeDate = Select.from(Player_Info.class).where(

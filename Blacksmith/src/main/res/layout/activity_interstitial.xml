@@ -42,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/interstitialTitle"
             android:layout_marginBottom="8dp"
-            android:text="@string/unknown_error"
             android:textColor="@color/black"
             android:textSize="34sp" />
 

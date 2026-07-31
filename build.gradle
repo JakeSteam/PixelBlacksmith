@@ -14,7 +14,7 @@ ext {
     apiVersion = 36
     compilerVersion = '25.0.1'
     supportLibraryVersion = '23.0.0' // Updating this breaks alert sizes, tutorial skipping, and many other things. Don't.
-    playLibraryVersion = '17.0.0'
+    gamesLibraryVersion = '21.0.0' // v2; do not use 22.x, it needs minSdk 24
 }
 
 allprojects {

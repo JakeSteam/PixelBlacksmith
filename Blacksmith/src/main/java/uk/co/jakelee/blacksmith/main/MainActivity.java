@@ -16,9 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -58,15 +55,12 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 
 import static uk.co.jakelee.blacksmith.R.id.mainScroller;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity {
     private static final Handler handler = new Handler();
     public static VariableHelper vh;
     public static boolean needToRedrawVisitors = false;
@@ -94,16 +88,7 @@ public class MainActivity extends AppCompatActivity implements
             TutorialHelper.currentStage = prefs.getInt("tutorialStage", 0);
         }
 
-        try {
-            GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
-                    .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                    //.addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                    .setViewForPopups(findViewById(android.R.id.content))
-                    .build();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Unknown error whilst connecting to Google Play!", Toast.LENGTH_SHORT).show();
-        }
+        GooglePlayHelper.initialise(this);
 
         dh.createAllSlots(this);
         keepTopBarBelowStatusBar();
@@ -154,11 +139,6 @@ public class MainActivity extends AppCompatActivity implements
                 return insets;
             }
         });
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
     }
 
     private void ratingPrompt() {
@@ -266,8 +246,8 @@ public class MainActivity extends AppCompatActivity implements
             }
         }).start();
 
-        if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
-            GooglePlayHelper.mGoogleApiClient.connect();
+        if (GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            GooglePlayHelper.refreshAuthentication(this);
         }
 
         if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.DECEMBER && Setting.getSafeBoolean(Constants.SETTING_SEASONAL_EFFECTS)) {
@@ -397,8 +377,6 @@ public class MainActivity extends AppCompatActivity implements
             stopService(musicService);
             musicServiceIsStarted = false;
         }
-
-        GooglePlayHelper.mGoogleApiClient.disconnect();
 
         prefs.edit().putInt("tutorialStage", (TutorialHelper.currentStage > 0 ? TutorialHelper.currentStage : 0)).apply();
 
@@ -623,20 +601,6 @@ public class MainActivity extends AppCompatActivity implements
         String tipMessage = "Tip " + (thisTip + 1) + "/" + tips.size() + ": " + tips.get(thisTip);
         ToastHelper.showTipToast(findViewById(android.R.id.content), ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        GooglePlayHelper.ConnectionFailed(this, connectionResult);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        GooglePlayHelper.mGoogleApiClient.connect();
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
     }
 
     public void callbackSpawn() {

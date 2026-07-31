@@ -17,7 +17,6 @@ import android.widget.ViewFlipper;
 
 import androidx.percentlayout.widget.PercentRelativeLayout;
 
-import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -278,7 +277,7 @@ public class TableActivity extends Activity {
                 Player_Info.increaseByX(Player_Info.Statistic.CollectionsCreated, quantity);
                 Achievement achievement = Select.from(Achievement.class).where(Condition.prop("name").eq("The Collector")).first();
                 if (GooglePlayHelper.IsConnected()) {
-                    Games.Achievements.unlock(GooglePlayHelper.mGoogleApiClient, achievement.getRemoteID());
+                    GooglePlayHelper.UnlockAchievement(achievement.getRemoteID());
                     GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_COLLECTIONS, Player_Info.getCollectionsCrafted());
                 }
             }

@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import androidx.percentlayout.widget.PercentRelativeLayout;
 
-import com.google.android.gms.games.Games;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.helper.AlertDialogHelper;
@@ -114,22 +113,13 @@ public class SettingsActivity extends Activity {
     }
 
     public void signIn(View v) {
-        GooglePlayHelper.mGoogleApiClient.connect();
+        GooglePlayHelper.signIn(this);
 
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBoolValue(true);
         signIn.save();
 
         finish();
-    }
-
-    public void signOut(View v) {
-        Games.signOut(GooglePlayHelper.mGoogleApiClient);
-        GooglePlayHelper.mGoogleApiClient.disconnect();
-
-        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
-        signIn.setBoolValue(false);
-        signIn.save();
     }
 
     private void updateAdToggleVisibility() {
@@ -143,20 +133,20 @@ public class SettingsActivity extends Activity {
         RelativeLayout signOutButton = (RelativeLayout) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
 
+        // Play Games v2 has no sign-out, so that button is never shown.
+        signOutButton.setVisibility(View.GONE);
+
         if (GooglePlayHelper.IsConnected()) {
             playHeader.setVisibility(View.VISIBLE);
             signInButton.setVisibility(View.GONE);
-            signOutButton.setVisibility(View.VISIBLE);
             playButtons.setVisibility(View.VISIBLE);
         } else if (GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
             playHeader.setVisibility(View.VISIBLE);
             signInButton.setVisibility(View.VISIBLE);
-            signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
         } else {
             playHeader.setVisibility(View.GONE);
             signInButton.setVisibility(View.GONE);
-            signOutButton.setVisibility(View.GONE);
             playButtons.setVisibility(View.GONE);
         }
 
@@ -334,23 +324,15 @@ public class SettingsActivity extends Activity {
     }
 
     public void openAchievements(View view) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
-        }
+        GooglePlayHelper.ShowAchievements(this);
     }
 
     public void openLeaderboards(View view) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
-        }
+        GooglePlayHelper.ShowAllLeaderboards(this);
     }
 
     public void openSavedGames(View view) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
-                    "Cloud Saves", true, true, 1);
-            startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
-        }
+        GooglePlayHelper.ShowSavedGames(this);
     }
 
     public void openSupportCode(View view) {

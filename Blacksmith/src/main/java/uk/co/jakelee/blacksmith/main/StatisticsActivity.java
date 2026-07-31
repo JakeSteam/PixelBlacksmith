@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 
-import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -193,23 +192,24 @@ public class StatisticsActivity extends Activity {
     }
 
     public void openLeaderboards(View view) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            if (view.getTag() == null) {
-                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("bestitem")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_ITEM_VALUE), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("visitors")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_VISITORS), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("trophies")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TROPHIES), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("prestiged")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_TIMES_PRESTIGED), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("completionpercent")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COMPLETION), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("collectionscrafted")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_COLLECTIONS), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (view.getTag().equals("highestlevel")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, Constants.LEADERBOARD_HIGHEST_LEV), GooglePlayHelper.RC_LEADERBOARDS);
+        if (GooglePlayHelper.IsConnected()) {
+            Object tag = view.getTag();
+            if (tag == null) {
+                GooglePlayHelper.ShowAllLeaderboards(this);
+            } else if (tag.equals("bestitem")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_ITEM_VALUE);
+            } else if (tag.equals("visitors")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_VISITORS);
+            } else if (tag.equals("trophies")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_TROPHIES);
+            } else if (tag.equals("prestiged")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_TIMES_PRESTIGED);
+            } else if (tag.equals("completionpercent")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_COMPLETION);
+            } else if (tag.equals("collectionscrafted")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_COLLECTIONS);
+            } else if (tag.equals("highestlevel")) {
+                GooglePlayHelper.ShowLeaderboard(this, Constants.LEADERBOARD_HIGHEST_LEV);
             }
         } else {
             ToastHelper.showErrorToast(view, ToastHelper.SHORT, getString(R.string.leaderboardsNoConnection), false);
