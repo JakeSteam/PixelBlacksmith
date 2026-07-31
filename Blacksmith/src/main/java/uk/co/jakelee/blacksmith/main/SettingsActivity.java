@@ -206,70 +206,51 @@ public class SettingsActivity extends Activity {
     }
 
     public void toggleSetting(View v) {
+        // if/else rather than switch: resource IDs are non-final from AGP 9 onwards, so they
+        // can no longer be used as switch case labels.
         Long settingID = null;
-        switch (v.getId()) {
-            case R.id.soundToggle:
-                settingID = Constants.SETTING_SOUNDS;
-                break;
-            case R.id.musicToggle:
-                settingID = Constants.SETTING_MUSIC;
-                break;
-            case R.id.restockNotificationToggle:
-                settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
-                break;
-            case R.id.workerNotificationToggle:
-                settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
-                break;
-            case R.id.visitorNotificationToggle:
-                settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
-                break;
-            case R.id.bonusNotificationToggle:
-                settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
-                break;
-            case R.id.notificationSoundToggle:
-                settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
-                break;
-            case R.id.finishedNotificationToggle:
-                settingID = Constants.SETTING_FINISHED_NOTIFICATIONS;
-                break;
-            case R.id.assistantNotificationToggle:
-                settingID = Constants.SETTING_ASSISTANT_NOTIFICATIONS;
-                break;
-            case R.id.turnOffAdsToggle:
-                settingID = Constants.SETTING_DISABLE_ADS;
-                break;
-            case R.id.clickChangeToggle:
-                settingID = Constants.SETTING_CLICK_CHANGE;
-                break;
-            case R.id.messageLogToggle:
-                settingID = Constants.SETTING_MESSAGE_LOG;
-                break;
-            case R.id.fullscreenToggle:
-                settingID = Constants.SETTING_FULLSCREEN;
-                break;
-            case R.id.autoRefreshToggle:
-                settingID = Constants.SETTING_AUTOREFRESH;
-                break;
-            case R.id.fullscreenCheckToggle:
-                settingID = Constants.SETTING_CHECK_FULLSCREEN;
-                break;
-            case R.id.updateSlotsToggle:
-                settingID = Constants.SETTING_UPDATE_SLOTS;
-                break;
-            case R.id.longToastToggle:
-                settingID = Constants.SETTING_LONG_TOAST;
-                break;
-            case R.id.handleMaxToggle:
-                settingID = Constants.SETTING_HANDLE_MAX;
-                break;
-            case R.id.bulkStackToggle:
-                settingID = Constants.SETTING_BULK_STACK;
-                break;
-            case R.id.seasonalEffectToggle:
-                settingID = Constants.SETTING_SEASONAL_EFFECTS;
-                break;
+        int id = v.getId();
+        if (id == R.id.soundToggle) {
+            settingID = Constants.SETTING_SOUNDS;
+        } else if (id == R.id.musicToggle) {
+            settingID = Constants.SETTING_MUSIC;
+        } else if (id == R.id.restockNotificationToggle) {
+            settingID = Constants.SETTING_RESTOCK_NOTIFICATIONS;
+        } else if (id == R.id.workerNotificationToggle) {
+            settingID = Constants.SETTING_WORKER_NOTIFICATIONS;
+        } else if (id == R.id.visitorNotificationToggle) {
+            settingID = Constants.SETTING_VISITOR_NOTIFICATIONS;
+        } else if (id == R.id.bonusNotificationToggle) {
+            settingID = Constants.SETTING_BONUS_NOTIFICATIONS;
+        } else if (id == R.id.notificationSoundToggle) {
+            settingID = Constants.SETTING_NOTIFICATION_SOUNDS;
+        } else if (id == R.id.finishedNotificationToggle) {
+            settingID = Constants.SETTING_FINISHED_NOTIFICATIONS;
+        } else if (id == R.id.assistantNotificationToggle) {
+            settingID = Constants.SETTING_ASSISTANT_NOTIFICATIONS;
+        } else if (id == R.id.turnOffAdsToggle) {
+            settingID = Constants.SETTING_DISABLE_ADS;
+        } else if (id == R.id.clickChangeToggle) {
+            settingID = Constants.SETTING_CLICK_CHANGE;
+        } else if (id == R.id.messageLogToggle) {
+            settingID = Constants.SETTING_MESSAGE_LOG;
+        } else if (id == R.id.fullscreenToggle) {
+            settingID = Constants.SETTING_FULLSCREEN;
+        } else if (id == R.id.autoRefreshToggle) {
+            settingID = Constants.SETTING_AUTOREFRESH;
+        } else if (id == R.id.fullscreenCheckToggle) {
+            settingID = Constants.SETTING_CHECK_FULLSCREEN;
+        } else if (id == R.id.updateSlotsToggle) {
+            settingID = Constants.SETTING_UPDATE_SLOTS;
+        } else if (id == R.id.longToastToggle) {
+            settingID = Constants.SETTING_LONG_TOAST;
+        } else if (id == R.id.handleMaxToggle) {
+            settingID = Constants.SETTING_HANDLE_MAX;
+        } else if (id == R.id.bulkStackToggle) {
+            settingID = Constants.SETTING_BULK_STACK;
+        } else if (id == R.id.seasonalEffectToggle) {
+            settingID = Constants.SETTING_SEASONAL_EFFECTS;
         }
-
         if (settingID != null) {
             Setting settingToToggle = Setting.findById(Setting.class, settingID);
             settingToToggle.setBoolValue(!settingToToggle.getBoolValue());

@@ -9,15 +9,15 @@ def signingReady = ['PB_STORE_FILE', 'PB_STORE_PASSWORD', 'PB_KEY_ALIAS', 'PB_KE
 
 android {
     namespace = "uk.co.jakelee.blacksmith"
-    compileSdkVersion 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
-        minSdkVersion 23
-        targetSdkVersion apiVersion
-        versionCode 89
-        versionName "3.0.3"
-        multiDexEnabled true
+        minSdk = 23
+        targetSdk = apiVersion
+        versionCode = 89
+        versionName = "3.0.3"
+        multiDexEnabled = true
     }
     if (signingReady) {
         signingConfigs {
@@ -31,20 +31,20 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
             if (signingReady) signingConfig = signingConfigs.shipping
         }
         debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
             // Signed with the shipping certificate so Play Games authenticates locally; it matches
             // on package name plus certificate, and a debug-signed build fails with DEVELOPER_ERROR.
             if (signingReady) signingConfig = signingConfigs.shipping
         }
     }
     buildFeatures {
-        buildConfig true
+        buildConfig = true
     }
 }
 
@@ -76,5 +76,11 @@ dependencies {
         // Aligning the versions turns the jdk7/jdk8 artifacts back into empty shims.
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+
+        // Jetifier maps the support libraries onto androidx 1.0.0, where vectordrawable and
+        // vectordrawable-animated share the androidx.vectordrawable namespace. AGP 9 rejects
+        // duplicate namespaces outright, and 1.1.0 is the first release that separates them.
+        implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+        implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
     }
 }
