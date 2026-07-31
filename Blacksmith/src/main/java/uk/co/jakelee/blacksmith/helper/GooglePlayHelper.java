@@ -260,19 +260,28 @@ public class GooglePlayHelper {
                 .addOnFailureListener(e -> reportCloudFailure(loading ? "loading" : "saving", e));
     }
 
-    private static void useSnapshot(Snapshot snapshot, boolean loading) {
+    /**
+     * v2's Task callbacks arrive on the main thread, unlike the AsyncTask this replaced, so reading
+     * the snapshot and applying it have to be pushed onto a background thread by hand. applyBackup
+     * rewrites fourteen tables a row at a time, which is far too slow for the UI thread.
+     */
+    private static void useSnapshot(final Snapshot snapshot, final boolean loading) {
         if (snapshot == null) {
             return;
         }
 
         if (loading) {
-            try {
-                cloudSaveData = snapshot.getSnapshotContents().readFully();
-            } catch (IOException e) {
-                reportCloudFailure("loading", e);
-                return;
-            }
-            loadFromCloud(true);
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        cloudSaveData = snapshot.getSnapshotContents().readFully();
+                    } catch (IOException e) {
+                        reportCloudFailure("loading", e);
+                        return;
+                    }
+                    loadFromCloud(true);
+                }
+            }).start();
         } else {
             loadedSnapshot = snapshot;
             saveToCloud();
@@ -306,11 +315,13 @@ public class GooglePlayHelper {
         if (!checkIsImprovement || newSaveIsBetter(cloudData)) {
             applyBackup(new String(cloudSaveData));
         } else {
-            AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
+            // Reached from a background thread, and a dialog has to be shown from the main one.
+            final Pair<Integer, Integer> values = cloudData;
+            callingActivity.runOnUiThread(() -> AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
                     Player_Info.getPrestige(),
                     Player_Info.getXp(),
-                    cloudData.first,
-                    cloudData.second);
+                    values.first,
+                    values.second));
         }
     }
 
@@ -330,27 +341,37 @@ public class GooglePlayHelper {
         callingActivity.runOnUiThread(() -> ToastHelper.showToast(callingActivity.findViewById(android.R.id.content),
                 ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveBeginning), false));
 
-        byte[] data = createBackup();
-        String desc = String.format(callingContext.getString(R.string.cloudSaveCaption),
-                Player_Info.getPrestige(),
-                Player_Info.getPlayerLevel(),
-                Inventory.getCoins(),
-                BuildConfig.VERSION_NAME);
-        Bitmap cover = decodeCoverImage(callingContext);
+        // Serialising the save reads fourteen tables, so it stays off the main thread. Committing is
+        // handed back to the main thread, since that's where the Play Games client expects to be used.
+        new Thread(new Runnable() {
+            public void run() {
+                byte[] data = createBackup();
+                String desc = String.format(callingContext.getString(R.string.cloudSaveCaption),
+                        Player_Info.getPrestige(),
+                        Player_Info.getPlayerLevel(),
+                        Inventory.getCoins(),
+                        BuildConfig.VERSION_NAME);
+                Bitmap cover = decodeCoverImage(callingContext);
 
-        loadedSnapshot.getSnapshotContents().writeBytes(data);
+                loadedSnapshot.getSnapshotContents().writeBytes(data);
 
-        SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
-                .setDescription(desc)
-                .setCoverImage(cover)
-                .build();
+                final SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
+                        .setDescription(desc)
+                        .setCoverImage(cover)
+                        .build();
 
+                callingActivity.runOnUiThread(() -> commitSnapshot(metadataChange));
+            }
+        }).start();
+    }
+
+    private static void commitSnapshot(SnapshotMetadataChange metadataChange) {
         PlayGames.getSnapshotsClient(callingActivity).commitAndClose(loadedSnapshot, metadataChange)
-                .addOnSuccessListener(metadata -> callingActivity.runOnUiThread(() -> {
+                .addOnSuccessListener(metadata -> {
                     DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
                     ToastHelper.showPositiveToast(callingActivity.findViewById(android.R.id.content),
                             ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveSuccess), true);
-                }))
+                })
                 .addOnFailureListener(e -> reportCloudFailure("saving", e));
     }
 
@@ -562,7 +583,9 @@ public class GooglePlayHelper {
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(new String(saveBytes));
-        if (splitData.length >= 2) {
+        // >= 3, not >= 2: index 2 is read below, and this runs before applyBackup's plausibility
+        // check, so a two-section save used to throw here before that guard could reject it.
+        if (splitData.length >= 3) {
             Player_Info[] saveInfos = gson.fromJson(splitData[2], Player_Info[].class);
             for (Player_Info saveInfo : saveInfos) {
                 if (saveInfo.getName() != null) {

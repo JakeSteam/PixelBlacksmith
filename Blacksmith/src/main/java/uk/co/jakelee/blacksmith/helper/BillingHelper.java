@@ -29,19 +29,32 @@ import java.util.Set;
  * The game only sells one-time products, so subscriptions are deliberately unsupported.
  */
 public class BillingHelper {
+    public static final String SKU_PREMIUM = "premium";
+    public static final String SKU_CONTRIBUTE = "contribute";
+    public static final String SKU_COIN_1 = "coin_pack_1";
+    public static final String SKU_COIN_2 = "coin_pack_2";
+    public static final String SKU_COIN_3 = "coin_pack_3";
+
+    /**
+     * Which products are consumed rather than acknowledged. Deliberately app-wide rather than
+     * per-screen: queryPurchasesAsync returns everything the player owns, not just the products the
+     * current screen sells, so classifying against one screen's list would settle another screen's
+     * purchase the wrong way round and leave it stuck as "already owned".
+     */
+    private static final Set<String> CONSUMABLES = new HashSet<>(Arrays.asList(
+            SKU_CONTRIBUTE, SKU_COIN_1, SKU_COIN_2, SKU_COIN_3));
+
     private final Activity activity;
     private final Listener listener;
-    private final Set<String> consumables;
     private final List<String> allProducts = new ArrayList<>();
     private final Map<String, ProductDetails> productDetails = new HashMap<>();
     private BillingClient client;
 
-    public BillingHelper(Activity activity, Listener listener, String[] consumables, String[] nonConsumables) {
+    /** products are the ones this screen sells, used to fetch prices; settling uses CONSUMABLES. */
+    public BillingHelper(Activity activity, Listener listener, String... products) {
         this.activity = activity;
         this.listener = listener;
-        this.consumables = new HashSet<>(Arrays.asList(consumables));
-        this.allProducts.addAll(Arrays.asList(consumables));
-        this.allProducts.addAll(Arrays.asList(nonConsumables));
+        this.allProducts.addAll(Arrays.asList(products));
 
         client = BillingClient.newBuilder(activity)
                 .setListener((billingResult, purchases) -> {
@@ -93,6 +106,10 @@ public class BillingHelper {
                     .build());
         }
 
+        if (client == null) {
+            return;
+        }
+
         client.queryProductDetailsAsync(
                 QueryProductDetailsParams.newBuilder().setProductList(products).build(),
                 (billingResult, result) -> {
@@ -112,6 +129,10 @@ public class BillingHelper {
      * gets granted and consumed now.
      */
     private void queryExistingPurchases() {
+        if (client == null) {
+            return;
+        }
+
         client.queryPurchasesAsync(
                 QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(),
                 (billingResult, purchases) -> {
@@ -122,7 +143,7 @@ public class BillingHelper {
                                 continue;
                             }
                             for (String productId : purchase.getProducts()) {
-                                if (!consumables.contains(productId)) {
+                                if (!CONSUMABLES.contains(productId)) {
                                     owned.add(productId);
                                 }
                             }
@@ -161,9 +182,13 @@ public class BillingHelper {
             return;
         }
 
+        if (client == null) {
+            return;
+        }
+
         boolean anyConsumable = false;
         for (String productId : purchase.getProducts()) {
-            boolean isConsumable = consumables.contains(productId);
+            boolean isConsumable = CONSUMABLES.contains(productId);
             anyConsumable |= isConsumable;
 
             if (isConsumable || notifyForNonConsumables) {

@@ -122,9 +122,6 @@ public class HelpActivity extends Activity {
             case Prestige:
                 displayHelpPrestige(layout);
                 break;
-            case Quests:
-                displayHelpQuests(layout);
-                break;
             case Settings:
                 displayHelpSettings(layout);
                 break;
@@ -299,11 +296,6 @@ public class HelpActivity extends Activity {
         layout.addView(dh.createTextView(getString(R.string.help_text_tools), 22));
     }
 
-    private void displayHelpQuests(LinearLayout layout) {
-        layout.addView(dh.createTextView(getString(R.string.help_quest), 26));
-        layout.addView(dh.createTextView(getString(R.string.help_text_quest), 22));
-    }
-
     private void displayHelpItemPicker(LinearLayout layout) {
         layout.addView(dh.createTextView(getString(R.string.help_item_picker), 26));
         layout.addView(dh.createTextView(getString(R.string.help_text_item_picker), 22));
@@ -340,5 +332,5 @@ public class HelpActivity extends Activity {
         finish();
     }
 
-    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Assistants, Coins, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Quests, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
+    public enum TOPICS {Tips_And_Tricks, Advertising, Anvil, Assistants, Coins, Credits, Gem_Table, Furnace, Help, Helper, Helper_Tools, Helper_Food, Hero, Hero_Adventures, Hero_Equipment, Hero_Visitors, Inventory, Item_Picker, Market, Messages, Overview, Premium, Prestige, Settings, Statistics, Super_Upgrade, Table, Trading, Trader, Trophy, Upgrade, Visitor}
 }

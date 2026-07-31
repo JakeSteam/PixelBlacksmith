@@ -33,8 +33,8 @@ import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
 public class PremiumActivity extends Activity implements BillingHelper.Listener {
-    private static final String SKU_PREMIUM = "premium";
-    private static final String SKU_CONTRIBUTE = "contribute";
+    private static final String SKU_PREMIUM = BillingHelper.SKU_PREMIUM;
+    private static final String SKU_CONTRIBUTE = BillingHelper.SKU_CONTRIBUTE;
     private static DisplayHelper dh;
     BillingHelper billing;
 
@@ -45,9 +45,7 @@ public class PremiumActivity extends Activity implements BillingHelper.Listener 
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
-        billing = new BillingHelper(this, this,
-                new String[]{SKU_CONTRIBUTE},
-                new String[]{SKU_PREMIUM});
+        billing = new BillingHelper(this, this, SKU_PREMIUM, SKU_CONTRIBUTE);
 
         updatePremiumStatus();
         updateContributeStatus();

@@ -18,9 +18,9 @@ import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class BuyCoinsActivity extends Activity implements BillingHelper.Listener {
-    private static final String SKU_COIN_1 = "coin_pack_1";
-    private static final String SKU_COIN_2 = "coin_pack_2";
-    private static final String SKU_COIN_3 = "coin_pack_3";
+    private static final String SKU_COIN_1 = BillingHelper.SKU_COIN_1;
+    private static final String SKU_COIN_2 = BillingHelper.SKU_COIN_2;
+    private static final String SKU_COIN_3 = BillingHelper.SKU_COIN_3;
     private static final int coinPackAmount1 = 500;
     private static final int coinPackAmount2 = 3000;
     private static final int coinPackAmount3 = 10000;
@@ -33,9 +33,7 @@ public class BuyCoinsActivity extends Activity implements BillingHelper.Listener
         DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
-        billing = new BillingHelper(this, this,
-                new String[]{SKU_COIN_1, SKU_COIN_2, SKU_COIN_3},
-                new String[]{});
+        billing = new BillingHelper(this, this, SKU_COIN_1, SKU_COIN_2, SKU_COIN_3);
 
         int playerLevel = Player_Info.getPlayerLevel();
         ((TextView) findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton),
