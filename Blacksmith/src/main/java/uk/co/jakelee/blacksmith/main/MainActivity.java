@@ -60,6 +60,9 @@ import static uk.co.jakelee.blacksmith.R.id.mainScroller;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         dh.createAllSlots(this);
+        keepTopBarBelowStatusBar();
         ratingPrompt();
 
         if (Player_Info.displayAds()) {
@@ -124,6 +128,31 @@ public class MainActivity extends AppCompatActivity implements
                 AlertDialogHelper.displayUpdateMessage(this, this);
             }
         }
+    }
+
+    /**
+     * Android 15+ draws apps edge to edge with no way to opt out, so with the optional fullscreen
+     * setting turned off the coin count and level bar would sit underneath the status bar. The
+     * insets still report the status bar height while immersive mode has it hidden, hence checking
+     * the same settings updateFullscreen() does rather than trusting the inset alone.
+     *
+     * Shifted rather than padded: topBar is a wrap_content RelativeLayout whose children mix
+     * toRightOf with alignParentRight, and re-measuring it from inside an insets listener leaves
+     * the coin and level labels blank.
+     */
+    private void keepTopBarBelowStatusBar() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), new OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat insets) {
+                View topBar = findViewById(R.id.topBar);
+                if (topBar != null) {
+                    boolean statusBarHidden = Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN)
+                            && Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
+                    topBar.setTranslationY(statusBarHidden ? 0 : insets.getSystemWindowInsetTop());
+                }
+                return insets;
+            }
+        });
     }
 
     @Override
