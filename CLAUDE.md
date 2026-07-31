@@ -97,6 +97,8 @@ With a shipping-signed build on a device with a Play account, products resolve a
 
 Billing 9's transitive `lifecycle 2.6.2` drags in `kotlin-stdlib-jdk8:1.6.21`, whose classes moved into `kotlin-stdlib` in Kotlin 1.8 — hence the `constraints` block aligning them, without which `checkDuplicateClasses` fails.
 
+**Play's callbacks arrive on a background thread**, which caught this code out twice. `productDetails` is a `ConcurrentHashMap` for that reason — as a plain `HashMap` it was published unsafely, and the main thread saw an arbitrary subset of the entries, which showed up as one real coin-pack price next to two hardcoded fallbacks. The `Listener` methods all touch views, so `BillingHelper` bounces them onto the main thread itself; don't call `listener.*` directly. The two `Log.w` diagnostics (setup failure, unfetched products) are the only signal that billing is broken, since both failure modes otherwise look identical to Play merely being slow.
+
 ### Play Games
 
 Services **v2** (`play-services-games-v2`), via `helper/GooglePlayHelper.java`. There is no `GoogleApiClient`, no connect/disconnect, and **no sign-out** — authentication is automatic and `GooglePlayHelper` just records whether it succeeded.
