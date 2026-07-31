@@ -122,13 +122,9 @@ public class NotificationHelper extends BroadcastReceiver {
         alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, broadcast);
     }
 
-    /** Targeting S+ requires an explicit mutability flag, but FLAG_IMMUTABLE only exists from M. */
+    /** Targeting S+ requires an explicit mutability flag. FLAG_IMMUTABLE needs M, which is minSdk. */
     private static int pendingIntentFlags() {
-        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            flags |= PendingIntent.FLAG_IMMUTABLE;
-        }
-        return flags;
+        return PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
     }
 
     /**

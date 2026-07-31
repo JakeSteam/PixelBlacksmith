@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion apiVersion
         versionCode 89
         versionName "3.0.3"
@@ -40,7 +40,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
-    implementation 'com.android.billingclient:billing:8.0.0'
+    implementation 'com.android.billingclient:billing:9.1.0'
     implementation 'com.scottyab:aescrypt:0.0.1'
     implementation('com.github.worker8:TourGuide:v1.0.17-SNAPSHOT@aar') { // Via JitPack; jcenter's copy is gone
         transitive = true
@@ -50,4 +50,12 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.1'
+
+    constraints {
+        // Play Billing 9 drags in lifecycle 2.6.2 -> coroutines -> kotlin-stdlib-jdk8:1.6.21, and
+        // those jdk7/jdk8 classes moved into kotlin-stdlib proper in Kotlin 1.8, so the two clash.
+        // Aligning the versions turns the jdk7/jdk8 artifacts back into empty shims.
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+    }
 }
