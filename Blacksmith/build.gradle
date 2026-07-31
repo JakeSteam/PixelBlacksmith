@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     namespace = "uk.co.jakelee.blacksmith"
-    compileSdkVersion 33
+    compileSdkVersion 36
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
@@ -30,9 +30,6 @@ android {
 repositories {
     google()
     mavenCentral()
-    maven {
-        url 'https://maven.google.com'
-    }
 }
 
 dependencies {
@@ -47,7 +44,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'com.anjlab.android.iab.v3:library:2.2.0'
     implementation 'com.scottyab:aescrypt:0.0.1'
-    implementation('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar') {
+    implementation('com.github.worker8:TourGuide:v1.0.17-SNAPSHOT@aar') { // Via JitPack; jcenter's copy is gone
         transitive = true
     }
     implementation 'com.github.hotchemi:android-rate:1.0.1'

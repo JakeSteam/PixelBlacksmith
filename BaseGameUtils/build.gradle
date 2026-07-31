@@ -3,10 +3,7 @@ apply plugin: 'com.android.library'
 buildscript {
     repositories {
         google()
-        jcenter()
-        maven {
-            url 'https://maven.google.com'
-        }
+        mavenCentral()
     }
 }
 
@@ -19,7 +16,7 @@ dependencies {
 
 android {
     namespace = "com.google.example.games.basegameutils"
-    compileSdkVersion 33
+    compileSdkVersion 36
     defaultConfig {
         minSdkVersion 21
     }

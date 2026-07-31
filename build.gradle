@@ -3,13 +3,10 @@
 buildscript {
     repositories {
         google()
-        jcenter()
-        maven {
-            url 'https://maven.google.com'
-        }
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.3.1'
+        classpath 'com.android.tools.build:gradle:8.11.2'
     }
 }
 
@@ -23,9 +20,8 @@ ext {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
-        maven(){ url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven(){ url "https://jitpack.io" } // Serves TourGuide, which died with jcenter
     }
 }
 
