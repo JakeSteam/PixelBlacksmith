@@ -6,28 +6,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.PurchaseInfo;
-import com.anjlab.android.iab.v3.SkuDetails;
-
 import java.text.NumberFormat;
+import java.util.Set;
 
 import uk.co.jakelee.blacksmith.R;
+import uk.co.jakelee.blacksmith.helper.BillingHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
 import uk.co.jakelee.blacksmith.helper.ToastHelper;
 import uk.co.jakelee.blacksmith.model.Inventory;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
-public class BuyCoinsActivity extends Activity implements BillingProcessor.IBillingHandler {
+public class BuyCoinsActivity extends Activity implements BillingHelper.Listener {
     private static final String SKU_COIN_1 = "coin_pack_1";
     private static final String SKU_COIN_2 = "coin_pack_2";
     private static final String SKU_COIN_3 = "coin_pack_3";
     private static final int coinPackAmount1 = 500;
     private static final int coinPackAmount2 = 3000;
     private static final int coinPackAmount3 = 10000;
-    BillingProcessor bp;
-    boolean canBuyIAPs = false;
+    BillingHelper billing;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,10 +33,9 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
         DisplayHelper dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
-        canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
-        if (canBuyIAPs) {
-            bp = new BillingProcessor(this, getPublicKey(), this);
-        }
+        billing = new BillingHelper(this, this,
+                new String[]{SKU_COIN_1, SKU_COIN_2, SKU_COIN_3},
+                new String[]{});
 
         int playerLevel = Player_Info.getPlayerLevel();
         ((TextView) findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton),
@@ -52,7 +48,7 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     @Override
-    public void onBillingInitialized() {
+    public void onBillingReady(Set<String> ownedProducts) {
     }
 
     private int getCoinsFromSku(String sku) {
@@ -69,10 +65,9 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     @Override
-    public void onProductPurchased(String productId, PurchaseInfo details) {
+    public void onProductPurchased(String productId) {
         int coinsPurchased = getCoinsFromSku(productId);
         if (coinsPurchased > 0) {
-            bp.consumePurchaseAsync(productId, null);
             Inventory.addItem(Constants.ITEM_COINS, Constants.STATE_NORMAL, coinsPurchased);
             Player_Info.increaseByX(Player_Info.Statistic.CoinsPurchased, coinsPurchased);
             ToastHelper.showToast(findViewById(R.id.buycoins), ToastHelper.LONG, String.format(getString(R.string.buyCoinsSuccess), coinsPurchased), true);
@@ -80,33 +75,25 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
     }
 
     @Override
-    public void onBillingError(int errorCode, Throwable error) {
+    public void onBillingError() {
         ToastHelper.showToast(findViewById(R.id.buycoins), ToastHelper.LONG, getString(R.string.buyingIAPError), true);
     }
 
-    @Override
-    public void onPurchaseHistoryRestored() {
-    }
-
     public void buyCoins1(View v) {
-        if (canBuyIAPs) {
-            bp.purchase(this, SKU_COIN_1);
-        } else {
-            ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
-        }
+        buyCoinPack(v, SKU_COIN_1);
     }
 
     public void buyCoins2(View v) {
-        if (canBuyIAPs) {
-            bp.purchase(this, SKU_COIN_2);
-        } else {
-            ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
-        }
+        buyCoinPack(v, SKU_COIN_2);
     }
 
     public void buyCoins3(View v) {
-        if (canBuyIAPs) {
-            bp.purchase(this, SKU_COIN_3);
+        buyCoinPack(v, SKU_COIN_3);
+    }
+
+    private void buyCoinPack(View v, String sku) {
+        if (billing.isReady()) {
+            billing.purchase(sku);
         } else {
             ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }
@@ -114,31 +101,9 @@ public class BuyCoinsActivity extends Activity implements BillingProcessor.IBill
 
     @Override
     public void onDestroy() {
-        if (bp != null)
-            bp.release();
+        if (billing != null)
+            billing.release();
         super.onDestroy();
-    }
-
-    private String getPublicKey() {
-        String[] keyArray = new String[]{
-                "MIIBIjANBgkqhki",
-                "G9w0BAQEFAAOCAQ",
-                "8AMIIBCgKCAQEAlONTh/sroNhFQ",
-                "mK14kVk3H0bhmwJfcYpLdtZRSByL",
-                "yuMlQO+yCY8EgjvLYhwXG+pSc8vZ5ib/y5DCu0aRVAsscYFcM9aAd8",
-                "O5iTpwbgGqv5UyOMUNE5J3LDu9gSarDHdGOb/CsrfcPc",
-                "W2WTHbiUCmkDevpFkV0sVInGZ5q0RMtDcOTcCgd5VLIeDa6VFo2Gv69Va",
-                "HRQsjTu+4MEeGAa3FB47LIFUp/7jsHjB4vYt4bNH5CGTU",
-                "9BL4pAwJXYif4dMa5r7fnCZQu0s5Kzis4dV919GEQ8BR",
-                "MYZ+ZcyyCq8DiUjCc9exaszBqUxbCFROfeZ2NBDJPkRGHsgQU75yGolnwIDAQAB"
-        };
-
-        StringBuilder builder = new StringBuilder();
-        for (String keyPart : keyArray) {
-            builder.append(keyPart);
-        }
-
-        return builder.toString();
     }
 
     private String getPriceIfPossible(String iapName, String defaultPrice) {

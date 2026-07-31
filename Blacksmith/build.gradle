@@ -42,7 +42,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
-    implementation 'com.anjlab.android.iab.v3:library:2.2.0'
+    implementation 'com.android.billingclient:billing:8.0.0'
     implementation 'com.scottyab:aescrypt:0.0.1'
     implementation('com.github.worker8:TourGuide:v1.0.17-SNAPSHOT@aar') { // Via JitPack; jcenter's copy is gone
         transitive = true

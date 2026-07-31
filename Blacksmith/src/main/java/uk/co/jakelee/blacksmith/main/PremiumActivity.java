@@ -11,15 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
+import java.util.Set;
 
 import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.controls.TextViewPixel;
+import uk.co.jakelee.blacksmith.helper.BillingHelper;
 import uk.co.jakelee.blacksmith.helper.Constants;
 import uk.co.jakelee.blacksmith.helper.DateHelper;
 import uk.co.jakelee.blacksmith.helper.DisplayHelper;
@@ -32,12 +32,11 @@ import uk.co.jakelee.blacksmith.model.Slot;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
-public class PremiumActivity extends Activity implements BillingProcessor.IBillingHandler {
+public class PremiumActivity extends Activity implements BillingHelper.Listener {
     private static final String SKU_PREMIUM = "premium";
     private static final String SKU_CONTRIBUTE = "contribute";
     private static DisplayHelper dh;
-    BillingProcessor bp;
-    boolean canBuyIAPs = false;
+    BillingHelper billing;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,18 +45,17 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
         dh = DisplayHelper.getInstance(getApplicationContext());
         dh.updateFullscreen(this);
 
-        canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
-        if (canBuyIAPs) {
-            bp = new BillingProcessor(this, getPublicKey(), this);
-        }
+        billing = new BillingHelper(this, this,
+                new String[]{SKU_CONTRIBUTE},
+                new String[]{SKU_PREMIUM});
 
         updatePremiumStatus();
         updateContributeStatus();
     }
 
     @Override
-    public void onBillingInitialized() {
-        if (bp.isPurchased(SKU_PREMIUM) && !Player_Info.isPremium()) {
+    public void onBillingReady(Set<String> ownedProducts) {
+        if (ownedProducts.contains(SKU_PREMIUM) && !Player_Info.isPremium()) {
             addPremiumFeatures();
             updatePremiumStatus();
 
@@ -66,14 +64,13 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onProductPurchased(String productId, PurchaseInfo details) {
+    public void onProductPurchased(String productId) {
         if (productId.equals(SKU_PREMIUM)) {
             addPremiumFeatures();
             updatePremiumStatus();
 
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtPremium), true);
         } else if (productId.equals(SKU_CONTRIBUTE)) {
-            bp.consumePurchaseAsync(SKU_CONTRIBUTE, null);
             addContributeFeatures();
             updateContributeStatus();
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtContribute), true);
@@ -81,12 +78,8 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onBillingError(int errorCode, Throwable error) {
+    public void onBillingError() {
         ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.buyingIAPError), true);
-    }
-
-    @Override
-    public void onPurchaseHistoryRestored() {
     }
 
     private void updatePremiumStatus() {
@@ -153,16 +146,16 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
     }
 
     public void buyPremium(View v) {
-        if (canBuyIAPs) {
-            bp.purchase(this, SKU_PREMIUM);
+        if (billing.isReady()) {
+            billing.purchase(SKU_PREMIUM);
         } else {
             ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }
     }
 
     public void buyContribute(View v) {
-        if (canBuyIAPs) {
-            bp.purchase(this, SKU_CONTRIBUTE);
+        if (billing.isReady()) {
+            billing.purchase(SKU_CONTRIBUTE);
         } else {
             ToastHelper.showToast(v, ToastHelper.LONG, getString(R.string.cannotBuyIAP), true);
         }
@@ -170,31 +163,9 @@ public class PremiumActivity extends Activity implements BillingProcessor.IBilli
 
     @Override
     public void onDestroy() {
-        if (bp != null)
-            bp.release();
+        if (billing != null)
+            billing.release();
         super.onDestroy();
-    }
-
-    private String getPublicKey() {
-        String[] keyArray = new String[]{
-                "MIIBIjANBgkqhki",
-                "G9w0BAQEFAAOCAQ",
-                "8AMIIBCgKCAQEAlONTh/sroNhFQ",
-                "mK14kVk3H0bhmwJfcYpLdtZRSByL",
-                "yuMlQO+yCY8EgjvLYhwXG+pSc8vZ5ib/y5DCu0aRVAsscYFcM9aAd8",
-                "O5iTpwbgGqv5UyOMUNE5J3LDu9gSarDHdGOb/CsrfcPc",
-                "W2WTHbiUCmkDevpFkV0sVInGZ5q0RMtDcOTcCgd5VLIeDa6VFo2Gv69Va",
-                "HRQsjTu+4MEeGAa3FB47LIFUp/7jsHjB4vYt4bNH5CGTU",
-                "9BL4pAwJXYif4dMa5r7fnCZQu0s5Kzis4dV919GEQ8BR",
-                "MYZ+ZcyyCq8DiUjCc9exaszBqUxbCFROfeZ2NBDJPkRGHsgQU75yGolnwIDAQAB"
-        };
-
-        StringBuilder builder = new StringBuilder();
-        for (String keyPart : keyArray) {
-            builder.append(keyPart);
-        }
-
-        return builder.toString();
     }
 
     public void openHelp(View view) {
