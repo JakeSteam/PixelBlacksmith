@@ -27,9 +27,6 @@
         android:theme="@style/AppTheme">
 
         <meta-data
-            android:name="applovin.sdk.key"
-            android:value="d8B0h7p58eRdbK8r8r6cntx7TDbAl2WMBiNtqAyypOaPikFsTLSKCNSgb3rL5MiG347uE4r2SPSA7h0g1S_ErR" />
-        <meta-data
             android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/app_id" />
         <meta-data
@@ -48,8 +45,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="uk.co.jakelee.blacksmith.model" />
 
-        <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
-        <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
         <!--suppress AndroidDomInspection -->
         <activity
             android:exported="true"

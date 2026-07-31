@@ -1990,7 +1990,6 @@
 \n<a href='https://github.com/koral--/android-gif-drawable'>Android-Gif-Drawable</a> - GIF helper, used to draw animated torches etc.
 \n<a href='https://developer.android.com/google/play/billing'>Google Play Billing</a> - IAP handling, used for premium purchases.
 \n<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a> - App rating, used for providing occasional rating reminders.
-\n<a href='https://www.applovin.com'>AppLovin</a> - Advertising network.
 \n<a href='https://batch.com/doc/android/sdk-integration/initial-setup.html'>Batch</a> - Free IAP promotions for AppGratis etc.
 \n<a href='https://github.com/google/gson'>GSON</a> - Java object serialization, used for cloud saves.
 \n<a href='https://github.com/square/picasso'>Picasso</a> - Used for image loading.
