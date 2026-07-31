@@ -130,11 +130,7 @@ public class SettingsActivity extends Activity {
     private void updateSignInVisibility() {
         TextView playHeader = (TextView) findViewById(R.id.googlePlayHeader);
         RelativeLayout signInButton = (RelativeLayout) findViewById(R.id.signInButton);
-        RelativeLayout signOutButton = (RelativeLayout) findViewById(R.id.signOutButton);
         LinearLayout playButtons = (LinearLayout) findViewById(R.id.playShortcuts);
-
-        // Play Games v2 has no sign-out, so that button is never shown.
-        signOutButton.setVisibility(View.GONE);
 
         if (GooglePlayHelper.IsConnected()) {
             playHeader.setVisibility(View.VISIBLE);

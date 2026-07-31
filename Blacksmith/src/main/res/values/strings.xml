@@ -1596,8 +1596,9 @@
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
     <string name="updateMessage">Updated to version %s!</string>
-    <!-- Shown after updateMessage. Kept separate so the translated greeting above still applies. -->
-    <string name="updateMessageBody">Cloud saves work again, so your blacksmith can move between devices. Notifications are fixed too, so restocks, visitors, helpers and bonuses will let you know when they\'re ready.\n\nAchievements and leaderboards open from the settings menu again, save files can be exported and imported, and the game no longer asks you to sign in every single time you open it.\n\nThere\'s also plenty of behind-the-scenes work to meet Google\'s current store requirements. Thanks for still playing after all these years!</string>
+    <!-- Shown after updateMessage. Separate so the translated greeting above still applies, and
+         translatable="false" because it is rewritten every release. -->
+    <string name="updateMessageBody" translatable="false">Fixed:\n• Cloud saves\n• Notifications\n• Achievements and leaderboards\n• Exporting and importing saves\n• Being asked to sign in every launch\n\nPlus changes to meet Google\'s store requirements. Thanks for still playing!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
