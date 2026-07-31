@@ -10,27 +10,35 @@ Codebase notes from the README, which still hold: most logic lives in each scree
 
 ## Commands
 
-`gradlew` is not executable in the repo — invoke it via `sh`:
-
 ```sh
-sh gradlew :Blacksmith:assembleDebug        # build debug APK
-sh gradlew :Blacksmith:assembleRelease      # build release APK
-sh gradlew :Blacksmith:installDebug         # build + install on connected device
-sh gradlew :Blacksmith:lintDebug            # Android lint
-sh gradlew clean
+./gradlew :Blacksmith:assembleDebug        # build debug APK
+./gradlew :Blacksmith:assembleRelease      # build release APK
+./gradlew :Blacksmith:installDebug         # build + install on connected device
+./gradlew :Blacksmith:lintDebug            # Android lint
+./gradlew clean
 ```
 
 There are no tests — no `src/test`, no `src/androidTest`, no test dependencies. Don't invent a test command; verify changes by building and running the app.
 
-### The build is currently broken
+Toolchain: AGP 8.11.2 / Gradle 8.13 / JDK 17+, `compileSdk` 36, `targetSdk` 36 (via `apiVersion` in the root `build.gradle`), `minSdk` 21. API 36 needs AGP 8.11 or newer — AGP 8.9 and below cap out at 35.
 
-`:Blacksmith:assembleDebug` fails at dependency resolution:
+### Verifying on an emulator
 
+Two things will waste time otherwise:
+
+- **`uiautomator dump` never works on `MainActivity`.** Its every-second refresh handler means the UI never reaches idle, so the dump fails with "could not get idle state". It works fine on the static popup screens. For `MainActivity`, tap known coordinates derived from a screenshot instead.
+- **Non-exported activities can't be launched with `am start`** on a `user` build (`SecurityException`). Navigate through the UI, or read state out of the database.
+
+The DB and SharedPreferences are readable on a debug build via `run-as`, which is by far the most reliable way to assert on game state:
+
+```sh
+adb shell run-as uk.co.jakelee.blacksmith cat databases/blacksmith.db > /tmp/x.db
+sqlite3 /tmp/x.db "SELECT id, message FROM MESSAGE ORDER BY ID DESC LIMIT 5;"
 ```
-Could not find com.github.worker8:tourguide:1.0.17-SNAPSHOT
-```
 
-jcenter is dead and that snapshot is no longer on Sonatype OSS, and it isn't cached locally or vendored in `Blacksmith/libs/`. Everything else resolves. TourGuide is used only by `helper/TutorialHelper.java` (the onboarding tour overlays). Any work requiring a successful build needs this resolved first — vendor the AAR into `Blacksmith/libs/`, pin a released version, or replace TutorialHelper's implementation.
+Table names are SugarORM-mangled (`PLAYERINFO`, not `PLAYER_INFO`) and booleans live in `BOOL_VALUE`, ints in `INT_VALUE`. The `MESSAGE` table is especially useful: any toast raised with `saveToLog = true` lands there, so you can assert which user-facing message fired without racing a Snackbar's fade.
+
+Note the Play Games sign-in dialog hijacks the foreground on launch when no Google account is present; dismiss it with a single `KEYCODE_BACK` (more than that exits the app).
 
 ## Architecture
 
@@ -67,6 +75,14 @@ Activities are plain `Activity` (only `MainActivity` and `SplashScreenActivity` 
 
 `Location` (anvil, furnace, table, market, selling, enchanting) → `Slot` (unlocked by player level and premium status) → `Pending_Inventory` (an item in progress, with `timeCreated` + `craftTime`) → `Inventory` on completion. `Slot.hasAvailableSlot()` gates starting a craft; the polling runnables in `MainActivity` sweep completed `Pending_Inventory` rows into `Inventory`.
 
+### Billing
+
+`helper/BillingHelper.java` wraps Google Play Billing 8.0.0 (one-time products only — the game sells no subscriptions). `PremiumActivity` and `BuyCoinsActivity` implement `BillingHelper.Listener`.
+
+`premium` is a non-consumable and gets **acknowledged**; `contribute` and `coin_pack_1/2/3` are consumables and get **consumed**. Purchases are granted before being settled, so an interrupted grant is recovered on the next launch — consumables replay through `onProductPurchased`, non-consumables deliberately don't, because `addPremiumFeatures()` stacks its bonuses and isn't idempotent.
+
+Billing can't be tested locally: `launchBillingFlow` needs an upload-key-signed build on a Play track. On a debug build the product query returns nothing, `isReady()` is false, and the buy buttons fall back to the `cannotBuyIAP` message — that's the expected local behaviour, not a bug.
+
 ### Error handling convention
 
 Game-action methods return an `int` status: a positive count on success, or a negative `Constants.ERROR_*` code. Callers map it through `ErrorHelper.errors` (a `HashMap<Integer, Integer>` of error code → string resource) and surface it with `ToastHelper.showErrorToast(view, length, text, saveToLog)`. "Toasts" are actually Snackbars, optionally persisted to the in-game message log (`Message.add`). Prefer this over throwing.
@@ -75,8 +91,10 @@ Game-action methods return an `int` status: a positive count on success, or a ne
 
 - **Don't bump `supportLibraryVersion` (23.0.0) in the root `build.gradle`.** The existing comment there is accurate: it breaks alert sizes, tutorial skipping, and more. AndroidX + Jetifier are enabled and rewrite it at build time.
 - **`android.nonFinalResIds=false` in `gradle.properties` is load-bearing** — `SettingsActivity` switches on view IDs.
-- `compileSdkVersion` is pinned to 33 in `Blacksmith/build.gradle` while `targetSdkVersion` follows `apiVersion` (35) from the root `build.gradle`.
-- The root `build.gradle` still lists `jcenter()`, which no longer serves artifacts. Add new dependencies expecting only `google()` / `mavenCentral()` to work.
+- **TourGuide comes from JitPack**, as `com.github.worker8:TourGuide:v1.0.17-SNAPSHOT@aar`. The coordinate is case-sensitive and the version is tag-shaped; `v1.0.14` is *not* a substitute, as it predates the `ChainTourGuide` class `TutorialHelper` uses. Only jcenter ever served the old `tourguide` spelling.
+- **`ToastHelper` silently discards anything passed a null view** — it returns before `Message.add`, so there's no toast *and* no log entry. Roughly 25 call sites still do this, so some player-facing messages never appear. Pass a real view (`findViewById(android.R.id.content)` works) for anything new.
 - Release builds have `minifyEnabled false`, but `Blacksmith/proguard.pro` matters anyway — it keeps `com.orm.**` and `uk.co.jakelee.blacksmith.model.**`, which SugarORM reflects over. Don't rename or obfuscate model classes/fields without also updating migration code.
-- Google Play Games (achievements, leaderboards) uses the deprecated `GoogleApiClient` in `GooglePlayHelper`; cloud saves and quests are already disabled/commented out. Play Services are optional at runtime — guard against a null/disconnected client.
+- **Play Games Services v1 is on a shutdown clock.** `GooglePlayHelper` and `BaseGameUtils` use the deprecated `GoogleApiClient` + `Games.*` static API. Play blocks *new* titles on v1 as of Sept 2025, the v1 APIs were removed from the SDK in `play-services-games:25.0.0` (June 2026 — so **do not bump `playLibraryVersion` off 17.0.0**), and v1 calls stop working at runtime in 2027. Migrating to `play-services-games-v2` is the only route to restoring cloud saves, and drops the `play-services-drive` dependency, which is the only reason it's still here.
+- Cloud saves are disabled: `Drive.API` is commented out in `MainActivity`'s client builder because the Drive Android API shut down in 2019. The serialisation (`GooglePlayHelper.createBackup`/`applyBackup`) is intact and shared with local export/import, so only the transport needs rebuilding. Play Services are optional at runtime — guard against a null/disconnected client.
+- **Adverts are gone.** The AppLovin account is disabled and the SDK was removed. `AdvertHelper` remains and still grants the same rewards, but goes straight to `InterstitialActivity` — a homegrown tips-and-countdown screen, not an ad SDK. Strings still say "advert" / "WATCH AD", which is now inaccurate.
 - Bump `versionCode` and `versionName` in `Blacksmith/build.gradle` for releases. `MainActivity` compares `BuildConfig.VERSION_CODE` against the `SavedVersion` `Player_Info` row and shows an update message only when `VERSION_NAME` ends in `.0`.
