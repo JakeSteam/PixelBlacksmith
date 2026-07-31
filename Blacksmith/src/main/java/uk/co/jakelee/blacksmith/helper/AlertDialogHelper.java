@@ -827,7 +827,8 @@ public class AlertDialogHelper {
 
     public static void displayUpdateMessage(final Context context, final MainActivity activity) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
+        alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME)
+                + "\n\n" + context.getString(R.string.updateMessageBody));
 
         /*alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

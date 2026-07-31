@@ -1595,7 +1595,9 @@
     <string name="onlyAvailable">Show All Items\n</string>
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
-    <string name="updateMessage">Updated to version %s!\n\nThis is the first update in 6-7 years, and just updates a few things required by Google, and removes quests (as Google removed the feature). Thanks for all the support over the years!</string>
+    <string name="updateMessage">Updated to version %s!</string>
+    <!-- Shown after updateMessage. Kept separate so the translated greeting above still applies. -->
+    <string name="updateMessageBody">Cloud saves work again, so your blacksmith can move between devices. Notifications are fixed too, so restocks, visitors, helpers and bonuses will let you know when they\'re ready.\n\nAchievements and leaderboards open from the settings menu again, save files can be exported and imported, and the game no longer asks you to sign in every single time you open it.\n\nThere\'s also plenty of behind-the-scenes work to meet Google\'s current store requirements. Thanks for still playing after all these years!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>
 
