@@ -197,7 +197,6 @@
     <string name="alert_marked_unsellable">Marked %1$s as %2$ssellable!</string>
     <string name="error_no_save_found">Couldn\'t find a save.</string>
     <string name="error_storage_unavailable">Storage isn\'t available right now.</string>
-    <string name="error_ad_unverified">Something went wrong, and the ad view couldn\'t be verified. Sorry!</string>
     <string name="error_image_load_fail">Failed to load image, due to low device memory...</string>
     <string name="error_player_level">This requires a higher level!</string>
     <string name="error_undiscovered">This item\'s recipe has not been discovered yet!</string>
@@ -1959,7 +1958,6 @@
     <string name="questSchedule">Schedule (on Reddit)</string>
 
     <string name="signIn">Sign In</string>
-    <string name="signOut">Sign Out</string>
     <string name="versionNumber" translatable="false">V%1$s (#%2$d)</string>
     <string name="lowMemory">Failed to load an image due to lack of device memory. Sorry! Try restarting the app, a fix is in development!</string>
     <string name="unknownError">An unknown error occurred! If it happens again, please email pixel.blacksmith@jakelee.co.uk with as much info as possible!</string>
@@ -2013,5 +2011,4 @@
     <string name="play_now">Play Slots!</string>
     <string name="blacksmith_slots_message">Blacksmith Slots is a slots / crafting game set in the same universe as Pixel Blacksmith! It features many of the same characters, and explores the surrounding world.\n\nGive it a try today, I think you\'ll like it!</string>
     <string name="blacksmith_slots_play">Play for free</string>
-    <string name="advert_load_start">Starting to load advert... If no advert is loaded in 10s, a replacement screen will appear!</string>
 </resources>

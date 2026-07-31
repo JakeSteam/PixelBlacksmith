@@ -151,7 +151,6 @@
     <string name="enchantText">宝石</string>
     <string name="enchantingText">宝石桌</string>
     <string name="equipmentText">设备</string>
-    <string name="error_ad_unverified">出现问题，广告视图无法验证。抱歉!</string>
     <string name="error_busy">目前正在计算...请重试！</string>
     <string name="error_image_load_fail">由于设备内存不足而无法加载图像...</string>
     <string name="error_max_locked_traders">最大数量的交易者已被锁定！</string>
@@ -812,7 +811,6 @@
     <string name="settingsCodeUnknown">设置代码：???</string>
     <string name="settingsText">设置</string>
     <string name="signIn">签到</string>
-    <string name="signOut">登出</string>
     <string name="slotPremium">Prem</string>
     <string name="smelt1Text">冶炼1</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -1572,7 +1570,6 @@
     <string name="visitor_desc_55">我讨厌我的兄弟！</string>
     <string name="visitor_name_54">的Blinky</string>
     <string name="visitor_name_55">活泼的</string>
-    <string name="advert_load_start">开始加载广告...如果在10秒内没有加载广告，将会出现替换屏幕！</string>
     <string name="language_10">葡萄牙语</string>
     <string name="item_desc_232">只为好男孩和女孩！</string>
     <string name="item_desc_233">充满了这么多的礼物！</string>

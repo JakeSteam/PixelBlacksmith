@@ -35,18 +35,26 @@ public class BuyCoinsActivity extends Activity implements BillingHelper.Listener
 
         billing = new BillingHelper(this, this, SKU_COIN_1, SKU_COIN_2, SKU_COIN_3);
 
-        int playerLevel = Player_Info.getPlayerLevel();
-        ((TextView) findViewById(R.id.coins1)).setText(String.format(getString(R.string.buyCoinsButton),
-                NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount1),
-                getPriceIfPossible(SKU_COIN_1, "$1.99")));
-        ((TextView) findViewById(R.id.coins2)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount2),
-                getPriceIfPossible(SKU_COIN_2, "$4.99")));
-        ((TextView) findViewById(R.id.coins3)).setText(String.format(getString(R.string.buyCoinsButton), NumberFormat.getIntegerInstance().format(playerLevel * coinPackAmount3),
-                getPriceIfPossible(SKU_COIN_3, "$9.99")));
+        updateCoinPackLabels();
     }
 
     @Override
     public void onBillingReady(Set<String> ownedProducts) {
+        // Prices arrive asynchronously, so relabel once Play has told us what they actually are.
+        updateCoinPackLabels();
+    }
+
+    private void updateCoinPackLabels() {
+        int playerLevel = Player_Info.getPlayerLevel();
+        setCoinPackLabel(R.id.coins1, playerLevel * coinPackAmount1, SKU_COIN_1, "$1.99");
+        setCoinPackLabel(R.id.coins2, playerLevel * coinPackAmount2, SKU_COIN_2, "$4.99");
+        setCoinPackLabel(R.id.coins3, playerLevel * coinPackAmount3, SKU_COIN_3, "$9.99");
+    }
+
+    private void setCoinPackLabel(int viewId, int coins, String sku, String fallbackPrice) {
+        ((TextView) findViewById(viewId)).setText(String.format(getString(R.string.buyCoinsButton),
+                NumberFormat.getIntegerInstance().format(coins),
+                getPriceIfPossible(sku, fallbackPrice)));
     }
 
     private int getCoinsFromSku(String sku) {
@@ -104,8 +112,10 @@ public class BuyCoinsActivity extends Activity implements BillingHelper.Listener
         super.onDestroy();
     }
 
+    /** The hardcoded fallbacks are US dollars, so they're only right until Play answers. */
     private String getPriceIfPossible(String iapName, String defaultPrice) {
-        return defaultPrice;
+        String price = billing == null ? null : billing.getFormattedPrice(iapName);
+        return price == null ? defaultPrice : price;
     }
 
     public void openHelp(View view) {

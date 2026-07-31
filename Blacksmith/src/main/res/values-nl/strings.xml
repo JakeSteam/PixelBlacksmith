@@ -151,7 +151,6 @@
     <string name="enchantText">Gems</string>
     <string name="enchantingText">gem Table</string>
     <string name="equipmentText">uitrusting</string>
-    <string name="error_ad_unverified">Er is iets misgegaan, en de bekeken advertentie is hierdoor niet geverifieerd. Sorry!</string>
     <string name="error_busy">Op dit moment berekenen ... probeer het opnieuw!</string>
     <string name="error_image_load_fail">Kan afbeelding niet laden, vanwege de lage geheugen apparaat ...</string>
     <string name="error_max_locked_traders">Het maximum aantal handelaren zijn al op slot!</string>
@@ -812,7 +811,6 @@
     <string name="settingsCodeUnknown">Instellingen Code: ???</string>
     <string name="settingsText">instellingen</string>
     <string name="signIn">Aanmelden</string>
-    <string name="signOut">Afmelden</string>
     <string name="slotPremium">Prem</string>
     <string name="smelt1Text">smelt 1</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -1572,7 +1570,6 @@
     <string name="visitor_desc_55">Ik haat mijn broer!</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
-    <string name="advert_load_start">Advertentie beginnen ... Als er geen advertentie in 10\'s is geladen, verschijnt er een vervangend scherm!</string>
     <string name="language_10">Portugees</string>
     <string name="item_desc_232">Alleen voor goede jongens en meisjes!</string>
     <string name="item_desc_233">Vol met zoveel cadeautjes!</string>

@@ -151,7 +151,6 @@
     <string name="enchantText">Драгоценные камни</string>
     <string name="enchantingText">Стол самоцвета</string>
     <string name="equipmentText">Оборудование</string>
-    <string name="error_ad_unverified">Что-то пошло не так, и просмотр объявлений не может быть проверен. Сожалею!</string>
     <string name="error_busy">Выполняется расчет ... повторите попытку.</string>
     <string name="error_image_load_fail">Не удалось загрузить изображение из-за низкой памяти устройства ...</string>
     <string name="error_max_locked_traders">Максимальное количество трейдеров уже заблокировано!</string>
@@ -813,7 +812,6 @@
     <string name="settingsCodeUnknown">Код настройки: ???</string>
     <string name="settingsText">Настройки</string>
     <string name="signIn">Войти в систему</string>
-    <string name="signOut">Выход</string>
     <string name="slotPremium">Прем.</string>
     <string name="smelt1Text">Выплавить 1</string>
     <string name="socialMediaFacebook">Фейсбук</string>
@@ -1573,7 +1571,6 @@
     <string name="visitor_desc_55">Я ненавижу своего брата!</string>
     <string name="visitor_name_54">Блинки</string>
     <string name="visitor_name_55">Спарки</string>
-    <string name="advert_load_start">Начало загрузки рекламы ... Если реклама не будет загружена за 10 секунд, появится экран замены!</string>
     <string name="language_10">португальский</string>
     <string name="item_desc_232">Только для хороших мальчиков и девочек!</string>
     <string name="item_desc_233">Полный столько подарков!</string>

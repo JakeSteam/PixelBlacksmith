@@ -181,7 +181,6 @@
     <string name="enchantText">Gemas</string>
     <string name="enchantingText">Mesa de gema</string>
     <string name="equipmentText">Equipamento</string>
-    <string name="error_ad_unverified">Algo deu errado e a exibição do anúncio não pôde ser verificada. Desculpa!</string>
     <string name="error_busy">Atualmente calculando ... tente novamente!</string>
     <string name="error_image_load_fail">Falha ao carregar a imagem, devido à baixa memória do dispositivo ...</string>
     <string name="error_max_locked_traders">O número máximo de comerciantes já foi bloqueado!</string>
@@ -921,7 +920,6 @@
     <string name="settingsText">Configurações</string>
     <string name="shieldText">Escudo</string>
     <string name="signIn">Assinar em</string>
-    <string name="signOut">Sair</string>
     <string name="slotPremium">Prem</string>
     <string name="smelt1Text">Smelt 1</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -1573,7 +1571,6 @@
     <string name="visitor_desc_55">Eu odeio meu irmão!</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
-    <string name="advert_load_start">Começando a carregar o anúncio ... Se nenhum anúncio é carregado em 10s, uma tela de substituição aparecerá!</string>
     <string name="language_10">Português</string>
     <string name="item_desc_232">Somente para meninos e meninas bons!</string>
     <string name="item_desc_233">Cheio de tantos presentes!</string>

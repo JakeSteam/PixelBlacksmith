@@ -96,6 +96,19 @@ public class BillingHelper {
         }
     }
 
+    /**
+     * Play's own price for the product, already formatted in the player's currency. Null until the
+     * product details have come back, so callers need a fallback for the first render.
+     */
+    public String getFormattedPrice(String productId) {
+        ProductDetails details = productDetails.get(productId);
+        if (details == null || details.getOneTimePurchaseOfferDetails() == null) {
+            return null;
+        }
+
+        return details.getOneTimePurchaseOfferDetails().getFormattedPrice();
+    }
+
     /** Play requires a ProductDetails to launch a purchase flow, so these are fetched up front. */
     private void fetchProductDetails() {
         List<QueryProductDetailsParams.Product> products = new ArrayList<>();

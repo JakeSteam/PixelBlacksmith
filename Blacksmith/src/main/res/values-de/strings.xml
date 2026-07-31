@@ -776,7 +776,6 @@
     <string name="settingsCodeUnknown">Einstellungen Code: ???</string>
     <string name="settingsText">Einstellungen</string>
     <string name="signIn">Anmelden</string>
-    <string name="signOut">Ausloggen</string>
     <string name="slotPremium">Prem</string>
     <string name="smelt1Text">Smelt 1</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -1323,7 +1322,6 @@
     <string name="alert_marked_unsellable">%1$s und %2$s wurden als verkaufbar markiert.</string>
     <string name="completion_breakdown">Level: %1$d / %2$d\nUpgrades: %3$d / %4$d\nHändler: %5$d / %6$d\nSlots: %7$d / %8$d\nTrader Lagerbestand: %9$d / %10$d\nGegenstände: %11$d / %12$d\nBesucher Prefs: %13$d / %14$d\nTrophäen: %15$d / %16$d\nArbeiter: %17$d / %18$d\nAbenteuer: %19$d / %20$d\nAssistants: %21$d / %22$d\n\nPrestiges: %23$d = +%24$d%%</string>
     <string name="difficulty_short">Schw.</string>
-    <string name="error_ad_unverified">Etwas ging schief, und die Anzeigenansicht konnte nicht überprüft werden. Es tut uns leid!</string>
     <string name="error_busy">Derzeit berechnen ... bitte versuchen Sie es erneut!</string>
     <string name="error_image_load_fail">Fehler beim Laden des Bildes aufgrund des geringen Gerätespeichers ...</string>
     <string name="error_max_locked_traders">Die maximale Anzahl der Händler ist bereits gesperrt!</string>
@@ -1571,7 +1569,6 @@
     <string name="visitor_desc_55">Ich hasse meinen Bruder!</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
-    <string name="advert_load_start">Starten der Anzeige ... Wenn keine Anzeige in 10s geladen wird, erscheint ein Ersatzbildschirm!</string>
     <string name="language_10">Portugiesisch</string>
     <string name="updateMessage">Aktualisiert auf Version %s!</string>
     <string name="item_desc_232">Nur für gute Jungen und Mädchen!</string>

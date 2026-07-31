@@ -151,7 +151,6 @@
     <string name="enchantText">보석</string>
     <string name="enchantingText">보석 테이블</string>
     <string name="equipmentText">장비</string>
-    <string name="error_ad_unverified">문제가 발생하여 광고보기를 확인할 수 없습니다. 죄송합니다!</string>
     <string name="error_busy">현재 계산 중입니다 ... 다시 시도하십시오!</string>
     <string name="error_image_load_fail">장치 메모리가 부족하여 이미지를로드하지 못했습니다 ...</string>
     <string name="error_max_locked_traders">최대 거래 수는 이미 잠겼습니다.</string>
@@ -812,7 +811,6 @@
     <string name="settingsCodeUnknown">설정 코드 : ???</string>
     <string name="settingsText">설정</string>
     <string name="signIn">로그인</string>
-    <string name="signOut">로그 아웃</string>
     <string name="slotPremium">프렘</string>
     <string name="smelt1Text">제련 1</string>
     <string name="socialMediaFacebook">페이스 북</string>
@@ -1572,7 +1570,6 @@
     <string name="visitor_desc_55">나는 오빠가 싫어!</string>
     <string name="visitor_name_54">블링키</string>
     <string name="visitor_name_55">스파키</string>
-    <string name="advert_load_start">광고로드 시작 ... 10 초에 광고가로드되지 않으면 대체 화면이 나타납니다!</string>
     <string name="language_10">포르투갈 인</string>
     <string name="item_desc_232">좋은 소년들만을 위해서!</string>
     <string name="item_desc_233">너무나 많은 선물로 가득합니다!</string>

@@ -151,7 +151,6 @@
     <string name="enchantText">Gemmes</string>
     <string name="enchantingText">Table des gemmes</string>
     <string name="equipmentText">Équipement</string>
-    <string name="error_ad_unverified">Une erreur s\'est produite et l\'affichage de l\'annonce n\'a pas pu être vérifié. Désolé !</string>
     <string name="error_busy">..... rééssayez dans quelques instants.</string>
     <string name="error_image_load_fail">Impossible de charger l\'image en raison de la faible mémoire de l\'appareil ...</string>
     <string name="error_max_locked_traders">Vous avez vérouillé le nombre maximal de vendeurs !</string>
@@ -813,7 +812,6 @@
     <string name="settingsCodeUnknown">Paramètres Code: ???</string>
     <string name="settingsText">Paramètres</string>
     <string name="signIn">Se connecter</string>
-    <string name="signOut">Déconnexion</string>
     <string name="slotPremium">Prem</string>
     <string name="smelt1Text">Smelt 1</string>
     <string name="socialMediaFacebook">Facebook</string>
@@ -1573,7 +1571,6 @@
     <string name="visitor_desc_55">Je déteste mon frère!</string>
     <string name="visitor_name_54">Blinky</string>
     <string name="visitor_name_55">Sparky</string>
-    <string name="advert_load_start">Commencer à charger une annonce ... Si aucune annonce n\'est chargée en 10s, un écran de remplacement apparaîtra!</string>
     <string name="language_10">Portugais</string>
     <string name="item_desc_232">Seulement pour les bons garçons et les filles!</string>
     <string name="item_desc_233">Plein de tant de cadeaux!</string>
