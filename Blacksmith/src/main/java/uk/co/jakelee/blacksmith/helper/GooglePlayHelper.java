@@ -5,21 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.util.Pair;
-
-import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Result;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.games.GamesStatusCodes;
+import com.google.android.gms.games.PlayGames;
+import com.google.android.gms.games.PlayGamesSdk;
+import com.google.android.gms.games.SnapshotsClient;
 import com.google.android.gms.games.snapshot.Snapshot;
+import com.google.android.gms.games.snapshot.SnapshotMetadata;
 import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
-import com.google.android.gms.games.snapshot.Snapshots;
-import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.gson.Gson;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -45,42 +40,62 @@ import uk.co.jakelee.blacksmith.model.Visitor_Stats;
 import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
-public class GooglePlayHelper implements com.google.android.gms.common.api.ResultCallback {
+/**
+ * Play Games Services v2: sign-in is automatic and there is no sign-out. Every v2 client needs an
+ * Activity, but the fire-and-forget writes are called from places holding only a Context, so
+ * MainActivity registers itself here on creation and those calls borrow it.
+ */
+public class GooglePlayHelper {
     public static final int RC_ACHIEVEMENTS = 9002;
     public static final int RC_LEADERBOARDS = 9003;
     public static final int RC_SAVED_GAMES = 9004;
-    public static final int RC_QUESTS = 9005;
-    private static final int RESULT_OK = -1;
-    private static final int RC_SIGN_IN = 9001;
+    private static final int MAX_COVER_BYTES = 800 * 1024;
     private static final String SAVE_DELIMITER = "UNIQUEDELIMITINGSTRING";
     private static final String mCurrentSaveName = "blacksmithCloudSave";
-    public static GoogleApiClient mGoogleApiClient;
-    private static boolean mResolvingConnectionFailure = false;
+    private static Activity gamesActivity;
+    private static boolean authenticated = false;
     private static byte[] cloudSaveData;
     private static Context callingContext;
     private static Activity callingActivity;
     private static Snapshot loadedSnapshot;
 
-    public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
-        if (mResolvingConnectionFailure) {
+    public static void initialise(final Activity activity) {
+        gamesActivity = activity;
+        PlayGamesSdk.initialize(activity.getApplicationContext());
+        refreshAuthentication(activity);
+    }
+
+    public static void refreshAuthentication(final Activity activity) {
+        if (!isUsable(activity)) {
             return;
         }
 
-        mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
-                mGoogleApiClient, connectionResult,
-                RC_SIGN_IN, activity.getString(R.string.connectionFailure));
+        PlayGames.getGamesSignInClient(activity).isAuthenticated().addOnCompleteListener(task ->
+                authenticated = task.isSuccessful() && task.getResult().isAuthenticated());
     }
 
-    public static void ActivityResult(Activity activity, int requestCode, int resultCode) {
-        if (requestCode == RC_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                mGoogleApiClient.connect();
-            } else {
-                Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
-                signIn.setBoolValue(false);
-                signIn.save();
-            }
+    /** Only needed when automatic sign-in didn't take; v2 has no sign-out. */
+    public static void signIn(final Activity activity) {
+        if (!isUsable(activity)) {
+            return;
         }
+
+        PlayGames.getGamesSignInClient(activity).signIn().addOnCompleteListener(task ->
+                authenticated = task.isSuccessful() && task.getResult().isAuthenticated());
+    }
+
+    private static boolean isUsable(Activity activity) {
+        return activity != null && !activity.isFinishing() && !activity.isDestroyed();
+    }
+
+    public static boolean AreGooglePlayServicesInstalled(Activity activity) {
+        GoogleApiAvailability api = GoogleApiAvailability.getInstance();
+        int code = api.isGooglePlayServicesAvailable(activity);
+        return code == ConnectionResult.SUCCESS;
+    }
+
+    public static boolean IsConnected() {
+        return authenticated && isUsable(gamesActivity);
     }
 
     public static void UpdateEvent(String eventId, int quantity) {
@@ -88,7 +103,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-        Games.Events.increment(mGoogleApiClient, eventId, quantity);
+        PlayGames.getEventsClient(gamesActivity).increment(eventId, quantity);
     }
 
     public static void UpdateLeaderboards(String leaderboardID, int value) {
@@ -96,7 +111,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-        Games.Leaderboards.submitScore(mGoogleApiClient, leaderboardID, value);
+        PlayGames.getLeaderboardsClient(gamesActivity).submitScore(leaderboardID, value);
+    }
+
+    public static void UnlockAchievement(String achievementID) {
+        if (!IsConnected()) {
+            return;
+        }
+
+        PlayGames.getAchievementsClient(gamesActivity).unlock(achievementID);
     }
 
     public static void UpdateAchievements() {
@@ -121,97 +144,147 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
     }
 
-    @Override
-    public void onResult(@NonNull Result result) {
-    }
-
     private static void UpdateAchievement(Achievement achievement, int currentValue, int lastSentValue) {
         boolean hasChanged = (currentValue > lastSentValue);
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
-        if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
+        if (hasChanged && !isAchieved) {
             int difference = currentValue - lastSentValue;
             if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17 || achievement.getPlayerInfoID() == 23) {
-                Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
+                PlayGames.getAchievementsClient(gamesActivity).unlock(achievement.getRemoteID());
             } else {
-                Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
+                PlayGames.getAchievementsClient(gamesActivity).increment(achievement.getRemoteID(), difference);
             }
         }
     }
 
-    public static void UnlockAchievement(String achievementID) {
-        if (mGoogleApiClient.isConnected()) {
-            Games.Achievements.unlock(mGoogleApiClient, achievementID);
-        }
-    }
-
     private static void UpdateStatistic(Player_Info statistic, int currentValue, int lastSentValue) {
-        if (currentValue > lastSentValue && mGoogleApiClient.isConnected()) {
+        if (currentValue > lastSentValue) {
             statistic.setLastSentValue(currentValue);
             statistic.save();
         }
     }
 
+    // v2's intent getters are asynchronous, hence launching from the callback.
+    public static void ShowAchievements(final Activity activity) {
+        if (!IsConnected()) {
+            return;
+        }
+
+        PlayGames.getAchievementsClient(activity).getAchievementsIntent().addOnSuccessListener(intent ->
+                activity.startActivityForResult(intent, RC_ACHIEVEMENTS));
+    }
+
+    public static void ShowAllLeaderboards(final Activity activity) {
+        if (!IsConnected()) {
+            return;
+        }
+
+        PlayGames.getLeaderboardsClient(activity).getAllLeaderboardsIntent().addOnSuccessListener(intent ->
+                activity.startActivityForResult(intent, RC_LEADERBOARDS));
+    }
+
+    public static void ShowLeaderboard(final Activity activity, String leaderboardID) {
+        if (!IsConnected()) {
+            return;
+        }
+
+        PlayGames.getLeaderboardsClient(activity).getLeaderboardIntent(leaderboardID).addOnSuccessListener(intent ->
+                activity.startActivityForResult(intent, RC_LEADERBOARDS));
+    }
+
+    public static void ShowSavedGames(final Activity activity) {
+        if (!IsConnected()) {
+            return;
+        }
+
+        PlayGames.getSnapshotsClient(activity)
+                .getSelectSnapshotIntent(activity.getString(R.string.cloudSaveTitle), true, true, 1)
+                .addOnSuccessListener(intent -> activity.startActivityForResult(intent, RC_SAVED_GAMES));
+    }
+
     public static void SavedGamesIntent(final Context context, final Activity activity, final Intent intent) {
-        if (intent == null || !mGoogleApiClient.isConnected()) {
+        if (intent == null || !IsConnected()) {
             return;
         }
         callingContext = context;
         callingActivity = activity;
 
-        AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
-            String currentTask = "synchronising";
+        final boolean loading = intent.hasExtra(SnapshotsClient.EXTRA_SNAPSHOT_METADATA);
+        if (!loading && !intent.hasExtra(SnapshotsClient.EXTRA_SNAPSHOT_NEW)) {
+            return;
+        }
 
-            @Override
-            protected Integer doInBackground(Void... params) {
-                Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
+        openSnapshot(activity, loading);
+    }
 
-                while (!result.getStatus().isSuccess()) {
-                    callingActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
-                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.LONG, context.getString(ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT)), true);
-                        }
-                    });
-
-                    if (result.getStatus().getStatusCode() == GamesStatusCodes.STATUS_SNAPSHOT_CONFLICT) {
-                        Snapshot snapshot = result.getSnapshot();
-                        Snapshot conflictSnapshot = result.getConflictingSnapshot();
-                        Snapshot mResolvedSnapshot = snapshot;
-
-                        if (snapshot.getMetadata().getLastModifiedTimestamp() < conflictSnapshot.getMetadata().getLastModifiedTimestamp()) {
-                            mResolvedSnapshot = conflictSnapshot;
-                        }
-
-                        result = Games.Snapshots.resolveConflict(mGoogleApiClient, result.getConflictId(), mResolvedSnapshot).await();
+    private static void openSnapshot(final Activity activity, final boolean loading) {
+        PlayGames.getSnapshotsClient(activity).open(mCurrentSaveName, true)
+                .addOnSuccessListener(result -> {
+                    if (result.isConflict()) {
+                        resolveConflict(activity, result.getConflict(), loading);
+                    } else {
+                        useSnapshot(result.getData(), loading);
                     }
-                }
+                })
+                .addOnFailureListener(e -> reportCloudFailure(loading ? "loading" : "saving", e));
+    }
 
-                Snapshot snapshot = result.getSnapshot();
-                try {
-                    if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
+    private static void resolveConflict(final Activity activity, SnapshotsClient.SnapshotConflict conflict, final boolean loading) {
+        Snapshot mine = conflict.getSnapshot();
+        Snapshot theirs = conflict.getConflictingSnapshot();
+        Snapshot newest = mine.getMetadata().getLastModifiedTimestamp() >= theirs.getMetadata().getLastModifiedTimestamp() ? mine : theirs;
+
+        if (callingActivity != null) {
+            callingActivity.runOnUiThread(() -> ToastHelper.showErrorToast(callingActivity.findViewById(android.R.id.content),
+                    ToastHelper.LONG, callingActivity.getString(ErrorHelper.errors.get(Constants.ERROR_RESOLVING_CONFLICT)), true));
+        }
+
+        PlayGames.getSnapshotsClient(activity).resolveConflict(conflict.getConflictId(), newest)
+                .addOnSuccessListener(result -> {
+                    if (result.isConflict()) {
+                        resolveConflict(activity, result.getConflict(), loading);
+                    } else {
+                        useSnapshot(result.getData(), loading);
+                    }
+                })
+                .addOnFailureListener(e -> reportCloudFailure(loading ? "loading" : "saving", e));
+    }
+
+    // v2's Task callbacks arrive on the main thread, unlike the AsyncTask this replaced, so the
+    // read and applyBackup - which rewrites fourteen tables a row at a time - are moved off it.
+    private static void useSnapshot(final Snapshot snapshot, final boolean loading) {
+        if (snapshot == null) {
+            return;
+        }
+
+        if (loading) {
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
                         cloudSaveData = snapshot.getSnapshotContents().readFully();
-                        loadFromCloud(true);
-                        currentTask = "loading";
-                    } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
-                        loadedSnapshot = snapshot;
-                        saveToCloud();
-                        currentTask = "saving";
+                    } catch (IOException e) {
+                        reportCloudFailure("loading", e);
+                        return;
                     }
-                } catch (final IOException e) {
-                    callingActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
-                            ToastHelper.showErrorToast(activity.findViewById(R.id.help), ToastHelper.SHORT, String.format(context.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
-                        }
-                    });
+                    loadFromCloud(true);
                 }
-                return result.getStatus().getStatusCode();
-            }
-        };
+            }).start();
+        } else {
+            loadedSnapshot = snapshot;
+            saveToCloud();
+        }
+    }
 
-        task.execute();
+    private static void reportCloudFailure(final String currentTask, final Exception e) {
+        if (callingActivity == null || callingContext == null) {
+            return;
+        }
+
+        callingActivity.runOnUiThread(() -> {
+            DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
+            ToastHelper.showErrorToast(callingActivity.findViewById(android.R.id.content), ToastHelper.SHORT,
+                    String.format(callingContext.getString(R.string.cloudLocalFailure), currentTask, e.toString()), true);
+        });
     }
 
     private static void loadFromCloud(final boolean checkIsImprovement) {
@@ -219,14 +292,9 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-
         if (!checkIsImprovement) {
-            callingActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadBeginning), false);
-                }
-            });
+            callingActivity.runOnUiThread(() -> ToastHelper.showToast(callingActivity.findViewById(android.R.id.content),
+                    ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadBeginning), false));
         }
 
         Pair<Integer, Integer> cloudData = getPrestigeAndXPFromSave(cloudSaveData);
@@ -234,11 +302,12 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         if (!checkIsImprovement || newSaveIsBetter(cloudData)) {
             applyBackup(new String(cloudSaveData));
         } else {
-            AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
+            final Pair<Integer, Integer> values = cloudData;
+            callingActivity.runOnUiThread(() -> AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
                     Player_Info.getPrestige(),
                     Player_Info.getXp(),
-                    cloudData.first,
-                    cloudData.second);
+                    values.first,
+                    values.second));
         }
     }
 
@@ -251,13 +320,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static void forceSaveToCloud() {
-        callingActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ToastHelper.showToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveBeginning), false);
-            }
-        });
+        if (callingActivity == null || callingContext == null || loadedSnapshot == null) {
+            return;
+        }
 
+        callingActivity.runOnUiThread(() -> ToastHelper.showToast(callingActivity.findViewById(android.R.id.content),
+                ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveBeginning), false));
+
+        // Serialising reads fourteen tables, so it stays off the main thread; the commit goes back
+        // onto it, where the Play Games client expects to be used.
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
@@ -266,27 +337,43 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                         Player_Info.getPlayerLevel(),
                         Inventory.getCoins(),
                         BuildConfig.VERSION_NAME);
-                Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.promo);
+                Bitmap cover = decodeCoverImage(callingContext);
 
                 loadedSnapshot.getSnapshotContents().writeBytes(data);
 
-                SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
+                final SnapshotMetadataChange metadataChange = new SnapshotMetadataChange.Builder()
                         .setDescription(desc)
                         .setCoverImage(cover)
                         .build();
 
-                // Commit the operation
-                Games.Snapshots.commitAndClose(mGoogleApiClient, loadedSnapshot, metadataChange);
-
-                callingActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
-                        ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveSuccess), true);
-                    }
-                });
+                callingActivity.runOnUiThread(() -> commitSnapshot(metadataChange));
             }
         }).start();
+    }
+
+    private static void commitSnapshot(SnapshotMetadataChange metadataChange) {
+        PlayGames.getSnapshotsClient(callingActivity).commitAndClose(loadedSnapshot, metadataChange)
+                .addOnSuccessListener(metadata -> {
+                    DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
+                    ToastHelper.showPositiveToast(callingActivity.findViewById(android.R.id.content),
+                            ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveSuccess), true);
+                })
+                .addOnFailureListener(e -> reportCloudFailure("saving", e));
+    }
+
+    // The full promo image decodes to roughly 25MB, which is a lot of heap to ask for mid-save.
+    private static Bitmap decodeCoverImage(Context context) {
+        BitmapFactory.Options bounds = new BitmapFactory.Options();
+        bounds.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(context.getResources(), R.drawable.promo, bounds);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 1;
+        while ((bounds.outWidth / options.inSampleSize) * (bounds.outHeight / options.inSampleSize) * 4 > MAX_COVER_BYTES) {
+            options.inSampleSize *= 2;
+        }
+
+        return BitmapFactory.decodeResource(context.getResources(), R.drawable.promo, options);
     }
 
     private static void saveToCloud() {
@@ -294,25 +381,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             return;
         }
 
-        if (loadedSnapshot.getMetadata().getDeviceName() == null) {
+        SnapshotMetadata metadata = loadedSnapshot.getMetadata();
+        if (metadata.getDeviceName() == null) {
             forceSaveToCloud();
         } else {
             AlertDialogHelper.confirmCloudSave(callingContext, callingActivity,
-                    loadedSnapshot.getMetadata().getDescription(),
-                    loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
-                    loadedSnapshot.getMetadata().getDeviceName());
+                    metadata.getDescription(),
+                    metadata.getLastModifiedTimestamp(),
+                    metadata.getDeviceName());
         }
-
-    }
-
-    public static boolean AreGooglePlayServicesInstalled(Activity activity) {
-        GoogleApiAvailability api = GoogleApiAvailability.getInstance();
-        int code = api.isGooglePlayServicesAvailable(activity);
-        return code == ConnectionResult.SUCCESS;
-    }
-
-    public static boolean IsConnected() {
-        return GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected();
     }
 
     public static byte[] createBackup() {
@@ -336,11 +413,37 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         return backupString.getBytes();
     }
 
+    // applyBackup deletes each table before repopulating it, so a truncated snapshot would destroy
+    // the player's game partway through. This guard is the only thing preventing that.
+    public static boolean isPlausibleSave(String backupData) {
+        if (backupData == null || backupData.isEmpty()) {
+            return false;
+        }
+
+        String[] splitData = splitBackupData(backupData);
+        if (splitData.length < 9) {
+            return false;
+        }
+
+        try {
+            Integer.parseInt(splitData[0].trim());
+            Player_Info[] infos = new Gson().fromJson(splitData[2], Player_Info[].class);
+            return infos != null && infos.length > 0;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
     public static void applyBackup(String backupData) {
+        if (!isPlausibleSave(backupData)) {
+            reportCloudFailure("loading", new IOException("Save data was incomplete, so nothing was changed"));
+            return;
+        }
+
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(backupData);
-        MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
+        MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0].trim())).apply();
 
         Inventory[] inventories = gson.fromJson(splitData[1], Inventory[].class);
         Inventory.deleteAll(Inventory.class);
@@ -447,7 +550,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 @Override
                 public void run() {
                     DisplayHelper.getInstance(callingActivity).updateFullscreen(callingActivity);
-                    ToastHelper.showPositiveToast(callingActivity.findViewById(R.id.help), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
+                    ToastHelper.showPositiveToast(callingActivity.findViewById(android.R.id.content), ToastHelper.LONG, callingActivity.getString(R.string.cloudLoadSuccess), true);
                 }
             });
         }
@@ -459,7 +562,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(new String(saveBytes));
-        if (splitData.length >= 2) {
+        // >= 3, not >= 2: index 2 is read below, and this runs before the plausibility check.
+        if (splitData.length >= 3) {
             Player_Info[] saveInfos = gson.fromJson(splitData[2], Player_Info[].class);
             for (Player_Info saveInfo : saveInfos) {
                 if (saveInfo.getName() != null) {
@@ -487,5 +591,4 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         return splitData;
     }
-
 }

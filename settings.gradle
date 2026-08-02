@@ -1,1 +1,1 @@
-include ':Blacksmith', ':BaseGameUtils'
+include ':Blacksmith'

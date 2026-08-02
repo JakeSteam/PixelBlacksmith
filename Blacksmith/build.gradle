@@ -1,59 +1,85 @@
 apply plugin: 'com.android.application'
 
+// Credentials live in ~/.gradle/gradle.properties, outside this public repo. Without them the
+// build still works: debug falls back to the debug keystore, release comes out unsigned.
+def signingReady = ['PB_STORE_FILE', 'PB_STORE_PASSWORD', 'PB_KEY_ALIAS', 'PB_KEY_PASSWORD'].every {
+    project.hasProperty(it)
+} && file(project.findProperty('PB_STORE_FILE').toString()).exists()
+
 android {
     namespace = "uk.co.jakelee.blacksmith"
-    compileSdkVersion 33
+    compileSdk = 37
 
     defaultConfig {
         applicationId "uk.co.jakelee.blacksmith"
-        minSdkVersion 21
-        targetSdkVersion apiVersion
-        versionCode 88
-        versionName "3.0.2"
-        multiDexEnabled true
+        minSdk = 23
+        targetSdk = apiVersion
+        versionCode = 90
+        versionName = "3.1.0"
+        multiDexEnabled = true
+    }
+    if (signingReady) {
+        signingConfigs {
+            shipping {
+                storeFile = file(project.findProperty('PB_STORE_FILE').toString())
+                storePassword = project.findProperty('PB_STORE_PASSWORD').toString()
+                keyAlias = project.findProperty('PB_KEY_ALIAS').toString()
+                keyPassword = project.findProperty('PB_KEY_PASSWORD').toString()
+            }
+        }
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
+            if (signingReady) signingConfig = signingConfigs.shipping
         }
         debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
+            // Shipping certificate, so Play Games and Billing authenticate locally: both match on
+            // package name plus certificate, and a debug-signed build fails with DEVELOPER_ERROR.
+            if (signingReady) signingConfig = signingConfigs.shipping
         }
     }
     buildFeatures {
-        buildConfig true
+        buildConfig = true
     }
 }
 
 repositories {
     google()
     mavenCentral()
-    maven {
-        url 'https://maven.google.com'
-    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:percent:$supportLibraryVersion"
-    implementation "com.google.android.gms:play-services-gcm:$playLibraryVersion"
-    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
-    implementation "com.google.android.gms:play-services-drive:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-games-v2:$gamesLibraryVersion"
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.7'
-    implementation 'com.anjlab.android.iab.v3:library:2.2.0'
+    implementation 'com.android.billingclient:billing:9.1.0'
     implementation 'com.scottyab:aescrypt:0.0.1'
-    implementation('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar') {
+    implementation('com.github.worker8:TourGuide:v1.0.17-SNAPSHOT@aar') { // Via JitPack; jcenter's copy is gone
         transitive = true
     }
     implementation 'com.github.hotchemi:android-rate:1.0.1'
-    implementation project(':BaseGameUtils')
-    implementation files('libs/applovin-sdk-6.2.2.jar')
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
+    // 1.1.16's native libs are 4KB-aligned, failing Play's 16KB page size rule. 1.2.29 is built at
+    // 16KB and drops the long-dead mips ABIs.
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.29'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.1'
+
+    constraints {
+        // Billing 9 pulls in kotlin-stdlib-jdk8:1.6.21, whose classes moved into kotlin-stdlib in
+        // Kotlin 1.8; without aligning them checkDuplicateClasses fails.
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+
+        // Jetifier maps onto androidx 1.0.0, where both artifacts declare the androidx.vectordrawable
+        // namespace. AGP 9 rejects duplicate namespaces; 1.1.0 is the first release that separates them.
+        implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+        implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
+    }
 }

@@ -139,7 +139,7 @@ public class AssistantActivity extends Activity {
     public void unlockAssistant() {
         mViewPager.setAdapter(mCustomPagerAdapter);
         mViewPager.setCurrentItem(selectedAssistant - 1);
-        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantUnlockAlert),
+        ToastHelper.showPositiveToast(findViewById(android.R.id.content), ToastHelper.SHORT, String.format(Locale.ENGLISH, getString(R.string.assistantUnlockAlert),
                 Assistant.get(selectedAssistant).getTypeName(this)), true);
         displayAssistantInfo();
     }

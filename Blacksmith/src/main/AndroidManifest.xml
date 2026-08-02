@@ -6,28 +6,18 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <permission
-        android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="uk.co.jakelee.blacksmith.permission.C2D_MESSAGE" />
 
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
+        android:appCategory="game"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="d8B0h7p58eRdbK8r8r6cntx7TDbAl2WMBiNtqAyypOaPikFsTLSKCNSgb3rL5MiG347uE4r2SPSA7h0g1S_ErR" />
         <meta-data
             android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/app_id" />
@@ -47,8 +37,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="uk.co.jakelee.blacksmith.model" />
 
-        <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
-        <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
         <!--suppress AndroidDomInspection -->
         <activity
             android:exported="true"
@@ -148,13 +136,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.PopupOverlay" />
 
-        <receiver android:name=".helper.NotificationHelper" android:exported="true">
-            <intent-filter>
-                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+        <!-- Only ever triggered by our own alarms, via an explicit intent -->
+        <receiver android:name=".helper.NotificationHelper" android:exported="false" />
 
         <service android:name=".service.MusicService" />
 

@@ -14,7 +14,7 @@ public class EventHelper {
             int state = VisitorHelper.getRandomNumber(Constants.STATE_RED, Constants.STATE_YELLOW);
             Item item = Item.findById(Item.class, 232);
             Inventory.addItem(item.getId(), state, 1, false);
-            ToastHelper.showPositiveToast(null, ToastHelper.EXTRALONG, String.format(Locale.ENGLISH, activity.getString(R.string.eventChristmasItem),
+            ToastHelper.showPositiveToast(activity.findViewById(android.R.id.content), ToastHelper.EXTRALONG, String.format(Locale.ENGLISH, activity.getString(R.string.eventChristmasItem),
                     item.getFullName(activity, state)), true);
         }
     }

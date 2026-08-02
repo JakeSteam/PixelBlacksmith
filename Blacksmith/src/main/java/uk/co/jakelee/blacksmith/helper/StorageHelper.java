@@ -1,14 +1,9 @@
 package uk.co.jakelee.blacksmith.helper;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Environment;
 import android.util.Log;
 import android.util.Pair;
-
-import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,35 +22,23 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class StorageHelper {
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
-
-    public static void confirmStoragePermissions(Activity activity) {
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
+    // The old PixelBlacksmith folder at the root of external storage stopped being writable in
+    // Android 10. This directory needs no permission.
+    private static File getSaveDirectory(Activity activity) {
+        return activity.getExternalFilesDir(null);
     }
 
     public static String saveLocalSave(Activity activity) {
-        confirmStoragePermissions(activity);
+        File path = getSaveDirectory(activity);
+        if (path == null) {
+            return activity.getString(R.string.error_storage_unavailable);
+        }
 
         try {
             String filename = getFilename(activity);
             byte[] backup = SupportCodeHelper.encode(GooglePlayHelper.createBackup());
 
-            File path = new File(Environment.getExternalStorageDirectory() + "/PixelBlacksmith");
-            path.mkdirs();
-
-            File file = new File(Environment.getExternalStorageDirectory() + "/PixelBlacksmith", filename);
+            File file = new File(path, filename);
 
             FileOutputStream outputStream;
             outputStream = new FileOutputStream(file);
@@ -73,7 +56,10 @@ public class StorageHelper {
     }
 
     public static String loadLocalSave(Activity activity, boolean checkIsImprovement) {
-        File directory = new File(Environment.getExternalStorageDirectory().getPath() + "/PixelBlacksmith");
+        File directory = getSaveDirectory(activity);
+        if (directory == null) {
+            return activity.getString(R.string.error_storage_unavailable);
+        }
 
         // Get a list of all files
         File[] files = directory.listFiles(new FilenameFilter() {

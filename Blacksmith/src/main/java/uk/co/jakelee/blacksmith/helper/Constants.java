@@ -142,7 +142,8 @@ public class Constants {
     public static final int SUPER_SUCCESS_MINIMUM = 110;
     public static final int SUPER_SUCCESS_MAXIMUM = 250;
 
-    public static final int ADVERT_TIMEOUT = 30000;
+    // No real advert behind the interstitial any more, so there is nothing to gain from a long wait.
+    public static final int ADVERT_TIMEOUT = 15000;
 
     // Error codes
     public static final int SUCCESS = 1;

@@ -16,9 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -58,12 +55,12 @@ import uk.co.jakelee.blacksmith.service.MusicService;
 
 import static uk.co.jakelee.blacksmith.R.id.mainScroller;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity {
     private static final Handler handler = new Handler();
     public static VariableHelper vh;
     public static boolean needToRedrawVisitors = false;
@@ -91,18 +88,11 @@ public class MainActivity extends AppCompatActivity implements
             TutorialHelper.currentStage = prefs.getInt("tutorialStage", 0);
         }
 
-        try {
-            GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
-                    .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                    //.addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                    .setViewForPopups(findViewById(android.R.id.content))
-                    .build();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Unknown error whilst connecting to Google Play!", Toast.LENGTH_SHORT).show();
-        }
+        GooglePlayHelper.initialise(this);
 
         dh.createAllSlots(this);
+        keepTopBarBelowStatusBar();
+        NotificationHelper.confirmNotificationPermission(this);
         ratingPrompt();
 
         if (Player_Info.displayAds()) {
@@ -126,9 +116,23 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
+    // The insets still report the status bar height while immersive mode has it hidden, hence
+    // checking the same settings updateFullscreen() does rather than trusting the inset alone.
+    // Shifted rather than padded: topBar is a wrap_content RelativeLayout, and re-measuring it from
+    // an insets listener leaves the coin and level labels blank.
+    private void keepTopBarBelowStatusBar() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), new OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat insets) {
+                View topBar = findViewById(R.id.topBar);
+                if (topBar != null) {
+                    boolean statusBarHidden = Setting.getSafeBoolean(Constants.SETTING_CHECK_FULLSCREEN)
+                            && Setting.getSafeBoolean(Constants.SETTING_FULLSCREEN);
+                    topBar.setTranslationY(statusBarHidden ? 0 : insets.getSystemWindowInsetTop());
+                }
+                return insets;
+            }
+        });
     }
 
     private void ratingPrompt() {
@@ -236,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements
             }
         }).start();
 
-        if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
-            GooglePlayHelper.mGoogleApiClient.connect();
+        if (GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            GooglePlayHelper.refreshAuthentication(this);
         }
 
         if (Calendar.getInstance().get(Calendar.MONTH) == Calendar.DECEMBER && Setting.getSafeBoolean(Constants.SETTING_SEASONAL_EFFECTS)) {
@@ -287,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
 
         if (newVisitors > 0) {
-            ToastHelper.showToast(null, ToastHelper.SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
+            ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.SHORT, String.format(getString(R.string.visitorArrived), newVisitors), true);
             newVisitors = 0;
         }
 
@@ -368,8 +372,6 @@ public class MainActivity extends AppCompatActivity implements
             musicServiceIsStarted = false;
         }
 
-        GooglePlayHelper.mGoogleApiClient.disconnect();
-
         prefs.edit().putInt("tutorialStage", (TutorialHelper.currentStage > 0 ? TutorialHelper.currentStage : 0)).apply();
 
     }
@@ -414,9 +416,9 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
                 int newVisitors = VisitorHelper.tryCreateRequiredVisitors();
                 if (newVisitors == 1) {
-                    ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.visitorArriving), true);
+                    ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, getString(R.string.visitorArriving), true);
                 } else if (newVisitors > 1) {
-                    ToastHelper.showToast(null, ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
+                    ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, String.format(getString(R.string.visitorsArriving), newVisitors), true);
                 }
                 DisplayHelper.updateBonusChest((ImageView) activity.findViewById(R.id.bonus_chest));
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
@@ -430,7 +432,7 @@ public class MainActivity extends AppCompatActivity implements
                 if (Trader_Stock.shouldRestock()) {
                     boolean taxPaid = PremiumHelper.payOutTax();
                     Trader_Stock.restockTraders();
-                    ToastHelper.showPositiveToast(null, ToastHelper.LONG, getRestockText(taxPaid), true);
+                    ToastHelper.showPositiveToast(findViewById(android.R.id.content), ToastHelper.LONG, getRestockText(taxPaid), true);
                 }
                 GooglePlayHelper.UpdateAchievements();
                 WorkerHelper.checkForFinishedWorkers(activity);
@@ -574,13 +576,13 @@ public class MainActivity extends AppCompatActivity implements
                 AlertDialogHelper.confirmBonusAdvert(this, this);
             }
         } else {
-            ToastHelper.showToast(null, ToastHelper.SHORT, String.format(getString(R.string.bonusTimeLeft),
+            ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.SHORT, String.format(getString(R.string.bonusTimeLeft),
                     DateHelper.getHoursMinsSecsRemaining(Player_Info.timeUntilBonusReady())), false);
         }
     }
 
     public void clickWindow(View view) {
-        ToastHelper.showToast(null, ToastHelper.SHORT, getString(R.string.windowClick), false);
+        ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.SHORT, getString(R.string.windowClick), false);
     }
 
     public void clickBookcase(View view) {
@@ -591,33 +593,20 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         String tipMessage = "Tip " + (thisTip + 1) + "/" + tips.size() + ": " + tips.get(thisTip);
-        ToastHelper.showTipToast(null, ToastHelper.LONG, tipMessage, false);
+        ToastHelper.showTipToast(findViewById(android.R.id.content), ToastHelper.LONG, tipMessage, false);
         prefs.edit().putInt("nextTip", ++thisTip).apply();
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        GooglePlayHelper.ConnectionFailed(this, connectionResult);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        GooglePlayHelper.mGoogleApiClient.connect();
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
     }
 
     public void callbackSpawn() {
         if (VisitorHelper.tryCreateVisitor()) {
-            ToastHelper.showToast(null, ToastHelper.LONG, getString(R.string.bribeAdvertComplete), true);
+            ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, getString(R.string.bribeAdvertComplete), true);
         }
     }
 
     public void callbackBonus() {
         String rewardText = AdvertHelper.createAdvertReward(this);
-        ToastHelper.showToast(null, ToastHelper.LONG, rewardText, true);
+        // ToastHelper drops anything passed a null view, which silently ate the reward text.
+        ToastHelper.showToast(findViewById(android.R.id.content), ToastHelper.LONG, rewardText, true);
 
         Player_Info lastClaimed = Select.from(Player_Info.class).where(Condition.prop("name").eq("LastBonusClaimed")).first();
         lastClaimed.setLongValue(System.currentTimeMillis());

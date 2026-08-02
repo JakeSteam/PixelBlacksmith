@@ -685,37 +685,6 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/signOutButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_extra_wide"
-                    android:onClick="signOut"
-                    android:visibility="gone">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/playgames" />
-
-                        <uk.co.jakelee.blacksmith.controls.TextViewPixel
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center"
-                            android:text="@string/signOut"
-                            android:textColor="@color/black"
-                            android:textSize="30sp" />
-                    </LinearLayout>
-                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/playShortcuts"

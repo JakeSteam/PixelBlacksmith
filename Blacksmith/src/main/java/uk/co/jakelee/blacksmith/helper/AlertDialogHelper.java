@@ -347,10 +347,10 @@ public class AlertDialogHelper {
                     coinStock.setQuantity(coinStock.getQuantity() - visitorCost);
                     coinStock.save();
                     if (VisitorHelper.tryCreateVisitor()) {
-                        ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
+                        ToastHelper.showPositiveToast(activity.findViewById(android.R.id.content), ToastHelper.SHORT, String.format(context.getString(R.string.bribeComplete), visitorCost), true);
                     }
                 } else {
-                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, context.getString(R.string.bribeFailure), true);
+                    ToastHelper.showErrorToast(activity.findViewById(android.R.id.content), ToastHelper.SHORT, context.getString(R.string.bribeFailure), true);
                 }
             }
         });
@@ -732,9 +732,9 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 String readResult = StorageHelper.loadLocalSave(activity, false);
                 if (readResult.startsWith("PixelBlacksmith")) {
-                    ToastHelper.showPositiveToast(null, ToastHelper.LONG, activity.getString(R.string.saveImportLoadSuccess), true);
+                    ToastHelper.showPositiveToast(activity.findViewById(android.R.id.content), ToastHelper.LONG, activity.getString(R.string.saveImportLoadSuccess), true);
                 } else {
-                    ToastHelper.showErrorToast(null, ToastHelper.LONG, String.format(activity.getString(R.string.saveImportFailure),
+                    ToastHelper.showErrorToast(activity.findViewById(android.R.id.content), ToastHelper.LONG, String.format(activity.getString(R.string.saveImportFailure),
                             readResult), true);
                 }
             }
@@ -827,7 +827,8 @@ public class AlertDialogHelper {
 
     public static void displayUpdateMessage(final Context context, final MainActivity activity) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME));
+        alertDialog.setMessage(String.format(context.getString(R.string.updateMessage), BuildConfig.VERSION_NAME)
+                + "\n\n" + context.getString(R.string.updateMessageBody));
 
         /*alertDialog.setPositiveButton(R.string.play_now, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -1083,12 +1084,12 @@ public class AlertDialogHelper {
                 }
 
                 if (itemsBought > 0) {
-                    ToastHelper.showPositiveToast(null, ToastHelper.SHORT, String.format(activity.getString(R.string.itemBuyAllComplete), itemsBought), false);
+                    ToastHelper.showPositiveToast(activity.findViewById(android.R.id.content), ToastHelper.SHORT, String.format(activity.getString(R.string.itemBuyAllComplete), itemsBought), false);
                     Player_Info.increaseByX(Player_Info.Statistic.ItemsBought, itemsBought);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_ALL_ITEM, 1);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_BOUGHT_ITEM, itemsBought);
                 } else {
-                    ToastHelper.showErrorToast(null, ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(buyResponse)), false);
+                    ToastHelper.showErrorToast(activity.findViewById(android.R.id.content), ToastHelper.SHORT, activity.getString(ErrorHelper.errors.get(buyResponse)), false);
                 }
 
                 Pending_Inventory.addScheduledItems(Constants.LOCATION_MARKET, items);
