@@ -137,4 +137,10 @@ The point of the 3.0.4 work was to clear every known clock at once. Next forced 
 | Aug 2028 | Play Billing 9 stops being accepted; targetSdk 38 required |
 | AGP 10 | Jetifier removed, forcing the androidx migration above |
 
-Google adds requirements mid-cycle too — the 16KB page-size rule appeared that way. The native libs (`libpl_droidsonroids_gif`) are already 64KB-aligned, so that one is satisfied.
+Google adds requirements mid-cycle too — the 16KB page-size rule appeared that way, and Play rejected the first 3.1.0 upload over it. The only native code is `libpl_droidsonroids_gif`, from `android-gif-drawable`; 1.1.16 shipped 4KB-aligned `x86_64` and `armeabi-v7a` libs, and 1.2.29 is 16KB-aligned on all four ABIs. Checking only `arm64-v8a` is what hid it — verify **every** ABI's `PT_LOAD` alignment, plus the APK's own zip alignment:
+
+```sh
+unzip -o app.apk 'lib/*' -d /tmp/so                        # then per .so:
+llvm-readelf -l /tmp/so/lib/<abi>/x.so | grep LOAD         # p_align must be >= 16384
+zipalign -c -P 16 -v 4 app.apk                             # uncompressed .so page-aligned in the zip
+```

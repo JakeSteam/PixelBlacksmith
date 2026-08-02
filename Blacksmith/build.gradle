@@ -65,7 +65,9 @@ dependencies {
         transitive = true
     }
     implementation 'com.github.hotchemi:android-rate:1.0.1'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
+    // 1.1.16's native libs are 4KB-aligned, failing Play's 16KB page size rule. 1.2.29 is built at
+    // 16KB and drops the long-dead mips ABIs.
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.29'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.1'
 
