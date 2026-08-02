@@ -116,16 +116,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Android 15+ draws apps edge to edge with no way to opt out, so with the optional fullscreen
-     * setting turned off the coin count and level bar would sit underneath the status bar. The
-     * insets still report the status bar height while immersive mode has it hidden, hence checking
-     * the same settings updateFullscreen() does rather than trusting the inset alone.
-     *
-     * Shifted rather than padded: topBar is a wrap_content RelativeLayout whose children mix
-     * toRightOf with alignParentRight, and re-measuring it from inside an insets listener leaves
-     * the coin and level labels blank.
-     */
+    // The insets still report the status bar height while immersive mode has it hidden, hence
+    // checking the same settings updateFullscreen() does rather than trusting the inset alone.
+    // Shifted rather than padded: topBar is a wrap_content RelativeLayout, and re-measuring it from
+    // an insets listener leaves the coin and level labels blank.
     private void keepTopBarBelowStatusBar() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), new OnApplyWindowInsetsListener() {
             @Override

@@ -22,11 +22,8 @@ import uk.co.jakelee.blacksmith.R;
 import uk.co.jakelee.blacksmith.model.Player_Info;
 
 public class StorageHelper {
-    /**
-     * Saves used to live in a PixelBlacksmith folder at the root of external storage, which stopped
-     * being writable in Android 10 and had been failing with ENOENT ever since. The app-specific
-     * external directory needs no permission and works on every version the game supports.
-     */
+    // The old PixelBlacksmith folder at the root of external storage stopped being writable in
+    // Android 10. This directory needs no permission.
     private static File getSaveDirectory(Activity activity) {
         return activity.getExternalFilesDir(null);
     }

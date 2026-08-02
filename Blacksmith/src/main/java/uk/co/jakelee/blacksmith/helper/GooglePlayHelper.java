@@ -41,13 +41,9 @@ import uk.co.jakelee.blacksmith.model.Visitor_Type;
 import uk.co.jakelee.blacksmith.model.Worker;
 
 /**
- * Play Games Services v2. Unlike v1 there is no GoogleApiClient to connect or disconnect, and no
- * sign-out: the SDK signs the player in automatically, and all we do is record whether that
- * succeeded so writes can be skipped when it didn't.
- *
- * Every v2 client needs an Activity. Fire-and-forget writes are called from all over the codebase,
- * including places with only a Context, so MainActivity registers itself here on creation and those
- * calls borrow it.
+ * Play Games Services v2: sign-in is automatic and there is no sign-out. Every v2 client needs an
+ * Activity, but the fire-and-forget writes are called from places holding only a Context, so
+ * MainActivity registers itself here on creation and those calls borrow it.
  */
 public class GooglePlayHelper {
     public static final int RC_ACHIEVEMENTS = 9002;
@@ -63,7 +59,6 @@ public class GooglePlayHelper {
     private static Activity callingActivity;
     private static Snapshot loadedSnapshot;
 
-    /** Called once from MainActivity. Authentication is automatic, so this only records the result. */
     public static void initialise(final Activity activity) {
         gamesActivity = activity;
         PlayGamesSdk.initialize(activity.getApplicationContext());
@@ -79,7 +74,7 @@ public class GooglePlayHelper {
                 authenticated = task.isSuccessful() && task.getResult().isAuthenticated());
     }
 
-    /** v2 has no sign-out, so this is only ever needed when automatic sign-in didn't take. */
+    /** Only needed when automatic sign-in didn't take; v2 has no sign-out. */
     public static void signIn(final Activity activity) {
         if (!isUsable(activity)) {
             return;
@@ -169,7 +164,7 @@ public class GooglePlayHelper {
         }
     }
 
-    /** The intent getters are asynchronous in v2, hence launching from the callback. */
+    // v2's intent getters are asynchronous, hence launching from the callback.
     public static void ShowAchievements(final Activity activity) {
         if (!IsConnected()) {
             return;
@@ -207,10 +202,6 @@ public class GooglePlayHelper {
                 .addOnSuccessListener(intent -> activity.startActivityForResult(intent, RC_SAVED_GAMES));
     }
 
-    /**
-     * Handles the result of the saved-games picker. Whether the player chose an existing snapshot or
-     * asked for a new one decides between loading and saving.
-     */
     public static void SavedGamesIntent(final Context context, final Activity activity, final Intent intent) {
         if (intent == null || !IsConnected()) {
             return;
@@ -238,7 +229,6 @@ public class GooglePlayHelper {
                 .addOnFailureListener(e -> reportCloudFailure(loading ? "loading" : "saving", e));
     }
 
-    /** Keeps whichever side was modified most recently, matching the previous behaviour. */
     private static void resolveConflict(final Activity activity, SnapshotsClient.SnapshotConflict conflict, final boolean loading) {
         Snapshot mine = conflict.getSnapshot();
         Snapshot theirs = conflict.getConflictingSnapshot();
@@ -260,11 +250,8 @@ public class GooglePlayHelper {
                 .addOnFailureListener(e -> reportCloudFailure(loading ? "loading" : "saving", e));
     }
 
-    /**
-     * v2's Task callbacks arrive on the main thread, unlike the AsyncTask this replaced, so reading
-     * the snapshot and applying it have to be pushed onto a background thread by hand. applyBackup
-     * rewrites fourteen tables a row at a time, which is far too slow for the UI thread.
-     */
+    // v2's Task callbacks arrive on the main thread, unlike the AsyncTask this replaced, so the
+    // read and applyBackup - which rewrites fourteen tables a row at a time - are moved off it.
     private static void useSnapshot(final Snapshot snapshot, final boolean loading) {
         if (snapshot == null) {
             return;
@@ -315,7 +302,6 @@ public class GooglePlayHelper {
         if (!checkIsImprovement || newSaveIsBetter(cloudData)) {
             applyBackup(new String(cloudSaveData));
         } else {
-            // Reached from a background thread, and a dialog has to be shown from the main one.
             final Pair<Integer, Integer> values = cloudData;
             callingActivity.runOnUiThread(() -> AlertDialogHelper.confirmWorseCloudLoad(callingContext, callingActivity,
                     Player_Info.getPrestige(),
@@ -341,8 +327,8 @@ public class GooglePlayHelper {
         callingActivity.runOnUiThread(() -> ToastHelper.showToast(callingActivity.findViewById(android.R.id.content),
                 ToastHelper.LONG, callingActivity.getString(R.string.cloudSaveBeginning), false));
 
-        // Serialising the save reads fourteen tables, so it stays off the main thread. Committing is
-        // handed back to the main thread, since that's where the Play Games client expects to be used.
+        // Serialising reads fourteen tables, so it stays off the main thread; the commit goes back
+        // onto it, where the Play Games client expects to be used.
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
@@ -375,11 +361,7 @@ public class GooglePlayHelper {
                 .addOnFailureListener(e -> reportCloudFailure("saving", e));
     }
 
-    /**
-     * Play caps snapshot cover images at 800KB and scales anything larger itself, but the full
-     * promo image decodes to roughly 25MB, which is a lot of heap to ask for mid-save on an old
-     * device. Downsampling first keeps it comfortably under the cap.
-     */
+    // The full promo image decodes to roughly 25MB, which is a lot of heap to ask for mid-save.
     private static Bitmap decodeCoverImage(Context context) {
         BitmapFactory.Options bounds = new BitmapFactory.Options();
         bounds.inJustDecodeBounds = true;
@@ -431,11 +413,8 @@ public class GooglePlayHelper {
         return backupString.getBytes();
     }
 
-    /**
-     * A save is only worth applying if it has all the mandatory sections and a readable database
-     * version. applyBackup deletes each table before repopulating it, so a truncated or empty
-     * snapshot would otherwise destroy the player's game partway through.
-     */
+    // applyBackup deletes each table before repopulating it, so a truncated snapshot would destroy
+    // the player's game partway through. This guard is the only thing preventing that.
     public static boolean isPlausibleSave(String backupData) {
         if (backupData == null || backupData.isEmpty()) {
             return false;
@@ -583,8 +562,7 @@ public class GooglePlayHelper {
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(new String(saveBytes));
-        // >= 3, not >= 2: index 2 is read below, and this runs before applyBackup's plausibility
-        // check, so a two-section save used to throw here before that guard could reject it.
+        // >= 3, not >= 2: index 2 is read below, and this runs before the plausibility check.
         if (splitData.length >= 3) {
             Player_Info[] saveInfos = gson.fromJson(splitData[2], Player_Info[].class);
             for (Player_Info saveInfo : saveInfos) {

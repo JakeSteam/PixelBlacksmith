@@ -1594,8 +1594,7 @@
 
     <string name="translationHelp" translatable="false"><u>Fix?</u></string>
     <string name="updateMessage">Updated to version %s!</string>
-    <!-- Shown after updateMessage. Separate so the translated greeting above still applies, and
-         translatable="false" because it is rewritten every release. -->
+    <!-- Rewrite every release. Split from updateMessage so the translated greeting still applies. -->
     <string name="updateMessageBody" translatable="false">Fixed:\n• Cloud saves\n• Notifications\n• Achievements and leaderboards\n• Exporting and importing saves\n• Being asked to sign in every launch\n\nPlus changes to meet Google\'s store requirements. Thanks for still playing!</string>
     <string name="updateReddit">View Changes</string>
     <string name="updateClose">Close</string>

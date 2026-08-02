@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
-// Signing credentials live in ~/.gradle/gradle.properties, outside this repo so they can never be
-// committed. Without them the build still works: debug falls back to the local debug keystore and
-// release comes out unsigned, which is what anyone cloning this public repo will get.
+// Credentials live in ~/.gradle/gradle.properties, outside this public repo. Without them the
+// build still works: debug falls back to the debug keystore, release comes out unsigned.
 def signingReady = ['PB_STORE_FILE', 'PB_STORE_PASSWORD', 'PB_KEY_ALIAS', 'PB_KEY_PASSWORD'].every {
     project.hasProperty(it)
 } && file(project.findProperty('PB_STORE_FILE').toString()).exists()
@@ -38,8 +37,8 @@ android {
         debug {
             minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
-            // Signed with the shipping certificate so Play Games authenticates locally; it matches
-            // on package name plus certificate, and a debug-signed build fails with DEVELOPER_ERROR.
+            // Shipping certificate, so Play Games and Billing authenticate locally: both match on
+            // package name plus certificate, and a debug-signed build fails with DEVELOPER_ERROR.
             if (signingReady) signingConfig = signingConfigs.shipping
         }
     }
@@ -71,15 +70,13 @@ dependencies {
     implementation 'com.github.jinatonic.confetti:confetti:1.1.1'
 
     constraints {
-        // Play Billing 9 drags in lifecycle 2.6.2 -> coroutines -> kotlin-stdlib-jdk8:1.6.21, and
-        // those jdk7/jdk8 classes moved into kotlin-stdlib proper in Kotlin 1.8, so the two clash.
-        // Aligning the versions turns the jdk7/jdk8 artifacts back into empty shims.
+        // Billing 9 pulls in kotlin-stdlib-jdk8:1.6.21, whose classes moved into kotlin-stdlib in
+        // Kotlin 1.8; without aligning them checkDuplicateClasses fails.
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
 
-        // Jetifier maps the support libraries onto androidx 1.0.0, where vectordrawable and
-        // vectordrawable-animated share the androidx.vectordrawable namespace. AGP 9 rejects
-        // duplicate namespaces outright, and 1.1.0 is the first release that separates them.
+        // Jetifier maps onto androidx 1.0.0, where both artifacts declare the androidx.vectordrawable
+        // namespace. AGP 9 rejects duplicate namespaces; 1.1.0 is the first release that separates them.
         implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
         implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
     }

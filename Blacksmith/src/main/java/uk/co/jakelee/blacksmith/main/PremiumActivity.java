@@ -67,8 +67,7 @@ public class PremiumActivity extends Activity implements BillingHelper.Listener 
         if (productId.equals(SKU_PREMIUM)) {
             addPremiumFeatures();
             updatePremiumStatus();
-            // Buying premium is what reveals the contribute section, so refresh it too - otherwise
-            // the screen is left completely blank until it's closed and reopened.
+            // Buying premium reveals the contribute section, so refresh that too or the screen is blank.
             updateContributeStatus();
 
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtPremium), true);

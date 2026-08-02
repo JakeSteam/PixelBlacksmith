@@ -26,10 +26,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Thin wrapper over Google Play Billing, doing the job the anjlab library used to.
- * The game only sells one-time products, so subscriptions are deliberately unsupported.
- */
 public class BillingHelper {
     private static final String TAG = "BillingHelper";
     public static final String SKU_PREMIUM = "premium";
@@ -38,28 +34,19 @@ public class BillingHelper {
     public static final String SKU_COIN_2 = "coin_pack_2";
     public static final String SKU_COIN_3 = "coin_pack_3";
 
-    /**
-     * Which products are consumed rather than acknowledged. Deliberately app-wide rather than
-     * per-screen: queryPurchasesAsync returns everything the player owns, not just the products the
-     * current screen sells, so classifying against one screen's list would settle another screen's
-     * purchase the wrong way round and leave it stuck as "already owned".
-     */
+    // App-wide, not per-screen: queryPurchasesAsync returns everything the player owns, so
+    // classifying against one screen's product list would settle another screen's purchase wrongly.
     private static final Set<String> CONSUMABLES = new HashSet<>(Arrays.asList(
             SKU_CONTRIBUTE, SKU_COIN_1, SKU_COIN_2, SKU_COIN_3));
 
     private final Activity activity;
     private final Listener listener;
     private final List<String> allProducts = new ArrayList<>();
-    /**
-     * Concurrent because Play fills this in on its own background thread while the UI reads it on
-     * the main one. A plain HashMap is published unsafely across that boundary, and the reader can
-     * then see only some of the entries - which showed up as one real price and two fallbacks, and
-     * would also make isReady()/purchase() refuse a product the player actually can buy.
-     */
+    // Concurrent: Play writes this from a background thread and the UI reads it from the main one.
+    // A plain HashMap is published unsafely, and the reader then sees only some of the entries.
     private final Map<String, ProductDetails> productDetails = new ConcurrentHashMap<>();
     private BillingClient client;
 
-    /** products are the ones this screen sells, used to fetch prices; settling uses CONSUMABLES. */
     public BillingHelper(Activity activity, Listener listener, String... products) {
         this.activity = activity;
         this.listener = listener;
@@ -85,8 +72,6 @@ public class BillingHelper {
                 if (billingResult.getResponseCode() == BillingResponseCode.OK) {
                     fetchProductDetails();
                 } else {
-                    // Total billing failure: no prices, no restore, nothing buyable. Worth a log,
-                    // since otherwise it looks identical to Play simply being slow.
                     Log.w(TAG, "Billing setup failed: " + billingResult.getResponseCode()
                             + " " + billingResult.getDebugMessage());
                 }
@@ -110,18 +95,15 @@ public class BillingHelper {
         }
     }
 
-    /**
-     * Play's own price for the product, already formatted in the player's currency. Null until the
-     * product details have come back, so callers need a fallback for the first render.
-     */
+    /** Null until Play answers, so callers need a fallback for the first render. */
     public String getFormattedPrice(String productId) {
         ProductDetails details = productDetails.get(productId);
         if (details == null) {
             return null;
         }
 
-        // Billing 8 added purchase options for one-time products, for which the singular accessor
-        // returns null and the price lives in the offer list instead. Handle both shapes.
+        // Billing 8 added purchase options, for which the singular accessor returns null and the
+        // price lives in the offer list instead. Both shapes occur.
         if (details.getOneTimePurchaseOfferDetails() != null) {
             return details.getOneTimePurchaseOfferDetails().getFormattedPrice();
         }
@@ -134,7 +116,6 @@ public class BillingHelper {
         return null;
     }
 
-    /** Play requires a ProductDetails to launch a purchase flow, so these are fetched up front. */
     private void fetchProductDetails() {
         List<QueryProductDetailsParams.Product> products = new ArrayList<>();
         for (String productId : allProducts) {
@@ -164,10 +145,6 @@ public class BillingHelper {
                 });
     }
 
-    /**
-     * Play can return a partial result, and silently missing products mean a wrong price or an
-     * unbuyable button. This is the only diagnostic the game has for that, so it stays in.
-     */
     private void reportUnfetched(List<UnfetchedProduct> unfetched) {
         if (unfetched == null) {
             return;
@@ -191,12 +168,8 @@ public class BillingHelper {
         return "unknown";
     }
 
-    /**
-     * Picks up anything the player already owns. Two distinct cases:
-     * non-consumables get reported to the listener so it can restore entitlements, whereas an
-     * owned consumable means a previous grant was interrupted before it could be consumed, so it
-     * gets granted and consumed now.
-     */
+    // An owned consumable means a previous grant was interrupted before it could be consumed, so
+    // it is granted and consumed now; non-consumables are reported so entitlements can be restored.
     private void queryExistingPurchases() {
         if (client == null) {
             return;
@@ -240,11 +213,10 @@ public class BillingHelper {
     }
 
     /**
-     * Grant first, then consume or acknowledge. If the app dies in between, the purchase stays
-     * owned and is picked up again on the next launch, so the player can't pay for nothing.
+     * Grants before settling, so a grant interrupted by the app dying is replayed on next launch.
      *
-     * @param notifyForNonConsumables false when replaying purchases found at startup, since
-     *                                granting a non-consumable twice would stack its bonuses.
+     * @param notifyForNonConsumables false when replaying at startup, since granting a
+     *                                non-consumable twice would stack its bonuses.
      */
     private void handlePurchase(Purchase purchase, boolean notifyForNonConsumables) {
         if (purchase.getPurchaseState() != Purchase.PurchaseState.PURCHASED) {
@@ -279,11 +251,8 @@ public class BillingHelper {
         }
     }
 
-    /**
-     * Play runs its callbacks on a background thread, but every Listener method here ends up
-     * touching views (relabelling buttons, toasts), so they get bounced onto the main thread first.
-     * runOnUiThread runs inline when already on it, so the click-driven paths are unaffected.
-     */
+    // Play calls back on a background thread and every Listener method touches views, so they are
+    // bounced onto the main thread. runOnUiThread runs inline when already there.
     private void notifyReady(final Set<String> owned) {
         activity.runOnUiThread(() -> listener.onBillingReady(owned));
     }
@@ -297,10 +266,9 @@ public class BillingHelper {
     }
 
     public interface Listener {
-        /** Billing is connected. ownedProducts holds the non-consumables the player already owns. */
+        /** ownedProducts holds the non-consumables the player already owns. */
         void onBillingReady(Set<String> ownedProducts);
 
-        /** Grant the product to the player. */
         void onProductPurchased(String productId);
 
         void onBillingError();

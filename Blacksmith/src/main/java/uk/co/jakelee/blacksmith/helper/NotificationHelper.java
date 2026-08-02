@@ -122,15 +122,12 @@ public class NotificationHelper extends BroadcastReceiver {
         alarmManager.set(AlarmManager.RTC_WAKEUP, notificationTime, broadcast);
     }
 
-    /** Targeting S+ requires an explicit mutability flag. FLAG_IMMUTABLE needs M, which is minSdk. */
     private static int pendingIntentFlags() {
         return PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
     }
 
-    /**
-     * Notifications posted without a channel are dropped from Oreo onwards. Two channels, because
-     * the sound setting is per notification and a channel's sound can't be changed after creation.
-     */
+    // Two channels, because the sound setting is per notification and a channel's sound can't be
+    // changed after creation.
     private static void createChannels(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
@@ -142,7 +139,6 @@ public class NotificationHelper extends BroadcastReceiver {
         manager.createNotificationChannel(new NotificationChannel(CHANNEL_SILENT, name, NotificationManager.IMPORTANCE_LOW));
     }
 
-    /** Required from Android 13 onwards, or nothing we post is ever shown. */
     public static void confirmNotificationPermission(Activity activity) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             return;

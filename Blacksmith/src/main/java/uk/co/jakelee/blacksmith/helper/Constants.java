@@ -142,8 +142,7 @@ public class Constants {
     public static final int SUPER_SUCCESS_MINIMUM = 110;
     public static final int SUPER_SUCCESS_MAXIMUM = 250;
 
-    // How long the interstitial makes the player wait before the reward unlocks. There's no real
-    // advert behind it any more, just the tips screen, so there's nothing to be gained by 30s.
+    // No real advert behind the interstitial any more, so there is nothing to gain from a long wait.
     public static final int ADVERT_TIMEOUT = 15000;
 
     // Error codes

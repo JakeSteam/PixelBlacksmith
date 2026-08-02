@@ -21,12 +21,8 @@ import uk.co.jakelee.blacksmith.model.Player_Info;
 import uk.co.jakelee.blacksmith.model.Super_Upgrade;
 import uk.co.jakelee.blacksmith.model.Upgrade;
 
-/**
- * These rewards used to come from AppLovin rewarded videos, with InterstitialActivity as the
- * fallback whenever no video was available. That account is long gone, so the fallback is now the
- * only path, and it opens immediately instead of after a ten second wait for an advert that was
- * never going to load.
- */
+// No adverts any more: these rewards came from AppLovin rewarded videos, and InterstitialActivity
+// was the fallback when none were available. It is now the only path.
 public class AdvertHelper {
     public final static String INTENT_ID = "uk.co.jakelee.blacksmith.adverthelper";
     private static AdvertHelper dhInstance = null;

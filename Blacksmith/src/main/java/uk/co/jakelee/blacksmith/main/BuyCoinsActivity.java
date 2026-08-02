@@ -40,7 +40,6 @@ public class BuyCoinsActivity extends Activity implements BillingHelper.Listener
 
     @Override
     public void onBillingReady(Set<String> ownedProducts) {
-        // Prices arrive asynchronously, so relabel once Play has told us what they actually are.
         updateCoinPackLabels();
     }
 
@@ -112,7 +111,7 @@ public class BuyCoinsActivity extends Activity implements BillingHelper.Listener
         super.onDestroy();
     }
 
-    /** The hardcoded fallbacks are US dollars, so they're only right until Play answers. */
+    /** The fallbacks are US dollars, so they are only right until Play answers. */
     private String getPriceIfPossible(String iapName, String defaultPrice) {
         String price = billing == null ? null : billing.getFormattedPrice(iapName);
         return price == null ? defaultPrice : price;

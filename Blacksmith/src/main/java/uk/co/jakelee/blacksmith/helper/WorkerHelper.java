@@ -136,7 +136,6 @@ public class WorkerHelper {
         }
     }
 
-    // Typed as Activity so the result toasts have a view to attach to; both callers are activities.
     public static void checkForFinishedHeroes(Activity context) {
         List<Hero> heroes = Select.from(Hero.class).where(
                 Condition.prop("purchased").eq(1),
@@ -330,7 +329,6 @@ public class WorkerHelper {
         heroVisitor.save();
     }
 
-    // Typed as Activity so the result toasts have a view to attach to; both callers are activities.
     public static void checkForFinishedWorkers(Activity context) {
         List<Worker> workers = Select.from(Worker.class).where(
                 Condition.prop("purchased").eq(1),

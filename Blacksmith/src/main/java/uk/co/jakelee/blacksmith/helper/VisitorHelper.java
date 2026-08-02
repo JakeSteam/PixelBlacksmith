@@ -357,7 +357,7 @@ public class VisitorHelper {
         Player_Info.addXp(Player_Info.getPlayerLevel() * (isFullyComplete ? Constants.QUEST_XP_MODIFIER_MEDIUM : Constants.QUEST_XP_MODIFIER_EASY));
     }
 
-    // Typed as Activity so the reward toast has a view to attach to; VisitorActivity is the only caller.
+    // Typed as Activity so the reward toast has a view to attach to.
     public static void createVisitorReward(Activity context, Visitor visitor) {
         boolean isFullyComplete = visitor.isVisitorFullyComplete();
         int minimumRewards = Upgrade.getValue("Minimum Visitor Rewards");
