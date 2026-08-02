@@ -56,6 +56,7 @@ public class PremiumActivity extends Activity implements BillingHelper.Listener 
         if (ownedProducts.contains(SKU_PREMIUM) && !Player_Info.isPremium()) {
             addPremiumFeatures();
             updatePremiumStatus();
+            updateContributeStatus();
 
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.restoredPremium), true);
         }
@@ -66,6 +67,9 @@ public class PremiumActivity extends Activity implements BillingHelper.Listener 
         if (productId.equals(SKU_PREMIUM)) {
             addPremiumFeatures();
             updatePremiumStatus();
+            // Buying premium is what reveals the contribute section, so refresh it too - otherwise
+            // the screen is left completely blank until it's closed and reopened.
+            updateContributeStatus();
 
             ToastHelper.showToast(findViewById(R.id.premium), ToastHelper.LONG, getString(R.string.boughtPremium), true);
         } else if (productId.equals(SKU_CONTRIBUTE)) {
