@@ -125,13 +125,32 @@ The old layout isn't carried forward. It mixes static content with player progre
   - `SaveFiles`
   - `Links`
   - `Orientation`
+  - `RewardedAds`
   - The iOS `Store` and `GameServices` are written in Swift, because StoreKit 2 can only be called from Swift. They're passed into Kotlin at startup.
+
+### Rewarded adverts
+
+The advert step is a balance mechanic. Watching an ad is the alternative to paying coins for:
+
+- a visitor arriving early;
+- dismissing a visitor;
+- restocking one trader, or all of them;
+- the bonus chest (Premium players skip the ad).
+
+The advert itself only came out of 3.x to avoid technical problems. So the mechanic stays, behind a `RewardedAds` interface:
+
+- **Until real ads are added,** the interface shows the existing 15-second tips countdown (`InterstitialActivity` today). Its buttons say "Wait" rather than "Watch ad", so App Review doesn't see an advert button with no advert behind it.
+- **Real ads are expected before release.** Adding them means:
+  - choosing an SDK that works on both platforms, with a thin native implementation each;
+  - a consent prompt for the UK and EU;
+  - Apple's App Tracking Transparency prompt, if the SDK tracks;
+  - updating the App Store privacy label and the Play Data safety form to match the SDK.
+- **Unchanged:** the reward rules, Premium skipping the bonus-chest ad, and the "Disable adverts" setting for Premium players.
 
 ### Features being removed
 
 | Feature | Why | Effect |
 |---|---|---|
-| "Watch advert" options and `InterstitialActivity` | No ad SDK exists, and the wording is misleading. Ads can come back on both platforms later | Visitor add/dismiss and trader restocks keep their pay-with-coins option. **The bonus chest becomes claimable by everyone when ready**; previously non-Premium players went through the advert screen. The "Disable adverts" setting goes, and the bonus notification no longer checks whether adverts are shown |
 | Support codes | They run SQL to grant items, which risks Apple's rule 3.1.1 (no unlocking outside in-app purchase). Barely used | Removed on both platforms |
 | Hotfix menu | It repaired SugarORM-specific problems that can't happen in the new schema | Removed |
 | Blacksmith Slots promo | Links to an Android-only sister app | Removed on iOS |
@@ -179,7 +198,7 @@ Port the models and helpers, with tests for:
 - trader restocking and the restock tax;
 - workers and heroes finishing;
 - prestige;
-- the bonus chest timer;
+- the bonus chest timer, and claiming it through the advert step;
 - achievement progress;
 - when each of the 7 notification types should fire.
 
@@ -191,7 +210,7 @@ Port the models and helpers, with tests for:
 
 ### M5: Remaining screens
 
-- **Screens:** Upgrade, Worker, Food, Tool, Adventure, Equipment, EquipmentSelect, VisitorSelect, Assistant (peeking carousel), Trophy, Statistics, Settings, Credits, Premium, BuyCoins.
+- **Screens:** Upgrade, Worker, Food, Tool, Adventure, Equipment, EquipmentSelect, VisitorSelect, Assistant (peeking carousel), Trophy, Statistics, Settings, Credits, Premium, BuyCoins, and the countdown screen used by `RewardedAds`.
 - **Tutorial:** 15 stages, about 41 steps. Each step's text is also written to the message log, as now.
 - **Audio:** sound effects and looping music. This fixes the `MediaPlayer` leak and the volume bug in `MusicService`. Convert `sell1.ogg` to a format iOS can play.
 - **Seasonal effects:** December wallpapers and confetti.
@@ -211,6 +230,7 @@ Port the models and helpers, with tests for:
 - **Cloud saves.** Android reads legacy Play Games saves through the legacy reader, and writes the new format. iOS uses Game Center saved games. Both keep the "is this save better?" check.
 - **`Notifier`.** Android keeps its alarms. iOS uses `UNUserNotificationCenter`, scheduled when the app goes to the background.
 - **`SaveFiles`.** A file picker and share sheet for export and import, on both platforms.
+- **`RewardedAds`.** The real ad SDK on both platforms, with consent handling (see "Rewarded adverts"). Replaces the countdown stand-in.
 - **Other:** the system review prompt (replacing android-rate), external links, and the orientation setting.
 
 ### M7: iOS release
@@ -220,7 +240,7 @@ Port the models and helpers, with tests for:
   - the launch screen;
   - `PrivacyInfo.xcprivacy`, the privacy manifest Apple now requires.
 - **App Store Connect forms:**
-  - the privacy label, "Data Not Collected";
+  - the privacy label: "Data Not Collected" without ads, or whatever the chosen ad SDK requires;
   - the age-rating questionnaire;
   - iPhone and iPad screenshots.
 - **TestFlight beta**, opened to r/PixelBlacksmith, then App Store review and release.
@@ -243,5 +263,6 @@ Port the models and helpers, with tests for:
 | The pixel font's handling of Japanese, Chinese, Korean and Russian on iOS | Tested first, in M1 |
 | The migrator gets an unusual real save wrong | Test with real sample files. Never delete the legacy database. Refuse rather than guess |
 | Performance of long text-heavy screens (Help, Statistics) on iOS | Use lazy lists. Measure during M4 and M5 |
-| Rejection at App Store review | Already addressed above: 2.3.10 (other platforms' names), 3.1.1 (support codes), misleading "advert" wording, and Restore Purchases |
+| Rejection at App Store review | Already addressed above: 2.3.10 (other platforms' names), 3.1.1 (support codes), "Wait" wording until real ads exist, and Restore Purchases |
+| Ad SDK support across both platforms, plus consent | Pick the SDK early in M6. Keep it behind `RewardedAds` so the game logic never depends on it |
 | How much work the UI is (30 screens) | Shared components first. Grouping screens into the M4 and M5 batches gives regular points where something is playable |
